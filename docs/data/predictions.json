@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T19:27:54.398856+00:00",
+  "generated_at": "2026-06-21T19:52:50.775705+00:00",
   "model": {
     "name": "Dixon-Coles",
     "teams": 319,
@@ -63,30 +63,28 @@
       "xg_home": 1.94,
       "xg_away": 0.8,
       "odds": {
-        "home": 1.36,
-        "away": 9.78,
-        "draw": 4.72,
-        "over_2_5": 1.97,
-        "under_2_5": 1.92
+        "home": 1.53,
+        "away": 9.08,
+        "draw": 3.49
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 63.8,
-          "devig_prob": 71.4,
-          "edge": -7.6,
-          "odds": 1.36,
-          "pick": "FADE",
+          "devig_prob": 63.3,
+          "edge": 0.5,
+          "odds": 1.53,
+          "pick": "SKIP",
           "confidence": "MEDIA"
         },
         {
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 22.2,
-          "devig_prob": 19.7,
-          "edge": 2.5,
-          "odds": 4.72,
+          "devig_prob": 27.0,
+          "edge": -4.9,
+          "odds": 3.49,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -94,29 +92,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 14.1,
-          "devig_prob": 8.9,
-          "edge": 5.2,
-          "odds": 9.78,
-          "pick": "SKIP",
-          "confidence": "MEDIA"
-        },
-        {
-          "market": "Over 2.5",
-          "side": "over_2_5",
-          "model_prob": 51.5,
-          "devig_prob": 49.3,
-          "edge": 2.2,
-          "odds": 1.97,
-          "pick": "SKIP",
-          "confidence": "MEDIA"
-        },
-        {
-          "market": "Under 2.5",
-          "side": "under_2_5",
-          "model_prob": 48.5,
-          "devig_prob": 50.7,
-          "edge": -2.2,
-          "odds": 1.92,
+          "devig_prob": 9.7,
+          "edge": 4.4,
+          "odds": 9.08,
           "pick": "SKIP",
           "confidence": "MEDIA"
         }
@@ -151,29 +129,29 @@
       ],
       "live_scores": [
         {
-          "home": 1,
-          "away": 0,
-          "prob": 19.7
-        },
-        {
           "home": 0,
           "away": 0,
-          "prob": 15.7
+          "prob": 32.8
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 25.4
         },
         {
           "home": 2,
           "away": 0,
-          "prob": 13.6
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 11.7
+          "prob": 10.4
         },
         {
           "home": 0,
           "away": 1,
-          "prob": 7.7
+          "prob": 10.2
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 9.0
         }
       ],
       "quiniela": {
