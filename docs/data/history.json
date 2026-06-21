@@ -12,10 +12,23 @@
         "away": 0
       },
       "best_bet_won": null
+    },
+    {
+      "id": "5f92f257386ec5bf7c6e2498a21f3a61",
+      "home": "Belgium",
+      "away": "Iran",
+      "date": "2026-06-21T19:00:00Z",
+      "picks": [],
+      "best_bet": null,
+      "result": {
+        "home": 0,
+        "away": 0
+      },
+      "best_bet_won": null
     }
   ],
   "summary": {
-    "total": 1,
+    "total": 2,
     "won": 0,
     "lost": 0,
     "win_rate": 0.0,
