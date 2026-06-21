@@ -1,0 +1,4876 @@
+{
+  "generated_at": "2026-06-21T15:42:52.210707+00:00",
+  "model": {
+    "name": "Dixon-Coles",
+    "teams": 319,
+    "matches_trained": 20501,
+    "fitted_at": "2026-06-19T08:20:02.072480+00:00",
+    "edge_threshold": 7.000000000000001
+  },
+  "stats": {
+    "total_fixtures": 47,
+    "upcoming": 35,
+    "completed": 12,
+    "total_bets": 22,
+    "won": 0,
+    "lost": 0,
+    "win_rate": 0
+  },
+  "fixtures": [
+    {
+      "id": "73529a242e319a86bf3d00ddb4accc37",
+      "home": "Spain",
+      "away": "Saudi Arabia",
+      "commence_time": "2026-06-21T16:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 2.6,
+      "xg_away": 0.36,
+      "odds": {
+        "away": 33.0,
+        "home": 1.12,
+        "draw": 10.9
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 85.0,
+          "devig_prob": 88.6,
+          "edge": -3.6,
+          "odds": 1.12,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 11.8,
+          "devig_prob": 8.8,
+          "edge": 3.1,
+          "odds": 10.9,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 3.1,
+          "devig_prob": 2.7,
+          "edge": 0.5,
+          "odds": 33.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 17.5
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 15.2
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 13.2
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 9.9
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 6.3
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 3.5,
+        "sd": 1.41,
+        "e_tie": 0.95,
+        "objective": 4.72,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.72
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.68
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 4.56
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "5f92f257386ec5bf7c6e2498a21f3a61",
+      "home": "Belgium",
+      "away": "Iran",
+      "commence_time": "2026-06-21T19:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.94,
+      "xg_away": 0.8,
+      "odds": {
+        "home": 1.43,
+        "away": 8.25,
+        "draw": 4.95,
+        "over_2_5": 1.85,
+        "under_2_5": 2.07
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 63.8,
+          "devig_prob": 69.0,
+          "edge": -5.2,
+          "odds": 1.43,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 22.2,
+          "devig_prob": 19.5,
+          "edge": 2.6,
+          "odds": 4.95,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 14.1,
+          "devig_prob": 11.5,
+          "edge": 2.6,
+          "odds": 8.25,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 51.5,
+          "devig_prob": 52.9,
+          "edge": -1.3,
+          "odds": 1.85,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 48.5,
+          "devig_prob": 47.1,
+          "edge": 1.3,
+          "odds": 2.07,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 12.2
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 12.0
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 10.6
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.7
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 7.9
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.63,
+        "sd": 1.83,
+        "e_tie": 0.72,
+        "objective": 4.02,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.02
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.93
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 3.89
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "852a3abe6d46820720febc0fedebff9a",
+      "home": "Uruguay",
+      "away": "Cape Verde",
+      "commence_time": "2026-06-21T22:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.46,
+      "xg_away": 0.37,
+      "odds": {
+        "away": 9.5,
+        "home": 1.43,
+        "draw": 4.4,
+        "over_2_5": 2.15,
+        "under_2_5": 1.61
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 64.2,
+          "devig_prob": 68.6,
+          "edge": -4.4,
+          "odds": 1.43,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 27.0,
+          "devig_prob": 21.8,
+          "edge": 5.2,
+          "odds": 4.4,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 8.8,
+          "devig_prob": 9.7,
+          "edge": -0.8,
+          "odds": 9.5,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 27.8,
+          "devig_prob": 42.2,
+          "edge": -14.4,
+          "odds": 2.15,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 72.2,
+          "devig_prob": 57.8,
+          "edge": 14.4,
+          "odds": 1.61,
+          "pick": "BET",
+          "confidence": "ALTA"
+        }
+      ],
+      "best_bet": {
+        "market": "Under 2.5",
+        "edge": 14.4,
+        "odds": 1.61,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 22.8
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 17.0
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 16.5
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 9.2
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 8.3
+        }
+      ],
+      "quiniela": {
+        "pick_home": 1,
+        "pick_away": 0,
+        "e_pts": 2.95,
+        "sd": 1.75,
+        "e_tie": 1.03,
+        "objective": 4.41,
+        "alternatives": [
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 4.41
+          },
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.34
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.12
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "c1ec9a65f4b4cf74477b368a7d6282de",
+      "home": "New Zealand",
+      "away": "Egypt",
+      "commence_time": "2026-06-22T01:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.64,
+      "xg_away": 1.06,
+      "odds": {
+        "away": 1.56,
+        "home": 6.75,
+        "draw": 4.2,
+        "over_2_5": 1.97,
+        "under_2_5": 1.71
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 21.3,
+          "devig_prob": 14.0,
+          "edge": 7.2,
+          "odds": 6.75,
+          "pick": "BET",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 34.4,
+          "devig_prob": 23.0,
+          "edge": 11.4,
+          "odds": 4.2,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 44.4,
+          "devig_prob": 63.0,
+          "edge": -18.6,
+          "odds": 1.56,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 24.1,
+          "devig_prob": 46.1,
+          "edge": -22.0,
+          "odds": 1.97,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 75.9,
+          "devig_prob": 53.9,
+          "edge": 22.0,
+          "odds": 1.71,
+          "pick": "BET",
+          "confidence": "ALTA"
+        }
+      ],
+      "best_bet": {
+        "market": "Under 2.5",
+        "edge": 22.0,
+        "odds": 1.71,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 19.0
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 18.7
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.1
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 11.1
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 10.2
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 2.23,
+        "sd": 1.86,
+        "e_tie": 0.89,
+        "objective": 3.7,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.7
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.5
+          },
+          {
+            "home": 0,
+            "away": 0,
+            "obj": 3.3
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "be6c63f416c67bca1300a98f5b89c3af",
+      "home": "Argentina",
+      "away": "Austria",
+      "commence_time": "2026-06-22T17:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.71,
+      "xg_away": 0.52,
+      "odds": {
+        "home": 1.49,
+        "away": 6.75,
+        "draw": 4.0,
+        "over_2_5": 1.8,
+        "under_2_5": 1.88
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 66.0,
+          "devig_prob": 64.3,
+          "edge": 1.8,
+          "odds": 1.49,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 23.7,
+          "devig_prob": 22.9,
+          "edge": 0.8,
+          "odds": 4.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 10.3,
+          "devig_prob": 12.9,
+          "edge": -2.6,
+          "odds": 6.75,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 38.7,
+          "devig_prob": 51.2,
+          "edge": -12.5,
+          "odds": 1.8,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 61.3,
+          "devig_prob": 48.8,
+          "edge": 12.5,
+          "odds": 1.88,
+          "pick": "BET",
+          "confidence": "ALTA"
+        }
+      ],
+      "best_bet": {
+        "market": "Under 2.5",
+        "edge": 12.5,
+        "odds": 1.88,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 17.8
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 15.7
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 11.2
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 10.1
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 9.0
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.84,
+        "sd": 1.84,
+        "e_tie": 0.86,
+        "objective": 4.28,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.28
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 4.26
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.1
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "7ad7a0ce2ef2618bb59b066da5642f70",
+      "home": "France",
+      "away": "Iraq",
+      "commence_time": "2026-06-22T21:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 2.64,
+      "xg_away": 0.42,
+      "odds": {
+        "home": 1.07,
+        "away": 26.0,
+        "draw": 10.5
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 84.1,
+          "devig_prob": 90.2,
+          "edge": -6.1,
+          "odds": 1.07,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 12.2,
+          "devig_prob": 7.5,
+          "edge": 4.6,
+          "odds": 10.5,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 3.7,
+          "devig_prob": 2.2,
+          "edge": 1.5,
+          "odds": 26.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 16.3
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 14.3
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 12.1
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 9.4
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 6.9
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 3.43,
+        "sd": 1.44,
+        "e_tie": 0.9,
+        "objective": 4.65,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.65
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.62
+          },
+          {
+            "home": 4,
+            "away": 0,
+            "obj": 4.49
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "3f48473742ca0fd2a85930554720c75e",
+      "home": "Norway",
+      "away": "Senegal",
+      "commence_time": "2026-06-23T00:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.74,
+      "xg_away": 0.96,
+      "odds": {
+        "home": 2.34,
+        "away": 3.22,
+        "draw": 3.61,
+        "over_2_5": 1.92,
+        "under_2_5": 1.94
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 55.1,
+          "devig_prob": 42.2,
+          "edge": 12.9,
+          "odds": 2.34,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 24.9,
+          "devig_prob": 27.2,
+          "edge": -2.4,
+          "odds": 3.61,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 20.0,
+          "devig_prob": 30.6,
+          "edge": -10.6,
+          "odds": 3.22,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 50.4,
+          "devig_prob": 50.3,
+          "edge": 0.2,
+          "odds": 1.92,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 49.6,
+          "devig_prob": 49.7,
+          "edge": -0.2,
+          "odds": 1.94,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "edge": 12.9,
+        "odds": 2.34,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 11.9
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 11.2
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 10.2
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.8
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 7.4
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.3,
+        "sd": 1.89,
+        "e_tie": 0.65,
+        "objective": 3.7,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.7
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.64
+          },
+          {
+            "home": 2,
+            "away": 1,
+            "obj": 3.56
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "fd8533b650e655030f6a7946f8795db2",
+      "home": "Jordan",
+      "away": "Algeria",
+      "commence_time": "2026-06-23T03:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.14,
+      "xg_away": 1.5,
+      "odds": {
+        "away": 1.61,
+        "home": 6.36,
+        "draw": 4.21,
+        "over_2_5": 1.95,
+        "under_2_5": 1.92
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 28.1,
+          "devig_prob": 15.3,
+          "edge": 12.8,
+          "odds": 6.36,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 27.0,
+          "devig_prob": 23.3,
+          "edge": 3.7,
+          "odds": 4.21,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 44.9,
+          "devig_prob": 61.5,
+          "edge": -16.6,
+          "odds": 1.61,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 49.1,
+          "devig_prob": 49.6,
+          "edge": -0.5,
+          "odds": 1.95,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 50.9,
+          "devig_prob": 50.4,
+          "edge": 0.5,
+          "odds": 1.92,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "edge": 12.8,
+        "odds": 6.36,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 12.9
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 10.1
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 9.2
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 8.0
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 7.8
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 2.0,
+        "sd": 1.72,
+        "e_tie": 0.66,
+        "objective": 3.29,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.29
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.28
+          },
+          {
+            "home": 1,
+            "away": 2,
+            "obj": 3.25
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "8ba93d190f1f934e33862a97a6353a6e",
+      "home": "Portugal",
+      "away": "Uzbekistan",
+      "commence_time": "2026-06-23T17:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 2.07,
+      "xg_away": 0.52,
+      "odds": {
+        "home": 1.18,
+        "away": 12.5,
+        "draw": 7.0
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 73.4,
+          "devig_prob": 81.6,
+          "edge": -8.1,
+          "odds": 1.18,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 18.9,
+          "devig_prob": 12.3,
+          "edge": 6.7,
+          "odds": 7.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 7.6,
+          "devig_prob": 6.2,
+          "edge": 1.5,
+          "odds": 12.5,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 16.1
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 15.1
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 11.1
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 8.5
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 8.3
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 3.07,
+        "sd": 1.71,
+        "e_tie": 0.87,
+        "objective": 4.44,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.44
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 4.33
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.32
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "2f49dd8deae3079dc4eb2d634d18a99c",
+      "home": "England",
+      "away": "Ghana",
+      "commence_time": "2026-06-23T20:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 2.45,
+      "xg_away": 0.42,
+      "odds": {
+        "home": 1.2,
+        "away": 11.5,
+        "draw": 6.75
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 81.9,
+          "devig_prob": 80.3,
+          "edge": 1.6,
+          "odds": 1.2,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 13.8,
+          "devig_prob": 12.8,
+          "edge": 1.0,
+          "odds": 6.75,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 4.3,
+          "devig_prob": 6.9,
+          "edge": -2.6,
+          "odds": 11.5,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 17.0
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 13.9
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 13.5
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 8.5
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 7.2
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 3.37,
+        "sd": 1.51,
+        "e_tie": 0.91,
+        "objective": 4.64,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.64
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.58
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 4.49
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "c1bc8c26480cd42b89a0de5329581314",
+      "home": "Panama",
+      "away": "Croatia",
+      "commence_time": "2026-06-23T23:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.83,
+      "xg_away": 1.9,
+      "odds": {
+        "away": 1.52,
+        "home": 6.0,
+        "draw": 4.1
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 15.1,
+          "devig_prob": 14.7,
+          "edge": 0.4,
+          "odds": 6.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 22.7,
+          "devig_prob": 22.3,
+          "edge": 0.4,
+          "odds": 4.1,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 62.2,
+          "devig_prob": 63.0,
+          "edge": -0.8,
+          "odds": 1.52,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 11.9
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 11.8
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 10.8
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 9.8
+        },
+        {
+          "home": 0,
+          "away": 3,
+          "prob": 7.5
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 2,
+        "e_pts": 2.57,
+        "sd": 1.85,
+        "e_tie": 0.71,
+        "objective": 3.97,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.97
+          },
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.88
+          },
+          {
+            "home": 0,
+            "away": 3,
+            "obj": 3.83
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "68bfc965eb267508e04d8e8d75c1a0ae",
+      "home": "Colombia",
+      "away": "DR Congo",
+      "commence_time": "2026-06-24T02:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.6,
+      "xg_away": 0.5,
+      "odds": {
+        "home": 1.5,
+        "away": 7.5,
+        "draw": 4.25,
+        "over_2_5": 2.1,
+        "under_2_5": 1.7
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 64.0,
+          "devig_prob": 65.2,
+          "edge": -1.2,
+          "odds": 1.5,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 25.2,
+          "devig_prob": 22.4,
+          "edge": 2.8,
+          "odds": 4.25,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 10.8,
+          "devig_prob": 12.3,
+          "edge": -1.6,
+          "odds": 7.5,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 35.2,
+          "devig_prob": 44.4,
+          "edge": -9.2,
+          "odds": 2.1,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 64.8,
+          "devig_prob": 55.6,
+          "edge": 9.2,
+          "odds": 1.7,
+          "pick": "BET",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Under 2.5",
+        "edge": 9.2,
+        "odds": 1.7,
+        "pick": "BET",
+        "confidence": "MEDIA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 19.0
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 15.6
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 12.7
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 10.3
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 8.4
+        }
+      ],
+      "quiniela": {
+        "pick_home": 1,
+        "pick_away": 0,
+        "e_pts": 2.85,
+        "sd": 1.72,
+        "e_tie": 0.93,
+        "objective": 4.25,
+        "alternatives": [
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 4.25
+          },
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.25
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.04
+          }
+        ]
+      },
+      "fixture_confidence": "MEDIA"
+    },
+    {
+      "id": "512ac18beb5aa936a59f7ea3e497ada2",
+      "home": "Bosnia & Herzegovina",
+      "away": "Qatar",
+      "commence_time": "2026-06-24T19:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.52,
+      "xg_away": 0.95,
+      "odds": {
+        "home": 1.44,
+        "away": 7.75,
+        "draw": 4.75
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 50.1,
+          "devig_prob": 68.0,
+          "edge": -18.0,
+          "odds": 1.44,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 27.1,
+          "devig_prob": 20.0,
+          "edge": 7.1,
+          "odds": 4.75,
+          "pick": "BET",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 22.8,
+          "devig_prob": 12.0,
+          "edge": 10.8,
+          "odds": 7.75,
+          "pick": "BET",
+          "confidence": "ALTA"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Visitante (2)",
+        "edge": 10.8,
+        "odds": 7.75,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 12.9
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 12.2
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 9.8
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.3
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 9.1
+        }
+      ],
+      "quiniela": {
+        "pick_home": 1,
+        "pick_away": 0,
+        "e_pts": 2.22,
+        "sd": 1.75,
+        "e_tie": 0.72,
+        "objective": 3.56,
+        "alternatives": [
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.56
+          },
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.55
+          },
+          {
+            "home": 2,
+            "away": 1,
+            "obj": 3.4
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "c9ef5822ee64fd5275f7c73251bb56c7",
+      "home": "Switzerland",
+      "away": "Canada",
+      "commence_time": "2026-06-24T19:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.7,
+      "xg_away": 0.78,
+      "odds": {
+        "away": 3.3,
+        "home": 2.5,
+        "draw": 3.05,
+        "over_2_5": 2.12,
+        "under_2_5": 1.73
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 58.8,
+          "devig_prob": 38.9,
+          "edge": 19.9,
+          "odds": 2.5,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 25.0,
+          "devig_prob": 31.8,
+          "edge": -6.8,
+          "odds": 3.05,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 16.3,
+          "devig_prob": 29.3,
+          "edge": -13.0,
+          "odds": 3.3,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 45.1,
+          "devig_prob": 44.7,
+          "edge": 0.4,
+          "odds": 2.12,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 54.9,
+          "devig_prob": 55.3,
+          "edge": -0.4,
+          "odds": 1.73,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "edge": 19.9,
+        "odds": 2.5,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 13.7
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 12.1
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 11.7
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.4
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 9.0
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.49,
+        "sd": 1.89,
+        "e_tie": 0.72,
+        "objective": 3.91,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.91
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.87
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 3.74
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "885ba95805db310a7bcc3fb1a7a6dd28",
+      "home": "Scotland",
+      "away": "Brazil",
+      "commence_time": "2026-06-24T22:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.76,
+      "xg_away": 1.42,
+      "odds": {
+        "away": 1.33,
+        "home": 8.0,
+        "draw": 5.1,
+        "over_2_5": 1.7,
+        "under_2_5": 2.0
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 19.4,
+          "devig_prob": 10.5,
+          "edge": 8.9,
+          "odds": 8.0,
+          "pick": "BET",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 28.5,
+          "devig_prob": 17.4,
+          "edge": 11.0,
+          "odds": 5.1,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 52.1,
+          "devig_prob": 72.1,
+          "edge": -20.0,
+          "odds": 1.33,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 37.4,
+          "devig_prob": 54.4,
+          "edge": -17.0,
+          "odds": 1.7,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 62.6,
+          "devig_prob": 45.6,
+          "edge": 17.0,
+          "odds": 2.0,
+          "pick": "BET",
+          "confidence": "ALTA"
+        }
+      ],
+      "best_bet": {
+        "market": "Under 2.5",
+        "edge": 17.0,
+        "odds": 2.0,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 15.3
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 12.9
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 11.9
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 11.4
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 8.7
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 2.37,
+        "sd": 1.78,
+        "e_tie": 0.81,
+        "objective": 3.76,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.76
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.72
+          },
+          {
+            "home": 0,
+            "away": 3,
+            "obj": 3.5
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "d1279ce7f33136a33e99ad442fc855e8",
+      "home": "Morocco",
+      "away": "Haiti",
+      "commence_time": "2026-06-24T22:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 2.55,
+      "xg_away": 0.33,
+      "odds": {
+        "away": 17.0,
+        "home": 1.16,
+        "draw": 7.5
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 85.0,
+          "devig_prob": 83.7,
+          "edge": 1.3,
+          "odds": 1.16,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 12.0,
+          "devig_prob": 11.8,
+          "edge": 0.2,
+          "odds": 7.5,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 3.0,
+          "devig_prob": 4.5,
+          "edge": -1.5,
+          "odds": 17.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 18.2
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 15.5
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 14.0
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 9.9
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 6.1
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 3.52,
+        "sd": 1.41,
+        "e_tie": 0.97,
+        "objective": 4.76,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.76
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.7
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 4.6
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "5993bd5196ca09f83990f0c3261e442e",
+      "home": "Czech Republic",
+      "away": "Mexico",
+      "commence_time": "2026-06-25T01:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.0,
+      "xg_away": 1.05,
+      "odds": {
+        "home": 3.55,
+        "away": 2.04,
+        "draw": 4.0,
+        "over_2_5": 2.22,
+        "under_2_5": 1.71
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 32.7,
+          "devig_prob": 27.5,
+          "edge": 5.2,
+          "odds": 3.55,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 31.8,
+          "devig_prob": 24.3,
+          "edge": 7.5,
+          "odds": 4.0,
+          "pick": "BET",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 35.5,
+          "devig_prob": 48.2,
+          "edge": -12.7,
+          "odds": 2.04,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 33.8,
+          "devig_prob": 43.3,
+          "edge": -9.5,
+          "odds": 2.22,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 66.2,
+          "devig_prob": 56.7,
+          "edge": 9.5,
+          "odds": 1.71,
+          "pick": "BET",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Under 2.5",
+        "edge": 9.5,
+        "odds": 1.71,
+        "pick": "BET",
+        "confidence": "MEDIA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 14.3
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 13.6
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 12.8
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 12.1
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 7.1
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 1.8,
+        "sd": 1.76,
+        "e_tie": 0.74,
+        "objective": 3.15,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.15
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.03
+          },
+          {
+            "home": 1,
+            "away": 1,
+            "obj": 2.98
+          }
+        ]
+      },
+      "fixture_confidence": "MEDIA"
+    },
+    {
+      "id": "c0355dfc6e26ec327e379b6ef5824a5f",
+      "home": "South Africa",
+      "away": "South Korea",
+      "commence_time": "2026-06-25T01:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.96,
+      "xg_away": 1.26,
+      "odds": {
+        "home": 5.85,
+        "away": 1.64,
+        "draw": 3.95,
+        "over_2_5": 2.02,
+        "under_2_5": 1.8
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 27.4,
+          "devig_prob": 16.1,
+          "edge": 11.3,
+          "odds": 5.85,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 30.0,
+          "devig_prob": 24.3,
+          "edge": 5.7,
+          "odds": 3.95,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 42.6,
+          "devig_prob": 59.6,
+          "edge": -17.0,
+          "odds": 1.64,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 38.2,
+          "devig_prob": 47.0,
+          "edge": -8.8,
+          "odds": 2.02,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 61.8,
+          "devig_prob": 53.0,
+          "edge": 8.8,
+          "odds": 1.8,
+          "pick": "BET",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "edge": 11.3,
+        "odds": 5.85,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.8
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 13.0
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 11.6
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 9.7
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 8.7
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 2.02,
+        "sd": 1.77,
+        "e_tie": 0.74,
+        "objective": 3.38,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.38
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.28
+          },
+          {
+            "home": 1,
+            "away": 2,
+            "obj": 3.13
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "0ec28b84ec399bd4dffbe8d1bc72b3c4",
+      "home": "Ecuador",
+      "away": "Germany",
+      "commence_time": "2026-06-25T20:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.92,
+      "xg_away": 1.07,
+      "odds": {
+        "home": 3.4,
+        "away": 1.9,
+        "draw": 3.85
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 29.7,
+          "devig_prob": 26.9,
+          "edge": 2.9,
+          "odds": 3.4,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 32.3,
+          "devig_prob": 23.5,
+          "edge": 8.8,
+          "odds": 3.85,
+          "pick": "BET",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 38.0,
+          "devig_prob": 49.6,
+          "edge": -11.7,
+          "odds": 1.9,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Empate (X)",
+        "edge": 8.8,
+        "odds": 3.85,
+        "pick": "BET",
+        "confidence": "MEDIA"
+      },
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 14.4
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 14.2
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 13.9
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 11.8
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 7.9
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 1.91,
+        "sd": 1.79,
+        "e_tie": 0.77,
+        "objective": 3.29,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.29
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.11
+          },
+          {
+            "home": 0,
+            "away": 0,
+            "obj": 3.0
+          }
+        ]
+      },
+      "fixture_confidence": "MEDIA"
+    },
+    {
+      "id": "0ed0233bddc4eafc8507f86a9c17b998",
+      "home": "Japan",
+      "away": "Sweden",
+      "commence_time": "2026-06-25T23:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.78,
+      "xg_away": 1.09,
+      "odds": {
+        "home": 2.05,
+        "away": 4.15,
+        "draw": 3.3,
+        "over_2_5": 1.82,
+        "under_2_5": 2.06
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 53.1,
+          "devig_prob": 47.6,
+          "edge": 5.4,
+          "odds": 2.05,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 24.5,
+          "devig_prob": 29.3,
+          "edge": -4.8,
+          "odds": 3.3,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 22.5,
+          "devig_prob": 23.1,
+          "edge": -0.6,
+          "odds": 4.15,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 54.7,
+          "devig_prob": 53.2,
+          "edge": 1.5,
+          "odds": 1.82,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 45.3,
+          "devig_prob": 46.8,
+          "edge": -1.5,
+          "odds": 2.06,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 11.6
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.8
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 9.5
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 9.0
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 6.3
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.2,
+        "sd": 1.87,
+        "e_tie": 0.6,
+        "objective": 3.56,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.56
+          },
+          {
+            "home": 2,
+            "away": 1,
+            "obj": 3.51
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.5
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "f3c4657daa143a0c5bd62cb370d01ce4",
+      "home": "Tunisia",
+      "away": "Netherlands",
+      "commence_time": "2026-06-25T23:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.8,
+      "xg_away": 1.85,
+      "odds": {
+        "away": 1.14,
+        "home": 23.0,
+        "draw": 9.0
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 15.1,
+          "devig_prob": 3.5,
+          "edge": 11.6,
+          "odds": 23.0,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 23.2,
+          "devig_prob": 10.2,
+          "edge": 13.0,
+          "odds": 9.0,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 61.7,
+          "devig_prob": 86.2,
+          "edge": -24.6,
+          "odds": 1.14,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Empate (X)",
+        "edge": 13.0,
+        "odds": 9.0,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 12.5
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 12.1
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 11.0
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 9.7
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 7.6
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 2,
+        "e_pts": 2.57,
+        "sd": 1.86,
+        "e_tie": 0.72,
+        "objective": 3.97,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.97
+          },
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.89
+          },
+          {
+            "home": 0,
+            "away": 3,
+            "obj": 3.82
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "22f6ac06dfcc88a847920f62633e6459",
+      "home": "Paraguay",
+      "away": "Australia",
+      "commence_time": "2026-06-26T02:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.82,
+      "xg_away": 0.97,
+      "odds": {
+        "away": 3.75,
+        "home": 2.85,
+        "draw": 2.2
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 28.8,
+          "devig_prob": 32.7,
+          "edge": -3.9,
+          "odds": 2.85,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 34.4,
+          "devig_prob": 42.9,
+          "edge": -8.5,
+          "odds": 2.2,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 36.9,
+          "devig_prob": 24.4,
+          "edge": 12.4,
+          "odds": 3.75,
+          "pick": "BET",
+          "confidence": "ALTA"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Visitante (2)",
+        "edge": 12.4,
+        "odds": 3.75,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 17.5
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 15.5
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 14.0
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 13.0
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 7.8
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 1.91,
+        "sd": 1.82,
+        "e_tie": 0.81,
+        "objective": 3.33,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.33
+          },
+          {
+            "home": 0,
+            "away": 0,
+            "obj": 3.21
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.11
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "f41aeac9a8343a84b4950f15ea25fba2",
+      "home": "Turkey",
+      "away": "USA",
+      "commence_time": "2026-06-26T02:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.64,
+      "xg_away": 1.07,
+      "odds": {
+        "home": 3.1,
+        "away": 1.96,
+        "draw": 4.1
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 49.9,
+          "devig_prob": 29.8,
+          "edge": 20.1,
+          "odds": 3.1,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 25.9,
+          "devig_prob": 22.1,
+          "edge": 3.8,
+          "odds": 4.1,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 24.2,
+          "devig_prob": 48.2,
+          "edge": -23.9,
+          "odds": 1.96,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "edge": 20.1,
+        "odds": 3.1,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 12.3
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 10.3
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.6
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 8.9
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 7.3
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.1,
+        "sd": 1.89,
+        "e_tie": 0.6,
+        "objective": 3.48,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.48
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.45
+          },
+          {
+            "home": 2,
+            "away": 1,
+            "obj": 3.41
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "b86b4d60f773e9e3c46c00e9a6496e79",
+      "home": "Norway",
+      "away": "France",
+      "commence_time": "2026-06-26T19:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.28,
+      "xg_away": 1.47,
+      "odds": {
+        "away": 1.78,
+        "home": 4.39,
+        "draw": 3.66,
+        "over_2_5": 1.85,
+        "under_2_5": 2.0
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 32.4,
+          "devig_prob": 20.9,
+          "edge": 11.5,
+          "odds": 4.39,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 26.7,
+          "devig_prob": 25.3,
+          "edge": 1.3,
+          "odds": 3.66,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 41.0,
+          "devig_prob": 53.8,
+          "edge": -12.8,
+          "odds": 1.78,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 52.1,
+          "devig_prob": 52.0,
+          "edge": 0.0,
+          "odds": 1.85,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 47.9,
+          "devig_prob": 48.0,
+          "edge": -0.0,
+          "odds": 2.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "edge": 11.5,
+        "odds": 4.39,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 12.7
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 8.8
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 8.7
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 7.7
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 7.5
+        }
+      ],
+      "quiniela": {
+        "pick_home": 1,
+        "pick_away": 2,
+        "e_pts": 1.83,
+        "sd": 1.72,
+        "e_tie": 0.6,
+        "objective": 3.11,
+        "alternatives": [
+          {
+            "home": 1,
+            "away": 2,
+            "obj": 3.11
+          },
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.1
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.08
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "7e6aee294ea1a4792c59558791084528",
+      "home": "Senegal",
+      "away": "Iraq",
+      "commence_time": "2026-06-26T19:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.71,
+      "xg_away": 0.57,
+      "odds": {
+        "away": 12.0,
+        "home": 1.32,
+        "draw": 5.25,
+        "over_2_5": 1.82,
+        "under_2_5": 2.0
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 64.5,
+          "devig_prob": 74.4,
+          "edge": -9.9,
+          "odds": 1.32,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 24.0,
+          "devig_prob": 18.1,
+          "edge": 5.9,
+          "odds": 5.25,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 11.5,
+          "devig_prob": 7.5,
+          "edge": 4.0,
+          "odds": 12.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 39.9,
+          "devig_prob": 52.5,
+          "edge": -12.5,
+          "odds": 1.82,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 60.1,
+          "devig_prob": 47.5,
+          "edge": 12.5,
+          "odds": 2.0,
+          "pick": "BET",
+          "confidence": "ALTA"
+        }
+      ],
+      "best_bet": {
+        "market": "Under 2.5",
+        "edge": 12.5,
+        "odds": 2.0,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 16.9
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 14.9
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 10.7
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 10.6
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 8.5
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.76,
+        "sd": 1.85,
+        "e_tie": 0.83,
+        "objective": 4.21,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.21
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 4.17
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.02
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "e07b1926be5a4d515c7eb108dbcee9c5",
+      "home": "Cape Verde",
+      "away": "Saudi Arabia",
+      "commence_time": "2026-06-27T00:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.84,
+      "xg_away": 0.7,
+      "odds": {
+        "home": 2.85,
+        "away": 2.35,
+        "draw": 3.6
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 35.2,
+          "devig_prob": 33.3,
+          "edge": 1.9,
+          "odds": 2.85,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 37.4,
+          "devig_prob": 26.1,
+          "edge": 11.3,
+          "odds": 3.6,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 27.4,
+          "devig_prob": 40.6,
+          "edge": -13.3,
+          "odds": 2.35,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Empate (X)",
+        "edge": 11.3,
+        "odds": 3.6,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 22.1
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 17.3
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 14.4
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.3
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 7.5
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 0,
+        "e_pts": 2.05,
+        "sd": 1.79,
+        "e_tie": 0.93,
+        "objective": 3.49,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 0,
+            "obj": 3.49
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.36
+          },
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.08
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "dcff2e31c0bce001a4db5caaf4fa8822",
+      "home": "Uruguay",
+      "away": "Spain",
+      "commence_time": "2026-06-27T00:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.75,
+      "xg_away": 1.16,
+      "odds": {
+        "away": 1.5,
+        "home": 6.5,
+        "draw": 4.3
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 23.0,
+          "devig_prob": 13.9,
+          "edge": 9.1,
+          "odds": 6.5,
+          "pick": "BET",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 32.1,
+          "devig_prob": 21.6,
+          "edge": 10.5,
+          "odds": 4.3,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 44.9,
+          "devig_prob": 64.5,
+          "edge": -19.6,
+          "odds": 1.5,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Empate (X)",
+        "edge": 10.5,
+        "odds": 4.3,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 16.5
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 15.5
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.6
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 10.4
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 10.0
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 2.18,
+        "sd": 1.83,
+        "e_tie": 0.84,
+        "objective": 3.61,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.61
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.47
+          },
+          {
+            "home": 0,
+            "away": 3,
+            "obj": 3.24
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "581691da05dcd75b5c6d3be91ee9d2ab",
+      "home": "New Zealand",
+      "away": "Belgium",
+      "commence_time": "2026-06-27T03:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.58,
+      "xg_away": 1.87,
+      "odds": {
+        "away": 1.25,
+        "home": 14.0,
+        "draw": 6.25
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 10.3,
+          "devig_prob": 6.3,
+          "edge": 4.0,
+          "odds": 14.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 21.9,
+          "devig_prob": 15.1,
+          "edge": 6.8,
+          "odds": 6.25,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 67.8,
+          "devig_prob": 78.6,
+          "edge": -10.8,
+          "odds": 1.25,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 15.6
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 15.0
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 9.9
+        },
+        {
+          "home": 0,
+          "away": 3,
+          "prob": 9.4
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 9.1
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 2,
+        "e_pts": 2.86,
+        "sd": 1.81,
+        "e_tie": 0.83,
+        "objective": 4.28,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 4.28
+          },
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 4.2
+          },
+          {
+            "home": 0,
+            "away": 3,
+            "obj": 4.12
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "3e3b5fa2b3c963e74cf044c60db0b573",
+      "home": "Egypt",
+      "away": "Iran",
+      "commence_time": "2026-06-27T03:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.1,
+      "xg_away": 0.87,
+      "odds": {
+        "home": 2.14,
+        "away": 3.82,
+        "draw": 3.08,
+        "over_2_5": 2.54,
+        "under_2_5": 1.5
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 39.7,
+          "devig_prob": 44.8,
+          "edge": -5.1,
+          "odds": 2.14,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 32.3,
+          "devig_prob": 30.7,
+          "edge": 1.6,
+          "odds": 3.08,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 27.9,
+          "devig_prob": 24.5,
+          "edge": 3.4,
+          "odds": 3.82,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 31.5,
+          "devig_prob": 36.4,
+          "edge": -4.9,
+          "odds": 2.54,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 68.5,
+          "devig_prob": 63.6,
+          "edge": 4.9,
+          "odds": 1.5,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 14.7
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 14.6
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 14.1
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 11.5
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 8.4
+        }
+      ],
+      "quiniela": {
+        "pick_home": 1,
+        "pick_away": 0,
+        "e_pts": 1.98,
+        "sd": 1.8,
+        "e_tie": 0.78,
+        "objective": 3.37,
+        "alternatives": [
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.37
+          },
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.21
+          },
+          {
+            "home": 0,
+            "away": 0,
+            "obj": 3.02
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "537c0997cd899394f47f16545b7068b2",
+      "home": "Croatia",
+      "away": "Ghana",
+      "commence_time": "2026-06-27T21:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 2.0,
+      "xg_away": 0.65,
+      "odds": {
+        "home": 1.6,
+        "away": 6.0,
+        "draw": 3.8
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 68.9,
+          "devig_prob": 60.3,
+          "edge": 8.6,
+          "odds": 1.6,
+          "pick": "BET",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 20.6,
+          "devig_prob": 24.6,
+          "edge": -4.0,
+          "odds": 3.8,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 10.5,
+          "devig_prob": 15.1,
+          "edge": -4.6,
+          "odds": 6.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "edge": 8.6,
+        "odds": 1.6,
+        "pick": "BET",
+        "confidence": "MEDIA"
+      },
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 14.2
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 13.7
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 9.6
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 9.5
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.2
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.86,
+        "sd": 1.78,
+        "e_tie": 0.8,
+        "objective": 4.25,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.25
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 4.15
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.12
+          }
+        ]
+      },
+      "fixture_confidence": "MEDIA"
+    },
+    {
+      "id": "4be17c8e1ccfecb0f2a5ef79e045c415",
+      "home": "Panama",
+      "away": "England",
+      "commence_time": "2026-06-27T21:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.54,
+      "xg_away": 2.33,
+      "odds": {
+        "away": 1.2,
+        "home": 12.0,
+        "draw": 7.2
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 6.5,
+          "devig_prob": 6.9,
+          "edge": -0.4,
+          "odds": 12.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 16.1,
+          "devig_prob": 12.3,
+          "edge": 3.8,
+          "odds": 7.2,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 77.4,
+          "devig_prob": 80.8,
+          "edge": -3.5,
+          "odds": 1.2,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 15.4
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 12.8
+        },
+        {
+          "home": 0,
+          "away": 3,
+          "prob": 12.0
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 8.3
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 7.5
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 2,
+        "e_pts": 3.17,
+        "sd": 1.62,
+        "e_tie": 0.85,
+        "objective": 4.48,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 4.48
+          },
+          {
+            "home": 0,
+            "away": 3,
+            "obj": 4.4
+          },
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 4.33
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "67ae5751c401a98409b8566ae4897069",
+      "home": "Colombia",
+      "away": "Portugal",
+      "commence_time": "2026-06-27T23:30:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.35,
+      "xg_away": 1.19,
+      "odds": {
+        "home": 3.65,
+        "away": 2.08,
+        "draw": 3.5
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 39.6,
+          "devig_prob": 26.1,
+          "edge": 13.5,
+          "odds": 3.65,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 28.0,
+          "devig_prob": 27.3,
+          "edge": 0.7,
+          "odds": 3.5,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 32.3,
+          "devig_prob": 46.6,
+          "edge": -14.3,
+          "odds": 2.08,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "edge": 13.5,
+        "odds": 3.65,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.4
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 9.9
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 8.7
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 8.5
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 8.5
+        }
+      ],
+      "quiniela": {
+        "pick_home": 1,
+        "pick_away": 0,
+        "e_pts": 1.84,
+        "sd": 1.71,
+        "e_tie": 0.65,
+        "objective": 3.13,
+        "alternatives": [
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.13
+          },
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.07
+          },
+          {
+            "home": 2,
+            "away": 1,
+            "obj": 3.05
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "13eab94a136b9c264ba974cf437a5f71",
+      "home": "DR Congo",
+      "away": "Uzbekistan",
+      "commence_time": "2026-06-27T23:30:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.87,
+      "xg_away": 0.62,
+      "odds": {
+        "home": 2.1,
+        "away": 3.6,
+        "draw": 3.6,
+        "over_2_5": 2.12,
+        "under_2_5": 1.73
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 38.6,
+          "devig_prob": 46.5,
+          "edge": -7.9,
+          "odds": 2.1,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 37.8,
+          "devig_prob": 26.8,
+          "edge": 11.0,
+          "odds": 3.6,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 23.6,
+          "devig_prob": 26.8,
+          "edge": -3.2,
+          "odds": 3.6,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 18.8,
+          "devig_prob": 44.7,
+          "edge": -25.9,
+          "odds": 2.12,
+          "pick": "FADE",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 81.2,
+          "devig_prob": 55.3,
+          "edge": 25.9,
+          "odds": 1.73,
+          "pick": "BET",
+          "confidence": "ALTA"
+        }
+      ],
+      "best_bet": {
+        "market": "Under 2.5",
+        "edge": 25.9,
+        "odds": 1.73,
+        "pick": "BET",
+        "confidence": "ALTA"
+      },
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 23.3
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 19.0
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 13.3
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 12.8
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 8.6
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 0,
+        "e_pts": 2.09,
+        "sd": 1.8,
+        "e_tie": 0.96,
+        "objective": 3.56,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 0,
+            "obj": 3.56
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.55
+          },
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.27
+          }
+        ]
+      },
+      "fixture_confidence": "ALTA"
+    },
+    {
+      "id": "8756200e539155e571557c4f2e0d7f05",
+      "home": "Algeria",
+      "away": "Austria",
+      "commence_time": "2026-06-28T02:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 1.15,
+      "xg_away": 1.26,
+      "odds": {
+        "home": 2.6,
+        "away": 2.25,
+        "draw": 2.8
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 32.9,
+          "devig_prob": 32.3,
+          "edge": 0.6,
+          "odds": 2.6,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 29.0,
+          "devig_prob": 29.7,
+          "edge": -0.7,
+          "odds": 2.8,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 38.1,
+          "devig_prob": 38.0,
+          "edge": 0.1,
+          "odds": 2.25,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.7
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 10.6
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 9.7
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 9.7
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 8.2
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 1.82,
+        "sd": 1.72,
+        "e_tie": 0.67,
+        "objective": 3.12,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.12
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.02
+          },
+          {
+            "home": 1,
+            "away": 2,
+            "obj": 2.99
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "54697f453437ab26276d773be1d72e9b",
+      "home": "Jordan",
+      "away": "Argentina",
+      "commence_time": "2026-06-28T02:00:00Z",
+      "completed": false,
+      "is_live": false,
+      "actual_home": null,
+      "actual_away": null,
+      "xg_home": 0.47,
+      "xg_away": 2.23,
+      "odds": {
+        "away": 1.17,
+        "home": 14.0,
+        "draw": 7.8
+      },
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 6.0,
+          "devig_prob": 5.7,
+          "edge": 0.2,
+          "odds": 14.0,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 16.6,
+          "devig_prob": 11.3,
+          "edge": 5.3,
+          "odds": 7.8,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 77.4,
+          "devig_prob": 83.0,
+          "edge": -5.6,
+          "odds": 1.17,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
+        }
+      ],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 16.7
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 14.5
+        },
+        {
+          "home": 0,
+          "away": 3,
+          "prob": 12.4
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 7.9
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 7.4
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 2,
+        "e_pts": 3.21,
+        "sd": 1.63,
+        "e_tie": 0.89,
+        "objective": 4.55,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 4.55
+          },
+          {
+            "home": 0,
+            "away": 3,
+            "obj": 4.45
+          },
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 4.41
+          }
+        ]
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "66ebb9e3f949caded535d97ce686ca09",
+      "home": "Czech Republic",
+      "away": "South Africa",
+      "commence_time": "2026-06-18T16:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 13.6
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 12.3
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 11.4
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 9.5
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.3
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.36,
+        "sd": 1.91,
+        "e_tie": 0.7,
+        "objective": 3.79,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.79
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.77
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 3.6
+          }
+        ]
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "289bc2e9f5adad8ae4d9a75a7c5461ad",
+      "home": "Switzerland",
+      "away": "Bosnia & Herzegovina",
+      "commence_time": "2026-06-18T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 4,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 14.5
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 13.4
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 10.1
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 9.1
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.0
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.94,
+        "sd": 1.75,
+        "e_tie": 0.81,
+        "objective": 4.31,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.31
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.2
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 4.19
+          }
+        ]
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "fa9502285b257b03e62968d50d9229fc",
+      "home": "Canada",
+      "away": "Qatar",
+      "commence_time": "2026-06-18T22:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 6,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 12.6
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 12.5
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 10.7
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.6
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 7.9
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.64,
+        "sd": 1.84,
+        "e_tie": 0.73,
+        "objective": 4.04,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.04
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.95
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 3.9
+          }
+        ]
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "0f2aeae6ac8e77223848d23a4ca86b0d",
+      "home": "Mexico",
+      "away": "South Korea",
+      "commence_time": "2026-06-19T01:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 15.6
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 14.0
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.6
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 10.1
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 9.8
+        }
+      ],
+      "quiniela": {
+        "pick_home": 1,
+        "pick_away": 0,
+        "e_pts": 2.19,
+        "sd": 1.81,
+        "e_tie": 0.81,
+        "objective": 3.61,
+        "alternatives": [
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.61
+          },
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.49
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 3.26
+          }
+        ]
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "065b3573e875f8d23803357f73e5b99e",
+      "home": "USA",
+      "away": "Australia",
+      "commence_time": "2026-06-19T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 14.2
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 13.9
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 13.5
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 11.7
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 7.7
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 1.88,
+        "sd": 1.78,
+        "e_tie": 0.75,
+        "objective": 3.25,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.25
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.08
+          },
+          {
+            "home": 1,
+            "away": 1,
+            "obj": 2.98
+          }
+        ]
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "4cd769aa7bae0ad9762bd69b80ef2903",
+      "home": "Scotland",
+      "away": "Morocco",
+      "commence_time": "2026-06-19T22:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 19.8
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 18.7
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.1
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 11.6
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 9.8
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 2.18,
+        "sd": 1.86,
+        "e_tie": 0.89,
+        "objective": 3.65,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.65
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.44
+          },
+          {
+            "home": 0,
+            "away": 0,
+            "obj": 3.35
+          }
+        ]
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "ef0f74a991d3e35798ae5af77667bce1",
+      "home": "Brazil",
+      "away": "Haiti",
+      "commence_time": "2026-06-20T00:32:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 3,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 14.3
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 12.9
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 12.0
+        },
+        {
+          "home": 5,
+          "away": 0,
+          "prob": 9.2
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 6.5
+        }
+      ],
+      "quiniela": {
+        "pick_home": 3,
+        "pick_away": 0,
+        "e_pts": 3.66,
+        "sd": 1.13,
+        "e_tie": 0.89,
+        "objective": 4.69,
+        "alternatives": [
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.69
+          },
+          {
+            "home": 4,
+            "away": 0,
+            "obj": 4.66
+          },
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.62
+          }
+        ]
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "f955d4b3395ce6e3b5ac1031ca52ca4e",
+      "home": "Turkey",
+      "away": "Paraguay",
+      "commence_time": "2026-06-20T03:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.1
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 12.7
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 9.8
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 9.8
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.1
+        }
+      ],
+      "quiniela": {
+        "pick_home": 1,
+        "pick_away": 0,
+        "e_pts": 2.2,
+        "sd": 1.76,
+        "e_tie": 0.73,
+        "objective": 3.55,
+        "alternatives": [
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.55
+          },
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.53
+          },
+          {
+            "home": 2,
+            "away": 1,
+            "obj": 3.36
+          }
+        ]
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "4f0c518545b0096c68326daf25bffc1e",
+      "home": "Netherlands",
+      "away": "Sweden",
+      "commence_time": "2026-06-20T17:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 5,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.7
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 8.9
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 8.7
+        },
+        {
+          "home": 3,
+          "away": 1,
+          "prob": 7.4
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 7.1
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 2.5,
+        "sd": 1.76,
+        "e_tie": 0.59,
+        "objective": 3.79,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.79
+          },
+          {
+            "home": 2,
+            "away": 1,
+            "obj": 3.77
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 3.74
+          }
+        ]
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "f1ab0f69832972a329243522ceaa7804",
+      "home": "Germany",
+      "away": "Ivory Coast",
+      "commence_time": "2026-06-20T20:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "quiniela": null,
+      "fixture_confidence": null
+    },
+    {
+      "id": "681895f294b670b4c7b14495dfb583bc",
+      "home": "Ecuador",
+      "away": "Cura\u00e7ao",
+      "commence_time": "2026-06-21T00:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 19.5
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 16.0
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 15.6
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 9.4
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 7.1
+        }
+      ],
+      "quiniela": {
+        "pick_home": 2,
+        "pick_away": 0,
+        "e_pts": 3.53,
+        "sd": 1.44,
+        "e_tie": 1.01,
+        "objective": 4.8,
+        "alternatives": [
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 4.8
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 4.72
+          },
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 4.66
+          }
+        ]
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "dfc5202cf1b8ae002cf952cd04f235b9",
+      "home": "Tunisia",
+      "away": "Japan",
+      "commence_time": "2026-06-21T04:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 4,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 14.9
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 12.9
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 11.5
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 11.2
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 8.8
+        }
+      ],
+      "quiniela": {
+        "pick_home": 0,
+        "pick_away": 1,
+        "e_pts": 2.35,
+        "sd": 1.78,
+        "e_tie": 0.8,
+        "objective": 3.74,
+        "alternatives": [
+          {
+            "home": 0,
+            "away": 1,
+            "obj": 3.74
+          },
+          {
+            "home": 0,
+            "away": 2,
+            "obj": 3.7
+          },
+          {
+            "home": 0,
+            "away": 3,
+            "obj": 3.49
+          }
+        ]
+      },
+      "fixture_confidence": null
+    }
+  ]
+}
