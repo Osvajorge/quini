@@ -4,9 +4,9 @@ __pycache__/
 venv/
 .env
 .env.local
-data/*.pkl
 data/*.csv
 !data/.gitkeep
+!data/fit.pkl
 node_modules/
 .next/
 .wrangler/
