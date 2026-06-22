@@ -26,8 +26,8 @@ HISTORY_PATH = Path(__file__).resolve().parent.parent / "docs" / "data" / "histo
 TEAM_NAME_MAP = {
     "USA": "United States",
     "Bosnia & Herzegovina": "Bosnia and Herzegovina",
-    "Ivory Coast": "Côte d'Ivoire",
-    "Cote D'Ivoire": "Côte d'Ivoire",
+    "Cote D'Ivoire": "Ivory Coast",
+    "Côte d'Ivoire": "Ivory Coast",
     "Türkiye": "Turkey",
     "Turkiye": "Turkey",
     "Korea Republic": "South Korea",
@@ -66,7 +66,7 @@ def fetch_odds(api_key: str) -> list[dict]:
         params={
             "apiKey": api_key,
             "regions": "eu",
-            "markets": "h2h,totals",
+            "markets": "h2h,totals,btts",
             "oddsFormat": "decimal",
         },
         timeout=20,
@@ -109,6 +109,12 @@ def extract_odds_from_event(event: dict) -> dict:
                             odds["over_2_5"] = o["price"]
                         else:
                             odds["under_2_5"] = o["price"]
+            elif mkt["key"] == "btts":
+                for o in mkt["outcomes"]:
+                    if o["name"] == "Yes":
+                        odds["btts_yes"] = o["price"]
+                    else:
+                        odds["btts_no"] = o["price"]
         if "home" in odds:
             break
     return odds
@@ -130,19 +136,22 @@ def build_score_predictions(fit, home_model: str, away_model: str) -> tuple[list
     for h, a, p in flat[:5]:
         top_scores.append({"home": h, "away": a, "prob": round(p * 100, 1)})
 
-    ph, pa, metrics = risk_adjusted_pick(matrix)
-    quiniela = {
-        "pick_home": ph,
-        "pick_away": pa,
-        "e_pts": round(metrics["e_pts"], 2),
-        "sd": round(metrics["sd"], 2),
-        "e_tie": round(metrics["e_tie"], 2),
-        "objective": round(metrics["objective"], 2),
-        "alternatives": [
-            {"home": alt["ph"], "away": alt["pa"], "obj": round(alt["objective"], 2)}
-            for alt in metrics["alternatives"][:3]
-        ],
-    }
+    strategies = {}
+    for label, lv, lt in [("balanced", 0.6, 0.4), ("aggressive", 0.9, 0.4), ("defensive", 0.0, 0.3)]:
+        ph, pa, metrics = risk_adjusted_pick(matrix, lambda_var=lv, lambda_tie=lt)
+        strategies[label] = {
+            "pick_home": ph,
+            "pick_away": pa,
+            "e_pts": round(metrics["e_pts"], 2),
+            "sd": round(metrics["sd"], 2),
+            "e_tie": round(metrics["e_tie"], 2),
+            "objective": round(metrics["objective"], 2),
+            "alternatives": [
+                {"home": alt["ph"], "away": alt["pa"], "obj": round(alt["objective"], 2)}
+                for alt in metrics["alternatives"][:3]
+            ],
+        }
+    quiniela = strategies
     return top_scores, quiniela, lam_h, lam_a
 
 

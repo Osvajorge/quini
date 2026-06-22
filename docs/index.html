@@ -616,6 +616,7 @@ function renderQuiniela() {
 
   if (!DATA) return;
 
+  const strategy = document.getElementById('q-strategy') ? document.getElementById('q-strategy').value : 'balanced';
   const fixtures = DATA.fixtures.filter(f => !f.completed && f.quiniela);
   fixtures.sort((a, b) => new Date(a.commence_time) - new Date(b.commence_time));
 
@@ -625,9 +626,9 @@ function renderQuiniela() {
         <div>
           <span style="color:var(--mute);">${t('strategy')}</span>
           <select id="q-strategy" onchange="renderQuiniela()" class="ml-2 px-3 py-1.5 rounded-lg border font-mono text-xs focus:outline-none" style="background:var(--panel2); border-color:var(--border); color:var(--ink);">
-            <option value="balanced">${t('balanced')}</option>
-            <option value="aggressive">${t('aggressive')}</option>
-            <option value="defensive">${t('defensive')}</option>
+            <option value="balanced" ${strategy==='balanced'?'selected':''}>${t('balanced')}</option>
+            <option value="aggressive" ${strategy==='aggressive'?'selected':''}>${t('aggressive')}</option>
+            <option value="defensive" ${strategy==='defensive'?'selected':''}>${t('defensive')}</option>
           </select>
         </div>
         <div class="text-xs" style="color:var(--mute);">${t('strategy_desc')}</div>
@@ -639,7 +640,8 @@ function renderQuiniela() {
     html += `<div class="text-center py-12 text-sm" style="color:var(--mute);">${t('no_fixtures')}</div>`;
   } else {
     fixtures.forEach(f => {
-      const q = f.quiniela;
+      const qData = f.quiniela;
+      const q = qData[strategy] || qData['balanced'] || qData;
       const d = new Date(f.commence_time);
       const dateStr = d.toLocaleDateString(LANG === 'es' ? 'es' : 'en', {weekday:'short', month:'short', day:'numeric'}) + ' ' + d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
 
