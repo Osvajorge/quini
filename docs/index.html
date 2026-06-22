@@ -423,7 +423,7 @@ function renderFixtureCard(f) {
         <span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--bet) 20%, transparent); color:var(--bet);">${t('best_bet')}</span>
         <span class="text-sm font-medium">${desc}</span>
         <span class="text-sm font-mono font-bold ml-auto" style="color:var(--bet);">+${f.best_bet.edge}%</span>
-        <span class="text-sm font-mono" style="color:var(--mute);">@ ${f.best_bet.odds}</span>
+        <span class="text-sm font-mono" style="color:var(--mute);">@ ${Number(f.best_bet.odds).toFixed(2)}</span>
       </div>`;
   }
 
@@ -441,7 +441,7 @@ function renderFixtureCard(f) {
         <span class="font-mono w-12 sm:w-14 text-right hidden sm:block">${p.model_prob}%</span>
         <span class="font-mono w-12 sm:w-14 text-right hidden sm:block" style="color:var(--mute);">${p.devig_prob}%</span>
         <span class="font-mono w-14 text-right" style="color:${p.edge > 0 ? 'var(--bet)' : p.edge < -3 ? 'var(--fade)' : 'var(--mute)'};">${p.edge > 0 ? '+' : ''}${p.edge}%</span>
-        <span class="font-mono w-12 text-right" style="color:var(--mute);">@${p.odds}</span>
+        <span class="font-mono w-12 text-right" style="color:var(--mute);">@${Number(p.odds).toFixed(2)}</span>
       </div>`;
   });
 

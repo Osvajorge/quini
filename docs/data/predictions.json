@@ -8,9 +8,9 @@
     "edge_threshold": 7.000000000000001
   },
   "stats": {
-    "total_fixtures": 45,
+    "total_fixtures": 71,
     "upcoming": 32,
-    "completed": 13,
+    "completed": 39,
     "total_bets": 23,
     "won": 0,
     "lost": 0,
@@ -18,11 +18,11 @@
   },
   "tooltips": {
     "xg": {
-      "es": "Goles esperados seg\u00fan el modelo Dixon-Coles",
+      "es": "Goles esperados según el modelo Dixon-Coles",
       "en": "Expected goals from the Dixon-Coles model"
     },
     "edge": {
-      "es": "Diferencia entre la probabilidad del modelo y la probabilidad impl\u00edcita del mercado. Positivo = el modelo ve valor",
+      "es": "Diferencia entre la probabilidad del modelo y la probabilidad implícita del mercado. Positivo = el modelo ve valor",
       "en": "Difference between model probability and market implied probability. Positive = model sees value"
     },
     "confidence": {
@@ -30,11 +30,11 @@
       "en": "Confidence level based on edge size and team data availability"
     },
     "model_prob": {
-      "es": "Probabilidad seg\u00fan el modelo Dixon-Coles",
+      "es": "Probabilidad según el modelo Dixon-Coles",
       "en": "Probability according to the Dixon-Coles model"
     },
     "devig_prob": {
-      "es": "Probabilidad real extra\u00edda de las cuotas del mercado (Shin de-vig)",
+      "es": "Probabilidad real extraída de las cuotas del mercado (Shin de-vig)",
       "en": "True probability extracted from market odds (Shin de-vig)"
     },
     "odds": {
@@ -51,6 +51,1995 @@
     }
   },
   "fixtures": [
+    {
+      "id": "c375e36f6aeb463f808c6811018cc716",
+      "home": "Mexico",
+      "away": "South Africa",
+      "commence_time": "2026-06-11T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "dbf527e7e26a4115a9d9e8d1210f1397",
+      "home": "South Korea",
+      "away": "Czechia",
+      "commence_time": "2026-06-12T04:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "e14905bbc310447b86ffe4914a4cb441",
+      "home": "Canada",
+      "away": "Bosnia and Herzegovina",
+      "commence_time": "2026-06-12T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "b792fff073974ebeb831cc35bad779be",
+      "home": "USA",
+      "away": "Paraguay",
+      "commence_time": "2026-06-13T01:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 4,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "f0f359894f594e05974350471d3dbfeb",
+      "home": "Switzerland",
+      "away": "Qatar",
+      "commence_time": "2026-06-13T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "4908343dcd7442f78c7187fe3e59bb5e",
+      "home": "Brazil",
+      "away": "Morocco",
+      "commence_time": "2026-06-13T22:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "734293aa9c4f44caba255672edbfbc10",
+      "home": "Haiti",
+      "away": "Scotland",
+      "commence_time": "2026-06-14T01:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "20d270fc8dd64b038c21935ebe50f4e5",
+      "home": "Germany",
+      "away": "Curaçao",
+      "commence_time": "2026-06-14T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 7,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "f4703b2c0205482abe404f98926f875d",
+      "home": "Ivory Coast",
+      "away": "Ecuador",
+      "commence_time": "2026-06-14T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "4c39b6c77cab46f4a82fd98337b3b92a",
+      "home": "Netherlands",
+      "away": "Japan",
+      "commence_time": "2026-06-14T22:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 2,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "d87524a6ac0e4d87bb11222ef0c50955",
+      "home": "Sweden",
+      "away": "Tunisia",
+      "commence_time": "2026-06-15T01:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 5,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "4d132cc19da84e7f9ede6e76fa0ccc24",
+      "home": "Belgium",
+      "away": "Egypt",
+      "commence_time": "2026-06-15T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "f571b44b4d584e8e8c6b08fadbdcd101",
+      "home": "Iran",
+      "away": "New Zealand",
+      "commence_time": "2026-06-15T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 2,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "56e9b28a279640e9b657b7447534e21e",
+      "home": "Spain",
+      "away": "Cape Verde",
+      "commence_time": "2026-06-15T22:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "5d8976cddab84a9f898321bc565f1bf0",
+      "home": "Saudi Arabia",
+      "away": "Uruguay",
+      "commence_time": "2026-06-16T01:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "bdd98c7838834cc9806d2108d9406490",
+      "home": "Argentina",
+      "away": "Algeria",
+      "commence_time": "2026-06-16T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 3,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "e455f8d9e83248c78445529564e4ac26",
+      "home": "Austria",
+      "away": "Jordan",
+      "commence_time": "2026-06-16T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 3,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "9f46b9589d8a499487663bebe6d3253f",
+      "home": "France",
+      "away": "Senegal",
+      "commence_time": "2026-06-16T22:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 3,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "8952503decae4ea39798ce39d49fd582",
+      "home": "Norway",
+      "away": "Iraq",
+      "commence_time": "2026-06-17T01:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 4,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "11258e272dda47eb9f0835bd788298d0",
+      "home": "Ghana",
+      "away": "Panama",
+      "commence_time": "2026-06-17T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "1a5aa1a9f6ed4b36a74c97bf3fcad07f",
+      "home": "Portugal",
+      "away": "DR Congo",
+      "commence_time": "2026-06-17T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "812cdf49fe5c4c458dafc701cfe05220",
+      "home": "England",
+      "away": "Croatia",
+      "commence_time": "2026-06-17T22:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 4,
+      "actual_away": 2,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "56eb55aec96e4dc3ae245dcd7c0a8c48",
+      "home": "Colombia",
+      "away": "Uzbekistan",
+      "commence_time": "2026-06-18T01:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 3,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "a669ce207ed5486ca3eaeb00d9a04df5",
+      "home": "Czechia",
+      "away": "South Africa",
+      "commence_time": "2026-06-18T16:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "c4683a2fc5244e32901a7aecdbe9afec",
+      "home": "Switzerland",
+      "away": "Bosnia and Herzegovina",
+      "commence_time": "2026-06-18T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 4,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "de0c2c404f224176b08b00a7ae3c29ed",
+      "home": "Canada",
+      "away": "Qatar",
+      "commence_time": "2026-06-18T22:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 6,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [],
+      "live_scores": null,
+      "quiniela": null
+    },
+    {
+      "id": "0f2aeae6ac8e77223848d23a4ca86b0d",
+      "home": "Mexico",
+      "away": "South Korea",
+      "commence_time": "2026-06-19T01:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 15.6
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 14.0
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.6
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 10.1
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 9.8
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "pick_home": 1,
+        "pick_away": 0,
+        "e_pts": 2.19,
+        "sd": 1.81,
+        "e_tie": 0.81,
+        "objective": 3.61,
+        "alternatives": [
+          {
+            "home": 1,
+            "away": 0,
+            "obj": 3.61
+          },
+          {
+            "home": 2,
+            "away": 0,
+            "obj": 3.49
+          },
+          {
+            "home": 3,
+            "away": 0,
+            "obj": 3.26
+          }
+        ]
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "065b3573e875f8d23803357f73e5b99e",
+      "home": "USA",
+      "away": "Australia",
+      "commence_time": "2026-06-19T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 14.2
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 13.9
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 13.5
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 11.7
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 7.7
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 1.88,
+          "sd": 1.78,
+          "e_tie": 0.75,
+          "objective": 3.25,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 3.25
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 3.08
+            },
+            {
+              "home": 1,
+              "away": 1,
+              "obj": 2.98
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 1.88,
+          "sd": 1.78,
+          "e_tie": 0.75,
+          "objective": 3.78,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 3.78
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 3.65
+            },
+            {
+              "home": 1,
+              "away": 1,
+              "obj": 3.48
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 1.88,
+          "sd": 1.78,
+          "e_tie": 0.75,
+          "objective": 2.1,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 2.1
+            },
+            {
+              "home": 1,
+              "away": 1,
+              "obj": 1.91
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 1.91
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "4cd769aa7bae0ad9762bd69b80ef2903",
+      "home": "Scotland",
+      "away": "Morocco",
+      "commence_time": "2026-06-19T22:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 19.8
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 18.7
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.1
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 11.6
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 9.8
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.18,
+          "sd": 1.86,
+          "e_tie": 0.89,
+          "objective": 3.65,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 3.65
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 3.44
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 3.35
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.18,
+          "sd": 1.86,
+          "e_tie": 0.89,
+          "objective": 4.21,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 4.21
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 4.01
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 3.87
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.18,
+          "sd": 1.86,
+          "e_tie": 0.89,
+          "objective": 2.45,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 2.45
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 2.21
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 2.21
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "ef0f74a991d3e35798ae5af77667bce1",
+      "home": "Brazil",
+      "away": "Haiti",
+      "commence_time": "2026-06-20T00:32:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 3,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 14.3
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 12.9
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 12.0
+        },
+        {
+          "home": 5,
+          "away": 0,
+          "prob": 9.2
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 6.5
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 3,
+          "pick_away": 0,
+          "e_pts": 3.66,
+          "sd": 1.13,
+          "e_tie": 0.89,
+          "objective": 4.69,
+          "alternatives": [
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.69
+            },
+            {
+              "home": 4,
+              "away": 0,
+              "obj": 4.66
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.62
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 3,
+          "pick_away": 0,
+          "e_pts": 3.66,
+          "sd": 1.13,
+          "e_tie": 0.89,
+          "objective": 5.03,
+          "alternatives": [
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 5.03
+            },
+            {
+              "home": 4,
+              "away": 0,
+              "obj": 5.0
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.94
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 3,
+          "pick_away": 0,
+          "e_pts": 3.66,
+          "sd": 1.13,
+          "e_tie": 0.89,
+          "objective": 3.93,
+          "alternatives": [
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.93
+            },
+            {
+              "home": 4,
+              "away": 0,
+              "obj": 3.9
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.88
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "f955d4b3395ce6e3b5ac1031ca52ca4e",
+      "home": "Turkey",
+      "away": "Paraguay",
+      "commence_time": "2026-06-20T03:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.1
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 12.7
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 9.8
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 9.8
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.1
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.2,
+          "sd": 1.76,
+          "e_tie": 0.73,
+          "objective": 3.55,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.55
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.53
+            },
+            {
+              "home": 2,
+              "away": 1,
+              "obj": 3.36
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.11,
+          "sd": 1.92,
+          "e_tie": 0.64,
+          "objective": 4.1,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.1
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.08
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.89
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.2,
+          "sd": 1.76,
+          "e_tie": 0.73,
+          "objective": 2.42,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 2.42
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 2.31
+            },
+            {
+              "home": 2,
+              "away": 1,
+              "obj": 2.27
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "4f0c518545b0096c68326daf25bffc1e",
+      "home": "Netherlands",
+      "away": "Sweden",
+      "commence_time": "2026-06-20T17:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 5,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.7
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 8.9
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 8.7
+        },
+        {
+          "home": 3,
+          "away": 1,
+          "prob": 7.4
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 7.1
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.5,
+          "sd": 1.76,
+          "e_tie": 0.59,
+          "objective": 3.79,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.79
+            },
+            {
+              "home": 2,
+              "away": 1,
+              "obj": 3.77
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.74
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.5,
+          "sd": 1.76,
+          "e_tie": 0.59,
+          "objective": 4.32,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.32
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.28
+            },
+            {
+              "home": 2,
+              "away": 1,
+              "obj": 4.26
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 2,
+          "pick_away": 1,
+          "e_pts": 2.53,
+          "sd": 1.64,
+          "e_tie": 0.63,
+          "objective": 2.72,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 1,
+              "obj": 2.72
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 2.68
+            },
+            {
+              "home": 3,
+              "away": 1,
+              "obj": 2.64
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "f1ab0f69832972a329243522ceaa7804",
+      "home": "Germany",
+      "away": "Ivory Coast",
+      "commence_time": "2026-06-20T20:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 13.4
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 13.0
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 10.0
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.4
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 8.8
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.77,
+          "sd": 1.81,
+          "e_tie": 0.77,
+          "objective": 4.16,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.16
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.06
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.03
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.77,
+          "sd": 1.81,
+          "e_tie": 0.77,
+          "objective": 4.7,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.7
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.57
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.55
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.78,
+          "sd": 1.63,
+          "e_tie": 0.77,
+          "objective": 3.01,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.01
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.0
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 2.88
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "681895f294b670b4c7b14495dfb583bc",
+      "home": "Ecuador",
+      "away": "Curaçao",
+      "commence_time": "2026-06-21T00:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 19.5
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 16.0
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 15.6
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 9.4
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 7.1
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 3.53,
+          "sd": 1.44,
+          "e_tie": 1.01,
+          "objective": 4.8,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.8
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.72
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.66
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 3.53,
+          "sd": 1.44,
+          "e_tie": 1.01,
+          "objective": 5.23,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 5.23
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 5.15
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 5.05
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 3.53,
+          "sd": 1.44,
+          "e_tie": 1.01,
+          "objective": 3.84,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.84
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.78
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.77
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "dfc5202cf1b8ae002cf952cd04f235b9",
+      "home": "Tunisia",
+      "away": "Japan",
+      "commence_time": "2026-06-21T04:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 4,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 14.9
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 12.9
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 11.5
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 11.2
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 8.8
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.35,
+          "sd": 1.78,
+          "e_tie": 0.8,
+          "objective": 3.74,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 3.74
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 3.7
+            },
+            {
+              "home": 0,
+              "away": 3,
+              "obj": 3.49
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 0,
+          "pick_away": 2,
+          "e_pts": 2.26,
+          "sd": 1.93,
+          "e_tie": 0.7,
+          "objective": 4.28,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 4.28
+            },
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 4.27
+            },
+            {
+              "home": 0,
+              "away": 3,
+              "obj": 4.05
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.35,
+          "sd": 1.78,
+          "e_tie": 0.8,
+          "objective": 2.59,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 2.59
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 2.47
+            },
+            {
+              "home": 1,
+              "away": 2,
+              "obj": 2.34
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "73529a242e319a86bf3d00ddb4accc37",
+      "home": "Spain",
+      "away": "Saudi Arabia",
+      "commence_time": "2026-06-21T16:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 4,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 17.5
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 15.2
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 13.2
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 9.9
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 6.3
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 3.5,
+          "sd": 1.41,
+          "e_tie": 0.95,
+          "objective": 4.72,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.72
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.68
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.56
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 3.5,
+          "sd": 1.41,
+          "e_tie": 0.95,
+          "objective": 5.15,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 5.15
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 5.11
+            },
+            {
+              "home": 4,
+              "away": 0,
+              "obj": 4.97
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 3.5,
+          "sd": 1.41,
+          "e_tie": 0.95,
+          "objective": 3.78,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.78
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.74
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.71
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "5f92f257386ec5bf7c6e2498a21f3a61",
+      "home": "Belgium",
+      "away": "Iran",
+      "commence_time": "2026-06-21T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 12.2
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 12.0
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 10.6
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.7
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 7.9
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.63,
+          "sd": 1.83,
+          "e_tie": 0.72,
+          "objective": 4.02,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.02
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.93
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.89
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.63,
+          "sd": 1.83,
+          "e_tie": 0.72,
+          "objective": 4.57,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.57
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.44
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.42
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.64,
+          "sd": 1.65,
+          "e_tie": 0.73,
+          "objective": 2.86,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 2.86
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 2.85
+            },
+            {
+              "home": 2,
+              "away": 1,
+              "obj": 2.73
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "852a3abe6d46820720febc0fedebff9a",
+      "home": "Uruguay",
+      "away": "Cape Verde",
+      "commence_time": "2026-06-21T22:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 2,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 22.8
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 17.0
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 16.5
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 9.2
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 8.3
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.95,
+          "sd": 1.75,
+          "e_tie": 1.03,
+          "objective": 4.41,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.41
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.34
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.12
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.95,
+          "sd": 1.75,
+          "e_tie": 1.03,
+          "objective": 4.93,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.93
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.9
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.65
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.95,
+          "sd": 1.75,
+          "e_tie": 1.03,
+          "objective": 3.26,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.26
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.14
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 2.98
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "c1ec9a65f4b4cf74477b368a7d6282de",
+      "home": "New Zealand",
+      "away": "Egypt",
+      "commence_time": "2026-06-22T01:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 3,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 19.0
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 18.7
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.1
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 11.1
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 10.2
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.23,
+          "sd": 1.86,
+          "e_tie": 0.89,
+          "objective": 3.7,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 3.7
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 3.5
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 3.3
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.23,
+          "sd": 1.86,
+          "e_tie": 0.89,
+          "objective": 4.26,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 4.26
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 4.08
+            },
+            {
+              "home": 0,
+              "away": 3,
+              "obj": 3.82
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.23,
+          "sd": 1.86,
+          "e_tie": 0.89,
+          "objective": 2.49,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 2.49
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 2.27
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 2.17
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
     {
       "id": "be6c63f416c67bca1300a98f5b89c3af",
       "home": "Argentina",
@@ -2493,7 +4482,7 @@
     },
     {
       "id": "a5a0b544a984ab16e564264f3e859b43",
-      "home": "Cura\u00e7ao",
+      "home": "Curaçao",
       "away": "Ivory Coast",
       "commence_time": "2026-06-25T20:00:00Z",
       "completed": false,
@@ -5512,1527 +7501,6 @@
         }
       },
       "fixture_confidence": "BAJA"
-    },
-    {
-      "id": "065b3573e875f8d23803357f73e5b99e",
-      "home": "USA",
-      "away": "Australia",
-      "commence_time": "2026-06-19T19:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 2,
-      "actual_away": 0,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 14.2
-        },
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 13.9
-        },
-        {
-          "home": 0,
-          "away": 1,
-          "prob": 13.5
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 11.7
-        },
-        {
-          "home": 0,
-          "away": 2,
-          "prob": 7.7
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 1.88,
-          "sd": 1.78,
-          "e_tie": 0.75,
-          "objective": 3.25,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 3.25
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 3.08
-            },
-            {
-              "home": 1,
-              "away": 1,
-              "obj": 2.98
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 1.88,
-          "sd": 1.78,
-          "e_tie": 0.75,
-          "objective": 3.78,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 3.78
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 3.65
-            },
-            {
-              "home": 1,
-              "away": 1,
-              "obj": 3.48
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 1.88,
-          "sd": 1.78,
-          "e_tie": 0.75,
-          "objective": 2.1,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 2.1
-            },
-            {
-              "home": 1,
-              "away": 1,
-              "obj": 1.91
-            },
-            {
-              "home": 0,
-              "away": 0,
-              "obj": 1.91
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "4cd769aa7bae0ad9762bd69b80ef2903",
-      "home": "Scotland",
-      "away": "Morocco",
-      "commence_time": "2026-06-19T22:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 0,
-      "actual_away": 1,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 19.8
-        },
-        {
-          "home": 0,
-          "away": 1,
-          "prob": 18.7
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 13.1
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 11.6
-        },
-        {
-          "home": 0,
-          "away": 2,
-          "prob": 9.8
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.18,
-          "sd": 1.86,
-          "e_tie": 0.89,
-          "objective": 3.65,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 3.65
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 3.44
-            },
-            {
-              "home": 0,
-              "away": 0,
-              "obj": 3.35
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.18,
-          "sd": 1.86,
-          "e_tie": 0.89,
-          "objective": 4.21,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 4.21
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 4.01
-            },
-            {
-              "home": 0,
-              "away": 0,
-              "obj": 3.87
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.18,
-          "sd": 1.86,
-          "e_tie": 0.89,
-          "objective": 2.45,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 2.45
-            },
-            {
-              "home": 0,
-              "away": 0,
-              "obj": 2.21
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 2.21
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "ef0f74a991d3e35798ae5af77667bce1",
-      "home": "Brazil",
-      "away": "Haiti",
-      "commence_time": "2026-06-20T00:32:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 3,
-      "actual_away": 0,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 14.3
-        },
-        {
-          "home": 4,
-          "away": 0,
-          "prob": 12.9
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 12.0
-        },
-        {
-          "home": 5,
-          "away": 0,
-          "prob": 9.2
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 6.5
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 3,
-          "pick_away": 0,
-          "e_pts": 3.66,
-          "sd": 1.13,
-          "e_tie": 0.89,
-          "objective": 4.69,
-          "alternatives": [
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.69
-            },
-            {
-              "home": 4,
-              "away": 0,
-              "obj": 4.66
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.62
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 3,
-          "pick_away": 0,
-          "e_pts": 3.66,
-          "sd": 1.13,
-          "e_tie": 0.89,
-          "objective": 5.03,
-          "alternatives": [
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 5.03
-            },
-            {
-              "home": 4,
-              "away": 0,
-              "obj": 5.0
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.94
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 3,
-          "pick_away": 0,
-          "e_pts": 3.66,
-          "sd": 1.13,
-          "e_tie": 0.89,
-          "objective": 3.93,
-          "alternatives": [
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.93
-            },
-            {
-              "home": 4,
-              "away": 0,
-              "obj": 3.9
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.88
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "f955d4b3395ce6e3b5ac1031ca52ca4e",
-      "home": "Turkey",
-      "away": "Paraguay",
-      "commence_time": "2026-06-20T03:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 0,
-      "actual_away": 1,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 13.1
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 12.7
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 9.8
-        },
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 9.8
-        },
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 9.1
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.2,
-          "sd": 1.76,
-          "e_tie": 0.73,
-          "objective": 3.55,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.55
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.53
-            },
-            {
-              "home": 2,
-              "away": 1,
-              "obj": 3.36
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.11,
-          "sd": 1.92,
-          "e_tie": 0.64,
-          "objective": 4.1,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.1
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.08
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.89
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.2,
-          "sd": 1.76,
-          "e_tie": 0.73,
-          "objective": 2.42,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 2.42
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 2.31
-            },
-            {
-              "home": 2,
-              "away": 1,
-              "obj": 2.27
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "4f0c518545b0096c68326daf25bffc1e",
-      "home": "Netherlands",
-      "away": "Sweden",
-      "commence_time": "2026-06-20T17:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 5,
-      "actual_away": 1,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 9.7
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 8.9
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 8.7
-        },
-        {
-          "home": 3,
-          "away": 1,
-          "prob": 7.4
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 7.1
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.5,
-          "sd": 1.76,
-          "e_tie": 0.59,
-          "objective": 3.79,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.79
-            },
-            {
-              "home": 2,
-              "away": 1,
-              "obj": 3.77
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.74
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.5,
-          "sd": 1.76,
-          "e_tie": 0.59,
-          "objective": 4.32,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.32
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.28
-            },
-            {
-              "home": 2,
-              "away": 1,
-              "obj": 4.26
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 2,
-          "pick_away": 1,
-          "e_pts": 2.53,
-          "sd": 1.64,
-          "e_tie": 0.63,
-          "objective": 2.72,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 1,
-              "obj": 2.72
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 2.68
-            },
-            {
-              "home": 3,
-              "away": 1,
-              "obj": 2.64
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "f1ab0f69832972a329243522ceaa7804",
-      "home": "Germany",
-      "away": "Ivory Coast",
-      "commence_time": "2026-06-20T20:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 2,
-      "actual_away": 1,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 13.4
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 13.0
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 10.0
-        },
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 9.4
-        },
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 8.8
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.77,
-          "sd": 1.81,
-          "e_tie": 0.77,
-          "objective": 4.16,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.16
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.06
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.03
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.77,
-          "sd": 1.81,
-          "e_tie": 0.77,
-          "objective": 4.7,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.7
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.57
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.55
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.78,
-          "sd": 1.63,
-          "e_tie": 0.77,
-          "objective": 3.01,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.01
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.0
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 2.88
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "681895f294b670b4c7b14495dfb583bc",
-      "home": "Ecuador",
-      "away": "Cura\u00e7ao",
-      "commence_time": "2026-06-21T00:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 0,
-      "actual_away": 0,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 19.5
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 16.0
-        },
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 15.6
-        },
-        {
-          "home": 4,
-          "away": 0,
-          "prob": 9.4
-        },
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 7.1
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 3.53,
-          "sd": 1.44,
-          "e_tie": 1.01,
-          "objective": 4.8,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.8
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.72
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.66
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 3.53,
-          "sd": 1.44,
-          "e_tie": 1.01,
-          "objective": 5.23,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 5.23
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 5.15
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 5.05
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 3.53,
-          "sd": 1.44,
-          "e_tie": 1.01,
-          "objective": 3.84,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.84
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.78
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.77
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "dfc5202cf1b8ae002cf952cd04f235b9",
-      "home": "Tunisia",
-      "away": "Japan",
-      "commence_time": "2026-06-21T04:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 0,
-      "actual_away": 4,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 0,
-          "away": 1,
-          "prob": 14.9
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 12.9
-        },
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 11.5
-        },
-        {
-          "home": 0,
-          "away": 2,
-          "prob": 11.2
-        },
-        {
-          "home": 1,
-          "away": 2,
-          "prob": 8.8
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.35,
-          "sd": 1.78,
-          "e_tie": 0.8,
-          "objective": 3.74,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 3.74
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 3.7
-            },
-            {
-              "home": 0,
-              "away": 3,
-              "obj": 3.49
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 0,
-          "pick_away": 2,
-          "e_pts": 2.26,
-          "sd": 1.93,
-          "e_tie": 0.7,
-          "objective": 4.28,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 4.28
-            },
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 4.27
-            },
-            {
-              "home": 0,
-              "away": 3,
-              "obj": 4.05
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.35,
-          "sd": 1.78,
-          "e_tie": 0.8,
-          "objective": 2.59,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 2.59
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 2.47
-            },
-            {
-              "home": 1,
-              "away": 2,
-              "obj": 2.34
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "73529a242e319a86bf3d00ddb4accc37",
-      "home": "Spain",
-      "away": "Saudi Arabia",
-      "commence_time": "2026-06-21T16:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 4,
-      "actual_away": 0,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 17.5
-        },
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 15.2
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 13.2
-        },
-        {
-          "home": 4,
-          "away": 0,
-          "prob": 9.9
-        },
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 6.3
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 3.5,
-          "sd": 1.41,
-          "e_tie": 0.95,
-          "objective": 4.72,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.72
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.68
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.56
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 3.5,
-          "sd": 1.41,
-          "e_tie": 0.95,
-          "objective": 5.15,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 5.15
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 5.11
-            },
-            {
-              "home": 4,
-              "away": 0,
-              "obj": 4.97
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 3.5,
-          "sd": 1.41,
-          "e_tie": 0.95,
-          "objective": 3.78,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.78
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.74
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.71
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "5f92f257386ec5bf7c6e2498a21f3a61",
-      "home": "Belgium",
-      "away": "Iran",
-      "commence_time": "2026-06-21T19:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 0,
-      "actual_away": 0,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 12.2
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 12.0
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 10.6
-        },
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 9.7
-        },
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 7.9
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.63,
-          "sd": 1.83,
-          "e_tie": 0.72,
-          "objective": 4.02,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.02
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.93
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.89
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.63,
-          "sd": 1.83,
-          "e_tie": 0.72,
-          "objective": 4.57,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.57
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.44
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.42
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.64,
-          "sd": 1.65,
-          "e_tie": 0.73,
-          "objective": 2.86,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 2.86
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 2.85
-            },
-            {
-              "home": 2,
-              "away": 1,
-              "obj": 2.73
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "852a3abe6d46820720febc0fedebff9a",
-      "home": "Uruguay",
-      "away": "Cape Verde",
-      "commence_time": "2026-06-21T22:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 2,
-      "actual_away": 2,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 22.8
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 17.0
-        },
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 16.5
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 9.2
-        },
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 8.3
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.95,
-          "sd": 1.75,
-          "e_tie": 1.03,
-          "objective": 4.41,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.41
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.34
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.12
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.95,
-          "sd": 1.75,
-          "e_tie": 1.03,
-          "objective": 4.93,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.93
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.9
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.65
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.95,
-          "sd": 1.75,
-          "e_tie": 1.03,
-          "objective": 3.26,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.26
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.14
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 2.98
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "c1ec9a65f4b4cf74477b368a7d6282de",
-      "home": "New Zealand",
-      "away": "Egypt",
-      "commence_time": "2026-06-22T01:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 1,
-      "actual_away": 3,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 19.0
-        },
-        {
-          "home": 0,
-          "away": 1,
-          "prob": 18.7
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 13.1
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 11.1
-        },
-        {
-          "home": 0,
-          "away": 2,
-          "prob": 10.2
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.23,
-          "sd": 1.86,
-          "e_tie": 0.89,
-          "objective": 3.7,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 3.7
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 3.5
-            },
-            {
-              "home": 0,
-              "away": 0,
-              "obj": 3.3
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.23,
-          "sd": 1.86,
-          "e_tie": 0.89,
-          "objective": 4.26,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 4.26
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 4.08
-            },
-            {
-              "home": 0,
-              "away": 3,
-              "obj": 3.82
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.23,
-          "sd": 1.86,
-          "e_tie": 0.89,
-          "objective": 2.49,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 2.49
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 2.27
-            },
-            {
-              "home": 0,
-              "away": 0,
-              "obj": 2.17
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "0f2aeae6ac8e77223848d23a4ca86b0d",
-      "home": "Mexico",
-      "away": "South Korea",
-      "commence_time": "2026-06-19T01:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 1,
-      "actual_away": 0,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 15.6
-        },
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 14.0
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 13.6
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 10.1
-        },
-        {
-          "home": 0,
-          "away": 1,
-          "prob": 9.8
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "pick_home": 1,
-        "pick_away": 0,
-        "e_pts": 2.19,
-        "sd": 1.81,
-        "e_tie": 0.81,
-        "objective": 3.61,
-        "alternatives": [
-          {
-            "home": 1,
-            "away": 0,
-            "obj": 3.61
-          },
-          {
-            "home": 2,
-            "away": 0,
-            "obj": 3.49
-          },
-          {
-            "home": 3,
-            "away": 0,
-            "obj": 3.26
-          }
-        ]
-      },
-      "fixture_confidence": null
     }
   ]
 }
