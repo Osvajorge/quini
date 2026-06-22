@@ -214,6 +214,8 @@ const TEAM_ES = {
   'Austria':'Austria','Colombia':'Colombia','Chile':'Chile','Peru':'Perú',
   'Venezuela':'Venezuela','Bolivia':'Bolivia','Panama':'Panamá','Costa Rica':'Costa Rica',
   'Honduras':'Honduras','Canada':'Canadá','Jamaica':'Jamaica','Qatar':'Catar',
+  'South Africa':'Sudáfrica','Bosnia and Herzegovina':'Bosnia y Herzegovina',
+  'DR Congo':'RD Congo','Ghana':'Ghana',
 };
 function teamName(name) {
   if (LANG === 'es') return TEAM_ES[name] || name;
@@ -417,7 +419,8 @@ function renderFixtureCard(f) {
 
   let bestBetHtml = '';
   if (f.best_bet) {
-    const desc = LANG === 'es' ? (f.best_bet.description_es || f.best_bet.market) : (f.best_bet.description_en || f.best_bet.market);
+    let desc = LANG === 'es' ? (f.best_bet.description_es || f.best_bet.market) : (f.best_bet.description_en || f.best_bet.market);
+    if (LANG === 'es') { desc = desc.replace(f.home, teamName(f.home)).replace(f.away, teamName(f.away)); }
     bestBetHtml = `
       <div class="flex flex-wrap items-center gap-2 mt-3 pt-3" style="border-top:1px solid color-mix(in srgb, var(--border) 50%, transparent);">
         <span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--bet) 20%, transparent); color:var(--bet);">${t('best_bet')}</span>
@@ -591,7 +594,8 @@ function renderHistory() {
     const won = fx.best_bet_won;
     const score = fx.result ? `${fx.result.home}-${fx.result.away}` : '?';
     const bb = fx.best_bet || {};
-    const desc = LANG === 'es' ? (bb.description_es || bb.market || '—') : (bb.description_en || bb.market || '—');
+    let desc = LANG === 'es' ? (bb.description_es || bb.market || '—') : (bb.description_en || bb.market || '—');
+    if (LANG === 'es' && fx.home && fx.away) { desc = desc.replace(fx.home, teamName(fx.home)).replace(fx.away, teamName(fx.away)); }
     let badge = '';
     if (won === true) badge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--bet) 20%, transparent); color:var(--bet);">W</span>`;
     else if (won === false) badge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--fade) 20%, transparent); color:var(--fade);">L</span>`;
