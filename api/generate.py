@@ -511,10 +511,13 @@ def generate():
                 desc_es, desc_en = _pick_description(best_bet["market"], home_api, away_api)
             fixture["best_bet"] = {
                 "market": best_bet["market"],
+                "side": best_bet["side"],
                 "edge": round(best_bet["edge"] * 100, 1),
                 "odds": round(best_bet["odds"], 2),
                 "pick": best_bet["pick"],
-                "confidence": best_bet["confidence_band"],
+                "confidence_band": best_bet["confidence_band"],
+                "model_prob": round(best_bet["model_prob"] * 100, 1),
+                "devig_prob": round(best_bet["devig_prob"] * 100, 1),
                 "description_es": desc_es,
                 "description_en": desc_en,
                 "is_compound": compound is not None,
