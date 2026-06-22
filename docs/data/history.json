@@ -166,7 +166,7 @@
         "odds": 1.75,
         "pick": "BET",
         "confidence": "MEDIA",
-        "description_es": "3 o más goles en el partido",
+        "description_es": "3 o m\u00e1s goles en el partido",
         "description_en": "3 or more total goals"
       },
       "result": {
@@ -220,7 +220,7 @@
     {
       "id": "backfill_ger_cur",
       "home": "Germany",
-      "away": "Curaçao",
+      "away": "Cura\u00e7ao",
       "date": "2026-06-14T19:00:00Z",
       "best_bet": {
         "market": "Over 2.5",
@@ -228,7 +228,7 @@
         "odds": 1.35,
         "pick": "BET",
         "confidence": "ALTA",
-        "description_es": "3 o más goles en el partido",
+        "description_es": "3 o m\u00e1s goles en el partido",
         "description_en": "3 or more total goals"
       },
       "result": {
@@ -290,7 +290,7 @@
         "odds": 1.7,
         "pick": "BET",
         "confidence": "ALTA",
-        "description_es": "3 o más goles en el partido",
+        "description_es": "3 o m\u00e1s goles en el partido",
         "description_en": "3 or more total goals"
       },
       "result": {
@@ -352,7 +352,7 @@
         "odds": 1.5,
         "pick": "BET",
         "confidence": "ALTA",
-        "description_es": "3 o más goles en el partido",
+        "description_es": "3 o m\u00e1s goles en el partido",
         "description_en": "3 or more total goals"
       },
       "result": {
@@ -414,7 +414,7 @@
         "odds": 1.65,
         "pick": "BET",
         "confidence": "MEDIA",
-        "description_es": "3 o más goles en el partido",
+        "description_es": "3 o m\u00e1s goles en el partido",
         "description_en": "3 or more total goals"
       },
       "result": {
@@ -445,7 +445,7 @@
         "odds": 1.72,
         "pick": "BET",
         "confidence": "ALTA",
-        "description_es": "3 o más goles en el partido",
+        "description_es": "3 o m\u00e1s goles en el partido",
         "description_en": "3 or more total goals"
       },
       "result": {
@@ -507,7 +507,7 @@
         "odds": 1.8,
         "pick": "BET",
         "confidence": "MEDIA",
-        "description_es": "3 o más goles en el partido",
+        "description_es": "3 o m\u00e1s goles en el partido",
         "description_en": "3 or more total goals"
       },
       "result": {
@@ -672,7 +672,7 @@
         "odds": 1.48,
         "pick": "BET",
         "confidence": "ALTA",
-        "description_es": "3 o más goles en el partido",
+        "description_es": "3 o m\u00e1s goles en el partido",
         "description_en": "3 or more total goals"
       },
       "result": {
@@ -778,7 +778,7 @@
     {
       "id": "backfill_ecu_cur",
       "home": "Ecuador",
-      "away": "Curaçao",
+      "away": "Cura\u00e7ao",
       "date": "2026-06-21T13:00:00Z",
       "picks": [
         {
@@ -858,7 +858,7 @@
         "odds": 1.55,
         "pick": "BET",
         "confidence": "ALTA",
-        "description_es": "3 o más goles en el partido",
+        "description_es": "3 o m\u00e1s goles en el partido",
         "description_en": "3 or more total goals"
       },
       "result": {
