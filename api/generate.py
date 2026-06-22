@@ -45,14 +45,14 @@ PICK_DESC = {
 }
 
 TOOLTIPS = {
-    "xg": {"es": "Goles que se esperan en el partido según nuestro modelo", "en": "Goals expected in the match according to our model"},
-    "edge": {"es": "Ventaja: si es positivo, nuestra predicción supera lo que dicen las casas de apuestas", "en": "Edge: if positive, our prediction beats what bookmakers estimate"},
-    "confidence": {"es": "Qué tan seguro está el modelo de esta predicción", "en": "How confident the model is in this prediction"},
-    "model_prob": {"es": "Probabilidad según nuestro modelo", "en": "Probability according to our model"},
-    "devig_prob": {"es": "Probabilidad real según las casas de apuestas (sin su margen)", "en": "Real probability from bookmakers (margin removed)"},
-    "odds": {"es": "Cuota que paga la casa de apuestas", "en": "Odds the bookmaker pays"},
-    "best_bet": {"es": "La apuesta donde el modelo encuentra más ventaja", "en": "The bet where the model finds the biggest edge"},
-    "e_pts": {"es": "Puntos esperados en la quiniela: +3 acertar ganador, +1 por goles exactos", "en": "Expected pool points: +3 correct winner, +1 per exact goal count"},
+    "xg": {"es": "Goles esperados en el partido", "en": "Expected goals in the match"},
+    "edge": {"es": "Ventaja sobre las casas de apuestas. Positivo = buena oportunidad", "en": "Advantage over bookmakers. Positive = good opportunity"},
+    "confidence": {"es": "Qué tan segura es esta predicción", "en": "How confident this prediction is"},
+    "model_prob": {"es": "Probabilidad según modelo", "en": "Model probability"},
+    "devig_prob": {"es": "Probabilidad según mercado", "en": "Market probability"},
+    "odds": {"es": "Cuota que pagan las casas de apuestas", "en": "Bookmaker odds"},
+    "best_bet": {"es": "Apuesta con mayor ventaja en este partido", "en": "Bet with the biggest advantage in this match"},
+    "e_pts": {"es": "Puntos esperados: +3 acertar ganador, +1 por goles exactos", "en": "Expected points: +3 correct winner, +1 per exact goals"},
 }
 
 
