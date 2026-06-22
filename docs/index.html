@@ -73,6 +73,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
         <span class="w-2 h-2 rounded-full pulse-live" style="background:var(--live);"></span>
         <span class="text-xs font-mono" style="color:var(--live);">LIVE</span>
       </div>
+      <button onclick="goToBestBet()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white" id="best-bet-btn" style="background:linear-gradient(135deg, var(--accent-from), var(--accent-to));" data-i18n="best_bet">MEJOR APUESTA</button>
       <button onclick="toggleLang()" id="lang-btn" class="px-2 py-1 rounded text-xs font-mono border" style="border-color:var(--border); color:var(--mute);">EN</button>
       <button onclick="toggleTheme()" id="theme-btn" class="w-8 h-8 rounded-lg border flex items-center justify-center text-sm" style="border-color:var(--border); color:var(--mute);">&#9790;</button>
       <div id="update-time" class="text-xs font-mono hidden sm:block" style="color:var(--mute);"></div>
@@ -163,7 +164,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
         <h4 class="text-xs font-bold uppercase tracking-wider mb-3" data-i18n="footer_data_title">Datos</h4>
         <ul class="space-y-2 text-xs" style="color:var(--mute);">
           <li data-i18n="footer_data_1">Cuotas en vivo via The Odds API</li>
-          <li data-i18n="footer_data_2">Actualización cada 15 min durante partidos</li>
+          <li data-i18n="footer_data_2">Actualización cada 5 min en vivo, cada 15 min pre-partido</li>
           <li data-i18n="footer_data_3">Historial de apuestas 100% transparente</li>
         </ul>
       </div>
@@ -198,7 +199,7 @@ const T = {
     footer_how_title:'Cómo funciona', footer_how_1:'1. Analizamos 20k+ partidos internacionales',
     footer_how_2:'2. Comparamos nuestra probabilidad con la del mercado', footer_how_3:'3. Si hay ventaja real (+7%), recomendamos apuesta',
     footer_data_title:'Datos', footer_data_1:'Cuotas en vivo via The Odds API',
-    footer_data_2:'Actualización cada 15 min durante partidos', footer_data_3:'Historial de apuestas 100% transparente',
+    footer_data_2:'Actualización cada 5 min en vivo, cada 15 min pre-partido', footer_data_3:'Historial de apuestas 100% transparente',
     footer_disclaimer:'Predicciones para análisis y entretenimiento. No es asesoría financiera. Apuesta de forma responsable.',
     strategy:'Estrategia:', optimal_pick:'Pick óptimo', alternatives:'Alternativas:',
     balanced:'Equilibrado (default)', aggressive:'Agresivo (remontando)', defensive:'Defensivo (liderando)',
@@ -230,7 +231,7 @@ const T = {
     footer_how_title:'How it works', footer_how_1:'1. We analyze 20k+ international matches',
     footer_how_2:'2. We compare our probability with market odds', footer_how_3:'3. If there\'s a real edge (+7%), we recommend a bet',
     footer_data_title:'Data', footer_data_1:'Live odds via The Odds API',
-    footer_data_2:'Updates every 15 min during matches', footer_data_3:'100% transparent bet history',
+    footer_data_2:'Updates every 5 min live, every 15 min pre-match', footer_data_3:'100% transparent bet history',
     footer_disclaimer:'Predictions for analysis and entertainment. Not financial advice. Bet responsibly.',
     strategy:'Strategy:', optimal_pick:'Optimal pick', alternatives:'Alternatives:',
     balanced:'Balanced (default)', aggressive:'Aggressive (trailing)', defensive:'Defensive (leading)',
@@ -396,6 +397,21 @@ function checkLive() {
   if (hasLive) { el.classList.remove('hidden'); el.classList.add('flex'); } else { el.classList.add('hidden'); el.classList.remove('flex'); }
 }
 
+function goToBestBet() {
+  // Priority: live match first, then upcoming fixture with best edge
+  const live = DATA?.fixtures.find(f => f.is_live);
+  const target = live || DATA?.fixtures
+    .filter(f => !f.completed && f.best_bet)
+    .sort((a, b) => b.best_bet.edge - a.best_bet.edge)[0];
+  if (!target) return;
+  setTab('upcoming');
+  setFilter('all');
+  requestAnimationFrame(() => {
+    const el = document.getElementById(`fix-${target.id}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+}
+
 // ── Tabs & Filters ──
 function setTab(tab) {
   currentTab = tab;
@@ -525,7 +541,10 @@ function renderFixtures() {
   else if (currentFilter === 'alta') fixtures = fixtures.filter(f => f.fixture_confidence === 'ALTA');
   else if (currentFilter === 'today') fixtures = fixtures.filter(f => isToday(f.commence_time));
 
-  fixtures.sort((a, b) => {
+  const liveFixtures = fixtures.filter(f => f.is_live);
+  const otherFixtures = fixtures.filter(f => !f.is_live);
+
+  otherFixtures.sort((a, b) => {
     if (a.best_bet && !b.best_bet) return -1;
     if (!a.best_bet && b.best_bet) return 1;
     return new Date(a.commence_time) - new Date(b.commence_time);
@@ -536,14 +555,28 @@ function renderFixtures() {
     return;
   }
 
+  let html = '';
+
+  // ── Featured live section ──
+  if (liveFixtures.length) {
+    html += `<div class="mb-8">
+      <div class="flex items-center gap-2 mb-3">
+        <span class="w-2 h-2 rounded-full pulse-live" style="background:var(--live);"></span>
+        <h3 class="text-sm font-bold uppercase tracking-wider" style="color:var(--live);">${LANG === 'es' ? 'EN VIVO AHORA' : 'LIVE NOW'}</h3>
+      </div>
+      <div class="space-y-3">`;
+    liveFixtures.forEach(f => { html += renderFixtureCard(f, true); });
+    html += `</div></div>`;
+  }
+
+  // ── Upcoming grouped by date ──
   let dateGroups = {};
-  fixtures.forEach(f => {
+  otherFixtures.forEach(f => {
     const key = new Date(f.commence_time).toLocaleDateString(LANG === 'es' ? 'es' : 'en', {weekday:'long', month:'long', day:'numeric'});
     if (!dateGroups[key]) dateGroups[key] = [];
     dateGroups[key].push(f);
   });
 
-  let html = '';
   for (const [date, group] of Object.entries(dateGroups)) {
     html += `<div class="mb-8"><h3 class="text-sm font-medium mb-3 uppercase tracking-wider" style="color:var(--mute);">${date}</h3><div class="space-y-3">`;
     group.forEach(f => { html += renderFixtureCard(f); });
@@ -552,7 +585,7 @@ function renderFixtures() {
   document.getElementById('fixtures-container').innerHTML = html;
 }
 
-function renderFixtureCard(f) {
+function renderFixtureCard(f, featured = false) {
   const hasBet = f.best_bet !== null;
   const confColors = {ALTA:'alta', MEDIA:'media', BAJA:'baja'};
   const cc = confColors[f.fixture_confidence] || 'baja';
@@ -560,7 +593,7 @@ function renderFixtureCard(f) {
   let bestBetHtml = '';
   if (f.best_bet) {
     let desc = LANG === 'es' ? (f.best_bet.description_es || f.best_bet.market) : (f.best_bet.description_en || f.best_bet.market);
-    if (LANG === 'es') { desc = desc.replace(f.home, teamName(f.home)).replace(f.away, teamName(f.away)); }
+    desc = desc.replace(f.home, teamName(f.home)).replace(f.away, teamName(f.away));
     bestBetHtml = `
       <div class="flex flex-wrap items-center gap-2 mt-3 pt-3" style="border-top:1px solid color-mix(in srgb, var(--border) 50%, transparent);">
         <span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--bet) 20%, transparent); color:var(--bet);">${t('best_bet')}</span>
@@ -617,8 +650,15 @@ function renderFixtureCard(f) {
     </div>`;
   }
 
+  const liveStyle = featured
+    ? `border-color:color-mix(in srgb, var(--live) 50%, transparent); box-shadow:0 0 0 1px color-mix(in srgb, var(--live) 40%, transparent), 0 4px 20px color-mix(in srgb, var(--live) 20%, transparent);`
+    : hasBet
+      ? `border-color:color-mix(in srgb, var(--bet) 30%, transparent); box-shadow:0 0 0 1px color-mix(in srgb, var(--bet) 40%, transparent), 0 4px 14px color-mix(in srgb, var(--bet) 15%, transparent);`
+      : `border-color:var(--border);`;
+
   return `
-    <div class="rounded-xl border card-hover overflow-hidden" style="background:var(--panel); border-color:${hasBet ? 'color-mix(in srgb, var(--bet) 30%, transparent)' : 'var(--border)'}; ${hasBet ? 'box-shadow:0 0 0 1px color-mix(in srgb, var(--bet) 40%, transparent), 0 4px 14px color-mix(in srgb, var(--bet) 15%, transparent);' : ''}">
+    <div id="fix-${f.id}" class="rounded-xl border card-hover overflow-hidden" style="background:var(--panel); ${liveStyle}">
+      ${featured ? `<div class="px-4 py-1.5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider" style="background:color-mix(in srgb, var(--live) 12%, transparent); color:var(--live); border-bottom:1px solid color-mix(in srgb, var(--live) 20%, transparent);"><span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span>${LANG === 'es' ? 'PARTIDO EN VIVO' : 'LIVE MATCH'}</div>` : ''}
       <div class="px-4 sm:px-5 py-4">
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-3">
@@ -876,7 +916,7 @@ let refreshTimer = null;
 function scheduleRefresh() {
   if (refreshTimer) clearInterval(refreshTimer);
   const live = DATA && DATA.fixtures.some(f => f.is_live);
-  const ms = live ? 2 * 60 * 1000 : 5 * 60 * 1000;
+  const ms = live ? 60 * 1000 : 5 * 60 * 1000;
   refreshTimer = setInterval(() => { loadData().then(scheduleRefresh); }, ms);
 }
 scheduleRefresh();

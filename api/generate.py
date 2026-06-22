@@ -43,6 +43,30 @@ PICK_DESC = {
     "BTTS No": {"es": "Al menos un equipo se queda sin anotar", "en": "At least one team fails to score"},
 }
 
+MARKET_GROUPS = {
+    "home": "1x2", "draw": "1x2", "away": "1x2",
+    "over_2_5": "ou", "under_2_5": "ou",
+    "btts_yes": "btts", "btts_no": "btts",
+}
+
+# Compound bet descriptions: (primary_side, secondary_side) → (es, en)
+COMPOUND_DESC: dict[tuple[str, str], tuple[str, str]] = {
+    ("home",      "over_2_5"):  ("{home} gana + Más de 2.5 goles",           "{home} wins + Over 2.5 goals"),
+    ("home",      "under_2_5"): ("{home} gana + Menos de 2.5 goles",         "{home} wins + Under 2.5 goals"),
+    ("home",      "btts_yes"):  ("{home} gana y ambos anotan",                "{home} wins + Both teams score"),
+    ("home",      "btts_no"):   ("{home} gana dejando al rival a cero",       "{home} wins to nil"),
+    ("away",      "over_2_5"):  ("{away} gana + Más de 2.5 goles",           "{away} wins + Over 2.5 goals"),
+    ("away",      "under_2_5"): ("{away} gana + Menos de 2.5 goles",         "{away} wins + Under 2.5 goals"),
+    ("away",      "btts_yes"):  ("{away} gana y ambos anotan",                "{away} wins + Both teams score"),
+    ("away",      "btts_no"):   ("{away} gana dejando al rival a cero",       "{away} wins to nil"),
+    ("draw",      "under_2_5"): ("Empate con menos de 3 goles en total",     "Draw + Under 2.5 goals"),
+    ("draw",      "btts_no"):   ("Empate sin marcar ambos equipos",           "Draw + At least one team scoreless"),
+    ("over_2_5",  "btts_yes"):  ("Más de 2.5 goles y ambos equipos anotan",  "Over 2.5 + Both teams score"),
+    ("under_2_5", "btts_no"):   ("Menos de 3 goles y al menos uno a cero",   "Under 2.5 + At least one scoreless"),
+}
+
+COMPATIBLE_GROUPS = {"1x2": {"ou", "btts"}, "ou": {"btts", "1x2"}, "btts": {"ou"}}
+
 TOOLTIPS = {
     "xg": {"es": "Goles esperados en el partido", "en": "Expected goals in the match"},
     "edge": {"es": "Ventaja sobre las casas de apuestas. Positivo = buena oportunidad", "en": "Advantage over bookmakers. Positive = good opportunity"},
@@ -190,13 +214,34 @@ def build_live_scores(fit, home_model: str, away_model: str, lam_h: float, lam_a
 
 
 def _pick_description(market: str, home: str, away: str) -> tuple[str, str]:
-    """Return (description_es, description_en) for a given market and team names."""
     desc = PICK_DESC.get(market)
     if not desc:
         return market, market
     es = desc["es"].replace("{home}", home).replace("{away}", away)
     en = desc["en"].replace("{home}", home).replace("{away}", away)
     return es, en
+
+
+def _compound_description(best_side: str, bets: list[dict], home: str, away: str) -> tuple[str, str] | None:
+    """Build compound description if a second compatible BET exists."""
+    best_group = MARKET_GROUPS.get(best_side)
+    if not best_group:
+        return None
+    ok_groups = COMPATIBLE_GROUPS.get(best_group, set())
+    secondary = max(
+        (b for b in bets if b["side"] != best_side and MARKET_GROUPS.get(b["side"]) in ok_groups),
+        key=lambda b: b["edge"],
+        default=None,
+    )
+    if secondary is None:
+        return None
+    tmpl = COMPOUND_DESC.get((best_side, secondary["side"]))
+    if tmpl is None:
+        return None
+    return (
+        tmpl[0].replace("{home}", home).replace("{away}", away),
+        tmpl[1].replace("{home}", home).replace("{away}", away),
+    )
 
 
 def _load_history() -> dict:
@@ -327,24 +372,42 @@ def generate():
     now = datetime.now(timezone.utc)
 
     if existing_predictions:
-        non_completed = [
-            fx for fx in existing_predictions.get("fixtures", [])
-            if not fx.get("completed")
-        ]
-        should_run = False
-        for fx in non_completed:
-            try:
-                ct = datetime.fromisoformat(fx["commence_time"].replace("Z", "+00:00"))
-                minutes_until = (ct - now).total_seconds() / 60.0
-                if minutes_until <= 120:
+        has_live = any(fx.get("is_live") for fx in existing_predictions.get("fixtures", []))
+
+        if has_live:
+            # Live match active — always run (cron is now */5, no extra rate limit)
+            print("live match detected — running update")
+        else:
+            # Check 2-hour match window
+            non_completed = [
+                fx for fx in existing_predictions.get("fixtures", [])
+                if not fx.get("completed")
+            ]
+            should_run = False
+            for fx in non_completed:
+                try:
+                    ct = datetime.fromisoformat(fx["commence_time"].replace("Z", "+00:00"))
+                    minutes_until = (ct - now).total_seconds() / 60.0
+                    if minutes_until <= 120:
+                        should_run = True
+                        break
+                except Exception:
                     should_run = True
                     break
-            except Exception:
-                should_run = True
-                break
-        if not should_run:
-            print("no matches in window, skipping")
-            return
+            if not should_run:
+                print("no matches in window, skipping")
+                return
+            # Rate limit non-live runs to 15 min even when cron is */5
+            last_gen = existing_predictions.get("generated_at")
+            if last_gen:
+                try:
+                    last_dt = datetime.fromisoformat(last_gen.replace("Z", "+00:00"))
+                    mins_since = (now - last_dt).total_seconds() / 60.0
+                    if mins_since < 15:
+                        print(f"rate limited (no live): {mins_since:.1f}m since last run, need 15m")
+                        return
+                except Exception:
+                    pass
 
     fit = load_fit()
 
@@ -441,7 +504,11 @@ def generate():
             })
 
         if best_bet:
-            desc_es, desc_en = _pick_description(best_bet["market"], home_api, away_api)
+            compound = _compound_description(best_bet["side"], bets, home_api, away_api)
+            if compound:
+                desc_es, desc_en = compound
+            else:
+                desc_es, desc_en = _pick_description(best_bet["market"], home_api, away_api)
             fixture["best_bet"] = {
                 "market": best_bet["market"],
                 "edge": round(best_bet["edge"] * 100, 1),
@@ -450,6 +517,7 @@ def generate():
                 "confidence": best_bet["confidence_band"],
                 "description_es": desc_es,
                 "description_en": desc_en,
+                "is_compound": compound is not None,
             }
 
         fixtures.append(fixture)
