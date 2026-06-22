@@ -337,30 +337,25 @@ def generate():
             fx for fx in existing_predictions.get("fixtures", [])
             if not fx.get("completed")
         ]
-        in_window = False
+        should_run = False
         for fx in non_completed:
             try:
                 ct = datetime.fromisoformat(fx["commence_time"].replace("Z", "+00:00"))
-                diff_minutes = abs((ct - now).total_seconds()) / 60.0
-                if diff_minutes <= 120:
-                    in_window = True
+                minutes_until = (ct - now).total_seconds() / 60.0
+                if minutes_until <= 120:
+                    should_run = True
                     break
             except Exception:
-                in_window = True
+                should_run = True
                 break
-        # Also treat any live fixture as in-window
-        if not in_window:
-            live_any = any(fx.get("is_live") for fx in non_completed)
-            if live_any:
-                in_window = True
-        if not in_window:
+        if not should_run:
             print("no matches in window, skipping")
             return
 
     fit = load_fit()
 
     odds_data = fetch_odds(api_key)
-    scores_data = fetch_scores(api_key, days_from=3)
+    scores_data = fetch_scores(api_key)
 
     score_map = {}
     for ev in scores_data:
