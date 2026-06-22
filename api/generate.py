@@ -504,6 +504,15 @@ def generate():
             if old_fx.get("completed") and old_fx["id"] not in current_ids:
                 fixtures.append(old_fx)
 
+    completed_keys = {
+        (f["home"], f["away"], f["commence_time"])
+        for f in fixtures if f["completed"]
+    }
+    fixtures = [
+        f for f in fixtures
+        if f["completed"] or (f["home"], f["away"], f["commence_time"]) not in completed_keys
+    ]
+
     now = datetime.now(timezone.utc)
     completed_fixtures = [f for f in fixtures if f["completed"]]
     upcoming_fixtures = [f for f in fixtures if not f["completed"]]
