@@ -12,10 +12,9 @@ import requests
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from model.config import THE_ODDS_API_KEY_FREE, require
-from model.dixon_coles import load_fit
-from model.markets import all_markets, score_matrix
-from model.predict import predict, EDGE_THRESHOLD
+from model.bivariate_poisson import load_fit
 from model.markets import score_matrix as compute_score_matrix
+from model.predict import predict, EDGE_THRESHOLD
 from quiniela.tournament import risk_adjusted_pick
 
 BASE = "https://api.the-odds-api.com/v4"
@@ -122,19 +121,14 @@ def extract_odds_from_event(event: dict) -> dict:
 
 def build_score_predictions(fit, home_model: str, away_model: str) -> tuple[list[dict], dict | None, float, float]:
     try:
+        grid = fit.predict_grid(home_model, away_model, neutral=False)
         lam_h, lam_a = fit.expected_goals(home_model, away_model, neutral=False)
     except KeyError:
         return [], None, 0.0, 0.0
-    matrix = compute_score_matrix(lam_h, lam_a, fit.rho)
-    top_scores = []
-    n = matrix.shape[0]
-    flat = []
-    for h in range(min(n, 6)):
-        for a in range(min(n, 6)):
-            flat.append((h, a, float(matrix[h, a])))
+    flat = [(h, a, grid.exact_score(h, a)) for h in range(6) for a in range(6)]
     flat.sort(key=lambda x: -x[2])
-    for h, a, p in flat[:5]:
-        top_scores.append({"home": h, "away": a, "prob": round(p * 100, 1)})
+    top_scores = [{"home": h, "away": a, "prob": round(p * 100, 1)} for h, a, p in flat[:5]]
+    matrix = fit.score_matrix(home_model, away_model, neutral=False, n=10)
 
     strategies = {}
     for label, lv, lt in [("balanced", 0.6, 0.4), ("aggressive", 0.9, 0.4), ("defensive", 0.0, 0.3)]:
@@ -168,7 +162,7 @@ def build_live_scores(fit, home_model: str, away_model: str, lam_h: float, lam_a
         lam_h_rem = lam_h * r
         lam_a_rem = lam_a * r
 
-        remaining_matrix = compute_score_matrix(lam_h_rem, lam_a_rem, fit.rho)
+        remaining_matrix = compute_score_matrix(lam_h_rem, lam_a_rem, 0.0)
         n = remaining_matrix.shape[0]
 
         flat = []
@@ -526,7 +520,7 @@ def generate():
     output = {
         "generated_at": now.isoformat(),
         "model": {
-            "name": "Dixon-Coles",
+            "name": "Bivariate-Poisson",
             "teams": len(fit.teams),
             "matches_trained": fit.n_matches,
             "fitted_at": fit.fitted_at.isoformat(),

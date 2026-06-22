@@ -1,4 +1,4 @@
-"""End-to-end prediction: fit → score matrix → markets → edge → picks."""
+"""End-to-end prediction: fit → markets → edge → picks."""
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -7,8 +7,7 @@ from typing import Literal
 import numpy as np
 
 from model.devig import devig_shin
-from model.dixon_coles import DCFit, load_fit
-from model.markets import all_markets, score_matrix
+from model.bivariate_poisson import BPFit, load_fit
 
 EDGE_THRESHOLD = 0.07  # 7%
 EDGE_SCORE_CAP = 0.05  # saturates 5 pts above threshold (so edge ≥ 12% → 1.0)
@@ -50,21 +49,21 @@ def _confidence(edge: float, sample_score: float) -> tuple[float, str]:
     return raw, band
 
 
-def _sample_score(fit: DCFit, home: str, away: str) -> float:
+def _sample_score(fit: BPFit, home: str, away: str) -> float:
     n_h = fit.match_counts.get(home, 0)
     n_a = fit.match_counts.get(away, 0)
     return min(min(n_h, n_a) / SAMPLE_FULL_SUPPORT, 1.0)
 
 
 def predict(
-    fit: DCFit,
+    fit: BPFit,
     home: str,
     away: str,
     odds: dict,
     neutral: bool = False,
     max_goals: int = 10,
 ) -> dict:
-    """Produce xG, score matrix and per-side picks.
+    """Produce xG, score matrix and per-side picks via Bivariate Poisson.
 
     `odds` keys are flexible — supply only the markets you have prices for:
       {"home", "draw", "away"}        → 1X2
@@ -72,9 +71,26 @@ def predict(
       {"btts_yes", "btts_no"}         → BTTS
       {"ah_home_-1_5", "ah_away_+1_5"} → Asian handicap -1.5 / +1.5
     """
+    grid = fit.predict_grid(home, away, neutral=neutral)
     lam_h, lam_a = fit.expected_goals(home, away, neutral=neutral)
-    matrix = score_matrix(lam_h, lam_a, fit.rho, max_goals=max_goals)
-    model_probs = all_markets(matrix)
+
+    under25, _, over25 = grid.totals(2.5)
+    under35, _, over35 = grid.totals(3.5)
+    model_probs = {
+        "1x2": {"home": grid.home_win, "draw": grid.draw, "away": grid.away_win},
+        "ou_2_5": {"over": over25, "under": under25},
+        "ou_3_5": {"over": over35, "under": under35},
+        "btts": {"yes": grid.btts_yes, "no": grid.btts_no},
+        "ah_home_-1_5": {
+            "home_cover": grid.asian_handicap("home", -1.5),
+            "away_cover": grid.asian_handicap("away", -1.5),
+        },
+        "ah_home_+1_5": {
+            "home_cover": grid.asian_handicap("home", 1.5),
+            "away_cover": grid.asian_handicap("away", 1.5),
+        },
+    }
+    matrix = fit.score_matrix(home, away, neutral=neutral, n=max_goals + 1)
     sample_s = _sample_score(fit, home, away)
 
     market_map: dict[str, tuple[str, tuple[str, str], str]] = {

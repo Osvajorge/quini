@@ -19,7 +19,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install numpy scipy pandas requests python-dotenv
+        run: pip install numpy scipy pandas requests python-dotenv penaltyblog
 
       - name: Update results and refit model if new scores
         run: python scripts/update_and_refit.py

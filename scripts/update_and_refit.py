@@ -99,7 +99,7 @@ def count_completed_wc26() -> int:
 
 
 def needs_refit(current_count: int) -> bool:
-    from model.dixon_coles import FIT_PATH
+    from model.bivariate_poisson import FIT_PATH
     if not FIT_PATH.exists():
         return True
     if not REFIT_STATE.exists():
@@ -119,14 +119,14 @@ def save_refit_state(count: int) -> None:
 
 def run_refit() -> None:
     from model.data_loader import load_matches
-    from model.dixon_coles import fit, save_fit
+    from model.bivariate_poisson import fit, save_fit
 
     df = load_matches()
     wc26 = df[(df["tournament"] == "FIFA World Cup") & (df["date"] >= "2026-06-11")]
     print(f"  Loaded {len(df):,} matches · WC 2026 group stage: {len(wc26)}")
     fit_obj = fit(df, verbose=True)
     save_fit(fit_obj)
-    print(f"  Saved fit.pkl · log-L={fit_obj.log_likelihood:.1f} · γ={fit_obj.gamma:.4f}")
+    print(f"  Saved fit.pkl · log-L={fit_obj.log_likelihood:.1f}")
 
 
 def main() -> None:
