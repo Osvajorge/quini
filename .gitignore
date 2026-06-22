@@ -7,6 +7,7 @@ venv/
 data/*.csv
 !data/.gitkeep
 !data/fit.pkl
+!data/refit_state.json
 node_modules/
 .next/
 .wrangler/
