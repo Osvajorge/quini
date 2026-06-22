@@ -47,12 +47,14 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 .tab-inactive:hover { color:var(--ink); }
 .score-bar { transition:width .3s ease; }
 .tooltip-trigger { position:relative; cursor:help; }
-.tooltip-trigger:hover .tooltip-content { display:block; }
+.tooltip-trigger:hover .tooltip-content, .tooltip-trigger.tt-open .tooltip-content { display:block; }
 .tooltip-content { display:none; position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:var(--panel); border:1px solid var(--border); border-radius:8px; padding:8px 12px; font-size:12px; line-height:1.5; color:var(--ink); white-space:normal; width:240px; z-index:50; box-shadow:0 4px 12px var(--shadow); }
 .tooltip-trigger:last-child .tooltip-content, .tooltip-right .tooltip-content { left:auto; right:0; transform:none; }
 .tooltip-content::after { content:''; position:absolute; top:100%; left:50%; transform:translateX(-50%); border:5px solid transparent; border-top-color:var(--border); }
-.help-icon { display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; border-radius:50%; border:1px solid var(--mute); font-size:9px; line-height:1; opacity:0.5; vertical-align:middle; }
-.tooltip-trigger:hover .help-icon { opacity:0.8; }
+.help-icon { display:inline-flex; align-items:center; justify-content:center; width:14px; height:14px; border-radius:50%; border:1px solid var(--mute); font-size:9px; line-height:1; opacity:0.5; vertical-align:middle; cursor:pointer; }
+.tooltip-trigger:hover .help-icon, .tooltip-trigger.tt-open .help-icon { opacity:0.8; }
+.score-heatmap { display:none; }
+.score-heatmap.open { display:block; }
 </style>
 </head>
 <body class="font-sans antialiased">
@@ -276,6 +278,9 @@ let currentTab = 'upcoming';
 let currentFilter = 'all';
 const PW_HASH = '5d7df06cd4fd705ee3172c065da16c18f0c00231348bd688ed0a8679f231d39c';
 let quinielaAuth = sessionStorage.getItem('q_auth') === '1';
+document.addEventListener('click', () => {
+  document.querySelectorAll('.tooltip-trigger.tt-open').forEach(o => o.classList.remove('tt-open'));
+});
 
 function t(key) { return (T[LANG] && T[LANG][key]) || key; }
 
@@ -396,6 +401,69 @@ function applyTooltips() {
     const key = el.dataset.i18nTooltip;
     if (DATA.tooltips[key]) el.textContent = DATA.tooltips[key][LANG];
   });
+  document.querySelectorAll('.tooltip-trigger').forEach(el => {
+    if (el.dataset.ttBound) return;
+    el.dataset.ttBound = '1';
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      const isOpen = el.classList.contains('tt-open');
+      document.querySelectorAll('.tooltip-trigger.tt-open').forEach(o => o.classList.remove('tt-open'));
+      if (!isOpen) el.classList.add('tt-open');
+    });
+  });
+}
+
+// ── Score heatmap (Poisson) ──
+function poissonProb(lambda, k) {
+  let p = Math.exp(-lambda);
+  for (let i = 1; i <= k; i++) p *= lambda / i;
+  return p;
+}
+function buildHeatmapHTML(xgH, xgA, lang) {
+  const MAX = 5;
+  const probs = [];
+  let maxP = 0;
+  for (let h = 0; h <= MAX; h++) {
+    for (let a = 0; a <= MAX; a++) {
+      const p = poissonProb(xgH, h) * poissonProb(xgA, a);
+      probs.push({h, a, p});
+      if (p > maxP) maxP = p;
+    }
+  }
+  const awayLabels = Array.from({length: MAX+1}, (_,i) => `<div class="text-center text-[9px]" style="color:var(--mute);width:28px;">${i}</div>`).join('');
+  let rows = '';
+  for (let h = 0; h <= MAX; h++) {
+    let cells = '';
+    for (let a = 0; a <= MAX; a++) {
+      const {p} = probs.find(x => x.h===h && x.a===a);
+      const pct = (p / maxP);
+      const pctLabel = (p * 100).toFixed(1);
+      const alpha = Math.round(pct * 180);
+      const hex = alpha.toString(16).padStart(2,'0');
+      cells += `<div title="${h}-${a}: ${pctLabel}%" style="width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-family:monospace;background:color-mix(in srgb,var(--bet) ${Math.round(pct*80)}%,var(--bg2));color:${pct>0.5?'white':'var(--mute)'};">${pctLabel}</div>`;
+    }
+    rows += `<div style="display:flex;align-items:center;gap:2px;"><div class="text-[9px] text-right" style="color:var(--mute);width:12px;margin-right:4px;">${h}</div>${cells}</div>`;
+  }
+  const homeLabel = lang==='es'?'Local':'Home';
+  const awayLabel = lang==='es'?'Visitante':'Away';
+  return `<div class="mt-3 pt-3" style="border-top:1px solid var(--border);">
+    <div class="text-[10px] uppercase tracking-wider mb-2" style="color:var(--mute);">${lang==='es'?'Mapa de probabilidades':'Score probability map'}</div>
+    <div style="display:flex;flex-direction:column;gap:2px;">
+      <div style="display:flex;align-items:center;gap:2px;margin-left:16px;">${awayLabels}</div>
+      ${rows}
+    </div>
+    <div class="flex justify-between mt-1" style="font-size:9px;color:var(--mute);"><span>↑ ${homeLabel}</span><span>${awayLabel} →</span></div>
+  </div>`;
+}
+function toggleHeatmap(btn, xgH, xgA) {
+  const container = btn.closest('.heatmap-container');
+  const map = container.querySelector('.score-heatmap');
+  const isOpen = map.classList.contains('open');
+  if (!isOpen && map.innerHTML === '') {
+    map.innerHTML = buildHeatmapHTML(xgH, xgA, LANG);
+  }
+  map.classList.toggle('open', !isOpen);
+  btn.textContent = isOpen ? (LANG==='es'?'▼ Mapa de goles':'▼ Score map') : (LANG==='es'?'▲ Cerrar mapa':'▲ Close map');
 }
 
 function renderAll() {
@@ -564,6 +632,10 @@ function renderFixtureCard(f) {
           </div>
         </details>
         ${scoresHtml}
+        ${(f.xg_home && !f.completed) ? `<div class="heatmap-container mt-2">
+          <button onclick="toggleHeatmap(this, ${f.xg_home}, ${f.xg_away})" class="text-[10px] px-2 py-1 rounded" style="color:var(--mute);border:1px solid var(--border);cursor:pointer;">&#9660; ${LANG==='es'?'Mapa de goles':'Score map'}</button>
+          <div class="score-heatmap"></div>
+        </div>` : ''}
       </div>
     </div>`;
 }
