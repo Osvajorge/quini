@@ -45,14 +45,14 @@ PICK_DESC = {
 }
 
 TOOLTIPS = {
-    "xg": {"es": "Goles esperados según el modelo Dixon-Coles", "en": "Expected goals from the Dixon-Coles model"},
-    "edge": {"es": "Diferencia entre la probabilidad del modelo y la probabilidad implícita del mercado. Positivo = el modelo ve valor", "en": "Difference between model probability and market implied probability. Positive = model sees value"},
-    "confidence": {"es": "Nivel de confianza basado en el edge y la cantidad de datos del equipo", "en": "Confidence level based on edge size and team data availability"},
-    "model_prob": {"es": "Probabilidad según el modelo Dixon-Coles", "en": "Probability according to the Dixon-Coles model"},
-    "devig_prob": {"es": "Probabilidad real extraída de las cuotas del mercado (Shin de-vig)", "en": "True probability extracted from market odds (Shin de-vig)"},
-    "odds": {"es": "Cuota decimal del mercado", "en": "Decimal market odds"},
-    "best_bet": {"es": "La apuesta con mayor ventaja (edge) en este partido", "en": "The bet with the highest edge in this match"},
-    "e_pts": {"es": "Puntos esperados en formato quiniela (+3 ganador, +1 goles exactos)", "en": "Expected points in pool format (+3 winner, +1 exact goals)"},
+    "xg": {"es": "Goles que se esperan en el partido según nuestro modelo", "en": "Goals expected in the match according to our model"},
+    "edge": {"es": "Ventaja: si es positivo, nuestra predicción supera lo que dicen las casas de apuestas", "en": "Edge: if positive, our prediction beats what bookmakers estimate"},
+    "confidence": {"es": "Qué tan seguro está el modelo de esta predicción", "en": "How confident the model is in this prediction"},
+    "model_prob": {"es": "Probabilidad según nuestro modelo", "en": "Probability according to our model"},
+    "devig_prob": {"es": "Probabilidad real según las casas de apuestas (sin su margen)", "en": "Real probability from bookmakers (margin removed)"},
+    "odds": {"es": "Cuota que paga la casa de apuestas", "en": "Odds the bookmaker pays"},
+    "best_bet": {"es": "La apuesta donde el modelo encuentra más ventaja", "en": "The bet where the model finds the biggest edge"},
+    "e_pts": {"es": "Puntos esperados en la quiniela: +3 acertar ganador, +1 por goles exactos", "en": "Expected pool points: +3 correct winner, +1 per exact goal count"},
 }
 
 
