@@ -69,11 +69,10 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
       </div>
     </div>
     <div class="flex items-center gap-3">
-      <div id="live-indicator" class="hidden items-center gap-2 px-3 py-1 rounded-full" style="background:color-mix(in srgb, var(--live) 10%, transparent); border:1px solid color-mix(in srgb, var(--live) 30%, transparent);">
+      <div id="live-indicator" class="hidden items-center gap-2 px-3 py-1 rounded-full cursor-pointer select-none" onclick="goToLive()" title="Ir al partido en vivo" style="background:color-mix(in srgb, var(--live) 10%, transparent); border:1px solid color-mix(in srgb, var(--live) 30%, transparent);">
         <span class="w-2 h-2 rounded-full pulse-live" style="background:var(--live);"></span>
         <span class="text-xs font-mono" style="color:var(--live);">LIVE</span>
       </div>
-      <button onclick="goToBestBet()" class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold text-white" id="best-bet-btn" style="background:linear-gradient(135deg, var(--accent-from), var(--accent-to));" data-i18n="best_bet">MEJOR APUESTA</button>
       <button onclick="toggleLang()" id="lang-btn" class="px-2 py-1 rounded text-xs font-mono border" style="border-color:var(--border); color:var(--mute);">EN</button>
       <button onclick="toggleTheme()" id="theme-btn" class="w-8 h-8 rounded-lg border flex items-center justify-center text-sm" style="border-color:var(--border); color:var(--mute);">&#9790;</button>
       <div id="update-time" class="text-xs font-mono hidden sm:block" style="color:var(--mute);"></div>
@@ -394,21 +393,116 @@ function renderStats() {
 function checkLive() {
   const hasLive = DATA.fixtures.some(f => f.is_live);
   const el = document.getElementById('live-indicator');
-  if (hasLive) { el.classList.remove('hidden'); el.classList.add('flex'); } else { el.classList.add('hidden'); el.classList.remove('flex'); }
+  if (hasLive) { el.classList.remove('hidden'); el.classList.add('flex'); startLiveTicker(); }
+  else { el.classList.add('hidden'); el.classList.remove('flex'); stopLiveTicker(); }
 }
 
-function goToBestBet() {
-  // Priority: live match first, then upcoming fixture with best edge
+function goToLive() {
   const live = DATA?.fixtures.find(f => f.is_live);
-  const target = live || DATA?.fixtures
-    .filter(f => !f.completed && f.best_bet)
-    .sort((a, b) => b.best_bet.edge - a.best_bet.edge)[0];
-  if (!target) return;
+  if (!live) return;
   setTab('upcoming');
   setFilter('all');
   requestAnimationFrame(() => {
-    const el = document.getElementById(`fix-${target.id}`);
+    const el = document.getElementById(`fix-${live.id}`);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+}
+
+// ── Live ticker (client-side, 30s interval) ──
+let _liveTickerTimer = null;
+
+function startLiveTicker() {
+  if (_liveTickerTimer) return;
+  _tickLive();
+  _liveTickerTimer = setInterval(_tickLive, 30000);
+}
+
+function stopLiveTicker() {
+  if (_liveTickerTimer) { clearInterval(_liveTickerTimer); _liveTickerTimer = null; }
+}
+
+function computeElapsed(commenceTime) {
+  return Math.max(0, Math.min(90, (Date.now() - new Date(commenceTime).getTime()) / 60000));
+}
+
+function computeLiveConditional(xgH, xgA, actualH, actualA, elapsedMin) {
+  const r = Math.max(0.05, (90 - elapsedMin) / 90);
+  const lamH = xgH * r, lamA = xgA * r;
+  const scoreProbs = {};
+  let homeWin = 0, draw = 0, awayWin = 0, over25 = 0, bttsYes = 0;
+  for (let rh = 0; rh < 8; rh++) {
+    for (let ra = 0; ra < 8; ra++) {
+      const p = poissonProb(lamH, rh) * poissonProb(lamA, ra);
+      const fh = actualH + rh, fa = actualA + ra;
+      const key = `${fh}-${fa}`;
+      scoreProbs[key] = (scoreProbs[key] || 0) + p;
+      if (fh > fa) homeWin += p; else if (fh === fa) draw += p; else awayWin += p;
+      if (fh + fa > 2.5) over25 += p;
+      if (fh > 0 && fa > 0) bttsYes += p;
+    }
+  }
+  const topScores = Object.entries(scoreProbs)
+    .map(([k, p]) => { const [h, a] = k.split('-'); return { home: +h, away: +a, prob: (p * 100).toFixed(1) }; })
+    .sort((a, b) => b.prob - a.prob).slice(0, 5);
+  return { topScores, markets: { homeWin, draw, awayWin, over25, under25: 1 - over25, bttsYes, bttsNo: 1 - bttsYes } };
+}
+
+function buildLiveMarketsHtml(markets, elapsed, actualH, actualA) {
+  const pct = v => (v * 100).toFixed(0) + '%';
+  const minStr = Math.floor(elapsed) + "'";
+  const rows = [
+    ['1', 'homeWin', LANG === 'es' ? 'Local' : 'Home'],
+    ['X', 'draw', 'Draw'],
+    ['2', 'awayWin', LANG === 'es' ? 'Visita' : 'Away'],
+    ['O2.5', 'over25', 'Over 2.5'],
+    ['BTTS', 'bttsYes', 'BTTS'],
+    ['U2.5', 'under25', 'Under 2.5'],
+  ].map(([lbl, key, title]) => `<div class="rounded py-1.5 text-center" title="${title}" style="background:color-mix(in srgb,var(--panel2) 80%,transparent);">
+    <div class="text-xs font-bold font-mono">${pct(markets[key])}</div>
+    <div class="text-[9px]" style="color:var(--mute);">${lbl}</div>
+  </div>`).join('');
+  return `<div class="mt-3 pt-2" style="border-top:1px solid color-mix(in srgb, var(--live) 20%, transparent);">
+    <div class="flex items-center gap-1.5 mb-2">
+      <span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span>
+      <span class="text-[10px] font-bold uppercase tracking-wider" style="color:var(--live);">${LANG === 'es' ? 'PROBABILIDADES RESTANTES' : 'REMAINING PROBS'} · ${actualH}-${actualA} · ${minStr}</span>
+    </div>
+    <div class="grid grid-cols-6 gap-1">${rows}</div>
+  </div>`;
+}
+
+function _tickLive() {
+  if (!DATA) return;
+  const lives = DATA.fixtures.filter(f => f.is_live && !f.completed);
+  if (!lives.length) { stopLiveTicker(); return; }
+  lives.forEach(f => {
+    const elapsed = computeElapsed(f.commence_time);
+    const actualH = f.actual_home || 0, actualA = f.actual_away || 0;
+    const { topScores, markets } = computeLiveConditional(f.xg_home, f.xg_away, actualH, actualA, elapsed);
+
+    const scoresEl = document.getElementById(`live-scores-${f.id}`);
+    if (scoresEl) {
+      let inner = `<div class="text-[10px] uppercase tracking-wider mb-2" style="color:var(--mute);">${t('live_scores')}</div><div class="flex gap-2">`;
+      topScores.forEach((s, i) => {
+        const isTop = i === 0;
+        const bg = isTop ? 'color-mix(in srgb, var(--bet) 12%, transparent)' : 'color-mix(in srgb, var(--panel2) 50%, transparent)';
+        const border = isTop ? 'border:1px solid color-mix(in srgb, var(--bet) 25%, transparent);' : '';
+        const sc = isTop ? 'color:var(--bet);' : '';
+        inner += `<div class="flex-1 text-center py-1.5 rounded" style="background:${bg};${border}"><div class="text-sm font-bold font-mono" style="${sc}">${s.home}-${s.away}</div><div class="text-[10px]" style="color:var(--mute);">${s.prob}%</div></div>`;
+      });
+      scoresEl.innerHTML = inner + '</div>';
+    }
+
+    const mktsEl = document.getElementById(`live-markets-${f.id}`);
+    if (mktsEl) mktsEl.innerHTML = buildLiveMarketsHtml(markets, elapsed, actualH, actualA);
+
+    const card = document.getElementById(`fix-${f.id}`);
+    if (card) {
+      const openMap = card.querySelector('.score-heatmap.open');
+      if (openMap) {
+        const rr = Math.max(0.05, (90 - elapsed) / 90);
+        openMap.innerHTML = buildHeatmapHTML(f.xg_home * rr, f.xg_away * rr, LANG);
+      }
+    }
   });
 }
 
@@ -498,12 +592,17 @@ function buildHeatmapHTML(xgH, xgA, lang) {
     <div class="flex justify-between mt-1" style="font-size:9px;color:var(--mute);"><span>↑ ${homeLabel}</span><span>${awayLabel} →</span></div>
   </div>`;
 }
-function toggleHeatmap(btn, xgH, xgA) {
+function toggleHeatmap(btn, xgH, xgA, commenceTime) {
   const container = btn.closest('.heatmap-container');
   const map = container.querySelector('.score-heatmap');
   const isOpen = map.classList.contains('open');
   if (!isOpen && map.innerHTML === '') {
-    map.innerHTML = buildHeatmapHTML(xgH, xgA, LANG);
+    let lamH = xgH, lamA = xgA;
+    if (commenceTime) {
+      const rr = Math.max(0.05, (90 - computeElapsed(commenceTime)) / 90);
+      lamH = xgH * rr; lamA = xgA * rr;
+    }
+    map.innerHTML = buildHeatmapHTML(lamH, lamA, LANG);
   }
   map.classList.toggle('open', !isOpen);
   btn.textContent = isOpen ? (LANG==='es'?'▼ Mapa de goles':'▼ Score map') : (LANG==='es'?'▲ Cerrar mapa':'▲ Close map');
@@ -592,14 +691,24 @@ function renderFixtureCard(f, featured = false) {
 
   let bestBetHtml = '';
   if (f.best_bet) {
-    let desc = LANG === 'es' ? (f.best_bet.description_es || f.best_bet.market) : (f.best_bet.description_en || f.best_bet.market);
+    const bb = f.best_bet;
+    let desc = LANG === 'es' ? (bb.description_es || bb.market) : (bb.description_en || bb.market);
     desc = desc.replace(f.home, teamName(f.home)).replace(f.away, teamName(f.away));
+    const confColor = bb.confidence_band === 'ALTA' ? 'var(--alta)' : bb.confidence_band === 'MEDIA' ? 'var(--media)' : 'var(--baja)';
+    const modelPct = Number(bb.model_prob).toFixed(0) + '%';
+    const devigPct = Number(bb.devig_prob).toFixed(0) + '%';
     bestBetHtml = `
-      <div class="flex flex-wrap items-center gap-2 mt-3 pt-3" style="border-top:1px solid color-mix(in srgb, var(--border) 50%, transparent);">
-        <span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--bet) 20%, transparent); color:var(--bet);">${t('best_bet')}</span>
-        <span class="text-sm font-medium">${desc}</span>
-        <span class="text-sm font-mono font-bold ml-auto" style="color:var(--bet);">+${f.best_bet.edge}%</span>
-        <span class="text-sm font-mono" style="color:var(--mute);">@ ${Number(f.best_bet.odds).toFixed(2)}</span>
+      <div class="mt-3 rounded-lg px-3 py-2.5" style="background:color-mix(in srgb,var(--bet) 6%,transparent); border:1px solid color-mix(in srgb,var(--bet) 20%,transparent);">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-[10px] font-bold uppercase tracking-wider" style="color:var(--bet);">${t('best_bet')}</span>
+          <span class="text-[10px] font-mono px-1.5 py-0.5 rounded" style="background:color-mix(in srgb,${confColor} 15%,transparent); color:${confColor};">${bb.confidence_band}</span>
+        </div>
+        <div class="text-sm font-semibold mb-1.5">${desc}</div>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+          <span class="font-bold font-mono" style="color:var(--bet);">+${bb.edge}% ${LANG === 'es' ? 'ventaja' : 'edge'}</span>
+          <span style="color:var(--mute);">@ ${Number(bb.odds).toFixed(2)}</span>
+          <span style="color:var(--mute);">${modelPct} ${LANG === 'es' ? 'modelo' : 'model'} · ${devigPct} ${LANG === 'es' ? 'implícita' : 'implied'}</span>
+        </div>
       </div>`;
   }
 
@@ -626,9 +735,11 @@ function renderFixtureCard(f, featured = false) {
 
   let scoresHtml = '';
   if (scores && scores.length > 0) {
+    const scoresId = f.is_live ? `id="live-scores-${f.id}"` : '';
     scoresHtml = `<div class="mt-3 pt-3" style="border-top:1px solid color-mix(in srgb, var(--border) 50%, transparent);">
-      <div class="text-[10px] uppercase tracking-wider mb-2" style="color:var(--mute);">${scoresLabel}</div>
-      <div class="flex gap-2">`;
+      <div ${scoresId} class="">
+        <div class="text-[10px] uppercase tracking-wider mb-2" style="color:var(--mute);">${scoresLabel}</div>
+        <div class="flex gap-2">`;
     scores.forEach((s, i) => {
       const isTop = i === 0;
       const bg = isTop ? 'color-mix(in srgb, var(--bet) 12%, transparent)' : 'color-mix(in srgb, var(--panel2) 50%, transparent)';
@@ -639,7 +750,14 @@ function renderFixtureCard(f, featured = false) {
         <div class="text-[10px]" style="color:var(--mute);">${s.prob}%</div>
       </div>`;
     });
-    scoresHtml += `</div></div>`;
+    scoresHtml += `</div></div></div>`;
+  }
+
+  let liveMarketsHtml = '';
+  if (f.is_live && f.actual_home !== null) {
+    const elapsed = computeElapsed(f.commence_time);
+    const { markets } = computeLiveConditional(f.xg_home, f.xg_away, f.actual_home || 0, f.actual_away || 0, elapsed);
+    liveMarketsHtml = `<div id="live-markets-${f.id}">${buildLiveMarketsHtml(markets, elapsed, f.actual_home || 0, f.actual_away || 0)}</div>`;
   }
 
   let liveScoreHtml = '';
@@ -699,8 +817,9 @@ function renderFixtureCard(f, featured = false) {
           </div>
         </details>
         ${scoresHtml}
+        ${liveMarketsHtml}
         ${(f.xg_home && !f.completed) ? `<div class="heatmap-container mt-2">
-          <button onclick="toggleHeatmap(this, ${f.xg_home}, ${f.xg_away})" class="text-[10px] px-2 py-1 rounded" style="color:var(--mute);border:1px solid var(--border);cursor:pointer;">&#9660; ${LANG==='es'?'Mapa de goles':'Score map'}</button>
+          <button onclick="toggleHeatmap(this, ${f.xg_home}, ${f.xg_away}${f.is_live ? `, '${f.commence_time}'` : ''})" class="text-[10px] px-2 py-1 rounded" style="color:var(--mute);border:1px solid var(--border);cursor:pointer;">&#9660; ${LANG==='es'?'Mapa de goles':'Score map'}</button>
           <div class="score-heatmap"></div>
         </div>` : ''}
       </div>
