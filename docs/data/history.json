@@ -1,32 +1,6 @@
 {
   "fixtures": [
     {
-      "id": "73529a242e319a86bf3d00ddb4accc37",
-      "home": "Spain",
-      "away": "Saudi Arabia",
-      "date": "2026-06-21T16:00:00Z",
-      "picks": [],
-      "best_bet": null,
-      "result": {
-        "home": 4,
-        "away": 0
-      },
-      "best_bet_won": null
-    },
-    {
-      "id": "5f92f257386ec5bf7c6e2498a21f3a61",
-      "home": "Belgium",
-      "away": "Iran",
-      "date": "2026-06-21T19:00:00Z",
-      "picks": [],
-      "best_bet": null,
-      "result": {
-        "home": 0,
-        "away": 0
-      },
-      "best_bet_won": null
-    },
-    {
       "id": "852a3abe6d46820720febc0fedebff9a",
       "home": "Uruguay",
       "away": "Cape Verde",
@@ -58,10 +32,10 @@
     }
   ],
   "summary": {
-    "total": 3,
+    "total": 1,
     "won": 0,
     "lost": 1,
     "win_rate": 0.0,
-    "roi": -33.3
+    "roi": -100.0
   }
 }

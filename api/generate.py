@@ -281,6 +281,9 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
         ]
 
         best_bet = old_fx.get("best_bet")
+        if not best_bet:
+            continue  # no bet signal → nothing to track
+
         best_bet_won = None
         if best_bet and actual_home is not None and actual_away is not None:
             temp_fx = {

@@ -558,14 +558,19 @@ function renderHistory() {
     const won = fx.best_bet_won;
     const score = fx.result ? `${fx.result.home}-${fx.result.away}` : '?';
     const bb = fx.best_bet || {};
+    const desc = LANG === 'es' ? (bb.description_es || bb.market || '—') : (bb.description_en || bb.market || '—');
+    let badge = '';
+    if (won === true) badge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--bet) 20%, transparent); color:var(--bet);">W</span>`;
+    else if (won === false) badge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--fade) 20%, transparent); color:var(--fade);">L</span>`;
+    else badge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--mute) 20%, transparent); color:var(--mute);">—</span>`;
     html += `
       <div class="rounded-lg border px-4 py-3 flex items-center justify-between gap-3" style="background:var(--panel); border-color:var(--border);">
         <div class="flex-1 min-w-0">
           <div class="text-sm font-medium truncate">${fx.home} vs ${fx.away}</div>
-          <div class="text-xs" style="color:var(--mute);">${bb.market || '—'} · +${bb.edge || 0}% @ ${bb.odds || '—'}</div>
+          <div class="text-xs" style="color:var(--mute);">${desc} · +${bb.edge || 0}% @ ${bb.odds || '—'}</div>
         </div>
         <div class="flex items-center gap-3 shrink-0">
-          <span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, ${won ? 'var(--bet)' : 'var(--fade)'} 20%, transparent); color:${won ? 'var(--bet)' : 'var(--fade)'};">${won ? 'W' : 'L'}</span>
+          ${badge}
           <span class="font-mono font-bold">${score}</span>
         </div>
       </div>`;
@@ -684,8 +689,14 @@ function renderQuiniela() {
 
 // ── Init ──
 loadData();
-const hasLive = () => DATA && DATA.fixtures.some(f => f.is_live);
-setInterval(loadData, hasLive() ? 2 * 60 * 1000 : 5 * 60 * 1000);
+let refreshTimer = null;
+function scheduleRefresh() {
+  if (refreshTimer) clearInterval(refreshTimer);
+  const live = DATA && DATA.fixtures.some(f => f.is_live);
+  const ms = live ? 2 * 60 * 1000 : 5 * 60 * 1000;
+  refreshTimer = setInterval(() => { loadData().then(scheduleRefresh); }, ms);
+}
+scheduleRefresh();
 setFilter('all');
 </script>
 </body>
