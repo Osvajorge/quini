@@ -470,40 +470,111 @@ function buildLiveMarketsHtml(markets, elapsed, actualH, actualA) {
   </div>`;
 }
 
-function _tickLive() {
+// ── ESPN unofficial API for live scores (free, no key) ──
+function _espnNameMatch(a, b) {
+  const norm = s => s.toLowerCase().replace(/[^a-z]/g, '');
+  const na = norm(a), nb = norm(b);
+  return na === nb || na.includes(nb) || nb.includes(na);
+}
+
+async function fetchESPNScore(home, away) {
+  try {
+    const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    const url = `https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=${today}`;
+    const r = await fetch(url, { cache: 'no-store' });
+    if (!r.ok) return null;
+    const data = await r.json();
+    for (const ev of (data.events || [])) {
+      const comp = ev.competitions?.[0];
+      if (!comp) continue;
+      const cs = comp.competitors || [];
+      const hc = cs.find(c => c.homeAway === 'home');
+      const ac = cs.find(c => c.homeAway === 'away');
+      if (!hc || !ac) continue;
+      const hn = hc.team.displayName || hc.team.name || '';
+      const an = ac.team.displayName || ac.team.name || '';
+      if (!_espnNameMatch(hn, home) || !_espnNameMatch(an, away)) continue;
+      const status = comp.status?.type;
+      return {
+        homeScore: parseInt(hc.score || '0', 10),
+        awayScore: parseInt(ac.score || '0', 10),
+        clock: comp.status?.displayClock || '',
+        period: comp.status?.period || 1,
+        isLive: status?.state === 'in',
+        isOver: status?.state === 'post',
+      };
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+function _updateScoreEl(fId, h, a, clock) {
+  const el = document.getElementById(`live-score-${fId}`);
+  if (!el) return;
+  const clockStr = clock ? `${clock} · ` : '';
+  el.innerHTML = `
+    <div class="text-2xl font-bold font-mono">${h} - ${a}</div>
+    <div class="flex items-center gap-1 justify-center mt-1">
+      <span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span>
+      <span class="text-[10px] font-mono" style="color:var(--live);">${clockStr}LIVE</span>
+    </div>`;
+}
+
+function _updateScoreDom(f, actualH, actualA, elapsed) {
+  const { topScores, markets } = computeLiveConditional(f.xg_home, f.xg_away, actualH, actualA, elapsed);
+
+  const scoresEl = document.getElementById(`live-scores-${f.id}`);
+  if (scoresEl) {
+    let inner = `<div class="text-[10px] uppercase tracking-wider mb-2" style="color:var(--mute);">${t('live_scores')}</div><div class="flex gap-2">`;
+    topScores.forEach((s, i) => {
+      const isTop = i === 0;
+      const bg = isTop ? 'color-mix(in srgb, var(--bet) 12%, transparent)' : 'color-mix(in srgb, var(--panel2) 50%, transparent)';
+      const border = isTop ? 'border:1px solid color-mix(in srgb, var(--bet) 25%, transparent);' : '';
+      const sc = isTop ? 'color:var(--bet);' : '';
+      inner += `<div class="flex-1 text-center py-1.5 rounded" style="background:${bg};${border}"><div class="text-sm font-bold font-mono" style="${sc}">${s.home}-${s.away}</div><div class="text-[10px]" style="color:var(--mute);">${s.prob}%</div></div>`;
+    });
+    scoresEl.innerHTML = inner + '</div>';
+  }
+
+  const mktsEl = document.getElementById(`live-markets-${f.id}`);
+  if (mktsEl) mktsEl.innerHTML = buildLiveMarketsHtml(markets, elapsed, actualH, actualA);
+
+  const card = document.getElementById(`fix-${f.id}`);
+  if (card) {
+    const openMap = card.querySelector('.score-heatmap.open');
+    if (openMap) {
+      const rr = Math.max(0.05, (90 - elapsed) / 90);
+      openMap.innerHTML = buildHeatmapHTML(f.xg_home * rr, f.xg_away * rr, LANG);
+    }
+  }
+}
+
+async function _tickLive() {
   if (!DATA) return;
   const lives = DATA.fixtures.filter(f => f.is_live && !f.completed);
   if (!lives.length) { stopLiveTicker(); return; }
-  lives.forEach(f => {
-    const elapsed = computeElapsed(f.commence_time);
-    const actualH = f.actual_home || 0, actualA = f.actual_away || 0;
-    const { topScores, markets } = computeLiveConditional(f.xg_home, f.xg_away, actualH, actualA, elapsed);
+  for (const f of lives) {
+    let actualH = f.actual_home || 0;
+    let actualA = f.actual_away || 0;
+    let clock = '';
 
-    const scoresEl = document.getElementById(`live-scores-${f.id}`);
-    if (scoresEl) {
-      let inner = `<div class="text-[10px] uppercase tracking-wider mb-2" style="color:var(--mute);">${t('live_scores')}</div><div class="flex gap-2">`;
-      topScores.forEach((s, i) => {
-        const isTop = i === 0;
-        const bg = isTop ? 'color-mix(in srgb, var(--bet) 12%, transparent)' : 'color-mix(in srgb, var(--panel2) 50%, transparent)';
-        const border = isTop ? 'border:1px solid color-mix(in srgb, var(--bet) 25%, transparent);' : '';
-        const sc = isTop ? 'color:var(--bet);' : '';
-        inner += `<div class="flex-1 text-center py-1.5 rounded" style="background:${bg};${border}"><div class="text-sm font-bold font-mono" style="${sc}">${s.home}-${s.away}</div><div class="text-[10px]" style="color:var(--mute);">${s.prob}%</div></div>`;
-      });
-      scoresEl.innerHTML = inner + '</div>';
-    }
-
-    const mktsEl = document.getElementById(`live-markets-${f.id}`);
-    if (mktsEl) mktsEl.innerHTML = buildLiveMarketsHtml(markets, elapsed, actualH, actualA);
-
-    const card = document.getElementById(`fix-${f.id}`);
-    if (card) {
-      const openMap = card.querySelector('.score-heatmap.open');
-      if (openMap) {
-        const rr = Math.max(0.05, (90 - elapsed) / 90);
-        openMap.innerHTML = buildHeatmapHTML(f.xg_home * rr, f.xg_away * rr, LANG);
+    const espn = await fetchESPNScore(f.home, f.away);
+    if (espn && (espn.isLive || espn.isOver)) {
+      if (espn.homeScore !== actualH || espn.awayScore !== actualA || espn.clock) {
+        actualH = espn.homeScore;
+        actualA = espn.awayScore;
+        clock = espn.clock;
+        f.actual_home = actualH;
+        f.actual_away = actualA;
+        _updateScoreEl(f.id, actualH, actualA, clock);
       }
     }
-  });
+
+    const elapsed = computeElapsed(f.commence_time);
+    _updateScoreDom(f, actualH, actualA, elapsed);
+  }
 }
 
 // ── Tabs & Filters ──
@@ -762,7 +833,7 @@ function renderFixtureCard(f, featured = false) {
 
   let liveScoreHtml = '';
   if (f.is_live && f.actual_home !== null) {
-    liveScoreHtml = `<div class="text-center px-4">
+    liveScoreHtml = `<div class="text-center px-4" id="live-score-${f.id}">
       <div class="text-2xl font-bold font-mono">${f.actual_home} - ${f.actual_away}</div>
       <div class="flex items-center gap-1 justify-center mt-1"><span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span><span class="text-[10px] font-mono" style="color:var(--live);">LIVE</span></div>
     </div>`;
