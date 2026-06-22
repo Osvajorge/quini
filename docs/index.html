@@ -264,9 +264,36 @@ const TEAM_ES = {
   'South Africa':'Sudáfrica','Bosnia and Herzegovina':'Bosnia y Herzegovina',
   'DR Congo':'RD Congo','Ghana':'Ghana',
 };
+const TEAM_FLAG = {
+  'Algeria':'🇩🇿','Argentina':'🇦🇷','Australia':'🇦🇺','Austria':'🇦🇹',
+  'Belgium':'🇧🇪','Bolivia':'🇧🇴','Bosnia & Herzegovina':'🇧🇦','Bosnia and Herzegovina':'🇧🇦',
+  'Brazil':'🇧🇷','Canada':'🇨🇦','Cape Verde':'🇨🇻','Chile':'🇨🇱',
+  'China':'🇨🇳','Colombia':'🇨🇴','Costa Rica':'🇨🇷','Croatia':'🇭🇷',
+  'Cuba':'🇨🇺','Curaçao':'🇨🇼','Czech Republic':'🇨🇿','Czechia':'🇨🇿',
+  'Denmark':'🇩🇰','DR Congo':'🇨🇩','Ecuador':'🇪🇨','Egypt':'🇪🇬',
+  'El Salvador':'🇸🇻','England':'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Finland':'🇫🇮','France':'🇫🇷',
+  'Georgia':'🇬🇪','Germany':'🇩🇪','Ghana':'🇬🇭','Greece':'🇬🇷',
+  'Guatemala':'🇬🇹','Haiti':'🇭🇹','Honduras':'🇭🇳','Hungary':'🇭🇺',
+  'Iceland':'🇮🇸','India':'🇮🇳','Indonesia':'🇮🇩','Iran':'🇮🇷',
+  'Iraq':'🇮🇶','Ireland':'🇮🇪','Israel':'🇮🇱','Italy':'🇮🇹',
+  'Ivory Coast':'🇨🇮','Jamaica':'🇯🇲','Japan':'🇯🇵','Jordan':'🇯🇴',
+  'Kazakhstan':'🇰🇿','Kosovo':'🇽🇰','Kuwait':'🇰🇼','Mexico':'🇲🇽',
+  'Morocco':'🇲🇦','Netherlands':'🇳🇱','New Zealand':'🇳🇿','Nigeria':'🇳🇬',
+  'North Korea':'🇰🇵','North Macedonia':'🇲🇰','Norway':'🇳🇴','Oman':'🇴🇲',
+  'Panama':'🇵🇦','Paraguay':'🇵🇾','Peru':'🇵🇪','Philippines':'🇵🇭',
+  'Poland':'🇵🇱','Portugal':'🇵🇹','Qatar':'🇶🇦','Romania':'🇷🇴',
+  'Saudi Arabia':'🇸🇦','Scotland':'🏴󠁧󠁢󠁳󠁣󠁴󠁿','Senegal':'🇸🇳','Serbia':'🇷🇸',
+  'Slovakia':'🇸🇰','Slovenia':'🇸🇮','South Africa':'🇿🇦','South Korea':'🇰🇷',
+  'Spain':'🇪🇸','Sweden':'🇸🇪','Switzerland':'🇨🇭','Syria':'🇸🇾',
+  'Trinidad and Tobago':'🇹🇹','Tunisia':'🇹🇳','Turkey':'🇹🇷','UAE':'🇦🇪',
+  'Ukraine':'🇺🇦','United Arab Emirates':'🇦🇪','United States':'🇺🇸','Uruguay':'🇺🇾',
+  'USA':'🇺🇸','Uzbekistan':'🇺🇿','Venezuela':'🇻🇪','Wales':'🏴󠁧󠁢󠁷󠁬󠁳󠁿',
+};
+function teamFlag(name) { return TEAM_FLAG[name] || ''; }
 function teamName(name) {
-  if (LANG === 'es') return TEAM_ES[name] || name;
-  return name;
+  const flag = teamFlag(name);
+  const label = LANG === 'es' ? (TEAM_ES[name] || name) : name;
+  return flag ? `${flag} ${label}` : label;
 }
 const browserLang = (navigator.language || '').substring(0,2);
 const defaultLang = browserLang === 'en' ? 'en' : 'es';
