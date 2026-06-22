@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-21T22:45:35.283285+00:00",
+  "generated_at": "2026-06-22T00:18:23.644936+00:00",
   "model": {
     "name": "Dixon-Coles",
     "teams": 319,
@@ -9,12 +9,12 @@
   },
   "stats": {
     "total_fixtures": 44,
-    "upcoming": 33,
-    "completed": 11,
-    "total_bets": 24,
+    "upcoming": 32,
+    "completed": 12,
+    "total_bets": 23,
     "won": 0,
-    "lost": 0,
-    "win_rate": 0
+    "lost": 1,
+    "win_rate": 0.0
   },
   "tooltips": {
     "xg": {
@@ -56,55 +56,55 @@
       "home": "Uruguay",
       "away": "Cape Verde",
       "commence_time": "2026-06-21T22:00:00Z",
-      "completed": false,
-      "is_live": true,
-      "actual_home": 1,
-      "actual_away": 1,
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 2,
       "xg_home": 1.46,
       "xg_away": 0.37,
       "odds": {
-        "away": 7.5,
-        "home": 1.68,
-        "draw": 2.95
+        "away": 25.0,
+        "home": 13.0,
+        "draw": 1.03
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 64.2,
-          "devig_prob": 56.9,
-          "edge": 7.3,
-          "odds": 1.68,
+          "devig_prob": 5.2,
+          "edge": 59.0,
+          "odds": 13.0,
           "pick": "BET",
-          "confidence": "MEDIA"
+          "confidence": "ALTA"
         },
         {
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 27.0,
-          "devig_prob": 31.7,
-          "edge": -4.7,
-          "odds": 2.95,
-          "pick": "SKIP",
+          "devig_prob": 92.9,
+          "edge": -65.9,
+          "odds": 1.03,
+          "pick": "FADE",
           "confidence": "MEDIA"
         },
         {
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 8.8,
-          "devig_prob": 11.5,
-          "edge": -2.6,
-          "odds": 7.5,
+          "devig_prob": 2.0,
+          "edge": 6.9,
+          "odds": 25.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
         }
       ],
       "best_bet": {
         "market": "Gana Local (1)",
-        "edge": 7.3,
-        "odds": 1.68,
+        "edge": 59.0,
+        "odds": 13.0,
         "pick": "BET",
-        "confidence": "MEDIA",
+        "confidence": "ALTA",
         "description_es": "Uruguay gana",
         "description_en": "Uruguay wins"
       },
@@ -135,33 +135,7 @@
           "prob": 8.3
         }
       ],
-      "live_scores": [
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 40.8
-        },
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 28.8
-        },
-        {
-          "home": 3,
-          "away": 1,
-          "prob": 10.5
-        },
-        {
-          "home": 1,
-          "away": 2,
-          "prob": 7.2
-        },
-        {
-          "home": 2,
-          "away": 2,
-          "prob": 5.7
-        }
-      ],
+      "live_scores": null,
       "quiniela": {
         "pick_home": 1,
         "pick_away": 0,
@@ -187,7 +161,7 @@
           }
         ]
       },
-      "fixture_confidence": "MEDIA"
+      "fixture_confidence": "ALTA"
     },
     {
       "id": "c1ec9a65f4b4cf74477b368a7d6282de",
@@ -201,20 +175,20 @@
       "xg_home": 0.64,
       "xg_away": 1.06,
       "odds": {
-        "away": 1.6,
-        "home": 6.1,
-        "draw": 4.1,
-        "over_2_5": 1.96,
-        "under_2_5": 1.72
+        "away": 1.56,
+        "home": 6.5,
+        "draw": 4.2,
+        "over_2_5": 1.93,
+        "under_2_5": 1.75
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 21.3,
-          "devig_prob": 15.4,
-          "edge": 5.8,
-          "odds": 6.1,
+          "devig_prob": 14.4,
+          "edge": 6.8,
+          "odds": 6.5,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -222,9 +196,9 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 34.4,
-          "devig_prob": 23.4,
-          "edge": 11.0,
-          "odds": 4.1,
+          "devig_prob": 22.8,
+          "edge": 11.6,
+          "odds": 4.2,
           "pick": "BET",
           "confidence": "ALTA"
         },
@@ -232,9 +206,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 44.4,
-          "devig_prob": 61.2,
-          "edge": -16.8,
-          "odds": 1.6,
+          "devig_prob": 62.8,
+          "edge": -18.4,
+          "odds": 1.56,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
@@ -242,9 +216,9 @@
           "market": "Over 2.5",
           "side": "over_2_5",
           "model_prob": 24.1,
-          "devig_prob": 46.4,
-          "edge": -22.3,
-          "odds": 1.96,
+          "devig_prob": 47.3,
+          "edge": -23.2,
+          "odds": 1.93,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
@@ -252,17 +226,17 @@
           "market": "Under 2.5",
           "side": "under_2_5",
           "model_prob": 75.9,
-          "devig_prob": 53.6,
-          "edge": 22.3,
-          "odds": 1.72,
+          "devig_prob": 52.7,
+          "edge": 23.2,
+          "odds": 1.75,
           "pick": "BET",
           "confidence": "ALTA"
         }
       ],
       "best_bet": {
         "market": "Under 2.5",
-        "edge": 22.3,
-        "odds": 1.72,
+        "edge": 23.2,
+        "odds": 1.75,
         "pick": "BET",
         "confidence": "ALTA",
         "description_es": "Menos de 2.5 goles",
@@ -335,20 +309,20 @@
       "xg_home": 1.71,
       "xg_away": 0.52,
       "odds": {
-        "home": 1.48,
+        "home": 1.47,
         "away": 7.0,
         "draw": 4.0,
-        "over_2_5": 1.77,
-        "under_2_5": 1.91
+        "over_2_5": 1.81,
+        "under_2_5": 1.87
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 66.0,
-          "devig_prob": 64.8,
-          "edge": 1.3,
-          "odds": 1.48,
+          "devig_prob": 65.0,
+          "edge": 1.0,
+          "odds": 1.47,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -356,8 +330,8 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 23.7,
-          "devig_prob": 22.9,
-          "edge": 0.8,
+          "devig_prob": 22.7,
+          "edge": 1.0,
           "odds": 4.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -366,8 +340,8 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 10.3,
-          "devig_prob": 12.4,
-          "edge": -2.1,
+          "devig_prob": 12.2,
+          "edge": -2.0,
           "odds": 7.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -376,9 +350,9 @@
           "market": "Over 2.5",
           "side": "over_2_5",
           "model_prob": 38.7,
-          "devig_prob": 52.1,
-          "edge": -13.4,
-          "odds": 1.77,
+          "devig_prob": 50.9,
+          "edge": -12.2,
+          "odds": 1.81,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
@@ -386,17 +360,17 @@
           "market": "Under 2.5",
           "side": "under_2_5",
           "model_prob": 61.3,
-          "devig_prob": 47.9,
-          "edge": 13.4,
-          "odds": 1.91,
+          "devig_prob": 49.1,
+          "edge": 12.2,
+          "odds": 1.87,
           "pick": "BET",
           "confidence": "ALTA"
         }
       ],
       "best_bet": {
         "market": "Under 2.5",
-        "edge": 13.4,
-        "odds": 1.91,
+        "edge": 12.2,
+        "odds": 1.87,
         "pick": "BET",
         "confidence": "ALTA",
         "description_es": "Menos de 2.5 goles",
@@ -469,28 +443,28 @@
       "xg_home": 2.64,
       "xg_away": 0.42,
       "odds": {
-        "home": 1.07,
-        "away": 26.0,
-        "draw": 11.0
+        "home": 1.06,
+        "away": 29.0,
+        "draw": 11.5
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 84.1,
-          "devig_prob": 90.4,
-          "edge": -6.3,
-          "odds": 1.07,
-          "pick": "SKIP",
+          "devig_prob": 91.3,
+          "edge": -7.2,
+          "odds": 1.06,
+          "pick": "FADE",
           "confidence": "MEDIA"
         },
         {
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 12.2,
-          "devig_prob": 7.2,
-          "edge": 4.9,
-          "odds": 11.0,
+          "devig_prob": 6.8,
+          "edge": 5.4,
+          "odds": 11.5,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -498,9 +472,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 3.7,
-          "devig_prob": 2.3,
-          "edge": 1.4,
-          "odds": 26.0,
+          "devig_prob": 1.9,
+          "edge": 1.8,
+          "odds": 29.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
         }
@@ -573,20 +547,20 @@
       "xg_home": 1.74,
       "xg_away": 0.96,
       "odds": {
-        "home": 2.38,
-        "away": 3.15,
-        "draw": 3.59,
-        "over_2_5": 1.92,
-        "under_2_5": 1.95
+        "home": 2.33,
+        "away": 3.23,
+        "draw": 3.61,
+        "over_2_5": 1.91,
+        "under_2_5": 1.96
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 55.1,
-          "devig_prob": 41.4,
-          "edge": 13.7,
-          "odds": 2.38,
+          "devig_prob": 42.4,
+          "edge": 12.8,
+          "odds": 2.33,
           "pick": "BET",
           "confidence": "ALTA"
         },
@@ -594,9 +568,9 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 24.9,
-          "devig_prob": 27.3,
-          "edge": -2.5,
-          "odds": 3.59,
+          "devig_prob": 27.2,
+          "edge": -2.3,
+          "odds": 3.61,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -604,9 +578,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 20.0,
-          "devig_prob": 31.2,
-          "edge": -11.2,
-          "odds": 3.15,
+          "devig_prob": 30.4,
+          "edge": -10.4,
+          "odds": 3.23,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
@@ -614,9 +588,9 @@
           "market": "Over 2.5",
           "side": "over_2_5",
           "model_prob": 50.4,
-          "devig_prob": 50.4,
-          "edge": 0.0,
-          "odds": 1.92,
+          "devig_prob": 50.7,
+          "edge": -0.2,
+          "odds": 1.91,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -624,17 +598,17 @@
           "market": "Under 2.5",
           "side": "under_2_5",
           "model_prob": 49.6,
-          "devig_prob": 49.6,
-          "edge": -0.0,
-          "odds": 1.95,
+          "devig_prob": 49.3,
+          "edge": 0.2,
+          "odds": 1.96,
           "pick": "SKIP",
           "confidence": "MEDIA"
         }
       ],
       "best_bet": {
         "market": "Gana Local (1)",
-        "edge": 13.7,
-        "odds": 2.38,
+        "edge": 12.8,
+        "odds": 2.33,
         "pick": "BET",
         "confidence": "ALTA",
         "description_es": "Norway gana",
@@ -1161,20 +1135,20 @@
       "xg_home": 1.6,
       "xg_away": 0.5,
       "odds": {
-        "home": 1.47,
-        "away": 8.5,
-        "draw": 4.5,
-        "over_2_5": 2.08,
-        "under_2_5": 1.71
+        "home": 1.57,
+        "away": 7.0,
+        "draw": 4.0,
+        "over_2_5": 2.23,
+        "under_2_5": 1.63
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 64.0,
-          "devig_prob": 67.2,
-          "edge": -3.1,
-          "odds": 1.47,
+          "devig_prob": 62.5,
+          "edge": 1.6,
+          "odds": 1.57,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -1182,9 +1156,9 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 25.2,
-          "devig_prob": 21.6,
-          "edge": 3.6,
-          "odds": 4.5,
+          "devig_prob": 24.1,
+          "edge": 1.1,
+          "odds": 4.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -1192,9 +1166,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 10.8,
-          "devig_prob": 11.2,
-          "edge": -0.5,
-          "odds": 8.5,
+          "devig_prob": 13.4,
+          "edge": -2.7,
+          "odds": 7.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -1202,32 +1176,24 @@
           "market": "Over 2.5",
           "side": "over_2_5",
           "model_prob": 35.2,
-          "devig_prob": 44.8,
-          "edge": -9.6,
-          "odds": 2.08,
-          "pick": "FADE",
+          "devig_prob": 41.7,
+          "edge": -6.5,
+          "odds": 2.23,
+          "pick": "SKIP",
           "confidence": "MEDIA"
         },
         {
           "market": "Under 2.5",
           "side": "under_2_5",
           "model_prob": 64.8,
-          "devig_prob": 55.2,
-          "edge": 9.6,
-          "odds": 1.71,
-          "pick": "BET",
-          "confidence": "ALTA"
+          "devig_prob": 58.3,
+          "edge": 6.5,
+          "odds": 1.63,
+          "pick": "SKIP",
+          "confidence": "MEDIA"
         }
       ],
-      "best_bet": {
-        "market": "Under 2.5",
-        "edge": 9.6,
-        "odds": 1.71,
-        "pick": "BET",
-        "confidence": "ALTA",
-        "description_es": "Menos de 2.5 goles",
-        "description_en": "Under 2.5 goals"
-      },
+      "best_bet": null,
       "top_scores": [
         {
           "home": 1,
@@ -1281,7 +1247,7 @@
           }
         ]
       },
-      "fixture_confidence": "ALTA"
+      "fixture_confidence": "BAJA"
     },
     {
       "id": "512ac18beb5aa936a59f7ea3e497ada2",
@@ -2889,8 +2855,8 @@
       "xg_home": 0.84,
       "xg_away": 0.7,
       "odds": {
-        "home": 2.6,
-        "away": 2.5,
+        "home": 2.45,
+        "away": 2.65,
         "draw": 3.7
       },
       "picks": [
@@ -2898,9 +2864,9 @@
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 35.2,
-          "devig_prob": 36.6,
-          "edge": -1.4,
-          "odds": 2.6,
+          "devig_prob": 38.9,
+          "edge": -3.7,
+          "odds": 2.45,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -2918,9 +2884,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 27.4,
-          "devig_prob": 38.1,
-          "edge": -10.7,
-          "odds": 2.5,
+          "devig_prob": 35.8,
+          "edge": -8.5,
+          "odds": 2.65,
           "pick": "FADE",
           "confidence": "MEDIA"
         }
@@ -3001,8 +2967,8 @@
       "xg_home": 0.75,
       "xg_away": 1.16,
       "odds": {
-        "away": 1.5,
-        "home": 6.2,
+        "away": 1.47,
+        "home": 6.7,
         "draw": 4.4
       },
       "picks": [
@@ -3010,11 +2976,11 @@
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 23.0,
-          "devig_prob": 14.6,
-          "edge": 8.4,
-          "odds": 6.2,
+          "devig_prob": 13.3,
+          "edge": 9.6,
+          "odds": 6.7,
           "pick": "BET",
-          "confidence": "MEDIA"
+          "confidence": "ALTA"
         },
         {
           "market": "Empate (X)",
@@ -3030,9 +2996,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 44.9,
-          "devig_prob": 64.4,
-          "edge": -19.5,
-          "odds": 1.5,
+          "devig_prob": 65.7,
+          "edge": -20.8,
+          "odds": 1.47,
           "pick": "FADE",
           "confidence": "MEDIA"
         }
@@ -3486,17 +3452,17 @@
       "xg_away": 2.33,
       "odds": {
         "away": 1.22,
-        "home": 9.5,
-        "draw": 7.5
+        "home": 10.5,
+        "draw": 7.2
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 6.5,
-          "devig_prob": 8.9,
-          "edge": -2.4,
-          "odds": 9.5,
+          "devig_prob": 8.1,
+          "edge": -1.6,
+          "odds": 10.5,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -3504,9 +3470,9 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 16.1,
-          "devig_prob": 11.7,
-          "edge": 4.5,
-          "odds": 7.5,
+          "devig_prob": 12.4,
+          "edge": 3.8,
+          "odds": 7.2,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -3514,8 +3480,8 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 77.4,
-          "devig_prob": 79.4,
-          "edge": -2.0,
+          "devig_prob": 79.6,
+          "edge": -2.2,
           "odds": 1.22,
           "pick": "SKIP",
           "confidence": "MEDIA"

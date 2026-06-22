@@ -25,13 +25,43 @@
         "away": 0
       },
       "best_bet_won": null
+    },
+    {
+      "id": "852a3abe6d46820720febc0fedebff9a",
+      "home": "Uruguay",
+      "away": "Cape Verde",
+      "date": "2026-06-21T22:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "pick": "BET",
+          "edge": 7.3,
+          "odds": 1.68,
+          "model_prob": 64.2,
+          "devig_prob": 56.9
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "edge": 7.3,
+        "odds": 1.68,
+        "pick": "BET",
+        "confidence": "MEDIA",
+        "description_es": "Uruguay gana",
+        "description_en": "Uruguay wins"
+      },
+      "result": {
+        "home": 2,
+        "away": 2
+      },
+      "best_bet_won": false
     }
   ],
   "summary": {
-    "total": 2,
+    "total": 3,
     "won": 0,
-    "lost": 0,
+    "lost": 1,
     "win_rate": 0.0,
-    "roi": 0.0
+    "roi": -33.3
   }
 }
