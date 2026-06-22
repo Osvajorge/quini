@@ -211,12 +211,7 @@ function applyLang() {
     const key = el.dataset.i18n;
     if (T[LANG][key]) el.textContent = T[LANG][key];
   });
-  if (DATA && DATA.tooltips) {
-    document.querySelectorAll('[data-i18n-tooltip]').forEach(el => {
-      const key = el.dataset.i18nTooltip;
-      if (DATA.tooltips[key]) el.textContent = DATA.tooltips[key][LANG];
-    });
-  }
+  applyTooltips();
   document.getElementById('lang-btn').textContent = LANG === 'es' ? 'EN' : 'ES';
   document.documentElement.lang = LANG;
 }
@@ -322,12 +317,21 @@ function setFilter(filter) {
   renderFixtures();
 }
 
+function applyTooltips() {
+  if (!DATA || !DATA.tooltips) return;
+  document.querySelectorAll('[data-i18n-tooltip]').forEach(el => {
+    const key = el.dataset.i18nTooltip;
+    if (DATA.tooltips[key]) el.textContent = DATA.tooltips[key][LANG];
+  });
+}
+
 function renderAll() {
   if (!DATA) return;
   renderFixtures();
   renderResults();
   renderHistory();
   renderQuiniela();
+  applyTooltips();
 }
 
 // ── Helpers ──
