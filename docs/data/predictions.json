@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T22:32:37.045775+00:00",
+  "generated_at": "2026-06-22T23:51:48.907007+00:00",
   "model": {
     "name": "Bivariate-Poisson",
     "teams": 319,
@@ -279,20 +279,20 @@
       "xg_home": 2.53,
       "xg_away": 1.11,
       "odds": {
-        "home": 2.38,
-        "away": 3.25,
-        "draw": 3.48,
-        "over_2_5": 1.93,
-        "under_2_5": 1.93
+        "home": 2.42,
+        "away": 3.04,
+        "draw": 3.46,
+        "over_2_5": 1.86,
+        "under_2_5": 2.0
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 68.6,
-          "devig_prob": 41.5,
-          "edge": 27.2,
-          "odds": 2.38,
+          "devig_prob": 40.2,
+          "edge": 28.4,
+          "odds": 2.42,
           "pick": "BET",
           "confidence": "ALTA"
         },
@@ -300,9 +300,9 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 17.4,
-          "devig_prob": 28.2,
-          "edge": -10.9,
-          "odds": 3.48,
+          "devig_prob": 27.9,
+          "edge": -10.5,
+          "odds": 3.46,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
@@ -310,9 +310,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 14.0,
-          "devig_prob": 30.3,
-          "edge": -16.3,
-          "odds": 3.25,
+          "devig_prob": 31.9,
+          "edge": -17.9,
+          "odds": 3.04,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
@@ -320,9 +320,9 @@
           "market": "Over 2.5",
           "side": "over_2_5",
           "model_prob": 69.7,
-          "devig_prob": 50.0,
-          "edge": 19.7,
-          "odds": 1.93,
+          "devig_prob": 51.9,
+          "edge": 17.8,
+          "odds": 1.86,
           "pick": "BET",
           "confidence": "ALTA"
         },
@@ -330,9 +330,9 @@
           "market": "Under 2.5",
           "side": "under_2_5",
           "model_prob": 30.3,
-          "devig_prob": 50.0,
-          "edge": -19.7,
-          "odds": 1.93,
+          "devig_prob": 48.1,
+          "edge": -17.8,
+          "odds": 2.0,
           "pick": "FADE",
           "confidence": "MEDIA"
         }
@@ -340,12 +340,12 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 27.2,
-        "odds": 2.38,
+        "edge": 28.4,
+        "odds": 2.42,
         "pick": "BET",
         "confidence_band": "ALTA",
         "model_prob": 68.6,
-        "devig_prob": 41.5,
+        "devig_prob": 40.2,
         "description_es": "Norway gana + M\u00e1s de 2.5 goles",
         "description_en": "Norway wins + Over 2.5 goals",
         "is_compound": true
@@ -469,10 +469,10 @@
       "xg_home": 1.35,
       "xg_away": 1.77,
       "odds": {
-        "away": 1.56,
-        "home": 6.87,
-        "draw": 4.39,
-        "over_2_5": 1.95,
+        "away": 1.54,
+        "home": 7.02,
+        "draw": 4.5,
+        "over_2_5": 1.94,
         "under_2_5": 1.92
       },
       "picks": [
@@ -480,9 +480,9 @@
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 28.7,
-          "devig_prob": 14.1,
-          "edge": 14.5,
-          "odds": 6.87,
+          "devig_prob": 13.8,
+          "edge": 14.8,
+          "odds": 7.02,
           "pick": "BET",
           "confidence": "ALTA"
         },
@@ -490,9 +490,9 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 23.9,
-          "devig_prob": 22.3,
-          "edge": 1.6,
-          "odds": 4.39,
+          "devig_prob": 21.8,
+          "edge": 2.1,
+          "odds": 4.5,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -500,9 +500,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 47.4,
-          "devig_prob": 63.5,
-          "edge": -16.1,
-          "odds": 1.56,
+          "devig_prob": 64.4,
+          "edge": -17.0,
+          "odds": 1.54,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
@@ -510,9 +510,9 @@
           "market": "Over 2.5",
           "side": "over_2_5",
           "model_prob": 59.6,
-          "devig_prob": 49.6,
-          "edge": 10.0,
-          "odds": 1.95,
+          "devig_prob": 49.7,
+          "edge": 9.9,
+          "odds": 1.94,
           "pick": "BET",
           "confidence": "ALTA"
         },
@@ -520,8 +520,8 @@
           "market": "Under 2.5",
           "side": "under_2_5",
           "model_prob": 40.4,
-          "devig_prob": 50.4,
-          "edge": -10.0,
+          "devig_prob": 50.3,
+          "edge": -9.9,
           "odds": 1.92,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -530,12 +530,12 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 14.5,
-        "odds": 6.87,
+        "edge": 14.8,
+        "odds": 7.02,
         "pick": "BET",
         "confidence_band": "ALTA",
         "model_prob": 28.7,
-        "devig_prob": 14.1,
+        "devig_prob": 13.8,
         "description_es": "Jordan gana + M\u00e1s de 2.5 goles",
         "description_en": "Jordan wins + Over 2.5 goals",
         "is_compound": true
@@ -973,15 +973,15 @@
       "odds": {
         "away": 1.5,
         "home": 6.25,
-        "draw": 4.2
+        "draw": 4.3
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 17.9,
-          "devig_prob": 14.2,
-          "edge": 3.8,
+          "devig_prob": 14.3,
+          "edge": 3.6,
           "odds": 6.25,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -990,9 +990,9 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 21.3,
-          "devig_prob": 21.8,
-          "edge": -0.6,
-          "odds": 4.2,
+          "devig_prob": 21.4,
+          "edge": -0.2,
+          "odds": 4.3,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -1000,8 +1000,8 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 60.8,
-          "devig_prob": 64.0,
-          "edge": -3.2,
+          "devig_prob": 64.2,
+          "edge": -3.4,
           "odds": 1.5,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -1305,18 +1305,18 @@
       "xg_home": 2.33,
       "xg_away": 0.99,
       "odds": {
-        "home": 1.47,
-        "away": 7.25,
-        "draw": 4.75
+        "home": 1.44,
+        "away": 7.35,
+        "draw": 5.0
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 67.8,
-          "devig_prob": 66.8,
-          "edge": 0.9,
-          "odds": 1.47,
+          "devig_prob": 68.2,
+          "edge": -0.4,
+          "odds": 1.44,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -1324,9 +1324,9 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 18.5,
-          "devig_prob": 20.2,
-          "edge": -1.7,
-          "odds": 4.75,
+          "devig_prob": 19.1,
+          "edge": -0.6,
+          "odds": 5.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -1334,9 +1334,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 13.7,
-          "devig_prob": 13.0,
-          "edge": 0.7,
-          "odds": 7.25,
+          "devig_prob": 12.7,
+          "edge": 0.9,
+          "odds": 7.35,
           "pick": "SKIP",
           "confidence": "MEDIA"
         }
@@ -1464,8 +1464,8 @@
         "away": 3.37,
         "home": 2.5,
         "draw": 3.0,
-        "over_2_5": 2.13,
-        "under_2_5": 1.77
+        "over_2_5": 2.12,
+        "under_2_5": 1.73
       },
       "picks": [
         {
@@ -1502,9 +1502,9 @@
           "market": "Over 2.5",
           "side": "over_2_5",
           "model_prob": 51.2,
-          "devig_prob": 45.2,
-          "edge": 6.0,
-          "odds": 2.13,
+          "devig_prob": 44.7,
+          "edge": 6.5,
+          "odds": 2.12,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -1512,9 +1512,9 @@
           "market": "Under 2.5",
           "side": "under_2_5",
           "model_prob": 48.8,
-          "devig_prob": 54.8,
-          "edge": -6.0,
-          "odds": 1.77,
+          "devig_prob": 55.3,
+          "edge": -6.5,
+          "odds": 1.73,
           "pick": "SKIP",
           "confidence": "MEDIA"
         }
@@ -1841,8 +1841,8 @@
       "xg_home": 2.65,
       "xg_away": 0.32,
       "odds": {
-        "away": 15.0,
-        "home": 1.16,
+        "away": 17.0,
+        "home": 1.15,
         "draw": 7.8
       },
       "picks": [
@@ -1850,9 +1850,9 @@
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 87.6,
-          "devig_prob": 83.6,
-          "edge": 4.0,
-          "odds": 1.16,
+          "devig_prob": 84.4,
+          "edge": 3.2,
+          "odds": 1.15,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -1870,9 +1870,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 2.1,
-          "devig_prob": 5.2,
-          "edge": -3.1,
-          "odds": 15.0,
+          "devig_prob": 4.4,
+          "edge": -2.3,
+          "odds": 17.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
         }
@@ -4543,8 +4543,8 @@
       "xg_home": 0.65,
       "xg_away": 2.66,
       "odds": {
-        "away": 1.22,
-        "home": 10.5,
+        "away": 1.2,
+        "home": 12.0,
         "draw": 7.2
       },
       "picks": [
@@ -4552,9 +4552,9 @@
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 6.0,
-          "devig_prob": 8.1,
-          "edge": -2.1,
-          "odds": 10.5,
+          "devig_prob": 6.9,
+          "edge": -0.9,
+          "odds": 12.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -4562,7 +4562,7 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 13.3,
-          "devig_prob": 12.4,
+          "devig_prob": 12.3,
           "edge": 1.0,
           "odds": 7.2,
           "pick": "SKIP",
@@ -4572,9 +4572,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 80.7,
-          "devig_prob": 79.6,
-          "edge": 1.1,
-          "odds": 1.22,
+          "devig_prob": 80.8,
+          "edge": -0.2,
+          "odds": 1.2,
           "pick": "SKIP",
           "confidence": "MEDIA"
         }
