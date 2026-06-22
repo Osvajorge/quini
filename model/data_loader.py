@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 
 DATA_PATH = Path(__file__).resolve().parent.parent / "data" / "results.csv"
-HALF_LIFE_DAYS = 730
+HALF_LIFE_DAYS = 365
 MIN_DATE = "2005-01-01"
 
 CONTINENTAL = {

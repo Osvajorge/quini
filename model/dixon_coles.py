@@ -199,7 +199,7 @@ def fit(
         args=(n, data),
         method="L-BFGS-B",
         bounds=bounds,
-        options={"maxiter": 2000, "maxfun": 50000, "ftol": 1e-9, "gtol": 1e-6},
+        options={"maxiter": 5000, "maxfun": 150000, "ftol": 1e-10, "gtol": 1e-5},
     )
     elapsed = time.perf_counter() - t0
 
