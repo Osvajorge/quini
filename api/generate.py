@@ -66,7 +66,7 @@ def fetch_odds(api_key: str) -> list[dict]:
         params={
             "apiKey": api_key,
             "regions": "eu",
-            "markets": "h2h,totals,btts",
+            "markets": "h2h,totals",
             "oddsFormat": "decimal",
         },
         timeout=20,
