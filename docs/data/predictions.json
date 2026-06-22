@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-06-22T20:55:00.583095+00:00",
+  "generated_at": "2026-06-22T22:32:37.045775+00:00",
   "model": {
     "name": "Bivariate-Poisson",
     "teams": 319,
-    "matches_trained": 20517,
-    "fitted_at": "2026-06-22T17:42:00.268620+00:00",
+    "matches_trained": 20518,
+    "fitted_at": "2026-06-22T22:32:33.929344+00:00",
     "edge_threshold": 7.000000000000001
   },
   "stats": {
     "total_fixtures": 71,
     "upcoming": 31,
     "completed": 40,
-    "total_bets": 14,
+    "total_bets": 15,
     "won": 0,
     "lost": 0,
     "win_rate": 0
@@ -57,54 +57,88 @@
       "away": "Iraq",
       "commence_time": "2026-06-22T21:00:00Z",
       "completed": false,
-      "is_live": false,
-      "actual_home": null,
-      "actual_away": null,
-      "xg_home": 2.98,
+      "is_live": true,
+      "actual_home": 1,
+      "actual_away": 0,
+      "xg_home": 2.97,
       "xg_away": 0.49,
       "odds": {
-        "home": 1.08,
-        "away": 30.0,
-        "draw": 13.0
+        "home": 1.01,
+        "away": 56.0,
+        "draw": 15.0,
+        "over_2_5": 1.65,
+        "under_2_5": 2.04
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 87.5,
-          "devig_prob": 90.9,
-          "edge": -3.4,
-          "odds": 1.08,
-          "pick": "SKIP",
+          "model_prob": 87.4,
+          "devig_prob": 95.4,
+          "edge": -8.0,
+          "odds": 1.01,
+          "pick": "FADE",
           "confidence": "MEDIA"
         },
         {
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 9.5,
-          "devig_prob": 6.7,
-          "edge": 2.8,
-          "odds": 13.0,
+          "devig_prob": 4.2,
+          "edge": 5.4,
+          "odds": 15.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 3.0,
-          "devig_prob": 2.4,
-          "edge": 0.6,
-          "odds": 30.0,
+          "model_prob": 3.1,
+          "devig_prob": 0.5,
+          "edge": 2.6,
+          "odds": 56.0,
           "pick": "SKIP",
+          "confidence": "MEDIA"
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 66.5,
+          "devig_prob": 55.8,
+          "edge": 10.7,
+          "odds": 1.65,
+          "pick": "BET",
+          "confidence": "ALTA"
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 33.5,
+          "devig_prob": 44.2,
+          "edge": -10.7,
+          "odds": 2.04,
+          "pick": "FADE",
           "confidence": "MEDIA"
         }
       ],
-      "best_bet": null,
+      "best_bet": {
+        "market": "Over 2.5",
+        "side": "over_2_5",
+        "edge": 10.7,
+        "odds": 1.65,
+        "pick": "BET",
+        "confidence_band": "ALTA",
+        "model_prob": 66.5,
+        "devig_prob": 55.8,
+        "description_es": "3 o m\u00e1s goles en el partido",
+        "description_en": "3 or more total goals in the match",
+        "is_compound": false
+      },
       "top_scores": [
         {
           "home": 2,
           "away": 0,
-          "prob": 14.2
+          "prob": 14.3
         },
         {
           "home": 3,
@@ -112,12 +146,12 @@
           "prob": 13.7
         },
         {
-          "home": 4,
+          "home": 1,
           "away": 0,
           "prob": 9.9
         },
         {
-          "home": 1,
+          "home": 4,
           "away": 0,
           "prob": 9.9
         },
@@ -127,13 +161,39 @@
           "prob": 6.7
         }
       ],
-      "live_scores": null,
+      "live_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 84.1
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 12.5
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 2.1
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 0.9
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 0.3
+        }
+      ],
       "quiniela": {
         "balanced": {
           "pick_home": 3,
           "pick_away": 0,
           "e_pts": 3.46,
-          "sd": 1.34,
+          "sd": 1.35,
           "e_tie": 0.84,
           "objective": 4.6,
           "alternatives": [
@@ -158,7 +218,7 @@
           "pick_home": 3,
           "pick_away": 0,
           "e_pts": 3.46,
-          "sd": 1.34,
+          "sd": 1.35,
           "e_tie": 0.84,
           "objective": 5.01,
           "alternatives": [
@@ -182,15 +242,15 @@
         "defensive": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 3.47,
-          "sd": 1.31,
+          "e_pts": 3.46,
+          "sd": 1.32,
           "e_tie": 0.84,
-          "objective": 3.72,
+          "objective": 3.71,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 3.72
+              "obj": 3.71
             },
             {
               "home": 3,
@@ -205,7 +265,7 @@
           ]
         }
       },
-      "fixture_confidence": "BAJA"
+      "fixture_confidence": "ALTA"
     },
     {
       "id": "3f48473742ca0fd2a85930554720c75e",
@@ -216,11 +276,11 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 2.55,
-      "xg_away": 1.1,
+      "xg_home": 2.53,
+      "xg_away": 1.11,
       "odds": {
-        "home": 2.4,
-        "away": 3.21,
+        "home": 2.38,
+        "away": 3.25,
         "draw": 3.48,
         "over_2_5": 1.93,
         "under_2_5": 1.93
@@ -229,19 +289,19 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 69.2,
-          "devig_prob": 41.1,
-          "edge": 28.0,
-          "odds": 2.4,
+          "model_prob": 68.6,
+          "devig_prob": 41.5,
+          "edge": 27.2,
+          "odds": 2.38,
           "pick": "BET",
           "confidence": "ALTA"
         },
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 17.2,
+          "model_prob": 17.4,
           "devig_prob": 28.2,
-          "edge": -11.0,
+          "edge": -10.9,
           "odds": 3.48,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -249,19 +309,19 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 13.6,
-          "devig_prob": 30.6,
-          "edge": -17.0,
-          "odds": 3.21,
+          "model_prob": 14.0,
+          "devig_prob": 30.3,
+          "edge": -16.3,
+          "odds": 3.25,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
         {
           "market": "Over 2.5",
           "side": "over_2_5",
-          "model_prob": 69.8,
+          "model_prob": 69.7,
           "devig_prob": 50.0,
-          "edge": 19.8,
+          "edge": 19.7,
           "odds": 1.93,
           "pick": "BET",
           "confidence": "ALTA"
@@ -269,9 +329,9 @@
         {
           "market": "Under 2.5",
           "side": "under_2_5",
-          "model_prob": 30.2,
+          "model_prob": 30.3,
           "devig_prob": 50.0,
-          "edge": -19.8,
+          "edge": -19.7,
           "odds": 1.93,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -280,12 +340,12 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 28.0,
-        "odds": 2.4,
+        "edge": 27.2,
+        "odds": 2.38,
         "pick": "BET",
         "confidence_band": "ALTA",
-        "model_prob": 69.2,
-        "devig_prob": 41.1,
+        "model_prob": 68.6,
+        "devig_prob": 41.5,
         "description_es": "Norway gana + M\u00e1s de 2.5 goles",
         "description_en": "Norway wins + Over 2.5 goals",
         "is_compound": true
@@ -294,7 +354,7 @@
         {
           "home": 2,
           "away": 1,
-          "prob": 9.3
+          "prob": 9.4
         },
         {
           "home": 2,
@@ -309,12 +369,12 @@
         {
           "home": 1,
           "away": 1,
-          "prob": 7.3
+          "prob": 7.4
         },
         {
-          "home": 3,
+          "home": 1,
           "away": 0,
-          "prob": 7.1
+          "prob": 7.0
         }
       ],
       "live_scores": null,
@@ -322,75 +382,75 @@
         "balanced": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 2.66,
+          "e_pts": 2.65,
           "sd": 1.68,
           "e_tie": 0.59,
-          "objective": 3.9,
+          "objective": 3.89,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 3.9
+              "obj": 3.89
             },
             {
               "home": 3,
               "away": 0,
-              "obj": 3.89
+              "obj": 3.87
             },
             {
               "home": 2,
               "away": 1,
-              "obj": 3.88
+              "obj": 3.87
             }
           ]
         },
         "aggressive": {
           "pick_home": 3,
           "pick_away": 0,
-          "e_pts": 2.62,
-          "sd": 1.74,
+          "e_pts": 2.61,
+          "sd": 1.75,
           "e_tie": 0.55,
-          "objective": 4.41,
+          "objective": 4.39,
           "alternatives": [
             {
               "home": 3,
               "away": 0,
-              "obj": 4.41
+              "obj": 4.39
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 4.41
+              "obj": 4.39
             },
             {
               "home": 3,
               "away": 1,
-              "obj": 4.36
+              "obj": 4.34
             }
           ]
         },
         "defensive": {
           "pick_home": 2,
           "pick_away": 1,
-          "e_pts": 2.69,
-          "sd": 1.56,
+          "e_pts": 2.68,
+          "sd": 1.57,
           "e_tie": 0.62,
-          "objective": 2.88,
+          "objective": 2.87,
           "alternatives": [
             {
               "home": 2,
               "away": 1,
-              "obj": 2.88
+              "obj": 2.87
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 2.84
+              "obj": 2.82
             },
             {
               "home": 3,
               "away": 1,
-              "obj": 2.83
+              "obj": 2.81
             }
           ]
         }
@@ -406,8 +466,8 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 1.36,
-      "xg_away": 1.76,
+      "xg_home": 1.35,
+      "xg_away": 1.77,
       "odds": {
         "away": 1.56,
         "home": 6.87,
@@ -419,9 +479,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 29.2,
+          "model_prob": 28.7,
           "devig_prob": 14.1,
-          "edge": 15.1,
+          "edge": 14.5,
           "odds": 6.87,
           "pick": "BET",
           "confidence": "ALTA"
@@ -429,9 +489,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 24.0,
+          "model_prob": 23.9,
           "devig_prob": 22.3,
-          "edge": 1.7,
+          "edge": 1.6,
           "odds": 4.39,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -439,9 +499,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 46.8,
+          "model_prob": 47.4,
           "devig_prob": 63.5,
-          "edge": -16.7,
+          "edge": -16.1,
           "odds": 1.56,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -470,11 +530,11 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 15.1,
+        "edge": 14.5,
         "odds": 6.87,
         "pick": "BET",
         "confidence_band": "ALTA",
-        "model_prob": 29.2,
+        "model_prob": 28.7,
         "devig_prob": 14.1,
         "description_es": "Jordan gana + M\u00e1s de 2.5 goles",
         "description_en": "Jordan wins + Over 2.5 goals",
@@ -499,12 +559,12 @@
         {
           "home": 2,
           "away": 1,
-          "prob": 7.1
+          "prob": 7.0
         },
         {
           "home": 0,
           "away": 2,
-          "prob": 6.7
+          "prob": 6.9
         }
       ],
       "live_scores": null,
@@ -512,75 +572,75 @@
         "balanced": {
           "pick_home": 1,
           "pick_away": 2,
-          "e_pts": 2.02,
+          "e_pts": 2.04,
           "sd": 1.73,
           "e_tie": 0.62,
-          "objective": 3.3,
+          "objective": 3.32,
           "alternatives": [
             {
               "home": 1,
               "away": 2,
-              "obj": 3.3
+              "obj": 3.32
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 3.24
+              "obj": 3.26
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 3.19
+              "obj": 3.21
             }
           ]
         },
         "aggressive": {
           "pick_home": 1,
           "pick_away": 2,
-          "e_pts": 2.02,
+          "e_pts": 2.04,
           "sd": 1.73,
           "e_tie": 0.62,
-          "objective": 3.82,
+          "objective": 3.84,
           "alternatives": [
             {
               "home": 1,
               "away": 2,
-              "obj": 3.82
+              "obj": 3.84
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 3.79
+              "obj": 3.81
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 3.7
+              "obj": 3.72
             }
           ]
         },
         "defensive": {
           "pick_home": 1,
           "pick_away": 2,
-          "e_pts": 2.02,
+          "e_pts": 2.04,
           "sd": 1.73,
           "e_tie": 0.62,
-          "objective": 2.2,
+          "objective": 2.22,
           "alternatives": [
             {
               "home": 1,
               "away": 2,
-              "obj": 2.2
+              "obj": 2.22
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 2.13
+              "obj": 2.15
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 2.08
+              "obj": 2.11
             }
           ]
         }
@@ -596,40 +656,40 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 2.3,
-      "xg_away": 0.6,
+      "xg_home": 2.29,
+      "xg_away": 0.61,
       "odds": {
-        "home": 1.18,
+        "home": 1.17,
         "away": 13.5,
-        "draw": 7.5
+        "draw": 7.75
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 76.4,
-          "devig_prob": 82.3,
-          "edge": -5.8,
-          "odds": 1.18,
+          "model_prob": 76.1,
+          "devig_prob": 82.8,
+          "edge": -6.7,
+          "odds": 1.17,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 16.4,
-          "devig_prob": 11.8,
-          "edge": 4.6,
-          "odds": 7.5,
+          "model_prob": 16.6,
+          "devig_prob": 11.3,
+          "edge": 5.3,
+          "odds": 7.75,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 7.2,
-          "devig_prob": 6.0,
-          "edge": 1.2,
+          "model_prob": 7.3,
+          "devig_prob": 5.9,
+          "edge": 1.4,
           "odds": 13.5,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -645,12 +705,12 @@
         {
           "home": 1,
           "away": 0,
-          "prob": 13.2
+          "prob": 13.3
         },
         {
           "home": 3,
           "away": 0,
-          "prob": 10.8
+          "prob": 10.7
         },
         {
           "home": 2,
@@ -668,20 +728,20 @@
         "balanced": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 3.1,
-          "sd": 1.63,
+          "e_pts": 3.09,
+          "sd": 1.64,
           "e_tie": 0.81,
-          "objective": 4.41,
+          "objective": 4.4,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 4.41
+              "obj": 4.4
             },
             {
               "home": 3,
               "away": 0,
-              "obj": 4.33
+              "obj": 4.32
             },
             {
               "home": 1,
@@ -693,8 +753,8 @@
         "aggressive": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 3.1,
-          "sd": 1.63,
+          "e_pts": 3.09,
+          "sd": 1.64,
           "e_tie": 0.81,
           "objective": 4.9,
           "alternatives": [
@@ -706,7 +766,7 @@
             {
               "home": 3,
               "away": 0,
-              "obj": 4.82
+              "obj": 4.81
             },
             {
               "home": 1,
@@ -718,25 +778,25 @@
         "defensive": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 3.1,
-          "sd": 1.63,
+          "e_pts": 3.09,
+          "sd": 1.64,
           "e_tie": 0.81,
-          "objective": 3.35,
+          "objective": 3.34,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 3.35
+              "obj": 3.34
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 3.3
+              "obj": 3.29
             },
             {
               "home": 3,
               "away": 0,
-              "obj": 3.27
+              "obj": 3.26
             }
           ]
         }
@@ -752,8 +812,8 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 2.7,
-      "xg_away": 0.51,
+      "xg_home": 2.69,
+      "xg_away": 0.52,
       "odds": {
         "home": 1.2,
         "away": 12.0,
@@ -763,9 +823,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 84.1,
+          "model_prob": 83.9,
           "devig_prob": 80.7,
-          "edge": 3.4,
+          "edge": 3.2,
           "odds": 1.2,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -773,9 +833,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 11.8,
+          "model_prob": 11.9,
           "devig_prob": 12.6,
-          "edge": -0.8,
+          "edge": -0.7,
           "odds": 7.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -783,7 +843,7 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 4.1,
+          "model_prob": 4.2,
           "devig_prob": 6.8,
           "edge": -2.6,
           "odds": 12.0,
@@ -825,7 +885,7 @@
           "pick_home": 2,
           "pick_away": 0,
           "e_pts": 3.36,
-          "sd": 1.43,
+          "sd": 1.44,
           "e_tie": 0.84,
           "objective": 4.56,
           "alternatives": [
@@ -842,7 +902,7 @@
             {
               "home": 4,
               "away": 0,
-              "obj": 4.42
+              "obj": 4.41
             }
           ]
         },
@@ -850,7 +910,7 @@
           "pick_home": 2,
           "pick_away": 0,
           "e_pts": 3.36,
-          "sd": 1.43,
+          "sd": 1.44,
           "e_tie": 0.84,
           "objective": 4.99,
           "alternatives": [
@@ -862,7 +922,7 @@
             {
               "home": 3,
               "away": 0,
-              "obj": 4.98
+              "obj": 4.97
             },
             {
               "home": 4,
@@ -875,19 +935,19 @@
           "pick_home": 2,
           "pick_away": 0,
           "e_pts": 3.36,
-          "sd": 1.43,
+          "sd": 1.44,
           "e_tie": 0.84,
-          "objective": 3.62,
+          "objective": 3.61,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 3.62
+              "obj": 3.61
             },
             {
               "home": 3,
               "away": 0,
-              "obj": 3.59
+              "obj": 3.58
             },
             {
               "home": 1,
@@ -908,8 +968,8 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 1.05,
-      "xg_away": 2.08,
+      "xg_home": 1.06,
+      "xg_away": 2.07,
       "odds": {
         "away": 1.5,
         "home": 6.25,
@@ -919,9 +979,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 17.6,
+          "model_prob": 17.9,
           "devig_prob": 14.2,
-          "edge": 3.5,
+          "edge": 3.8,
           "odds": 6.25,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -929,9 +989,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 21.1,
+          "model_prob": 21.3,
           "devig_prob": 21.8,
-          "edge": -0.7,
+          "edge": -0.6,
           "odds": 4.2,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -939,9 +999,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 61.2,
+          "model_prob": 60.8,
           "devig_prob": 64.0,
-          "edge": -2.8,
+          "edge": -3.2,
           "odds": 1.5,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -972,7 +1032,7 @@
         {
           "home": 1,
           "away": 3,
-          "prob": 6.9
+          "prob": 6.8
         }
       ],
       "live_scores": null,
@@ -980,75 +1040,75 @@
         "balanced": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 2.46,
-          "sd": 1.8,
+          "e_pts": 2.44,
+          "sd": 1.81,
           "e_tie": 0.62,
-          "objective": 3.79,
+          "objective": 3.77,
           "alternatives": [
             {
               "home": 0,
               "away": 2,
-              "obj": 3.79
+              "obj": 3.77
             },
             {
               "home": 1,
               "away": 2,
-              "obj": 3.72
+              "obj": 3.71
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 3.69
+              "obj": 3.67
             }
           ]
         },
         "aggressive": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 2.46,
-          "sd": 1.8,
+          "e_pts": 2.44,
+          "sd": 1.81,
           "e_tie": 0.62,
-          "objective": 4.33,
+          "objective": 4.32,
           "alternatives": [
             {
               "home": 0,
               "away": 2,
-              "obj": 4.33
+              "obj": 4.32
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 4.24
+              "obj": 4.22
             },
             {
               "home": 1,
               "away": 2,
-              "obj": 4.22
+              "obj": 4.21
             }
           ]
         },
         "defensive": {
           "pick_home": 1,
           "pick_away": 2,
-          "e_pts": 2.47,
+          "e_pts": 2.46,
           "sd": 1.66,
           "e_tie": 0.64,
-          "objective": 2.67,
+          "objective": 2.65,
           "alternatives": [
             {
               "home": 1,
               "away": 2,
-              "obj": 2.67
+              "obj": 2.65
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 2.64
+              "obj": 2.63
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 2.63
+              "obj": 2.61
             }
           ]
         }
@@ -1064,12 +1124,12 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 1.68,
-      "xg_away": 0.64,
+      "xg_home": 1.69,
+      "xg_away": 0.63,
       "odds": {
         "home": 1.55,
         "away": 7.5,
-        "draw": 4.0,
+        "draw": 4.1,
         "over_2_5": 2.23,
         "under_2_5": 1.63
       },
@@ -1077,9 +1137,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 62.9,
-          "devig_prob": 63.4,
-          "edge": -0.5,
+          "model_prob": 63.4,
+          "devig_prob": 63.6,
+          "edge": -0.2,
           "odds": 1.55,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -1087,19 +1147,19 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 24.5,
-          "devig_prob": 24.1,
-          "edge": 0.4,
-          "odds": 4.0,
+          "model_prob": 24.3,
+          "devig_prob": 23.7,
+          "edge": 0.6,
+          "odds": 4.1,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 12.6,
-          "devig_prob": 12.5,
-          "edge": 0.0,
+          "model_prob": 12.4,
+          "devig_prob": 12.7,
+          "edge": -0.3,
           "odds": 7.5,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -1107,9 +1167,9 @@
         {
           "market": "Over 2.5",
           "side": "over_2_5",
-          "model_prob": 40.5,
+          "model_prob": 40.8,
           "devig_prob": 41.7,
-          "edge": -1.3,
+          "edge": -1.0,
           "odds": 2.23,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -1117,9 +1177,9 @@
         {
           "market": "Under 2.5",
           "side": "under_2_5",
-          "model_prob": 59.5,
+          "model_prob": 59.2,
           "devig_prob": 58.3,
-          "edge": 1.3,
+          "edge": 1.0,
           "odds": 1.63,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -1135,17 +1195,17 @@
         {
           "home": 2,
           "away": 0,
-          "prob": 13.6
+          "prob": 13.7
         },
         {
           "home": 0,
           "away": 0,
-          "prob": 10.8
+          "prob": 10.7
         },
         {
           "home": 1,
           "away": 1,
-          "prob": 10.4
+          "prob": 10.3
         },
         {
           "home": 2,
@@ -1158,75 +1218,75 @@
         "balanced": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 2.68,
+          "e_pts": 2.7,
           "sd": 1.85,
           "e_tie": 0.79,
-          "objective": 4.11,
+          "objective": 4.12,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 4.11
+              "obj": 4.12
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 4.1
+              "obj": 4.11
             },
             {
               "home": 3,
               "away": 0,
-              "obj": 3.92
+              "obj": 3.94
             }
           ]
         },
         "aggressive": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 2.68,
+          "e_pts": 2.7,
           "sd": 1.85,
           "e_tie": 0.79,
-          "objective": 4.66,
+          "objective": 4.68,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 4.66
+              "obj": 4.68
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 4.61
+              "obj": 4.62
             },
             {
               "home": 3,
               "away": 0,
-              "obj": 4.47
+              "obj": 4.48
             }
           ]
         },
         "defensive": {
           "pick_home": 1,
           "pick_away": 0,
-          "e_pts": 2.73,
-          "sd": 1.72,
+          "e_pts": 2.74,
+          "sd": 1.71,
           "e_tie": 0.84,
-          "objective": 2.98,
+          "objective": 3.0,
           "alternatives": [
             {
               "home": 1,
               "away": 0,
-              "obj": 2.98
+              "obj": 3.0
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 2.92
+              "obj": 2.93
             },
             {
               "home": 3,
               "away": 0,
-              "obj": 2.76
+              "obj": 2.78
             }
           ]
         }
@@ -1242,8 +1302,8 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 2.35,
-      "xg_away": 0.98,
+      "xg_home": 2.33,
+      "xg_away": 0.99,
       "odds": {
         "home": 1.47,
         "away": 7.25,
@@ -1253,9 +1313,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 68.3,
+          "model_prob": 67.8,
           "devig_prob": 66.8,
-          "edge": 1.5,
+          "edge": 0.9,
           "odds": 1.47,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -1263,9 +1323,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 18.3,
+          "model_prob": 18.5,
           "devig_prob": 20.2,
-          "edge": -1.9,
+          "edge": -1.7,
           "odds": 4.75,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -1273,9 +1333,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 13.4,
+          "model_prob": 13.7,
           "devig_prob": 13.0,
-          "edge": 0.4,
+          "edge": 0.7,
           "odds": 7.25,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -1296,12 +1356,12 @@
         {
           "home": 1,
           "away": 0,
-          "prob": 8.8
+          "prob": 8.9
         },
         {
           "home": 1,
           "away": 1,
-          "prob": 8.2
+          "prob": 8.3
         },
         {
           "home": 3,
@@ -1314,75 +1374,75 @@
         "balanced": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 2.69,
-          "sd": 1.72,
+          "e_pts": 2.67,
+          "sd": 1.73,
           "e_tie": 0.64,
-          "objective": 3.98,
+          "objective": 3.96,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 3.98
+              "obj": 3.96
             },
             {
               "home": 3,
               "away": 0,
-              "obj": 3.92
+              "obj": 3.91
             },
             {
               "home": 2,
               "away": 1,
-              "obj": 3.88
+              "obj": 3.87
             }
           ]
         },
         "aggressive": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 2.69,
-          "sd": 1.72,
+          "e_pts": 2.67,
+          "sd": 1.73,
           "e_tie": 0.64,
-          "objective": 4.49,
+          "objective": 4.48,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 4.49
+              "obj": 4.48
             },
             {
               "home": 3,
               "away": 0,
-              "obj": 4.45
+              "obj": 4.44
             },
             {
               "home": 2,
               "away": 1,
-              "obj": 4.35
+              "obj": 4.34
             }
           ]
         },
         "defensive": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 2.69,
-          "sd": 1.72,
+          "e_pts": 2.67,
+          "sd": 1.73,
           "e_tie": 0.64,
-          "objective": 2.88,
+          "objective": 2.86,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 2.88
+              "obj": 2.86
             },
             {
               "home": 2,
               "away": 1,
-              "obj": 2.87
+              "obj": 2.85
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 2.83
+              "obj": 2.81
             }
           ]
         }
@@ -1398,22 +1458,22 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 1.73,
+      "xg_home": 1.72,
       "xg_away": 1.02,
       "odds": {
-        "away": 3.3,
+        "away": 3.37,
         "home": 2.5,
-        "draw": 3.05,
-        "over_2_5": 2.15,
-        "under_2_5": 1.71
+        "draw": 3.0,
+        "over_2_5": 2.13,
+        "under_2_5": 1.77
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 54.2,
-          "devig_prob": 38.9,
-          "edge": 15.3,
+          "model_prob": 53.7,
+          "devig_prob": 39.0,
+          "edge": 14.8,
           "odds": 2.5,
           "pick": "BET",
           "confidence": "ALTA"
@@ -1421,56 +1481,56 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 24.5,
-          "devig_prob": 31.8,
-          "edge": -7.2,
-          "odds": 3.05,
+          "model_prob": 24.7,
+          "devig_prob": 32.3,
+          "edge": -7.7,
+          "odds": 3.0,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 21.2,
-          "devig_prob": 29.3,
-          "edge": -8.1,
-          "odds": 3.3,
+          "model_prob": 21.6,
+          "devig_prob": 28.7,
+          "edge": -7.1,
+          "odds": 3.37,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
         {
           "market": "Over 2.5",
           "side": "over_2_5",
-          "model_prob": 51.3,
-          "devig_prob": 44.0,
-          "edge": 7.3,
-          "odds": 2.15,
-          "pick": "BET",
+          "model_prob": 51.2,
+          "devig_prob": 45.2,
+          "edge": 6.0,
+          "odds": 2.13,
+          "pick": "SKIP",
           "confidence": "MEDIA"
         },
         {
           "market": "Under 2.5",
           "side": "under_2_5",
-          "model_prob": 48.7,
-          "devig_prob": 56.0,
-          "edge": -7.3,
-          "odds": 1.71,
-          "pick": "FADE",
+          "model_prob": 48.8,
+          "devig_prob": 54.8,
+          "edge": -6.0,
+          "odds": 1.77,
+          "pick": "SKIP",
           "confidence": "MEDIA"
         }
       ],
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 15.3,
+        "edge": 14.8,
         "odds": 2.5,
         "pick": "BET",
         "confidence_band": "ALTA",
-        "model_prob": 54.2,
-        "devig_prob": 38.9,
-        "description_es": "Switzerland gana + M\u00e1s de 2.5 goles",
-        "description_en": "Switzerland wins + Over 2.5 goals",
-        "is_compound": true
+        "model_prob": 53.7,
+        "devig_prob": 39.0,
+        "description_es": "Switzerland gana el partido",
+        "description_en": "Switzerland wins the match",
+        "is_compound": false
       },
       "top_scores": [
         {
@@ -1504,75 +1564,75 @@
         "balanced": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 2.25,
+          "e_pts": 2.24,
           "sd": 1.88,
-          "e_tie": 0.63,
-          "objective": 3.63,
+          "e_tie": 0.62,
+          "objective": 3.61,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 3.63
+              "obj": 3.61
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 3.59
+              "obj": 3.58
             },
             {
               "home": 2,
               "away": 1,
-              "obj": 3.53
+              "obj": 3.52
             }
           ]
         },
         "aggressive": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 2.25,
+          "e_pts": 2.24,
           "sd": 1.88,
-          "e_tie": 0.63,
-          "objective": 4.19,
+          "e_tie": 0.62,
+          "objective": 4.18,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 4.19
+              "obj": 4.18
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 4.11
+              "obj": 4.09
             },
             {
               "home": 2,
               "away": 1,
-              "obj": 4.04
+              "obj": 4.03
             }
           ]
         },
         "defensive": {
           "pick_home": 1,
           "pick_away": 0,
-          "e_pts": 2.29,
+          "e_pts": 2.28,
           "sd": 1.72,
           "e_tie": 0.67,
-          "objective": 2.49,
+          "objective": 2.48,
           "alternatives": [
             {
               "home": 1,
               "away": 0,
-              "obj": 2.49
+              "obj": 2.48
             },
             {
               "home": 2,
               "away": 1,
-              "obj": 2.45
+              "obj": 2.43
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 2.44
+              "obj": 2.42
             }
           ]
         }
@@ -1588,22 +1648,22 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 0.94,
-      "xg_away": 1.51,
+      "xg_home": 0.93,
+      "xg_away": 1.52,
       "odds": {
-        "away": 1.33,
+        "away": 1.34,
         "home": 8.0,
-        "draw": 5.2,
-        "over_2_5": 1.74,
-        "under_2_5": 1.94
+        "draw": 5.1,
+        "over_2_5": 1.78,
+        "under_2_5": 1.91
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 22.6,
+          "model_prob": 22.2,
           "devig_prob": 10.6,
-          "edge": 12.0,
+          "edge": 11.5,
           "odds": 8.0,
           "pick": "BET",
           "confidence": "ALTA"
@@ -1611,40 +1671,40 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 27.1,
-          "devig_prob": 17.2,
-          "edge": 9.9,
-          "odds": 5.2,
+          "model_prob": 26.9,
+          "devig_prob": 17.6,
+          "edge": 9.3,
+          "odds": 5.1,
           "pick": "BET",
-          "confidence": "ALTA"
+          "confidence": "MEDIA"
         },
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 50.3,
-          "devig_prob": 72.2,
-          "edge": -21.9,
-          "odds": 1.33,
+          "model_prob": 50.9,
+          "devig_prob": 71.7,
+          "edge": -20.8,
+          "odds": 1.34,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
         {
           "market": "Over 2.5",
           "side": "over_2_5",
-          "model_prob": 43.9,
-          "devig_prob": 53.0,
-          "edge": -9.0,
-          "odds": 1.74,
+          "model_prob": 44.1,
+          "devig_prob": 51.9,
+          "edge": -7.8,
+          "odds": 1.78,
           "pick": "FADE",
           "confidence": "MEDIA"
         },
         {
           "market": "Under 2.5",
           "side": "under_2_5",
-          "model_prob": 56.1,
-          "devig_prob": 47.0,
-          "edge": 9.0,
-          "odds": 1.94,
+          "model_prob": 55.9,
+          "devig_prob": 48.1,
+          "edge": 7.8,
+          "odds": 1.91,
           "pick": "BET",
           "confidence": "MEDIA"
         }
@@ -1652,11 +1712,11 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 12.0,
+        "edge": 11.5,
         "odds": 8.0,
         "pick": "BET",
         "confidence_band": "ALTA",
-        "model_prob": 22.6,
+        "model_prob": 22.2,
         "devig_prob": 10.6,
         "description_es": "Scotland gana + Menos de 2.5 goles",
         "description_en": "Scotland wins + Under 2.5 goals",
@@ -1671,12 +1731,12 @@
         {
           "home": 1,
           "away": 1,
-          "prob": 12.3
+          "prob": 12.2
         },
         {
           "home": 0,
           "away": 2,
-          "prob": 9.5
+          "prob": 9.7
         },
         {
           "home": 0,
@@ -1694,75 +1754,75 @@
         "balanced": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 2.23,
+          "e_pts": 2.25,
           "sd": 1.76,
-          "e_tie": 0.72,
-          "objective": 3.58,
+          "e_tie": 0.73,
+          "objective": 3.6,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 3.58
+              "obj": 3.6
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 3.55
+              "obj": 3.58
             },
             {
               "home": 1,
               "away": 2,
-              "obj": 3.4
+              "obj": 3.42
             }
           ]
         },
         "aggressive": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 2.15,
+          "e_pts": 2.17,
           "sd": 1.91,
-          "e_tie": 0.64,
-          "objective": 4.12,
+          "e_tie": 0.65,
+          "objective": 4.15,
           "alternatives": [
             {
               "home": 0,
               "away": 2,
-              "obj": 4.12
+              "obj": 4.15
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 4.11
+              "obj": 4.13
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 3.92
+              "obj": 3.94
             }
           ]
         },
         "defensive": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 2.23,
+          "e_pts": 2.25,
           "sd": 1.76,
-          "e_tie": 0.72,
-          "objective": 2.45,
+          "e_tie": 0.73,
+          "objective": 2.47,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 2.45
+              "obj": 2.47
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 2.34
+              "obj": 2.37
             },
             {
               "home": 1,
               "away": 2,
-              "obj": 2.31
+              "obj": 2.33
             }
           ]
         }
@@ -1778,7 +1838,7 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 2.66,
+      "xg_home": 2.65,
       "xg_away": 0.32,
       "odds": {
         "away": 15.0,
@@ -1789,9 +1849,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 87.7,
+          "model_prob": 87.6,
           "devig_prob": 83.6,
-          "edge": 4.1,
+          "edge": 4.0,
           "odds": 1.16,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -1850,8 +1910,8 @@
         "balanced": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 3.61,
-          "sd": 1.3,
+          "e_pts": 3.6,
+          "sd": 1.31,
           "e_tie": 0.98,
           "objective": 4.78,
           "alternatives": [
@@ -1875,8 +1935,8 @@
         "aggressive": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 3.61,
-          "sd": 1.3,
+          "e_pts": 3.6,
+          "sd": 1.31,
           "e_tie": 0.98,
           "objective": 5.17,
           "alternatives": [
@@ -1900,8 +1960,8 @@
         "defensive": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 3.61,
-          "sd": 1.3,
+          "e_pts": 3.6,
+          "sd": 1.31,
           "e_tie": 0.98,
           "objective": 3.9,
           "alternatives": [
@@ -1935,10 +1995,10 @@
       "actual_home": null,
       "actual_away": null,
       "xg_home": 0.86,
-      "xg_away": 1.39,
+      "xg_away": 1.4,
       "odds": {
-        "home": 3.65,
-        "away": 1.96,
+        "home": 3.75,
+        "away": 1.94,
         "draw": 4.05,
         "over_2_5": 2.05,
         "under_2_5": 1.78
@@ -1947,19 +2007,19 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 22.1,
-          "devig_prob": 26.4,
-          "edge": -4.3,
-          "odds": 3.65,
+          "model_prob": 21.9,
+          "devig_prob": 25.8,
+          "edge": -3.8,
+          "odds": 3.75,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 28.7,
-          "devig_prob": 23.7,
-          "edge": 5.0,
+          "model_prob": 28.6,
+          "devig_prob": 23.8,
+          "edge": 4.8,
           "odds": 4.05,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -1967,10 +2027,10 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 49.1,
-          "devig_prob": 49.9,
-          "edge": -0.7,
-          "odds": 1.96,
+          "model_prob": 49.5,
+          "devig_prob": 50.5,
+          "edge": -1.0,
+          "odds": 1.94,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -2017,21 +2077,21 @@
         {
           "home": 1,
           "away": 1,
-          "prob": 12.6
+          "prob": 12.5
         },
         {
           "home": 0,
           "away": 0,
-          "prob": 11.5
+          "prob": 11.4
         },
         {
           "home": 0,
           "away": 2,
-          "prob": 9.8
+          "prob": 9.9
         },
         {
           "home": 1,
-          "away": 0,
+          "away": 2,
           "prob": 8.9
         }
       ],
@@ -2040,75 +2100,75 @@
         "balanced": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 2.24,
+          "e_pts": 2.25,
           "sd": 1.79,
           "e_tie": 0.77,
-          "objective": 3.62,
+          "objective": 3.64,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 3.62
+              "obj": 3.64
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 3.55
+              "obj": 3.57
             },
             {
-              "home": 1,
-              "away": 2,
-              "obj": 3.34
+              "home": 0,
+              "away": 3,
+              "obj": 3.36
             }
           ]
         },
         "aggressive": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 2.24,
+          "e_pts": 2.25,
           "sd": 1.79,
           "e_tie": 0.77,
-          "objective": 4.16,
+          "objective": 4.17,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 4.16
+              "obj": 4.17
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 4.13
+              "obj": 4.14
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 3.9
+              "obj": 3.92
             }
           ]
         },
         "defensive": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 2.24,
+          "e_pts": 2.25,
           "sd": 1.79,
           "e_tie": 0.77,
-          "objective": 2.47,
+          "objective": 2.49,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 2.47
+              "obj": 2.49
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 2.34
+              "obj": 2.35
             },
             {
               "home": 1,
               "away": 2,
-              "obj": 2.26
+              "obj": 2.27
             }
           ]
         }
@@ -2137,9 +2197,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 27.3,
+          "model_prob": 27.4,
           "devig_prob": 16.1,
-          "edge": 11.1,
+          "edge": 11.2,
           "odds": 5.85,
           "pick": "BET",
           "confidence": "ALTA"
@@ -2159,7 +2219,7 @@
           "side": "away",
           "model_prob": 45.0,
           "devig_prob": 59.6,
-          "edge": -14.6,
+          "edge": -14.7,
           "odds": 1.64,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -2188,11 +2248,11 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 11.1,
+        "edge": 11.2,
         "odds": 5.85,
         "pick": "BET",
         "confidence_band": "ALTA",
-        "model_prob": 27.3,
+        "model_prob": 27.4,
         "devig_prob": 16.1,
         "description_es": "South Africa gana el partido",
         "description_en": "South Africa wins the match",
@@ -2207,7 +2267,7 @@
         {
           "home": 0,
           "away": 1,
-          "prob": 12.2
+          "prob": 12.1
         },
         {
           "home": 0,
@@ -2243,7 +2303,7 @@
             {
               "home": 0,
               "away": 2,
-              "obj": 3.32
+              "obj": 3.31
             },
             {
               "home": 1,
@@ -2258,12 +2318,12 @@
           "e_pts": 2.04,
           "sd": 1.76,
           "e_tie": 0.69,
-          "objective": 3.9,
+          "objective": 3.89,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 3.9
+              "obj": 3.89
             },
             {
               "home": 0,
@@ -2283,17 +2343,17 @@
           "e_pts": 2.04,
           "sd": 1.76,
           "e_tie": 0.69,
-          "objective": 2.25,
+          "objective": 2.24,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 2.25
+              "obj": 2.24
             },
             {
               "home": 1,
               "away": 2,
-              "obj": 2.15
+              "obj": 2.14
             },
             {
               "home": 0,
@@ -2327,7 +2387,7 @@
           "side": "home",
           "model_prob": 9.7,
           "devig_prob": 4.8,
-          "edge": 4.8,
+          "edge": 4.9,
           "odds": 18.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -2375,7 +2435,7 @@
         {
           "home": 0,
           "away": 2,
-          "prob": 14.7
+          "prob": 14.6
         },
         {
           "home": 0,
@@ -2483,7 +2543,7 @@
       "actual_home": null,
       "actual_away": null,
       "xg_home": 0.71,
-      "xg_away": 0.89,
+      "xg_away": 0.88,
       "odds": {
         "home": 3.4,
         "away": 1.9,
@@ -2493,9 +2553,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 25.6,
+          "model_prob": 26.1,
           "devig_prob": 26.9,
-          "edge": -1.2,
+          "edge": -0.8,
           "odds": 3.4,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -2503,9 +2563,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 37.6,
+          "model_prob": 37.7,
           "devig_prob": 23.5,
-          "edge": 14.1,
+          "edge": 14.2,
           "odds": 3.85,
           "pick": "BET",
           "confidence": "ALTA"
@@ -2513,9 +2573,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 36.7,
+          "model_prob": 36.3,
           "devig_prob": 49.6,
-          "edge": -12.9,
+          "edge": -13.4,
           "odds": 1.9,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -2524,11 +2584,11 @@
       "best_bet": {
         "market": "Empate (X)",
         "side": "draw",
-        "edge": 14.1,
+        "edge": 14.2,
         "odds": 3.85,
         "pick": "BET",
         "confidence_band": "ALTA",
-        "model_prob": 37.6,
+        "model_prob": 37.7,
         "devig_prob": 23.5,
         "description_es": "El partido termina en empate",
         "description_en": "Match ends in a draw",
@@ -2538,17 +2598,17 @@
         {
           "home": 0,
           "away": 0,
-          "prob": 22.0
+          "prob": 22.1
         },
         {
           "home": 0,
           "away": 1,
-          "prob": 17.8
+          "prob": 17.6
         },
         {
           "home": 1,
           "away": 0,
-          "prob": 13.7
+          "prob": 13.9
         },
         {
           "home": 1,
@@ -2558,7 +2618,7 @@
         {
           "home": 0,
           "away": 2,
-          "prob": 7.1
+          "prob": 7.0
         }
       ],
       "live_scores": null,
@@ -2569,22 +2629,22 @@
           "e_pts": 2.03,
           "sd": 1.8,
           "e_tie": 0.9,
-          "objective": 3.47,
+          "objective": 3.48,
           "alternatives": [
             {
               "home": 0,
               "away": 0,
-              "obj": 3.47
+              "obj": 3.48
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 3.41
+              "obj": 3.39
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 3.13
+              "obj": 3.11
             }
           ]
         },
@@ -2594,22 +2654,22 @@
           "e_pts": 2.03,
           "sd": 1.8,
           "e_tie": 0.9,
-          "objective": 4.01,
+          "objective": 4.02,
           "alternatives": [
             {
               "home": 0,
               "away": 0,
-              "obj": 4.01
+              "obj": 4.02
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 3.96
+              "obj": 3.94
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 3.69
+              "obj": 3.66
             }
           ]
         },
@@ -2629,7 +2689,7 @@
             {
               "home": 0,
               "away": 1,
-              "obj": 2.22
+              "obj": 2.2
             },
             {
               "home": 1,
@@ -2650,8 +2710,8 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 3.08,
-      "xg_away": 1.11,
+      "xg_home": 3.1,
+      "xg_away": 1.1,
       "odds": {
         "home": 1.96,
         "away": 4.45,
@@ -2663,9 +2723,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 77.1,
+          "model_prob": 77.3,
           "devig_prob": 50.2,
-          "edge": 26.9,
+          "edge": 27.2,
           "odds": 1.96,
           "pick": "BET",
           "confidence": "ALTA"
@@ -2673,9 +2733,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 13.3,
+          "model_prob": 13.1,
           "devig_prob": 28.1,
-          "edge": -14.8,
+          "edge": -15.0,
           "odds": 3.47,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -2683,9 +2743,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 9.7,
+          "model_prob": 9.5,
           "devig_prob": 21.8,
-          "edge": -12.1,
+          "edge": -12.2,
           "odds": 4.45,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -2693,9 +2753,9 @@
         {
           "market": "Over 2.5",
           "side": "over_2_5",
-          "model_prob": 78.2,
+          "model_prob": 78.4,
           "devig_prob": 54.1,
-          "edge": 24.1,
+          "edge": 24.3,
           "odds": 1.79,
           "pick": "BET",
           "confidence": "ALTA"
@@ -2703,9 +2763,9 @@
         {
           "market": "Under 2.5",
           "side": "under_2_5",
-          "model_prob": 21.8,
+          "model_prob": 21.6,
           "devig_prob": 45.9,
-          "edge": -24.1,
+          "edge": -24.3,
           "odds": 2.1,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -2714,11 +2774,11 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 26.9,
+        "edge": 27.2,
         "odds": 1.96,
         "pick": "BET",
         "confidence_band": "ALTA",
-        "model_prob": 77.1,
+        "model_prob": 77.3,
         "devig_prob": 50.2,
         "description_es": "Japan gana + M\u00e1s de 2.5 goles",
         "description_en": "Japan wins + Over 2.5 goals",
@@ -2736,12 +2796,12 @@
           "prob": 8.0
         },
         {
-          "home": 2,
+          "home": 3,
           "away": 0,
           "prob": 7.4
         },
         {
-          "home": 3,
+          "home": 2,
           "away": 0,
           "prob": 7.4
         },
@@ -2755,35 +2815,35 @@
       "quiniela": {
         "balanced": {
           "pick_home": 3,
-          "pick_away": 1,
-          "e_pts": 2.9,
-          "sd": 1.5,
-          "e_tie": 0.59,
-          "objective": 4.04,
+          "pick_away": 0,
+          "e_pts": 2.88,
+          "sd": 1.58,
+          "e_tie": 0.56,
+          "objective": 4.05,
           "alternatives": [
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.05
+            },
             {
               "home": 3,
               "away": 1,
               "obj": 4.04
             },
             {
-              "home": 3,
-              "away": 0,
-              "obj": 4.04
-            },
-            {
               "home": 2,
               "away": 0,
-              "obj": 3.98
+              "obj": 3.99
             }
           ]
         },
         "aggressive": {
           "pick_home": 3,
           "pick_away": 0,
-          "e_pts": 2.87,
-          "sd": 1.59,
-          "e_tie": 0.55,
+          "e_pts": 2.88,
+          "sd": 1.58,
+          "e_tie": 0.56,
           "objective": 4.52,
           "alternatives": [
             {
@@ -2799,32 +2859,32 @@
             {
               "home": 4,
               "away": 0,
-              "obj": 4.44
+              "obj": 4.45
             }
           ]
         },
         "defensive": {
           "pick_home": 3,
           "pick_away": 1,
-          "e_pts": 2.9,
+          "e_pts": 2.91,
           "sd": 1.5,
           "e_tie": 0.59,
-          "objective": 3.08,
+          "objective": 3.09,
           "alternatives": [
             {
               "home": 3,
               "away": 1,
-              "obj": 3.08
+              "obj": 3.09
             },
             {
               "home": 2,
               "away": 1,
-              "obj": 3.07
+              "obj": 3.08
             },
             {
               "home": 3,
               "away": 0,
-              "obj": 3.03
+              "obj": 3.04
             }
           ]
         }
@@ -2841,7 +2901,7 @@
       "actual_home": null,
       "actual_away": null,
       "xg_home": 0.84,
-      "xg_away": 3.36,
+      "xg_away": 3.35,
       "odds": {
         "away": 1.14,
         "home": 23.0,
@@ -2853,7 +2913,7 @@
           "side": "home",
           "model_prob": 5.2,
           "devig_prob": 3.5,
-          "edge": 1.6,
+          "edge": 1.7,
           "odds": 23.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -2861,9 +2921,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 9.7,
+          "model_prob": 9.8,
           "devig_prob": 10.2,
-          "edge": -0.5,
+          "edge": -0.4,
           "odds": 9.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -2871,9 +2931,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 85.1,
+          "model_prob": 84.9,
           "devig_prob": 86.2,
-          "edge": -1.2,
+          "edge": -1.3,
           "odds": 1.14,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -2930,7 +2990,7 @@
             {
               "home": 0,
               "away": 2,
-              "obj": 4.24
+              "obj": 4.23
             }
           ]
         },
@@ -2965,17 +3025,17 @@
           "e_pts": 3.2,
           "sd": 1.41,
           "e_tie": 0.65,
-          "objective": 3.4,
+          "objective": 3.39,
           "alternatives": [
             {
               "home": 0,
               "away": 3,
-              "obj": 3.4
+              "obj": 3.39
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 3.37
+              "obj": 3.36
             },
             {
               "home": 0,
@@ -3007,9 +3067,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 33.2,
+          "model_prob": 33.5,
           "devig_prob": 32.7,
-          "edge": 0.5,
+          "edge": 0.8,
           "odds": 2.85,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -3027,9 +3087,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 33.9,
+          "model_prob": 33.6,
           "devig_prob": 24.4,
-          "edge": 9.4,
+          "edge": 9.2,
           "odds": 3.75,
           "pick": "BET",
           "confidence": "MEDIA"
@@ -3038,11 +3098,11 @@
       "best_bet": {
         "market": "Gana Visitante (2)",
         "side": "away",
-        "edge": 9.4,
+        "edge": 9.2,
         "odds": 3.75,
         "pick": "BET",
         "confidence_band": "MEDIA",
-        "model_prob": 33.9,
+        "model_prob": 33.6,
         "devig_prob": 24.4,
         "description_es": "Australia gana el partido",
         "description_en": "Australia wins the match",
@@ -3061,12 +3121,12 @@
         },
         {
           "home": 1,
-          "away": 1,
+          "away": 0,
           "prob": 13.6
         },
         {
           "home": 1,
-          "away": 0,
+          "away": 1,
           "prob": 13.6
         },
         {
@@ -3080,20 +3140,20 @@
         "balanced": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 1.76,
+          "e_pts": 1.75,
           "sd": 1.77,
           "e_tie": 0.74,
-          "objective": 3.12,
+          "objective": 3.11,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 3.12
+              "obj": 3.11
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 3.09
+              "obj": 3.1
             },
             {
               "home": 0,
@@ -3105,20 +3165,20 @@
         "aggressive": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 1.76,
+          "e_pts": 1.75,
           "sd": 1.77,
           "e_tie": 0.74,
-          "objective": 3.65,
+          "objective": 3.64,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 3.65
+              "obj": 3.64
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 3.62
+              "obj": 3.63
             },
             {
               "home": 0,
@@ -3130,23 +3190,23 @@
         "defensive": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 1.76,
+          "e_pts": 1.75,
           "sd": 1.77,
           "e_tie": 0.74,
-          "objective": 1.98,
+          "objective": 1.97,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 1.98
-            },
-            {
-              "home": 0,
-              "away": 0,
-              "obj": 1.96
+              "obj": 1.97
             },
             {
               "home": 1,
+              "away": 0,
+              "obj": 1.97
+            },
+            {
+              "home": 0,
               "away": 0,
               "obj": 1.96
             }
@@ -3164,8 +3224,8 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 1.74,
-      "xg_away": 1.37,
+      "xg_home": 1.73,
+      "xg_away": 1.38,
       "odds": {
         "home": 3.25,
         "away": 1.88,
@@ -3175,9 +3235,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 46.1,
+          "model_prob": 45.7,
           "devig_prob": 28.1,
-          "edge": 18.0,
+          "edge": 17.6,
           "odds": 3.25,
           "pick": "BET",
           "confidence": "ALTA"
@@ -3185,7 +3245,7 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 24.1,
+          "model_prob": 24.2,
           "devig_prob": 21.8,
           "edge": 2.3,
           "odds": 4.1,
@@ -3195,9 +3255,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 29.8,
+          "model_prob": 30.2,
           "devig_prob": 50.1,
-          "edge": -20.2,
+          "edge": -19.9,
           "odds": 1.88,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -3206,11 +3266,11 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 18.0,
+        "edge": 17.6,
         "odds": 3.25,
         "pick": "BET",
         "confidence_band": "ALTA",
-        "model_prob": 46.1,
+        "model_prob": 45.7,
         "devig_prob": 28.1,
         "description_es": "Turkey gana el partido",
         "description_en": "Turkey wins the match",
@@ -3248,75 +3308,75 @@
         "balanced": {
           "pick_home": 2,
           "pick_away": 1,
-          "e_pts": 2.0,
+          "e_pts": 1.98,
           "sd": 1.73,
           "e_tie": 0.61,
-          "objective": 3.28,
+          "objective": 3.26,
           "alternatives": [
             {
               "home": 2,
               "away": 1,
-              "obj": 3.28
+              "obj": 3.26
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 3.21
+              "obj": 3.19
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 3.17
+              "obj": 3.16
             }
           ]
         },
         "aggressive": {
           "pick_home": 2,
           "pick_away": 1,
-          "e_pts": 2.0,
+          "e_pts": 1.98,
           "sd": 1.73,
           "e_tie": 0.61,
-          "objective": 3.79,
+          "objective": 3.78,
           "alternatives": [
             {
               "home": 2,
               "away": 1,
-              "obj": 3.79
+              "obj": 3.78
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 3.76
+              "obj": 3.74
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 3.67
+              "obj": 3.66
             }
           ]
         },
         "defensive": {
           "pick_home": 2,
           "pick_away": 1,
-          "e_pts": 2.0,
+          "e_pts": 1.98,
           "sd": 1.73,
           "e_tie": 0.61,
-          "objective": 2.18,
+          "objective": 2.17,
           "alternatives": [
             {
               "home": 2,
               "away": 1,
-              "obj": 2.18
+              "obj": 2.17
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 2.11
+              "obj": 2.09
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 2.06
+              "obj": 2.04
             }
           ]
         }
@@ -3332,12 +3392,12 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 1.68,
+      "xg_home": 1.67,
       "xg_away": 1.53,
       "odds": {
         "away": 1.78,
         "home": 4.39,
-        "draw": 3.66,
+        "draw": 3.86,
         "over_2_5": 1.79,
         "under_2_5": 2.07
       },
@@ -3345,9 +3405,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 41.2,
-          "devig_prob": 20.9,
-          "edge": 20.3,
+          "model_prob": 41.0,
+          "devig_prob": 21.3,
+          "edge": 19.7,
           "odds": 4.39,
           "pick": "BET",
           "confidence": "ALTA"
@@ -3356,18 +3416,18 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 24.1,
-          "devig_prob": 25.3,
-          "edge": -1.2,
-          "odds": 3.66,
+          "devig_prob": 24.4,
+          "edge": -0.3,
+          "odds": 3.86,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 34.7,
-          "devig_prob": 53.8,
-          "edge": -19.1,
+          "model_prob": 34.9,
+          "devig_prob": 54.3,
+          "edge": -19.4,
           "odds": 1.78,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -3396,12 +3456,12 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 20.3,
+        "edge": 19.7,
         "odds": 4.39,
         "pick": "BET",
         "confidence_band": "ALTA",
-        "model_prob": 41.2,
-        "devig_prob": 20.9,
+        "model_prob": 41.0,
+        "devig_prob": 21.3,
         "description_es": "Norway gana + M\u00e1s de 2.5 goles",
         "description_en": "Norway wins + Over 2.5 goals",
         "is_compound": true
@@ -3415,7 +3475,7 @@
         {
           "home": 2,
           "away": 1,
-          "prob": 8.7
+          "prob": 8.6
         },
         {
           "home": 1,
@@ -3438,75 +3498,75 @@
         "balanced": {
           "pick_home": 2,
           "pick_away": 1,
-          "e_pts": 1.83,
+          "e_pts": 1.82,
           "sd": 1.72,
           "e_tie": 0.59,
-          "objective": 3.1,
+          "objective": 3.09,
           "alternatives": [
             {
               "home": 2,
               "away": 1,
-              "obj": 3.1
+              "obj": 3.09
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 2.99
+              "obj": 2.98
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 2.97
+              "obj": 2.96
             }
           ]
         },
         "aggressive": {
           "pick_home": 2,
           "pick_away": 1,
-          "e_pts": 1.83,
+          "e_pts": 1.82,
           "sd": 1.72,
           "e_tie": 0.59,
-          "objective": 3.62,
+          "objective": 3.61,
           "alternatives": [
             {
               "home": 2,
               "away": 1,
-              "obj": 3.62
+              "obj": 3.61
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 3.53
+              "obj": 3.52
             },
             {
               "home": 3,
               "away": 1,
-              "obj": 3.47
+              "obj": 3.46
             }
           ]
         },
         "defensive": {
           "pick_home": 2,
           "pick_away": 1,
-          "e_pts": 1.83,
+          "e_pts": 1.82,
           "sd": 1.72,
           "e_tie": 0.59,
-          "objective": 2.01,
+          "objective": 2.0,
           "alternatives": [
             {
               "home": 2,
               "away": 1,
-              "obj": 2.01
+              "obj": 2.0
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 1.93
+              "obj": 1.92
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 1.86
+              "obj": 1.85
             }
           ]
         }
@@ -3522,7 +3582,7 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 2.11,
+      "xg_home": 2.12,
       "xg_away": 0.71,
       "odds": {
         "away": 11.0,
@@ -3535,9 +3595,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 70.5,
+          "model_prob": 70.6,
           "devig_prob": 73.7,
-          "edge": -3.3,
+          "edge": -3.2,
           "odds": 1.33,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -3547,7 +3607,7 @@
           "side": "draw",
           "model_prob": 19.2,
           "devig_prob": 18.1,
-          "edge": 1.2,
+          "edge": 1.1,
           "odds": 5.25,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -3565,9 +3625,9 @@
         {
           "market": "Over 2.5",
           "side": "over_2_5",
-          "model_prob": 53.0,
+          "model_prob": 53.1,
           "devig_prob": 52.5,
-          "edge": 0.5,
+          "edge": 0.7,
           "odds": 1.82,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -3575,9 +3635,9 @@
         {
           "market": "Under 2.5",
           "side": "under_2_5",
-          "model_prob": 47.0,
+          "model_prob": 46.9,
           "devig_prob": 47.5,
-          "edge": -0.5,
+          "edge": -0.7,
           "odds": 2.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -3593,7 +3653,7 @@
         {
           "home": 1,
           "away": 0,
-          "prob": 13.2
+          "prob": 13.1
         },
         {
           "home": 2,
@@ -3684,7 +3744,7 @@
             {
               "home": 3,
               "away": 0,
-              "obj": 3.0
+              "obj": 3.01
             }
           ]
         }
@@ -3700,7 +3760,7 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 1.17,
+      "xg_home": 1.18,
       "xg_away": 0.73,
       "odds": {
         "home": 2.3,
@@ -3713,7 +3773,7 @@
           "side": "home",
           "model_prob": 46.0,
           "devig_prob": 41.6,
-          "edge": 4.4,
+          "edge": 4.5,
           "odds": 2.3,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -3721,9 +3781,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 32.5,
+          "model_prob": 32.4,
           "devig_prob": 26.9,
-          "edge": 5.6,
+          "edge": 5.5,
           "odds": 3.5,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -3731,7 +3791,7 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 21.5,
+          "model_prob": 21.6,
           "devig_prob": 31.6,
           "edge": -10.0,
           "odds": 3.0,
@@ -3749,7 +3809,7 @@
         {
           "home": 0,
           "away": 0,
-          "prob": 16.3
+          "prob": 16.2
         },
         {
           "home": 1,
@@ -3759,7 +3819,7 @@
         {
           "home": 0,
           "away": 1,
-          "prob": 10.5
+          "prob": 10.4
         },
         {
           "home": 2,
@@ -3772,7 +3832,7 @@
         "balanced": {
           "pick_home": 1,
           "pick_away": 0,
-          "e_pts": 2.22,
+          "e_pts": 2.23,
           "sd": 1.83,
           "e_tie": 0.85,
           "objective": 3.66,
@@ -3785,27 +3845,27 @@
             {
               "home": 2,
               "away": 0,
-              "obj": 3.5
+              "obj": 3.51
             },
             {
               "home": 3,
               "away": 0,
-              "obj": 3.27
+              "obj": 3.28
             }
           ]
         },
         "aggressive": {
           "pick_home": 1,
           "pick_away": 0,
-          "e_pts": 2.22,
+          "e_pts": 2.23,
           "sd": 1.83,
           "e_tie": 0.85,
-          "objective": 4.21,
+          "objective": 4.22,
           "alternatives": [
             {
               "home": 1,
               "away": 0,
-              "obj": 4.21
+              "obj": 4.22
             },
             {
               "home": 2,
@@ -3822,7 +3882,7 @@
         "defensive": {
           "pick_home": 1,
           "pick_away": 0,
-          "e_pts": 2.22,
+          "e_pts": 2.23,
           "sd": 1.83,
           "e_tie": 0.85,
           "objective": 2.48,
@@ -3840,7 +3900,7 @@
             {
               "home": 3,
               "away": 0,
-              "obj": 2.11
+              "obj": 2.12
             }
           ]
         }
@@ -3856,8 +3916,8 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 0.76,
-      "xg_away": 1.58,
+      "xg_home": 0.77,
+      "xg_away": 1.57,
       "odds": {
         "away": 1.45,
         "home": 7.5,
@@ -3867,9 +3927,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 16.8,
+          "model_prob": 17.2,
           "devig_prob": 11.8,
-          "edge": 5.0,
+          "edge": 5.4,
           "odds": 7.5,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -3877,9 +3937,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 26.2,
+          "model_prob": 26.4,
           "devig_prob": 21.6,
-          "edge": 4.6,
+          "edge": 4.8,
           "odds": 4.3,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -3887,9 +3947,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 57.0,
+          "model_prob": 56.4,
           "devig_prob": 66.7,
-          "edge": -9.7,
+          "edge": -10.2,
           "odds": 1.45,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -3903,13 +3963,13 @@
           "prob": 15.6
         },
         {
-          "home": 0,
-          "away": 2,
-          "prob": 11.7
-        },
-        {
           "home": 1,
           "away": 1,
+          "prob": 11.6
+        },
+        {
+          "home": 0,
+          "away": 2,
           "prob": 11.5
         },
         {
@@ -3920,7 +3980,7 @@
         {
           "home": 1,
           "away": 2,
-          "prob": 9.3
+          "prob": 9.2
         }
       ],
       "live_scores": null,
@@ -3928,75 +3988,75 @@
         "balanced": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 2.5,
+          "e_pts": 2.48,
           "sd": 1.76,
           "e_tie": 0.79,
-          "objective": 3.87,
+          "objective": 3.85,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 3.87
+              "obj": 3.85
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 3.86
+              "obj": 3.84
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 3.66
+              "obj": 3.64
             }
           ]
         },
         "aggressive": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 2.43,
+          "e_pts": 2.41,
           "sd": 1.9,
           "e_tie": 0.72,
-          "objective": 4.43,
+          "objective": 4.41,
           "alternatives": [
             {
               "home": 0,
               "away": 2,
-              "obj": 4.43
+              "obj": 4.41
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 4.4
+              "obj": 4.38
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 4.22
+              "obj": 4.2
             }
           ]
         },
         "defensive": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 2.5,
+          "e_pts": 2.48,
           "sd": 1.76,
           "e_tie": 0.79,
-          "objective": 2.74,
+          "objective": 2.72,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 2.74
+              "obj": 2.72
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 2.65
+              "obj": 2.63
             },
             {
               "home": 1,
               "away": 2,
-              "obj": 2.51
+              "obj": 2.49
             }
           ]
         }
@@ -4012,8 +4072,8 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 0.7,
-      "xg_away": 2.36,
+      "xg_home": 0.71,
+      "xg_away": 2.35,
       "odds": {
         "away": 1.23,
         "home": 15.0,
@@ -4023,9 +4083,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 8.4,
+          "model_prob": 8.6,
           "devig_prob": 6.0,
-          "edge": 2.5,
+          "edge": 2.6,
           "odds": 15.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -4033,9 +4093,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 16.5,
+          "model_prob": 16.7,
           "devig_prob": 13.9,
-          "edge": 2.6,
+          "edge": 2.7,
           "odds": 6.8,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -4043,9 +4103,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 75.0,
+          "model_prob": 74.7,
           "devig_prob": 80.1,
-          "edge": -5.1,
+          "edge": -5.4,
           "odds": 1.23,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -4056,7 +4116,7 @@
         {
           "home": 0,
           "away": 2,
-          "prob": 13.2
+          "prob": 13.1
         },
         {
           "home": 0,
@@ -4066,12 +4126,12 @@
         {
           "home": 0,
           "away": 3,
-          "prob": 10.0
+          "prob": 9.9
         },
         {
           "home": 1,
           "away": 2,
-          "prob": 9.1
+          "prob": 9.2
         },
         {
           "home": 1,
@@ -4084,75 +4144,75 @@
         "balanced": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 3.01,
-          "sd": 1.65,
+          "e_pts": 3.0,
+          "sd": 1.66,
           "e_tie": 0.76,
-          "objective": 4.3,
+          "objective": 4.29,
           "alternatives": [
             {
               "home": 0,
               "away": 2,
-              "obj": 4.3
+              "obj": 4.29
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 4.24
+              "obj": 4.23
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 4.16
+              "obj": 4.15
             }
           ]
         },
         "aggressive": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 3.01,
-          "sd": 1.65,
+          "e_pts": 3.0,
+          "sd": 1.66,
           "e_tie": 0.76,
-          "objective": 4.8,
+          "objective": 4.79,
           "alternatives": [
             {
               "home": 0,
               "away": 2,
-              "obj": 4.8
+              "obj": 4.79
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 4.74
+              "obj": 4.73
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 4.61
+              "obj": 4.6
             }
           ]
         },
         "defensive": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 3.01,
-          "sd": 1.65,
+          "e_pts": 3.0,
+          "sd": 1.66,
           "e_tie": 0.76,
-          "objective": 3.24,
+          "objective": 3.23,
           "alternatives": [
             {
               "home": 0,
               "away": 2,
-              "obj": 3.24
+              "obj": 3.23
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 3.18
+              "obj": 3.17
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 3.16
+              "obj": 3.15
             }
           ]
         }
@@ -4168,20 +4228,20 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 1.09,
+      "xg_home": 1.1,
       "xg_away": 0.86,
       "odds": {
         "home": 2.39,
         "away": 3.63,
-        "draw": 2.88
+        "draw": 2.74
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 39.9,
-          "devig_prob": 40.4,
-          "edge": -0.5,
+          "model_prob": 40.0,
+          "devig_prob": 39.8,
+          "edge": 0.2,
           "odds": 2.39,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -4189,10 +4249,10 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 32.8,
-          "devig_prob": 33.4,
-          "edge": -0.6,
-          "odds": 2.88,
+          "model_prob": 32.7,
+          "devig_prob": 34.5,
+          "edge": -1.8,
+          "odds": 2.74,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
@@ -4200,8 +4260,8 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 27.3,
-          "devig_prob": 26.3,
-          "edge": 1.0,
+          "devig_prob": 25.7,
+          "edge": 1.6,
           "odds": 3.63,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -4217,7 +4277,7 @@
         {
           "home": 0,
           "away": 0,
-          "prob": 15.4
+          "prob": 15.3
         },
         {
           "home": 1,
@@ -4227,7 +4287,7 @@
         {
           "home": 0,
           "away": 1,
-          "prob": 12.0
+          "prob": 11.9
         },
         {
           "home": 2,
@@ -4253,7 +4313,7 @@
             {
               "home": 2,
               "away": 0,
-              "obj": 3.2
+              "obj": 3.21
             },
             {
               "home": 0,
@@ -4278,12 +4338,12 @@
             {
               "home": 2,
               "away": 0,
-              "obj": 3.77
+              "obj": 3.78
             },
             {
               "home": 0,
               "away": 0,
-              "obj": 3.56
+              "obj": 3.55
             }
           ]
         },
@@ -4308,7 +4368,7 @@
             {
               "home": 0,
               "away": 0,
-              "obj": 1.97
+              "obj": 1.96
             }
           ]
         }
@@ -4324,7 +4384,7 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 2.1,
+      "xg_home": 2.09,
       "xg_away": 0.83,
       "odds": {
         "home": 1.6,
@@ -4335,9 +4395,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 67.2,
+          "model_prob": 67.0,
           "devig_prob": 60.3,
-          "edge": 6.9,
+          "edge": 6.6,
           "odds": 1.6,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -4355,9 +4415,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 12.8,
+          "model_prob": 12.9,
           "devig_prob": 15.1,
-          "edge": -2.3,
+          "edge": -2.2,
           "odds": 6.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -4383,7 +4443,7 @@
         {
           "home": 1,
           "away": 1,
-          "prob": 9.2
+          "prob": 9.3
         },
         {
           "home": 3,
@@ -4396,15 +4456,15 @@
         "balanced": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 2.72,
-          "sd": 1.77,
+          "e_pts": 2.71,
+          "sd": 1.78,
           "e_tie": 0.71,
-          "objective": 4.07,
+          "objective": 4.06,
           "alternatives": [
             {
               "home": 2,
               "away": 0,
-              "obj": 4.07
+              "obj": 4.06
             },
             {
               "home": 3,
@@ -4414,15 +4474,15 @@
             {
               "home": 1,
               "away": 0,
-              "obj": 3.96
+              "obj": 3.95
             }
           ]
         },
         "aggressive": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 2.72,
-          "sd": 1.77,
+          "e_pts": 2.71,
+          "sd": 1.78,
           "e_tie": 0.71,
           "objective": 4.6,
           "alternatives": [
@@ -4434,7 +4494,7 @@
             {
               "home": 3,
               "away": 0,
-              "obj": 4.5
+              "obj": 4.49
             },
             {
               "home": 1,
@@ -4446,8 +4506,8 @@
         "defensive": {
           "pick_home": 2,
           "pick_away": 0,
-          "e_pts": 2.72,
-          "sd": 1.77,
+          "e_pts": 2.71,
+          "sd": 1.78,
           "e_tie": 0.71,
           "objective": 2.93,
           "alternatives": [
@@ -4459,12 +4519,12 @@
             {
               "home": 1,
               "away": 0,
-              "obj": 2.92
+              "obj": 2.91
             },
             {
               "home": 2,
               "away": 1,
-              "obj": 2.84
+              "obj": 2.83
             }
           ]
         }
@@ -4481,7 +4541,7 @@
       "actual_home": null,
       "actual_away": null,
       "xg_home": 0.65,
-      "xg_away": 2.68,
+      "xg_away": 2.66,
       "odds": {
         "away": 1.22,
         "home": 10.5,
@@ -4491,9 +4551,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 5.9,
+          "model_prob": 6.0,
           "devig_prob": 8.1,
-          "edge": -2.2,
+          "edge": -2.1,
           "odds": 10.5,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -4501,9 +4561,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 13.1,
+          "model_prob": 13.3,
           "devig_prob": 12.4,
-          "edge": 0.8,
+          "edge": 1.0,
           "odds": 7.2,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -4511,9 +4571,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 81.0,
+          "model_prob": 80.7,
           "devig_prob": 79.6,
-          "edge": 1.4,
+          "edge": 1.1,
           "odds": 1.22,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -4529,12 +4589,12 @@
         {
           "home": 0,
           "away": 3,
-          "prob": 11.4
+          "prob": 11.3
         },
         {
           "home": 0,
           "away": 1,
-          "prob": 10.2
+          "prob": 10.3
         },
         {
           "home": 1,
@@ -4552,8 +4612,8 @@
         "balanced": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 3.2,
-          "sd": 1.51,
+          "e_pts": 3.19,
+          "sd": 1.52,
           "e_tie": 0.77,
           "objective": 4.41,
           "alternatives": [
@@ -4565,62 +4625,62 @@
             {
               "home": 0,
               "away": 3,
-              "obj": 4.4
+              "obj": 4.39
             },
             {
               "home": 0,
               "away": 4,
-              "obj": 4.28
+              "obj": 4.27
             }
           ]
         },
         "aggressive": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 3.2,
-          "sd": 1.51,
+          "e_pts": 3.19,
+          "sd": 1.52,
           "e_tie": 0.77,
-          "objective": 4.87,
+          "objective": 4.86,
           "alternatives": [
             {
               "home": 0,
               "away": 2,
-              "obj": 4.87
-            },
-            {
-              "home": 0,
-              "away": 3,
               "obj": 4.86
             },
             {
               "home": 0,
+              "away": 3,
+              "obj": 4.85
+            },
+            {
+              "home": 0,
               "away": 4,
-              "obj": 4.73
+              "obj": 4.72
             }
           ]
         },
         "defensive": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 3.2,
-          "sd": 1.51,
+          "e_pts": 3.19,
+          "sd": 1.52,
           "e_tie": 0.77,
-          "objective": 3.43,
+          "objective": 3.42,
           "alternatives": [
             {
               "home": 0,
               "away": 2,
-              "obj": 3.43
+              "obj": 3.42
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 3.4
+              "obj": 3.38
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 3.35
+              "obj": 3.34
             }
           ]
         }
@@ -4636,40 +4696,40 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 1.82,
-      "xg_away": 1.46,
+      "xg_home": 1.84,
+      "xg_away": 1.45,
       "odds": {
-        "home": 3.65,
+        "home": 3.7,
         "away": 2.08,
-        "draw": 3.5
+        "draw": 3.4
       },
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 45.9,
-          "devig_prob": 26.1,
-          "edge": 19.8,
-          "odds": 3.65,
+          "model_prob": 46.7,
+          "devig_prob": 25.6,
+          "edge": 21.1,
+          "odds": 3.7,
           "pick": "BET",
           "confidence": "ALTA"
         },
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 23.4,
-          "devig_prob": 27.3,
-          "edge": -3.8,
-          "odds": 3.5,
+          "model_prob": 23.3,
+          "devig_prob": 28.0,
+          "edge": -4.6,
+          "odds": 3.4,
           "pick": "SKIP",
           "confidence": "MEDIA"
         },
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 30.7,
-          "devig_prob": 46.6,
-          "edge": -15.9,
+          "model_prob": 29.9,
+          "devig_prob": 46.4,
+          "edge": -16.5,
           "odds": 2.08,
           "pick": "FADE",
           "confidence": "MEDIA"
@@ -4678,12 +4738,12 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 19.8,
-        "odds": 3.65,
+        "edge": 21.1,
+        "odds": 3.7,
         "pick": "BET",
         "confidence_band": "ALTA",
-        "model_prob": 45.9,
-        "devig_prob": 26.1,
+        "model_prob": 46.7,
+        "devig_prob": 25.6,
         "description_es": "Colombia gana el partido",
         "description_en": "Colombia wins the match",
         "is_compound": false
@@ -4701,18 +4761,18 @@
         },
         {
           "home": 1,
-          "away": 2,
+          "away": 0,
           "prob": 7.2
         },
         {
           "home": 1,
-          "away": 0,
+          "away": 2,
           "prob": 7.1
         },
         {
           "home": 2,
           "away": 2,
-          "prob": 6.7
+          "prob": 6.6
         }
       ],
       "live_scores": null,
@@ -4720,75 +4780,75 @@
         "balanced": {
           "pick_home": 2,
           "pick_away": 1,
-          "e_pts": 1.98,
+          "e_pts": 2.01,
           "sd": 1.73,
           "e_tie": 0.61,
-          "objective": 3.26,
+          "objective": 3.29,
           "alternatives": [
             {
               "home": 2,
               "away": 1,
-              "obj": 3.26
+              "obj": 3.29
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 3.16
+              "obj": 3.2
             },
             {
               "home": 3,
               "away": 1,
-              "obj": 3.13
+              "obj": 3.16
             }
           ]
         },
         "aggressive": {
           "pick_home": 2,
           "pick_away": 1,
-          "e_pts": 1.98,
+          "e_pts": 2.01,
           "sd": 1.73,
           "e_tie": 0.61,
-          "objective": 3.78,
+          "objective": 3.81,
           "alternatives": [
             {
               "home": 2,
               "away": 1,
-              "obj": 3.78
+              "obj": 3.81
             },
             {
               "home": 2,
               "away": 0,
-              "obj": 3.71
+              "obj": 3.74
             },
             {
               "home": 3,
               "away": 1,
-              "obj": 3.66
+              "obj": 3.69
             }
           ]
         },
         "defensive": {
           "pick_home": 2,
           "pick_away": 1,
-          "e_pts": 1.98,
+          "e_pts": 2.01,
           "sd": 1.73,
           "e_tie": 0.61,
-          "objective": 2.17,
+          "objective": 2.19,
           "alternatives": [
             {
               "home": 2,
               "away": 1,
-              "obj": 2.17
+              "obj": 2.19
             },
             {
               "home": 1,
               "away": 0,
-              "obj": 2.06
+              "obj": 2.09
             },
             {
               "home": 3,
               "away": 1,
-              "obj": 2.03
+              "obj": 2.06
             }
           ]
         }
@@ -4819,7 +4879,7 @@
           "side": "home",
           "model_prob": 43.5,
           "devig_prob": 46.5,
-          "edge": -2.9,
+          "edge": -3.0,
           "odds": 2.1,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -4829,7 +4889,7 @@
           "side": "draw",
           "model_prob": 37.6,
           "devig_prob": 26.8,
-          "edge": 10.9,
+          "edge": 10.8,
           "odds": 3.6,
           "pick": "BET",
           "confidence": "ALTA"
@@ -4837,7 +4897,7 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 18.8,
+          "model_prob": 18.9,
           "devig_prob": 26.8,
           "edge": -7.9,
           "odds": 3.6,
@@ -4994,8 +5054,8 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 1.18,
-      "xg_away": 1.42,
+      "xg_home": 1.26,
+      "xg_away": 1.38,
       "odds": {
         "home": 2.75,
         "away": 2.35,
@@ -5005,9 +5065,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 30.5,
+          "model_prob": 33.7,
           "devig_prob": 30.7,
-          "edge": -0.2,
+          "edge": 3.0,
           "odds": 2.75,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -5015,7 +5075,7 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 27.2,
+          "model_prob": 27.1,
           "devig_prob": 32.7,
           "edge": -5.5,
           "odds": 2.6,
@@ -5025,9 +5085,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 42.3,
+          "model_prob": 39.2,
           "devig_prob": 36.6,
-          "edge": 5.6,
+          "edge": 2.6,
           "odds": 2.35,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -5043,22 +5103,22 @@
         {
           "home": 0,
           "away": 1,
-          "prob": 10.8
+          "prob": 10.0
         },
         {
           "home": 1,
           "away": 0,
-          "prob": 8.8
+          "prob": 9.2
         },
         {
           "home": 1,
           "away": 2,
-          "prob": 8.8
+          "prob": 8.5
         },
         {
           "home": 0,
           "away": 0,
-          "prob": 8.1
+          "prob": 7.8
         }
       ],
       "live_scores": null,
@@ -5066,75 +5126,75 @@
         "balanced": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 1.92,
-          "sd": 1.73,
-          "e_tie": 0.65,
-          "objective": 3.22,
+          "e_pts": 1.81,
+          "sd": 1.71,
+          "e_tie": 0.63,
+          "objective": 3.09,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 3.22
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 3.16
+              "obj": 3.09
             },
             {
               "home": 1,
               "away": 2,
-              "obj": 3.14
+              "obj": 3.03
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 3.02
             }
           ]
         },
         "aggressive": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 1.92,
-          "sd": 1.73,
-          "e_tie": 0.65,
-          "objective": 3.74,
+          "e_pts": 1.81,
+          "sd": 1.71,
+          "e_tie": 0.63,
+          "objective": 3.6,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 3.74
+              "obj": 3.6
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 3.73
+              "obj": 3.57
             },
             {
               "home": 1,
               "away": 2,
-              "obj": 3.66
+              "obj": 3.54
             }
           ]
         },
         "defensive": {
           "pick_home": 0,
           "pick_away": 1,
-          "e_pts": 1.92,
-          "sd": 1.73,
-          "e_tie": 0.65,
-          "objective": 2.11,
+          "e_pts": 1.81,
+          "sd": 1.71,
+          "e_tie": 0.63,
+          "objective": 1.99,
           "alternatives": [
             {
               "home": 0,
               "away": 1,
-              "obj": 2.11
+              "obj": 1.99
             },
             {
               "home": 1,
               "away": 2,
-              "obj": 2.06
+              "obj": 1.95
             },
             {
               "home": 0,
               "away": 2,
-              "obj": 1.99
+              "obj": 1.85
             }
           ]
         }
@@ -5150,8 +5210,8 @@
       "is_live": false,
       "actual_home": null,
       "actual_away": null,
-      "xg_home": 0.51,
-      "xg_away": 2.82,
+      "xg_home": 0.46,
+      "xg_away": 2.92,
       "odds": {
         "away": 1.2,
         "home": 13.0,
@@ -5161,9 +5221,9 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 3.7,
+          "model_prob": 3.0,
           "devig_prob": 6.3,
-          "edge": -2.6,
+          "edge": -3.3,
           "odds": 13.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -5171,9 +5231,9 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 10.8,
+          "model_prob": 9.6,
           "devig_prob": 12.8,
-          "edge": -2.0,
+          "edge": -3.1,
           "odds": 7.0,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -5181,9 +5241,9 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 85.5,
+          "model_prob": 87.4,
           "devig_prob": 80.9,
-          "edge": 4.6,
+          "edge": 6.5,
           "odds": 1.2,
           "pick": "SKIP",
           "confidence": "MEDIA"
@@ -5194,27 +5254,753 @@
         {
           "home": 0,
           "away": 2,
-          "prob": 14.6
+          "prob": 14.9
         },
         {
           "home": 0,
           "away": 3,
-          "prob": 13.3
+          "prob": 14.0
         },
         {
           "home": 0,
           "away": 1,
-          "prob": 10.6
+          "prob": 10.5
         },
         {
           "home": 0,
           "away": 4,
-          "prob": 9.1
+          "prob": 9.9
+        },
+        {
+          "home": 1,
+          "away": 3,
+          "prob": 6.6
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 0,
+          "pick_away": 3,
+          "e_pts": 3.47,
+          "sd": 1.34,
+          "e_tie": 0.85,
+          "objective": 4.62,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 3,
+              "obj": 4.62
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 4.62
+            },
+            {
+              "home": 0,
+              "away": 4,
+              "obj": 4.52
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 0,
+          "pick_away": 3,
+          "e_pts": 3.47,
+          "sd": 1.34,
+          "e_tie": 0.85,
+          "objective": 5.03,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 3,
+              "obj": 5.03
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 5.01
+            },
+            {
+              "home": 0,
+              "away": 4,
+              "obj": 4.92
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 0,
+          "pick_away": 2,
+          "e_pts": 3.48,
+          "sd": 1.32,
+          "e_tie": 0.86,
+          "objective": 3.74,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 3.74
+            },
+            {
+              "home": 0,
+              "away": 3,
+              "obj": 3.73
+            },
+            {
+              "home": 0,
+              "away": 4,
+              "obj": 3.65
+            }
+          ]
+        }
+      },
+      "fixture_confidence": "BAJA"
+    },
+    {
+      "id": "ef0f74a991d3e35798ae5af77667bce1",
+      "home": "Brazil",
+      "away": "Haiti",
+      "commence_time": "2026-06-20T00:32:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 3,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 12.5
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 11.7
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 10.0
+        },
+        {
+          "home": 5,
+          "away": 0,
+          "prob": 8.7
+        },
+        {
+          "home": 3,
+          "away": 1,
+          "prob": 6.1
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 3,
+          "pick_away": 0,
+          "e_pts": 3.6,
+          "sd": 1.09,
+          "e_tie": 0.81,
+          "objective": 4.58,
+          "alternatives": [
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.58
+            },
+            {
+              "home": 4,
+              "away": 0,
+              "obj": 4.57
+            },
+            {
+              "home": 5,
+              "away": 0,
+              "obj": 4.49
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 3,
+          "pick_away": 0,
+          "e_pts": 3.6,
+          "sd": 1.09,
+          "e_tie": 0.81,
+          "objective": 4.91,
+          "alternatives": [
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.91
+            },
+            {
+              "home": 4,
+              "away": 0,
+              "obj": 4.9
+            },
+            {
+              "home": 5,
+              "away": 0,
+              "obj": 4.82
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 3,
+          "pick_away": 0,
+          "e_pts": 3.6,
+          "sd": 1.09,
+          "e_tie": 0.81,
+          "objective": 3.85,
+          "alternatives": [
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.85
+            },
+            {
+              "home": 4,
+              "away": 0,
+              "obj": 3.84
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.79
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "f955d4b3395ce6e3b5ac1031ca52ca4e",
+      "home": "Turkey",
+      "away": "Paraguay",
+      "commence_time": "2026-06-20T03:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 12.3
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 11.4
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.2
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 8.3
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 8.1
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.04,
+          "sd": 1.74,
+          "e_tie": 0.67,
+          "objective": 3.35,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.35
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.32
+            },
+            {
+              "home": 2,
+              "away": 1,
+              "obj": 3.27
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 1.95,
+          "sd": 1.89,
+          "e_tie": 0.58,
+          "objective": 3.89,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.89
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.87
+            },
+            {
+              "home": 2,
+              "away": 1,
+              "obj": 3.78
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.04,
+          "sd": 1.74,
+          "e_tie": 0.67,
+          "objective": 2.24,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 2.24
+            },
+            {
+              "home": 2,
+              "away": 1,
+              "obj": 2.17
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 2.13
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "4f0c518545b0096c68326daf25bffc1e",
+      "home": "Netherlands",
+      "away": "Sweden",
+      "commence_time": "2026-06-20T17:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 5,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 3,
+          "away": 1,
+          "prob": 6.9
+        },
+        {
+          "home": 4,
+          "away": 1,
+          "prob": 6.8
+        },
+        {
+          "home": 5,
+          "away": 1,
+          "prob": 5.4
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 5.2
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 5.2
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 4,
+          "pick_away": 1,
+          "e_pts": 3.04,
+          "sd": 1.4,
+          "e_tie": 0.55,
+          "objective": 4.1,
+          "alternatives": [
+            {
+              "home": 4,
+              "away": 1,
+              "obj": 4.1
+            },
+            {
+              "home": 3,
+              "away": 1,
+              "obj": 4.07
+            },
+            {
+              "home": 5,
+              "away": 1,
+              "obj": 4.04
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 4,
+          "pick_away": 1,
+          "e_pts": 3.04,
+          "sd": 1.4,
+          "e_tie": 0.55,
+          "objective": 4.52,
+          "alternatives": [
+            {
+              "home": 4,
+              "away": 1,
+              "obj": 4.52
+            },
+            {
+              "home": 3,
+              "away": 1,
+              "obj": 4.48
+            },
+            {
+              "home": 5,
+              "away": 1,
+              "obj": 4.45
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 4,
+          "pick_away": 1,
+          "e_pts": 3.04,
+          "sd": 1.4,
+          "e_tie": 0.55,
+          "objective": 3.21,
+          "alternatives": [
+            {
+              "home": 4,
+              "away": 1,
+              "obj": 3.21
+            },
+            {
+              "home": 3,
+              "away": 1,
+              "obj": 3.21
+            },
+            {
+              "home": 5,
+              "away": 1,
+              "obj": 3.15
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "f1ab0f69832972a329243522ceaa7804",
+      "home": "Germany",
+      "away": "Ivory Coast",
+      "commence_time": "2026-06-20T20:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 1,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 11.8
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 10.5
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.5
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 8.9
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 8.0
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.87,
+          "sd": 1.69,
+          "e_tie": 0.71,
+          "objective": 4.16,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.16
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.1
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.02
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.87,
+          "sd": 1.69,
+          "e_tie": 0.71,
+          "objective": 4.67,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.67
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.62
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.48
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.87,
+          "sd": 1.69,
+          "e_tie": 0.71,
+          "objective": 3.08,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.08
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.03
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.0
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "681895f294b670b4c7b14495dfb583bc",
+      "home": "Ecuador",
+      "away": "Cura\u00e7ao",
+      "commence_time": "2026-06-21T00:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 24.7
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 19.7
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 15.5
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 10.5
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 5.9
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 3.29,
+          "sd": 1.59,
+          "e_tie": 1.08,
+          "objective": 4.67,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.67
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.64
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.44
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 3.29,
+          "sd": 1.59,
+          "e_tie": 1.08,
+          "objective": 5.15,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 5.15
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 5.14
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.92
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 3.29,
+          "sd": 1.59,
+          "e_tie": 1.08,
+          "objective": 3.61,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.61
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.55
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.4
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "dfc5202cf1b8ae002cf952cd04f235b9",
+      "home": "Tunisia",
+      "away": "Japan",
+      "commence_time": "2026-06-21T04:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 4,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 12.8
+        },
+        {
+          "home": 0,
+          "away": 3,
+          "prob": 10.7
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 10.2
         },
         {
           "home": 1,
           "away": 2,
-          "prob": 7.1
+          "prob": 8.7
+        },
+        {
+          "home": 1,
+          "away": 3,
+          "prob": 7.6
         }
       ],
       "live_scores": null,
@@ -5222,80 +6008,685 @@
         "balanced": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 3.4,
-          "sd": 1.38,
-          "e_tie": 0.84,
-          "objective": 4.57,
+          "e_pts": 3.12,
+          "sd": 1.56,
+          "e_tie": 0.75,
+          "objective": 4.35,
           "alternatives": [
             {
               "home": 0,
               "away": 2,
-              "obj": 4.57
+              "obj": 4.35
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 4.56
+              "obj": 4.33
             },
             {
               "home": 0,
               "away": 4,
-              "obj": 4.45
+              "obj": 4.2
             }
           ]
         },
         "aggressive": {
           "pick_home": 0,
-          "pick_away": 3,
-          "e_pts": 3.39,
-          "sd": 1.41,
-          "e_tie": 0.82,
-          "objective": 4.99,
+          "pick_away": 2,
+          "e_pts": 3.12,
+          "sd": 1.56,
+          "e_tie": 0.75,
+          "objective": 4.82,
           "alternatives": [
             {
               "home": 0,
-              "away": 3,
-              "obj": 4.99
+              "away": 2,
+              "obj": 4.82
             },
             {
               "home": 0,
-              "away": 2,
-              "obj": 4.98
+              "away": 3,
+              "obj": 4.8
             },
             {
               "home": 0,
               "away": 4,
-              "obj": 4.87
+              "obj": 4.67
             }
           ]
         },
         "defensive": {
           "pick_home": 0,
           "pick_away": 2,
-          "e_pts": 3.4,
-          "sd": 1.38,
-          "e_tie": 0.84,
-          "objective": 3.65,
+          "e_pts": 3.12,
+          "sd": 1.56,
+          "e_tie": 0.75,
+          "objective": 3.34,
           "alternatives": [
             {
               "home": 0,
               "away": 2,
-              "obj": 3.65
+              "obj": 3.34
             },
             {
               "home": 0,
               "away": 3,
-              "obj": 3.63
+              "obj": 3.3
             },
             {
               "home": 0,
               "away": 1,
-              "obj": 3.56
+              "obj": 3.27
             }
           ]
         }
       },
-      "fixture_confidence": "BAJA"
+      "fixture_confidence": null
+    },
+    {
+      "id": "73529a242e319a86bf3d00ddb4accc37",
+      "home": "Spain",
+      "away": "Saudi Arabia",
+      "commence_time": "2026-06-21T16:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 4,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 14.9
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 13.5
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 12.3
+        },
+        {
+          "home": 5,
+          "away": 0,
+          "prob": 8.2
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 8.1
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 3,
+          "pick_away": 0,
+          "e_pts": 3.66,
+          "sd": 1.14,
+          "e_tie": 0.89,
+          "objective": 4.7,
+          "alternatives": [
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.7
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.65
+            },
+            {
+              "home": 4,
+              "away": 0,
+              "obj": 4.65
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 3,
+          "pick_away": 0,
+          "e_pts": 3.66,
+          "sd": 1.14,
+          "e_tie": 0.89,
+          "objective": 5.04,
+          "alternatives": [
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 5.04
+            },
+            {
+              "home": 4,
+              "away": 0,
+              "obj": 4.98
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.98
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 3,
+          "pick_away": 0,
+          "e_pts": 3.66,
+          "sd": 1.14,
+          "e_tie": 0.89,
+          "objective": 3.93,
+          "alternatives": [
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.93
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.9
+            },
+            {
+              "home": 4,
+              "away": 0,
+              "obj": 3.89
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "5f92f257386ec5bf7c6e2498a21f3a61",
+      "home": "Belgium",
+      "away": "Iran",
+      "commence_time": "2026-06-21T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 14.9
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 11.6
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 11.3
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 9.5
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.4
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.46,
+          "sd": 1.89,
+          "e_tie": 0.72,
+          "objective": 3.87,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.87
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.86
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.69
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 2.46,
+          "sd": 1.89,
+          "e_tie": 0.72,
+          "objective": 4.44,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.44
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.39
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.25
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.51,
+          "sd": 1.74,
+          "e_tie": 0.77,
+          "objective": 2.74,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 2.74
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 2.67
+            },
+            {
+              "home": 2,
+              "away": 1,
+              "obj": 2.55
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "852a3abe6d46820720febc0fedebff9a",
+      "home": "Uruguay",
+      "away": "Cape Verde",
+      "commence_time": "2026-06-21T22:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 2,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 19.3
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 13.8
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 13.4
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 10.5
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 8.4
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.72,
+          "sd": 1.76,
+          "e_tie": 0.9,
+          "objective": 4.13,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.13
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.09
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.88
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.72,
+          "sd": 1.76,
+          "e_tie": 0.9,
+          "objective": 4.66,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.66
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.65
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.42
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.72,
+          "sd": 1.76,
+          "e_tie": 0.9,
+          "objective": 2.99,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 2.99
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 2.88
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 2.72
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "c1ec9a65f4b4cf74477b368a7d6282de",
+      "home": "New Zealand",
+      "away": "Egypt",
+      "commence_time": "2026-06-22T01:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 1,
+      "actual_away": 3,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 15.6
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 11.7
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 11.4
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 10.6
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 9.2
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.47,
+          "sd": 1.76,
+          "e_tie": 0.79,
+          "objective": 3.84,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 3.84
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 3.82
+            },
+            {
+              "home": 0,
+              "away": 3,
+              "obj": 3.62
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 0,
+          "pick_away": 2,
+          "e_pts": 2.39,
+          "sd": 1.9,
+          "e_tie": 0.72,
+          "objective": 4.39,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 4.39
+            },
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 4.37
+            },
+            {
+              "home": 0,
+              "away": 3,
+              "obj": 4.18
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.47,
+          "sd": 1.76,
+          "e_tie": 0.79,
+          "objective": 2.7,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 2.7
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 2.61
+            },
+            {
+              "home": 1,
+              "away": 2,
+              "obj": 2.47
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
+    },
+    {
+      "id": "be6c63f416c67bca1300a98f5b89c3af",
+      "home": "Argentina",
+      "away": "Austria",
+      "commence_time": "2026-06-22T17:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 0,
+      "xg_home": null,
+      "xg_away": null,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 17.1
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 16.9
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 11.1
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 8.6
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 8.0
+        }
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 3.16,
+          "sd": 1.66,
+          "e_tie": 0.89,
+          "objective": 4.52,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.52
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.42
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.39
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 3.16,
+          "sd": 1.66,
+          "e_tie": 0.89,
+          "objective": 5.01,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 5.01
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.88
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.88
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 2,
+          "pick_away": 0,
+          "e_pts": 3.16,
+          "sd": 1.66,
+          "e_tie": 0.89,
+          "objective": 3.43,
+          "alternatives": [
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.43
+            },
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.42
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.32
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null
     },
     {
       "id": "4cd769aa7bae0ad9762bd69b80ef2903",
@@ -5412,1337 +6803,6 @@
               "home": 0,
               "away": 0,
               "obj": 2.26
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "ef0f74a991d3e35798ae5af77667bce1",
-      "home": "Brazil",
-      "away": "Haiti",
-      "commence_time": "2026-06-20T00:32:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 3,
-      "actual_away": 0,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 12.5
-        },
-        {
-          "home": 4,
-          "away": 0,
-          "prob": 11.6
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 10.0
-        },
-        {
-          "home": 5,
-          "away": 0,
-          "prob": 8.7
-        },
-        {
-          "home": 3,
-          "away": 1,
-          "prob": 6.1
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 3,
-          "pick_away": 0,
-          "e_pts": 3.6,
-          "sd": 1.1,
-          "e_tie": 0.81,
-          "objective": 4.58,
-          "alternatives": [
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.58
-            },
-            {
-              "home": 4,
-              "away": 0,
-              "obj": 4.57
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.49
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 3,
-          "pick_away": 0,
-          "e_pts": 3.6,
-          "sd": 1.1,
-          "e_tie": 0.81,
-          "objective": 4.91,
-          "alternatives": [
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.91
-            },
-            {
-              "home": 4,
-              "away": 0,
-              "obj": 4.9
-            },
-            {
-              "home": 5,
-              "away": 0,
-              "obj": 4.81
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 3,
-          "pick_away": 0,
-          "e_pts": 3.6,
-          "sd": 1.1,
-          "e_tie": 0.81,
-          "objective": 3.84,
-          "alternatives": [
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.84
-            },
-            {
-              "home": 4,
-              "away": 0,
-              "obj": 3.83
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.79
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "f955d4b3395ce6e3b5ac1031ca52ca4e",
-      "home": "Turkey",
-      "away": "Paraguay",
-      "commence_time": "2026-06-20T03:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 0,
-      "actual_away": 1,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 12.3
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 11.5
-        },
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 9.2
-        },
-        {
-          "home": 0,
-          "away": 1,
-          "prob": 8.2
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 8.1
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.06,
-          "sd": 1.74,
-          "e_tie": 0.67,
-          "objective": 3.37,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.37
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.35
-            },
-            {
-              "home": 2,
-              "away": 1,
-              "obj": 3.29
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 1.98,
-          "sd": 1.89,
-          "e_tie": 0.59,
-          "objective": 3.91,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.91
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.89
-            },
-            {
-              "home": 2,
-              "away": 1,
-              "obj": 3.8
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.06,
-          "sd": 1.74,
-          "e_tie": 0.67,
-          "objective": 2.26,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 2.26
-            },
-            {
-              "home": 2,
-              "away": 1,
-              "obj": 2.19
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 2.15
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "4f0c518545b0096c68326daf25bffc1e",
-      "home": "Netherlands",
-      "away": "Sweden",
-      "commence_time": "2026-06-20T17:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 5,
-      "actual_away": 1,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 3,
-          "away": 1,
-          "prob": 6.9
-        },
-        {
-          "home": 4,
-          "away": 1,
-          "prob": 6.8
-        },
-        {
-          "home": 5,
-          "away": 1,
-          "prob": 5.4
-        },
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 5.2
-        },
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 5.1
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 4,
-          "pick_away": 1,
-          "e_pts": 3.04,
-          "sd": 1.4,
-          "e_tie": 0.55,
-          "objective": 4.1,
-          "alternatives": [
-            {
-              "home": 4,
-              "away": 1,
-              "obj": 4.1
-            },
-            {
-              "home": 3,
-              "away": 1,
-              "obj": 4.07
-            },
-            {
-              "home": 5,
-              "away": 1,
-              "obj": 4.04
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 4,
-          "pick_away": 1,
-          "e_pts": 3.04,
-          "sd": 1.4,
-          "e_tie": 0.55,
-          "objective": 4.52,
-          "alternatives": [
-            {
-              "home": 4,
-              "away": 1,
-              "obj": 4.52
-            },
-            {
-              "home": 3,
-              "away": 1,
-              "obj": 4.48
-            },
-            {
-              "home": 5,
-              "away": 1,
-              "obj": 4.45
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 4,
-          "pick_away": 1,
-          "e_pts": 3.04,
-          "sd": 1.4,
-          "e_tie": 0.55,
-          "objective": 3.2,
-          "alternatives": [
-            {
-              "home": 4,
-              "away": 1,
-              "obj": 3.2
-            },
-            {
-              "home": 3,
-              "away": 1,
-              "obj": 3.2
-            },
-            {
-              "home": 5,
-              "away": 1,
-              "obj": 3.15
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "f1ab0f69832972a329243522ceaa7804",
-      "home": "Germany",
-      "away": "Ivory Coast",
-      "commence_time": "2026-06-20T20:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 2,
-      "actual_away": 1,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 11.8
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 10.5
-        },
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 9.5
-        },
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 8.9
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 8.0
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.87,
-          "sd": 1.69,
-          "e_tie": 0.71,
-          "objective": 4.17,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.17
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.11
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.02
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.87,
-          "sd": 1.69,
-          "e_tie": 0.71,
-          "objective": 4.68,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.68
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.62
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.48
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.87,
-          "sd": 1.69,
-          "e_tie": 0.71,
-          "objective": 3.09,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.09
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.04
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.01
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "681895f294b670b4c7b14495dfb583bc",
-      "home": "Ecuador",
-      "away": "Cura\u00e7ao",
-      "commence_time": "2026-06-21T00:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 0,
-      "actual_away": 0,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 24.7
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 19.6
-        },
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 15.6
-        },
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 10.3
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 6.0
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 3.28,
-          "sd": 1.59,
-          "e_tie": 1.08,
-          "objective": 4.67,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.67
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.64
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.43
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 3.28,
-          "sd": 1.59,
-          "e_tie": 1.08,
-          "objective": 5.14,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 5.14
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 5.13
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.91
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 3.28,
-          "sd": 1.59,
-          "e_tie": 1.08,
-          "objective": 3.61,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.61
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.54
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.39
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "dfc5202cf1b8ae002cf952cd04f235b9",
-      "home": "Tunisia",
-      "away": "Japan",
-      "commence_time": "2026-06-21T04:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 0,
-      "actual_away": 4,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 0,
-          "away": 2,
-          "prob": 12.8
-        },
-        {
-          "home": 0,
-          "away": 3,
-          "prob": 10.7
-        },
-        {
-          "home": 0,
-          "away": 1,
-          "prob": 10.3
-        },
-        {
-          "home": 1,
-          "away": 2,
-          "prob": 8.7
-        },
-        {
-          "home": 1,
-          "away": 3,
-          "prob": 7.6
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 0,
-          "pick_away": 2,
-          "e_pts": 3.12,
-          "sd": 1.56,
-          "e_tie": 0.75,
-          "objective": 4.35,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 4.35
-            },
-            {
-              "home": 0,
-              "away": 3,
-              "obj": 4.33
-            },
-            {
-              "home": 0,
-              "away": 4,
-              "obj": 4.2
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 0,
-          "pick_away": 2,
-          "e_pts": 3.12,
-          "sd": 1.56,
-          "e_tie": 0.75,
-          "objective": 4.82,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 4.82
-            },
-            {
-              "home": 0,
-              "away": 3,
-              "obj": 4.8
-            },
-            {
-              "home": 0,
-              "away": 4,
-              "obj": 4.67
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 0,
-          "pick_away": 2,
-          "e_pts": 3.12,
-          "sd": 1.56,
-          "e_tie": 0.75,
-          "objective": 3.34,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 3.34
-            },
-            {
-              "home": 0,
-              "away": 3,
-              "obj": 3.3
-            },
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 3.27
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "73529a242e319a86bf3d00ddb4accc37",
-      "home": "Spain",
-      "away": "Saudi Arabia",
-      "commence_time": "2026-06-21T16:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 4,
-      "actual_away": 0,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 14.9
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 13.4
-        },
-        {
-          "home": 4,
-          "away": 0,
-          "prob": 12.4
-        },
-        {
-          "home": 5,
-          "away": 0,
-          "prob": 8.2
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 8.1
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 3,
-          "pick_away": 0,
-          "e_pts": 3.67,
-          "sd": 1.13,
-          "e_tie": 0.89,
-          "objective": 4.7,
-          "alternatives": [
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.7
-            },
-            {
-              "home": 4,
-              "away": 0,
-              "obj": 4.65
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.65
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 3,
-          "pick_away": 0,
-          "e_pts": 3.67,
-          "sd": 1.13,
-          "e_tie": 0.89,
-          "objective": 5.04,
-          "alternatives": [
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 5.04
-            },
-            {
-              "home": 4,
-              "away": 0,
-              "obj": 4.98
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.98
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 3,
-          "pick_away": 0,
-          "e_pts": 3.67,
-          "sd": 1.13,
-          "e_tie": 0.89,
-          "objective": 3.93,
-          "alternatives": [
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.93
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.9
-            },
-            {
-              "home": 4,
-              "away": 0,
-              "obj": 3.89
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "5f92f257386ec5bf7c6e2498a21f3a61",
-      "home": "Belgium",
-      "away": "Iran",
-      "commence_time": "2026-06-21T19:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 0,
-      "actual_away": 0,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 14.9
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 11.7
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 11.2
-        },
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 9.5
-        },
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 9.5
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.46,
-          "sd": 1.88,
-          "e_tie": 0.72,
-          "objective": 3.88,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.88
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.87
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.7
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.46,
-          "sd": 1.88,
-          "e_tie": 0.72,
-          "objective": 4.45,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.45
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.39
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.26
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.52,
-          "sd": 1.74,
-          "e_tie": 0.77,
-          "objective": 2.75,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 2.75
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 2.68
-            },
-            {
-              "home": 2,
-              "away": 1,
-              "obj": 2.55
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "852a3abe6d46820720febc0fedebff9a",
-      "home": "Uruguay",
-      "away": "Cape Verde",
-      "commence_time": "2026-06-21T22:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 2,
-      "actual_away": 2,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 19.3
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 13.7
-        },
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 13.6
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 10.6
-        },
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 8.4
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.71,
-          "sd": 1.76,
-          "e_tie": 0.9,
-          "objective": 4.12,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.12
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.08
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.87
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.71,
-          "sd": 1.76,
-          "e_tie": 0.9,
-          "objective": 4.65,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.65
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.64
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.41
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.71,
-          "sd": 1.76,
-          "e_tie": 0.9,
-          "objective": 2.98,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 2.98
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 2.87
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 2.71
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "c1ec9a65f4b4cf74477b368a7d6282de",
-      "home": "New Zealand",
-      "away": "Egypt",
-      "commence_time": "2026-06-22T01:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 1,
-      "actual_away": 3,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 0,
-          "away": 1,
-          "prob": 15.7
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 11.7
-        },
-        {
-          "home": 0,
-          "away": 2,
-          "prob": 11.4
-        },
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 10.7
-        },
-        {
-          "home": 1,
-          "away": 2,
-          "prob": 9.2
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.47,
-          "sd": 1.76,
-          "e_tie": 0.79,
-          "objective": 3.84,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 3.84
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 3.82
-            },
-            {
-              "home": 0,
-              "away": 3,
-              "obj": 3.62
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 0,
-          "pick_away": 2,
-          "e_pts": 2.39,
-          "sd": 1.9,
-          "e_tie": 0.72,
-          "objective": 4.39,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 4.39
-            },
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 4.37
-            },
-            {
-              "home": 0,
-              "away": 3,
-              "obj": 4.18
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.47,
-          "sd": 1.76,
-          "e_tie": 0.79,
-          "objective": 2.71,
-          "alternatives": [
-            {
-              "home": 0,
-              "away": 1,
-              "obj": 2.71
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 2.61
-            },
-            {
-              "home": 1,
-              "away": 2,
-              "obj": 2.47
-            }
-          ]
-        }
-      },
-      "fixture_confidence": null
-    },
-    {
-      "id": "be6c63f416c67bca1300a98f5b89c3af",
-      "home": "Argentina",
-      "away": "Austria",
-      "commence_time": "2026-06-22T17:00:00Z",
-      "completed": true,
-      "is_live": false,
-      "actual_home": 2,
-      "actual_away": 0,
-      "xg_home": null,
-      "xg_away": null,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
-      "top_scores": [
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 17.6
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 15.7
-        },
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 9.9
-        },
-        {
-          "home": 3,
-          "away": 0,
-          "prob": 9.3
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 8.7
-        }
-      ],
-      "live_scores": null,
-      "quiniela": {
-        "balanced": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.97,
-          "sd": 1.76,
-          "e_tie": 0.86,
-          "objective": 4.36,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.36
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.31
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.2
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 2,
-          "pick_away": 0,
-          "e_pts": 2.97,
-          "sd": 1.76,
-          "e_tie": 0.86,
-          "objective": 4.89,
-          "alternatives": [
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 4.89
-            },
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.8
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 4.72
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.98,
-          "sd": 1.62,
-          "e_tie": 0.88,
-          "objective": 3.25,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.25
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.22
-            },
-            {
-              "home": 3,
-              "away": 0,
-              "obj": 3.09
             }
           ]
         }
