@@ -77,7 +77,7 @@ def fetch_odds(api_key: str) -> list[dict]:
     return r.json()
 
 
-def fetch_scores(api_key: str, days_from: int = 15) -> list[dict]:
+def fetch_scores(api_key: str, days_from: int = 3) -> list[dict]:
     r = requests.get(
         f"{BASE}/sports/{SPORT}/scores",
         params={"apiKey": api_key, "daysFrom": days_from},
@@ -497,6 +497,12 @@ def generate():
             "quiniela": quiniela,
             "fixture_confidence": None,
         })
+
+    current_ids = {f["id"] for f in fixtures}
+    if existing_predictions:
+        for old_fx in existing_predictions.get("fixtures", []):
+            if old_fx.get("completed") and old_fx["id"] not in current_ids:
+                fixtures.append(old_fx)
 
     now = datetime.now(timezone.utc)
     completed_fixtures = [f for f in fixtures if f["completed"]]
