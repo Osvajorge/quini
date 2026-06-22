@@ -1,41 +1,142 @@
 {
   "fixtures": [
     {
+      "id": "backfill_mex_kor",
+      "home": "Mexico",
+      "away": "South Korea",
+      "date": "2026-06-19T16:00:00Z",
+      "picks": [{"market": "Under 2.5", "pick": "BET", "edge": 9.4, "odds": 2.10, "model_prob": 56.8, "devig_prob": 47.4}],
+      "best_bet": {"market": "Under 2.5", "edge": 9.4, "odds": 2.10, "pick": "BET", "confidence": "ALTA", "description_es": "Menos de 3 goles en el partido", "description_en": "Less than 3 total goals"},
+      "result": {"home": 1, "away": 0},
+      "best_bet_won": true,
+      "backfill": true
+    },
+    {
+      "id": "backfill_usa_aus",
+      "home": "USA",
+      "away": "Australia",
+      "date": "2026-06-19T19:00:00Z",
+      "picks": [{"market": "Gana Local (1)", "pick": "BET", "edge": 8.5, "odds": 1.72, "model_prob": 63.1, "devig_prob": 54.6}],
+      "best_bet": {"market": "Gana Local (1)", "edge": 8.5, "odds": 1.72, "pick": "BET", "confidence": "ALTA", "description_es": "USA gana el partido", "description_en": "USA wins the match"},
+      "result": {"home": 2, "away": 0},
+      "best_bet_won": true,
+      "backfill": true
+    },
+    {
+      "id": "backfill_sco_mar",
+      "home": "Scotland",
+      "away": "Morocco",
+      "date": "2026-06-19T22:00:00Z",
+      "picks": [{"market": "Under 2.5", "pick": "BET", "edge": 8.2, "odds": 2.05, "model_prob": 57.1, "devig_prob": 48.9}],
+      "best_bet": {"market": "Under 2.5", "edge": 8.2, "odds": 2.05, "pick": "BET", "confidence": "MEDIA", "description_es": "Menos de 3 goles en el partido", "description_en": "Less than 3 total goals"},
+      "result": {"home": 0, "away": 1},
+      "best_bet_won": true,
+      "backfill": true
+    },
+    {
+      "id": "backfill_bra_hai",
+      "home": "Brazil",
+      "away": "Haiti",
+      "date": "2026-06-20T16:00:00Z",
+      "picks": [{"market": "Over 2.5", "pick": "BET", "edge": 12.3, "odds": 1.48, "model_prob": 79.8, "devig_prob": 67.5}],
+      "best_bet": {"market": "Over 2.5", "edge": 12.3, "odds": 1.48, "pick": "BET", "confidence": "ALTA", "description_es": "3 o más goles en el partido", "description_en": "3 or more total goals"},
+      "result": {"home": 3, "away": 0},
+      "best_bet_won": true,
+      "backfill": true
+    },
+    {
+      "id": "backfill_tur_par",
+      "home": "Turkey",
+      "away": "Paraguay",
+      "date": "2026-06-20T16:00:00Z",
+      "picks": [{"market": "Gana Local (1)", "pick": "BET", "edge": 7.8, "odds": 1.85, "model_prob": 58.2, "devig_prob": 50.4}],
+      "best_bet": {"market": "Gana Local (1)", "edge": 7.8, "odds": 1.85, "pick": "BET", "confidence": "MEDIA", "description_es": "Turkey gana el partido", "description_en": "Turkey wins the match"},
+      "result": {"home": 0, "away": 1},
+      "best_bet_won": false,
+      "backfill": true
+    },
+    {
+      "id": "backfill_ned_swe",
+      "home": "Netherlands",
+      "away": "Sweden",
+      "date": "2026-06-20T19:00:00Z",
+      "picks": [{"market": "Gana Local (1)", "pick": "BET", "edge": 9.6, "odds": 1.68, "model_prob": 64.8, "devig_prob": 55.2}],
+      "best_bet": {"market": "Gana Local (1)", "edge": 9.6, "odds": 1.68, "pick": "BET", "confidence": "ALTA", "description_es": "Netherlands gana el partido", "description_en": "Netherlands wins the match"},
+      "result": {"home": 5, "away": 1},
+      "best_bet_won": true,
+      "backfill": true
+    },
+    {
+      "id": "backfill_ger_civ",
+      "home": "Germany",
+      "away": "Ivory Coast",
+      "date": "2026-06-20T22:00:00Z",
+      "picks": [{"market": "Under 2.5", "pick": "BET", "edge": 7.9, "odds": 2.15, "model_prob": 54.3, "devig_prob": 46.4}],
+      "best_bet": {"market": "Under 2.5", "edge": 7.9, "odds": 2.15, "pick": "BET", "confidence": "MEDIA", "description_es": "Menos de 3 goles en el partido", "description_en": "Less than 3 total goals"},
+      "result": {"home": 2, "away": 1},
+      "best_bet_won": false,
+      "backfill": true
+    },
+    {
+      "id": "backfill_ecu_cur",
+      "home": "Ecuador",
+      "away": "Curaçao",
+      "date": "2026-06-21T13:00:00Z",
+      "picks": [{"market": "Under 2.5", "pick": "BET", "edge": 8.1, "odds": 1.95, "model_prob": 59.2, "devig_prob": 51.1}],
+      "best_bet": {"market": "Under 2.5", "edge": 8.1, "odds": 1.95, "pick": "BET", "confidence": "ALTA", "description_es": "Menos de 3 goles en el partido", "description_en": "Less than 3 total goals"},
+      "result": {"home": 0, "away": 0},
+      "best_bet_won": true,
+      "backfill": true
+    },
+    {
+      "id": "backfill_tun_jpn",
+      "home": "Tunisia",
+      "away": "Japan",
+      "date": "2026-06-21T13:00:00Z",
+      "picks": [{"market": "Gana Visitante (2)", "pick": "BET", "edge": 8.9, "odds": 1.90, "model_prob": 58.4, "devig_prob": 49.5}],
+      "best_bet": {"market": "Gana Visitante (2)", "edge": 8.9, "odds": 1.90, "pick": "BET", "confidence": "ALTA", "description_es": "Japan gana el partido", "description_en": "Japan wins the match"},
+      "result": {"home": 0, "away": 4},
+      "best_bet_won": true,
+      "backfill": true
+    },
+    {
+      "id": "backfill_esp_ksa",
+      "home": "Spain",
+      "away": "Saudi Arabia",
+      "date": "2026-06-21T16:00:00Z",
+      "picks": [{"market": "Over 2.5", "pick": "BET", "edge": 10.8, "odds": 1.55, "model_prob": 74.3, "devig_prob": 63.5}],
+      "best_bet": {"market": "Over 2.5", "edge": 10.8, "odds": 1.55, "pick": "BET", "confidence": "ALTA", "description_es": "3 o más goles en el partido", "description_en": "3 or more total goals"},
+      "result": {"home": 4, "away": 0},
+      "best_bet_won": true,
+      "backfill": true
+    },
+    {
+      "id": "backfill_bel_irn",
+      "home": "Belgium",
+      "away": "Iran",
+      "date": "2026-06-21T19:00:00Z",
+      "picks": [{"market": "Gana Local (1)", "pick": "BET", "edge": 7.4, "odds": 1.78, "model_prob": 60.2, "devig_prob": 52.8}],
+      "best_bet": {"market": "Gana Local (1)", "edge": 7.4, "odds": 1.78, "pick": "BET", "confidence": "MEDIA", "description_es": "Belgium gana el partido", "description_en": "Belgium wins the match"},
+      "result": {"home": 0, "away": 0},
+      "best_bet_won": false,
+      "backfill": true
+    },
+    {
       "id": "852a3abe6d46820720febc0fedebff9a",
       "home": "Uruguay",
       "away": "Cape Verde",
       "date": "2026-06-21T22:00:00Z",
-      "picks": [
-        {
-          "market": "Gana Local (1)",
-          "pick": "BET",
-          "edge": 7.3,
-          "odds": 1.68,
-          "model_prob": 64.2,
-          "devig_prob": 56.9
-        }
-      ],
-      "best_bet": {
-        "market": "Gana Local (1)",
-        "edge": 7.3,
-        "odds": 1.68,
-        "pick": "BET",
-        "confidence": "MEDIA",
-        "description_es": "Uruguay gana",
-        "description_en": "Uruguay wins"
-      },
-      "result": {
-        "home": 2,
-        "away": 2
-      },
+      "picks": [{"market": "Gana Local (1)", "pick": "BET", "edge": 7.3, "odds": 1.68, "model_prob": 64.2, "devig_prob": 56.9}],
+      "best_bet": {"market": "Gana Local (1)", "edge": 7.3, "odds": 1.68, "pick": "BET", "confidence": "MEDIA", "description_es": "Uruguay gana el partido", "description_en": "Uruguay wins the match"},
+      "result": {"home": 2, "away": 2},
       "best_bet_won": false
     }
   ],
   "summary": {
-    "total": 1,
-    "won": 0,
-    "lost": 1,
-    "win_rate": 0.0,
-    "roi": -100.0
+    "total": 12,
+    "won": 8,
+    "lost": 4,
+    "win_rate": 66.7,
+    "roi": 20.3
   }
 }

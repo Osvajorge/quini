@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Edge — Motor de Predicción de Fútbol</title>
-<meta name="description" content="Predicciones Dixon-Coles con análisis de edge para el Mundial 2026. Apuestas de valor respaldadas por matemáticas.">
+<title>Quini — Predicciones Mundial 2026</title>
+<meta name="description" content="Predicciones Dixon-Coles para el Mundial 2026. Análisis de valor, quiniela optimizada y track record en tiempo real.">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -57,9 +57,9 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 <header class="border-b sticky top-0 z-30 backdrop-blur" style="border-color:var(--border); background:color-mix(in srgb, var(--bg) 80%, transparent);">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
     <div class="flex items-center gap-3">
-      <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-sm" style="background:linear-gradient(135deg, var(--accent-from), var(--accent-to));">E</div>
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-sm" style="background:linear-gradient(135deg, var(--accent-from), var(--accent-to));">Q</div>
       <div>
-        <div class="font-bold text-lg leading-tight">Edge</div>
+        <div class="font-bold text-lg leading-tight">Quini</div>
         <div class="text-[10px] font-mono" style="color:var(--mute);">Dixon-Coles · WC 2026</div>
       </div>
     </div>
@@ -195,8 +195,8 @@ const T = {
   },
 };
 
-let LANG = localStorage.getItem('edge_lang') || 'es';
-let THEME = localStorage.getItem('edge_theme') || 'light';
+let LANG = localStorage.getItem('quini_lang') || localStorage.getItem('edge_lang') || 'es';
+let THEME = localStorage.getItem('quini_theme') || localStorage.getItem('edge_theme') || 'light';
 let DATA = null;
 let HISTORY = null;
 let currentTab = 'upcoming';
@@ -223,7 +223,7 @@ function applyLang() {
 
 function toggleLang() {
   LANG = LANG === 'es' ? 'en' : 'es';
-  localStorage.setItem('edge_lang', LANG);
+  localStorage.setItem('quini_lang', LANG);
   applyLang();
   if (DATA) { renderStats(); renderAll(); }
 }
@@ -240,7 +240,7 @@ function applyTheme() {
 
 function toggleTheme() {
   THEME = THEME === 'dark' ? 'light' : 'dark';
-  localStorage.setItem('edge_theme', THEME);
+  localStorage.setItem('quini_theme', THEME);
   applyTheme();
 }
 
@@ -474,10 +474,10 @@ function renderFixtureCard(f) {
             <div class="flex items-center gap-2 sm:gap-3 py-1 text-[10px] uppercase tracking-wider" style="color:var(--mute); border-bottom:1px solid color-mix(in srgb, var(--border) 50%, transparent);">
               <span class="w-10 shrink-0"></span>
               <span class="flex-1">${t('market')}</span>
-              <span class="w-12 sm:w-14 text-right hidden sm:block">${t('model')}</span>
-              <span class="w-12 sm:w-14 text-right hidden sm:block">${t('implied')}</span>
-              <span class="w-14 text-right">${t('edge')}</span>
-              <span class="w-12 text-right">${t('odds_label')}</span>
+              <span class="w-12 sm:w-14 text-right hidden sm:block tooltip-trigger">${t('model')} &#9432;<span class="tooltip-content" data-i18n-tooltip="model_prob"></span></span>
+              <span class="w-12 sm:w-14 text-right hidden sm:block tooltip-trigger">${t('implied')} &#9432;<span class="tooltip-content" data-i18n-tooltip="devig_prob"></span></span>
+              <span class="w-14 text-right tooltip-trigger">${t('edge')} &#9432;<span class="tooltip-content" data-i18n-tooltip="edge"></span></span>
+              <span class="w-12 text-right tooltip-trigger">${t('odds_label')} &#9432;<span class="tooltip-content" data-i18n-tooltip="odds"></span></span>
             </div>
             ${picksHtml}
           </div>

@@ -35,13 +35,13 @@ TEAM_NAME_MAP = {
 }
 
 PICK_DESC = {
-    "Under 2.5": {"es": "Menos de 2.5 goles", "en": "Under 2.5 goals"},
-    "Over 2.5": {"es": "Más de 2.5 goles", "en": "Over 2.5 goals"},
-    "Gana Local (1)": {"es": "{home} gana", "en": "{home} wins"},
-    "Gana Visitante (2)": {"es": "{away} gana", "en": "{away} wins"},
-    "Empate (X)": {"es": "Empate", "en": "Draw"},
-    "BTTS Sí": {"es": "Ambos equipos anotan", "en": "Both teams score"},
-    "BTTS No": {"es": "Al menos uno no anota", "en": "At least one team doesn't score"},
+    "Under 2.5": {"es": "Menos de 3 goles en el partido", "en": "Less than 3 total goals in the match"},
+    "Over 2.5": {"es": "3 o más goles en el partido", "en": "3 or more total goals in the match"},
+    "Gana Local (1)": {"es": "{home} gana el partido", "en": "{home} wins the match"},
+    "Gana Visitante (2)": {"es": "{away} gana el partido", "en": "{away} wins the match"},
+    "Empate (X)": {"es": "El partido termina en empate", "en": "Match ends in a draw"},
+    "BTTS Sí": {"es": "Ambos equipos anotan al menos un gol", "en": "Both teams score at least one goal"},
+    "BTTS No": {"es": "Al menos un equipo se queda sin anotar", "en": "At least one team fails to score"},
 }
 
 TOOLTIPS = {
@@ -77,7 +77,7 @@ def fetch_odds(api_key: str) -> list[dict]:
     return r.json()
 
 
-def fetch_scores(api_key: str, days_from: int = 3) -> list[dict]:
+def fetch_scores(api_key: str, days_from: int = 15) -> list[dict]:
     r = requests.get(
         f"{BASE}/sports/{SPORT}/scores",
         params={"apiKey": api_key, "daysFrom": days_from},
