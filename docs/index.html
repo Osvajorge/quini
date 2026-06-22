@@ -63,7 +63,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
       <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-sm" style="background:linear-gradient(135deg, var(--accent-from), var(--accent-to));">Q</div>
       <div>
         <div class="font-bold text-lg leading-tight">Quini</div>
-        <div class="text-[10px] font-mono" style="color:var(--mute);">Dixon-Coles · WC 2026</div>
+        <div class="text-[10px]" style="color:var(--mute);" data-i18n="header_sub">Predicciones Mundial 2026</div>
       </div>
     </div>
     <div class="flex items-center gap-3">
@@ -78,36 +78,37 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
   </div>
 </header>
 
-<div id="stats-bar" class="border-b" style="border-color:var(--border); background:color-mix(in srgb, var(--panel) 30%, transparent);">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
-    <div>
-      <div class="text-xs uppercase tracking-wider flex items-center gap-1" style="color:var(--mute);">
-        <span data-i18n="stat_model">Modelo</span>
-        <span class="tooltip-trigger"><span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="model_prob"></span></span>
+<div class="border-b" style="border-color:var(--border); background:linear-gradient(135deg, color-mix(in srgb, var(--accent-from) 5%, var(--bg)), color-mix(in srgb, var(--accent-to) 5%, var(--bg)));">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <h1 class="text-xl sm:text-2xl font-bold mb-1" data-i18n="hero_title">Encuentra apuestas de valor en el Mundial</h1>
+    <p class="text-sm mb-5" style="color:var(--mute);" data-i18n="hero_sub">Modelo matemático que compara sus predicciones con las cuotas del mercado. Cuando ve una ventaja real, te avisa.</p>
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <div class="rounded-lg p-3" style="background:color-mix(in srgb, var(--panel) 70%, transparent);">
+        <div class="text-xs uppercase tracking-wider" style="color:var(--mute);" data-i18n="stat_fixtures_label">Partidos analizados</div>
+        <div class="text-xl font-bold mt-1" id="stat-fixtures">—</div>
+        <div class="text-xs font-mono" style="color:var(--mute);" id="stat-bets">—</div>
       </div>
-      <div class="text-xl font-bold mt-1">Dixon-Coles</div>
-      <div class="text-xs font-mono" style="color:var(--mute);" id="stat-matches">—</div>
-    </div>
-    <div>
-      <div class="text-xs uppercase tracking-wider flex items-center gap-1" style="color:var(--mute);">
-        <span data-i18n="stat_threshold">Umbral de edge</span>
-        <span class="tooltip-trigger"><span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="edge"></span></span>
+      <div class="rounded-lg p-3" style="background:color-mix(in srgb, var(--panel) 70%, transparent);">
+        <div class="text-xs uppercase tracking-wider" style="color:var(--mute);" data-i18n="stat_record_label">Historial</div>
+        <div class="text-xl font-bold mt-1" id="stat-record">—</div>
+        <div class="text-xs font-mono" style="color:var(--mute);" id="stat-winrate">—</div>
       </div>
-      <div class="text-xl font-bold mt-1" id="stat-threshold">7%</div>
-      <div class="text-xs font-mono" style="color:var(--mute);" data-i18n="stat_threshold_desc">mínimo para señal BET</div>
-    </div>
-    <div>
-      <div class="text-xs uppercase tracking-wider" style="color:var(--mute);" data-i18n="stat_fixtures_label">Partidos analizados</div>
-      <div class="text-xl font-bold mt-1" id="stat-fixtures">—</div>
-      <div class="text-xs font-mono" style="color:var(--mute);" id="stat-bets">—</div>
-    </div>
-    <div>
-      <div class="text-xs uppercase tracking-wider flex items-center gap-1" style="color:var(--mute);">
-        <span data-i18n="stat_record_label">Historial</span>
-        <span class="tooltip-trigger"><span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="confidence"></span></span>
+      <div class="rounded-lg p-3" style="background:color-mix(in srgb, var(--panel) 70%, transparent);">
+        <div class="text-xs uppercase tracking-wider flex items-center gap-1" style="color:var(--mute);">
+          <span data-i18n="stat_threshold">Ventaja mínima</span>
+          <span class="tooltip-trigger"><span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="edge"></span></span>
+        </div>
+        <div class="text-xl font-bold mt-1" id="stat-threshold">7%</div>
+        <div class="text-xs font-mono" style="color:var(--mute);" data-i18n="stat_threshold_desc">para recomendar apuesta</div>
       </div>
-      <div class="text-xl font-bold mt-1" id="stat-record">—</div>
-      <div class="text-xs font-mono" style="color:var(--mute);" id="stat-winrate">—</div>
+      <div class="rounded-lg p-3" style="background:color-mix(in srgb, var(--panel) 70%, transparent);">
+        <div class="text-xs uppercase tracking-wider flex items-center gap-1" style="color:var(--mute);">
+          <span data-i18n="stat_model">Precisión</span>
+          <span class="tooltip-trigger"><span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="model_prob"></span></span>
+        </div>
+        <div class="text-xl font-bold mt-1" id="stat-matches">—</div>
+        <div class="text-xs font-mono" style="color:var(--mute);" data-i18n="stat_model_sub">partidos de entrenamiento</div>
+      </div>
     </div>
   </div>
 </div>
@@ -138,10 +139,36 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
   </div>
 </main>
 
-<footer class="border-t mt-12 py-8" style="border-color:var(--border);">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
-    <p class="text-xs" style="color:var(--mute);" data-i18n="footer_1">Modelo Dixon-Coles entrenado con 20k+ partidos internacionales. No es asesoría financiera.</p>
-    <p class="text-xs mt-2 font-mono" style="color:var(--mute);" data-i18n="footer_2">Datos actualizados cada 30 minutos vía The Odds API.</p>
+<footer class="border-t mt-12" style="border-color:var(--border);">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+      <div>
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-6 h-6 rounded flex items-center justify-center font-bold text-white text-[10px]" style="background:linear-gradient(135deg, var(--accent-from), var(--accent-to));">Q</div>
+          <span class="font-bold">Quini</span>
+        </div>
+        <p class="text-xs leading-relaxed" style="color:var(--mute);" data-i18n="footer_about">Predicciones deportivas basadas en datos. Analizamos cada partido del Mundial y detectamos oportunidades de valor en las cuotas.</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider mb-3" data-i18n="footer_how_title">Cómo funciona</h4>
+        <ul class="space-y-2 text-xs" style="color:var(--mute);">
+          <li data-i18n="footer_how_1">1. Analizamos 20k+ partidos internacionales</li>
+          <li data-i18n="footer_how_2">2. Comparamos nuestra probabilidad con la del mercado</li>
+          <li data-i18n="footer_how_3">3. Si hay ventaja real (+7%), recomendamos apuesta</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-wider mb-3" data-i18n="footer_data_title">Datos</h4>
+        <ul class="space-y-2 text-xs" style="color:var(--mute);">
+          <li data-i18n="footer_data_1">Cuotas en vivo via The Odds API</li>
+          <li data-i18n="footer_data_2">Actualización cada 15 min durante partidos</li>
+          <li data-i18n="footer_data_3">Historial de apuestas 100% transparente</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t pt-6 text-center" style="border-color:var(--border);">
+      <p class="text-[10px]" style="color:var(--mute);" data-i18n="footer_disclaimer">Predicciones para análisis y entretenimiento. No es asesoría financiera. Apuesta de forma responsable.</p>
+    </div>
   </div>
 </footer>
 
@@ -151,7 +178,11 @@ const T = {
   es: {
     tab_picks:'Picks', tab_results:'Resultados', tab_history:'Historial',
     filter_all:'Todos', filter_bet:'Solo BET', filter_alta:'Confianza ALTA', filter_today:'Hoy',
-    stat_model:'Modelo', stat_threshold:'Umbral de edge', stat_threshold_desc:'mínimo para señal BET',
+    header_sub:'Predicciones Mundial 2026',
+    hero_title:'Encuentra apuestas de valor en el Mundial',
+    hero_sub:'Modelo matemático que compara sus predicciones con las cuotas del mercado. Cuando ve una ventaja real, te avisa.',
+    stat_model:'Precisión', stat_model_sub:'partidos de entrenamiento',
+    stat_threshold:'Ventaja mínima', stat_threshold_desc:'para recomendar apuesta',
     stat_fixtures_label:'Partidos analizados', stat_record_label:'Historial',
     loading:'Cargando predicciones...', no_fixtures:'No hay partidos con este filtro.',
     no_results:'No hay partidos completados aún.', no_history:'Sin historial aún. Se irá llenando conforme terminen los partidos.',
@@ -161,8 +192,12 @@ const T = {
     today:'Hoy', tomorrow:'Mañana', updated:'Actualizado',
     bet_signals:'{n} señales BET', matches_trained:'{n}k partidos entrenados',
     no_bets_yet:'Sin apuestas cerradas aún', win_rate:'{r}% de acierto',
-    footer_1:'Modelo Dixon-Coles entrenado con 20k+ partidos internacionales. No es asesoría financiera.',
-    footer_2:'Datos actualizados cada 15 minutos durante partidos.',
+    footer_about:'Predicciones deportivas basadas en datos. Analizamos cada partido del Mundial y detectamos oportunidades de valor en las cuotas.',
+    footer_how_title:'Cómo funciona', footer_how_1:'1. Analizamos 20k+ partidos internacionales',
+    footer_how_2:'2. Comparamos nuestra probabilidad con la del mercado', footer_how_3:'3. Si hay ventaja real (+7%), recomendamos apuesta',
+    footer_data_title:'Datos', footer_data_1:'Cuotas en vivo via The Odds API',
+    footer_data_2:'Actualización cada 15 min durante partidos', footer_data_3:'Historial de apuestas 100% transparente',
+    footer_disclaimer:'Predicciones para análisis y entretenimiento. No es asesoría financiera. Apuesta de forma responsable.',
     strategy:'Estrategia:', optimal_pick:'Pick óptimo', alternatives:'Alternativas:',
     balanced:'Equilibrado (default)', aggressive:'Agresivo (remontando)', defensive:'Defensivo (liderando)',
     strategy_desc:'Equilibrado = E[pts] + varianza + desempate. Agresivo = max varianza. Defensivo = valor esperado puro.',
@@ -175,7 +210,11 @@ const T = {
   en: {
     tab_picks:'Picks', tab_results:'Results', tab_history:'Track Record',
     filter_all:'All', filter_bet:'BET only', filter_alta:'HIGH confidence', filter_today:'Today',
-    stat_model:'Model', stat_threshold:'Edge threshold', stat_threshold_desc:'minimum edge for BET signal',
+    header_sub:'World Cup 2026 Predictions',
+    hero_title:'Find value bets in the World Cup',
+    hero_sub:'Mathematical model that compares its predictions with market odds. When it spots a real edge, it tells you.',
+    stat_model:'Accuracy', stat_model_sub:'training matches',
+    stat_threshold:'Minimum edge', stat_threshold_desc:'to recommend a bet',
     stat_fixtures_label:'Fixtures analyzed', stat_record_label:'Track record',
     loading:'Loading predictions...', no_fixtures:'No fixtures match this filter.',
     no_results:'No completed matches yet.', no_history:'No history yet. It will fill as matches complete.',
@@ -185,8 +224,12 @@ const T = {
     today:'Today', tomorrow:'Tomorrow', updated:'Updated',
     bet_signals:'{n} BET signals', matches_trained:'{n}k matches trained',
     no_bets_yet:'No completed bets yet', win_rate:'{r}% win rate',
-    footer_1:'Dixon-Coles model trained on 20k+ international matches. Not financial advice.',
-    footer_2:'Data updates every 15 minutes during matches.',
+    footer_about:'Data-driven sports predictions. We analyze every World Cup match and detect value opportunities in the odds.',
+    footer_how_title:'How it works', footer_how_1:'1. We analyze 20k+ international matches',
+    footer_how_2:'2. We compare our probability with market odds', footer_how_3:'3. If there\'s a real edge (+7%), we recommend a bet',
+    footer_data_title:'Data', footer_data_1:'Live odds via The Odds API',
+    footer_data_2:'Updates every 15 min during matches', footer_data_3:'100% transparent bet history',
+    footer_disclaimer:'Predictions for analysis and entertainment. Not financial advice. Bet responsibly.',
     strategy:'Strategy:', optimal_pick:'Optimal pick', alternatives:'Alternatives:',
     balanced:'Balanced (default)', aggressive:'Aggressive (trailing)', defensive:'Defensive (leading)',
     strategy_desc:'Balanced = E[pts] + variance + tiebreak. Aggressive = max variance. Defensive = pure expected value.',
@@ -292,7 +335,7 @@ async function loadData() {
 
 function renderStats() {
   const m = DATA.model, s = DATA.stats;
-  document.getElementById('stat-matches').textContent = t('matches_trained').replace('{n}', (m.matches_trained/1000).toFixed(0));
+  document.getElementById('stat-matches').textContent = `${(m.matches_trained/1000).toFixed(0)}k+`;
   document.getElementById('stat-threshold').textContent = `${m.edge_threshold.toFixed(0)}%`;
   document.getElementById('stat-fixtures').textContent = s.total_fixtures;
   document.getElementById('stat-bets').textContent = t('bet_signals').replace('{n}', s.total_bets);
