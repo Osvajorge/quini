@@ -123,12 +123,26 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
     <button onclick="setTab('quiniela')" id="tab-quiniela" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap">Quiniela</button>
   </div>
 
-  <div id="filter-bar" class="flex flex-wrap items-center gap-3 mb-6">
+  <!-- Search bar — shown on picks + history tabs -->
+  <div id="search-bar" class="hidden mb-4">
+    <div class="relative">
+      <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 pointer-events-none" style="color:var(--mute);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input id="search-input" type="text" autocomplete="off"
+        class="w-full pl-8 pr-8 py-2 rounded-lg text-sm outline-none"
+        style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);"
+        oninput="setSearch(this.value)"/>
+      <button id="search-clear" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 flex items-center justify-center rounded-full text-xs" style="color:var(--mute);" onclick="setSearch('')">✕</button>
+    </div>
+  </div>
+
+  <div id="filter-bar" class="hidden flex-wrap items-center gap-2 mb-3">
     <button onclick="setFilter('all')" data-filter="all" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium" data-i18n="filter_all">Todos</button>
     <button onclick="setFilter('bet')" data-filter="bet" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium" data-i18n="filter_bet">Solo BET</button>
     <button onclick="setFilter('alta')" data-filter="alta" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium" data-i18n="filter_alta">Confianza ALTA</button>
-    <button onclick="setFilter('today')" data-filter="today" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium" data-i18n="filter_today">Hoy</button>
   </div>
+
+  <!-- Dynamic date chips — only picks tab -->
+  <div id="date-chips-bar" class="hidden flex-wrap gap-2 mb-6"></div>
 
   <div id="fixtures-container"></div>
   <div id="results-container" class="hidden"></div>
@@ -303,6 +317,8 @@ let DATA = null;
 let HISTORY = null;
 let currentTab = 'upcoming';
 let currentFilter = 'all';
+let currentSearch = '';
+let currentDateFilter = '';
 const PW_HASH = '5d7df06cd4fd705ee3172c065da16c18f0c00231348bd688ed0a8679f231d39c';
 let quinielaAuth = sessionStorage.getItem('q_auth') === '1';
 document.addEventListener('click', () => {
@@ -319,6 +335,8 @@ function applyLang() {
   applyTooltips();
   document.getElementById('lang-btn').textContent = LANG === 'es' ? 'EN' : 'ES';
   document.documentElement.lang = LANG;
+  const inp = document.getElementById('search-input');
+  if (inp) inp.placeholder = LANG === 'es' ? 'Buscar equipo...' : 'Search team...';
 }
 
 function toggleLang() {
@@ -358,11 +376,43 @@ async function loadData() {
     document.getElementById('loading').classList.add('hidden');
     applyLang();
     renderStats();
-    renderAll();
+    setTab(currentTab); // also triggers show/hide of search-bar, filter-bar, date-chips
     checkLive();
+    _syncESPNOnLoad(); // one-time: detect matches that started/ended since last cron
   } catch (e) {
     document.getElementById('loading').innerHTML = `<div class="text-sm" style="color:var(--fade);">Error loading data. Try refreshing.</div>`;
   }
+}
+
+// One-time ESPN check on load for upcoming fixtures that may have started/ended since last cron
+async function _syncESPNOnLoad() {
+  if (!DATA) return;
+  const now = Date.now();
+  // Check fixtures that commenced in the last 6 hours (covers match + stoppage + ESPN lag)
+  const candidates = DATA.fixtures.filter(f => {
+    if (f.completed) return false;
+    const commence = new Date(f.commence_time).getTime();
+    return now > commence && (now - commence) < 6 * 60 * 60 * 1000;
+  });
+  if (!candidates.length) return;
+  const events = await _fetchESPNEvents();
+  let changed = false;
+  for (const f of candidates) {
+    const espn = _parseESPNEvent(events, f.home, f.away);
+    if (!espn) continue;
+    if (espn.isOver && !f.is_live) {
+      f.completed = true;
+      f.actual_home = espn.homeScore;
+      f.actual_away = espn.awayScore;
+      changed = true;
+    } else if (espn.isLive && !f.is_live) {
+      f.is_live = true;
+      f.actual_home = espn.homeScore;
+      f.actual_away = espn.awayScore;
+      changed = true;
+    }
+  }
+  if (changed) { renderAll(); checkLive(); }
 }
 
 function renderStats() {
@@ -596,12 +646,19 @@ async function _tickLive() {
     const espnEvents = await _fetchESPNEvents();
     let needsRender = false;
 
-    // ── 1. Sync upcoming fixtures that ESPN now shows as live ──
+    // ── 1. Sync upcoming fixtures that ESPN now shows as live or over ──
     for (const f of DATA.fixtures) {
       if (f.completed || f.is_live) continue;
       const espn = _parseESPNEvent(espnEvents, f.home, f.away);
-      if (espn && espn.isLive) {
+      if (!espn) continue;
+      if (espn.isLive) {
         f.is_live = true;
+        f.actual_home = espn.homeScore;
+        f.actual_away = espn.awayScore;
+        needsRender = true;
+      } else if (espn.isOver) {
+        // Match ended without us seeing it live (page loaded late)
+        f.completed = true;
         f.actual_home = espn.homeScore;
         f.actual_away = espn.awayScore;
         needsRender = true;
@@ -659,12 +716,44 @@ function setTab(tab) {
     if (btn) btn.className = 'pb-3 text-sm font-medium cursor-pointer whitespace-nowrap ' + (tab === t ? 'tab-active' : 'tab-inactive');
     if (container) container.classList.toggle('hidden', tab !== t);
   });
-  document.getElementById('filter-bar').classList.toggle('hidden', tab !== 'upcoming');
+  // search bar: picks + history; filter bar + date chips: picks only
+  const searchBar = document.getElementById('search-bar');
+  const filterBar = document.getElementById('filter-bar');
+  const dateChipsBar = document.getElementById('date-chips-bar');
+  if (tab === 'upcoming') {
+    searchBar.classList.remove('hidden');
+    filterBar.classList.remove('hidden'); filterBar.classList.add('flex');
+    dateChipsBar.classList.remove('hidden'); dateChipsBar.classList.add('flex');
+  } else if (tab === 'history') {
+    searchBar.classList.remove('hidden');
+    filterBar.classList.add('hidden'); filterBar.classList.remove('flex');
+    dateChipsBar.classList.add('hidden'); dateChipsBar.classList.remove('flex');
+  } else {
+    searchBar.classList.add('hidden');
+    filterBar.classList.add('hidden'); filterBar.classList.remove('flex');
+    dateChipsBar.classList.add('hidden'); dateChipsBar.classList.remove('flex');
+  }
   renderAll();
+}
+
+function setSearch(q) {
+  currentSearch = q.trim().toLowerCase();
+  const inp = document.getElementById('search-input');
+  const clr = document.getElementById('search-clear');
+  if (inp && inp.value !== q) inp.value = q;
+  if (clr) clr.classList.toggle('hidden', !q);
+  if (currentTab === 'upcoming') renderFixtures();
+  else if (currentTab === 'history') renderHistory();
+}
+
+function setDateFilter(d) {
+  currentDateFilter = currentDateFilter === d ? '' : d; // toggle
+  if (currentTab === 'upcoming') renderFixtures();
 }
 
 function setFilter(filter) {
   currentFilter = filter;
+  currentDateFilter = ''; // reset date filter when changing main filter
   document.querySelectorAll('.filter-btn').forEach(btn => {
     const f = btn.dataset.filter;
     if (f === filter) {
@@ -778,22 +867,58 @@ function isToday(iso) { return new Date(iso).toDateString() === new Date().toDat
 function colorVar(c) { return `var(--${c})`; }
 
 // ── Fixtures (Picks tab) ──
+function _isoDate(iso) { return iso ? iso.slice(0, 10) : ''; }
+
 function renderFixtures() {
   let fixtures = DATA.fixtures.filter(f => !f.completed);
+
+  // Main filter
   if (currentFilter === 'bet') fixtures = fixtures.filter(f => f.best_bet);
   else if (currentFilter === 'alta') fixtures = fixtures.filter(f => f.fixture_confidence === 'ALTA');
-  else if (currentFilter === 'today') fixtures = fixtures.filter(f => isToday(f.commence_time));
+
+  // Search filter
+  if (currentSearch) {
+    const q = currentSearch;
+    fixtures = fixtures.filter(f =>
+      (f.home || '').toLowerCase().includes(q) ||
+      (f.away || '').toLowerCase().includes(q) ||
+      teamName(f.home).toLowerCase().includes(q) ||
+      teamName(f.away).toLowerCase().includes(q)
+    );
+  }
 
   const liveFixtures = fixtures.filter(f => f.is_live);
+  // Upcoming: sort strictly by date, BET-first within same date handled per group
   const otherFixtures = fixtures.filter(f => !f.is_live);
+  otherFixtures.sort((a, b) => new Date(a.commence_time) - new Date(b.commence_time));
 
-  otherFixtures.sort((a, b) => {
-    if (a.best_bet && !b.best_bet) return -1;
-    if (!a.best_bet && b.best_bet) return 1;
-    return new Date(a.commence_time) - new Date(b.commence_time);
-  });
+  // ── Populate date chips ──
+  const allUpcoming = DATA.fixtures.filter(f => !f.completed && !f.is_live);
+  const availDates = [...new Set(allUpcoming.map(f => _isoDate(f.commence_time)))].sort();
+  const chipsBar = document.getElementById('date-chips-bar');
+  if (chipsBar) {
+    const today = _isoDate(new Date().toISOString());
+    let chipsHtml = '';
+    availDates.forEach(d => {
+      const isActive = currentDateFilter === d;
+      const label = d === today
+        ? (LANG === 'es' ? 'Hoy' : 'Today')
+        : new Date(d + 'T12:00:00').toLocaleDateString(LANG === 'es' ? 'es' : 'en', {month:'short', day:'numeric'});
+      const style = isActive
+        ? `background:color-mix(in srgb,var(--bet) 20%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 30%,transparent);`
+        : `background:var(--panel2); color:var(--mute); border:1px solid var(--border);`;
+      chipsHtml += `<button onclick="setDateFilter('${d}')" class="px-2.5 py-1 rounded-lg text-xs font-medium" style="${style}">${label}</button>`;
+    });
+    chipsBar.innerHTML = chipsHtml;
+  }
 
-  if (!fixtures.length) {
+  // Apply date filter
+  let displayFixtures = otherFixtures;
+  if (currentDateFilter) {
+    displayFixtures = otherFixtures.filter(f => _isoDate(f.commence_time) === currentDateFilter);
+  }
+
+  if (!liveFixtures.length && !displayFixtures.length) {
     document.getElementById('fixtures-container').innerHTML = `<div class="text-center py-12 text-sm" style="color:var(--mute);">${t('no_fixtures')}</div>`;
     return;
   }
@@ -813,18 +938,26 @@ function renderFixtures() {
   }
 
   // ── Upcoming grouped by date ──
-  let dateGroups = {};
-  otherFixtures.forEach(f => {
-    const key = new Date(f.commence_time).toLocaleDateString(LANG === 'es' ? 'es' : 'en', {weekday:'long', month:'long', day:'numeric'});
-    if (!dateGroups[key]) dateGroups[key] = [];
-    dateGroups[key].push(f);
+  const dateGroups = new Map();
+  displayFixtures.forEach(f => {
+    const d = _isoDate(f.commence_time);
+    if (!dateGroups.has(d)) dateGroups.set(d, []);
+    dateGroups.get(d).push(f);
   });
 
-  for (const [date, group] of Object.entries(dateGroups)) {
-    html += `<div class="mb-8"><h3 class="text-sm font-medium mb-3 uppercase tracking-wider" style="color:var(--mute);">${date}</h3><div class="space-y-3">`;
+  dateGroups.forEach((group, d) => {
+    // BET-first within each date group, then by time
+    group.sort((a, b) => {
+      if (a.best_bet && !b.best_bet) return -1;
+      if (!a.best_bet && b.best_bet) return 1;
+      return new Date(a.commence_time) - new Date(b.commence_time);
+    });
+    const label = new Date(d + 'T12:00:00').toLocaleDateString(LANG === 'es' ? 'es' : 'en', {weekday:'long', month:'long', day:'numeric'});
+    html += `<div class="mb-8"><h3 class="text-sm font-medium mb-3 uppercase tracking-wider" style="color:var(--mute);">${label}</h3><div class="space-y-3">`;
     group.forEach(f => { html += renderFixtureCard(f); });
     html += `</div></div>`;
-  }
+  });
+
   document.getElementById('fixtures-container').innerHTML = html;
 }
 
@@ -1044,7 +1177,16 @@ function renderHistory() {
     </div>
     <div class="space-y-2">`;
 
-  HISTORY.fixtures.slice().reverse().forEach(fx => {
+  let histList = HISTORY.fixtures.slice().reverse();
+  if (currentSearch) {
+    const q = currentSearch;
+    histList = histList.filter(fx =>
+      (fx.home || '').toLowerCase().includes(q) ||
+      (fx.away || '').toLowerCase().includes(q)
+    );
+  }
+
+  histList.forEach(fx => {
     const won = fx.best_bet_won;
     const hasBet = fx.has_bet !== undefined ? fx.has_bet : !!fx.best_bet;
     const score = fx.result ? `${fx.result.home ?? '?'}-${fx.result.away ?? '?'}` : '?-?';
