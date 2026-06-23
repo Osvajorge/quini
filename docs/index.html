@@ -324,6 +324,30 @@ let LANG = localStorage.getItem('quini_lang') || localStorage.getItem('edge_lang
 let THEME = localStorage.getItem('quini_theme') || localStorage.getItem('edge_theme') || 'light';
 let DATA = null;
 let HISTORY = null;
+
+// Affiliate links — replace with real tracking URLs once registered
+const AFFILIATE = {
+  'bet365':       'https://www.bet365.com',
+  'pinnacle':     'https://www.pinnacle.com',
+  'betfair':      'https://www.betfair.com',
+  'betfair_ex_eu':'https://www.betfair.com',
+  'marathonbet':  'https://www.marathonbet.com',
+  'bwin':         'https://www.bwin.com',
+  'unibet':       'https://www.unibet.com',
+  'williamhill':  'https://www.williamhill.com',
+  'betsson':      'https://www.betsson.com',
+  'caliente':     'https://sports.caliente.mx',  // MX affiliate
+  'betcris':      'https://www.betcris.com',      // LatAm affiliate
+  'codere':       'https://www.codere.mx',        // MX/ES
+};
+function affiliateUrl(book) {
+  if (!book) return null;
+  const key = book.toLowerCase().replace(/[^a-z0-9_]/g,'');
+  for (const [k,v] of Object.entries(AFFILIATE)) {
+    if (key.includes(k.replace('_','')) || k.replace('_','').includes(key.slice(0,6))) return v;
+  }
+  return null;
+}
 let currentTab = 'upcoming';
 let currentFilter = 'all';
 let currentSearch = '';
@@ -1080,6 +1104,18 @@ function renderFixtureCard(f, featured = false) {
             }).join('<span style="color:var(--border);"> · </span>');
             return rows ? `<div class="mt-1.5 text-[10px] flex flex-wrap gap-x-2 gap-y-0.5">${rows}</div>` : '';
           })()}
+          ${(() => {
+            const url = affiliateUrl(bb.best_book);
+            const bookLabel = bb.best_book || 'bookmaker';
+            const btnText = LANG === 'es' ? `Apostar en ${bookLabel}` : `Bet at ${bookLabel}`;
+            return url ? `<div class="mt-2">
+              <a href="${url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-semibold" style="background:var(--bet); color:#fff;">
+                ${btnText}
+                <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+              </a>
+              <span class="ml-2 text-[9px]" style="color:var(--mute);">${LANG==='es'?'Enlace de afiliado':'Affiliate link'}</span>
+            </div>` : '';
+          })()}
         </div>`;
     });
     bestBetHtml += `</div>`;
@@ -1630,6 +1666,81 @@ setFilter('all');
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(() => {});
 }
+
+// ── Email capture ──
+// Replace with your Formspree endpoint: https://formspree.io/f/XXXXXXXX
+const EMAIL_FORM_URL = '';
+
+function initEmailCapture() {
+  if (localStorage.getItem('quini_email_dismissed')) return;
+  if (localStorage.getItem('quini_email_submitted')) return;
+  setTimeout(showEmailBanner, 18000); // show after 18s
+}
+
+function showEmailBanner() {
+  if (document.getElementById('email-banner')) return;
+  const dark = document.documentElement.classList.contains('dark');
+  const banner = document.createElement('div');
+  banner.id = 'email-banner';
+  banner.style.cssText = `
+    position:fixed; bottom:0; left:0; right:0; z-index:9999;
+    padding:12px 16px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    background:${dark ? '#1e293b' : '#ffffff'};
+    border-top:1px solid ${dark ? '#334155' : '#e2e8f0'};
+    box-shadow:0 -4px 24px rgba(0,0,0,0.12);
+  `;
+  const endDate = new Date('2026-07-19');
+  const daysLeft = Math.max(0, Math.ceil((endDate - Date.now()) / 86400000));
+  banner.innerHTML = `
+    <div class="flex-1 min-w-0">
+      <p class="text-sm font-semibold m-0" style="color:var(--ink);">
+        ⚽ Picks gratuitos — quedan <strong style="color:var(--bet);">${daysLeft} días</strong> de Mundial
+      </p>
+      <p class="text-xs m-0 mt-0.5" style="color:var(--mute);">
+        Deja tu email → aviso cuando lancemos premium después del 19 jul
+      </p>
+    </div>
+    <form id="email-form" class="flex gap-2 shrink-0" ${EMAIL_FORM_URL ? `action="${EMAIL_FORM_URL}" method="POST"` : ''} style="display:flex;">
+      <input type="email" name="email" required placeholder="tucorreo@gmail.com"
+        class="px-3 py-1.5 rounded-lg text-sm border"
+        style="border:1px solid var(--border); background:var(--bg); color:var(--ink); width:180px; outline:none;"
+      />
+      <button type="submit"
+        class="px-3 py-1.5 rounded-lg text-sm font-semibold shrink-0"
+        style="background:var(--bet); color:#fff; border:none; cursor:pointer;">
+        ${LANG === 'es' ? 'Apuntarme' : 'Notify me'}
+      </button>
+    </form>
+    <button onclick="dismissEmailBanner()" style="background:none;border:none;cursor:pointer;padding:4px;color:var(--mute);font-size:18px;line-height:1;" title="Cerrar">×</button>
+  `;
+  document.body.appendChild(banner);
+
+  const form = document.getElementById('email-form');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = form.querySelector('input[type=email]').value;
+    if (EMAIL_FORM_URL) {
+      try {
+        await fetch(EMAIL_FORM_URL, {
+          method: 'POST', headers: {'Accept':'application/json'},
+          body: new FormData(form)
+        });
+      } catch(_) {}
+    }
+    localStorage.setItem('quini_email_submitted', email);
+    banner.innerHTML = `<p class="text-sm font-semibold m-auto" style="color:var(--bet);">
+      ✓ ${LANG==='es'?'Guardado — te avisamos antes del lanzamiento premium.':'Saved — we\'ll notify you before premium launch.'}
+    </p>`;
+    setTimeout(() => banner.remove(), 4000);
+  });
+}
+
+function dismissEmailBanner() {
+  document.getElementById('email-banner')?.remove();
+  localStorage.setItem('quini_email_dismissed', '1');
+}
+
+initEmailCapture();
 
 // ── Share card ──
 function _fitText(ctx, text, maxW, maxSize, minSize) {
