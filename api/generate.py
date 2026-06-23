@@ -263,8 +263,9 @@ def _save_history(history: dict) -> None:
 def _update_history_summary(history: dict) -> None:
     fixtures = history.get("fixtures", [])
     total = len(fixtures)
-    won = sum(1 for fx in fixtures if fx.get("best_bet_won") is True)
-    lost = sum(1 for fx in fixtures if fx.get("best_bet_won") is False)
+    bet_fixtures = [fx for fx in fixtures if fx.get("has_bet", fx.get("best_bet") is not None)]
+    won = sum(1 for fx in bet_fixtures if fx.get("best_bet_won") is True)
+    lost = sum(1 for fx in bet_fixtures if fx.get("best_bet_won") is False)
     # ROI: won → profit = (odds-1), lost → profit = -1
     total_profit = 0.0
     for fx in fixtures:
@@ -274,9 +275,11 @@ def _update_history_summary(history: dict) -> None:
                 total_profit += (bb.get("odds", 1.0) - 1.0)
             else:
                 total_profit -= 1.0
-    roi = round(total_profit / total * 100, 1) if total > 0 else 0.0
+    n_bet = len(bet_fixtures)
+    roi = round(total_profit / n_bet * 100, 1) if n_bet > 0 else 0.0
     history["summary"] = {
         "total": total,
+        "total_bet": n_bet,
         "won": won,
         "lost": lost,
         "win_rate": round(won / (won + lost) * 100, 1) if (won + lost) > 0 else 0.0,
@@ -329,8 +332,6 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
         ]
 
         best_bet = old_fx.get("best_bet")
-        if not best_bet:
-            continue  # no bet signal → nothing to track
 
         best_bet_won = None
         if best_bet and actual_home is not None and actual_away is not None:
@@ -348,6 +349,7 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
             "date": old_fx.get("commence_time"),
             "picks": picks,
             "best_bet": best_bet,
+            "has_bet": best_bet is not None,
             "result": {"home": actual_home, "away": actual_away},
             "best_bet_won": best_bet_won,
         }
@@ -451,7 +453,17 @@ def generate():
                 elif s["name"] == away_api:
                     actual_away = int(s["score"]) if s["score"] is not None else None
             if not completed and actual_home is not None:
-                is_live = True
+                try:
+                    ct = datetime.fromisoformat(commence.replace("Z", "+00:00"))
+                    elapsed_min = (now - ct).total_seconds() / 60
+                    if elapsed_min > 110:
+                        # Odds API lag: match ran >110 min, treat as completed
+                        completed = True
+                        print(f"[auto-complete] {home_api} vs {away_api} ({elapsed_min:.0f}m elapsed)")
+                    else:
+                        is_live = True
+                except Exception:
+                    is_live = True
 
         try:
             pred = predict(fit, home_model, away_model, odds, neutral=False)
@@ -566,7 +578,22 @@ def generate():
     current_ids = {f["id"] for f in fixtures}
     if existing_predictions:
         for old_fx in existing_predictions.get("fixtures", []):
-            if old_fx.get("completed") and old_fx["id"] not in current_ids:
+            if old_fx["id"] in current_ids:
+                continue
+            # Carry forward completed fixtures and recently-live ones that
+            # may have dropped off the Odds API before being marked complete.
+            if old_fx.get("completed") or old_fx.get("is_live"):
+                # Auto-complete stale live fixtures: >120 min past commence
+                if old_fx.get("is_live") and not old_fx.get("completed"):
+                    try:
+                        ct = datetime.fromisoformat(old_fx["commence_time"].replace("Z", "+00:00"))
+                        if (now - ct).total_seconds() / 60 > 120:
+                            old_fx = dict(old_fx)  # don't mutate original
+                            old_fx["is_live"] = False
+                            old_fx["completed"] = True
+                            print(f"[stale-live] {old_fx['home']} vs {old_fx['away']} marked complete")
+                    except Exception:
+                        pass
                 fixtures.append(old_fx)
 
     completed_keys = {
@@ -617,25 +644,25 @@ def generate():
 
 
 def _bet_won(fixture: dict) -> bool:
-    if not fixture.get("best_bet") or fixture["actual_home"] is None:
+    if not fixture.get("best_bet") or fixture.get("actual_home") is None:
         return False
     bb = fixture["best_bet"]
-    side = bb.get("market", "")
+    side = bb.get("side") or bb.get("market", "")
     ah = fixture["actual_home"]
     aa = fixture["actual_away"]
-    if "Local" in side or side == "home":
+    if side in ("home",) or "Local" in side:
         return ah > aa
-    if "Visitante" in side or side == "away":
+    if side in ("away",) or "Visitante" in side:
         return aa > ah
-    if "Empate" in side or side == "draw":
+    if side in ("draw",) or "Empate" in side:
         return ah == aa
-    if "Over" in side:
+    if side in ("over_2_5",) or "Over" in side:
         return (ah + aa) > 2.5
-    if "Under" in side:
+    if side in ("under_2_5",) or "Under" in side:
         return (ah + aa) < 2.5
-    if "BTTS" in side and "Sí" in side:
+    if side in ("btts_yes",) or ("BTTS" in side and "Sí" in side):
         return ah > 0 and aa > 0
-    if "BTTS" in side and "No" in side:
+    if side in ("btts_no",) or ("BTTS" in side and "No" in side):
         return ah == 0 or aa == 0
     return False
 
