@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Quini — Predicciones Mundial 2026</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#059669">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Quini">
 <meta name="description" content="Predicciones Bivariate-Poisson para el Mundial 2026. Análisis de valor, quiniela optimizada y track record en tiempo real.">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -119,6 +125,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
   <div class="flex items-center gap-4 sm:gap-6 mb-6 border-b overflow-x-auto" style="border-color:var(--border);">
     <button onclick="setTab('upcoming')" id="tab-upcoming" class="pb-3 text-sm font-medium tab-active cursor-pointer whitespace-nowrap" data-i18n="tab_picks">Picks</button>
+    <button onclick="setTab('groups')" id="tab-groups" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap">Grupos</button>
     <button onclick="setTab('results')" id="tab-results" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_results">Resultados</button>
     <button onclick="setTab('history')" id="tab-history" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_history">Historial</button>
     <button onclick="setTab('quiniela')" id="tab-quiniela" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap">Quiniela</button>
@@ -146,6 +153,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
   <div id="date-chips-bar" class="hidden flex-wrap gap-2 mb-6"></div>
 
   <div id="fixtures-container"></div>
+  <div id="groups-container" class="hidden"></div>
   <div id="results-container" class="hidden"></div>
   <div id="history-container" class="hidden"></div>
   <div id="quiniela-container" class="hidden"></div>
@@ -711,7 +719,7 @@ async function _tickLive() {
 // ── Tabs & Filters ──
 function setTab(tab) {
   currentTab = tab;
-  ['upcoming','results','history','quiniela'].forEach(t => {
+  ['upcoming','groups','results','history','quiniela'].forEach(t => {
     const btn = document.getElementById('tab-' + t);
     const container = document.getElementById(t === 'upcoming' ? 'fixtures-container' : t + '-container');
     if (btn) btn.className = 'pb-3 text-sm font-medium cursor-pointer whitespace-nowrap ' + (tab === t ? 'tab-active' : 'tab-inactive');
@@ -905,6 +913,7 @@ function toggleHeatmap(btn, fid, xgH, xgA, commenceTime) {
 function renderAll() {
   if (!DATA) return;
   renderFixtures();
+  renderGroups();
   renderResults();
   renderHistory();
   renderQuiniela();
@@ -1151,7 +1160,12 @@ function renderFixtureCard(f, featured = false) {
             ${f.is_live ? `<span class="flex items-center gap-1.5 px-2 py-0.5 rounded-full" style="background:color-mix(in srgb, var(--live) 10%, transparent); border:1px solid color-mix(in srgb, var(--live) 30%, transparent);"><span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span><span class="text-[10px] font-mono" style="color:var(--live);">LIVE</span></span>` : ''}
             <span class="text-xs" style="color:var(--mute);">${formatDate(f.commence_time)}</span>
           </div>
-          <span class="px-2 py-0.5 rounded text-[10px] font-mono" style="color:var(--${cc}); background:color-mix(in srgb, var(--${cc}) 10%, transparent); border:1px solid color-mix(in srgb, var(--${cc}) 20%, transparent);">${f.fixture_confidence || '—'}</span>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded text-[10px] font-mono" style="color:var(--${cc}); background:color-mix(in srgb, var(--${cc}) 10%, transparent); border:1px solid color-mix(in srgb, var(--${cc}) 20%, transparent);">${f.fixture_confidence || '—'}</span>
+            ${hasBet ? `<button onclick="shareFixture('${f.id}')" title="${LANG==='es'?'Compartir pick':'Share pick'}" class="flex items-center justify-center w-6 h-6 rounded-full" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 25%,transparent);">
+              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </button>` : ''}
+          </div>
         </div>
         <div class="flex items-center justify-between mb-1">
           <div class="flex-1">
@@ -1266,6 +1280,63 @@ let historySubTab = 'bets'; // 'bets' | 'predictions'
 function setHistorySubTab(sub) {
   historySubTab = sub;
   renderHistory();
+}
+
+function renderGroups() {
+  const el = document.getElementById('groups-container');
+  if (!el) return;
+  const groups = DATA && DATA.standings;
+  if (!groups || !groups.length) {
+    el.innerHTML = `<div class="text-center py-16 text-sm" style="color:var(--mute);">Sin datos de grupos</div>`;
+    return;
+  }
+
+  const cols = ['PJ','G','E','P','GF','GC','DIF','PTS'];
+  const fields = ['played','won','drawn','lost','gf','ga','gd','pts'];
+
+  let html = `<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">`;
+
+  groups.forEach(grp => {
+    html += `
+      <div class="rounded-xl p-4" style="background:var(--panel); border:1px solid var(--border);">
+        <div class="text-xs font-bold uppercase tracking-widest mb-3" style="color:var(--mute);">${grp.group}</div>
+        <table class="w-full text-xs">
+          <thead>
+            <tr>
+              <th class="text-left pb-1.5 font-medium" style="color:var(--mute);" colspan="2">Equipo</th>
+              ${cols.map(c => `<th class="text-right pb-1.5 font-medium w-6" style="color:var(--mute);">${c}</th>`).join('')}
+            </tr>
+          </thead>
+          <tbody>
+            ${grp.teams.map((team, i) => {
+              const advancing = team.advancing || i < 2;
+              const borderStyle = advancing
+                ? `border-left:3px solid var(--bet);`
+                : `border-left:3px solid var(--border);`;
+              const rowStyle = advancing ? `background:color-mix(in srgb,var(--bet) 4%,transparent);` : '';
+              return `
+                <tr style="${rowStyle}${borderStyle}padding-left:4px;">
+                  <td class="py-1.5 pr-1 w-5 font-mono text-center" style="color:${advancing ? 'var(--bet)' : 'var(--mute)'};">${i+1}</td>
+                  <td class="py-1.5 pr-2">
+                    <div class="flex items-center gap-1.5">
+                      <img src="${team.flag}" class="w-4 h-4 rounded-sm object-cover flex-shrink-0" onerror="this.style.display='none'"/>
+                      <span class="font-medium truncate" style="max-width:90px;">${LANG === 'es' ? (teamName(team.name) || team.name) : team.name}</span>
+                    </div>
+                  </td>
+                  ${fields.map(f => `<td class="py-1.5 text-right font-mono w-6 ${f==='pts' ? 'font-bold' : ''}" style="color:${f==='pts' && advancing ? 'var(--bet)' : 'var(--ink)'};">${team[f] ?? '–'}</td>`).join('')}
+                </tr>`;
+            }).join('')}
+          </tbody>
+        </table>
+        <div class="mt-2 flex items-center gap-1.5 text-[10px]" style="color:var(--mute);">
+          <div style="width:3px;height:10px;border-radius:1px;background:var(--bet);flex-shrink:0;"></div>
+          ${LANG === 'es' ? 'Clasifican a Ronda de 32' : 'Advance to Round of 32'}
+        </div>
+      </div>`;
+  });
+
+  html += `</div>`;
+  el.innerHTML = html;
 }
 
 function renderHistory() {
@@ -1541,6 +1612,151 @@ function scheduleRefresh() {
 }
 scheduleRefresh();
 setFilter('all');
+
+// ── PWA service worker ──
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(() => {});
+}
+
+// ── Share card ──
+async function shareFixture(fid) {
+  const f = DATA && DATA.fixtures.find(x => x.id === fid);
+  if (!f) return;
+  const allBets = f.bets && f.bets.length ? f.bets : (f.best_bet ? [f.best_bet] : []);
+  if (!allBets.length) return;
+
+  const canvas = document.createElement('canvas');
+  const DPR = 2;
+  const W = 420, H = 260 + allBets.length * 56;
+  canvas.width = W * DPR; canvas.height = H * DPR;
+  const ctx = canvas.getContext('2d');
+  ctx.scale(DPR, DPR);
+
+  const dark = document.documentElement.classList.contains('dark');
+  const BG = dark ? '#0f172a' : '#ffffff';
+  const BG2 = dark ? '#1e293b' : '#f8fafc';
+  const INK = dark ? '#f1f5f9' : '#0f172a';
+  const MUTE = dark ? '#64748b' : '#94a3b8';
+  const GREEN = '#059669';
+  const BORDER = dark ? '#334155' : '#e2e8f0';
+
+  // background
+  ctx.fillStyle = BG;
+  ctx.fillRect(0, 0, W, H);
+
+  // top accent bar
+  ctx.fillStyle = GREEN;
+  ctx.fillRect(0, 0, W, 4);
+
+  // header
+  ctx.fillStyle = GREEN;
+  ctx.font = 'bold 18px Inter, sans-serif';
+  ctx.fillText('Quini ⚽', 20, 30);
+  ctx.fillStyle = MUTE;
+  ctx.font = '11px Inter, sans-serif';
+  ctx.fillText('Mundial 2026 · quini-bzs.pages.dev', 20, 46);
+
+  // separator
+  ctx.strokeStyle = BORDER;
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(20, 58); ctx.lineTo(W - 20, 58); ctx.stroke();
+
+  // teams
+  const home = teamName(f.home) || f.home;
+  const away = teamName(f.away) || f.away;
+  ctx.fillStyle = INK;
+  ctx.font = 'bold 20px Inter, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(`${home} vs ${away}`, W / 2, 88);
+  ctx.fillStyle = MUTE;
+  ctx.font = '11px Inter, sans-serif';
+  const dateStr = new Date(f.commence_time).toLocaleDateString(LANG === 'es' ? 'es' : 'en', {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
+  ctx.fillText(dateStr, W / 2, 106);
+  ctx.textAlign = 'left';
+
+  // xG
+  if (f.xg_home != null) {
+    ctx.fillStyle = MUTE;
+    ctx.font = '10px JetBrains Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(`xG  ${f.xg_home} – ${f.xg_away}`, W / 2, 122);
+    ctx.textAlign = 'left';
+  }
+
+  // bet cards
+  let yBet = 142;
+  allBets.forEach((bb, i) => {
+    const isPrimary = i === 0;
+    const desc = LANG === 'es' ? (bb.description_es || bb.market) : (bb.description_en || bb.market);
+    const label = isPrimary ? (LANG === 'es' ? 'MEJOR APUESTA' : 'BEST BET') : (LANG === 'es' ? 'TAMBIÉN BET' : 'ALSO BET');
+    const alpha = isPrimary ? '22' : '11';
+
+    // card bg
+    ctx.fillStyle = GREEN + alpha;
+    roundRect(ctx, 20, yBet, W - 40, 48, 8);
+    ctx.fill();
+
+    ctx.strokeStyle = GREEN + (isPrimary ? '44' : '22');
+    ctx.lineWidth = 1;
+    roundRect(ctx, 20, yBet, W - 40, 48, 8);
+    ctx.stroke();
+
+    // label
+    ctx.fillStyle = GREEN;
+    ctx.font = 'bold 9px Inter, sans-serif';
+    ctx.fillText(label, 32, yBet + 14);
+
+    // description
+    ctx.fillStyle = INK;
+    ctx.font = `${isPrimary ? 'bold' : '500'} 13px Inter, sans-serif`;
+    ctx.fillText(desc.length > 38 ? desc.slice(0, 37) + '…' : desc, 32, yBet + 31);
+
+    // odds + edge
+    ctx.fillStyle = GREEN;
+    ctx.font = 'bold 13px JetBrains Mono, monospace';
+    const oddsStr = `+${bb.edge}%  @ ${Number(bb.best_odds || bb.odds).toFixed(2)}`;
+    ctx.textAlign = 'right';
+    ctx.fillText(oddsStr, W - 32, yBet + 31);
+    if (bb.best_book) {
+      ctx.fillStyle = MUTE;
+      ctx.font = '9px Inter, sans-serif';
+      ctx.fillText(bb.best_book, W - 32, yBet + 43);
+    }
+    ctx.textAlign = 'left';
+
+    yBet += 56;
+  });
+
+  // footer
+  ctx.fillStyle = MUTE;
+  ctx.font = '9px Inter, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('Modelo Bivariate-Poisson · Solo análisis, no asesoría financiera', W / 2, H - 10);
+  ctx.textAlign = 'left';
+
+  // share
+  canvas.toBlob(async blob => {
+    const file = new File([blob], 'quini-pick.png', {type: 'image/png'});
+    if (navigator.share && navigator.canShare && navigator.canShare({files: [file]})) {
+      await navigator.share({title: `Quini: ${home} vs ${away}`, files: [file]});
+    } else {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `quini-${f.home.toLowerCase().replace(/\s/g,'-')}-vs-${f.away.toLowerCase().replace(/\s/g,'-')}.png`;
+      a.click();
+    }
+  }, 'image/png');
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y); ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+  ctx.lineTo(x + w, y + h - r); ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  ctx.lineTo(x + r, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+  ctx.lineTo(x, y + r); ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
 </script>
 </body>
 </html>

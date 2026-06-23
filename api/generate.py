@@ -100,6 +100,53 @@ def fetch_odds(api_key: str) -> list[dict]:
     return r.json()
 
 
+def fetch_standings() -> list[dict]:
+    """Fetch group standings from ESPN. Returns list of {group, teams[]}."""
+    try:
+        r = requests.get(
+            "https://site.api.espn.com/apis/v2/sports/soccer/fifa.world/standings",
+            timeout=15,
+        )
+        r.raise_for_status()
+        data = r.json()
+    except Exception as e:
+        print(f"[standings] ESPN fetch failed: {e}")
+        return []
+
+    STAT = {"gamesPlayed": "played", "wins": "won", "ties": "drawn", "losses": "lost",
+            "pointsFor": "gf", "pointsAgainst": "ga", "pointDifferential": "gd", "points": "pts"}
+    groups = []
+    for grp in data.get("children", []):
+        teams = []
+        for entry in grp.get("standings", {}).get("entries", []):
+            team = entry.get("team", {})
+            stats_raw = {s["name"]: s["displayValue"] for s in entry.get("stats", [])}
+            def _int(k): return int(stats_raw.get(k, 0) or 0)
+            logos = team.get("logos", [])
+            flag = logos[0]["href"] if logos else ""
+            note = entry.get("note", {})
+            teams.append({
+                "name": team.get("displayName", ""),
+                "abbr": team.get("abbreviation", ""),
+                "flag": flag,
+                "rank": _int("rank"),
+                "played": _int("gamesPlayed"),
+                "won": _int("wins"),
+                "drawn": _int("ties"),
+                "lost": _int("losses"),
+                "gf": _int("pointsFor"),
+                "ga": _int("pointsAgainst"),
+                "gd": stats_raw.get("pointDifferential", "0"),
+                "pts": _int("points"),
+                "advancing": bool(note.get("color") and "81D6AC" in note.get("color", "")),
+            })
+        teams.sort(key=lambda t: (t["rank"] or 99))
+        groups.append({"group": grp.get("name", ""), "teams": teams})
+
+    print(f"[standings] fetched {len(groups)} groups")
+    return groups
+
+
 def fetch_scores(api_key: str, days_from: int = 3) -> list[dict]:
     r = requests.get(
         f"{BASE}/sports/{SPORT}/scores",
@@ -856,6 +903,8 @@ def generate():
     won = sum(1 for f in completed_fixtures if f["best_bet"] and _bet_won(f))
     lost = sum(1 for f in completed_fixtures if f["best_bet"] and not _bet_won(f) and f["actual_home"] is not None)
 
+    standings = fetch_standings()
+
     output = {
         "generated_at": now.isoformat(),
         "model": {
@@ -875,6 +924,7 @@ def generate():
             "win_rate": round(won / (won + lost) * 100, 1) if (won + lost) > 0 else 0,
         },
         "tooltips": TOOLTIPS,
+        "standings": standings,
         "fixtures": fixtures,
     }
 

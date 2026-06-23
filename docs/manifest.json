@@ -1,0 +1,20 @@
+{
+  "name": "Quini — Mundial 2026",
+  "short_name": "Quini",
+  "description": "Predicciones Bivariate-Poisson para el Mundial 2026",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#059669",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='80' fill='%23059669'/><text y='.85em' x='.1em' font-size='400'>⚽</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["sports", "utilities"],
+  "lang": "es"
+}
