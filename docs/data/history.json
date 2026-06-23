@@ -1000,13 +1000,100 @@
         "away": 0
       },
       "best_bet_won": true
+    },
+    {
+      "id": "3f48473742ca0fd2a85930554720c75e",
+      "home": "Norway",
+      "away": "Senegal",
+      "date": "2026-06-23T00:00:00Z",
+      "picks": [
+        {
+          "market": "Empate (X)",
+          "pick": "BET",
+          "edge": 13.2,
+          "odds": 15.0,
+          "model_prob": 17.4,
+          "devig_prob": 4.2
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "pick": "BET",
+          "edge": 13.5,
+          "odds": 56.0,
+          "model_prob": 14.0,
+          "devig_prob": 0.5
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Visitante (2)",
+        "side": "away",
+        "edge": 13.5,
+        "odds": 56.0,
+        "pick": "BET",
+        "confidence_band": "ALTA",
+        "model_prob": 14.0,
+        "devig_prob": 0.5,
+        "description_es": "Senegal gana el partido",
+        "description_en": "Senegal wins the match",
+        "is_compound": false
+      },
+      "has_bet": true,
+      "result": {
+        "home": 3,
+        "away": 2
+      },
+      "best_bet_won": false
+    },
+    {
+      "id": "fd8533b650e655030f6a7946f8795db2",
+      "home": "Jordan",
+      "away": "Algeria",
+      "date": "2026-06-23T03:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "pick": "BET",
+          "edge": 15.3,
+          "odds": 7.27,
+          "model_prob": 28.7,
+          "devig_prob": 13.4
+        },
+        {
+          "market": "Over 2.5",
+          "pick": "BET",
+          "edge": 10.0,
+          "odds": 1.95,
+          "model_prob": 59.6,
+          "devig_prob": 49.6
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "side": "home",
+        "edge": 15.3,
+        "odds": 7.27,
+        "pick": "BET",
+        "confidence_band": "ALTA",
+        "model_prob": 28.7,
+        "devig_prob": 13.4,
+        "description_es": "Jordan gana + M\u00e1s de 2.5 goles",
+        "description_en": "Jordan wins + Over 2.5 goals",
+        "is_compound": true
+      },
+      "has_bet": true,
+      "result": {
+        "home": 1,
+        "away": 2
+      },
+      "best_bet_won": false
     }
   ],
   "summary": {
-    "total": 32,
+    "total": 34,
+    "total_bet": 34,
     "won": 22,
-    "lost": 10,
-    "win_rate": 68.8,
-    "roi": 18.0
+    "lost": 12,
+    "win_rate": 64.7,
+    "roi": 11.1
   }
 }
