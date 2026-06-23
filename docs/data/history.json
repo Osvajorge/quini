@@ -2325,19 +2325,112 @@
       "predicted_1x2": "1",
       "result_1x2": "1",
       "correct_1x2": true
+    },
+    {
+      "id": "2f49dd8deae3079dc4eb2d634d18a99c",
+      "home": "England",
+      "away": "Ghana",
+      "date": "2026-06-23T20:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "BET",
+          "edge": 14.0,
+          "odds": 1.47,
+          "model_prob": 79.5,
+          "devig_prob": 65.4,
+          "won": false
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "FADE",
+          "edge": -15.2,
+          "odds": 3.27,
+          "model_prob": 13.3,
+          "devig_prob": 28.5,
+          "won": true
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "SKIP",
+          "edge": 1.1,
+          "odds": 13.0,
+          "model_prob": 7.2,
+          "devig_prob": 6.1,
+          "won": false
+        }
+      ],
+      "bets": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "edge": 14.0,
+          "odds": 1.47,
+          "won": false,
+          "description_es": "England gana el partido",
+          "description_en": "England wins the match"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "side": "home",
+        "edge": 14.0,
+        "odds": 1.47,
+        "best_odds": 1.55,
+        "best_book": "Coolbet",
+        "pick": "BET",
+        "confidence_band": "ALTA",
+        "model_prob": 79.5,
+        "devig_prob": 65.4,
+        "description_es": "England gana el partido",
+        "description_en": "England wins the match",
+        "is_compound": false
+      },
+      "has_bet": true,
+      "result": {
+        "home": 0,
+        "away": 0
+      },
+      "best_bet_won": false,
+      "score_hit": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 15.1
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 15.0
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 10.1
+        }
+      ],
+      "xg_home": 2.09,
+      "xg_away": 0.59,
+      "predicted_1x2": "1",
+      "result_1x2": "X",
+      "correct_1x2": false
     }
   ],
   "summary": {
-    "total": 35,
-    "total_bets": 38,
+    "total": 36,
+    "total_bets": 39,
     "won": 22,
-    "lost": 16,
-    "win_rate": 57.9,
-    "roi": -0.6,
+    "lost": 17,
+    "win_rate": 56.4,
+    "roi": -3.2,
     "score_hits": 13,
     "score_top1": 4,
     "correct_1x2": 24,
-    "total_1x2": 35,
-    "accuracy_1x2": 68.6
+    "total_1x2": 36,
+    "accuracy_1x2": 66.7
   }
 }
