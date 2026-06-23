@@ -109,6 +109,24 @@ python -m http.server 8000 -d docs
 - [ ] Alertas pre-partido (Telegram/email)
 - [ ] API REST para consumo externo
 
+#### Simulación de apuestas
+- [ ] **A — Replay histórico P&L**: curva de bankroll real sobre las apuestas históricas, toggle flat/Kelly/% bankroll
+- [ ] **B — Simulador Monte Carlo**: inputs bankroll + stake, 1k escenarios con win rate actual, muestra rango esperado/mejor/peor para el resto del torneo
+- [ ] **C — Kelly Criterion por señal**: stake óptimo recomendado al lado de cada BET activa dado el edge y las cuotas
+
+#### Modelo
+- [ ] Ensemble Dixon-Coles + Bivariate Poisson (ponderado): DC mejor en marcadores bajos exactos (0-0, 1-0), BivPoisson mejor en distribución general
+- [ ] Recency weighting vía parámetro `xi` de decaimiento temporal en penaltyblog
+- [ ] Calibración con mercado como prior bayesiano: implied probs como prior + modelo como likelihood → posterior
+- [ ] Home/neutral ground: ajustar `neutral=True` para equipos no-anfitriones en WC
+
+#### Estadísticas de jugadores (feature grande)
+- [ ] Radar hexagonal estilo FIFA por jugador: 6 ejes (goles, asistencias, % tiro a puerta, duelos ganados, tarjetas, distancia)
+- [ ] Foto + equipo + país por jugador
+- [ ] Navegación por país → jugadores de esa selección
+- [ ] Top 5 predicciones por equipo (ej: equipos con mayor % tiro a puerta histórico basado en StatsBomb WC2022)
+- [ ] Fuente de datos: StatsBomb open data (WC2022 gratis vía `statsbombpy`) + ESPN API para 2026 en curso
+
 #### Scope futuro (post-WC)
 - [ ] Ligas de clubes (football-data.co.uk / FBref)
 - [ ] Mercados secundarios (córners, tarjetas)
