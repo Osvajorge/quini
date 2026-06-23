@@ -2232,19 +2232,112 @@
           "description_en": "Over 2.5"
         }
       ]
+    },
+    {
+      "id": "8ba93d190f1f934e33862a97a6353a6e",
+      "home": "Portugal",
+      "away": "Uzbekistan",
+      "date": "2026-06-23T17:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "FADE",
+          "edge": -20.9,
+          "odds": 1.01,
+          "model_prob": 76.5,
+          "devig_prob": 97.4,
+          "won": true
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "BET",
+          "edge": 14.2,
+          "odds": 31.25,
+          "model_prob": 16.4,
+          "devig_prob": 2.2,
+          "won": false
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "SKIP",
+          "edge": 6.7,
+          "odds": 86.12,
+          "model_prob": 7.2,
+          "devig_prob": 0.5,
+          "won": false
+        }
+      ],
+      "bets": [
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "edge": 14.2,
+          "odds": 31.25,
+          "won": false,
+          "description_es": "El partido termina en empate",
+          "description_en": "Match ends in a draw"
+        }
+      ],
+      "best_bet": {
+        "market": "Empate (X)",
+        "side": "draw",
+        "edge": 14.2,
+        "odds": 31.25,
+        "best_odds": 46.0,
+        "best_book": "unibet_se",
+        "pick": "BET",
+        "confidence_band": "ALTA",
+        "model_prob": 16.4,
+        "devig_prob": 2.2,
+        "description_es": "El partido termina en empate",
+        "description_en": "Match ends in a draw",
+        "is_compound": false
+      },
+      "has_bet": true,
+      "result": {
+        "home": 5,
+        "away": 0
+      },
+      "best_bet_won": false,
+      "score_hit": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 14.7
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 13.2
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 10.8
+        }
+      ],
+      "xg_home": 2.3,
+      "xg_away": 0.6,
+      "predicted_1x2": "1",
+      "result_1x2": "1",
+      "correct_1x2": true
     }
   ],
   "summary": {
-    "total": 34,
-    "total_bets": 37,
+    "total": 35,
+    "total_bets": 38,
     "won": 22,
-    "lost": 15,
-    "win_rate": 59.5,
-    "roi": 2.1,
+    "lost": 16,
+    "win_rate": 57.9,
+    "roi": -0.6,
     "score_hits": 13,
     "score_top1": 4,
-    "correct_1x2": 23,
-    "total_1x2": 34,
-    "accuracy_1x2": 67.6
+    "correct_1x2": 24,
+    "total_1x2": 35,
+    "accuracy_1x2": 68.6
   }
 }
