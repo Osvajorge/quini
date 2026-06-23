@@ -7276,7 +7276,7 @@
           "ga": 0,
           "gd": "+3",
           "pts": 6,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "South Korea",
@@ -7291,7 +7291,7 @@
           "ga": 2,
           "gd": "0",
           "pts": 3,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Czechia",
@@ -7306,7 +7306,7 @@
           "ga": 3,
           "gd": "-1",
           "pts": 1,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "South Africa",
@@ -7321,7 +7321,7 @@
           "ga": 3,
           "gd": "-2",
           "pts": 1,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     },
@@ -7341,7 +7341,7 @@
           "ga": 1,
           "gd": "+6",
           "pts": 4,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Switzerland",
@@ -7356,7 +7356,7 @@
           "ga": 2,
           "gd": "+3",
           "pts": 4,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Bosnia-Herzegovina",
@@ -7371,7 +7371,7 @@
           "ga": 5,
           "gd": "-3",
           "pts": 1,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "Qatar",
@@ -7386,7 +7386,7 @@
           "ga": 7,
           "gd": "-6",
           "pts": 1,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     },
@@ -7406,7 +7406,7 @@
           "ga": 1,
           "gd": "+3",
           "pts": 4,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Morocco",
@@ -7421,7 +7421,7 @@
           "ga": 1,
           "gd": "+1",
           "pts": 4,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Scotland",
@@ -7436,7 +7436,7 @@
           "ga": 1,
           "gd": "0",
           "pts": 3,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "Haiti",
@@ -7451,7 +7451,7 @@
           "ga": 4,
           "gd": "-4",
           "pts": 0,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     },
@@ -7471,7 +7471,7 @@
           "ga": 1,
           "gd": "+5",
           "pts": 6,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Australia",
@@ -7486,7 +7486,7 @@
           "ga": 2,
           "gd": "0",
           "pts": 3,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Paraguay",
@@ -7501,7 +7501,7 @@
           "ga": 4,
           "gd": "-2",
           "pts": 3,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "T\u00fcrkiye",
@@ -7516,7 +7516,7 @@
           "ga": 3,
           "gd": "-3",
           "pts": 0,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     },
@@ -7536,7 +7536,7 @@
           "ga": 2,
           "gd": "+7",
           "pts": 6,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Ivory Coast",
@@ -7551,7 +7551,7 @@
           "ga": 2,
           "gd": "0",
           "pts": 3,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Ecuador",
@@ -7566,7 +7566,7 @@
           "ga": 1,
           "gd": "-1",
           "pts": 1,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "Cura\u00e7ao",
@@ -7581,7 +7581,7 @@
           "ga": 7,
           "gd": "-6",
           "pts": 1,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     },
@@ -7601,7 +7601,7 @@
           "ga": 3,
           "gd": "+4",
           "pts": 4,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Japan",
@@ -7616,7 +7616,7 @@
           "ga": 2,
           "gd": "+4",
           "pts": 4,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Sweden",
@@ -7631,7 +7631,7 @@
           "ga": 6,
           "gd": "0",
           "pts": 3,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "Tunisia",
@@ -7646,7 +7646,7 @@
           "ga": 9,
           "gd": "-8",
           "pts": 0,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     },
@@ -7666,7 +7666,7 @@
           "ga": 2,
           "gd": "+2",
           "pts": 4,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Iran",
@@ -7681,7 +7681,7 @@
           "ga": 2,
           "gd": "0",
           "pts": 2,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Belgium",
@@ -7696,7 +7696,7 @@
           "ga": 1,
           "gd": "0",
           "pts": 2,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "New Zealand",
@@ -7711,7 +7711,7 @@
           "ga": 5,
           "gd": "-2",
           "pts": 1,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     },
@@ -7731,7 +7731,7 @@
           "ga": 0,
           "gd": "+4",
           "pts": 4,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Uruguay",
@@ -7746,7 +7746,7 @@
           "ga": 3,
           "gd": "0",
           "pts": 2,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Cape Verde",
@@ -7761,7 +7761,7 @@
           "ga": 2,
           "gd": "0",
           "pts": 2,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "Saudi Arabia",
@@ -7776,7 +7776,7 @@
           "ga": 5,
           "gd": "-4",
           "pts": 1,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     },
@@ -7796,7 +7796,7 @@
           "ga": 1,
           "gd": "+5",
           "pts": 6,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Norway",
@@ -7811,7 +7811,7 @@
           "ga": 3,
           "gd": "+4",
           "pts": 6,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Senegal",
@@ -7826,7 +7826,7 @@
           "ga": 6,
           "gd": "-3",
           "pts": 0,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "Iraq",
@@ -7841,7 +7841,7 @@
           "ga": 7,
           "gd": "-6",
           "pts": 0,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     },
@@ -7861,7 +7861,7 @@
           "ga": 0,
           "gd": "+5",
           "pts": 6,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Austria",
@@ -7876,7 +7876,7 @@
           "ga": 3,
           "gd": "0",
           "pts": 3,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Algeria",
@@ -7891,7 +7891,7 @@
           "ga": 4,
           "gd": "-2",
           "pts": 3,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "Jordan",
@@ -7906,7 +7906,7 @@
           "ga": 5,
           "gd": "-3",
           "pts": 0,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     },
@@ -7926,7 +7926,7 @@
           "ga": 1,
           "gd": "+2",
           "pts": 3,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Congo DR",
@@ -7941,7 +7941,7 @@
           "ga": 1,
           "gd": "0",
           "pts": 1,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Portugal",
@@ -7956,7 +7956,7 @@
           "ga": 1,
           "gd": "0",
           "pts": 1,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "Uzbekistan",
@@ -7971,7 +7971,7 @@
           "ga": 3,
           "gd": "-2",
           "pts": 0,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     },
@@ -7991,7 +7991,7 @@
           "ga": 2,
           "gd": "+2",
           "pts": 3,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Ghana",
@@ -8006,7 +8006,7 @@
           "ga": 0,
           "gd": "+1",
           "pts": 3,
-          "advancing": true
+          "status": "direct"
         },
         {
           "name": "Panama",
@@ -8021,7 +8021,7 @@
           "ga": 1,
           "gd": "-1",
           "pts": 0,
-          "advancing": false
+          "status": "possible"
         },
         {
           "name": "Croatia",
@@ -8036,7 +8036,7 @@
           "ga": 4,
           "gd": "-2",
           "pts": 0,
-          "advancing": false
+          "status": "eliminated"
         }
       ]
     }

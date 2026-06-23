@@ -138,7 +138,7 @@ def fetch_standings() -> list[dict]:
                 "ga": _int("pointsAgainst"),
                 "gd": stats_raw.get("pointDifferential", "0"),
                 "pts": _int("points"),
-                "advancing": bool(note.get("color") and "81D6AC" in note.get("color", "")),
+                "status": "direct" if "81D6AC" in note.get("color","") else "possible" if "B5E7CE" in note.get("color","") else "eliminated",
             })
         teams.sort(key=lambda t: (t["rank"] or 99))
         groups.append({"group": grp.get("name", ""), "teams": teams})

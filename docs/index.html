@@ -1162,9 +1162,9 @@ function renderFixtureCard(f, featured = false) {
           </div>
           <div class="flex items-center gap-2">
             <span class="px-2 py-0.5 rounded text-[10px] font-mono" style="color:var(--${cc}); background:color-mix(in srgb, var(--${cc}) 10%, transparent); border:1px solid color-mix(in srgb, var(--${cc}) 20%, transparent);">${f.fixture_confidence || '—'}</span>
-            ${hasBet ? `<button onclick="shareFixture('${f.id}')" title="${LANG==='es'?'Compartir pick':'Share pick'}" class="flex items-center justify-center w-6 h-6 rounded-full" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 25%,transparent);">
+            <button onclick="shareFixture('${f.id}')" title="${LANG==='es'?'Compartir':'Share'}" class="flex items-center justify-center w-6 h-6 rounded-full" style="background:color-mix(in srgb,var(--mute) 10%,transparent); color:var(--mute); border:1px solid color-mix(in srgb,var(--mute) 20%,transparent);">
               <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-            </button>` : ''}
+            </button>
           </div>
         </div>
         <div class="flex items-center justify-between mb-1">
@@ -1309,28 +1309,41 @@ function renderGroups() {
           </thead>
           <tbody>
             ${grp.teams.map((team, i) => {
-              const advancing = team.advancing || i < 2;
-              const borderStyle = advancing
+              const st = team.status || (i < 2 ? 'direct' : i === 2 ? 'possible' : 'eliminated');
+              const borderStyle = st === 'direct'
                 ? `border-left:3px solid var(--bet);`
-                : `border-left:3px solid var(--border);`;
-              const rowStyle = advancing ? `background:color-mix(in srgb,var(--bet) 4%,transparent);` : '';
+                : st === 'possible'
+                  ? `border-left:3px solid color-mix(in srgb,var(--bet) 45%,transparent);`
+                  : `border-left:3px solid var(--border);`;
+              const rowStyle = st === 'direct'
+                ? `background:color-mix(in srgb,var(--bet) 5%,transparent);`
+                : st === 'possible'
+                  ? `background:color-mix(in srgb,var(--bet) 2%,transparent);`
+                  : '';
+              const rankColor = st === 'direct' ? 'var(--bet)' : st === 'possible' ? 'color-mix(in srgb,var(--bet) 60%,var(--mute))' : 'var(--mute)';
               return `
                 <tr style="${rowStyle}${borderStyle}padding-left:4px;">
-                  <td class="py-1.5 pr-1 w-5 font-mono text-center" style="color:${advancing ? 'var(--bet)' : 'var(--mute)'};">${i+1}</td>
+                  <td class="py-1.5 pr-1 w-5 font-mono text-center" style="color:${rankColor};">${i+1}</td>
                   <td class="py-1.5 pr-2">
                     <div class="flex items-center gap-1.5">
                       <img src="${team.flag}" class="w-4 h-4 rounded-sm object-cover flex-shrink-0" onerror="this.style.display='none'"/>
                       <span class="font-medium truncate" style="max-width:90px;">${LANG === 'es' ? (teamName(team.name) || team.name) : team.name}</span>
                     </div>
                   </td>
-                  ${fields.map(f => `<td class="py-1.5 text-right font-mono w-6 ${f==='pts' ? 'font-bold' : ''}" style="color:${f==='pts' && advancing ? 'var(--bet)' : 'var(--ink)'};">${team[f] ?? '–'}</td>`).join('')}
+                  ${fields.map(fld => `<td class="py-1.5 text-right font-mono w-6 ${fld==='pts' ? 'font-bold' : ''}" style="color:${fld==='pts' ? rankColor : 'var(--ink)'};">${team[fld] ?? '–'}</td>`).join('')}
                 </tr>`;
             }).join('')}
           </tbody>
         </table>
-        <div class="mt-2 flex items-center gap-1.5 text-[10px]" style="color:var(--mute);">
-          <div style="width:3px;height:10px;border-radius:1px;background:var(--bet);flex-shrink:0;"></div>
-          ${LANG === 'es' ? 'Clasifican a Ronda de 32' : 'Advance to Round of 32'}
+        <div class="mt-2.5 space-y-1">
+          <div class="flex items-center gap-1.5 text-[10px]" style="color:var(--mute);">
+            <div style="width:3px;height:10px;border-radius:1px;background:var(--bet);flex-shrink:0;"></div>
+            ${LANG === 'es' ? 'Clasifican directo (1º y 2º)' : 'Direct advance (1st & 2nd)'}
+          </div>
+          <div class="flex items-center gap-1.5 text-[10px]" style="color:var(--mute);">
+            <div style="width:3px;height:10px;border-radius:1px;background:color-mix(in srgb,var(--bet) 45%,transparent);flex-shrink:0;"></div>
+            ${LANG === 'es' ? 'Posible clasificación (mejor 8 terceros)' : 'Possible advance (best 8 thirds)'}
+          </div>
         </div>
       </div>`;
   });
@@ -1619,133 +1632,221 @@ if ('serviceWorker' in navigator) {
 }
 
 // ── Share card ──
+function _fitText(ctx, text, maxW, maxSize, minSize) {
+  let size = maxSize;
+  while (size >= minSize) {
+    ctx.font = `bold ${size}px Inter, sans-serif`;
+    if (ctx.measureText(text).width <= maxW) break;
+    size -= 1;
+  }
+  return size;
+}
+
 async function shareFixture(fid) {
   const f = DATA && DATA.fixtures.find(x => x.id === fid);
   if (!f) return;
+
   const allBets = f.bets && f.bets.length ? f.bets : (f.best_bet ? [f.best_bet] : []);
-  if (!allBets.length) return;
+  const hasBetSignal = allBets.length > 0;
+
+  // Result probs from picks
+  const picks = f.picks || [];
+  const pH = picks.find(p => p.side === 'home');
+  const pD = picks.find(p => p.side === 'draw');
+  const pA = picks.find(p => p.side === 'away');
+  const hasProbs = pH && pD && pA;
+
+  const DPR = 2;
+  const W = 540;
+  const PAD = 24;
+  // Height: header(68) + sep(16) + teams(72) + probs(hasBets?76:0) + bets + footer(40)
+  const probH = hasProbs ? 80 : 0;
+  const betH = hasBetSignal ? (16 + allBets.length * 60) : 0;
+  const H = 68 + 16 + 72 + probH + betH + 40;
 
   const canvas = document.createElement('canvas');
-  const DPR = 2;
-  const W = 420, H = 260 + allBets.length * 56;
   canvas.width = W * DPR; canvas.height = H * DPR;
   const ctx = canvas.getContext('2d');
   ctx.scale(DPR, DPR);
 
   const dark = document.documentElement.classList.contains('dark');
-  const BG = dark ? '#0f172a' : '#ffffff';
-  const BG2 = dark ? '#1e293b' : '#f8fafc';
-  const INK = dark ? '#f1f5f9' : '#0f172a';
-  const MUTE = dark ? '#64748b' : '#94a3b8';
+  const BG    = dark ? '#0f172a' : '#f8fafc';
+  const PANEL = dark ? '#1e293b' : '#ffffff';
+  const INK   = dark ? '#f1f5f9' : '#0f172a';
+  const MUTE  = dark ? '#64748b' : '#94a3b8';
   const GREEN = '#059669';
-  const BORDER = dark ? '#334155' : '#e2e8f0';
+  const BLUE  = '#0891b2';
+  const BORDER= dark ? '#334155' : '#e2e8f0';
 
-  // background
+  // BG
   ctx.fillStyle = BG;
   ctx.fillRect(0, 0, W, H);
 
-  // top accent bar
-  ctx.fillStyle = GREEN;
-  ctx.fillRect(0, 0, W, 4);
+  // card panel
+  roundRect(ctx, PAD - 8, 8, W - (PAD-8)*2, H - 16, 16);
+  ctx.fillStyle = PANEL;
+  ctx.fill();
 
-  // header
+  // top green accent
   ctx.fillStyle = GREEN;
-  ctx.font = 'bold 18px Inter, sans-serif';
-  ctx.fillText('Quini ⚽', 20, 30);
+  ctx.fillRect(PAD - 8, 8, W - (PAD-8)*2, 4);
+
+  // ── Header ──
+  ctx.fillStyle = GREEN;
+  ctx.font = 'bold 17px Inter, sans-serif';
+  ctx.fillText('⚽ Quini', PAD, 38);
+
+  const dateStr = new Date(f.commence_time).toLocaleDateString(
+    LANG === 'es' ? 'es' : 'en',
+    {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}
+  );
   ctx.fillStyle = MUTE;
   ctx.font = '11px Inter, sans-serif';
-  ctx.fillText('Mundial 2026 · quini-bzs.pages.dev', 20, 46);
+  ctx.textAlign = 'right';
+  ctx.fillText(dateStr, W - PAD, 38);
+  ctx.textAlign = 'left';
+
+  ctx.fillStyle = MUTE;
+  ctx.font = '10px Inter, sans-serif';
+  ctx.fillText('Mundial 2026', PAD, 54);
 
   // separator
-  ctx.strokeStyle = BORDER;
-  ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(20, 58); ctx.lineTo(W - 20, 58); ctx.stroke();
+  let y = 68;
+  ctx.strokeStyle = BORDER; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
+  y += 20;
 
-  // teams
+  // ── Teams ──
   const home = teamName(f.home) || f.home;
   const away = teamName(f.away) || f.away;
+  const teamStr = `${home}  vs  ${away}`;
+  const tSize = _fitText(ctx, teamStr, W - PAD * 2, 22, 13);
+  ctx.font = `bold ${tSize}px Inter, sans-serif`;
   ctx.fillStyle = INK;
-  ctx.font = 'bold 20px Inter, sans-serif';
   ctx.textAlign = 'center';
-  ctx.fillText(`${home} vs ${away}`, W / 2, 88);
-  ctx.fillStyle = MUTE;
-  ctx.font = '11px Inter, sans-serif';
-  const dateStr = new Date(f.commence_time).toLocaleDateString(LANG === 'es' ? 'es' : 'en', {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'});
-  ctx.fillText(dateStr, W / 2, 106);
-  ctx.textAlign = 'left';
+  ctx.fillText(teamStr, W / 2, y + 18);
+  y += 28;
 
-  // xG
   if (f.xg_home != null) {
     ctx.fillStyle = MUTE;
-    ctx.font = '10px JetBrains Mono, monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText(`xG  ${f.xg_home} – ${f.xg_away}`, W / 2, 122);
-    ctx.textAlign = 'left';
+    ctx.font = '11px Inter, sans-serif';
+    ctx.fillText(`xG  ${f.xg_home} – ${f.xg_away}`, W / 2, y + 12);
+    y += 22;
+  } else {
+    y += 4;
+  }
+  ctx.textAlign = 'left';
+  y += 6;
+
+  // ── Result probability bars ──
+  if (hasProbs) {
+    const bars = [
+      {label: LANG==='es'?'Victoria local':'Home win', pct: pH.model_prob, color: GREEN},
+      {label: LANG==='es'?'Empate':'Draw',            pct: pD.model_prob, color: MUTE},
+      {label: LANG==='es'?'Victoria visita':'Away win', pct: pA.model_prob, color: BLUE},
+    ];
+    const BAR_W = W - PAD * 2 - 100; // leave room for label + %
+    bars.forEach(b => {
+      ctx.fillStyle = MUTE;
+      ctx.font = '11px Inter, sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(b.label, PAD, y + 10);
+
+      // bar track
+      ctx.fillStyle = dark ? '#334155' : '#e2e8f0';
+      roundRect(ctx, PAD + 96, y, BAR_W, 10, 5); ctx.fill();
+      // bar fill
+      ctx.fillStyle = b.color;
+      roundRect(ctx, PAD + 96, y, Math.max(4, BAR_W * (b.pct / 100)), 10, 5); ctx.fill();
+
+      // %
+      ctx.fillStyle = INK;
+      ctx.font = 'bold 11px Inter, sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(`${Math.round(b.pct)}%`, W - PAD, y + 10);
+      ctx.textAlign = 'left';
+      y += 22;
+    });
+    y += 6;
   }
 
-  // bet cards
-  let yBet = 142;
-  allBets.forEach((bb, i) => {
-    const isPrimary = i === 0;
-    const desc = LANG === 'es' ? (bb.description_es || bb.market) : (bb.description_en || bb.market);
-    const label = isPrimary ? (LANG === 'es' ? 'MEJOR APUESTA' : 'BEST BET') : (LANG === 'es' ? 'TAMBIÉN BET' : 'ALSO BET');
-    const alpha = isPrimary ? '22' : '11';
+  // ── BET cards ──
+  if (hasBetSignal) {
+    ctx.strokeStyle = BORDER; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
+    y += 12;
 
-    // card bg
-    ctx.fillStyle = GREEN + alpha;
-    roundRect(ctx, 20, yBet, W - 40, 48, 8);
-    ctx.fill();
+    allBets.forEach((bb, i) => {
+      const isPrimary = i === 0;
+      const label = isPrimary ? (LANG==='es'?'MEJOR APUESTA':'BEST BET') : (LANG==='es'?'TAMBIÉN BET':'ALSO BET');
+      let desc = LANG==='es' ? (bb.description_es||bb.market) : (bb.description_en||bb.market);
+      desc = desc.replace(f.home, home).replace(f.away, away);
 
-    ctx.strokeStyle = GREEN + (isPrimary ? '44' : '22');
-    ctx.lineWidth = 1;
-    roundRect(ctx, 20, yBet, W - 40, 48, 8);
-    ctx.stroke();
+      // card bg
+      const bgAlpha = isPrimary ? '1a' : '0d';
+      ctx.fillStyle = GREEN + bgAlpha;
+      roundRect(ctx, PAD, y, W - PAD*2, 52, 8); ctx.fill();
+      ctx.strokeStyle = GREEN + (isPrimary ? '33' : '1a'); ctx.lineWidth = 1;
+      roundRect(ctx, PAD, y, W - PAD*2, 52, 8); ctx.stroke();
 
-    // label
-    ctx.fillStyle = GREEN;
-    ctx.font = 'bold 9px Inter, sans-serif';
-    ctx.fillText(label, 32, yBet + 14);
+      // label
+      ctx.fillStyle = GREEN;
+      ctx.font = 'bold 8px Inter, sans-serif';
+      ctx.fillText(label, PAD + 10, y + 14);
 
-    // description
-    ctx.fillStyle = INK;
-    ctx.font = `${isPrimary ? 'bold' : '500'} 13px Inter, sans-serif`;
-    ctx.fillText(desc.length > 38 ? desc.slice(0, 37) + '…' : desc, 32, yBet + 31);
+      // description — auto-fit
+      const dSize = _fitText(ctx, desc, W - PAD*2 - 130, isPrimary ? 14 : 13, 10);
+      ctx.font = `${isPrimary?'bold':'500'} ${dSize}px Inter, sans-serif`;
+      ctx.fillStyle = INK;
+      ctx.fillText(desc, PAD + 10, y + 34);
 
-    // odds + edge
-    ctx.fillStyle = GREEN;
-    ctx.font = 'bold 13px JetBrains Mono, monospace';
-    const oddsStr = `+${bb.edge}%  @ ${Number(bb.best_odds || bb.odds).toFixed(2)}`;
-    ctx.textAlign = 'right';
-    ctx.fillText(oddsStr, W - 32, yBet + 31);
-    if (bb.best_book) {
-      ctx.fillStyle = MUTE;
-      ctx.font = '9px Inter, sans-serif';
-      ctx.fillText(bb.best_book, W - 32, yBet + 43);
-    }
-    ctx.textAlign = 'left';
+      // edge + odds
+      const oddsStr = `+${bb.edge}%  @${Number(bb.best_odds||bb.odds).toFixed(2)}`;
+      ctx.fillStyle = GREEN;
+      ctx.font = 'bold 13px Inter, sans-serif';
+      ctx.textAlign = 'right';
+      ctx.fillText(oddsStr, W - PAD - 10, y + 28);
+      if (bb.best_book) {
+        ctx.fillStyle = MUTE;
+        ctx.font = '9px Inter, sans-serif';
+        ctx.fillText(bb.best_book, W - PAD - 10, y + 41);
+      }
+      ctx.textAlign = 'left';
+      y += 60;
+    });
+  }
 
-    yBet += 56;
-  });
-
-  // footer
+  // ── Footer ──
+  y = H - 28;
+  ctx.strokeStyle = BORDER; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD, y - 8); ctx.lineTo(W - PAD, y - 8); ctx.stroke();
   ctx.fillStyle = MUTE;
   ctx.font = '9px Inter, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('Modelo Bivariate-Poisson · Solo análisis, no asesoría financiera', W / 2, H - 10);
+  ctx.textAlign = 'right';
+  ctx.fillText('quini-bzs.pages.dev', W - PAD, y + 8);
   ctx.textAlign = 'left';
+  ctx.fillText(LANG==='es'?'Predicción estadística · No es asesoría de apuestas':'Statistical prediction · Not betting advice', PAD, y + 8);
 
-  // share
+  // generate + share
+  const homeSlug = f.home.toLowerCase().replace(/\s/g,'-');
+  const awaySlug = f.away.toLowerCase().replace(/\s/g,'-');
   canvas.toBlob(async blob => {
-    const file = new File([blob], 'quini-pick.png', {type: 'image/png'});
-    if (navigator.share && navigator.canShare && navigator.canShare({files: [file]})) {
-      await navigator.share({title: `Quini: ${home} vs ${away}`, files: [file]});
+    const file = new File([blob], `quini-${homeSlug}-${awaySlug}.png`, {type:'image/png'});
+    if (navigator.share && navigator.canShare && navigator.canShare({files:[file]})) {
+      try {
+        await navigator.share({title:`Quini · ${home} vs ${away}`, files:[file]});
+      } catch(e) { if (e.name !== 'AbortError') downloadBlob(blob, file.name); }
     } else {
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = `quini-${f.home.toLowerCase().replace(/\s/g,'-')}-vs-${f.away.toLowerCase().replace(/\s/g,'-')}.png`;
-      a.click();
+      downloadBlob(blob, file.name);
     }
   }, 'image/png');
+}
+
+function downloadBlob(blob, name) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  a.click();
 }
 
 function roundRect(ctx, x, y, w, h, r) {
