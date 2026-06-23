@@ -783,59 +783,119 @@ function applyTooltips() {
   });
 }
 
-// ── Score heatmap (Poisson) ──
+// ── Score heatmap ──
 function poissonProb(lambda, k) {
   let p = Math.exp(-lambda);
   for (let i = 1; i <= k; i++) p *= lambda / i;
   return p;
 }
-function buildHeatmapHTML(xgH, xgA, lang) {
-  const MAX = 5;
-  const probs = [];
-  let maxP = 0;
-  for (let h = 0; h <= MAX; h++) {
-    for (let a = 0; a <= MAX; a++) {
-      const p = poissonProb(xgH, h) * poissonProb(xgA, a);
-      probs.push({h, a, p});
-      if (p > maxP) maxP = p;
-    }
+// Build 6x6 grid from independent Poisson (fallback for live mode)
+function poissonGrid(xgH, xgA) {
+  return Array.from({length:6}, (_,h) =>
+    Array.from({length:6}, (_,a) => poissonProb(xgH,h) * poissonProb(xgA,a) * 100)
+  );
+}
+// Compute summary stats from a 6x6 prob grid (values in %)
+function gridStats(grid) {
+  let home=0, draw=0, away=0, over=0, under=0, btts=0, total=0;
+  for (let h=0; h<6; h++) for (let a=0; a<6; a++) {
+    const p = grid[h][a];
+    total += p;
+    if (h > a) home += p; else if (h === a) draw += p; else away += p;
+    if (h+a >= 3) over += p; else under += p;
+    if (h >= 1 && a >= 1) btts += p;
   }
-  const awayLabels = Array.from({length: MAX+1}, (_,i) => `<div class="text-center text-[9px]" style="color:var(--mute);width:28px;">${i}</div>`).join('');
+  const s = total || 100;
+  return {
+    home: home/s*100, draw: draw/s*100, away: away/s*100,
+    over: over/s*100, under: under/s*100, btts: btts/s*100
+  };
+}
+function buildHeatmapHTML(grid, lang, xgH, xgA) {
+  const MAX = 5;
+  // Flatten to find max for color scaling
+  let maxP = 0;
+  for (let h=0; h<=MAX; h++) for (let a=0; a<=MAX; a++) if (grid[h][a] > maxP) maxP = grid[h][a];
+
+  // Heatmap rows
+  const awayLabels = Array.from({length:MAX+1}, (_,i) =>
+    `<div class="text-center text-[9px]" style="color:var(--mute);width:28px;">${i}</div>`).join('');
   let rows = '';
-  for (let h = 0; h <= MAX; h++) {
+  for (let h=0; h<=MAX; h++) {
     let cells = '';
-    for (let a = 0; a <= MAX; a++) {
-      const {p} = probs.find(x => x.h===h && x.a===a);
-      const pct = (p / maxP);
-      const pctLabel = (p * 100).toFixed(1);
-      const alpha = Math.round(pct * 180);
-      const hex = alpha.toString(16).padStart(2,'0');
-      cells += `<div title="${h}-${a}: ${pctLabel}%" style="width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-family:monospace;background:color-mix(in srgb,var(--bet) ${Math.round(pct*80)}%,var(--bg2));color:${pct>0.5?'white':'var(--mute)'};">${pctLabel}</div>`;
+    for (let a=0; a<=MAX; a++) {
+      const p = grid[h][a];
+      const pct = maxP > 0 ? p/maxP : 0;
+      cells += `<div title="${h}-${a}: ${p.toFixed(1)}%" style="width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-family:monospace;background:color-mix(in srgb,var(--bet) ${Math.round(pct*80)}%,var(--bg2));color:${pct>0.5?'white':'var(--mute)'};">${p.toFixed(1)}</div>`;
     }
     rows += `<div style="display:flex;align-items:center;gap:2px;"><div class="text-[9px] text-right" style="color:var(--mute);width:12px;margin-right:4px;">${h}</div>${cells}</div>`;
   }
   const homeLabel = lang==='es'?'Local':'Home';
   const awayLabel = lang==='es'?'Visitante':'Away';
+
+  // Right panel stats
+  const st = gridStats(grid);
+  function bar(pct, color) {
+    return `<div style="flex:1;height:6px;border-radius:3px;background:var(--panel2);overflow:hidden;"><div style="width:${Math.round(pct)}%;height:100%;background:${color};border-radius:3px;"></div></div>`;
+  }
+  const xgLine = (xgH != null && xgA != null) ? `<div style="font-size:9px;color:var(--mute);margin-bottom:8px;">xG ${xgH.toFixed(1)} – ${xgA.toFixed(1)}</div>` : '';
+  const resultRows = [
+    {label: lang==='es'?'Local':'Home', pct: st.home, color:'var(--bet)'},
+    {label: lang==='es'?'Empate':'Draw', pct: st.draw, color:'var(--mute)'},
+    {label: lang==='es'?'Visita':'Away', pct: st.away, color:'var(--alta)'},
+  ];
+  const marketRows = [
+    {label: 'Over 2.5', pct: st.over, color:'var(--bet)'},
+    {label: 'Under 2.5', pct: st.under, color:'var(--mute)'},
+    {label: lang==='es'?'Ambos marcan':'Both score', pct: st.btts, color:'var(--alta)'},
+  ];
+  function statSection(title, rows) {
+    return `<div style="margin-bottom:10px;">
+      <div style="font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:var(--mute);margin-bottom:4px;">${title}</div>
+      ${rows.map(r => `
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;">
+          <div style="font-size:9px;color:var(--ink);width:52px;flex-shrink:0;">${r.label}</div>
+          ${bar(r.pct, r.color)}
+          <div style="font-size:9px;font-weight:600;color:var(--ink);width:30px;text-align:right;">${r.pct.toFixed(0)}%</div>
+        </div>`).join('')}
+    </div>`;
+  }
+
   return `<div class="mt-3 pt-3" style="border-top:1px solid var(--border);">
-    <div class="text-[10px] uppercase tracking-wider mb-2" style="color:var(--mute);">${lang==='es'?'Mapa de probabilidades':'Score probability map'}</div>
-    <div style="display:flex;flex-direction:column;gap:2px;">
-      <div style="display:flex;align-items:center;gap:2px;margin-left:16px;">${awayLabels}</div>
-      ${rows}
+    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;">
+      <div style="flex-shrink:0;">
+        <div class="text-[10px] uppercase tracking-wider mb-2" style="color:var(--mute);">${lang==='es'?'Mapa de probabilidades':'Score probability map'}</div>
+        <div style="display:flex;flex-direction:column;gap:2px;">
+          <div style="display:flex;align-items:center;gap:2px;margin-left:16px;">${awayLabels}</div>
+          ${rows}
+        </div>
+        <div class="flex justify-between mt-1" style="font-size:9px;color:var(--mute);"><span>↑ ${homeLabel}</span><span>${awayLabel} →</span></div>
+      </div>
+      <div style="flex:1;min-width:140px;">
+        ${xgLine}
+        ${statSection(lang==='es'?'Resultado':'Result', resultRows)}
+        ${statSection(lang==='es'?'Mercados':'Markets', marketRows)}
+      </div>
     </div>
-    <div class="flex justify-between mt-1" style="font-size:9px;color:var(--mute);"><span>↑ ${homeLabel}</span><span>${awayLabel} →</span></div>
   </div>`;
 }
-function toggleHeatmap(btn, xgH, xgA, commenceTime) {
+function toggleHeatmap(btn, fid, xgH, xgA, commenceTime) {
   const container = btn.closest('.heatmap-container');
   const map = container.querySelector('.score-heatmap');
   const isOpen = map.classList.contains('open');
   if (!isOpen && map.innerHTML === '') {
-    let lamH = xgH, lamA = xgA;
+    const fx = DATA && DATA.fixtures ? DATA.fixtures.find(f => f.id === fid) : null;
+    let grid;
     if (commenceTime) {
+      // Live: independent Poisson on remaining xG
       const rr = Math.max(0.05, (90 - computeElapsed(commenceTime)) / 90);
-      lamH = xgH * rr; lamA = xgA * rr;
+      grid = poissonGrid(xgH * rr, xgA * rr);
+    } else if (fx && fx.score_grid) {
+      grid = fx.score_grid; // bivariate model grid — matches top_scores
+    } else {
+      grid = poissonGrid(xgH, xgA); // fallback
     }
-    map.innerHTML = buildHeatmapHTML(lamH, lamA, LANG);
+    map.innerHTML = buildHeatmapHTML(grid, LANG, xgH, xgA);
   }
   map.classList.toggle('open', !isOpen);
   btn.textContent = isOpen ? (LANG==='es'?'▼ Mapa de goles':'▼ Score map') : (LANG==='es'?'▲ Cerrar mapa':'▲ Close map');
@@ -946,10 +1006,12 @@ function renderFixtures() {
   });
 
   dateGroups.forEach((group, d) => {
-    // BET-first within each date group, then by time
+    // BET-first only when filtering by BET/ALTA; otherwise pure chronological
     group.sort((a, b) => {
-      if (a.best_bet && !b.best_bet) return -1;
-      if (!a.best_bet && b.best_bet) return 1;
+      if (currentFilter !== '') {
+        if (a.best_bet && !b.best_bet) return -1;
+        if (!a.best_bet && b.best_bet) return 1;
+      }
       return new Date(a.commence_time) - new Date(b.commence_time);
     });
     const label = new Date(d + 'T12:00:00').toLocaleDateString(LANG === 'es' ? 'es' : 'en', {weekday:'long', month:'long', day:'numeric'});
@@ -1110,7 +1172,7 @@ function renderFixtureCard(f, featured = false) {
         ${scoresHtml}
         ${liveMarketsHtml}
         ${(f.xg_home && !f.completed) ? `<div class="heatmap-container mt-2">
-          <button onclick="toggleHeatmap(this, ${f.xg_home}, ${f.xg_away}${f.is_live ? `, '${f.commence_time}'` : ''})" class="text-[10px] px-2 py-1 rounded" style="color:var(--mute);border:1px solid var(--border);cursor:pointer;">&#9660; ${LANG==='es'?'Mapa de goles':'Score map'}</button>
+          <button onclick="toggleHeatmap(this, '${f.id}', ${f.xg_home}, ${f.xg_away}${f.is_live ? `, '${f.commence_time}'` : ''})" class="text-[10px] px-2 py-1 rounded" style="color:var(--mute);border:1px solid var(--border);cursor:pointer;">&#9660; ${LANG==='es'?'Mapa de goles':'Score map'}</button>
           <div class="score-heatmap"></div>
         </div>` : ''}
       </div>

@@ -152,6 +152,8 @@ def build_score_predictions(fit, home_model: str, away_model: str) -> tuple[list
     flat = [(h, a, grid.exact_score(h, a)) for h in range(6) for a in range(6)]
     flat.sort(key=lambda x: -x[2])
     top_scores = [{"home": h, "away": a, "prob": round(p * 100, 1)} for h, a, p in flat[:5]]
+    # 6x6 grid of raw bivariate probs for heatmap (rows=home goals, cols=away goals)
+    score_grid = [[round(grid.exact_score(h, a) * 100, 2) for a in range(6)] for h in range(6)]
     matrix = fit.score_matrix(home_model, away_model, neutral=False, n=10)
 
     strategies = {}
@@ -170,7 +172,7 @@ def build_score_predictions(fit, home_model: str, away_model: str) -> tuple[list
             ],
         }
     quiniela = strategies
-    return top_scores, quiniela, lam_h, lam_a
+    return top_scores, quiniela, lam_h, lam_a, score_grid
 
 
 def build_live_scores(fit, home_model: str, away_model: str, lam_h: float, lam_a: float,
@@ -337,10 +339,11 @@ def _backfill_history(fit) -> None:
         # Backfill xG + top_scores if missing
         if fx.get("xg_home") is None and home_model and away_model:
             try:
-                top_scores, _, lam_h, lam_a = build_score_predictions(fit, home_model, away_model)
+                top_scores, _, lam_h, lam_a, score_grid = build_score_predictions(fit, home_model, away_model)
                 fx["xg_home"] = round(lam_h, 2)
                 fx["xg_away"] = round(lam_a, 2)
                 fx["top_scores"] = top_scores[:3] if top_scores else []
+                fx["score_grid"] = score_grid
                 needs_update = True
             except Exception:
                 pass
@@ -630,7 +633,7 @@ def generate():
         bets = [p for p in pred["picks"] if p["pick"] == "BET"]
         best_bet = max(bets, key=lambda p: p["edge"]) if bets else None
 
-        top_scores, quiniela, lam_h, lam_a = build_score_predictions(fit, home_model, away_model)
+        top_scores, quiniela, lam_h, lam_a, score_grid = build_score_predictions(fit, home_model, away_model)
 
         # --- Live conditional score probabilities ---
         live_scores = None
@@ -655,6 +658,7 @@ def generate():
             "picks": [],
             "best_bet": None,
             "top_scores": top_scores,
+            "score_grid": score_grid,
             "live_scores": live_scores,
             "quiniela": quiniela,
             "fixture_confidence": pred["fixture_confidence"],
@@ -729,7 +733,7 @@ def generate():
                     actual_away = int(s["score"]) if s["score"] is not None else None
         home_model = normalize_team(home_api)
         away_model = normalize_team(away_api)
-        top_scores, quiniela, _lh, _la = build_score_predictions(fit, home_model, away_model)
+        top_scores, quiniela, _lh, _la, _sg = build_score_predictions(fit, home_model, away_model)
         fixtures.append({
             "id": ev["id"],
             "home": home_api,
