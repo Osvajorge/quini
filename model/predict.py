@@ -12,6 +12,8 @@ from model.bivariate_poisson import BPFit, load_fit
 EDGE_THRESHOLD = 0.07  # 7%
 EDGE_SCORE_CAP = 0.05  # saturates 5 pts above threshold (so edge ≥ 12% → 1.0)
 SAMPLE_FULL_SUPPORT = 30  # n_matches at which sample_score saturates
+MIN_MODEL_PROB = 0.25  # don't bet on outcomes the model thinks are <25% likely
+EV_THRESHOLD = 0.04  # min expected value (model_prob * odds - 1) to BET
 
 PickLabel = Literal["BET", "SKIP", "FADE"]
 
@@ -29,9 +31,15 @@ class MarketPick:
     confidence_band: Literal["ALTA", "MEDIA", "BAJA"]
 
 
-def _classify(edge: float) -> PickLabel:
-    if edge >= EDGE_THRESHOLD:
-        return "BET"
+def _classify(edge: float, model_prob: float = 0.0, odds: float = 1.0) -> PickLabel:
+    """BET requires positive edge AND meaningful model confidence AND positive EV.
+
+    Filters out long-shot picks (e.g. Scotland at 22% just because odds were juicy).
+    """
+    if edge >= EDGE_THRESHOLD and model_prob >= MIN_MODEL_PROB:
+        ev = model_prob * odds - 1.0
+        if ev >= EV_THRESHOLD:
+            return "BET"
     if edge <= -EDGE_THRESHOLD:
         return "FADE"
     return "SKIP"
@@ -127,7 +135,7 @@ def predict(
         model_p = float(model_probs[top][sub])
         devig_p = float(devig_cache[group][key])
         edge = model_p - devig_p
-        pick_lbl = _classify(edge)
+        pick_lbl = _classify(edge, model_p, odds[key])
         raw, band = _confidence(edge, sample_s)
         picks.append(MarketPick(
             market=label,

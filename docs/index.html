@@ -667,7 +667,17 @@ function _updateScoreDom(f, actualH, actualA, elapsed) {
     const openMap = card.querySelector('.score-heatmap.open');
     if (openMap) {
       const rr = Math.max(0.05, (90 - elapsed) / 90);
-      openMap.innerHTML = buildHeatmapHTML(f.xg_home * rr, f.xg_away * rr, LANG);
+      // Build LIVE grid: probability of FINAL score given current score + remaining xG
+      const liveGrid = Array.from({length:6}, (_,h) => Array.from({length:6}, () => 0));
+      const lamH = f.xg_home * rr, lamA = f.xg_away * rr;
+      for (let dh = 0; dh < 12; dh++) {
+        for (let da = 0; da < 12; da++) {
+          const fh = actualH + dh, fa = actualA + da;
+          if (fh > 5 || fa > 5) continue;
+          liveGrid[fh][fa] += poissonProb(lamH, dh) * poissonProb(lamA, da) * 100;
+        }
+      }
+      openMap.innerHTML = buildHeatmapHTML(liveGrid, LANG, lamH, lamA, true);
     }
   }
 }
@@ -847,7 +857,7 @@ function gridStats(grid) {
     over: over/s*100, under: under/s*100, btts: btts/s*100
   };
 }
-function buildHeatmapHTML(grid, lang, xgH, xgA) {
+function buildHeatmapHTML(grid, lang, xgH, xgA, isLive) {
   const MAX = 5;
   // Flatten to find max for color scaling
   let maxP = 0;
@@ -874,7 +884,8 @@ function buildHeatmapHTML(grid, lang, xgH, xgA) {
   function bar(pct, color) {
     return `<div style="flex:1;height:6px;border-radius:3px;background:var(--panel2);overflow:hidden;"><div style="width:${Math.round(pct)}%;height:100%;background:${color};border-radius:3px;"></div></div>`;
   }
-  const xgLine = (xgH != null && xgA != null) ? `<div style="font-size:9px;color:var(--mute);margin-bottom:8px;">xG ${xgH.toFixed(1)} – ${xgA.toFixed(1)}</div>` : '';
+  const xgLabel = isLive ? (lang==='es'?'xG restante':'xG remaining') : 'xG';
+  const xgLine = (xgH != null && xgA != null) ? `<div style="font-size:9px;color:var(--mute);margin-bottom:8px;">${xgLabel} ${xgH.toFixed(2)} – ${xgA.toFixed(2)}</div>` : '';
   const resultRows = [
     {label: lang==='es'?'Local':'Home', pct: st.home, color:'var(--bet)'},
     {label: lang==='es'?'Empate':'Draw', pct: st.draw, color:'var(--mute)'},
@@ -1101,23 +1112,29 @@ function renderFixtureCard(f, featured = false) {
             if (!cmp || !cmp.length || !bb.side) return '';
             const sideKey = bb.side;
             const bestPrice = bb.best_odds || bb.odds;
-            const rows = cmp.filter(bk => bk[sideKey]).map(bk => {
+            const LATAM_RANK = {caliente:0, betcris:1, codere:2, winpot:3, ganabet:4, strendus:5};
+            const sorted = cmp.filter(bk => bk[sideKey]).sort((a,b) => {
+              const ar = LATAM_RANK[a.name.toLowerCase()] ?? 99;
+              const br = LATAM_RANK[b.name.toLowerCase()] ?? 99;
+              if (ar !== br) return ar - br;
+              return Number(b[sideKey]) - Number(a[sideKey]);
+            });
+            if (!sorted.length) return '';
+            const cmpId = `cmp-${f.id}-${idx}`;
+            const rows = sorted.map(bk => {
               const isBest = Number(bk[sideKey]).toFixed(2) === Number(bestPrice).toFixed(2);
-              return `<span style="color:var(--mute);">${bk.name}</span> <span class="font-mono" style="color:${isBest ? 'var(--bet)' : 'var(--ink)'};">${Number(bk[sideKey]).toFixed(2)}</span>`;
-            }).join('<span style="color:var(--border);"> · </span>');
-            return rows ? `<div class="mt-1.5 text-[10px] flex flex-wrap gap-x-2 gap-y-0.5">${rows}</div>` : '';
-          })()}
-          ${(() => {
-            const url = affiliateUrl(bb.best_book);
-            const bookLabel = bb.best_book || 'bookmaker';
-            const btnText = LANG === 'es' ? `Apostar en ${bookLabel}` : `Bet at ${bookLabel}`;
-            return url ? `<div class="mt-2">
-              <a href="${url}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-[11px] font-semibold" style="background:var(--bet); color:#fff;">
-                ${btnText}
-                <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-              </a>
-              <span class="ml-2 text-[9px]" style="color:var(--mute);">${LANG==='es'?'Enlace de afiliado':'Affiliate link'}</span>
-            </div>` : '';
+              const isLatam = LATAM_RANK[bk.name.toLowerCase()] != null;
+              return `<div class="flex items-center justify-between py-1 px-2 rounded text-[11px]" style="background:${isBest?'color-mix(in srgb,var(--bet) 8%,transparent)':'transparent'};">
+                <span ${isLatam?'class="font-semibold"':''} style="color:${isLatam?'var(--ink)':'var(--mute)'};">${bk.name}</span>
+                <span class="font-mono" style="color:${isBest?'var(--bet)':'var(--ink)'}; font-weight:${isBest?'700':'500'};">${Number(bk[sideKey]).toFixed(2)}${isBest?' ★':''}</span>
+              </div>`;
+            }).join('');
+            return `<div class="mt-2">
+              <button onclick="const el=document.getElementById('${cmpId}'); el.classList.toggle('hidden'); this.querySelector('.arr').textContent = el.classList.contains('hidden')?'▸':'▾';" class="text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1" style="color:var(--mute); background:none; border:none; cursor:pointer; padding:0;">
+                <span class="arr">▸</span> ${LANG==='es'?'Comparar momios':'Compare odds'} (${sorted.length})
+              </button>
+              <div id="${cmpId}" class="hidden mt-1.5 grid grid-cols-2 gap-1">${rows}</div>
+            </div>`;
           })()}
         </div>`;
     });
