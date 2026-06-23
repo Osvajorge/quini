@@ -80,6 +80,9 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
         <span class="w-2 h-2 rounded-full pulse-live" style="background:var(--live);"></span>
         <span class="text-xs font-mono" style="color:var(--live);">LIVE</span>
       </div>
+      <button onclick="startPresentation()" title="Modo presentación" class="w-8 h-8 rounded-lg border flex items-center justify-center" style="border-color:var(--border); color:var(--mute);">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </button>
       <button onclick="toggleLang()" id="lang-btn" class="px-2 py-1 rounded text-xs font-mono border" style="border-color:var(--border); color:var(--mute);">EN</button>
       <button onclick="toggleTheme()" id="theme-btn" class="w-8 h-8 rounded-lg border flex items-center justify-center text-sm" style="border-color:var(--border); color:var(--mute);">&#9790;</button>
       <div id="update-time" class="text-xs font-mono hidden sm:block" style="color:var(--mute);"></div>
@@ -1742,6 +1745,80 @@ function dismissEmailBanner() {
 
 initEmailCapture();
 
+// ── Presentation mode ──
+let presIdx = 0;
+let presFixtures = [];
+
+function startPresentation(fid) {
+  const fx = DATA && DATA.fixtures.filter(f => !f.is_live);
+  if (!fx || !fx.length) return;
+  presFixtures = fx;
+  presIdx = fid ? Math.max(0, fx.findIndex(f => f.id === fid)) : 0;
+  showPresSlide();
+  document.getElementById('pres-overlay').style.display = 'flex';
+  document.addEventListener('keydown', presKeyHandler);
+}
+
+function closePresentation() {
+  document.getElementById('pres-overlay').style.display = 'none';
+  document.removeEventListener('keydown', presKeyHandler);
+}
+
+function presKeyHandler(e) {
+  if (e.key === 'Escape') closePresentation();
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { presIdx = Math.min(presIdx + 1, presFixtures.length - 1); showPresSlide(); }
+  if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { presIdx = Math.max(presIdx - 1, 0); showPresSlide(); }
+}
+
+function showPresSlide() {
+  const f = presFixtures[presIdx];
+  if (!f) return;
+  const bets = f.bets && f.bets.length ? f.bets : (f.best_bet ? [f.best_bet] : []);
+  const pH = (f.picks||[]).find(p=>p.side==='home');
+  const pD = (f.picks||[]).find(p=>p.side==='draw');
+  const pA = (f.picks||[]).find(p=>p.side==='away');
+  const home = teamName(f.home)||f.home;
+  const away = teamName(f.away)||f.away;
+  const dt = new Date(f.commence_time);
+  const dtStr = dt.toLocaleDateString(LANG==='es'?'es':'en',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+
+  const betsHtml = bets.slice(0,2).map((bb,i) => {
+    const desc = LANG==='es'?(bb.description_es||bb.market):(bb.description_en||bb.market);
+    return `<div class="pres-bet${i===0?' pres-bet-primary':''}">
+      <span class="pres-bet-label">${i===0?(LANG==='es'?'MEJOR APUESTA':'BEST BET'):(LANG==='es'?'TAMBIÉN BET':'ALSO BET')}</span>
+      <span class="pres-bet-desc">${desc}</span>
+      <span class="pres-bet-odds">+${bb.edge}%&nbsp;&nbsp;@&nbsp;${Number(bb.best_odds||bb.odds).toFixed(2)}</span>
+    </div>`;
+  }).join('');
+
+  const probsHtml = (pH && pD && pA) ? `
+    <div class="pres-probs">
+      ${[{l:LANG==='es'?'Local':'Home',v:pH.model_prob,c:'#059669'},{l:LANG==='es'?'Empate':'Draw',v:pD.model_prob,c:'#64748b'},{l:LANG==='es'?'Visita':'Away',v:pA.model_prob,c:'#0891b2'}].map(r=>`
+      <div class="pres-prob-row">
+        <span class="pres-prob-lbl">${r.l}</span>
+        <div class="pres-prob-track"><div class="pres-prob-fill" style="width:${r.v}%;background:${r.c};"></div></div>
+        <span class="pres-prob-val" style="color:${r.c};">${Math.round(r.v)}%</span>
+      </div>`).join('')}
+    </div>` : '';
+
+  document.getElementById('pres-slide').innerHTML = `
+    <div class="pres-header">
+      <div class="pres-logo">⚽ Quini</div>
+      <div class="pres-subtitle">Mundial 2026 · ${dtStr}</div>
+    </div>
+    <div class="pres-teams">
+      <div class="pres-team pres-home">${home}</div>
+      <div class="pres-vs">vs</div>
+      <div class="pres-team pres-away">${away}</div>
+    </div>
+    ${f.xg_home!=null?`<div class="pres-xg">xG&nbsp; <strong>${f.xg_home}</strong> – <strong>${f.xg_away}</strong></div>`:''}
+    ${probsHtml}
+    ${betsHtml?`<div class="pres-bets">${betsHtml}</div>`:''}
+    <div class="pres-footer">quini-bzs.pages.dev&nbsp;·&nbsp;${LANG==='es'?'Predicción estadística · No es asesoría de apuestas':'Statistical prediction · Not betting advice'}</div>
+  `;
+  document.getElementById('pres-counter').textContent = `${presIdx+1} / ${presFixtures.length}`;
+}
+
 // ── Share card ──
 function _fitText(ctx, text, maxW, maxSize, minSize) {
   let size = maxSize;
@@ -1970,5 +2047,45 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 </script>
+
+<!-- Presentation overlay -->
+<div id="pres-overlay" style="display:none; position:fixed; inset:0; z-index:10000; background:#030712; flex-direction:column; align-items:center; justify-content:center;">
+  <!-- nav arrows -->
+  <button onclick="presIdx=Math.max(0,presIdx-1);showPresSlide()" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.08);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer;">‹</button>
+  <button onclick="presIdx=Math.min(presIdx+1,presFixtures.length-1);showPresSlide()" style="position:absolute;right:16px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.08);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer;">›</button>
+  <!-- close -->
+  <button onclick="closePresentation()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.08);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:18px;cursor:pointer;">×</button>
+  <!-- counter -->
+  <div id="pres-counter" style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.3);font-size:12px;font-family:monospace;"></div>
+  <!-- slide -->
+  <div id="pres-slide" style="width:min(560px,92vw);"></div>
+</div>
+
+<style>
+/* Presentation slide */
+#pres-slide { color:#f1f5f9; font-family: Inter, sans-serif; }
+.pres-header { display:flex; flex-direction:column; align-items:center; margin-bottom:32px; }
+.pres-logo { font-size:18px; font-weight:700; color:#059669; }
+.pres-subtitle { font-size:11px; color:#64748b; margin-top:4px; text-transform:capitalize; }
+.pres-teams { display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:16px; text-align:center; }
+.pres-team { font-size:clamp(20px,5vw,32px); font-weight:800; line-height:1.1; flex:1; }
+.pres-home { text-align:right; }
+.pres-away { text-align:left; }
+.pres-vs { font-size:14px; color:#334155; font-weight:600; flex-shrink:0; }
+.pres-xg { text-align:center; font-size:12px; color:#475569; margin-bottom:24px; letter-spacing:0.05em; }
+.pres-probs { background:rgba(255,255,255,0.04); border-radius:12px; padding:16px 20px; margin-bottom:20px; display:flex; flex-direction:column; gap:10px; }
+.pres-prob-row { display:flex; align-items:center; gap:12px; }
+.pres-prob-lbl { font-size:11px; color:#64748b; width:44px; flex-shrink:0; }
+.pres-prob-track { flex:1; height:6px; background:rgba(255,255,255,0.08); border-radius:3px; overflow:hidden; }
+.pres-prob-fill { height:100%; border-radius:3px; transition:width .4s; }
+.pres-prob-val { font-size:12px; font-weight:700; width:34px; text-align:right; flex-shrink:0; }
+.pres-bets { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+.pres-bet { display:flex; flex-direction:column; gap:4px; padding:14px 16px; border-radius:10px; background:rgba(5,150,105,0.12); border:1px solid rgba(5,150,105,0.25); }
+.pres-bet-primary { background:rgba(5,150,105,0.18); border-color:rgba(5,150,105,0.4); }
+.pres-bet-label { font-size:9px; font-weight:800; letter-spacing:.1em; color:#059669; }
+.pres-bet-desc { font-size:15px; font-weight:600; }
+.pres-bet-odds { font-size:13px; font-weight:700; color:#34d399; font-family:monospace; }
+.pres-footer { text-align:center; font-size:9px; color:#334155; margin-top:8px; }
+</style>
 </body>
 </html>
