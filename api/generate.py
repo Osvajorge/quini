@@ -112,35 +112,89 @@ def fetch_scores(api_key: str, days_from: int = 3) -> list[dict]:
     return r.json()
 
 
-def extract_odds_from_event(event: dict) -> dict:
-    odds = {}
+_BOOK_DISPLAY: dict[str, str] = {
+    "pinnacle": "Pinnacle", "bet365": "bet365", "unibet_eu": "Unibet",
+    "betfair_ex_eu": "Betfair", "onexbet": "1xBet", "sport888": "888sport",
+    "bwin": "Bwin", "marathonbet": "Marathon", "betclic_eu": "Betclic",
+    "william_hill": "William Hill", "betway": "Betway", "nordicbet": "Nordic",
+    "casumo": "Casumo", "coolbet": "Coolbet", "suprabets": "Supra",
+}
+# Priority order for de-vig: sharp books first
+_SHARP_BOOKS = ["pinnacle", "betfair_ex_eu", "marathonbet", "bwin"]
+
+
+def _parse_book_odds(bm: dict, home_name: str, away_name: str) -> dict:
+    """Extract h2h, totals and btts from one bookmaker dict."""
+    out = {}
+    for mkt in bm.get("markets", []):
+        if mkt["key"] == "h2h":
+            for o in mkt["outcomes"]:
+                if o["name"] == home_name:
+                    out["home"] = o["price"]
+                elif o["name"] == away_name:
+                    out["away"] = o["price"]
+                else:
+                    out["draw"] = o["price"]
+        elif mkt["key"] == "totals":
+            for o in mkt["outcomes"]:
+                if o.get("point", 2.5) == 2.5:
+                    out["over_2_5" if o["name"] == "Over" else "under_2_5"] = o["price"]
+        elif mkt["key"] == "btts":
+            for o in mkt["outcomes"]:
+                out["btts_yes" if o["name"] == "Yes" else "btts_no"] = o["price"]
+    return out
+
+
+def extract_odds_from_event(event: dict) -> tuple[dict, dict, list[dict]]:
+    """
+    Returns (consensus_odds, best_odds_per_market, book_comparison).
+    - consensus_odds: used for de-vig (Pinnacle if available, else average)
+    - best_odds_per_market: {market: {odds, book}} — highest price per market
+    - book_comparison: [{name, home, draw, away}] top books for UI display
+    """
+    home_name = event["home_team"]
+    away_name = event["away_team"]
+    all_books: dict[str, dict] = {}
+
     for bm in event.get("bookmakers", []):
-        for mkt in bm.get("markets", []):
-            if mkt["key"] == "h2h":
-                for o in mkt["outcomes"]:
-                    if o["name"] == event["home_team"]:
-                        odds["home"] = o["price"]
-                    elif o["name"] == event["away_team"]:
-                        odds["away"] = o["price"]
-                    else:
-                        odds["draw"] = o["price"]
-            elif mkt["key"] == "totals":
-                for o in mkt["outcomes"]:
-                    point = o.get("point", 2.5)
-                    if point == 2.5:
-                        if o["name"] == "Over":
-                            odds["over_2_5"] = o["price"]
-                        else:
-                            odds["under_2_5"] = o["price"]
-            elif mkt["key"] == "btts":
-                for o in mkt["outcomes"]:
-                    if o["name"] == "Yes":
-                        odds["btts_yes"] = o["price"]
-                    else:
-                        odds["btts_no"] = o["price"]
-        if "home" in odds:
+        key = bm.get("key", "")
+        parsed = _parse_book_odds(bm, home_name, away_name)
+        if parsed.get("home"):
+            all_books[key] = parsed
+
+    if not all_books:
+        return {}, {}, []
+
+    # Consensus: prefer sharp books; fallback to average across all
+    consensus: dict = {}
+    for sharp in _SHARP_BOOKS:
+        if sharp in all_books and all_books[sharp].get("home"):
+            consensus = all_books[sharp]
             break
-    return odds
+    if not consensus:
+        # Average across all books per market
+        all_keys = set(k for b in all_books.values() for k in b)
+        for mk in all_keys:
+            vals = [b[mk] for b in all_books.values() if mk in b]
+            if vals:
+                consensus[mk] = round(sum(vals) / len(vals), 3)
+
+    # Best odds per market (highest decimal = best for bettor)
+    best: dict[str, dict] = {}
+    for book_key, prices in all_books.items():
+        display = _BOOK_DISPLAY.get(book_key, book_key)
+        for mk, price in prices.items():
+            if mk not in best or price > best[mk]["odds"]:
+                best[mk] = {"odds": round(price, 2), "book": display}
+
+    # Book comparison: top 5 books sorted by home odds desc (for display)
+    comparison = sorted(
+        [{"name": _BOOK_DISPLAY.get(k, k), **v} for k, v in all_books.items()],
+        key=lambda x: x.get("home", 0),
+        reverse=True,
+    )[:5]
+
+    return consensus, best, comparison
 
 
 def build_score_predictions(fit, home_model: str, away_model: str) -> tuple[list[dict], dict | None, float, float]:
@@ -596,7 +650,7 @@ def generate():
         away_model = normalize_team(away_api)
         commence = event["commence_time"]
 
-        odds = extract_odds_from_event(event)
+        odds, best_odds, book_comparison = extract_odds_from_event(event)
         if not odds.get("home"):
             continue
 
@@ -655,6 +709,8 @@ def generate():
             "xg_home": round(pred["xg_home"], 2),
             "xg_away": round(pred["xg_away"], 2),
             "odds": {k: round(v, 2) for k, v in odds.items()},
+            "best_odds": best_odds,
+            "book_comparison": book_comparison,
             "picks": [],
             "best_bet": None,
             "top_scores": top_scores,
@@ -680,11 +736,14 @@ def generate():
         all_bets = []
         for b in sorted(bets, key=lambda p: -p["edge"]):
             b_desc_es, b_desc_en = _pick_description(b["market"], home_api, away_api)
+            side_best = best_odds.get(b["side"], {})
             all_bets.append({
                 "market": b["market"],
                 "side": b["side"],
                 "edge": round(b["edge"] * 100, 1),
                 "odds": round(b["odds"], 2),
+                "best_odds": side_best.get("odds"),
+                "best_book": side_best.get("book"),
                 "pick": b["pick"],
                 "confidence_band": b["confidence_band"],
                 "model_prob": round(b["model_prob"] * 100, 1),
@@ -700,11 +759,14 @@ def generate():
                 desc_es, desc_en = compound
             else:
                 desc_es, desc_en = _pick_description(best_bet["market"], home_api, away_api)
+            bb_best = best_odds.get(best_bet["side"], {})
             fixture["best_bet"] = {
                 "market": best_bet["market"],
                 "side": best_bet["side"],
                 "edge": round(best_bet["edge"] * 100, 1),
                 "odds": round(best_bet["odds"], 2),
+                "best_odds": bb_best.get("odds"),
+                "best_book": bb_best.get("book"),
                 "pick": best_bet["pick"],
                 "confidence_band": best_bet["confidence_band"],
                 "model_prob": round(best_bet["model_prob"] * 100, 1),

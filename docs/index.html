@@ -1054,9 +1054,23 @@ function renderFixtureCard(f, featured = false) {
           <div class="text-sm font-semibold mb-1.5">${desc}</div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
             <span class="font-bold font-mono" style="color:var(--bet);">+${bb.edge}% ${LANG === 'es' ? 'ventaja' : 'edge'}</span>
-            <span style="color:var(--mute);">@ ${Number(bb.odds).toFixed(2)}</span>
+            ${bb.best_odds && bb.best_book
+              ? `<span class="font-mono font-semibold" style="color:var(--ink);">@ ${Number(bb.best_odds).toFixed(2)}</span><span class="text-[10px] px-1.5 py-0.5 rounded font-medium" style="background:color-mix(in srgb,var(--mute) 12%,transparent); color:var(--mute);">${bb.best_book}</span>`
+              : `<span style="color:var(--mute);">@ ${Number(bb.odds).toFixed(2)}</span>`
+            }
             ${modelPct ? `<span style="color:var(--mute);">${modelPct} ${LANG === 'es' ? 'modelo' : 'model'} · ${devigPct} ${LANG === 'es' ? 'implícita' : 'implied'}</span>` : ''}
           </div>
+          ${(() => {
+            const cmp = f.book_comparison;
+            if (!cmp || !cmp.length || !bb.side) return '';
+            const sideKey = bb.side;
+            const bestPrice = bb.best_odds || bb.odds;
+            const rows = cmp.filter(bk => bk[sideKey]).map(bk => {
+              const isBest = Number(bk[sideKey]).toFixed(2) === Number(bestPrice).toFixed(2);
+              return `<span style="color:var(--mute);">${bk.name}</span> <span class="font-mono" style="color:${isBest ? 'var(--bet)' : 'var(--ink)'};">${Number(bk[sideKey]).toFixed(2)}</span>`;
+            }).join('<span style="color:var(--border);"> · </span>');
+            return rows ? `<div class="mt-1.5 text-[10px] flex flex-wrap gap-x-2 gap-y-0.5">${rows}</div>` : '';
+          })()}
         </div>`;
     });
     bestBetHtml += `</div>`;
