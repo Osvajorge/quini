@@ -966,13 +966,47 @@
         "away": 3
       },
       "best_bet_won": false
+    },
+    {
+      "id": "7ad7a0ce2ef2618bb59b066da5642f70",
+      "home": "France",
+      "away": "Iraq",
+      "date": "2026-06-22T21:00:00Z",
+      "picks": [
+        {
+          "market": "Over 2.5",
+          "pick": "BET",
+          "edge": 10.7,
+          "odds": 1.65,
+          "model_prob": 66.5,
+          "devig_prob": 55.8
+        }
+      ],
+      "best_bet": {
+        "market": "Over 2.5",
+        "side": "over_2_5",
+        "edge": 10.7,
+        "odds": 1.65,
+        "pick": "BET",
+        "confidence_band": "ALTA",
+        "model_prob": 66.5,
+        "devig_prob": 55.8,
+        "description_es": "3 o m\u00e1s goles en el partido",
+        "description_en": "3 or more total goals in the match",
+        "is_compound": false
+      },
+      "result": {
+        "home": 3,
+        "away": 0
+      },
+      "best_bet_won": true
     }
   ],
   "summary": {
-    "total": 31,
-    "won": 21,
+    "total": 32,
+    "won": 22,
     "lost": 10,
-    "win_rate": 67.7,
-    "roi": 16.5
+    "win_rate": 68.8,
+    "roi": 18.0
   }
 }
