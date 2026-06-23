@@ -1750,12 +1750,20 @@ let presIdx = 0;
 let presFixtures = [];
 
 function startPresentation(fid) {
-  const fx = DATA && DATA.fixtures.filter(f => !f.is_live);
-  if (!fx || !fx.length) return;
-  presFixtures = fx;
-  presIdx = fid ? Math.max(0, fx.findIndex(f => f.id === fid)) : 0;
+  const fx = DATA && DATA.fixtures && DATA.fixtures.filter(f => !f.is_live);
+  if (!fx || !fx.length) {
+    // fallback: include all fixtures
+    const all = DATA && DATA.fixtures;
+    if (!all || !all.length) { alert('Cargando datos...'); return; }
+    presFixtures = all;
+  } else {
+    presFixtures = fx;
+  }
+  presIdx = fid ? Math.max(0, presFixtures.findIndex(f => f.id === fid)) : 0;
+  const overlay = document.getElementById('pres-overlay');
+  if (!overlay) return;
   showPresSlide();
-  document.getElementById('pres-overlay').style.display = 'flex';
+  overlay.style.display = 'flex';
   document.addEventListener('keydown', presKeyHandler);
 }
 
@@ -1837,202 +1845,187 @@ async function shareFixture(fid) {
   const pH = picks.find(p => p.side === 'home');
   const pD = picks.find(p => p.side === 'draw');
   const pA = picks.find(p => p.side === 'away');
+  const hasProbs = !!(pH && pD && pA);
 
-  // ── Canvas: 1080×1350 (Instagram 4:5, works everywhere on mobile) ──
-  const W = 1080, H = 1350, PAD = 64;
+  // Top 3 scores from score_grid
+  let top3scores = [];
+  if (f.score_grid) {
+    const flat = [];
+    f.score_grid.forEach((row, h) => row.forEach((p, a) => { if (p > 0) flat.push({h, a, p}); }));
+    flat.sort((x, z) => z.p - x.p);
+    top3scores = flat.slice(0, 3);
+  }
+  const hasScores = top3scores.length > 0;
+
+  // ── Dynamic height ──
+  const W = 1080, PAD = 64;
+  const tSizeEst = 56; // ~team font size estimate
+  let estimatedH = 90 + 30 + 80 + 56; // header block + sep
+  estimatedH += tSizeEst + 50 + tSizeEst + 28 + (f.xg_home != null ? 48 : 0) + 30;
+  if (hasProbs)   estimatedH += 56 + 3 * 44 + 12;
+  if (hasScores)  estimatedH += 56 + 38 + 3 * 52;
+  if (allBets.length) estimatedH += 52 + allBets.length * 140;
+  estimatedH += 90; // footer
+  const H = Math.max(900, Math.min(1440, estimatedH + 60));
+
   const canvas = document.createElement('canvas');
   canvas.width = W; canvas.height = H;
   const ctx = canvas.getContext('2d');
 
-  // Always dark bg — looks better on every platform
-  const BG    = '#0b1120';
-  const PANEL = '#111827';
-  const INK   = '#f1f5f9';
-  const MUTE  = '#475569';
-  const MUTE2 = '#334155';
-  const GREEN = '#059669';
-  const GREEN2= '#34d399';
-  const BLUE  = '#38bdf8';
+  const INK = '#f1f5f9', MUTE = '#475569', MUTE2 = '#1e293b', MUTE3 = '#334155';
+  const GREEN = '#059669', GREEN2 = '#34d399', BLUE = '#38bdf8', YELLOW = '#fbbf24';
 
-  // Background gradient
-  const grad = ctx.createLinearGradient(0, 0, W, H);
-  grad.addColorStop(0, '#0b1120');
-  grad.addColorStop(1, '#0d1f12');
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, W, H);
+  // BG gradient
+  const grad = ctx.createLinearGradient(0, 0, 0, H);
+  grad.addColorStop(0, '#080f1a');
+  grad.addColorStop(1, '#080f10');
+  ctx.fillStyle = grad; ctx.fillRect(0, 0, W, H);
 
-  // Subtle green glow top-center
-  const glow = ctx.createRadialGradient(W/2, 0, 0, W/2, 0, 500);
-  glow.addColorStop(0, 'rgba(5,150,105,0.18)');
+  // Green glow top
+  const glow = ctx.createRadialGradient(W/2, 0, 0, W/2, 0, 420);
+  glow.addColorStop(0, 'rgba(5,150,105,0.22)');
   glow.addColorStop(1, 'rgba(5,150,105,0)');
-  ctx.fillStyle = glow;
-  ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = glow; ctx.fillRect(0, 0, W, H);
 
-  // Card panel
-  roundRect(ctx, PAD - 16, 24, W - (PAD-16)*2, H - 48, 28);
-  ctx.fillStyle = PANEL;
-  ctx.fill();
+  // Card bg
+  roundRect(ctx, PAD-16, 20, W-(PAD-16)*2, H-40, 24);
+  ctx.fillStyle = '#0e1929'; ctx.fill();
 
-  // Top green bar
+  // Top accent
   ctx.fillStyle = GREEN;
-  ctx.fillRect(PAD - 16, 24, W - (PAD-16)*2, 6);
+  roundRect(ctx, PAD-16, 20, W-(PAD-16)*2, 5, 3); ctx.fill();
 
-  let y = 90;
+  let y = 88;
 
-  // ── Header ──
+  // Header
+  ctx.textAlign = 'left';
+  ctx.font = 'bold 34px Inter, sans-serif';
   ctx.fillStyle = GREEN2;
-  ctx.font = 'bold 36px Inter, sans-serif';
-  ctx.textAlign = 'left';
   ctx.fillText('⚽ Quini', PAD, y);
-
   const dateStr = new Date(f.commence_time).toLocaleDateString(
-    LANG === 'es' ? 'es' : 'en',
-    {weekday:'short', day:'numeric', month:'short', hour:'2-digit', minute:'2-digit'}
-  );
-  ctx.fillStyle = MUTE;
-  ctx.font = '22px Inter, sans-serif';
-  ctx.textAlign = 'right';
-  ctx.fillText(dateStr, W - PAD, y);
-  ctx.textAlign = 'left';
+    LANG==='es'?'es':'en', {weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'});
+  ctx.font = '20px Inter, sans-serif'; ctx.fillStyle = MUTE;
+  ctx.textAlign = 'right'; ctx.fillText(dateStr, W-PAD, y);
+  ctx.textAlign = 'left'; ctx.fillText('FIFA World Cup 2026', PAD, y+28);
+  y += 76;
 
-  ctx.fillStyle = MUTE;
-  ctx.font = '18px Inter, sans-serif';
-  ctx.fillText('FIFA World Cup 2026', PAD, y + 30);
+  // Sep
+  ctx.strokeStyle = MUTE3; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W-PAD, y); ctx.stroke();
+  y += 52;
 
-  y += 80;
-
-  // separator
-  ctx.strokeStyle = MUTE2; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
-  y += 56;
-
-  // ── Teams ──
-  const home = teamName(f.home) || f.home;
-  const away = teamName(f.away) || f.away;
-  // Draw home + vs + away stacked vertically on narrow, or inline
-  const maxTeamW = W - PAD * 2;
-  const inlineStr = `${home}  ·  ${away}`;
-  const tSize = _fitText(ctx, inlineStr, maxTeamW, 64, 32);
-  ctx.font = `bold ${tSize}px Inter, sans-serif`;
-  ctx.fillStyle = INK;
+  // Teams
+  const home = teamName(f.home)||f.home, away = teamName(f.away)||f.away;
+  const tSize = _fitText(ctx, `${home}  •  ${away}`, W-PAD*2, 62, 28);
   ctx.textAlign = 'center';
-  ctx.fillText(home, W / 2, y);
-  y += Math.round(tSize * 1.1);
-  ctx.fillStyle = MUTE;
-  ctx.font = `28px Inter, sans-serif`;
-  ctx.fillText('vs', W / 2, y);
-  y += 40;
-  ctx.fillStyle = INK;
-  ctx.font = `bold ${tSize}px Inter, sans-serif`;
-  ctx.fillText(away, W / 2, y);
-  y += Math.round(tSize * 0.6) + 16;
-
+  ctx.font = `bold ${tSize}px Inter, sans-serif`; ctx.fillStyle = INK;
+  ctx.fillText(home, W/2, y);
+  y += Math.round(tSize*1.05);
+  ctx.font = '26px Inter, sans-serif'; ctx.fillStyle = MUTE;
+  ctx.fillText('vs', W/2, y); y += 38;
+  ctx.font = `bold ${tSize}px Inter, sans-serif`; ctx.fillStyle = INK;
+  ctx.fillText(away, W/2, y);
+  y += Math.round(tSize*0.55) + 14;
   if (f.xg_home != null) {
-    ctx.fillStyle = MUTE;
-    ctx.font = '22px Inter, sans-serif';
-    ctx.fillText(`xG  ${f.xg_home}  –  ${f.xg_away}`, W / 2, y);
-    y += 40;
+    ctx.font = '21px Inter, sans-serif'; ctx.fillStyle = MUTE;
+    ctx.fillText(`xG  ${f.xg_home}  –  ${f.xg_away}`, W/2, y);
+    y += 44;
   }
-  y += 20;
+  y += 18; ctx.textAlign = 'left';
 
-  // ── Probability bars ──
-  if (pH && pD && pA) {
-    ctx.strokeStyle = MUTE2; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
-    y += 40;
-
+  // Prob bars
+  if (hasProbs) {
+    ctx.strokeStyle = MUTE3; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W-PAD, y); ctx.stroke();
+    y += 38;
     const bars = [
-      {label: LANG==='es'?'Victoria local':'Home win', pct: pH.model_prob, color: GREEN},
-      {label: LANG==='es'?'Empate':'Draw',             pct: pD.model_prob, color: MUTE},
-      {label: LANG==='es'?'Victoria visita':'Away win', pct: pA.model_prob, color: BLUE},
+      {l: LANG==='es'?'Victoria local':'Home win', v: pH.model_prob, c: GREEN},
+      {l: LANG==='es'?'Empate':'Draw',             v: pD.model_prob, c: '#64748b'},
+      {l: LANG==='es'?'Victoria visita':'Away win', v: pA.model_prob, c: BLUE},
     ];
-    const LBL_W = 190, PCT_W = 72, BAR_X = PAD + LBL_W + 16, BAR_W = W - PAD - PCT_W - BAR_X - 8;
+    const LX = PAD+192, BW = W-PAD-80-LX;
     bars.forEach(b => {
-      ctx.fillStyle = MUTE;
-      ctx.font = '22px Inter, sans-serif';
-      ctx.textAlign = 'left';
-      ctx.fillText(b.label, PAD, y + 15);
-
-      ctx.fillStyle = MUTE2;
-      roundRect(ctx, BAR_X, y, BAR_W, 18, 9); ctx.fill();
-      ctx.fillStyle = b.color;
-      roundRect(ctx, BAR_X, y, Math.max(10, BAR_W * b.pct / 100), 18, 9); ctx.fill();
-
-      ctx.fillStyle = INK;
-      ctx.font = 'bold 22px Inter, sans-serif';
-      ctx.textAlign = 'right';
-      ctx.fillText(`${Math.round(b.pct)}%`, W - PAD, y + 15);
-      ctx.textAlign = 'left';
-      y += 40;
+      ctx.font = '21px Inter, sans-serif'; ctx.fillStyle = MUTE;
+      ctx.fillText(b.l, PAD, y+15);
+      ctx.fillStyle = MUTE2; roundRect(ctx, LX, y+1, BW, 16, 8); ctx.fill();
+      ctx.fillStyle = b.c; roundRect(ctx, LX, y+1, Math.max(10, BW*b.v/100), 16, 8); ctx.fill();
+      ctx.font = 'bold 21px Inter, sans-serif'; ctx.fillStyle = INK;
+      ctx.textAlign = 'right'; ctx.fillText(`${Math.round(b.v)}%`, W-PAD, y+15);
+      ctx.textAlign = 'left'; y += 40;
     });
-    y += 12;
+    y += 8;
   }
 
-  // ── BET cards ──
+  // Top scores section
+  if (hasScores) {
+    ctx.strokeStyle = MUTE3; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W-PAD, y); ctx.stroke();
+    y += 36;
+    ctx.font = 'bold 15px Inter, sans-serif'; ctx.fillStyle = MUTE;
+    ctx.fillText(LANG==='es'?'MARCADORES MÁS PROBABLES':'MOST LIKELY SCORES', PAD, y);
+    y += 36;
+    const maxPct = top3scores[0].p;
+    const SBW = W - PAD*2 - 140; // bar width
+    top3scores.forEach((s, i) => {
+      const label = `${s.h} – ${s.a}`;
+      const pct = s.p.toFixed(1);
+      const rankC = i === 0 ? GREEN2 : i === 1 ? BLUE : YELLOW;
+      ctx.font = `bold ${i===0?28:24}px Inter, sans-serif`; ctx.fillStyle = rankC;
+      ctx.fillText(label, PAD, y+18);
+      const barX = PAD+90, barW = SBW * (s.p / maxPct);
+      ctx.fillStyle = MUTE2; roundRect(ctx, barX, y+2, SBW, 14, 7); ctx.fill();
+      ctx.fillStyle = rankC+'66'; roundRect(ctx, barX, y+2, barW, 14, 7); ctx.fill();
+      ctx.font = `${i===0?'bold ':''} 20px Inter, sans-serif`; ctx.fillStyle = MUTE;
+      ctx.textAlign = 'right'; ctx.fillText(`${pct}%`, W-PAD, y+18);
+      ctx.textAlign = 'left'; y += i===0?46:42;
+    });
+    y += 4;
+  }
+
+  // BET cards
   if (allBets.length) {
-    ctx.strokeStyle = MUTE2; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
-    y += 32;
-
+    ctx.strokeStyle = MUTE3; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W-PAD, y); ctx.stroke();
+    y += 28;
     allBets.forEach((bb, i) => {
-      const isPrimary = i === 0;
+      const isPrimary = i===0;
       const label = isPrimary ? (LANG==='es'?'MEJOR APUESTA':'BEST BET') : (LANG==='es'?'TAMBIÉN BET':'ALSO BET');
-      let desc = LANG==='es' ? (bb.description_es||bb.market) : (bb.description_en||bb.market);
-      desc = desc.replace(f.home, home).replace(f.away, away);
-      const cardH = 120;
-
+      let desc = (LANG==='es' ? (bb.description_es||bb.market) : (bb.description_en||bb.market))
+        .replace(f.home, home).replace(f.away, away);
+      const cH = 118;
       ctx.fillStyle = `rgba(5,150,105,${isPrimary?'0.14':'0.07'})`;
-      roundRect(ctx, PAD, y, W - PAD*2, cardH, 16); ctx.fill();
-      ctx.strokeStyle = `rgba(5,150,105,${isPrimary?'0.4':'0.2'})`; ctx.lineWidth = 1.5;
-      roundRect(ctx, PAD, y, W - PAD*2, cardH, 16); ctx.stroke();
-
-      ctx.fillStyle = GREEN2;
-      ctx.font = 'bold 16px Inter, sans-serif';
-      ctx.textAlign = 'left';
-      ctx.fillText(label, PAD + 20, y + 26);
-
-      const dSize = _fitText(ctx, desc, W - PAD*2 - 280, isPrimary ? 28 : 26, 18);
-      ctx.font = `${isPrimary?'bold':'600'} ${dSize}px Inter, sans-serif`;
-      ctx.fillStyle = INK;
-      ctx.fillText(desc, PAD + 20, y + 62);
-
-      ctx.fillStyle = GREEN2;
-      ctx.font = 'bold 26px Inter, sans-serif';
+      roundRect(ctx, PAD, y, W-PAD*2, cH, 14); ctx.fill();
+      ctx.strokeStyle = `rgba(52,211,153,${isPrimary?'0.35':'0.15'})`; ctx.lineWidth = 1.5;
+      roundRect(ctx, PAD, y, W-PAD*2, cH, 14); ctx.stroke();
+      ctx.font = 'bold 15px Inter, sans-serif'; ctx.fillStyle = GREEN2;
+      ctx.fillText(label, PAD+18, y+24);
+      const ds = _fitText(ctx, desc, W-PAD*2-260, isPrimary?28:25, 17);
+      ctx.font = `${isPrimary?'bold':'600'} ${ds}px Inter, sans-serif`; ctx.fillStyle = INK;
+      ctx.fillText(desc, PAD+18, y+62);
+      ctx.font = 'bold 25px Inter, sans-serif'; ctx.fillStyle = GREEN2;
       ctx.textAlign = 'right';
-      ctx.fillText(`+${bb.edge}%  @${Number(bb.best_odds||bb.odds).toFixed(2)}`, W - PAD - 20, y + 62);
-
-      if (bb.best_book) {
-        ctx.fillStyle = MUTE;
-        ctx.font = '18px Inter, sans-serif';
-        ctx.fillText(bb.best_book, W - PAD - 20, y + 92);
-      }
-      ctx.textAlign = 'left';
-      y += cardH + 16;
+      ctx.fillText(`+${bb.edge}%  @${Number(bb.best_odds||bb.odds).toFixed(2)}`, W-PAD-18, y+60);
+      if (bb.best_book) { ctx.font = '17px Inter, sans-serif'; ctx.fillStyle = MUTE; ctx.fillText(bb.best_book, W-PAD-18, y+88); }
+      ctx.textAlign = 'left'; y += cH+14;
     });
   }
 
-  // ── Footer ──
-  const footerY = H - 56;
-  ctx.strokeStyle = MUTE2; ctx.lineWidth = 1;
-  ctx.beginPath(); ctx.moveTo(PAD, footerY - 10); ctx.lineTo(W - PAD, footerY - 10); ctx.stroke();
+  // Footer
+  y += 20;
+  ctx.strokeStyle = MUTE3; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W-PAD, y); ctx.stroke();
+  y += 28;
+  ctx.font = '17px Inter, sans-serif'; ctx.fillStyle = MUTE;
+  ctx.fillText(LANG==='es'?'Predicción estadística · No asesoría de apuestas':'Statistical prediction · Not betting advice', PAD, y);
+  ctx.textAlign = 'right'; ctx.fillText('quini-bzs.pages.dev', W-PAD, y);
 
-  ctx.fillStyle = MUTE;
-  ctx.font = '18px Inter, sans-serif';
-  ctx.textAlign = 'left';
-  ctx.fillText(LANG==='es'?'Predicción estadística · No asesoría de apuestas':'Statistical prediction · Not betting advice', PAD, footerY + 14);
-  ctx.textAlign = 'right';
-  ctx.fillText('quini-bzs.pages.dev', W - PAD, footerY + 14);
-
-  // share
   const slug = `${f.home}-${f.away}`.toLowerCase().replace(/\s+/g,'-');
   canvas.toBlob(async blob => {
     const file = new File([blob], `quini-${slug}.png`, {type:'image/png'});
     if (navigator.share && navigator.canShare && navigator.canShare({files:[file]})) {
       try { await navigator.share({title:`Quini · ${home} vs ${away}`, files:[file]}); }
       catch(e) { if (e.name !== 'AbortError') downloadBlob(blob, file.name); }
-    } else {
-      downloadBlob(blob, file.name);
-    }
+    } else { downloadBlob(blob, file.name); }
   }, 'image/png');
 }
 
