@@ -9,11 +9,13 @@ import numpy as np
 from model.devig import devig_shin
 from model.bivariate_poisson import BPFit, load_fit
 
-EDGE_THRESHOLD = 0.07  # 7%
-EDGE_SCORE_CAP = 0.05  # saturates 5 pts above threshold (so edge ≥ 12% → 1.0)
+EDGE_THRESHOLD = 0.08  # 8% — backtest at 7% gave +6.1% ROI vs 8%=+38.7% ROI (n=37)
+EDGE_SCORE_CAP = 0.05  # saturates 5 pts above threshold (so edge ≥ 13% → 1.0)
 SAMPLE_FULL_SUPPORT = 30  # n_matches at which sample_score saturates
-MIN_MODEL_PROB = 0.25  # don't bet on outcomes the model thinks are <25% likely
+MIN_MODEL_PROB = 0.30  # at 0.25 backtest ROI was +6.1%, at 0.30 was +12.7%
 EV_THRESHOLD = 0.04  # min expected value (model_prob * odds - 1) to BET
+# All thresholds derived from tools/tune_threshold.py on history.json.
+# Re-run after every cron tick to keep them honest.
 
 PickLabel = Literal["BET", "SKIP", "FADE"]
 
@@ -29,6 +31,22 @@ class MarketPick:
     pick: PickLabel
     confidence_raw: float
     confidence_band: Literal["ALTA", "MEDIA", "BAJA"]
+    kelly_frac: float = 0.0  # quarter-Kelly fraction of bankroll, capped at 5%
+
+
+def kelly_fraction(model_prob: float, odds: float, kelly_mult: float = 0.25, cap: float = 0.05) -> float:
+    """Quarter-Kelly bankroll fraction, capped at 5%.
+
+    Full Kelly is aggressive — quarter-Kelly gives ~50% of long-run growth
+    with much less variance. Cap protects against model overconfidence.
+    """
+    b = odds - 1.0
+    if b <= 0 or model_prob <= 0:
+        return 0.0
+    f = (b * model_prob - (1 - model_prob)) / b
+    if f <= 0:
+        return 0.0
+    return min(f * kelly_mult, cap)
 
 
 def _classify(edge: float, model_prob: float = 0.0, odds: float = 1.0) -> PickLabel:
@@ -137,6 +155,7 @@ def predict(
         edge = model_p - devig_p
         pick_lbl = _classify(edge, model_p, odds[key])
         raw, band = _confidence(edge, sample_s)
+        kf = kelly_fraction(model_p, odds[key]) if pick_lbl == "BET" else 0.0
         picks.append(MarketPick(
             market=label,
             side=key,
@@ -147,6 +166,7 @@ def predict(
             pick=pick_lbl,
             confidence_raw=raw,
             confidence_band=band,
+            kelly_frac=kf,
         ))
 
     # Overall fixture confidence = best BET on the slate.

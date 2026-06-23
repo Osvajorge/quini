@@ -1096,7 +1096,10 @@ function renderFixtureCard(f, featured = false) {
         <div class="rounded-lg px-3 py-2.5" style="background:color-mix(in srgb,var(--bet) ${opacity},transparent); border:1px solid color-mix(in srgb,var(--bet) ${borderOp},transparent);">
           <div class="flex items-center justify-between mb-1.5">
             <span class="text-[10px] font-bold uppercase tracking-wider" style="color:var(--bet);">${label}</span>
-            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded" style="background:color-mix(in srgb,${confColor} 15%,transparent); color:${confColor};">${confBand}</span>
+            <div class="flex items-center gap-1.5">
+              ${bb.kelly_pct ? `<span class="text-[10px] font-mono px-1.5 py-0.5 rounded tooltip-trigger" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">${bb.kelly_pct}% bank<span class="tooltip-content">${LANG==='es'?'Quarter-Kelly: % de tu banca a apostar. Ej. banca €1000 × '+bb.kelly_pct+'% = €'+(10*bb.kelly_pct).toFixed(0):'Quarter-Kelly stake. E.g. €1000 bankroll × '+bb.kelly_pct+'% = €'+(10*bb.kelly_pct).toFixed(0)}</span></span>` : ''}
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded" style="background:color-mix(in srgb,${confColor} 15%,transparent); color:${confColor};">${confBand}</span>
+            </div>
           </div>
           <div class="text-sm font-semibold mb-1.5">${desc}</div>
           <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">

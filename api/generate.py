@@ -530,20 +530,21 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
                 elif s["name"] == away_api:
                     actual_away = int(s["score"]) if s["score"] is not None else None
 
-        # Build all BET picks from old predictions
-        picks = [
-            {
+        # Save ALL picks (BET/SKIP/FADE) for retro-threshold-tuning
+        picks = []
+        for p in old_fx.get("picks", []):
+            side = p.get("side", "")
+            won = _side_won(side, actual_home, actual_away) if actual_home is not None else None
+            picks.append({
                 "market": p["market"],
-                "side": p.get("side", ""),
+                "side": side,
                 "pick": p["pick"],
                 "edge": p["edge"],
                 "odds": p["odds"],
                 "model_prob": p["model_prob"],
                 "devig_prob": p["devig_prob"],
-            }
-            for p in old_fx.get("picks", [])
-            if p.get("pick") == "BET"
-        ]
+                "won": won,
+            })
 
         # All bets with descriptions (from the bets array if available, else from picks)
         all_bets = old_fx.get("bets", [])
@@ -777,6 +778,7 @@ def generate():
                 "odds": round(p["odds"], 2),
                 "pick": p["pick"],
                 "confidence": p["confidence_band"],
+                "kelly_pct": round(p.get("kelly_frac", 0) * 100, 2),
             })
 
         # Build all BET picks with descriptions
@@ -795,6 +797,7 @@ def generate():
                 "confidence_band": b["confidence_band"],
                 "model_prob": round(b["model_prob"] * 100, 1),
                 "devig_prob": round(b["devig_prob"] * 100, 1),
+                "kelly_pct": round(b.get("kelly_frac", 0) * 100, 2),
                 "description_es": b_desc_es,
                 "description_en": b_desc_en,
             })
