@@ -1142,8 +1142,8 @@ function renderResults() {
     let scoreHitBadge = '';
     if (f.top_scores && f.actual_home !== null) {
       const hitIdx = f.top_scores.findIndex(ts => ts.home === f.actual_home && ts.away === f.actual_away);
-      if (hitIdx === 0) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">⚡</span>`;
-      else if (hitIdx > 0 && hitIdx < 5) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">✓#${hitIdx+1}</span>`;
+      if (hitIdx === 0) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? 'EXACTO' : 'EXACT'}</span>`;
+      else if (hitIdx > 0 && hitIdx < 5) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">TOP ${hitIdx+1}</span>`;
     }
     html += `
       <div class="rounded-lg border px-4 py-3" style="background:var(--panel); border-color:var(--border);">
@@ -1308,16 +1308,17 @@ function _renderPredictionsHistory(s) {
 
     // Score hit badge
     let scoreBadge = '';
-    if (sh === 1) scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">⚡ #1</span>`;
-    else if (sh && sh <= 5) scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet);">✓ #${sh}</span>`;
+    if (sh === 1) scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? 'EXACTO' : 'EXACT'}</span>`;
+    else if (sh && sh <= 5) scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet);">TOP ${sh}</span>`;
 
     // 1X2 badge
     const r1x2 = fx.result_1x2;
     const p1x2 = fx.predicted_1x2;
     const correct1x2 = fx.correct_1x2;
     let resultBadge = '';
-    if (correct1x2 === true) resultBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet);">✓ ${r1x2}</span>`;
-    else if (correct1x2 === false) resultBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--fade) 15%,transparent); color:var(--fade);">${p1x2}→${r1x2}</span>`;
+    const _1x2Label = v => v === '1' ? (LANG === 'es' ? 'LOCAL' : 'HOME') : v === '2' ? (LANG === 'es' ? 'VISITA' : 'AWAY') : (LANG === 'es' ? 'EMPATE' : 'DRAW');
+    if (correct1x2 === true) resultBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet);">${_1x2Label(r1x2)} ✓</span>`;
+    else if (correct1x2 === false) resultBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--fade) 15%,transparent); color:var(--fade);">${_1x2Label(p1x2)} → ${_1x2Label(r1x2)}</span>`;
 
     // xG line
     const xgLine = fx.xg_home != null ? `xG ${fx.xg_home}-${fx.xg_away}` : '';

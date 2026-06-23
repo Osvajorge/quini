@@ -318,6 +318,84 @@ def _update_history_summary(history: dict) -> None:
     }
 
 
+def _backfill_history(fit) -> None:
+    """One-time backfill: add score_hit, 1X2, xG, top_scores, bets to old history entries."""
+    history = _load_history()
+    changed = False
+
+    for fx in history.get("fixtures", []):
+        needs_update = False
+
+        home = fx.get("home", "")
+        away = fx.get("away", "")
+        home_model = normalize_team(home)
+        away_model = normalize_team(away)
+        r = fx.get("result", {})
+        ah = r.get("home")
+        aa = r.get("away")
+
+        # Backfill xG + top_scores if missing
+        if fx.get("xg_home") is None and home_model and away_model:
+            try:
+                top_scores, _, lam_h, lam_a = build_score_predictions(fit, home_model, away_model)
+                fx["xg_home"] = round(lam_h, 2)
+                fx["xg_away"] = round(lam_a, 2)
+                fx["top_scores"] = top_scores[:3] if top_scores else []
+                needs_update = True
+            except Exception:
+                pass
+
+        # Backfill score_hit if missing
+        if fx.get("score_hit") is None and ah is not None and fx.get("top_scores"):
+            for i, ts in enumerate(fx["top_scores"]):
+                if ts["home"] == ah and ts["away"] == aa:
+                    fx["score_hit"] = i + 1
+                    needs_update = True
+                    break
+
+        # Backfill 1X2 prediction if missing
+        if fx.get("predicted_1x2") is None and fx.get("xg_home") is not None:
+            xh = fx["xg_home"]
+            xa = fx["xg_away"]
+            fx["predicted_1x2"] = "1" if xh > xa else "2" if xa > xh else "X"
+            needs_update = True
+
+        if fx.get("result_1x2") is None and ah is not None and aa is not None:
+            fx["result_1x2"] = "1" if ah > aa else "2" if aa > ah else "X"
+            needs_update = True
+
+        if fx.get("correct_1x2") is None and fx.get("predicted_1x2") and fx.get("result_1x2"):
+            fx["correct_1x2"] = fx["predicted_1x2"] == fx["result_1x2"]
+            needs_update = True
+
+        # Backfill individual bets results if missing
+        if not fx.get("bets") and fx.get("picks"):
+            bets_results = []
+            for p in fx["picks"]:
+                side = p.get("side") or p.get("market", "")
+                won = _side_won(side, ah, aa) if ah is not None else None
+                bets_results.append({
+                    "market": p.get("market", ""),
+                    "side": side,
+                    "edge": p.get("edge", 0),
+                    "odds": p.get("odds", 1.0),
+                    "won": won,
+                    "description_es": p.get("market", ""),
+                    "description_en": p.get("market", ""),
+                })
+            if bets_results:
+                fx["bets"] = bets_results
+                needs_update = True
+
+        if needs_update:
+            changed = True
+
+    if changed:
+        _update_history_summary(history)
+        _save_history(history)
+        print(f"[backfill] updated history with prediction data")
+
+
 def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
     """Find newly completed fixtures and save their pre-match picks to history."""
     history = _load_history()
@@ -488,6 +566,9 @@ def generate():
                     pass
 
     fit = load_fit()
+
+    # Backfill history with prediction data (runs once, idempotent)
+    _backfill_history(fit)
 
     odds_data = fetch_odds(api_key)
     scores_data = fetch_scores(api_key)
