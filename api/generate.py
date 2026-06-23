@@ -263,27 +263,58 @@ def _save_history(history: dict) -> None:
 def _update_history_summary(history: dict) -> None:
     fixtures = history.get("fixtures", [])
     total = len(fixtures)
-    bet_fixtures = [fx for fx in fixtures if fx.get("has_bet", fx.get("best_bet") is not None)]
-    won = sum(1 for fx in bet_fixtures if fx.get("best_bet_won") is True)
-    lost = sum(1 for fx in bet_fixtures if fx.get("best_bet_won") is False)
-    # ROI: won → profit = (odds-1), lost → profit = -1
-    total_profit = 0.0
+
+    # ── Per-bet stats (individual bet ROI) ──
+    total_individual_bets = 0
+    individual_won = 0
+    individual_lost = 0
+    individual_profit = 0.0
     for fx in fixtures:
-        bb = fx.get("best_bet")
-        if bb and fx.get("best_bet_won") is not None:
-            if fx["best_bet_won"]:
-                total_profit += (bb.get("odds", 1.0) - 1.0)
+        for b in fx.get("bets", []):
+            if b.get("won") is None:
+                continue
+            total_individual_bets += 1
+            if b["won"]:
+                individual_won += 1
+                individual_profit += (b.get("odds", 1.0) - 1.0)
             else:
-                total_profit -= 1.0
-    n_bet = len(bet_fixtures)
-    roi = round(total_profit / n_bet * 100, 1) if n_bet > 0 else 0.0
+                individual_lost += 1
+                individual_profit -= 1.0
+
+    # Fallback to old best_bet-based counting if bets array not populated yet
+    if total_individual_bets == 0:
+        bet_fixtures = [fx for fx in fixtures if fx.get("has_bet", fx.get("best_bet") is not None)]
+        for fx in bet_fixtures:
+            bb = fx.get("best_bet")
+            if bb and fx.get("best_bet_won") is not None:
+                total_individual_bets += 1
+                if fx["best_bet_won"]:
+                    individual_won += 1
+                    individual_profit += (bb.get("odds", 1.0) - 1.0)
+                else:
+                    individual_lost += 1
+                    individual_profit -= 1.0
+
+    bet_roi = round(individual_profit / total_individual_bets * 100, 1) if total_individual_bets > 0 else 0.0
+
+    # ── Prediction stats ──
+    score_hits = sum(1 for fx in fixtures if fx.get("score_hit") is not None)
+    score_top1 = sum(1 for fx in fixtures if fx.get("score_hit") == 1)
+    correct_1x2 = sum(1 for fx in fixtures if fx.get("correct_1x2") is True)
+    total_1x2 = sum(1 for fx in fixtures if fx.get("correct_1x2") is not None)
+
     history["summary"] = {
         "total": total,
-        "total_bet": n_bet,
-        "won": won,
-        "lost": lost,
-        "win_rate": round(won / (won + lost) * 100, 1) if (won + lost) > 0 else 0.0,
-        "roi": roi,
+        "total_bets": total_individual_bets,
+        "won": individual_won,
+        "lost": individual_lost,
+        "win_rate": round(individual_won / (individual_won + individual_lost) * 100, 1) if (individual_won + individual_lost) > 0 else 0.0,
+        "roi": bet_roi,
+        "score_hits": score_hits,
+        "score_top1": score_top1,
+        "correct_1x2": correct_1x2,
+        "total_1x2": total_1x2,
+        "accuracy_1x2": round(correct_1x2 / total_1x2 * 100, 1) if total_1x2 > 0 else 0.0,
     }
 
 
@@ -317,10 +348,11 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
                 elif s["name"] == away_api:
                     actual_away = int(s["score"]) if s["score"] is not None else None
 
-        # Build picks list (BET signals only) from old predictions
+        # Build all BET picks from old predictions
         picks = [
             {
                 "market": p["market"],
+                "side": p.get("side", ""),
                 "pick": p["pick"],
                 "edge": p["edge"],
                 "odds": p["odds"],
@@ -331,7 +363,24 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
             if p.get("pick") == "BET"
         ]
 
+        # All bets with descriptions (from the bets array if available, else from picks)
+        all_bets = old_fx.get("bets", [])
         best_bet = old_fx.get("best_bet")
+
+        # Evaluate each individual bet
+        bets_results = []
+        for b in (all_bets if all_bets else picks):
+            side = b.get("side", "")
+            won = _side_won(side, actual_home, actual_away) if actual_home is not None else None
+            bets_results.append({
+                "market": b.get("market", ""),
+                "side": side,
+                "edge": b.get("edge", 0),
+                "odds": b.get("odds", 1.0),
+                "won": won,
+                "description_es": b.get("description_es", b.get("market", "")),
+                "description_en": b.get("description_en", b.get("market", "")),
+            })
 
         best_bet_won = None
         if best_bet and actual_home is not None and actual_away is not None:
@@ -342,16 +391,43 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
             }
             best_bet_won = _bet_won(temp_fx)
 
+        # Score prediction accuracy
+        top_scores = old_fx.get("top_scores", [])
+        score_hit = None  # rank (1-5) if exact score matched, else None
+        if actual_home is not None and top_scores:
+            for i, ts in enumerate(top_scores):
+                if ts["home"] == actual_home and ts["away"] == actual_away:
+                    score_hit = i + 1
+                    break
+
+        # 1X2 prediction accuracy
+        xg_home = old_fx.get("xg_home")
+        xg_away = old_fx.get("xg_away")
+        result_1x2 = None
+        predicted_1x2 = None
+        if actual_home is not None and actual_away is not None:
+            result_1x2 = "1" if actual_home > actual_away else "2" if actual_away > actual_home else "X"
+        if xg_home is not None and xg_away is not None:
+            predicted_1x2 = "1" if xg_home > xg_away else "2" if xg_away > xg_home else "X"
+
         history_entry = {
             "id": fx_id,
             "home": home_api,
             "away": away_api,
             "date": old_fx.get("commence_time"),
             "picks": picks,
+            "bets": bets_results,
             "best_bet": best_bet,
             "has_bet": best_bet is not None,
             "result": {"home": actual_home, "away": actual_away},
             "best_bet_won": best_bet_won,
+            "score_hit": score_hit,
+            "top_scores": top_scores[:3] if top_scores else [],
+            "xg_home": xg_home,
+            "xg_away": xg_away,
+            "predicted_1x2": predicted_1x2,
+            "result_1x2": result_1x2,
+            "correct_1x2": predicted_1x2 == result_1x2 if predicted_1x2 and result_1x2 else None,
         }
         history["fixtures"].append(history_entry)
 
@@ -515,6 +591,24 @@ def generate():
                 "confidence": p["confidence_band"],
             })
 
+        # Build all BET picks with descriptions
+        all_bets = []
+        for b in sorted(bets, key=lambda p: -p["edge"]):
+            b_desc_es, b_desc_en = _pick_description(b["market"], home_api, away_api)
+            all_bets.append({
+                "market": b["market"],
+                "side": b["side"],
+                "edge": round(b["edge"] * 100, 1),
+                "odds": round(b["odds"], 2),
+                "pick": b["pick"],
+                "confidence_band": b["confidence_band"],
+                "model_prob": round(b["model_prob"] * 100, 1),
+                "devig_prob": round(b["devig_prob"] * 100, 1),
+                "description_es": b_desc_es,
+                "description_en": b_desc_en,
+            })
+        fixture["bets"] = all_bets
+
         if best_bet:
             compound = _compound_description(best_bet["side"], bets, home_api, away_api)
             if compound:
@@ -643,13 +737,10 @@ def generate():
     print(f"output: {OUT} ({len(fixtures)} fixtures)")
 
 
-def _bet_won(fixture: dict) -> bool:
-    if not fixture.get("best_bet") or fixture.get("actual_home") is None:
+def _side_won(side: str, ah: int, aa: int) -> bool:
+    """Evaluate if a bet side won given actual scores."""
+    if ah is None or aa is None:
         return False
-    bb = fixture["best_bet"]
-    side = bb.get("side") or bb.get("market", "")
-    ah = fixture["actual_home"]
-    aa = fixture["actual_away"]
     if side in ("home",) or "Local" in side:
         return ah > aa
     if side in ("away",) or "Visitante" in side:
@@ -665,6 +756,14 @@ def _bet_won(fixture: dict) -> bool:
     if side in ("btts_no",) or ("BTTS" in side and "No" in side):
         return ah == 0 or aa == 0
     return False
+
+
+def _bet_won(fixture: dict) -> bool:
+    if not fixture.get("best_bet") or fixture.get("actual_home") is None:
+        return False
+    bb = fixture["best_bet"]
+    side = bb.get("side") or bb.get("market", "")
+    return _side_won(side, fixture["actual_home"], fixture["actual_away"])
 
 
 if __name__ == "__main__":

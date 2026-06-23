@@ -966,28 +966,37 @@ function renderFixtureCard(f, featured = false) {
   const confColors = {ALTA:'alta', MEDIA:'media', BAJA:'baja'};
   const cc = confColors[f.fixture_confidence] || 'baja';
 
+  // Show ALL BET picks (bets array first, fallback to best_bet)
   let bestBetHtml = '';
-  if (f.best_bet) {
-    const bb = f.best_bet;
-    let desc = LANG === 'es' ? (bb.description_es || bb.market) : (bb.description_en || bb.market);
-    desc = desc.replace(f.home, teamName(f.home)).replace(f.away, teamName(f.away));
-    const confBand = bb.confidence_band || bb.confidence || '—';
-    const confColor = confBand === 'ALTA' ? 'var(--alta)' : confBand === 'MEDIA' ? 'var(--media)' : 'var(--baja)';
-    const modelPct = bb.model_prob != null ? Number(bb.model_prob).toFixed(0) + '%' : null;
-    const devigPct = bb.devig_prob != null ? Number(bb.devig_prob).toFixed(0) + '%' : null;
-    bestBetHtml = `
-      <div class="mt-3 rounded-lg px-3 py-2.5" style="background:color-mix(in srgb,var(--bet) 6%,transparent); border:1px solid color-mix(in srgb,var(--bet) 20%,transparent);">
-        <div class="flex items-center justify-between mb-1.5">
-          <span class="text-[10px] font-bold uppercase tracking-wider" style="color:var(--bet);">${t('best_bet')}</span>
-          <span class="text-[10px] font-mono px-1.5 py-0.5 rounded" style="background:color-mix(in srgb,${confColor} 15%,transparent); color:${confColor};">${confBand}</span>
-        </div>
-        <div class="text-sm font-semibold mb-1.5">${desc}</div>
-        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-          <span class="font-bold font-mono" style="color:var(--bet);">+${bb.edge}% ${LANG === 'es' ? 'ventaja' : 'edge'}</span>
-          <span style="color:var(--mute);">@ ${Number(bb.odds).toFixed(2)}</span>
-          ${modelPct ? `<span style="color:var(--mute);">${modelPct} ${LANG === 'es' ? 'modelo' : 'model'} · ${devigPct} ${LANG === 'es' ? 'implícita' : 'implied'}</span>` : ''}
-        </div>
-      </div>`;
+  const allBets = f.bets && f.bets.length ? f.bets : (f.best_bet ? [f.best_bet] : []);
+  if (allBets.length) {
+    bestBetHtml = `<div class="mt-3 space-y-2">`;
+    allBets.forEach((bb, idx) => {
+      let desc = LANG === 'es' ? (bb.description_es || bb.market) : (bb.description_en || bb.market);
+      desc = desc.replace(f.home, teamName(f.home)).replace(f.away, teamName(f.away));
+      const confBand = bb.confidence_band || bb.confidence || '—';
+      const confColor = confBand === 'ALTA' ? 'var(--alta)' : confBand === 'MEDIA' ? 'var(--media)' : 'var(--baja)';
+      const modelPct = bb.model_prob != null ? Number(bb.model_prob).toFixed(0) + '%' : null;
+      const devigPct = bb.devig_prob != null ? Number(bb.devig_prob).toFixed(0) + '%' : null;
+      const isPrimary = idx === 0;
+      const opacity = isPrimary ? '6%' : '3%';
+      const borderOp = isPrimary ? '20%' : '12%';
+      const label = isPrimary ? t('best_bet') : (LANG === 'es' ? 'TAMBIÉN BET' : 'ALSO BET');
+      bestBetHtml += `
+        <div class="rounded-lg px-3 py-2.5" style="background:color-mix(in srgb,var(--bet) ${opacity},transparent); border:1px solid color-mix(in srgb,var(--bet) ${borderOp},transparent);">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider" style="color:var(--bet);">${label}</span>
+            <span class="text-[10px] font-mono px-1.5 py-0.5 rounded" style="background:color-mix(in srgb,${confColor} 15%,transparent); color:${confColor};">${confBand}</span>
+          </div>
+          <div class="text-sm font-semibold mb-1.5">${desc}</div>
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+            <span class="font-bold font-mono" style="color:var(--bet);">+${bb.edge}% ${LANG === 'es' ? 'ventaja' : 'edge'}</span>
+            <span style="color:var(--mute);">@ ${Number(bb.odds).toFixed(2)}</span>
+            ${modelPct ? `<span style="color:var(--mute);">${modelPct} ${LANG === 'es' ? 'modelo' : 'model'} · ${devigPct} ${LANG === 'es' ? 'implícita' : 'implied'}</span>` : ''}
+          </div>
+        </div>`;
+    });
+    bestBetHtml += `</div>`;
   }
 
   const betPicks = f.picks.filter(p => p.pick === 'BET');
@@ -1121,20 +1130,33 @@ function renderResults() {
   let html = '<div class="space-y-2">';
   completed.forEach(f => {
     const score = f.actual_home !== null ? `${f.actual_home} - ${f.actual_away}` : '? - ?';
-    let betResult = '';
-    if (f.best_bet) {
-      const won = _betWon(f);
-      betResult = `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, ${won ? 'var(--bet)' : 'var(--fade)'} 20%, transparent); color:${won ? 'var(--bet)' : 'var(--fade)'};">${won ? 'W' : 'L'} ${f.best_bet.market}</span>`;
+    // Show all individual bet results
+    const allBets = f.bets && f.bets.length ? f.bets : (f.best_bet ? [f.best_bet] : []);
+    let betBadges = '';
+    allBets.forEach(b => {
+      const side = b.side || b.market || '';
+      const won = _sideWon(side, f.actual_home, f.actual_away);
+      betBadges += `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, ${won ? 'var(--bet)' : 'var(--fade)'} 20%, transparent); color:${won ? 'var(--bet)' : 'var(--fade)'};">${won ? 'W' : 'L'} ${b.market || side}</span> `;
+    });
+    // Score hit check
+    let scoreHitBadge = '';
+    if (f.top_scores && f.actual_home !== null) {
+      const hitIdx = f.top_scores.findIndex(ts => ts.home === f.actual_home && ts.away === f.actual_away);
+      if (hitIdx === 0) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">⚡</span>`;
+      else if (hitIdx > 0 && hitIdx < 5) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">✓#${hitIdx+1}</span>`;
     }
     html += `
-      <div class="rounded-lg border px-4 py-3 flex items-center justify-between" style="background:var(--panel); border-color:var(--border);">
-        <div class="flex-1">
-          <div class="text-sm font-medium">${teamName(f.home)} vs ${teamName(f.away)}</div>
-          <div class="text-xs" style="color:var(--mute);">${new Date(f.commence_time).toLocaleDateString(LANG === 'es' ? 'es' : 'en', {month:'short', day:'numeric'})}</div>
-        </div>
-        <div class="flex items-center gap-3">
-          ${betResult}
-          <div class="text-lg font-bold font-mono">${score}</div>
+      <div class="rounded-lg border px-4 py-3" style="background:var(--panel); border-color:var(--border);">
+        <div class="flex items-center justify-between">
+          <div class="flex-1">
+            <div class="text-sm font-medium">${teamName(f.home)} vs ${teamName(f.away)}</div>
+            <div class="text-xs" style="color:var(--mute);">${new Date(f.commence_time).toLocaleDateString(LANG === 'es' ? 'es' : 'en', {month:'short', day:'numeric'})}</div>
+          </div>
+          <div class="flex items-center gap-2">
+            ${scoreHitBadge}
+            ${betBadges}
+            <div class="text-lg font-bold font-mono">${score}</div>
+          </div>
         </div>
       </div>`;
   });
@@ -1142,11 +1164,9 @@ function renderResults() {
   document.getElementById('results-container').innerHTML = html;
 }
 
-function _betWon(f) {
-  if (!f.best_bet || f.actual_home == null) return false;
-  const bb = f.best_bet;
-  const s = bb.side || bb.market || '';
-  const ah = f.actual_home, aa = f.actual_away;
+function _sideWon(side, ah, aa) {
+  if (ah == null || aa == null) return false;
+  const s = side || '';
   if (s === 'home' || s.includes('Local')) return ah > aa;
   if (s === 'away' || s.includes('Visitante')) return aa > ah;
   if (s === 'draw' || s.includes('Empate')) return ah === aa;
@@ -1157,7 +1177,20 @@ function _betWon(f) {
   return false;
 }
 
+function _betWon(f) {
+  if (!f.best_bet || f.actual_home == null) return false;
+  const side = f.best_bet.side || f.best_bet.market || '';
+  return _sideWon(side, f.actual_home, f.actual_away);
+}
+
 // ── History tab ──
+let historySubTab = 'bets'; // 'bets' | 'predictions'
+
+function setHistorySubTab(sub) {
+  historySubTab = sub;
+  renderHistory();
+}
+
 function renderHistory() {
   if (!HISTORY || !HISTORY.fixtures || !HISTORY.fixtures.length) {
     document.getElementById('history-container').innerHTML = `<div class="text-center py-12 text-sm" style="color:var(--mute);">${t('no_history')}</div>`;
@@ -1165,14 +1198,36 @@ function renderHistory() {
   }
 
   const s = HISTORY.summary || {};
+  const isBets = historySubTab === 'bets';
+
+  // Sub-tab buttons
+  const subTabStyle = (active) => active
+    ? `background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 30%,transparent);`
+    : `background:var(--panel2); color:var(--mute); border:1px solid var(--border);`;
+  let html = `
+    <div class="flex gap-2 mb-4">
+      <button onclick="setHistorySubTab('bets')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(isBets)}">${LANG === 'es' ? '💰 Apuestas' : '💰 Bets'}</button>
+      <button onclick="setHistorySubTab('predictions')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(!isBets)}">${LANG === 'es' ? '🎯 Predicciones' : '🎯 Predictions'}</button>
+    </div>`;
+
+  if (isBets) {
+    html += _renderBetsHistory(s);
+  } else {
+    html += _renderPredictionsHistory(s);
+  }
+
+  document.getElementById('history-container').innerHTML = html;
+}
+
+function _renderBetsHistory(s) {
   let html = `
     <div class="rounded-xl border p-4 mb-6" style="background:var(--panel); border-color:var(--border);">
       <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 text-center">
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_total')}</div><div class="text-2xl font-bold mt-1">${s.total || 0}</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'APUESTAS' : 'BETS'}</div><div class="text-2xl font-bold mt-1">${s.total_bets || s.total_bet || 0}</div></div>
         <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_won')}</div><div class="text-2xl font-bold mt-1" style="color:var(--bet);">${s.won || 0}</div></div>
         <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_lost')}</div><div class="text-2xl font-bold mt-1" style="color:var(--fade);">${s.lost || 0}</div></div>
         <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_winrate')}</div><div class="text-2xl font-bold mt-1">${s.win_rate || 0}%</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_roi')}</div><div class="text-2xl font-bold mt-1" style="color:${(s.roi || 0) >= 0 ? 'var(--bet)' : 'var(--fade)'};">${s.roi > 0 ? '+' : ''}${s.roi || 0}%</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">ROI</div><div class="text-2xl font-bold mt-1" style="color:${(s.roi || 0) >= 0 ? 'var(--bet)' : 'var(--fade)'};">${s.roi > 0 ? '+' : ''}${s.roi || 0}%</div></div>
       </div>
     </div>
     <div class="space-y-2">`;
@@ -1180,41 +1235,112 @@ function renderHistory() {
   let histList = HISTORY.fixtures.slice().reverse();
   if (currentSearch) {
     const q = currentSearch;
-    histList = histList.filter(fx =>
-      (fx.home || '').toLowerCase().includes(q) ||
-      (fx.away || '').toLowerCase().includes(q)
-    );
+    histList = histList.filter(fx => (fx.home||'').toLowerCase().includes(q) || (fx.away||'').toLowerCase().includes(q));
   }
 
   histList.forEach(fx => {
-    const won = fx.best_bet_won;
-    const hasBet = fx.has_bet !== undefined ? fx.has_bet : !!fx.best_bet;
     const score = fx.result ? `${fx.result.home ?? '?'}-${fx.result.away ?? '?'}` : '?-?';
-    const bb = fx.best_bet || {};
-    let desc = LANG === 'es' ? (bb.description_es || bb.market || (LANG === 'es' ? 'Sin señal de apuesta' : 'No bet signal')) : (bb.description_en || bb.market || 'No bet signal');
-    if (fx.home && fx.away) { desc = desc.replace(fx.home, teamName(fx.home)).replace(fx.away, teamName(fx.away)); }
-    let badge = '';
-    if (!hasBet) badge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--mute) 15%, transparent); color:var(--mute);">—</span>`;
-    else if (won === true) badge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--bet) 20%, transparent); color:var(--bet);">W</span>`;
-    else if (won === false) badge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--fade) 20%, transparent); color:var(--fade);">L</span>`;
-    else badge = `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, var(--mute) 20%, transparent); color:var(--mute);">—</span>`;
-    const rowOpacity = hasBet ? '' : 'opacity:0.6;';
-    const edgeLine = hasBet ? ` · +${bb.edge || 0}% @ ${bb.odds || '—'}` : '';
+    const allBets = fx.bets && fx.bets.length ? fx.bets : (fx.best_bet ? [fx.best_bet] : []);
+    const hasBet = fx.has_bet !== undefined ? fx.has_bet : allBets.length > 0;
+
+    if (!hasBet) return; // skip matches without bets in bets tab
+
+    let betsHtml = '';
+    allBets.forEach(b => {
+      const won = b.won !== undefined ? b.won : fx.best_bet_won;
+      let desc = LANG === 'es' ? (b.description_es || b.market || '') : (b.description_en || b.market || '');
+      if (fx.home && fx.away) desc = desc.replace(fx.home, teamName(fx.home)).replace(fx.away, teamName(fx.away));
+      const badge = won === true
+        ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 20%,transparent); color:var(--bet);">W</span>`
+        : won === false
+          ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--fade) 20%,transparent); color:var(--fade);">L</span>`
+          : `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--mute) 20%,transparent); color:var(--mute);">—</span>`;
+      const odds = b.odds ? `@ ${Number(b.odds).toFixed(2)}` : '';
+      const edge = b.edge ? `+${b.edge}%` : '';
+      betsHtml += `<div class="flex items-center gap-2 text-xs mt-1">${badge} <span class="truncate">${desc}</span> <span class="font-mono ml-auto shrink-0" style="color:var(--mute);">${edge} ${odds}</span></div>`;
+    });
+
     html += `
-      <div class="rounded-lg border px-4 py-3 flex items-center justify-between gap-3" style="background:var(--panel); border-color:var(--border); ${rowOpacity}">
-        <div class="flex-1 min-w-0">
-          <div class="text-sm font-medium truncate">${teamName(fx.home)} vs ${teamName(fx.away)}</div>
-          <div class="text-xs" style="color:var(--mute);">${desc}${edgeLine}</div>
+      <div class="rounded-lg border px-4 py-3" style="background:var(--panel); border-color:var(--border);">
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium truncate">${teamName(fx.home)} vs ${teamName(fx.away)}</div>
+          </div>
+          <span class="font-mono font-bold shrink-0">${score}</span>
         </div>
-        <div class="flex items-center gap-3 shrink-0">
-          ${badge}
-          <span class="font-mono font-bold">${score}</span>
+        ${betsHtml}
+      </div>`;
+  });
+
+  html += '</div>';
+  return html;
+}
+
+function _renderPredictionsHistory(s) {
+  const scoreHits = s.score_hits || 0;
+  const scoreTop1 = s.score_top1 || 0;
+  const accuracy1x2 = s.accuracy_1x2 || 0;
+  const total = s.total || 0;
+
+  let html = `
+    <div class="rounded-xl border p-4 mb-6" style="background:var(--panel); border-color:var(--border);">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'PARTIDOS' : 'MATCHES'}</div><div class="text-2xl font-bold mt-1">${total}</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? '1X2 CORRECTO' : '1X2 CORRECT'}</div><div class="text-2xl font-bold mt-1" style="color:var(--bet);">${accuracy1x2}%</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'MARCADOR #1' : 'SCORE #1'}</div><div class="text-2xl font-bold mt-1" style="color:var(--alta);">${scoreTop1}</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'EN TOP 5' : 'IN TOP 5'}</div><div class="text-2xl font-bold mt-1">${scoreHits}</div></div>
+      </div>
+    </div>
+    <div class="space-y-2">`;
+
+  let histList = HISTORY.fixtures.slice().reverse();
+  if (currentSearch) {
+    const q = currentSearch;
+    histList = histList.filter(fx => (fx.home||'').toLowerCase().includes(q) || (fx.away||'').toLowerCase().includes(q));
+  }
+
+  histList.forEach(fx => {
+    const r = fx.result || {};
+    const score = `${r.home ?? '?'}-${r.away ?? '?'}`;
+    const topScores = fx.top_scores || [];
+    const predicted = topScores.length ? `${topScores[0].home}-${topScores[0].away}` : '—';
+    const sh = fx.score_hit;
+
+    // Score hit badge
+    let scoreBadge = '';
+    if (sh === 1) scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">⚡ #1</span>`;
+    else if (sh && sh <= 5) scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet);">✓ #${sh}</span>`;
+
+    // 1X2 badge
+    const r1x2 = fx.result_1x2;
+    const p1x2 = fx.predicted_1x2;
+    const correct1x2 = fx.correct_1x2;
+    let resultBadge = '';
+    if (correct1x2 === true) resultBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet);">✓ ${r1x2}</span>`;
+    else if (correct1x2 === false) resultBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--fade) 15%,transparent); color:var(--fade);">${p1x2}→${r1x2}</span>`;
+
+    // xG line
+    const xgLine = fx.xg_home != null ? `xG ${fx.xg_home}-${fx.xg_away}` : '';
+    // Top 3 predicted scores
+    const predLine = topScores.slice(0, 3).map(ts => `${ts.home}-${ts.away}`).join(', ');
+
+    html += `
+      <div class="rounded-lg border px-4 py-3" style="background:var(--panel); border-color:var(--border);">
+        <div class="flex items-center justify-between gap-3 mb-1">
+          <div class="text-sm font-medium truncate">${teamName(fx.home)} vs ${teamName(fx.away)}</div>
+          <span class="font-mono font-bold shrink-0">${score}</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 text-xs">
+          ${resultBadge}
+          ${scoreBadge}
+          ${xgLine ? `<span style="color:var(--mute);">${xgLine}</span>` : ''}
+          ${predLine ? `<span style="color:var(--mute);">${LANG === 'es' ? 'Pred:' : 'Pred:'} ${predLine}</span>` : ''}
         </div>
       </div>`;
   });
 
   html += '</div>';
-  document.getElementById('history-container').innerHTML = html;
+  return html;
 }
 
 // ── Quiniela tab ──
