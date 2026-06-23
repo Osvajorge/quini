@@ -483,11 +483,15 @@ async function _fetchESPNEvents() {
   const now = Date.now();
   if (_espnTickCache && now - _espnTickCache.ts < 25000) return _espnTickCache.events;
   try {
-    const today = new Date().toISOString().slice(0, 10).replace(/-/g, '');
-    const r = await fetch(`https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=${today}`, { cache: 'no-store' });
-    if (!r.ok) return _espnTickCache?.events || [];
-    const data = await r.json();
-    const events = data.events || [];
+    const fmtDate = d => new Date(d).toISOString().slice(0, 10).replace(/-/g, '');
+    const today = fmtDate(now);
+    const yesterday = fmtDate(now - 86400000);
+    const [r1, r2] = await Promise.all([
+      fetch(`https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=${today}`, { cache: 'no-store' }),
+      fetch(`https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=${yesterday}`, { cache: 'no-store' }),
+    ]);
+    const [d1, d2] = await Promise.all([r1.ok ? r1.json() : {}, r2.ok ? r2.json() : {}]);
+    const events = [...(d1.events || []), ...(d2.events || [])];
     _espnTickCache = { events, ts: now };
     return events;
   } catch {
@@ -584,15 +588,33 @@ function _updateScoreDom(f, actualH, actualA, elapsed) {
 
 let _tickRunning = false;
 async function _tickLive() {
-  if (_tickRunning) return; // prevent overlap
+  if (_tickRunning) return;
   _tickRunning = true;
   try {
     if (!DATA) return;
-    const lives = DATA.fixtures.filter(f => f.is_live && !f.completed);
-    if (!lives.length) { stopLiveTicker(); return; }
 
     const espnEvents = await _fetchESPNEvents();
-    let anyStillLive = false;
+    let needsRender = false;
+
+    // ── 1. Sync upcoming fixtures that ESPN now shows as live ──
+    for (const f of DATA.fixtures) {
+      if (f.completed || f.is_live) continue;
+      const espn = _parseESPNEvent(espnEvents, f.home, f.away);
+      if (espn && espn.isLive) {
+        f.is_live = true;
+        f.actual_home = espn.homeScore;
+        f.actual_away = espn.awayScore;
+        needsRender = true;
+      }
+    }
+
+    // ── 2. Process all currently-live fixtures ──
+    const lives = DATA.fixtures.filter(f => f.is_live && !f.completed);
+    if (!lives.length) {
+      if (needsRender) { renderAll(); checkLive(); }
+      else stopLiveTicker();
+      return;
+    }
 
     for (const f of lives) {
       const espn = _parseESPNEvent(espnEvents, f.home, f.away);
@@ -600,39 +622,29 @@ async function _tickLive() {
       let actualA = f.actual_away || 0;
 
       if (espn) {
-        // Update score + events display
         actualH = espn.homeScore;
         actualA = espn.awayScore;
         f.actual_home = actualH;
         f.actual_away = actualA;
 
-        // Update key events
         const evEl = document.getElementById(`live-events-${f.id}`);
         if (evEl) evEl.innerHTML = _buildEventsHtml(espn.details);
 
         if (espn.isOver) {
-          // Match ended — update in-memory DATA, re-render
           f.is_live = false;
           f.completed = true;
           _updateScoreEl(f.id, actualH, actualA, '', true);
-          continue; // don't update markets for completed match
+          needsRender = true;
+          continue;
         }
         _updateScoreEl(f.id, actualH, actualA, espn.clock, false);
-        anyStillLive = true;
-      } else {
-        anyStillLive = true;
       }
 
       const elapsed = espn?.clockMin ?? computeElapsed(f.commence_time);
       _updateScoreDom(f, actualH, actualA, elapsed);
     }
 
-    // If any fixture transitioned to completed, re-render to move it
-    const anyCompleted = lives.some(f => f.completed);
-    if (anyCompleted) {
-      renderAll();
-      checkLive();
-    }
+    if (needsRender) { renderAll(); checkLive(); }
   } finally {
     _tickRunning = false;
   }
