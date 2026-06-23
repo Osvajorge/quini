@@ -8,14 +8,26 @@ import numpy as np
 
 from model.devig import devig_shin
 from model.bivariate_poisson import BPFit, load_fit
+from model.elo import compute_ratings as elo_compute_ratings, match_probs as elo_match_probs
 
 EDGE_THRESHOLD = 0.08  # 8% — backtest at 7% gave +6.1% ROI vs 8%=+38.7% ROI (n=37)
 EDGE_SCORE_CAP = 0.05  # saturates 5 pts above threshold (so edge ≥ 13% → 1.0)
 SAMPLE_FULL_SUPPORT = 30  # n_matches at which sample_score saturates
 MIN_MODEL_PROB = 0.30  # at 0.25 backtest ROI was +6.1%, at 0.30 was +12.7%
 EV_THRESHOLD = 0.04  # min expected value (model_prob * odds - 1) to BET
+ELO_BLEND_WEIGHT = 0.30  # ensemble: 70% BivariatePoisson + 30% Elo regularizer
 # All thresholds derived from tools/tune_threshold.py on history.json.
 # Re-run after every cron tick to keep them honest.
+
+# Module-level cache so Elo ratings are computed once per process.
+_ELO_CACHE: dict[str, float] | None = None
+
+
+def _get_elo_ratings() -> dict[str, float]:
+    global _ELO_CACHE
+    if _ELO_CACHE is None:
+        _ELO_CACHE = elo_compute_ratings()
+    return _ELO_CACHE
 
 PickLabel = Literal["BET", "SKIP", "FADE"]
 
@@ -102,8 +114,33 @@ def predict(
 
     under25, _, over25 = grid.totals(2.5)
     under35, _, over35 = grid.totals(3.5)
+
+    # ── Ensemble 1X2: blend BivariatePoisson with Elo regularizer ──
+    # BP can overfit on small-sample teams (Scotland-Brazil case). Elo is a
+    # robust global ranking that pulls predictions toward sensible priors.
+    # Blend weight scales with sample: low n → trust Elo more (up to 50%),
+    # high n → trust BP more (floor at ELO_BLEND_WEIGHT=30%).
+    bp_1x2 = {"home": grid.home_win, "draw": grid.draw, "away": grid.away_win}
+    elo_ratings = _get_elo_ratings()
+    rh = elo_ratings.get(home)
+    ra = elo_ratings.get(away)
+    sample_s = _sample_score(fit, home, away)  # 0=no data, 1=full support
+    if rh is not None and ra is not None:
+        elo_probs = elo_match_probs(rh, ra, neutral=neutral)
+        # When sample_s=1 → w=ELO_BLEND_WEIGHT (0.30)
+        # When sample_s=0 → w=0.50 (max Elo trust)
+        w = ELO_BLEND_WEIGHT + (0.50 - ELO_BLEND_WEIGHT) * (1.0 - sample_s)
+        ensemble_1x2 = {
+            k: (1 - w) * bp_1x2[k] + w * elo_probs[k]
+            for k in ("home", "draw", "away")
+        }
+        s = sum(ensemble_1x2.values())
+        ensemble_1x2 = {k: v / s for k, v in ensemble_1x2.items()}
+    else:
+        ensemble_1x2 = bp_1x2
+
     model_probs = {
-        "1x2": {"home": grid.home_win, "draw": grid.draw, "away": grid.away_win},
+        "1x2": ensemble_1x2,
         "ou_2_5": {"over": over25, "under": under25},
         "ou_3_5": {"over": over35, "under": under35},
         "btts": {"yes": grid.btts_yes, "no": grid.btts_no},
@@ -117,7 +154,6 @@ def predict(
         },
     }
     matrix = fit.score_matrix(home, away, neutral=neutral, n=max_goals + 1)
-    sample_s = _sample_score(fit, home, away)
 
     market_map: dict[str, tuple[str, tuple[str, str], str]] = {
         # market key → (side label, (devig group), model_probs path)
