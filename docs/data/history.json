@@ -2527,22 +2527,131 @@
       "predicted_1x2": "2",
       "result_1x2": "2",
       "correct_1x2": true
+    },
+    {
+      "id": "68bfc965eb267508e04d8e8d75c1a0ae",
+      "home": "Colombia",
+      "away": "DR Congo",
+      "date": "2026-06-24T02:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "SKIP",
+          "edge": -4.8,
+          "odds": 1.56,
+          "model_prob": 58.5,
+          "devig_prob": 63.3,
+          "won": true,
+          "closing_odds": 1.56,
+          "clv_pct": 0.0
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "SKIP",
+          "edge": -0.3,
+          "odds": 4.1,
+          "model_prob": 23.5,
+          "devig_prob": 23.8,
+          "won": false,
+          "closing_odds": 4.1,
+          "clv_pct": 0.0
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "SKIP",
+          "edge": 5.1,
+          "odds": 7.45,
+          "model_prob": 18.0,
+          "devig_prob": 12.9,
+          "won": false,
+          "closing_odds": 7.45,
+          "clv_pct": 0.0
+        }
+      ],
+      "bets": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "edge": -4.8,
+          "odds": 1.56,
+          "won": true,
+          "closing_odds": 1.56,
+          "clv_pct": 0.0,
+          "description_es": "Gana Local (1)",
+          "description_en": "Gana Local (1)"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "edge": -0.3,
+          "odds": 4.1,
+          "won": false,
+          "closing_odds": 4.1,
+          "clv_pct": 0.0,
+          "description_es": "Empate (X)",
+          "description_en": "Empate (X)"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "edge": 5.1,
+          "odds": 7.45,
+          "won": false,
+          "closing_odds": 7.45,
+          "clv_pct": 0.0,
+          "description_es": "Gana Visitante (2)",
+          "description_en": "Gana Visitante (2)"
+        }
+      ],
+      "best_bet": null,
+      "has_bet": false,
+      "result": {
+        "home": 1,
+        "away": 0
+      },
+      "best_bet_won": null,
+      "score_hit": 1,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 17.2
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 14.4
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 12.6
+        }
+      ],
+      "xg_home": 1.27,
+      "xg_away": 0.75,
+      "predicted_1x2": "1",
+      "result_1x2": "1",
+      "correct_1x2": true
     }
   ],
   "summary": {
-    "total": 37,
-    "total_bets": 42,
-    "won": 23,
-    "lost": 19,
-    "win_rate": 54.8,
-    "roi": -6.1,
-    "score_hits": 14,
-    "score_top1": 4,
-    "correct_1x2": 25,
-    "total_1x2": 37,
-    "accuracy_1x2": 67.6,
-    "avg_clv_pct": null,
-    "clv_sample_size": 0,
-    "pct_beating_close": null
+    "total": 38,
+    "total_bets": 45,
+    "won": 24,
+    "lost": 21,
+    "win_rate": 53.3,
+    "roi": -8.9,
+    "score_hits": 15,
+    "score_top1": 5,
+    "correct_1x2": 26,
+    "total_1x2": 38,
+    "accuracy_1x2": 68.4,
+    "avg_clv_pct": 0.0,
+    "clv_sample_size": 3,
+    "pct_beating_close": 0.0
   }
 }
