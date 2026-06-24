@@ -1078,6 +1078,13 @@ def generate():
     except Exception as e:
         print(f"[og] generation skipped: {e}")
 
+    # Generate social media posts for upcoming BETs
+    try:
+        from tools.generate_social_posts import generate as _social
+        _social()
+    except Exception as e:
+        print(f"[social] generation skipped: {e}")
+
 
 def _side_won(side: str, ah: int, aa: int) -> bool:
     """Evaluate if a bet side won given actual scores."""

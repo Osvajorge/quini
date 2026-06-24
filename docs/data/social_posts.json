@@ -1,0 +1,56 @@
+[
+  {
+    "fixture_id": "0ed0233bddc4eafc8507f86a9c17b998",
+    "home": "Japan",
+    "away": "Sweden",
+    "commence_time": "2026-06-25T23:00:00Z",
+    "hours_until": 46.2,
+    "pick": "Japan gana el partido",
+    "edge": 31.1,
+    "odds": 2.0,
+    "book": "1xBet",
+    "kelly_pct": 5.0,
+    "is_imminent": false,
+    "formats": {
+      "twitter": "⚽ Japan vs Sweden\nPick: Japan gana el partido\n+31.1% ventaja · @2.0 (1xBet)\nKelly: 5.0% banca\n\nModelo: quini-bzs.pages.dev",
+      "whatsapp": "⚽ *Japan vs Sweden*\n🎯 *Japan gana el partido*\n📈 +31.1% ventaja\n💰 @2.0 (1xBet)\n💼 Kelly: 5.0% de tu banca\n\nAnálisis completo: quini-bzs.pages.dev",
+      "instagram": "⚽ Japan vs Sweden\n\nNuestro modelo dice: Japan gana el partido\n\nEncontramos una ventaja de +31.1% sobre las cuotas del mercado. Si tienes una banca de €1000, deberías apostar ~€50 según Quarter-Kelly.\n\n#Mundial2026 #ApuestasDeportivas #Japan #Sweden"
+    }
+  },
+  {
+    "fixture_id": "0ec28b84ec399bd4dffbe8d1bc72b3c4",
+    "home": "Ecuador",
+    "away": "Germany",
+    "commence_time": "2026-06-25T20:00:00Z",
+    "hours_until": 43.2,
+    "pick": "El partido termina en empate",
+    "edge": 13.1,
+    "odds": 4.2,
+    "book": "Betfair",
+    "kelly_pct": 3.88,
+    "is_imminent": false,
+    "formats": {
+      "twitter": "⚽ Ecuador vs Germany\nPick: El partido termina en empate\n+13.1% ventaja · @4.2 (Betfair)\nKelly: 3.88% banca\n\nModelo: quini-bzs.pages.dev",
+      "whatsapp": "⚽ *Ecuador vs Germany*\n🎯 *El partido termina en empate*\n📈 +13.1% ventaja\n💰 @4.2 (Betfair)\n💼 Kelly: 3.88% de tu banca\n\nAnálisis completo: quini-bzs.pages.dev",
+      "instagram": "⚽ Ecuador vs Germany\n\nNuestro modelo dice: El partido termina en empate\n\nEncontramos una ventaja de +13.1% sobre las cuotas del mercado. Si tienes una banca de €1000, deberías apostar ~€38 según Quarter-Kelly.\n\n#Mundial2026 #ApuestasDeportivas #Ecuador #Germany"
+    }
+  },
+  {
+    "fixture_id": "5993bd5196ca09f83990f0c3261e442e",
+    "home": "Czech Republic",
+    "away": "Mexico",
+    "commence_time": "2026-06-25T01:00:00Z",
+    "hours_until": 24.2,
+    "pick": "Mexico gana el partido",
+    "edge": 12.1,
+    "odds": 2.0,
+    "book": "gtbets",
+    "kelly_pct": 5.0,
+    "is_imminent": false,
+    "formats": {
+      "twitter": "⚽ Chequia vs Mexico\nPick: Mexico gana el partido\n+12.1% ventaja · @2.0 (gtbets)\nKelly: 5.0% banca\n\nModelo: quini-bzs.pages.dev",
+      "whatsapp": "⚽ *Chequia vs Mexico*\n🎯 *Mexico gana el partido*\n📈 +12.1% ventaja\n💰 @2.0 (gtbets)\n💼 Kelly: 5.0% de tu banca\n\nAnálisis completo: quini-bzs.pages.dev",
+      "instagram": "⚽ Chequia vs Mexico\n\nNuestro modelo dice: Mexico gana el partido\n\nEncontramos una ventaja de +12.1% sobre las cuotas del mercado. Si tienes una banca de €1000, deberías apostar ~€50 según Quarter-Kelly.\n\n#Mundial2026 #ApuestasDeportivas #Chequia #Mexico"
+    }
+  }
+]
