@@ -1,26 +1,33 @@
 # Quini — Predicciones Mundial 2026
 
-Motor de predicción de fútbol basado en Dixon-Coles con análisis de valor sobre cuotas de mercado.
+Motor de predicción de fútbol — **Bivariate-Poisson + Elo ensemble** con análisis de valor sobre cuotas de mercado, Kelly Criterion staking, y tracking de Closing Line Value (CLV).
 
-**Live:** [quini-bzs.pages.dev](https://quini-bzs.pages.dev)
+**Live:** [quini-bzs.pages.dev](https://quini-bzs.pages.dev) · **Landing:** [/landing.html](https://quini-bzs.pages.dev/landing.html)
 
 ## Qué hace
 
-- **Picks con ventaja** — compara probabilidades del modelo vs mercado. Si el modelo ve valor que las casas no ven, marca BET.
-- **Quiniela optimizada** — predicciones de marcador que maximizan puntos esperados en formato de quiniela (3 pts ganador + 1 pt goles exactos).
-- **Resultados en vivo** — actualización automática cada 15 min durante partidos.
-- **Track record honesto** — todas las apuestas visibles, W/L, ROI real.
+- **Picks con ventaja** — probabilidades del modelo vs mercado. BET solo cuando edge ≥ umbral por mercado (1X2 12% / O/U 8%, calibrado por backtest).
+- **Per-market thresholds** — el modelo es fuerte en O/U (+59% ROI histórico) y débil en 1X2 (-41% con threshold 7%). Cada mercado tiene su propio umbral.
+- **Kelly Criterion stakes** — quarter-Kelly capped al 5% por apuesta. Maximiza crecimiento a largo plazo sin sobreapostar.
+- **Bankroll simulator** — replay del historial con 3 estrategias (Kelly/Flat/Value), filtro por mercado.
+- **CLV tracking** — guarda snapshot de odds por cron tick, calcula closing-line-value al cerrar el partido. Métrica gold-standard de edge real.
+- **Quiniela optimizada** — predicciones de marcador que maximizan puntos esperados.
+- **Resultados en vivo** — heatmap de probabilidades restantes condicional al score actual.
+- **Track record honesto** — todas las apuestas visibles, W/L, ROI, CLV promedio, % que vencen al cierre.
 
 ## Stack
 
 | Capa | Tech |
 |------|------|
-| Modelo | Dixon-Coles MLE, 20k+ partidos internacionales, time-decay |
-| De-vig | Shin method para extraer probabilidades reales de cuotas |
-| Datos | The Odds API (cuotas + scores en vivo) |
-| Frontend | HTML estático + Tailwind CDN (SPA vanilla JS) |
+| Modelo principal | Bivariate-Poisson (penaltyblog) sobre 180k+ partidos con time-decay (half-life 180d) |
+| Modelo regularizador | Elo K=20-60 por tournament, blend dinámico (más Elo si BP tiene poca data) |
+| De-vig | Shin method sobre books sharp (Pinnacle/Betfair priority) |
+| Stake sizing | Quarter-Kelly capped 5% |
+| Datos | The Odds API (cuotas + scores) + ESPN (live updates) |
+| Frontend | HTML estático + Tailwind CDN (SPA vanilla JS) + PWA |
 | Deploy | Cloudflare Pages (auto-deploy desde `docs/`) |
-| Cron | GitHub Actions `*/15` — fetch odds, run model, commit JSON |
+| Cron | GitHub Actions `*/5` — fetch odds, run model, snapshot odds, regen OG, commit |
+| Tooling | `tools/tune_threshold.py` (backtest tuner) · `tools/generate_og_card.py` (PIL) |
 
 ## Arquitectura
 
@@ -59,66 +66,42 @@ python -m http.server 8000 -d docs
 
 ## Estado del proyecto
 
-### Fase 0: Modelo + Backtest ✅
-- [x] Dixon-Coles MLE con time-decay + tournament weighting
-- [x] Shin de-vig para probabilidades reales
-- [x] Cache de fit (pickle) — no re-fitea en cada predict
-- [x] Backtest con hit rate y ROI por mercado
-- [x] Validación de resultados
+### Fase 0-3 ✅ (Base)
+- Dixon-Coles → Bivariate-Poisson MLE con time-decay 180d
+- Shin de-vig sobre sharp books
+- Cron */5 min, smart skip si no hay partidos en ventana 2h
+- SPA con tabs: Picks · Grupos · Resultados · Historial · Quiniela
+- PWA (manifest + service worker)
+- i18n ES/EN
 
-### Fase 1: Generación automática ✅
-- [x] `api/generate.py` — script que genera predictions.json
-- [x] Smart cron exit — skip si no hay partidos en ventana de 2h
-- [x] Preservación de fixtures completados (API solo devuelve 3 días)
-- [x] Dedup de fixtures (odds API vs scores API)
-- [x] Acumulación de historial de apuestas
+### Fase 4 ✅ (Model intelligence)
+- **Ensemble Elo + BivariatePoisson** con blend dinámico por sample size
+- **Per-market thresholds** (1X2 12% / O/U 8% / BTTS 10%) — calibrado por backtest
+- **MIN_MODEL_PROB 30%** — bloquea bets a longshots (Scotland 22% vs Brazil ya no)
+- **EV_THRESHOLD 4%** — filtro adicional sobre edge
+- **Quarter-Kelly stakes** capped 5%
 
-### Fase 2: Frontend ✅
-- [x] SPA estática con Tailwind (docs/index.html)
-- [x] Tabs: Picks, Resultados, Historial, Quiniela
-- [x] Tabla de mercados con Modelo/Implícita/Edge/Cuotas
-- [x] Badge confianza ALTA/MEDIA/BAJA
-- [x] Marcadores más probables con highlight del top
-- [x] Dark mode
-- [x] i18n español/inglés con detección de navegador
-- [x] Nombres de equipos traducidos (50+ selecciones)
-- [x] Password gate para Quiniela (SHA-256)
-- [x] Tooltips con iconos de ayuda circulados
+### Fase 5 ✅ (Validation infra)
+- **CLV tracking**: snapshot de odds por cron, calcula closing-line-value al cerrar
+- **Backtest tuner** (`tools/tune_threshold.py`): ROI por edge bucket + por mercado, recomienda thresholds
+- **Bankroll simulator**: replay histórico con 3 estrategias + filtro por mercado
 
-### Fase 3: Automatización WC2026 ✅
-- [x] GitHub Actions cron cada 15 min
-- [x] The Odds API para odds + scores
-- [x] Cloudflare Pages auto-deploy desde docs/
-- [x] Track record: 31 apuestas, 21W-10L, 67.7%, ROI +16.5%
+### Fase 6 ✅ (Marketing & growth)
+- **Landing page** (`/landing.html`) con stats live + email capture
+- **OG card auto-gen** (`tools/generate_og_card.py`) con stats reales
+- **Affiliate links** con sort LatAm-first (Caliente · Betcris · Codere)
+- **Email capture banner** sticky (Formspree-ready)
+- **Modo presentación** para screengrab/video TikTok
+- **Share card** mobile-first 1080×1350 con probs + top scores + BETs
+- **"Why this pick?" disclosure** — transparencia total
 
-### TODO — Mejoras pendientes
-
-#### Modelo
-- [ ] Re-fit con resultados del WC (fit.pkl estático desde Jun 19)
-- [ ] Calibración: reliability diagram, Platt/isotónica si sesgado
-
-#### Frontend
-- [ ] Heatmap de probabilidad de marcadores (matriz 6x6)
-- [ ] ROI acumulado como gráfico de línea
-- [ ] Win rate desglosado por mercado (1X2, O/U, BTTS)
-- [ ] Drawdown y streak actual
-- [ ] PWA (offline, add to homescreen)
-
-#### Backend
-- [ ] Re-fit automático por jornada (GitHub Action post-resultados)
-- [ ] Alertas pre-partido (Telegram/email)
-- [ ] API REST para consumo externo
-
-#### Simulación de apuestas
-- [ ] **A — Replay histórico P&L**: curva de bankroll real sobre las apuestas históricas, toggle flat/Kelly/% bankroll
-- [ ] **B — Simulador Monte Carlo**: inputs bankroll + stake, 1k escenarios con win rate actual, muestra rango esperado/mejor/peor para el resto del torneo
-- [ ] **C — Kelly Criterion por señal**: stake óptimo recomendado al lado de cada BET activa dado el edge y las cuotas
-
-#### Modelo
-- [ ] Ensemble Dixon-Coles + Bivariate Poisson (ponderado): DC mejor en marcadores bajos exactos (0-0, 1-0), BivPoisson mejor en distribución general
-- [ ] Recency weighting vía parámetro `xi` de decaimiento temporal en penaltyblog
-- [ ] Calibración con mercado como prior bayesiano: implied probs como prior + modelo como likelihood → posterior
-- [ ] Home/neutral ground: ajustar `neutral=True` para equipos no-anfitriones en WC
+### TODO — Mejoras siguientes
+- [ ] Re-fit automático por jornada con resultados nuevos
+- [ ] Telegram bot / canal premium con Stripe Payment Link
+- [ ] Auto-tweet workflow para BETs de high-edge
+- [ ] Tournament bracket viz para KO stages
+- [ ] Player stats (StatsBomb WC2022) — radar hexagonal por jugador
+- [ ] Mercados secundarios (córners, tarjetas) post-WC
 
 #### Estadísticas de jugadores (feature grande)
 - [ ] Radar hexagonal estilo FIFA por jugador: 6 ejes (goles, asistencias, % tiro a puerta, duelos ganados, tarjetas, distancia)
