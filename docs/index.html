@@ -1619,7 +1619,7 @@ function _renderPredictionsHistory(s) {
 // ── Bankroll simulator ──
 // Replays the historical bet sequence with 3 stake strategies:
 // flat (€1 per bet), Kelly (qtr-Kelly with cap), value (proportional to edge)
-let _bankSettings = { initial: 1000, strategy: 'kelly' };
+let _bankSettings = { initial: 1000, strategy: 'kelly', market: 'all' };
 
 function setBankrollInitial(v) {
   const n = parseFloat(v);
@@ -1628,14 +1628,28 @@ function setBankrollInitial(v) {
 function setBankrollStrategy(s) {
   _bankSettings.strategy = s; renderHistory();
 }
+function setBankrollMarket(m) {
+  _bankSettings.market = m; renderHistory();
+}
 
-function _simulateBankroll(initial, strategy) {
+function _marketCategory(market) {
+  const m = (market || '').toLowerCase();
+  if (m.includes('local') || m.includes('visitante') || m.includes('empate') ||
+      m.includes('home') || m.includes('away') || m.includes('draw')) return '1x2';
+  if (m.includes('over') || m.includes('under')) return 'ou';
+  if (m.includes('btts') || m.includes('ambos marcan') || m.includes('both score')) return 'btts';
+  return 'other';
+}
+
+function _simulateBankroll(initial, strategy, marketFilter) {
   // Collect all decided bets in chronological order
   const all = [];
   for (const fx of HISTORY.fixtures) {
     const date = fx.date || fx.commence_time;
     for (const b of (fx.bets || [])) {
       if (b.won === null || b.won === undefined) continue;
+      const cat = _marketCategory(b.market);
+      if (marketFilter && marketFilter !== 'all' && cat !== marketFilter) continue;
       const mp = (b.model_prob != null) ? (b.model_prob > 1 ? b.model_prob / 100 : b.model_prob) : null;
       all.push({
         date, fx,
@@ -1687,7 +1701,7 @@ function _simulateBankroll(initial, strategy) {
 }
 
 function _renderBankrollSim(s) {
-  const sim = _simulateBankroll(_bankSettings.initial, _bankSettings.strategy);
+  const sim = _simulateBankroll(_bankSettings.initial, _bankSettings.strategy, _bankSettings.market);
   if (sim.nBets === 0) {
     return `<div class="text-center py-12 text-sm" style="color:var(--mute);">${LANG==='es'?'No hay apuestas en el historial todavía.':'No bets in history yet.'}</div>`;
   }
@@ -1754,7 +1768,7 @@ function _renderBankrollSim(s) {
     </div>
 
     <div class="rounded-xl border p-4 mb-4" style="background:var(--panel); border-color:var(--border);">
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
         <div>
           <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Banca inicial':'Initial bankroll'}</label>
           <div class="flex items-center gap-2">
@@ -1767,11 +1781,21 @@ function _renderBankrollSim(s) {
         <div>
           <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Estrategia':'Strategy'}</label>
           <div class="flex gap-1.5">
-            ${['kelly', 'flat', 'value'].map(s => `
-              <button onclick="setBankrollStrategy('${s}')" class="flex-1 px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider"
-                style="${_bankSettings.strategy === s
+            ${['kelly', 'flat', 'value'].map(strat => `
+              <button onclick="setBankrollStrategy('${strat}')" class="flex-1 px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider"
+                style="${_bankSettings.strategy === strat
                   ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
-                  : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${s}</button>`).join('')}
+                  : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${strat}</button>`).join('')}
+          </div>
+        </div>
+        <div>
+          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Mercado':'Market'}</label>
+          <div class="flex gap-1.5">
+            ${[['all','TODOS'],['ou','O/U'],['1x2','1X2'],['btts','BTTS']].map(([m,lbl]) => `
+              <button onclick="setBankrollMarket('${m}')" class="flex-1 px-2 py-2 rounded-lg text-[10px] font-semibold uppercase tracking-wider"
+                style="${_bankSettings.market === m
+                  ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
+                  : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${lbl}</button>`).join('')}
           </div>
         </div>
       </div>
