@@ -1,4 +1,4 @@
-const CACHE = 'quini-v1';
+const CACHE = 'quini-v2';
 const STATIC = ['/', '/index.html'];
 const DATA_URL = '/data/predictions.json';
 
@@ -11,6 +11,30 @@ self.addEventListener('activate', e => {
     caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
   );
+});
+
+// Click on a notification → focus existing tab or open new
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  const url = (e.notification.data && e.notification.data.url) || '/';
+  e.waitUntil(
+    self.clients.matchAll({type: 'window', includeUncontrolled: true}).then(clients => {
+      for (const c of clients) {
+        if (c.url.includes(self.registration.scope) && 'focus' in c) {
+          c.navigate(url);
+          return c.focus();
+        }
+      }
+      if (self.clients.openWindow) return self.clients.openWindow(url);
+    })
+  );
+});
+
+// Periodic background sync (Chrome only, requires user install + permission)
+self.addEventListener('periodicsync', e => {
+  if (e.tag === 'check-new-bets') {
+    e.waitUntil(fetch('/data/predictions.json').catch(() => {}));
+  }
 });
 
 self.addEventListener('fetch', e => {

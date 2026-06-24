@@ -19,7 +19,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install numpy scipy pandas requests python-dotenv penaltyblog Pillow cloudscraper lxml html5lib beautifulsoup4
+        run: pip install numpy scipy pandas requests python-dotenv penaltyblog Pillow cloudscraper lxml html5lib beautifulsoup4 requests-oauthlib
 
       - name: Update results and refit model if new scores
         run: python scripts/update_and_refit.py
@@ -29,10 +29,19 @@ jobs:
           THE_ODDS_API_KEY_FREE: ${{ secrets.THE_ODDS_API_KEY_FREE }}
         run: python api/generate.py
 
+      - name: Auto-post Twitter (best-effort, skips if no creds)
+        env:
+          TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+          TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+          TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+          TWITTER_ACCESS_SECRET: ${{ secrets.TWITTER_ACCESS_SECRET }}
+        run: python -m tools.post_twitter || true
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/data/predictions.json docs/data/history.json docs/data/odds_history.json docs/data/social_posts.json docs/data/projections.json docs/data/match_stats.json docs/data/player_stats.json docs/data/statsbomb_wc2022_players.json docs/data/statsbomb_wc2022_teams.json docs/data/wikipedia_wc2026.json docs/data/fbref_teams.json docs/data/sofascore.json docs/og-card.png data/fit.pkl data/refit_state.json
+          git add docs/data/predictions.json docs/data/history.json docs/data/odds_history.json docs/data/social_posts.json docs/data/projections.json docs/data/match_stats.json docs/data/player_stats.json docs/data/statsbomb_wc2022_players.json docs/data/statsbomb_wc2022_teams.json docs/data/wikipedia_wc2026.json docs/data/fbref_teams.json docs/og-card.png data/fit.pkl data/refit_state.json .posted_tweets.json
+          git rm -f docs/data/sofascore.json 2>/dev/null || true
           git diff --cached --quiet || git commit -m "data: update predictions $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push

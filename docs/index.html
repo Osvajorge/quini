@@ -89,6 +89,9 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
         <span class="w-2 h-2 rounded-full pulse-live" style="background:var(--live);"></span>
         <span class="text-xs font-mono" style="color:var(--live);">LIVE</span>
       </div>
+      <button onclick="requestNotificationPermission()" title="Activar notificaciones" class="w-8 h-8 rounded-lg border flex items-center justify-center" style="border-color:var(--border); color:var(--mute);">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </button>
       <button onclick="startPresentation()" title="Modo presentación" class="w-8 h-8 rounded-lg border flex items-center justify-center" style="border-color:var(--border); color:var(--mute);">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
       </button>
@@ -1064,6 +1067,116 @@ function renderAll() {
   applyTooltips();
 }
 
+// ── Player radar chart (FIFA-style hexagon) ──
+function _wc22StatPercentiles() {
+  // Compute global max per stat across all WC22 players for normalization
+  if (window._wc22Maxes) return window._wc22Maxes;
+  if (!WC22_PLAYERS || !WC22_PLAYERS.players) return null;
+  const maxes = {};
+  const fields = ['goals','xg','shots','shots_on_target','key_passes','passes_completed','tackles','interceptions','dribbles','carries','goals_minus_xg'];
+  fields.forEach(f => { maxes[f] = 0; });
+  WC22_PLAYERS.players.forEach(p => {
+    fields.forEach(f => {
+      const v = p[f] || 0;
+      if (v > maxes[f]) maxes[f] = v;
+    });
+  });
+  window._wc22Maxes = maxes;
+  return maxes;
+}
+
+function showPlayerRadar(playerName, team) {
+  const players = WC22_PLAYERS && WC22_PLAYERS.players;
+  if (!players) return;
+  const p = players.find(x => x.player === playerName && x.team === team);
+  if (!p) return;
+  const maxes = _wc22StatPercentiles();
+
+  // 6 axes — FIFA-style composite scores normalized 0-100
+  const axes = [
+    {label: LANG==='es'?'GOL':'GOL', val: maxes.goals ? (p.goals / maxes.goals * 100) : 0, raw: `${p.goals} goles`},
+    {label: LANG==='es'?'TIR':'SHT', val: maxes.shots ? (p.shots / maxes.shots * 100) : 0, raw: `${p.shots} tiros (${p.shots_on_target} a puerta)`},
+    {label: LANG==='es'?'PAS':'PAS', val: maxes.passes_completed ? (p.passes_completed / maxes.passes_completed * 100) : 0, raw: `${p.passes_completed}/${p.passes} pases (${p.pass_pct}%)`},
+    {label: LANG==='es'?'DEF':'DEF', val: maxes.tackles ? ((p.tackles + p.interceptions) / (maxes.tackles + maxes.interceptions) * 100) : 0, raw: `${p.tackles} duelos · ${p.interceptions} intercep.`},
+    {label: LANG==='es'?'REG':'DRB', val: maxes.dribbles ? (p.dribbles / maxes.dribbles * 100) : 0, raw: `${p.dribbles} regates`},
+    {label: LANG==='es'?'xG':'xG', val: maxes.xg ? (p.xg / maxes.xg * 100) : 0, raw: `xG ${p.xg.toFixed(2)} · G-xG ${p.goals_minus_xg > 0 ? '+' : ''}${p.goals_minus_xg}`},
+  ];
+
+  // SVG hexagon radar
+  const SIZE = 320, CX = SIZE/2, CY = SIZE/2, R = 110;
+  const angles = axes.map((_, i) => -Math.PI/2 + i * (2*Math.PI/6));
+  const ringPaths = [0.25, 0.5, 0.75, 1.0].map(scale => {
+    const pts = angles.map(a => `${(CX + R*scale*Math.cos(a)).toFixed(1)},${(CY + R*scale*Math.sin(a)).toFixed(1)}`).join(' ');
+    return `<polygon points="${pts}" fill="none" stroke="var(--border)" stroke-width="1" opacity="${scale === 1 ? 0.6 : 0.25}"/>`;
+  }).join('');
+  const axisLines = angles.map(a => `<line x1="${CX}" y1="${CY}" x2="${(CX + R*Math.cos(a)).toFixed(1)}" y2="${(CY + R*Math.sin(a)).toFixed(1)}" stroke="var(--border)" stroke-width="1" opacity="0.3"/>`).join('');
+  const labels = axes.map((ax, i) => {
+    const a = angles[i];
+    const lx = CX + (R+22)*Math.cos(a);
+    const ly = CY + (R+22)*Math.sin(a) + 4;
+    return `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)" font-family="Inter,sans-serif">${ax.label}</text>`;
+  }).join('');
+  const dataPts = axes.map((ax, i) => {
+    const a = angles[i];
+    const rr = R * (ax.val / 100);
+    return `${(CX + rr*Math.cos(a)).toFixed(1)},${(CY + rr*Math.sin(a)).toFixed(1)}`;
+  }).join(' ');
+  const dataPolygon = `<polygon points="${dataPts}" fill="color-mix(in srgb,var(--bet) 30%,transparent)" stroke="var(--bet)" stroke-width="2"/>`;
+  const dataDots = axes.map((ax, i) => {
+    const a = angles[i];
+    const rr = R * (ax.val / 100);
+    return `<circle cx="${(CX + rr*Math.cos(a)).toFixed(1)}" cy="${(CY + rr*Math.sin(a)).toFixed(1)}" r="3" fill="var(--bet)"/>`;
+  }).join('');
+
+  // Stat list below radar
+  const statRows = axes.map(ax => `
+    <div class="flex items-center justify-between py-1.5 border-b text-xs" style="border-color:color-mix(in srgb,var(--border) 40%,transparent);">
+      <span class="font-mono font-bold w-10" style="color:var(--bet);">${ax.label}</span>
+      <span class="flex-1 mx-3" style="color:var(--mute);">${ax.raw}</span>
+      <span class="font-mono font-bold w-12 text-right">${Math.round(ax.val)}<span style="color:var(--mute);font-size:9px;">/100</span></span>
+    </div>`).join('');
+
+  // Overall composite
+  const overall = Math.round(axes.reduce((a, b) => a + b.val, 0) / axes.length);
+
+  document.getElementById('player-modal-content').innerHTML = `
+    <div class="px-5 py-4" style="border-bottom:1px solid var(--border);">
+      <div class="flex items-start justify-between gap-3">
+        <div class="flex-1 min-w-0">
+          <div class="text-lg font-bold truncate">${p.player}</div>
+          <div class="text-sm" style="color:var(--mute);">${teamName(p.team) || p.team} · ${LANG==='es'?'Mundial':'World Cup'} 2022 · ${p.matches} ${LANG==='es'?'partidos':'matches'}</div>
+        </div>
+        <div class="text-right shrink-0">
+          <div class="text-3xl font-bold font-mono" style="color:var(--bet);">${overall}</div>
+          <div class="text-[10px] uppercase tracking-wider" style="color:var(--mute);">${LANG==='es'?'rating':'rating'}</div>
+        </div>
+        <button onclick="closePlayerModal()" style="background:none;border:none;cursor:pointer;color:var(--mute);font-size:24px;line-height:1;padding:0 4px;">×</button>
+      </div>
+    </div>
+    <div class="p-4 flex flex-col sm:flex-row items-center gap-4">
+      <svg viewBox="0 0 ${SIZE} ${SIZE}" style="width:100%;max-width:${SIZE}px;height:auto;">
+        ${ringPaths}
+        ${axisLines}
+        ${dataPolygon}
+        ${dataDots}
+        ${labels}
+      </svg>
+      <div class="flex-1 w-full">${statRows}</div>
+    </div>
+    <div class="px-5 pb-4 text-[10px] text-center" style="color:var(--mute);">
+      ${LANG==='es' ? 'Rating normalizado 0-100 contra el máximo del torneo. Fuente: StatsBomb open-data.' : 'Rating normalized 0-100 vs tournament max. Source: StatsBomb open-data.'}
+    </div>
+  `;
+  document.getElementById('player-modal').style.display = 'flex';
+  document.addEventListener('keydown', _playerModalKey);
+}
+
+function _playerModalKey(e) { if (e.key === 'Escape') closePlayerModal(); }
+function closePlayerModal() {
+  document.getElementById('player-modal').style.display = 'none';
+  document.removeEventListener('keydown', _playerModalKey);
+}
+
 let _playersCat = 'Total Shots';
 let _playersTeam = 'all';
 let _playersSource = 'wc26'; // 'wc26' | 'wc22'
@@ -1167,9 +1280,11 @@ function renderPlayers() {
     const v = valueFn(p);
     const pct = maxV > 0 ? (v / maxV * 100).toFixed(0) : 0;
     const valDisp = (Math.abs(v) < 10 && v % 1 !== 0) ? v.toFixed(2) : Number(v).toFixed(0);
-    return `<div class="flex items-center gap-3 py-2 border-b" style="border-color:color-mix(in srgb,var(--border) 40%,transparent);">
+    const clickable = isWC22; // only WC22 has full radar data
+    const clickHandler = clickable ? `onclick="showPlayerRadar('${(p.player||'').replace(/'/g,"\\'")}', '${(p.team||'').replace(/'/g,"\\'")}')" style="cursor:pointer;"` : '';
+    return `<div ${clickHandler} class="flex items-center gap-3 py-2 border-b ${clickable?'hover:bg-opacity-50':''}" style="border-color:color-mix(in srgb,var(--border) 40%,transparent);">
       <span class="text-xs font-mono w-6 text-right" style="color:var(--mute);">${i+1}</span>
-      <span class="text-sm font-semibold flex-1 min-w-0 truncate">${p.player}</span>
+      <span class="text-sm font-semibold flex-1 min-w-0 truncate">${p.player}${clickable?' <span style="color:var(--mute);font-size:9px;">▸</span>':''}</span>
       <span class="text-[10px] uppercase tracking-wider w-32 truncate hidden sm:block" style="color:var(--mute);">${teamName(p.team) || p.team}</span>
       <div class="flex-1 h-1.5 rounded-full overflow-hidden hidden sm:block" style="background:var(--panel2); max-width:200px;">
         <div class="h-full" style="width:${pct}%;background:var(--bet);"></div>
@@ -2551,6 +2666,111 @@ function dismissEmailBanner() {
 
 initEmailCapture();
 
+// ── New-BET notifications ──
+// In-app notifications when new high-edge BETs land between visits.
+// Browser Notifications API for native popup (requires user permission).
+// localStorage tracks last_seen so we only ping on truly new picks.
+
+function _fingerprintBet(fx, b) {
+  return `${fx.id}:${b.market}:${b.edge}`;
+}
+
+function _currentBetFingerprints() {
+  if (!DATA || !DATA.fixtures) return [];
+  const out = [];
+  for (const fx of DATA.fixtures) {
+    if (fx.completed || fx.is_live) continue;
+    for (const b of (fx.bets || [])) {
+      if ((b.edge || 0) >= 10) out.push({
+        fp: _fingerprintBet(fx, b),
+        fx, b,
+      });
+    }
+  }
+  return out;
+}
+
+function checkForNewBets() {
+  if (!DATA) return;
+  const current = _currentBetFingerprints();
+  const seen = JSON.parse(localStorage.getItem('quini_seen_bets') || '[]');
+  const seenSet = new Set(seen);
+  const isFirstRun = seen.length === 0;
+  const fresh = current.filter(c => !seenSet.has(c.fp));
+
+  // First-ever run: just record, don't notify (would notify on every fixture)
+  if (isFirstRun) {
+    localStorage.setItem('quini_seen_bets', JSON.stringify(current.map(c => c.fp)));
+    return;
+  }
+
+  if (fresh.length === 0) return;
+
+  // Show in-app banner
+  showNewBetBanner(fresh);
+
+  // Native notification if permitted
+  if ('Notification' in window && Notification.permission === 'granted') {
+    const best = fresh.sort((a, b) => b.b.edge - a.b.edge)[0];
+    new Notification(`⚽ Nuevo BET: ${teamName(best.fx.home)} vs ${teamName(best.fx.away)}`, {
+      body: `+${best.b.edge}% ventaja · @${best.b.best_odds || best.b.odds}`,
+      icon: '/og-card.png',
+      badge: '/og-card.png',
+      tag: 'quini-bet',
+      data: {url: '/#' + best.fx.id},
+    });
+  }
+
+  // Update seen set (keep last 200 to avoid bloat)
+  const updated = [...new Set([...current.map(c => c.fp), ...seen])].slice(0, 200);
+  localStorage.setItem('quini_seen_bets', JSON.stringify(updated));
+}
+
+function showNewBetBanner(fresh) {
+  if (document.getElementById('new-bets-banner')) return;
+  const top = fresh.sort((a, b) => b.b.edge - a.b.edge)[0];
+  const banner = document.createElement('div');
+  banner.id = 'new-bets-banner';
+  banner.style.cssText = `position:fixed; top:16px; right:16px; z-index:9998; max-width:340px; padding:14px 16px; border-radius:12px; box-shadow:0 8px 32px rgba(0,0,0,0.3); background:var(--panel); border:1px solid var(--bet); color:var(--ink); cursor:pointer;`;
+  banner.innerHTML = `
+    <div class="flex items-start gap-3">
+      <span style="font-size:24px;">⚡</span>
+      <div class="flex-1 min-w-0">
+        <div class="text-xs font-bold uppercase tracking-wider mb-1" style="color:var(--bet);">${fresh.length} ${LANG==='es'?'NUEVO'+(fresh.length>1?'S':'')+' BET'+(fresh.length>1?'S':''):'NEW BET'+(fresh.length>1?'S':'')}</div>
+        <div class="text-sm font-semibold truncate">${teamName(top.fx.home)} vs ${teamName(top.fx.away)}</div>
+        <div class="text-xs" style="color:var(--mute);">+${top.b.edge}% · @${top.b.best_odds || top.b.odds}</div>
+      </div>
+      <button onclick="event.stopPropagation();this.parentNode.parentNode.remove();" style="background:none;border:none;color:var(--mute);font-size:18px;line-height:1;cursor:pointer;padding:0;">×</button>
+    </div>
+  `;
+  banner.addEventListener('click', () => {
+    document.getElementById('fix-' + top.fx.id)?.scrollIntoView({behavior: 'smooth', block: 'center'});
+    banner.remove();
+  });
+  document.body.appendChild(banner);
+  setTimeout(() => banner.remove(), 20000); // auto-dismiss 20s
+}
+
+function requestNotificationPermission() {
+  if (!('Notification' in window)) {
+    alert(LANG==='es' ? 'Tu navegador no soporta notificaciones.' : 'Your browser does not support notifications.');
+    return;
+  }
+  if (Notification.permission === 'granted') {
+    alert(LANG==='es' ? '✓ Notificaciones ya activadas' : '✓ Notifications already enabled');
+    return;
+  }
+  Notification.requestPermission().then(permission => {
+    if (permission === 'granted') {
+      new Notification('⚽ Quini', {body: LANG==='es' ? 'Te avisaremos de cada nuevo BET con edge +10%' : "We'll alert you of every new BET with +10% edge"});
+    }
+  });
+}
+
+// Check on load + every 5 min
+setTimeout(checkForNewBets, 3000);
+setInterval(checkForNewBets, 5 * 60 * 1000);
+
 // ── Presentation mode ──
 let presIdx = 0;
 let presFixtures = [];
@@ -2854,6 +3074,11 @@ function roundRect(ctx, x, y, w, h, r) {
 </script>
 
 <!-- Presentation overlay -->
+<!-- Player radar modal -->
+<div id="player-modal" onclick="if(event.target===this)closePlayerModal()" style="display:none; position:fixed; inset:0; z-index:10000; background:rgba(3,7,18,0.85); align-items:center; justify-content:center; padding:16px;">
+  <div id="player-modal-content" style="background:var(--panel); border:1px solid var(--border); border-radius:16px; max-width:640px; width:100%; max-height:90vh; overflow:auto; color:var(--ink);"></div>
+</div>
+
 <div id="pres-overlay" style="display:none; position:fixed; inset:0; z-index:10000; background:#030712; flex-direction:column; align-items:center; justify-content:center;">
   <!-- nav arrows -->
   <button onclick="presIdx=Math.max(0,presIdx-1);showPresSlide()" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.08);border:none;color:#fff;width:48px;height:48px;border-radius:50%;font-size:22px;cursor:pointer;">‹</button>
