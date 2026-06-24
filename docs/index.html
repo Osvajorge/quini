@@ -1120,6 +1120,30 @@ function renderFixtureCard(f, featured = false) {
             ${modelPct ? `<span style="color:var(--mute);">${modelPct} ${LANG === 'es' ? 'modelo' : 'model'} · ${devigPct} ${LANG === 'es' ? 'implícita' : 'implied'}</span>` : ''}
           </div>
           ${(() => {
+            // "Why this pick?" disclosure — transparency builds trust
+            const whyId = `why-${f.id}-${idx}`;
+            const ev = bb.model_prob && bb.odds ? ((bb.model_prob/100) * Number(bb.best_odds || bb.odds) - 1) * 100 : null;
+            const marketCat = (bb.side||'').toLowerCase().startsWith('over') || (bb.side||'').toLowerCase().startsWith('under') ? 'O/U' :
+              ['home','draw','away'].includes((bb.side||'').toLowerCase()) ? '1X2' :
+              (bb.side||'').toLowerCase().startsWith('btts') ? 'BTTS' : '—';
+            const marketStrength = {
+              'O/U': LANG==='es' ? 'el modelo destaca en O/U (+59% ROI histórico)' : 'model excels at O/U (+59% historical ROI)',
+              '1X2': LANG==='es' ? 'mercado 1X2 requiere edge mayor (umbral 12%)' : '1X2 needs higher edge (12% threshold)',
+              'BTTS': LANG==='es' ? 'mercado BTTS — umbral 10%' : 'BTTS market — 10% threshold',
+            }[marketCat] || '';
+            return `<button onclick="const el=document.getElementById('${whyId}');el.classList.toggle('hidden');this.querySelector('.arr').textContent=el.classList.contains('hidden')?'▸':'▾';" class="mt-2 text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1" style="color:var(--mute); background:none; border:none; cursor:pointer; padding:0;">
+              <span class="arr">▸</span> ${LANG==='es'?'¿Por qué esta apuesta?':'Why this pick?'}
+            </button>
+            <div id="${whyId}" class="hidden mt-1.5 p-2 rounded text-[11px] space-y-1" style="background:color-mix(in srgb,var(--panel2) 60%,transparent); color:var(--mute);">
+              <div><b style="color:var(--ink);">Modelo:</b> ${bb.model_prob}% — ${LANG==='es'?'probabilidad estimada del evento':'estimated probability of the event'}</div>
+              <div><b style="color:var(--ink);">Mercado:</b> ${bb.devig_prob}% — ${LANG==='es'?'probabilidad implícita en las cuotas (de-vig Shin)':'implied probability from odds (Shin de-vig)'}</div>
+              <div><b style="color:var(--ink);">Edge:</b> +${bb.edge}% — ${LANG==='es'?'cuánto subestima el mercado nuestra probabilidad':'how much the market underrates our probability'}</div>
+              ${ev != null ? `<div><b style="color:var(--ink);">EV:</b> +${ev.toFixed(1)}% — ${LANG==='es'?'valor esperado por unidad apostada':'expected value per unit staked'}</div>` : ''}
+              <div><b style="color:var(--ink);">Mercado:</b> ${marketCat} — ${marketStrength}</div>
+              <div class="pt-1 italic" style="color:var(--mute);">${LANG==='es'?'Modelo Bivariate-Poisson + Elo. ':'BivariatePoisson + Elo ensemble. '}${LANG==='es'?'Umbrales calibrados con backtest sobre historial real.':'Thresholds calibrated via backtest on real history.'}</div>
+            </div>`;
+          })()}
+          ${(() => {
             const cmp = f.book_comparison;
             if (!cmp || !cmp.length || !bb.side) return '';
             const sideKey = bb.side;
