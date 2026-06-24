@@ -10,14 +10,41 @@ from model.devig import devig_shin
 from model.bivariate_poisson import BPFit, load_fit
 from model.elo import compute_ratings as elo_compute_ratings, match_probs as elo_match_probs
 
-EDGE_THRESHOLD = 0.08  # 8% — backtest at 7% gave +6.1% ROI vs 8%=+38.7% ROI (n=37)
+EDGE_THRESHOLD = 0.08  # default fallback — see PER_MARKET_THRESHOLDS below
 EDGE_SCORE_CAP = 0.05  # saturates 5 pts above threshold (so edge ≥ 13% → 1.0)
 SAMPLE_FULL_SUPPORT = 30  # n_matches at which sample_score saturates
 MIN_MODEL_PROB = 0.30  # at 0.25 backtest ROI was +6.1%, at 0.30 was +12.7%
 EV_THRESHOLD = 0.04  # min expected value (model_prob * odds - 1) to BET
 ELO_BLEND_WEIGHT = 0.30  # ensemble: 70% BivariatePoisson + 30% Elo regularizer
+
+# Per-market edge thresholds — backtest revealed major asymmetry:
+#   1X2:  threshold=7%  →  -41% ROI  (model is BAD at win/draw/loss)
+#   1X2:  threshold=12% →   bottoms out
+#   O/U:  threshold=7%  →  +41% ROI  (model is GREAT at over/under)
+#   O/U:  threshold=8%  →  +59% ROI  (peak)
+# Result: raise 1X2 to 12% (effectively suppresses bad bets), keep O/U at 8%.
+PER_MARKET_THRESHOLDS: dict[str, float] = {
+    "1x2": 0.12,    # home / draw / away — model underperforms here
+    "ou":  0.08,    # over / under — model dominates
+    "btts": 0.10,   # both teams to score
+    "ah":  0.10,    # asian handicap
+}
 # All thresholds derived from tools/tune_threshold.py on history.json.
 # Re-run after every cron tick to keep them honest.
+
+
+def _market_threshold(side: str) -> float:
+    """Map a market side key to its per-market threshold."""
+    s = side.lower() if isinstance(side, str) else ""
+    if s in ("home", "draw", "away"):
+        return PER_MARKET_THRESHOLDS["1x2"]
+    if s.startswith("over") or s.startswith("under"):
+        return PER_MARKET_THRESHOLDS["ou"]
+    if s.startswith("btts"):
+        return PER_MARKET_THRESHOLDS["btts"]
+    if s.startswith("ah_"):
+        return PER_MARKET_THRESHOLDS["ah"]
+    return EDGE_THRESHOLD
 
 # Module-level cache so Elo ratings are computed once per process.
 _ELO_CACHE: dict[str, float] | None = None
@@ -61,22 +88,26 @@ def kelly_fraction(model_prob: float, odds: float, kelly_mult: float = 0.25, cap
     return min(f * kelly_mult, cap)
 
 
-def _classify(edge: float, model_prob: float = 0.0, odds: float = 1.0) -> PickLabel:
-    """BET requires positive edge AND meaningful model confidence AND positive EV.
+def _classify(edge: float, model_prob: float = 0.0, odds: float = 1.0, side: str = "") -> PickLabel:
+    """BET requires per-market edge threshold AND model confidence AND positive EV.
 
-    Filters out long-shot picks (e.g. Scotland at 22% just because odds were juicy).
+    Per-market thresholds reflect backtest reality: 1X2 needs 12% to be
+    profitable, O/U needs only 8%. Avoids the long-shot trap (Scotland 22%
+    with edge 9% used to qualify as BET — now correctly skipped).
     """
-    if edge >= EDGE_THRESHOLD and model_prob >= MIN_MODEL_PROB:
+    thr = _market_threshold(side)
+    if edge >= thr and model_prob >= MIN_MODEL_PROB:
         ev = model_prob * odds - 1.0
         if ev >= EV_THRESHOLD:
             return "BET"
-    if edge <= -EDGE_THRESHOLD:
+    if edge <= -thr:
         return "FADE"
     return "SKIP"
 
 
-def _confidence(edge: float, sample_score: float) -> tuple[float, str]:
-    edge_score = max(0.0, min((edge - EDGE_THRESHOLD) / EDGE_SCORE_CAP, 1.0))
+def _confidence(edge: float, sample_score: float, side: str = "") -> tuple[float, str]:
+    thr = _market_threshold(side) if side else EDGE_THRESHOLD
+    edge_score = max(0.0, min((edge - thr) / EDGE_SCORE_CAP, 1.0))
     raw = 0.6 * edge_score + 0.4 * sample_score
     if raw >= 0.7:
         band = "ALTA"
@@ -189,8 +220,8 @@ def predict(
         model_p = float(model_probs[top][sub])
         devig_p = float(devig_cache[group][key])
         edge = model_p - devig_p
-        pick_lbl = _classify(edge, model_p, odds[key])
-        raw, band = _confidence(edge, sample_s)
+        pick_lbl = _classify(edge, model_p, odds[key], side=key)
+        raw, band = _confidence(edge, sample_s, side=key)
         kf = kelly_fraction(model_p, odds[key]) if pick_lbl == "BET" else 0.0
         picks.append(MarketPick(
             market=label,

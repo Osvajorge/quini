@@ -25,6 +25,20 @@ EDGE_BUCKETS = [
 ]
 
 
+def _market_category(market: str) -> str:
+    """Group raw market labels into broad categories."""
+    m = (market or "").lower()
+    if any(k in m for k in ("local", "visitante", "empate", "(1)", "(x)", "(2)", "home", "away", "draw")):
+        return "1X2"
+    if "over" in m or "under" in m or "o/u" in m:
+        return "O/U"
+    if "btts" in m or "ambos marcan" in m or "both score" in m:
+        return "BTTS"
+    if "ah" in m or "handicap" in m or "asiático" in m:
+        return "AH"
+    return "Other"
+
+
 def _bucket(edge: float) -> str:
     for lo, hi in EDGE_BUCKETS:
         if lo <= edge < hi:
@@ -164,6 +178,33 @@ def tune(min_prob: float, ev_min: float) -> None:
         profit = sum((p["odds"] - 1) if p["won"] else -1 for p in sel)
         roi = profit / len(sel) * 100
         print(f"{mp:.2f}    {len(sel):>7} {wins/len(sel)*100:>5.1f}% €{profit:>+6.2f}  {roi:>+5.1f}%")
+    print()
+
+    # === Per-market breakdown ===
+    print("ROI by market × edge threshold (min_prob=%.2f, ev_min=%.2f):" % (min_prob, ev_min))
+    by_market = defaultdict(list)
+    for p in all_picks:
+        cat = _market_category(p["market"])
+        by_market[cat].append(p)
+    for cat in sorted(by_market.keys()):
+        picks_m = by_market[cat]
+        print(f"\n  [{cat}]  n={len(picks_m)}")
+        print(f"  {'edge ≥':<8} {'n':>5} {'win%':>6} {'profit':>8} {'ROI':>7}")
+        for thr in [0.05, 0.07, 0.08, 0.10, 0.12]:
+            thr_pct = thr * 100
+            sel = [
+                p for p in picks_m
+                if p["edge"] >= thr_pct
+                and p["model_prob"] >= min_prob
+                and (p["model_prob"] * p["odds"] - 1) >= ev_min
+            ]
+            if not sel:
+                print(f"  {thr_pct:>6.0f}%  {'—':>5}")
+                continue
+            wins = sum(1 for p in sel if p["won"])
+            profit = sum((p["odds"] - 1) if p["won"] else -1 for p in sel)
+            roi = profit / len(sel) * 100
+            print(f"  {thr_pct:>6.0f}%  {len(sel):>5} {wins/len(sel)*100:>5.1f}% €{profit:>+6.2f}  {roi:>+5.1f}%")
     print()
 
     # === Recommendation ===
