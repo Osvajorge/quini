@@ -24,10 +24,10 @@ ELO_BLEND_WEIGHT = 0.30  # ensemble: 70% BivariatePoisson + 30% Elo regularizer
 #   O/U:  threshold=8%  →  +59% ROI  (peak)
 # Result: raise 1X2 to 12% (effectively suppresses bad bets), keep O/U at 8%.
 PER_MARKET_THRESHOLDS: dict[str, float] = {
-    "1x2": 0.12,    # home / draw / away — model underperforms here
-    "ou":  0.08,    # over / under — model dominates
-    "btts": 0.10,   # both teams to score
-    "ah":  0.10,    # asian handicap
+    "1x2": 0.05,    # 5% — now safe because _align_bets_to_top requires favorite
+    "ou":  0.05,    # O/U is model's strong market; favorite constraint keeps it honest
+    "btts": 0.06,   # both teams to score
+    "ah":  0.07,    # asian handicap
 }
 # All thresholds derived from tools/tune_threshold.py on history.json.
 # Re-run after every cron tick to keep them honest.
@@ -86,6 +86,46 @@ def kelly_fraction(model_prob: float, odds: float, kelly_mult: float = 0.25, cap
     if f <= 0:
         return 0.0
     return min(f * kelly_mult, cap)
+
+
+def _market_group(side: str) -> str:
+    """Group key for side alignment — picks within same group compete for BET."""
+    s = (side or "").lower()
+    if s in ("home", "draw", "away"):
+        return "1x2"
+    if s.startswith("over_") or s.startswith("under_"):
+        # Group same total: over_2_5 / under_2_5 are a group
+        return "ou_" + s.split("_", 1)[1]
+    if s.startswith("btts"):
+        return "btts"
+    if s.startswith("ah_"):
+        # ah_home_-1_5 / ah_away_+1_5 share group via line
+        return "ah_" + s.split("_", 2)[-1] if "_" in s else "ah"
+    return s
+
+
+def _align_bets_to_top(picks: list) -> None:
+    """Downgrade BETs that aren't the model's top pick in their market group.
+
+    Rule: in each market group (1X2, O/U 2.5, BTTS, etc.), only the side with
+    the highest model probability is allowed to remain BET. Other sides that
+    were classified BET get downgraded to SKIP.
+
+    This aligns user expectation ("modelo dice X → apuesta X") with the
+    actual recommendation, and historically improves win rate substantially
+    (favorites win more than longshot-edges materialize).
+    """
+    from collections import defaultdict
+    groups = defaultdict(list)
+    for p in picks:
+        groups[_market_group(p.side)].append(p)
+    for group_picks in groups.values():
+        if len(group_picks) <= 1:
+            continue
+        top = max(group_picks, key=lambda p: p.model_prob)
+        for p in group_picks:
+            if p.pick == "BET" and p.side != top.side:
+                p.pick = "SKIP"
 
 
 def _classify(edge: float, model_prob: float = 0.0, odds: float = 1.0, side: str = "") -> PickLabel:
@@ -235,6 +275,19 @@ def predict(
             confidence_band=band,
             kelly_frac=kf,
         ))
+
+    # ── Align BETs to model's top pick per market group ──
+    # Without this, the model can recommend BET on a longshot (e.g. Norway 35.6%
+    # when France 40.6% is the favorite) just because the longshot has +edge.
+    # User-facing rule: only BET when the side is the model's favorite within
+    # its market group AND has positive edge. Eliminates the cognitive
+    # dissonance of "modelo dice X, pero apuesta Y".
+    _align_bets_to_top(picks)
+
+    # Recompute kelly_frac after alignment (downgraded BETs → 0)
+    for p in picks:
+        if p.pick != "BET":
+            p.kelly_frac = 0.0
 
     # Overall fixture confidence = best BET on the slate.
     bets = [p for p in picks if p.pick == "BET"]

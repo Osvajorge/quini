@@ -1371,8 +1371,8 @@ function renderResults() {
     let scoreHitBadge = '';
     if (f.top_scores && f.actual_home !== null) {
       const hitIdx = f.top_scores.findIndex(ts => ts.home === f.actual_home && ts.away === f.actual_away);
-      if (hitIdx === 0) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? 'EXACTO' : 'EXACT'}</span>`;
-      else if (hitIdx > 0 && hitIdx < 5) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">TOP ${hitIdx+1}</span>`;
+      if (hitIdx === 0) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? '✓ EXACTO' : '✓ EXACT'}</span>`;
+      else if (hitIdx === 1 || hitIdx === 2) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">#${hitIdx+1}</span>`;
     }
     html += `
       <div class="rounded-lg border px-4 py-3" style="background:var(--panel); border-color:var(--border);">
@@ -1595,18 +1595,19 @@ function _renderBetsHistory(s) {
 }
 
 function _renderPredictionsHistory(s) {
-  const scoreHits = s.score_hits || 0;
   const scoreTop1 = s.score_top1 || 0;
   const accuracy1x2 = s.accuracy_1x2 || 0;
   const total = s.total || 0;
+  // Count "in top 3" from fixtures since summary only has top1/top5
+  const scoreTop3 = (HISTORY.fixtures || []).filter(fx => fx.score_hit && fx.score_hit <= 3).length;
 
   let html = `
     <div class="rounded-xl border p-4 mb-6" style="background:var(--panel); border-color:var(--border);">
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
         <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'PARTIDOS' : 'MATCHES'}</div><div class="text-2xl font-bold mt-1">${total}</div></div>
         <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? '1X2 CORRECTO' : '1X2 CORRECT'}</div><div class="text-2xl font-bold mt-1" style="color:var(--bet);">${accuracy1x2}%</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'MARCADOR #1' : 'SCORE #1'}</div><div class="text-2xl font-bold mt-1" style="color:var(--alta);">${scoreTop1}</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'EN TOP 5' : 'IN TOP 5'}</div><div class="text-2xl font-bold mt-1">${scoreHits}</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'MARCADOR EXACTO' : 'EXACT SCORE'}</div><div class="text-2xl font-bold mt-1" style="color:var(--alta);">${scoreTop1}</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'EN TOP 3' : 'IN TOP 3'}</div><div class="text-2xl font-bold mt-1">${scoreTop3}</div></div>
       </div>
     </div>
     <div class="space-y-2">`;
@@ -1624,10 +1625,13 @@ function _renderPredictionsHistory(s) {
     const predicted = topScores.length ? `${topScores[0].home}-${topScores[0].away}` : '—';
     const sh = fx.score_hit;
 
-    // Score hit badge
+    // Score hit badge — only celebrate true accuracy
+    // rank 1 → EXACTO (green)
+    // rank 2-3 → close (#2 / #3, muted green)
+    // rank 4-5 or null → no badge (predictions weren't really right)
     let scoreBadge = '';
-    if (sh === 1) scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? 'EXACTO' : 'EXACT'}</span>`;
-    else if (sh && sh <= 5) scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet);">TOP ${sh}</span>`;
+    if (sh === 1) scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? '✓ EXACTO' : '✓ EXACT'}</span>`;
+    else if (sh === 2 || sh === 3) scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">#${sh}</span>`;
 
     // 1X2 badge
     const r1x2 = fx.result_1x2;
@@ -1749,7 +1753,8 @@ function _simulateBankroll(initial, strategy, marketFilter) {
 function _renderBankrollSim(s) {
   const sim = _simulateBankroll(_bankSettings.initial, _bankSettings.strategy, _bankSettings.market);
   if (sim.nBets === 0) {
-    return `<div class="text-center py-12 text-sm" style="color:var(--mute);">${LANG==='es'?'No hay apuestas en el historial todavía.':'No bets in history yet.'}</div>`;
+    const mktLabel = {all: LANG==='es'?'ningún mercado':'any market', '1x2': '1X2', 'ou': 'O/U', 'btts': 'BTTS'}[_bankSettings.market] || _bankSettings.market;
+    return `<div class="text-center py-12 text-sm" style="color:var(--mute);">${LANG==='es'?'No hay apuestas en el historial para':'No history bets for'} <b>${mktLabel}</b>${_bankSettings.market !== 'all' ? '.' : (LANG==='es'?'todavía.':' yet.')}</div>`;
   }
 
   // Build SVG path
