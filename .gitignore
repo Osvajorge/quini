@@ -17,3 +17,7 @@ backtest/reports/*.json
 backtest/reports/*.csv
 backtest/reports/*.md
 .claude/
+downloaded_files/
+latest_logs/
+saved_charts/
+saved_screenshots/
