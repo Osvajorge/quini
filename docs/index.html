@@ -419,20 +419,26 @@ applyTheme();
 let PROJECTIONS = null;
 let MATCH_STATS = null;
 let PLAYER_STATS = null;
+let WC22_PLAYERS = null;
+let WC22_TEAMS = null;
 async function loadData() {
   try {
-    const [r1, r2, r3, r4, r5] = await Promise.all([
+    const [r1, r2, r3, r4, r5, r6, r7] = await Promise.all([
       fetch('./data/predictions.json?' + Date.now()),
       fetch('./data/history.json?' + Date.now()).catch(() => null),
       fetch('./data/projections.json?' + Date.now()).catch(() => null),
       fetch('./data/match_stats.json?' + Date.now()).catch(() => null),
       fetch('./data/player_stats.json?' + Date.now()).catch(() => null),
+      fetch('./data/statsbomb_wc2022_players.json?' + Date.now()).catch(() => null),
+      fetch('./data/statsbomb_wc2022_teams.json?' + Date.now()).catch(() => null),
     ]);
     DATA = await r1.json();
     if (r2 && r2.ok) HISTORY = await r2.json();
     if (r3 && r3.ok) PROJECTIONS = await r3.json();
     if (r4 && r4.ok) MATCH_STATS = await r4.json();
     if (r5 && r5.ok) PLAYER_STATS = await r5.json();
+    if (r6 && r6.ok) WC22_PLAYERS = await r6.json();
+    if (r7 && r7.ok) WC22_TEAMS = await r7.json();
     document.getElementById('loading').classList.add('hidden');
     applyLang();
     renderStats();
@@ -1060,50 +1066,107 @@ function renderAll() {
 
 let _playersCat = 'Total Shots';
 let _playersTeam = 'all';
+let _playersSource = 'wc26'; // 'wc26' | 'wc22'
 function setPlayersCat(c) { _playersCat = c; renderPlayers(); }
 function setPlayersTeam(t) { _playersTeam = t; renderPlayers(); }
+function setPlayersSource(s) {
+  _playersSource = s;
+  _playersTeam = 'all';
+  _playersCat = s === 'wc22' ? 'goals' : 'Total Shots';
+  renderPlayers();
+}
+
+const WC26_CAT_LABELS = {
+  'Total Shots': {es:'Tiros', en:'Total shots'},
+  'Accurate Passes': {es:'Pases buenos', en:'Accurate passes'},
+  'Saves': {es:'Atajadas', en:'Saves'},
+  'Defensive Interventions': {es:'Intervenciones def.', en:'Def. interventions'},
+};
+const WC22_CAT_LABELS = {
+  goals: {es:'Goles', en:'Goals'},
+  xg: {es:'xG', en:'xG'},
+  shots: {es:'Tiros', en:'Shots'},
+  shots_on_target: {es:'A puerta', en:'On target'},
+  key_passes: {es:'Pases clave', en:'Key passes'},
+  passes_completed: {es:'Pases buenos', en:'Completed passes'},
+  tackles: {es:'Duelos', en:'Tackles'},
+  interceptions: {es:'Intercepciones', en:'Interceptions'},
+  dribbles: {es:'Regates', en:'Dribbles'},
+  goals_minus_xg: {es:'G - xG (over-perf)', en:'G - xG (over-perf)'},
+};
 
 function renderPlayers() {
   const el = document.getElementById('players-container');
   if (!el) return;
-  const ps = PLAYER_STATS && PLAYER_STATS.players;
-  if (!ps || !ps.length) {
+
+  const wc26ok = PLAYER_STATS && PLAYER_STATS.players && PLAYER_STATS.players.length;
+  const wc22ok = WC22_PLAYERS && WC22_PLAYERS.players && WC22_PLAYERS.players.length;
+
+  if (!wc26ok && !wc22ok) {
     el.innerHTML = `<div class="text-center py-16 text-sm" style="color:var(--mute);">${LANG==='es'?'Estadísticas de jugadores no disponibles aún.':'Player stats not available yet.'}</div>`;
     return;
   }
 
-  // Discover available categories + teams
-  const cats = new Set();
-  const teams = new Set();
-  ps.forEach(p => {
-    teams.add(p.team);
-    Object.keys(p.categories || {}).forEach(c => cats.add(c));
-  });
-  const catList = Array.from(cats).sort();
-  const teamList = Array.from(teams).sort();
+  // Force source if one is missing
+  if (_playersSource === 'wc26' && !wc26ok) _playersSource = 'wc22';
+  if (_playersSource === 'wc22' && !wc22ok) _playersSource = 'wc26';
 
-  if (!cats.has(_playersCat)) _playersCat = catList[0] || 'Total Shots';
+  const isWC22 = _playersSource === 'wc22';
+  const labels = isWC22 ? WC22_CAT_LABELS : WC26_CAT_LABELS;
+  const lbl = c => (labels[c] && labels[c][LANG]) || c;
 
-  // Filter + sort by selected category total
-  let list = ps.filter(p => p.categories[_playersCat]);
-  if (_playersTeam !== 'all') list = list.filter(p => p.team === _playersTeam);
-  list.sort((a, b) => (b.categories[_playersCat].total || 0) - (a.categories[_playersCat].total || 0));
+  // Source toggle header
+  const sourceToggle = `
+    <div class="inline-flex rounded-lg p-1 mb-3" style="background:var(--panel2);">
+      ${['wc26', 'wc22'].map(s => {
+        const disabled = (s === 'wc26' && !wc26ok) || (s === 'wc22' && !wc22ok);
+        const active = _playersSource === s;
+        const lbl = s === 'wc26' ? 'Mundial 2026' : 'Mundial 2022';
+        return `<button ${disabled?'disabled':''} onclick="setPlayersSource('${s}')" class="px-3 py-1.5 rounded text-xs font-semibold"
+          style="${active ? 'background:var(--bet); color:#fff;' : disabled ? 'color:var(--border);cursor:not-allowed;' : 'color:var(--mute); cursor:pointer;'}">${lbl}</button>`;
+      }).join('')}
+    </div>
+    <p class="text-[11px] mb-3" style="color:var(--mute);">${isWC22
+      ? (LANG==='es' ? 'Estadísticas completas de StatsBomb open-data (eventos del torneo 2022).' : 'Complete stats from StatsBomb open-data (full 2022 event data).')
+      : (LANG==='es' ? 'Líderes acumulados del Mundial 2026 (de ESPN match summaries).' : 'Tournament leaders accumulated from ESPN match summaries.')}
+    </p>`;
 
-  const maxV = list.length ? list[0].categories[_playersCat].total : 1;
+  // Source-specific list build
+  let list, catList, teamList, valueFn, secondaryFn;
+  if (isWC22) {
+    const players = WC22_PLAYERS.players;
+    catList = Object.keys(WC22_CAT_LABELS);
+    if (!catList.includes(_playersCat)) _playersCat = 'goals';
+    teamList = Array.from(new Set(players.map(p => p.team))).sort();
+    list = players.slice();
+    if (_playersTeam !== 'all') list = list.filter(p => p.team === _playersTeam);
+    list.sort((a, b) => (b[_playersCat] || 0) - (a[_playersCat] || 0));
+    valueFn = p => p[_playersCat] ?? 0;
+    secondaryFn = p => p.matches;
+  } else {
+    const players = PLAYER_STATS.players;
+    const cats = new Set();
+    const teams = new Set();
+    players.forEach(p => {
+      teams.add(p.team);
+      Object.keys(p.categories || {}).forEach(c => cats.add(c));
+    });
+    catList = Array.from(cats).sort();
+    teamList = Array.from(teams).sort();
+    if (!cats.has(_playersCat)) _playersCat = catList[0] || 'Total Shots';
+    list = players.filter(p => p.categories[_playersCat]);
+    if (_playersTeam !== 'all') list = list.filter(p => p.team === _playersTeam);
+    list.sort((a, b) => (b.categories[_playersCat].total || 0) - (a.categories[_playersCat].total || 0));
+    valueFn = p => p.categories[_playersCat].total;
+    secondaryFn = p => p.matches;
+  }
 
-  const catLabels = {
-    'Total Shots': LANG==='es'?'Tiros':'Total shots',
-    'Accurate Passes': LANG==='es'?'Pases buenos':'Accurate passes',
-    'Saves': LANG==='es'?'Atajadas':'Saves',
-    'Defensive Interventions': LANG==='es'?'Intervenciones def.':'Def. interventions',
-    'Goals': LANG==='es'?'Goles':'Goals',
-    'Assists': LANG==='es'?'Asistencias':'Assists',
-  };
-  const lbl = c => catLabels[c] || c;
+  const maxV = list.length ? valueFn(list[0]) : 1;
 
-  const rows = list.slice(0, 40).map((p, i) => {
-    const v = p.categories[_playersCat].total;
-    const pct = (v / maxV * 100).toFixed(0);
+  const rows = list.slice(0, 50).map((p, i) => {
+    const v = valueFn(p);
+    const pct = maxV > 0 ? (v / maxV * 100).toFixed(0) : 0;
+    const valDisp = (Math.abs(v) < 10 && v % 1 !== 0) ? v.toFixed(2) : Number(v).toFixed(0);
     return `<div class="flex items-center gap-3 py-2 border-b" style="border-color:color-mix(in srgb,var(--border) 40%,transparent);">
       <span class="text-xs font-mono w-6 text-right" style="color:var(--mute);">${i+1}</span>
       <span class="text-sm font-semibold flex-1 min-w-0 truncate">${p.player}</span>
@@ -1111,15 +1174,15 @@ function renderPlayers() {
       <div class="flex-1 h-1.5 rounded-full overflow-hidden hidden sm:block" style="background:var(--panel2); max-width:200px;">
         <div class="h-full" style="width:${pct}%;background:var(--bet);"></div>
       </div>
-      <span class="text-sm font-mono font-bold w-12 text-right" style="color:var(--bet);">${v.toFixed(0)}</span>
-      <span class="text-[10px] font-mono w-12 text-right" style="color:var(--mute);">${p.matches}M</span>
+      <span class="text-sm font-mono font-bold w-14 text-right" style="color:var(--bet);">${valDisp}</span>
+      <span class="text-[10px] font-mono w-12 text-right" style="color:var(--mute);">${secondaryFn(p)}M</span>
     </div>`;
   }).join('');
 
   el.innerHTML = `
     <div class="rounded-xl border mb-4 p-4" style="background:var(--panel); border-color:var(--border);">
-      <h2 class="text-base font-bold mb-1">${LANG==='es'?'Estadísticas de jugadores':'Player stats'}</h2>
-      <p class="text-[11px] mb-3" style="color:var(--mute);">${LANG==='es'?'Líderes acumulados del Mundial 2026 (de ESPN match summaries).':'Tournament leaders accumulated from ESPN match summaries.'}</p>
+      <h2 class="text-base font-bold mb-2">${LANG==='es'?'Estadísticas de jugadores':'Player stats'}</h2>
+      ${sourceToggle}
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
           <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Categoría':'Category'}</label>
@@ -1143,7 +1206,7 @@ function renderPlayers() {
           <span class="flex-1">${LANG==='es'?'Jugador':'Player'}</span>
           <span class="w-32 hidden sm:block">${LANG==='es'?'Selección':'Team'}</span>
           <span class="flex-1 hidden sm:block" style="max-width:200px;"></span>
-          <span class="w-12 text-right">${lbl(_playersCat)}</span>
+          <span class="w-14 text-right">${lbl(_playersCat)}</span>
           <span class="w-12 text-right">${LANG==='es'?'PJ':'GP'}</span>
         </div>
       </div>

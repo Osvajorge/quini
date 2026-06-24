@@ -1252,6 +1252,23 @@ def generate():
     except Exception as e:
         print(f"[players] aggregation skipped: {e}")
 
+    # External data sources — best-effort, never block pipeline
+    try:
+        from tools.fetch_wikipedia_wc import fetch as _fetch_wiki
+        _fetch_wiki()
+    except Exception as e:
+        print(f"[wiki] skipped: {e}")
+    try:
+        from tools.fetch_fbref import fetch as _fetch_fbref
+        _fetch_fbref()
+    except Exception as e:
+        print(f"[fbref] skipped: {e}")
+    try:
+        from tools.fetch_sofascore import fetch as _fetch_sofa
+        _fetch_sofa()
+    except Exception as e:
+        print(f"[sofascore] skipped: {e}")
+
 
 def _side_won(side: str, ah: int, aa: int) -> bool:
     """Evaluate if a bet side won given actual scores."""

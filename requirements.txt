@@ -6,3 +6,7 @@ fastapi
 uvicorn[standard]
 python-dotenv
 Pillow
+cloudscraper
+lxml
+html5lib
+beautifulsoup4
