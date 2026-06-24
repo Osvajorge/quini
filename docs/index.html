@@ -1440,7 +1440,22 @@ function renderHistory() {
 }
 
 function _renderBetsHistory(s) {
-  let html = `
+  const clvAvg = s.avg_clv_pct;
+  const clvN = s.clv_sample_size || 0;
+  const clvBeat = s.pct_beating_close;
+  const clvBlock = clvN > 0 ? `
+    <div class="rounded-xl border p-4 mb-6" style="background:color-mix(in srgb,var(--bet) 4%,var(--panel)); border-color:color-mix(in srgb,var(--bet) 20%,var(--border));">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="text-xs font-semibold uppercase tracking-wider" style="color:var(--bet);">${LANG==='es'?'Closing Line Value (CLV)':'Closing Line Value (CLV)'}</span>
+        <span class="tooltip-trigger"><span class="help-icon">?</span><span class="tooltip-content">${LANG==='es'?'Diferencia entre las cuotas a las que apostamos vs las cuotas justo antes del kickoff. CLV positivo = vencimos al cierre = evidencia de edge real, independiente de la suerte del partido.':'Diff between odds we bet vs odds at kickoff. Positive CLV = beat closing line = evidence of real edge, independent of match luck.'}</span></span>
+      </div>
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'CLV promedio':'Avg CLV'}</div><div class="text-2xl font-bold mt-1" style="color:${clvAvg >= 0 ? 'var(--bet)' : 'var(--fade)'};">${clvAvg > 0 ? '+' : ''}${clvAvg ?? '—'}%</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'Vence cierre':'Beat close'}</div><div class="text-2xl font-bold mt-1">${clvBeat ?? '—'}%</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'Muestra':'Sample'}</div><div class="text-2xl font-bold mt-1">${clvN}</div></div>
+      </div>
+    </div>` : '';
+  let html = clvBlock + `
     <div class="rounded-xl border p-4 mb-6" style="background:var(--panel); border-color:var(--border);">
       <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 text-center">
         <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'APUESTAS' : 'BETS'}</div><div class="text-2xl font-bold mt-1">${s.total_bets || s.total_bet || 0}</div></div>
@@ -1477,7 +1492,8 @@ function _renderBetsHistory(s) {
           : `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--mute) 20%,transparent); color:var(--mute);">—</span>`;
       const odds = b.odds ? `@ ${Number(b.odds).toFixed(2)}` : '';
       const edge = b.edge ? `+${b.edge}%` : '';
-      betsHtml += `<div class="flex items-center gap-2 text-xs mt-1">${badge} <span class="truncate">${desc}</span> <span class="font-mono ml-auto shrink-0" style="color:var(--mute);">${edge} ${odds}</span></div>`;
+      const clvBadge = (b.clv_pct != null) ? `<span class="font-mono text-[10px] px-1.5 py-0.5 rounded" title="CLV: ${b.closing_odds ? '@'+Number(b.closing_odds).toFixed(2)+' close' : ''}" style="background:color-mix(in srgb,${b.clv_pct>=0?'var(--bet)':'var(--fade)'} 12%,transparent); color:${b.clv_pct>=0?'var(--bet)':'var(--fade)'};">CLV ${b.clv_pct>0?'+':''}${b.clv_pct}%</span>` : '';
+      betsHtml += `<div class="flex items-center gap-2 text-xs mt-1">${badge} <span class="truncate">${desc}</span> ${clvBadge} <span class="font-mono ml-auto shrink-0" style="color:var(--mute);">${edge} ${odds}</span></div>`;
     });
 
     html += `

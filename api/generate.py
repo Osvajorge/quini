@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import numpy as np
@@ -357,6 +357,108 @@ def _load_history() -> dict:
     return {"fixtures": [], "summary": {}}
 
 
+# ─── Closing Line Value (CLV) tracking ─────────────────────────────────────
+ODDS_HISTORY_PATH = Path(__file__).resolve().parent.parent / "docs" / "data" / "odds_history.json"
+
+
+def _load_odds_history() -> dict:
+    """Returns {fixture_id: [{ts, commence_time, odds: {side: odds}}]}."""
+    if ODDS_HISTORY_PATH.exists():
+        try:
+            with open(ODDS_HISTORY_PATH) as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+
+def _save_odds_snapshot(fixtures: list[dict]) -> None:
+    """Append a snapshot of pre-match odds for all upcoming fixtures.
+
+    Keeps only the consensus odds per side to minimize file size. Drops
+    snapshots for fixtures kicked off >2 hours ago (cleanup).
+    """
+    history = _load_odds_history()
+    now = datetime.now(timezone.utc)
+    ts = now.isoformat(timespec="seconds")
+    cutoff = now - timedelta(hours=2)
+
+    # Cleanup: drop fixtures whose commence_time is >2h in the past with no snapshots needed
+    to_drop = []
+    for fid, snaps in history.items():
+        if not snaps:
+            to_drop.append(fid)
+            continue
+        last = snaps[-1]
+        try:
+            ct = datetime.fromisoformat(last.get("commence_time", "").replace("Z", "+00:00"))
+            # Keep for 7 days after kickoff so CLV calc has the data
+            if ct < now - timedelta(days=7):
+                to_drop.append(fid)
+        except Exception:
+            pass
+    for fid in to_drop:
+        history.pop(fid, None)
+
+    for fx in fixtures:
+        if fx.get("completed"):
+            continue
+        try:
+            ct = datetime.fromisoformat(fx["commence_time"].replace("Z", "+00:00"))
+        except Exception:
+            continue
+        if ct < cutoff:
+            continue  # match already kicked off, no point snapshotting
+
+        picks = fx.get("picks", [])
+        odds_by_side = {}
+        for p in picks:
+            side = p.get("side")
+            if side and p.get("odds"):
+                odds_by_side[side] = round(float(p["odds"]), 3)
+
+        if not odds_by_side:
+            continue
+
+        snap = {
+            "ts": ts,
+            "commence_time": fx["commence_time"],
+            "minutes_until": round((ct - now).total_seconds() / 60.0, 1),
+            "odds": odds_by_side,
+        }
+        history.setdefault(fx["id"], []).append(snap)
+
+    ODDS_HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
+    with open(ODDS_HISTORY_PATH, "w") as f:
+        json.dump(history, f, indent=2)
+
+
+def _closing_odds_for(fixture_id: str, odds_history: dict) -> dict[str, float]:
+    """Return the closest-to-kickoff odds snapshot per side."""
+    snaps = odds_history.get(fixture_id, [])
+    if not snaps:
+        return {}
+    # Find snapshot with smallest positive minutes_until (closest to kickoff)
+    pre_kickoff = [s for s in snaps if s.get("minutes_until", -1) >= 0]
+    if not pre_kickoff:
+        # fallback: most recent overall
+        last = snaps[-1]
+        return last.get("odds", {})
+    closest = min(pre_kickoff, key=lambda s: s["minutes_until"])
+    return closest.get("odds", {})
+
+
+def _compute_clv(pick_odds: float, closing_odds: float) -> float:
+    """CLV in percent: positive = beat the closing line (real edge signal).
+
+    CLV = (1/closing - 1/pick) / (1/pick) × 100
+        = (pick / closing - 1) × 100
+    """
+    if not pick_odds or not closing_odds or closing_odds <= 1.0 or pick_odds <= 1.0:
+        return 0.0
+    return round((pick_odds / closing_odds - 1) * 100, 2)
+
+
 def _save_history(history: dict) -> None:
     HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
     with open(HISTORY_PATH, "w") as f:
@@ -406,6 +508,19 @@ def _update_history_summary(history: dict) -> None:
     correct_1x2 = sum(1 for fx in fixtures if fx.get("correct_1x2") is True)
     total_1x2 = sum(1 for fx in fixtures if fx.get("correct_1x2") is not None)
 
+    # ── CLV stats: positive avg CLV = real edge (beats closing line) ──
+    clv_values = []
+    clv_pos = 0
+    for fx in fixtures:
+        for b in fx.get("bets", []):
+            v = b.get("clv_pct")
+            if v is not None:
+                clv_values.append(v)
+                if v > 0:
+                    clv_pos += 1
+    avg_clv = round(sum(clv_values) / len(clv_values), 2) if clv_values else None
+    pct_beating_close = round(clv_pos / len(clv_values) * 100, 1) if clv_values else None
+
     history["summary"] = {
         "total": total,
         "total_bets": total_individual_bets,
@@ -418,6 +533,9 @@ def _update_history_summary(history: dict) -> None:
         "correct_1x2": correct_1x2,
         "total_1x2": total_1x2,
         "accuracy_1x2": round(correct_1x2 / total_1x2 * 100, 1) if total_1x2 > 0 else 0.0,
+        "avg_clv_pct": avg_clv,
+        "clv_sample_size": len(clv_values),
+        "pct_beating_close": pct_beating_close,
     }
 
 
@@ -504,6 +622,7 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
     """Find newly completed fixtures and save their pre-match picks to history."""
     history = _load_history()
     existing_ids = {fx["id"] for fx in history.get("fixtures", [])}
+    odds_history = _load_odds_history()
 
     old_fixtures = {fx["id"]: fx for fx in old_predictions.get("fixtures", [])}
 
@@ -530,11 +649,15 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
                 elif s["name"] == away_api:
                     actual_away = int(s["score"]) if s["score"] is not None else None
 
+        # Closing odds snapshot for CLV (closest pre-kickoff)
+        closing_odds = _closing_odds_for(fx_id, odds_history)
+
         # Save ALL picks (BET/SKIP/FADE) for retro-threshold-tuning
         picks = []
         for p in old_fx.get("picks", []):
             side = p.get("side", "")
             won = _side_won(side, actual_home, actual_away) if actual_home is not None else None
+            clv = _compute_clv(p["odds"], closing_odds.get(side, 0)) if closing_odds.get(side) else None
             picks.append({
                 "market": p["market"],
                 "side": side,
@@ -544,6 +667,8 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
                 "model_prob": p["model_prob"],
                 "devig_prob": p["devig_prob"],
                 "won": won,
+                "closing_odds": closing_odds.get(side),
+                "clv_pct": clv,
             })
 
         # All bets with descriptions (from the bets array if available, else from picks)
@@ -555,12 +680,15 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
         for b in (all_bets if all_bets else picks):
             side = b.get("side", "")
             won = _side_won(side, actual_home, actual_away) if actual_home is not None else None
+            clv = _compute_clv(b.get("odds", 1.0), closing_odds.get(side, 0)) if closing_odds.get(side) else None
             bets_results.append({
                 "market": b.get("market", ""),
                 "side": side,
                 "edge": b.get("edge", 0),
                 "odds": b.get("odds", 1.0),
                 "won": won,
+                "closing_odds": closing_odds.get(side),
+                "clv_pct": clv,
                 "description_es": b.get("description_es", b.get("market", "")),
                 "description_en": b.get("description_en", b.get("market", "")),
             })
@@ -935,6 +1063,13 @@ def generate():
     with open(OUT, "w") as f:
         json.dump(output, f, indent=2)
     print(f"output: {OUT} ({len(fixtures)} fixtures)")
+
+    # Snapshot odds for CLV tracking (run after writing predictions)
+    try:
+        _save_odds_snapshot(fixtures)
+        print(f"[clv] odds snapshot saved")
+    except Exception as e:
+        print(f"[clv] snapshot failed: {e}")
 
 
 def _side_won(side: str, ah: int, aa: int) -> bool:
