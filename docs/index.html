@@ -575,7 +575,7 @@ let _liveTickerTimer = null;
 function startLiveTicker() {
   if (_liveTickerTimer) return;
   _tickLive();
-  _liveTickerTimer = setInterval(_tickLive, 30000);
+  _liveTickerTimer = setInterval(_tickLive, 15000); // 15s — snappier mid-match updates
 }
 
 function stopLiveTicker() {
@@ -752,7 +752,7 @@ function _updateScoreDom(f, actualH, actualA, elapsed) {
           liveGrid[fh][fa] += poissonProb(lamH, dh) * poissonProb(lamA, da) * 100;
         }
       }
-      openMap.innerHTML = buildHeatmapHTML(liveGrid, LANG, lamH, lamA, true);
+      openMap.innerHTML = buildHeatmapHTML(liveGrid, LANG, lamH, lamA, true, actualH, actualA);
     }
   }
 }
@@ -932,20 +932,29 @@ function gridStats(grid) {
     over: over/s*100, under: under/s*100, btts: btts/s*100
   };
 }
-function buildHeatmapHTML(grid, lang, xgH, xgA, isLive) {
+function buildHeatmapHTML(grid, lang, xgH, xgA, isLive, currentH, currentA) {
   const MAX = 5;
-  // Flatten to find max for color scaling
+  // Live mode: skip impossible cells (where final < current score) by
+  // starting axes from the current score. Pre-match: always 0..MAX.
+  const hStart = isLive && Number.isFinite(currentH) ? currentH : 0;
+  const aStart = isLive && Number.isFinite(currentA) ? currentA : 0;
+  const hEnd = Math.min(MAX, hStart + 5);
+  const aEnd = Math.min(MAX, aStart + 5);
+
+  // Flatten to find max for color scaling (only over visible range)
   let maxP = 0;
-  for (let h=0; h<=MAX; h++) for (let a=0; a<=MAX; a++) if (grid[h][a] > maxP) maxP = grid[h][a];
+  for (let h=hStart; h<=hEnd; h++)
+    for (let a=aStart; a<=aEnd; a++)
+      if (grid[h] && grid[h][a] > maxP) maxP = grid[h][a];
 
   // Heatmap rows
-  const awayLabels = Array.from({length:MAX+1}, (_,i) =>
-    `<div class="text-center text-[9px]" style="color:var(--mute);width:28px;">${i}</div>`).join('');
+  const awayLabels = Array.from({length:aEnd-aStart+1}, (_,i) =>
+    `<div class="text-center text-[9px]" style="color:var(--mute);width:28px;">${aStart+i}</div>`).join('');
   let rows = '';
-  for (let h=0; h<=MAX; h++) {
+  for (let h=hStart; h<=hEnd; h++) {
     let cells = '';
-    for (let a=0; a<=MAX; a++) {
-      const p = grid[h][a];
+    for (let a=aStart; a<=aEnd; a++) {
+      const p = (grid[h] && grid[h][a]) || 0;
       const pct = maxP > 0 ? p/maxP : 0;
       cells += `<div title="${h}-${a}: ${p.toFixed(1)}%" style="width:28px;height:28px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:8px;font-family:monospace;background:color-mix(in srgb,var(--bet) ${Math.round(pct*80)}%,var(--bg2));color:${pct>0.5?'white':'var(--mute)'};">${p.toFixed(1)}</div>`;
     }
@@ -1005,19 +1014,32 @@ function toggleHeatmap(btn, fid, xgH, xgA, commenceTime) {
   const container = btn.closest('.heatmap-container');
   const map = container.querySelector('.score-heatmap');
   const isOpen = map.classList.contains('open');
-  if (!isOpen && map.innerHTML === '') {
+  if (!isOpen) {
     const fx = DATA && DATA.fixtures ? DATA.fixtures.find(f => f.id === fid) : null;
-    let grid;
-    if (commenceTime) {
-      // Live: independent Poisson on remaining xG
-      const rr = Math.max(0.05, (90 - computeElapsed(commenceTime)) / 90);
-      grid = poissonGrid(xgH * rr, xgA * rr);
+    const isLive = !!commenceTime && fx && fx.is_live;
+    let grid, dispXgH = xgH, dispXgA = xgA, curH = null, curA = null;
+    if (isLive) {
+      // Live: build final-score grid conditional on current score + remaining xG
+      const elapsed = computeElapsed(commenceTime);
+      const rr = Math.max(0.05, (90 - elapsed) / 90);
+      const lamH = xgH * rr, lamA = xgA * rr;
+      curH = fx.actual_home || 0;
+      curA = fx.actual_away || 0;
+      grid = Array.from({length: 6}, () => Array.from({length: 6}, () => 0));
+      for (let dh = 0; dh < 12; dh++) {
+        for (let da = 0; da < 12; da++) {
+          const fh = curH + dh, fa = curA + da;
+          if (fh > 5 || fa > 5) continue;
+          grid[fh][fa] += poissonProb(lamH, dh) * poissonProb(lamA, da) * 100;
+        }
+      }
+      dispXgH = lamH; dispXgA = lamA;
     } else if (fx && fx.score_grid) {
-      grid = fx.score_grid; // bivariate model grid — matches top_scores
+      grid = fx.score_grid; // bivariate pre-match grid
     } else {
-      grid = poissonGrid(xgH, xgA); // fallback
+      grid = poissonGrid(xgH, xgA);
     }
-    map.innerHTML = buildHeatmapHTML(grid, LANG, xgH, xgA);
+    map.innerHTML = buildHeatmapHTML(grid, LANG, dispXgH, dispXgA, isLive, curH, curA);
   }
   map.classList.toggle('open', !isOpen);
   btn.textContent = isOpen ? (LANG==='es'?'▼ Mapa de goles':'▼ Score map') : (LANG==='es'?'▲ Cerrar mapa':'▲ Close map');
