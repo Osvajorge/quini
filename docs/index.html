@@ -485,6 +485,49 @@ function renderStats() {
   }
   const gen = new Date(DATA.generated_at);
   document.getElementById('update-time').textContent = `${t('updated')} ${gen.toLocaleString()}`;
+  renderModelHealth();
+}
+
+function renderModelHealth() {
+  const h = DATA && DATA.model_health;
+  let el = document.getElementById('model-health-banner');
+  if (!h) { if (el) el.remove(); return; }
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'model-health-banner';
+    const main = document.querySelector('main');
+    if (main) main.insertBefore(el, main.firstChild);
+  }
+  const status = h.status;
+  if (status === 'ok') { el.remove(); return; }
+
+  const colors = {
+    insufficient: {bg: '12%', border: '30%', accent: 'var(--mute)', icon: '🟡'},
+    warning:      {bg: '15%', border: '40%', accent: 'var(--media)', icon: '⚠️'},
+    critical:     {bg: '18%', border: '45%', accent: 'var(--fade)', icon: '🔴'},
+  }[status] || {bg: '12%', border: '30%', accent: 'var(--mute)', icon: 'ℹ️'};
+
+  let msg = '';
+  if (status === 'insufficient') {
+    const ver = h.model_version || 'v2';
+    msg = LANG === 'es'
+      ? `<b>Modelo ${ver} recién desplegado.</b> Acumulando datos para validar (${h.n}/30 apuestas). `
+        + (h.backtest_roi_pct ? `Backtest predice: ROI <b>+${h.backtest_roi_pct}%</b>, acierto <b>${h.backtest_winrate_pct}%</b> sobre ${h.backtest_n} apuestas.` : '')
+      : `<b>Model ${ver} just deployed.</b> Accumulating data (${h.n}/30 bets). `
+        + (h.backtest_roi_pct ? `Backtest predicts ROI <b>+${h.backtest_roi_pct}%</b>, win rate <b>${h.backtest_winrate_pct}%</b> on ${h.backtest_n} bets.` : '');
+  } else if (status === 'warning') {
+    msg = LANG === 'es'
+      ? `<b>ROI bajo:</b> ${h.rolling_roi_pct >= 0 ? '+' : ''}${h.rolling_roi_pct}% en las últimas ${h.n} apuestas (umbral ${h.warning_threshold}%). El modelo puede estar en un mal momento — considera reducir stakes.`
+      : `<b>Low ROI:</b> ${h.rolling_roi_pct >= 0 ? '+' : ''}${h.rolling_roi_pct}% over the last ${h.n} bets (threshold ${h.warning_threshold}%). Model may be in a slump — consider reducing stakes.`;
+  } else if (status === 'critical') {
+    msg = LANG === 'es'
+      ? `<b>Modelo en mal momento:</b> ROI ${h.rolling_roi_pct}% en últimas ${h.n} apuestas. Apostando con extrema cautela hasta retunear.`
+      : `<b>Model underperforming:</b> ROI ${h.rolling_roi_pct}% over last ${h.n} bets. Bet with extreme caution until retuned.`;
+  }
+
+  el.className = 'rounded-lg p-3 mb-4 text-xs flex items-start gap-2';
+  el.style.cssText = `background:color-mix(in srgb,${colors.accent} ${colors.bg},transparent); border:1px solid color-mix(in srgb,${colors.accent} ${colors.border},transparent); color:var(--ink);`;
+  el.innerHTML = `<span style="font-size:14px;">${colors.icon}</span><div class="flex-1">${msg}</div>`;
 }
 
 function checkLive() {

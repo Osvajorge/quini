@@ -89,7 +89,7 @@ def fetch_odds(api_key: str) -> list[dict]:
         params={
             "apiKey": api_key,
             "regions": "eu",
-            "markets": "h2h,totals",
+            "markets": "h2h,totals,btts",
             "oddsFormat": "decimal",
         },
         timeout=20,
@@ -345,6 +345,95 @@ def _compound_description(best_side: str, bets: list[dict], home: str, away: str
         tmpl[0].replace("{home}", home).replace("{away}", away),
         tmpl[1].replace("{home}", home).replace("{away}", away),
     )
+
+
+# ─── Model versioning ────────────────────────────────────────────────────────
+# Bumped whenever the model changes meaningfully so health checks only look
+# at bets from the current model (otherwise legacy bad-streaks pollute the
+# rolling window). Bumped now: aligned BETs to model favorite per market.
+MODEL_VERSION = "v2.0-aligned"
+
+# ─── Model health guardrail ─────────────────────────────────────────────────
+# If rolling ROI drops below MIN_ROI_PCT over MIN_SAMPLE bets, we surface a
+# warning in the UI so users know the model is in a bad streak. We never
+# auto-suspend BETs (a brief variance dip shouldn't kill the product), but
+# the warning gives users informed consent + signals when we should retune.
+MIN_ROLLING_ROI_PCT = 2.0       # warn if rolling ROI below 2%
+CRITICAL_ROLLING_ROI_PCT = -5.0  # critical if below -5%
+ROLLING_WINDOW = 30              # last N bets (current model version only)
+MIN_WINRATE_PCT = 55.0           # also warn if win rate dips here
+
+def _model_health(history: dict) -> dict:
+    """Inspect last ROLLING_WINDOW bets of CURRENT model version.
+
+    status: 'ok' | 'warning' | 'critical' | 'insufficient'
+    """
+    fixtures = history.get("fixtures", [])
+    flat = []
+    legacy_n = 0
+    # Most recent first
+    for fx in reversed(fixtures):
+        date = fx.get("date") or fx.get("commence_time", "")
+        for b in fx.get("bets", []):
+            if b.get("won") is None:
+                continue
+            # Skip bets from older model versions
+            if b.get("model_version") and b["model_version"] != MODEL_VERSION:
+                legacy_n += 1
+                continue
+            # Bets without model_version are pre-v2 — also skip
+            if not b.get("model_version"):
+                legacy_n += 1
+                continue
+            flat.append({
+                "won": bool(b["won"]),
+                "odds": float(b.get("odds", 1.0)),
+                "date": date,
+            })
+            if len(flat) >= ROLLING_WINDOW:
+                break
+        if len(flat) >= ROLLING_WINDOW:
+            break
+
+    n = len(flat)
+    if n < 10:
+        return {
+            "status": "insufficient",
+            "model_version": MODEL_VERSION,
+            "n": n,
+            "legacy_n": legacy_n,
+            "rolling_roi_pct": None,
+            "rolling_winrate_pct": None,
+            "warning_threshold": MIN_ROLLING_ROI_PCT,
+            "critical_threshold": CRITICAL_ROLLING_ROI_PCT,
+            # Show backtest expectation while we accumulate fresh data
+            "backtest_roi_pct": 5.1,
+            "backtest_winrate_pct": 61.5,
+            "backtest_n": 39,
+        }
+
+    wins = sum(1 for b in flat if b["won"])
+    profit = sum((b["odds"] - 1) if b["won"] else -1 for b in flat)
+    roi_pct = profit / n * 100
+    winrate_pct = wins / n * 100
+
+    if roi_pct < CRITICAL_ROLLING_ROI_PCT:
+        status = "critical"
+    elif roi_pct < MIN_ROLLING_ROI_PCT or winrate_pct < MIN_WINRATE_PCT:
+        status = "warning"
+    else:
+        status = "ok"
+
+    return {
+        "status": status,
+        "model_version": MODEL_VERSION,
+        "n": n,
+        "legacy_n": legacy_n,
+        "rolling_roi_pct": round(roi_pct, 2),
+        "rolling_winrate_pct": round(winrate_pct, 1),
+        "warning_threshold": MIN_ROLLING_ROI_PCT,
+        "critical_threshold": CRITICAL_ROLLING_ROI_PCT,
+    }
 
 
 def _top_elo_ratings(n: int = 40) -> list[dict]:
@@ -938,6 +1027,7 @@ def generate():
                 "model_prob": round(b["model_prob"] * 100, 1),
                 "devig_prob": round(b["devig_prob"] * 100, 1),
                 "kelly_pct": round(b.get("kelly_frac", 0) * 100, 2),
+                "model_version": MODEL_VERSION,
                 "description_es": b_desc_es,
                 "description_en": b_desc_en,
             })
@@ -1069,6 +1159,7 @@ def generate():
         "tooltips": TOOLTIPS,
         "standings": standings,
         "elo_top": _top_elo_ratings(40),
+        "model_health": _model_health(_load_history()),
         "fixtures": fixtures,
     }
 

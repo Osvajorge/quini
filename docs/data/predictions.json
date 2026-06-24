@@ -10796,5 +10796,13 @@
       },
       "fixture_confidence": null
     }
-  ]
+  ],
+  "model_health": {
+    "status": "critical",
+    "n": 30,
+    "rolling_roi_pct": -13.1,
+    "rolling_winrate_pct": 50.0,
+    "warning_threshold": 2.0,
+    "critical_threshold": -5.0
+  }
 }
