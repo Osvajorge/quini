@@ -10986,5 +10986,167 @@
       },
       "fixture_confidence": null
     }
+  ],
+  "elo_top": [
+    {
+      "team": "Spain",
+      "elo": 2206.3
+    },
+    {
+      "team": "Argentina",
+      "elo": 2190.1
+    },
+    {
+      "team": "France",
+      "elo": 2155.3
+    },
+    {
+      "team": "England",
+      "elo": 2148.6
+    },
+    {
+      "team": "Colombia",
+      "elo": 2079.3
+    },
+    {
+      "team": "Brazil",
+      "elo": 2064.8
+    },
+    {
+      "team": "Germany",
+      "elo": 2057.2
+    },
+    {
+      "team": "Netherlands",
+      "elo": 2049.3
+    },
+    {
+      "team": "Norway",
+      "elo": 2040.0
+    },
+    {
+      "team": "Morocco",
+      "elo": 2039.8
+    },
+    {
+      "team": "Japan",
+      "elo": 2033.2
+    },
+    {
+      "team": "Mexico",
+      "elo": 2013.0
+    },
+    {
+      "team": "Portugal",
+      "elo": 2004.6
+    },
+    {
+      "team": "Ecuador",
+      "elo": 1984.4
+    },
+    {
+      "team": "Switzerland",
+      "elo": 1971.8
+    },
+    {
+      "team": "United States",
+      "elo": 1966.0
+    },
+    {
+      "team": "Belgium",
+      "elo": 1957.0
+    },
+    {
+      "team": "Croatia",
+      "elo": 1953.5
+    },
+    {
+      "team": "Paraguay",
+      "elo": 1939.3
+    },
+    {
+      "team": "Australia",
+      "elo": 1937.6
+    },
+    {
+      "team": "Uruguay",
+      "elo": 1935.5
+    },
+    {
+      "team": "Denmark",
+      "elo": 1924.5
+    },
+    {
+      "team": "Austria",
+      "elo": 1924.3
+    },
+    {
+      "team": "Turkey",
+      "elo": 1917.8
+    },
+    {
+      "team": "Italy",
+      "elo": 1911.3
+    },
+    {
+      "team": "South Korea",
+      "elo": 1908.5
+    },
+    {
+      "team": "Canada",
+      "elo": 1906.9
+    },
+    {
+      "team": "Iran",
+      "elo": 1900.2
+    },
+    {
+      "team": "Senegal",
+      "elo": 1895.8
+    },
+    {
+      "team": "Nigeria",
+      "elo": 1893.8
+    },
+    {
+      "team": "Yugoslavia",
+      "elo": 1884.8
+    },
+    {
+      "team": "Scotland",
+      "elo": 1881.9
+    },
+    {
+      "team": "Algeria",
+      "elo": 1878.1
+    },
+    {
+      "team": "Egypt",
+      "elo": 1865.9
+    },
+    {
+      "team": "Russia",
+      "elo": 1859.3
+    },
+    {
+      "team": "Ivory Coast",
+      "elo": 1853.3
+    },
+    {
+      "team": "Uzbekistan",
+      "elo": 1826.6
+    },
+    {
+      "team": "Ukraine",
+      "elo": 1822.2
+    },
+    {
+      "team": "Basque Country",
+      "elo": 1821.7
+    },
+    {
+      "team": "Kosovo",
+      "elo": 1812.5
+    }
   ]
 }

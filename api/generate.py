@@ -347,6 +347,18 @@ def _compound_description(best_side: str, bets: list[dict], home: str, away: str
     )
 
 
+def _top_elo_ratings(n: int = 40) -> list[dict]:
+    """Top N teams by current Elo — surfaced as a Rankings tab."""
+    try:
+        from model.elo import compute_ratings
+        ratings = compute_ratings()
+        top = sorted(ratings.items(), key=lambda x: -x[1])[:n]
+        return [{"team": t, "elo": round(r, 1)} for t, r in top]
+    except Exception as e:
+        print(f"[elo] ratings unavailable: {e}")
+        return []
+
+
 def _load_history() -> dict:
     if HISTORY_PATH.exists():
         try:
@@ -1056,6 +1068,7 @@ def generate():
         },
         "tooltips": TOOLTIPS,
         "standings": standings,
+        "elo_top": _top_elo_ratings(40),
         "fixtures": fixtures,
     }
 

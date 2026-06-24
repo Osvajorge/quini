@@ -138,6 +138,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
   <div class="flex items-center gap-4 sm:gap-6 mb-6 border-b overflow-x-auto" style="border-color:var(--border);">
     <button onclick="setTab('upcoming')" id="tab-upcoming" class="pb-3 text-sm font-medium tab-active cursor-pointer whitespace-nowrap" data-i18n="tab_picks">Picks</button>
     <button onclick="setTab('groups')" id="tab-groups" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap">Grupos</button>
+    <button onclick="setTab('rankings')" id="tab-rankings" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap">Rankings</button>
     <button onclick="setTab('results')" id="tab-results" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_results">Resultados</button>
     <button onclick="setTab('history')" id="tab-history" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_history">Historial</button>
     <button onclick="setTab('quiniela')" id="tab-quiniela" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap">Quiniela</button>
@@ -166,6 +167,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 
   <div id="fixtures-container"></div>
   <div id="groups-container" class="hidden"></div>
+  <div id="rankings-container" class="hidden"></div>
   <div id="results-container" class="hidden"></div>
   <div id="history-container" class="hidden"></div>
   <div id="quiniela-container" class="hidden"></div>
@@ -765,7 +767,7 @@ async function _tickLive() {
 // ── Tabs & Filters ──
 function setTab(tab) {
   currentTab = tab;
-  ['upcoming','groups','results','history','quiniela'].forEach(t => {
+  ['upcoming','groups','rankings','results','history','quiniela'].forEach(t => {
     const btn = document.getElementById('tab-' + t);
     const container = document.getElementById(t === 'upcoming' ? 'fixtures-container' : t + '-container');
     if (btn) btn.className = 'pb-3 text-sm font-medium cursor-pointer whitespace-nowrap ' + (tab === t ? 'tab-active' : 'tab-inactive');
@@ -961,10 +963,54 @@ function renderAll() {
   if (!DATA) return;
   renderFixtures();
   renderGroups();
+  renderRankings();
   renderResults();
   renderHistory();
   renderQuiniela();
   applyTooltips();
+}
+
+function renderRankings() {
+  const top = DATA && DATA.elo_top;
+  const el = document.getElementById('rankings-container');
+  if (!el) return;
+  if (!top || !top.length) {
+    el.innerHTML = `<div class="text-center py-12 text-sm" style="color:var(--mute);">${LANG==='es'?'Rankings no disponibles aún.':'Rankings not available yet.'}</div>`;
+    return;
+  }
+  const maxElo = top[0].elo;
+  const minElo = Math.min(...top.map(t => t.elo));
+  const range = maxElo - minElo || 1;
+  // Color tiers
+  const tierColor = (i) => i < 5 ? 'var(--bet)' : i < 12 ? 'var(--alta)' : i < 24 ? 'var(--media)' : 'var(--mute)';
+  el.innerHTML = `
+    <div class="rounded-xl border p-5 mb-4" style="background:var(--panel); border-color:var(--border);">
+      <div class="flex items-start justify-between flex-wrap gap-3 mb-3">
+        <div>
+          <h2 class="text-lg font-bold">${LANG==='es'?'Ranking Elo':'Elo Rankings'}</h2>
+          <p class="text-xs mt-1" style="color:var(--mute);">${LANG==='es'?'Fuerza relativa de cada selección según historial de partidos internacionales (1872–hoy).':'Relative strength of each national team based on international match history (1872–today).'}</p>
+        </div>
+        <span class="text-[10px] font-mono px-2 py-1 rounded" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">K=20-60 · home adv 65</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1">
+        ${top.map((t, i) => {
+          const pct = ((t.elo - minElo) / range) * 100;
+          const c = tierColor(i);
+          return `<div class="flex items-center gap-3 py-1.5 border-b" style="border-color:color-mix(in srgb,var(--border) 40%,transparent);">
+            <span class="text-xs font-mono w-6 text-right" style="color:var(--mute);">${i + 1}</span>
+            <span class="text-sm font-medium flex-shrink-0 w-32 truncate">${teamName(t.team) || t.team}</span>
+            <div class="flex-1 h-1.5 rounded-full overflow-hidden" style="background:var(--panel2);">
+              <div class="h-full rounded-full" style="width:${pct.toFixed(0)}%;background:${c};"></div>
+            </div>
+            <span class="text-xs font-mono font-bold w-12 text-right" style="color:${c};">${Math.round(t.elo)}</span>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+    <div class="text-xs text-center" style="color:var(--mute);">
+      ${LANG==='es'?'Top 5 ':'Top 5 '}<span style="color:var(--bet);">●</span>${LANG==='es'?' élite · Top 12 ':' elite · Top 12 '}<span style="color:var(--alta);">●</span>${LANG==='es'?' contender · Top 24 ':' contender · Top 24 '}<span style="color:var(--media);">●</span>${LANG==='es'?' competitivo':' competitive'}
+    </div>
+  `;
 }
 
 // ── Helpers ──
