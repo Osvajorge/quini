@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Quini — Predicciones del Mundial 2026 con valor de apuesta</title>
+<meta name="description" content="Encuentra apuestas de valor en el Mundial 2026 usando un modelo Bivariate-Poisson + Elo. Tracking público de ROI, edge y CLV." />
+<meta property="og:title" content="Quini — Apuestas de valor para el Mundial 2026" />
+<meta property="og:description" content="Modelo estadístico que detecta cuándo las casas de apuestas subestiman un resultado. Tracking público y transparente." />
+<meta property="og:image" content="https://quini-bzs.pages.dev/og-card.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root {
+  --bg: #050a14;
+  --panel: #0e1929;
+  --panel2: #1a2638;
+  --border: #1f2a3d;
+  --ink: #f1f5f9;
+  --mute: #64748b;
+  --bet: #10b981;
+  --bet2: #34d399;
+  --accent: #0891b2;
+  --warn: #f59e0b;
+}
+html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; }
+.gradient-text {
+  background: linear-gradient(135deg, #34d399 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.glow {
+  position: absolute;
+  top: -200px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 600px;
+  background: radial-gradient(ellipse, rgba(16,185,129,0.25) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.pulse {
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  border-color: var(--bet);
+  transition: all 0.2s;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--bet) 0%, var(--accent) 100%);
+  color: white;
+  font-weight: 700;
+  padding: 14px 32px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.15s;
+  cursor: pointer;
+  border: none;
+  font-size: 16px;
+}
+.btn-primary:hover { transform: scale(1.02); }
+.btn-ghost {
+  background: var(--panel);
+  color: var(--ink);
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.metric {
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 60px 0;
+}
+</style>
+</head>
+<body class="relative overflow-x-hidden">
+<div class="glow"></div>
+
+<!-- Header -->
+<header class="relative z-10 max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+  <a href="/landing.html" class="flex items-center gap-2">
+    <div class="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white" style="background: linear-gradient(135deg, var(--bet) 0%, var(--accent) 100%);">Q</div>
+    <span class="font-bold text-xl">Quini</span>
+  </a>
+  <a href="/" class="btn-ghost">Entrar a la app →</a>
+</header>
+
+<!-- Hero -->
+<section class="relative z-10 max-w-4xl mx-auto px-6 pt-12 pb-20 text-center">
+  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono mb-6" style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--bet2);">
+    <span class="w-1.5 h-1.5 rounded-full pulse" style="background: var(--bet);"></span>
+    MUNDIAL 2026 EN VIVO
+  </div>
+  <h1 class="text-5xl sm:text-7xl font-extrabold mb-6 leading-tight">
+    Apuestas con
+    <span class="gradient-text">ventaja matemática</span>
+  </h1>
+  <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-10" style="color: var(--mute);">
+    Detectamos cuándo las casas de apuestas subestiman un resultado.
+    Sin tips. Sin azar. Solo modelo estadístico y datos públicos.
+  </p>
+
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
+    <a href="/" class="btn-primary">
+      Ver picks de hoy →
+    </a>
+    <button onclick="document.getElementById('email-form').scrollIntoView({behavior:'smooth'})" class="btn-ghost">
+      Recibir picks gratis
+    </button>
+  </div>
+
+  <!-- Live stats from JSON -->
+  <div id="hero-stats" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
+    <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-xs uppercase mb-1" style="color: var(--mute);">ROI</div>
+      <div class="text-2xl font-bold metric" id="stat-roi">—</div>
+    </div>
+    <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-xs uppercase mb-1" style="color: var(--mute);">Acierto</div>
+      <div class="text-2xl font-bold metric" id="stat-winrate">—</div>
+    </div>
+    <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-xs uppercase mb-1" style="color: var(--mute);">Apuestas</div>
+      <div class="text-2xl font-bold metric" id="stat-bets">—</div>
+    </div>
+    <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-xs uppercase mb-1" style="color: var(--mute);">CLV</div>
+      <div class="text-2xl font-bold metric" id="stat-clv">—</div>
+    </div>
+  </div>
+  <p class="text-xs mt-4" style="color: var(--mute);">
+    Datos en tiempo real desde nuestro tracking público
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- How it works -->
+<section class="relative z-10 max-w-5xl mx-auto px-6 py-12">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl sm:text-4xl font-bold mb-3">Cómo funciona</h2>
+    <p style="color: var(--mute);">3 pasos. Sin trucos. Todo el código y datos son públicos.</p>
+  </div>
+
+  <div class="grid sm:grid-cols-3 gap-4">
+    <div class="rounded-2xl p-6 card-hover" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-3xl mb-3">📊</div>
+      <div class="text-xs uppercase mb-1" style="color: var(--bet);">Paso 1</div>
+      <h3 class="text-lg font-bold mb-2">Modelo estadístico</h3>
+      <p class="text-sm" style="color: var(--mute);">
+        Combinamos Bivariate-Poisson (xG) con ratings Elo de cada selección. Entrenado con +180 mil partidos históricos.
+      </p>
+    </div>
+    <div class="rounded-2xl p-6 card-hover" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-3xl mb-3">🎯</div>
+      <div class="text-xs uppercase mb-1" style="color: var(--bet);">Paso 2</div>
+      <h3 class="text-lg font-bold mb-2">Detecta el edge</h3>
+      <p class="text-sm" style="color: var(--mute);">
+        Comparamos nuestra probabilidad contra las cuotas reales de Caliente, Pinnacle, bet365 y más. Si el mercado subestima, hay valor.
+      </p>
+    </div>
+    <div class="rounded-2xl p-6 card-hover" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-3xl mb-3">💸</div>
+      <div class="text-xs uppercase mb-1" style="color: var(--bet);">Paso 3</div>
+      <h3 class="text-lg font-bold mb-2">Apuesta con criterio</h3>
+      <p class="text-sm" style="color: var(--mute);">
+        Te decimos cuánto apostar usando Kelly Criterion para maximizar tu banca a largo plazo sin arriesgar de más.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Today's picks preview -->
+<section class="relative z-10 max-w-5xl mx-auto px-6 py-12">
+  <div class="text-center mb-12">
+    <h2 class="text-3xl sm:text-4xl font-bold mb-3">Picks del día</h2>
+    <p style="color: var(--mute);">Algunos de los partidos analizados hoy. <a href="/" class="underline" style="color: var(--bet2);">Ver todos →</a></p>
+  </div>
+  <div id="today-picks" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- Email capture -->
+<section id="email-form" class="relative z-10 max-w-2xl mx-auto px-6 py-16 text-center">
+  <div class="inline-block mb-4 px-3 py-1 rounded-full text-xs font-mono" style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--bet2);">
+    GRATIS HASTA EL 19 JULIO
+  </div>
+  <h2 class="text-3xl sm:text-4xl font-bold mb-4">
+    Recibe el pick del día
+    <span class="gradient-text">por email</span>
+  </h2>
+  <p class="mb-8" style="color: var(--mute);">
+    Cero spam. Solo los picks con mayor edge cada mañana, dos horas antes del kickoff.<br>
+    Cuando lancemos el plan premium, los suscriptores actuales reciben aviso anticipado.
+  </p>
+
+  <form id="capture" class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
+    <input
+      type="email" name="email" required
+      placeholder="tucorreo@gmail.com"
+      class="flex-1 px-4 py-3 rounded-xl outline-none"
+      style="background: var(--panel); border: 1px solid var(--border); color: var(--ink);"
+    />
+    <button type="submit" class="btn-primary justify-center">
+      Apuntarme
+    </button>
+  </form>
+  <p id="form-status" class="text-sm mt-4 h-5" style="color: var(--mute);"></p>
+</section>
+
+<div class="divider"></div>
+
+<!-- Trust signals -->
+<section class="relative z-10 max-w-4xl mx-auto px-6 py-12 text-center">
+  <h3 class="text-2xl font-bold mb-8">100% transparente</h3>
+  <div class="grid sm:grid-cols-3 gap-4">
+    <div class="rounded-xl p-5" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-2xl mb-2">📂</div>
+      <div class="font-bold mb-1">Historial público</div>
+      <div class="text-xs" style="color: var(--mute);">Todas las apuestas, ganadas y perdidas. Sin esconder los fracasos.</div>
+    </div>
+    <div class="rounded-xl p-5" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-2xl mb-2">🔓</div>
+      <div class="font-bold mb-1">Código abierto</div>
+      <div class="text-xs" style="color: var(--mute);">Todo el modelo en GitHub. Puedes revisar la lógica.</div>
+    </div>
+    <div class="rounded-xl p-5" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-2xl mb-2">📈</div>
+      <div class="font-bold mb-1">CLV trackeado</div>
+      <div class="text-xs" style="color: var(--mute);">Métrica que valida edge real, no solo suerte.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="relative z-10 border-t mt-16 py-8" style="border-color: var(--border);">
+  <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm" style="color: var(--mute);">
+    <div>© 2026 Quini · Predicción estadística, no asesoría de apuestas</div>
+    <div class="flex gap-4">
+      <a href="/" class="hover:underline">Ver app</a>
+      <a href="https://github.com/Osvajorge/quini" target="_blank" rel="noopener" class="hover:underline">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Load live stats from history + predictions JSON
+async function loadStats() {
+  try {
+    const [pred, hist] = await Promise.all([
+      fetch('/data/predictions.json').then(r => r.json()),
+      fetch('/data/history.json').then(r => r.json()),
+    ]);
+    const s = hist.summary || {};
+    const roi = s.roi ?? 0;
+    document.getElementById('stat-roi').textContent = (roi > 0 ? '+' : '') + roi + '%';
+    document.getElementById('stat-roi').style.color = roi >= 0 ? 'var(--bet)' : 'var(--warn)';
+    document.getElementById('stat-winrate').textContent = (s.win_rate ?? 0) + '%';
+    document.getElementById('stat-bets').textContent = s.total_bets ?? 0;
+    const clv = s.avg_clv_pct;
+    if (clv != null) {
+      document.getElementById('stat-clv').textContent = (clv > 0 ? '+' : '') + clv + '%';
+      document.getElementById('stat-clv').style.color = clv >= 0 ? 'var(--bet)' : 'var(--warn)';
+    } else {
+      document.getElementById('stat-clv').textContent = '—';
+    }
+
+    // Render today's picks: top 3 BETs sorted by edge
+    const picks = [];
+    for (const f of pred.fixtures || []) {
+      if (f.completed || f.is_live) continue;
+      const bets = f.bets || [];
+      for (const b of bets) {
+        picks.push({ f, b });
+      }
+    }
+    picks.sort((a, b) => (b.b.edge || 0) - (a.b.edge || 0));
+    const top = picks.slice(0, 6);
+    const el = document.getElementById('today-picks');
+    if (!top.length) {
+      el.innerHTML = '<div class="col-span-full text-center py-8 text-sm" style="color: var(--mute);">No hay BETs activos en este momento. <a href="/" class="underline" style="color: var(--bet2);">Ver predicciones →</a></div>';
+      return;
+    }
+    el.innerHTML = top.map(({ f, b }) => {
+      const dt = new Date(f.commence_time);
+      const dtStr = dt.toLocaleDateString('es', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+      const desc = (b.description_es || b.market || '').replace(f.home, f.home).replace(f.away, f.away);
+      return `<a href="/" class="block rounded-xl p-4 card-hover" style="background: var(--panel); border: 1px solid var(--border); text-decoration: none;">
+        <div class="text-xs mb-1" style="color: var(--mute);">${dtStr}</div>
+        <div class="font-semibold mb-2 text-sm">${f.home} <span style="color: var(--mute);">vs</span> ${f.away}</div>
+        <div class="text-xs mb-3" style="color: var(--ink);">${desc}</div>
+        <div class="flex items-center justify-between">
+          <span class="text-xs px-2 py-1 rounded font-bold" style="background: rgba(16,185,129,0.15); color: var(--bet2);">+${b.edge}% edge</span>
+          <span class="font-mono font-bold" style="color: var(--bet2);">@ ${Number(b.best_odds || b.odds).toFixed(2)}</span>
+        </div>
+      </a>`;
+    }).join('');
+  } catch (e) {
+    console.error(e);
+  }
+}
+loadStats();
+
+// Email form — Formspree-ready
+const EMAIL_FORM_URL = ''; // set to https://formspree.io/f/XXXX once registered
+document.getElementById('capture').addEventListener('submit', async e => {
+  e.preventDefault();
+  const status = document.getElementById('form-status');
+  const email = e.target.email.value.trim();
+  if (!email) return;
+  status.textContent = 'Enviando…';
+  if (EMAIL_FORM_URL) {
+    try {
+      await fetch(EMAIL_FORM_URL, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(e.target),
+      });
+    } catch (_) {}
+  }
+  // Store locally so we can also dedupe later
+  localStorage.setItem('quini_email', email);
+  status.innerHTML = '✓ Guardado. Te avisamos pronto.';
+  status.style.color = 'var(--bet)';
+  e.target.reset();
+});
+</script>
+</body>
+</html>
