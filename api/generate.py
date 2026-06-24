@@ -1238,6 +1238,20 @@ def generate():
     except Exception as e:
         print(f"[sim] tournament projection skipped: {e}")
 
+    # ESPN match stats for completed fixtures
+    try:
+        from tools.fetch_match_stats import fetch as _fetch_stats
+        _fetch_stats()
+    except Exception as e:
+        print(f"[stats] match stats skipped: {e}")
+
+    # Per-player aggregation (needs match_stats.json to be fresh)
+    try:
+        from tools.aggregate_players import aggregate as _agg_players
+        _agg_players()
+    except Exception as e:
+        print(f"[players] aggregation skipped: {e}")
+
 
 def _side_won(side: str, ah: int, aa: int) -> bool:
     """Evaluate if a bet side won given actual scores."""

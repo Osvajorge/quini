@@ -140,6 +140,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
     <button onclick="setTab('groups')" id="tab-groups" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_groups">Grupos</button>
     <button onclick="setTab('rankings')" id="tab-rankings" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_rankings">Rankings</button>
     <button onclick="setTab('bracket')" id="tab-bracket" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_bracket">Bracket</button>
+    <button onclick="setTab('players')" id="tab-players" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_players">Jugadores</button>
     <button onclick="setTab('results')" id="tab-results" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_results">Resultados</button>
     <button onclick="setTab('history')" id="tab-history" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_history">Historial</button>
     <button onclick="setTab('quiniela')" id="tab-quiniela" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_quiniela">Quiniela</button>
@@ -170,6 +171,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
   <div id="groups-container" class="hidden"></div>
   <div id="rankings-container" class="hidden"></div>
   <div id="bracket-container" class="hidden"></div>
+  <div id="players-container" class="hidden"></div>
   <div id="results-container" class="hidden"></div>
   <div id="history-container" class="hidden"></div>
   <div id="quiniela-container" class="hidden"></div>
@@ -217,7 +219,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 // ── i18n ──
 const T = {
   es: {
-    tab_picks:'Picks', tab_groups:'Grupos', tab_rankings:'Rankings', tab_bracket:'Bracket', tab_results:'Resultados', tab_history:'Historial', tab_quiniela:'Quiniela',
+    tab_picks:'Picks', tab_groups:'Grupos', tab_rankings:'Rankings', tab_bracket:'Bracket', tab_players:'Jugadores', tab_results:'Resultados', tab_history:'Historial', tab_quiniela:'Quiniela',
     filter_all:'Todos', filter_bet:'Solo BET', filter_alta:'Confianza ALTA', filter_today:'Hoy',
     header_sub:'Predicciones Mundial 2026',
     hero_title:'Encuentra apuestas de valor en el Mundial',
@@ -249,7 +251,7 @@ const T = {
     quiniela_desc:'Predicciones optimizadas para quiniela, respaldadas por Dixon-Coles.',
   },
   en: {
-    tab_picks:'Picks', tab_groups:'Groups', tab_rankings:'Rankings', tab_bracket:'Bracket', tab_results:'Results', tab_history:'Track Record', tab_quiniela:'Pool',
+    tab_picks:'Picks', tab_groups:'Groups', tab_rankings:'Rankings', tab_bracket:'Bracket', tab_players:'Players', tab_results:'Results', tab_history:'Track Record', tab_quiniela:'Pool',
     filter_all:'All', filter_bet:'BET only', filter_alta:'HIGH confidence', filter_today:'Today',
     header_sub:'World Cup 2026 Predictions',
     hero_title:'Find value bets in the World Cup',
@@ -415,16 +417,22 @@ applyTheme();
 
 // ── Data loading ──
 let PROJECTIONS = null;
+let MATCH_STATS = null;
+let PLAYER_STATS = null;
 async function loadData() {
   try {
-    const [r1, r2, r3] = await Promise.all([
+    const [r1, r2, r3, r4, r5] = await Promise.all([
       fetch('./data/predictions.json?' + Date.now()),
       fetch('./data/history.json?' + Date.now()).catch(() => null),
       fetch('./data/projections.json?' + Date.now()).catch(() => null),
+      fetch('./data/match_stats.json?' + Date.now()).catch(() => null),
+      fetch('./data/player_stats.json?' + Date.now()).catch(() => null),
     ]);
     DATA = await r1.json();
     if (r2 && r2.ok) HISTORY = await r2.json();
     if (r3 && r3.ok) PROJECTIONS = await r3.json();
+    if (r4 && r4.ok) MATCH_STATS = await r4.json();
+    if (r5 && r5.ok) PLAYER_STATS = await r5.json();
     document.getElementById('loading').classList.add('hidden');
     applyLang();
     renderStats();
@@ -823,7 +831,7 @@ async function _tickLive() {
 // ── Tabs & Filters ──
 function setTab(tab) {
   currentTab = tab;
-  ['upcoming','groups','rankings','bracket','results','history','quiniela'].forEach(t => {
+  ['upcoming','groups','rankings','bracket','players','results','history','quiniela'].forEach(t => {
     const btn = document.getElementById('tab-' + t);
     const container = document.getElementById(t === 'upcoming' ? 'fixtures-container' : t + '-container');
     if (btn) btn.className = 'pb-3 text-sm font-medium cursor-pointer whitespace-nowrap ' + (tab === t ? 'tab-active' : 'tab-inactive');
@@ -1021,10 +1029,105 @@ function renderAll() {
   renderGroups();
   renderRankings();
   renderBracket();
+  renderPlayers();
   renderResults();
   renderHistory();
   renderQuiniela();
   applyTooltips();
+}
+
+let _playersCat = 'Total Shots';
+let _playersTeam = 'all';
+function setPlayersCat(c) { _playersCat = c; renderPlayers(); }
+function setPlayersTeam(t) { _playersTeam = t; renderPlayers(); }
+
+function renderPlayers() {
+  const el = document.getElementById('players-container');
+  if (!el) return;
+  const ps = PLAYER_STATS && PLAYER_STATS.players;
+  if (!ps || !ps.length) {
+    el.innerHTML = `<div class="text-center py-16 text-sm" style="color:var(--mute);">${LANG==='es'?'Estadísticas de jugadores no disponibles aún.':'Player stats not available yet.'}</div>`;
+    return;
+  }
+
+  // Discover available categories + teams
+  const cats = new Set();
+  const teams = new Set();
+  ps.forEach(p => {
+    teams.add(p.team);
+    Object.keys(p.categories || {}).forEach(c => cats.add(c));
+  });
+  const catList = Array.from(cats).sort();
+  const teamList = Array.from(teams).sort();
+
+  if (!cats.has(_playersCat)) _playersCat = catList[0] || 'Total Shots';
+
+  // Filter + sort by selected category total
+  let list = ps.filter(p => p.categories[_playersCat]);
+  if (_playersTeam !== 'all') list = list.filter(p => p.team === _playersTeam);
+  list.sort((a, b) => (b.categories[_playersCat].total || 0) - (a.categories[_playersCat].total || 0));
+
+  const maxV = list.length ? list[0].categories[_playersCat].total : 1;
+
+  const catLabels = {
+    'Total Shots': LANG==='es'?'Tiros':'Total shots',
+    'Accurate Passes': LANG==='es'?'Pases buenos':'Accurate passes',
+    'Saves': LANG==='es'?'Atajadas':'Saves',
+    'Defensive Interventions': LANG==='es'?'Intervenciones def.':'Def. interventions',
+    'Goals': LANG==='es'?'Goles':'Goals',
+    'Assists': LANG==='es'?'Asistencias':'Assists',
+  };
+  const lbl = c => catLabels[c] || c;
+
+  const rows = list.slice(0, 40).map((p, i) => {
+    const v = p.categories[_playersCat].total;
+    const pct = (v / maxV * 100).toFixed(0);
+    return `<div class="flex items-center gap-3 py-2 border-b" style="border-color:color-mix(in srgb,var(--border) 40%,transparent);">
+      <span class="text-xs font-mono w-6 text-right" style="color:var(--mute);">${i+1}</span>
+      <span class="text-sm font-semibold flex-1 min-w-0 truncate">${p.player}</span>
+      <span class="text-[10px] uppercase tracking-wider w-32 truncate hidden sm:block" style="color:var(--mute);">${teamName(p.team) || p.team}</span>
+      <div class="flex-1 h-1.5 rounded-full overflow-hidden hidden sm:block" style="background:var(--panel2); max-width:200px;">
+        <div class="h-full" style="width:${pct}%;background:var(--bet);"></div>
+      </div>
+      <span class="text-sm font-mono font-bold w-12 text-right" style="color:var(--bet);">${v.toFixed(0)}</span>
+      <span class="text-[10px] font-mono w-12 text-right" style="color:var(--mute);">${p.matches}M</span>
+    </div>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="rounded-xl border mb-4 p-4" style="background:var(--panel); border-color:var(--border);">
+      <h2 class="text-base font-bold mb-1">${LANG==='es'?'Estadísticas de jugadores':'Player stats'}</h2>
+      <p class="text-[11px] mb-3" style="color:var(--mute);">${LANG==='es'?'Líderes acumulados del Mundial 2026 (de ESPN match summaries).':'Tournament leaders accumulated from ESPN match summaries.'}</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div>
+          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Categoría':'Category'}</label>
+          <select onchange="setPlayersCat(this.value)" class="w-full px-3 py-2 rounded-lg text-sm outline-none" style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);">
+            ${catList.map(c => `<option value="${c}"${c === _playersCat ? ' selected' : ''}>${lbl(c)}</option>`).join('')}
+          </select>
+        </div>
+        <div>
+          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Equipo':'Team'}</label>
+          <select onchange="setPlayersTeam(this.value)" class="w-full px-3 py-2 rounded-lg text-sm outline-none" style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);">
+            <option value="all"${_playersTeam === 'all' ? ' selected' : ''}>${LANG==='es'?'Todos':'All teams'}</option>
+            ${teamList.map(t => `<option value="${t}"${t === _playersTeam ? ' selected' : ''}>${teamName(t) || t}</option>`).join('')}
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="rounded-xl border overflow-hidden" style="background:var(--panel); border-color:var(--border);">
+      <div class="px-4 py-2" style="background:color-mix(in srgb,var(--panel2) 50%,transparent); border-bottom:1px solid var(--border);">
+        <div class="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-wider" style="color:var(--mute);">
+          <span class="w-6">#</span>
+          <span class="flex-1">${LANG==='es'?'Jugador':'Player'}</span>
+          <span class="w-32 hidden sm:block">${LANG==='es'?'Selección':'Team'}</span>
+          <span class="flex-1 hidden sm:block" style="max-width:200px;"></span>
+          <span class="w-12 text-right">${lbl(_playersCat)}</span>
+          <span class="w-12 text-right">${LANG==='es'?'PJ':'GP'}</span>
+        </div>
+      </div>
+      <div class="px-4">${rows || `<div class="py-8 text-center text-sm" style="color:var(--mute);">${LANG==='es'?'Sin datos para este filtro.':'No data for this filter.'}</div>`}</div>
+    </div>
+  `;
 }
 
 function renderBracket() {
@@ -1589,12 +1692,70 @@ function _renderMatchSummary(f) {
           ${xgLine ? `<div class="sm:col-span-2" style="color:var(--mute);">${xgLine}</div>` : ''}
           ${top3 ? `<div class="sm:col-span-2"><b style="color:var(--ink);">${LANG === 'es' ? 'Top 3 predichos' : 'Top 3 predicted'}:</b> ${top3}</div>` : ''}
         </div>
+        ${_renderMatchStats(f)}
         ${betRows ? `<div class="pt-2 space-y-1" style="border-top:1px solid color-mix(in srgb,var(--border) 30%,transparent);">
           <div class="text-[10px] font-semibold uppercase tracking-wider mt-2" style="color:var(--mute);">${LANG === 'es' ? 'Apuestas' : 'Bets'}</div>
           ${betRows}
         </div>` : ''}
       </div>
     </div>`;
+}
+
+function _renderMatchStats(f) {
+  if (!MATCH_STATS) return '';
+  const ms = MATCH_STATS[f.id];
+  if (!ms || !ms.teams || ms.teams.length < 2) return '';
+  const home = ms.teams.find(t => t.side === 'home') || ms.teams[0];
+  const away = ms.teams.find(t => t.side === 'away') || ms.teams[1];
+  const hs = home.stats || {}, as = away.stats || {};
+
+  // Bar row: home left, label center, away right
+  const stat = (k, label, max) => {
+    const hv = parseFloat(hs[k]); const av = parseFloat(as[k]);
+    if (isNaN(hv) && isNaN(av)) return '';
+    const lim = max || Math.max(hv || 0, av || 0) || 1;
+    return `<div class="flex items-center gap-2 py-1">
+      <span class="font-mono w-12 text-right font-semibold">${hs[k] ?? '—'}</span>
+      <div class="flex-1 flex h-1.5 rounded-full overflow-hidden" style="background:var(--panel2);">
+        <div class="h-full" style="width:${((hv||0)/lim*50).toFixed(0)}%; background:var(--bet); margin-left:auto;"></div>
+        <div class="h-full" style="width:${((av||0)/lim*50).toFixed(0)}%; background:var(--accent);"></div>
+      </div>
+      <span class="font-mono w-12 text-left font-semibold">${as[k] ?? '—'}</span>
+      <span class="text-[10px] uppercase tracking-wider w-24 text-center" style="color:var(--mute);">${label}</span>
+    </div>`;
+  };
+
+  const blocks = [
+    stat('possessionPct', LANG==='es'?'Posesión %':'Possession %', 100),
+    stat('totalShots', LANG==='es'?'Tiros':'Shots'),
+    stat('shotsOnTarget', LANG==='es'?'A puerta':'On target'),
+    stat('wonCorners', LANG==='es'?'Córners':'Corners'),
+    stat('foulsCommitted', LANG==='es'?'Faltas':'Fouls'),
+    stat('yellowCards', LANG==='es'?'Amarillas':'Yellow'),
+  ].filter(Boolean).join('');
+
+  // Leaders compressed: top 4 unique
+  const leaders = (ms.leaders || []).slice(0, 4).map(l => {
+    return `<div class="flex items-center gap-2 py-1 text-[11px]">
+      <span class="font-semibold truncate flex-1" style="color:var(--ink);">${l.player || '—'}</span>
+      <span class="font-mono" style="color:var(--bet);">${l.value}</span>
+      <span class="text-[9px] uppercase tracking-wider w-32 text-right" style="color:var(--mute);">${l.category}</span>
+    </div>`;
+  }).join('');
+
+  return `
+    <div class="pt-3 mt-2" style="border-top:1px solid color-mix(in srgb,var(--border) 30%,transparent);">
+      <div class="text-[10px] font-semibold uppercase tracking-wider mb-2" style="color:var(--mute);">
+        ${LANG==='es' ? 'Estadísticas del partido' : 'Match stats'}
+        <span class="ml-2 text-[9px] font-mono" style="color:var(--mute);">${teamName(home.team) || home.team} <span style="color:var(--bet);">●</span>  <span style="color:var(--accent);">●</span> ${teamName(away.team) || away.team}</span>
+      </div>
+      ${blocks}
+      ${leaders ? `<div class="mt-3 pt-2" style="border-top:1px dashed color-mix(in srgb,var(--border) 50%,transparent);">
+        <div class="text-[10px] font-semibold uppercase tracking-wider mb-1" style="color:var(--mute);">${LANG==='es'?'Destacados':'Leaders'}</div>
+        ${leaders}
+      </div>` : ''}
+    </div>
+  `;
 }
 
 function _sideWon(side, ah, aa) {
@@ -1873,7 +2034,7 @@ function _renderPredictionsHistory(s) {
 // ── Bankroll simulator ──
 // Replays the historical bet sequence with 3 stake strategies:
 // flat (€1 per bet), Kelly (qtr-Kelly with cap), value (proportional to edge)
-let _bankSettings = { initial: 1000, strategy: 'kelly', market: 'all' };
+let _bankSettings = { initial: 1000, strategy: 'kelly', market: 'all', modelOnly: 'current' };
 
 function setBankrollInitial(v) {
   const n = parseFloat(v);
@@ -1885,6 +2046,13 @@ function setBankrollStrategy(s) {
 function setBankrollMarket(m) {
   _bankSettings.market = m; renderHistory();
 }
+function setBankrollModel(m) {
+  _bankSettings.modelOnly = m; renderHistory();
+}
+
+function _currentModelVersion() {
+  return (DATA && DATA.model_health && DATA.model_health.model_version) || 'v2.0-aligned';
+}
 
 function _marketCategory(market) {
   const m = (market || '').toLowerCase();
@@ -1895,13 +2063,19 @@ function _marketCategory(market) {
   return 'other';
 }
 
-function _simulateBankroll(initial, strategy, marketFilter) {
+function _simulateBankroll(initial, strategy, marketFilter, modelOnly) {
+  const currentVer = _currentModelVersion();
   // Collect all decided bets in chronological order
   const all = [];
   for (const fx of HISTORY.fixtures) {
     const date = fx.date || fx.commence_time;
     for (const b of (fx.bets || [])) {
       if (b.won === null || b.won === undefined) continue;
+      // Model version filter: 'current' = only new model, 'all' = include legacy
+      if (modelOnly === 'current') {
+        const ver = b.model_version;
+        if (!ver || ver !== currentVer) continue;
+      }
       const cat = _marketCategory(b.market);
       if (marketFilter && marketFilter !== 'all' && cat !== marketFilter) continue;
       const mp = (b.model_prob != null) ? (b.model_prob > 1 ? b.model_prob / 100 : b.model_prob) : null;
@@ -1955,8 +2129,17 @@ function _simulateBankroll(initial, strategy, marketFilter) {
 }
 
 function _renderBankrollSim(s) {
-  const sim = _simulateBankroll(_bankSettings.initial, _bankSettings.strategy, _bankSettings.market);
+  const sim = _simulateBankroll(_bankSettings.initial, _bankSettings.strategy, _bankSettings.market, _bankSettings.modelOnly);
   if (sim.nBets === 0) {
+    const isModelFiltered = _bankSettings.modelOnly === 'current';
+    const ver = _currentModelVersion();
+    if (isModelFiltered) {
+      return `<div class="text-center py-12 text-sm leading-relaxed" style="color:var(--mute);">
+        ${LANG==='es'?'Modelo':'Model'} <b style="color:var(--ink);">${ver}</b> ${LANG==='es'?'sin apuestas cerradas aún.':'has no settled bets yet.'}<br>
+        ${LANG==='es'?'Backtest predice:':'Backtest predicts:'} <b style="color:var(--bet);">+5.1% ROI</b>, <b style="color:var(--bet);">61.5%</b> ${LANG==='es'?'acierto':'win rate'} <span style="color:var(--mute);">(n=39)</span><br>
+        <button onclick="setBankrollModel('all')" class="mt-3 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:color-mix(in srgb,var(--mute) 12%,transparent); color:var(--mute); border:1px solid var(--border); cursor:pointer;">${LANG==='es'?'Ver historial legacy →':'Show legacy history →'}</button>
+      </div>`;
+    }
     const mktLabel = {all: LANG==='es'?'ningún mercado':'any market', '1x2': '1X2', 'ou': 'O/U', 'btts': 'BTTS'}[_bankSettings.market] || _bankSettings.market;
     return `<div class="text-center py-12 text-sm" style="color:var(--mute);">${LANG==='es'?'No hay apuestas en el historial para':'No history bets for'} <b>${mktLabel}</b>${_bankSettings.market !== 'all' ? '.' : (LANG==='es'?'todavía.':' yet.')}</div>`;
   }
@@ -2052,6 +2235,19 @@ function _renderBankrollSim(s) {
                   ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
                   : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${lbl}</button>`).join('')}
           </div>
+        </div>
+      </div>
+      <div class="mt-3 pt-3" style="border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent);">
+        <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Modelo':'Model'}</label>
+        <div class="flex gap-1.5">
+          ${[['current', LANG==='es'?'ACTUAL (v2)':'CURRENT (v2)'],['all', LANG==='es'?'TODO (incluye legacy)':'ALL (incl. legacy)']].map(([m, lbl]) => `
+            <button onclick="setBankrollModel('${m}')" class="flex-1 px-3 py-2 rounded-lg text-[10px] font-semibold uppercase tracking-wider"
+              style="${_bankSettings.modelOnly === m
+                ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
+                : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${lbl}</button>`).join('')}
+        </div>
+        <div class="text-[10px] mt-1.5" style="color:var(--mute);">
+          ${LANG==='es' ? 'Modelo v2 alinea apuestas al favorito del modelo (backtest +5.1% ROI). Legacy = pre-fix bets con ROI -8.9%.' : 'v2 aligns bets to model favorite (backtest +5.1% ROI). Legacy = pre-fix bets with -8.9% ROI.'}
         </div>
       </div>
       <div class="text-xs mt-3 leading-relaxed" style="color:var(--mute);">

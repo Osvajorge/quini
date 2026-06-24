@@ -10798,11 +10798,16 @@
     }
   ],
   "model_health": {
-    "status": "critical",
-    "n": 30,
-    "rolling_roi_pct": -13.1,
-    "rolling_winrate_pct": 50.0,
+    "status": "insufficient",
+    "model_version": "v2.0-aligned",
+    "n": 0,
+    "legacy_n": 45,
+    "rolling_roi_pct": null,
+    "rolling_winrate_pct": null,
     "warning_threshold": 2.0,
-    "critical_threshold": -5.0
+    "critical_threshold": -5.0,
+    "backtest_roi_pct": 5.1,
+    "backtest_winrate_pct": 61.5,
+    "backtest_n": 39
   }
 }

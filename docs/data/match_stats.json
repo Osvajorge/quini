@@ -1,0 +1,4837 @@
+{
+  "73529a242e319a86bf3d00ddb4accc37": {
+    "espn_id": "760453",
+    "fetched_at": "2026-06-24T19:54:01+00:00",
+    "teams": [
+      {
+        "team": "Spain",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "6",
+          "saves": "1",
+          "possessionPct": "67.1",
+          "totalShots": "22",
+          "shotsOnTarget": "8",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "668",
+          "totalPasses": "726",
+          "passPct": "0.9",
+          "accurateCrosses": "7",
+          "totalCrosses": "25",
+          "crossPct": "0.3",
+          "totalLongBalls": "38",
+          "accurateLongBalls": "28",
+          "longballPct": "0.7",
+          "blockedShots": "2",
+          "effectiveTackles": "8",
+          "totalTackles": "10",
+          "tacklePct": "0.8",
+          "interceptions": "13",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      },
+      {
+        "team": "Saudi Arabia",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "2",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "1",
+          "saves": "5",
+          "possessionPct": "32.9",
+          "totalShots": "3",
+          "shotsOnTarget": "1",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "294",
+          "totalPasses": "364",
+          "passPct": "0.8",
+          "accurateCrosses": "0",
+          "totalCrosses": "5",
+          "crossPct": "0.0",
+          "totalLongBalls": "35",
+          "accurateLongBalls": "14",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "12",
+          "totalTackles": "15",
+          "tacklePct": "0.8",
+          "interceptions": "13",
+          "effectiveClearance": "35",
+          "totalClearance": "35"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Spain",
+        "category": "Total Shots",
+        "player": "Lamine Yamal",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Spain",
+        "category": "Accurate Passes",
+        "player": "Rodri ",
+        "headshot": null,
+        "value": "113"
+      },
+      {
+        "team": "Spain",
+        "category": "Defensive Interventions",
+        "player": "Pedro Porro",
+        "headshot": null,
+        "value": "11"
+      },
+      {
+        "team": "Spain",
+        "category": "Saves",
+        "player": "Unai Simón",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Total Shots",
+        "player": "Salem Al-Dawsari",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Accurate Passes",
+        "player": "Saud Abdulhamid",
+        "headshot": null,
+        "value": "41"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Defensive Interventions",
+        "player": "Ali Lajami",
+        "headshot": null,
+        "value": "16"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Saves",
+        "player": "Mohammed Al-Owais",
+        "headshot": null,
+        "value": "5"
+      }
+    ]
+  },
+  "5f92f257386ec5bf7c6e2498a21f3a61": {
+    "espn_id": "760451",
+    "fetched_at": "2026-06-24T19:54:02+00:00",
+    "teams": [
+      {
+        "team": "Belgium",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "1",
+          "redCards": "1",
+          "offsides": "3",
+          "wonCorners": "4",
+          "saves": "3",
+          "possessionPct": "70.1",
+          "totalShots": "23",
+          "shotsOnTarget": "7",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "533",
+          "totalPasses": "621",
+          "passPct": "0.9",
+          "accurateCrosses": "6",
+          "totalCrosses": "32",
+          "crossPct": "0.2",
+          "totalLongBalls": "35",
+          "accurateLongBalls": "12",
+          "longballPct": "0.3",
+          "blockedShots": "6",
+          "effectiveTackles": "7",
+          "totalTackles": "12",
+          "tacklePct": "0.6",
+          "interceptions": "3",
+          "effectiveClearance": "11",
+          "totalClearance": "11"
+        }
+      },
+      {
+        "team": "Iran",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "9",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "4",
+          "wonCorners": "2",
+          "saves": "7",
+          "possessionPct": "29.9",
+          "totalShots": "7",
+          "shotsOnTarget": "3",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "198",
+          "totalPasses": "270",
+          "passPct": "0.7",
+          "accurateCrosses": "2",
+          "totalCrosses": "8",
+          "crossPct": "0.3",
+          "totalLongBalls": "50",
+          "accurateLongBalls": "18",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "11",
+          "totalTackles": "19",
+          "tacklePct": "0.6",
+          "interceptions": "12",
+          "effectiveClearance": "51",
+          "totalClearance": "51"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Belgium",
+        "category": "Total Shots",
+        "player": "Maxim De Cuyper",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Belgium",
+        "category": "Accurate Passes",
+        "player": "Brandon Mechele",
+        "headshot": null,
+        "value": "77"
+      },
+      {
+        "team": "Belgium",
+        "category": "Defensive Interventions",
+        "player": "Brandon Mechele",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "Belgium",
+        "category": "Saves",
+        "player": "Thibaut Courtois",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Iran",
+        "category": "Total Shots",
+        "player": "Saeid Ezatolahi",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Iran",
+        "category": "Accurate Passes",
+        "player": "Shoja Khalilzadeh",
+        "headshot": null,
+        "value": "33"
+      },
+      {
+        "team": "Iran",
+        "category": "Defensive Interventions",
+        "player": "Shoja Khalilzadeh",
+        "headshot": null,
+        "value": "22"
+      },
+      {
+        "team": "Iran",
+        "category": "Saves",
+        "player": "Alireza Beiranvand",
+        "headshot": null,
+        "value": "7"
+      }
+    ]
+  },
+  "852a3abe6d46820720febc0fedebff9a": {
+    "espn_id": "760450",
+    "fetched_at": "2026-06-24T19:54:02+00:00",
+    "teams": [
+      {
+        "team": "Uruguay",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "11",
+          "saves": "2",
+          "possessionPct": "65.2",
+          "totalShots": "17",
+          "shotsOnTarget": "2",
+          "shotPct": "0.1",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "420",
+          "totalPasses": "511",
+          "passPct": "0.8",
+          "accurateCrosses": "4",
+          "totalCrosses": "29",
+          "crossPct": "0.1",
+          "totalLongBalls": "48",
+          "accurateLongBalls": "23",
+          "longballPct": "0.5",
+          "blockedShots": "7",
+          "effectiveTackles": "8",
+          "totalTackles": "16",
+          "tacklePct": "0.5",
+          "interceptions": "7",
+          "effectiveClearance": "11",
+          "totalClearance": "11"
+        }
+      },
+      {
+        "team": "Cape Verde",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "4",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "4",
+          "saves": "0",
+          "possessionPct": "34.8",
+          "totalShots": "12",
+          "shotsOnTarget": "4",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "205",
+          "totalPasses": "278",
+          "passPct": "0.7",
+          "accurateCrosses": "2",
+          "totalCrosses": "7",
+          "crossPct": "0.3",
+          "totalLongBalls": "61",
+          "accurateLongBalls": "18",
+          "longballPct": "0.3",
+          "blockedShots": "4",
+          "effectiveTackles": "15",
+          "totalTackles": "16",
+          "tacklePct": "0.9",
+          "interceptions": "13",
+          "effectiveClearance": "48",
+          "totalClearance": "48"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Uruguay",
+        "category": "Total Shots",
+        "player": "Federico Valverde",
+        "headshot": null,
+        "value": "7"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Accurate Passes",
+        "player": "Mathías Olivera",
+        "headshot": null,
+        "value": "74"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Defensive Interventions",
+        "player": "Rodrigo Bentancur",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Saves",
+        "player": "Fernando Muslera",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Cape Verde",
+        "category": "Total Shots",
+        "player": "Sidny Lopes Cabral",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Cape Verde",
+        "category": "Accurate Passes",
+        "player": "Pico Lopes",
+        "headshot": null,
+        "value": "27"
+      },
+      {
+        "team": "Cape Verde",
+        "category": "Defensive Interventions",
+        "player": "Diney Borges",
+        "headshot": null,
+        "value": "22"
+      }
+    ]
+  },
+  "c1ec9a65f4b4cf74477b368a7d6282de": {
+    "espn_id": "760452",
+    "fetched_at": "2026-06-24T19:54:03+00:00",
+    "teams": [
+      {
+        "team": "New Zealand",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "14",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "4",
+          "saves": "4",
+          "possessionPct": "44.4",
+          "totalShots": "11",
+          "shotsOnTarget": "5",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "337",
+          "totalPasses": "421",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "15",
+          "crossPct": "0.2",
+          "totalLongBalls": "50",
+          "accurateLongBalls": "20",
+          "longballPct": "0.4",
+          "blockedShots": "3",
+          "effectiveTackles": "6",
+          "totalTackles": "12",
+          "tacklePct": "0.5",
+          "interceptions": "4",
+          "effectiveClearance": "22",
+          "totalClearance": "22"
+        }
+      },
+      {
+        "team": "Egypt",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "8",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "4",
+          "saves": "4",
+          "possessionPct": "55.6",
+          "totalShots": "19",
+          "shotsOnTarget": "7",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "460",
+          "totalPasses": "526",
+          "passPct": "0.9",
+          "accurateCrosses": "7",
+          "totalCrosses": "22",
+          "crossPct": "0.3",
+          "totalLongBalls": "48",
+          "accurateLongBalls": "22",
+          "longballPct": "0.5",
+          "blockedShots": "6",
+          "effectiveTackles": "13",
+          "totalTackles": "16",
+          "tacklePct": "0.8",
+          "interceptions": "6",
+          "effectiveClearance": "37",
+          "totalClearance": "37"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "New Zealand",
+        "category": "Total Shots",
+        "player": "Marko Stamenic",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Accurate Passes",
+        "player": "Joe Bell",
+        "headshot": null,
+        "value": "50"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Defensive Interventions",
+        "player": "Finn Surman",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Saves",
+        "player": "Max Crocombe",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Egypt",
+        "category": "Total Shots",
+        "player": "Mohamed Salah",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Egypt",
+        "category": "Accurate Passes",
+        "player": "Marawan Attia",
+        "headshot": null,
+        "value": "82"
+      },
+      {
+        "team": "Egypt",
+        "category": "Defensive Interventions",
+        "player": "Yasser Ibrahim",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Egypt",
+        "category": "Saves",
+        "player": "Mostafa Shoubir",
+        "headshot": null,
+        "value": "4"
+      }
+    ]
+  },
+  "be6c63f416c67bca1300a98f5b89c3af": {
+    "espn_id": "760456",
+    "fetched_at": "2026-06-24T19:54:03+00:00",
+    "teams": [
+      {
+        "team": "Argentina",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "1",
+          "saves": "1",
+          "possessionPct": "53.6",
+          "totalShots": "12",
+          "shotsOnTarget": "5",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "1",
+          "accuratePasses": "494",
+          "totalPasses": "554",
+          "passPct": "0.9",
+          "accurateCrosses": "1",
+          "totalCrosses": "4",
+          "crossPct": "0.3",
+          "totalLongBalls": "27",
+          "accurateLongBalls": "12",
+          "longballPct": "0.4",
+          "blockedShots": "3",
+          "effectiveTackles": "11",
+          "totalTackles": "21",
+          "tacklePct": "0.5",
+          "interceptions": "8",
+          "effectiveClearance": "35",
+          "totalClearance": "35"
+        }
+      },
+      {
+        "team": "Austria",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "3",
+          "saves": "2",
+          "possessionPct": "46.4",
+          "totalShots": "6",
+          "shotsOnTarget": "1",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "401",
+          "totalPasses": "468",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "17",
+          "crossPct": "0.2",
+          "totalLongBalls": "21",
+          "accurateLongBalls": "11",
+          "longballPct": "0.5",
+          "blockedShots": "0",
+          "effectiveTackles": "7",
+          "totalTackles": "12",
+          "tacklePct": "0.6",
+          "interceptions": "9",
+          "effectiveClearance": "15",
+          "totalClearance": "15"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Argentina",
+        "category": "Total Shots",
+        "player": "Lionel Messi",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/45843.png",
+        "value": "7"
+      },
+      {
+        "team": "Argentina",
+        "category": "Accurate Passes",
+        "player": "Lisandro Martínez",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/233937.png",
+        "value": "69"
+      },
+      {
+        "team": "Argentina",
+        "category": "Defensive Interventions",
+        "player": "Enzo Fernández",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "Argentina",
+        "category": "Saves",
+        "player": "Emiliano Martínez",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Austria",
+        "category": "Total Shots",
+        "player": "Marcel Sabitzer",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Austria",
+        "category": "Accurate Passes",
+        "player": "Kevin Danso",
+        "headshot": null,
+        "value": "69"
+      },
+      {
+        "team": "Austria",
+        "category": "Defensive Interventions",
+        "player": "Nicolas Seiwald",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "Austria",
+        "category": "Saves",
+        "player": "Alexander Schlager",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "7ad7a0ce2ef2618bb59b066da5642f70": {
+    "espn_id": "760457",
+    "fetched_at": "2026-06-24T19:54:04+00:00",
+    "teams": [
+      {
+        "team": "France",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "8",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "4",
+          "saves": "0",
+          "possessionPct": "55.6",
+          "totalShots": "19",
+          "shotsOnTarget": "5",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "540",
+          "totalPasses": "603",
+          "passPct": "0.9",
+          "accurateCrosses": "2",
+          "totalCrosses": "14",
+          "crossPct": "0.1",
+          "totalLongBalls": "30",
+          "accurateLongBalls": "17",
+          "longballPct": "0.6",
+          "blockedShots": "4",
+          "effectiveTackles": "9",
+          "totalTackles": "14",
+          "tacklePct": "0.6",
+          "interceptions": "5",
+          "effectiveClearance": "9",
+          "totalClearance": "9"
+        }
+      },
+      {
+        "team": "Iraq",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "4",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "2",
+          "saves": "2",
+          "possessionPct": "44.4",
+          "totalShots": "4",
+          "shotsOnTarget": "0",
+          "shotPct": "0.0",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "413",
+          "totalPasses": "481",
+          "passPct": "0.9",
+          "accurateCrosses": "4",
+          "totalCrosses": "9",
+          "crossPct": "0.4",
+          "totalLongBalls": "51",
+          "accurateLongBalls": "21",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "8",
+          "totalTackles": "16",
+          "tacklePct": "0.5",
+          "interceptions": "10",
+          "effectiveClearance": "28",
+          "totalClearance": "28"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "France",
+        "category": "Total Shots",
+        "player": "Kylian Mbappé",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "France",
+        "category": "Accurate Passes",
+        "player": "Dayot Upamecano",
+        "headshot": null,
+        "value": "75"
+      },
+      {
+        "team": "France",
+        "category": "Defensive Interventions",
+        "player": "Dayot Upamecano",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "Iraq",
+        "category": "Total Shots",
+        "player": "Ali Al-Hamadi",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Iraq",
+        "category": "Accurate Passes",
+        "player": "Akam Hashim",
+        "headshot": null,
+        "value": "68"
+      },
+      {
+        "team": "Iraq",
+        "category": "Defensive Interventions",
+        "player": "Akam Hashim",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Iraq",
+        "category": "Saves",
+        "player": "Ahmed Basil",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "3f48473742ca0fd2a85930554720c75e": {
+    "espn_id": "760454",
+    "fetched_at": "2026-06-24T19:54:05+00:00",
+    "teams": [
+      {
+        "team": "Norway",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "5",
+          "saves": "2",
+          "possessionPct": "41.7",
+          "totalShots": "13",
+          "shotsOnTarget": "7",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "282",
+          "totalPasses": "353",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "10",
+          "crossPct": "0.3",
+          "totalLongBalls": "51",
+          "accurateLongBalls": "25",
+          "longballPct": "0.5",
+          "blockedShots": "3",
+          "effectiveTackles": "9",
+          "totalTackles": "10",
+          "tacklePct": "0.9",
+          "interceptions": "8",
+          "effectiveClearance": "26",
+          "totalClearance": "26"
+        }
+      },
+      {
+        "team": "Senegal",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "5",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "4",
+          "wonCorners": "4",
+          "saves": "3",
+          "possessionPct": "58.3",
+          "totalShots": "16",
+          "shotsOnTarget": "4",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "430",
+          "totalPasses": "489",
+          "passPct": "0.9",
+          "accurateCrosses": "8",
+          "totalCrosses": "23",
+          "crossPct": "0.3",
+          "totalLongBalls": "58",
+          "accurateLongBalls": "37",
+          "longballPct": "0.6",
+          "blockedShots": "5",
+          "effectiveTackles": "7",
+          "totalTackles": "16",
+          "tacklePct": "0.4",
+          "interceptions": "10",
+          "effectiveClearance": "18",
+          "totalClearance": "18"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Norway",
+        "category": "Total Shots",
+        "player": "Erling Haaland",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Norway",
+        "category": "Accurate Passes",
+        "player": "Sander Berge",
+        "headshot": null,
+        "value": "40"
+      },
+      {
+        "team": "Norway",
+        "category": "Defensive Interventions",
+        "player": "Kristoffer Ajer",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Norway",
+        "category": "Saves",
+        "player": "Ørjan Nyland",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Senegal",
+        "category": "Total Shots",
+        "player": "Ismaïla Sarr",
+        "headshot": null,
+        "value": "6"
+      },
+      {
+        "team": "Senegal",
+        "category": "Accurate Passes",
+        "player": "Idrissa Gueye",
+        "headshot": null,
+        "value": "63"
+      },
+      {
+        "team": "Senegal",
+        "category": "Defensive Interventions",
+        "player": "Moussa Niakhaté",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Senegal",
+        "category": "Saves",
+        "player": "Édouard Mendy",
+        "headshot": null,
+        "value": "3"
+      }
+    ]
+  },
+  "fd8533b650e655030f6a7946f8795db2": {
+    "espn_id": "760455",
+    "fetched_at": "2026-06-24T19:54:06+00:00",
+    "teams": [
+      {
+        "team": "Jordan",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "1",
+          "saves": "6",
+          "possessionPct": "27.9",
+          "totalShots": "8",
+          "shotsOnTarget": "4",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "181",
+          "totalPasses": "251",
+          "passPct": "0.7",
+          "accurateCrosses": "2",
+          "totalCrosses": "5",
+          "crossPct": "0.4",
+          "totalLongBalls": "53",
+          "accurateLongBalls": "23",
+          "longballPct": "0.4",
+          "blockedShots": "0",
+          "effectiveTackles": "17",
+          "totalTackles": "30",
+          "tacklePct": "0.6",
+          "interceptions": "3",
+          "effectiveClearance": "36",
+          "totalClearance": "36"
+        }
+      },
+      {
+        "team": "Algeria",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "6",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "10",
+          "saves": "3",
+          "possessionPct": "72.1",
+          "totalShots": "17",
+          "shotsOnTarget": "8",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "561",
+          "totalPasses": "641",
+          "passPct": "0.9",
+          "accurateCrosses": "5",
+          "totalCrosses": "21",
+          "crossPct": "0.2",
+          "totalLongBalls": "44",
+          "accurateLongBalls": "19",
+          "longballPct": "0.4",
+          "blockedShots": "5",
+          "effectiveTackles": "18",
+          "totalTackles": "25",
+          "tacklePct": "0.7",
+          "interceptions": "11",
+          "effectiveClearance": "15",
+          "totalClearance": "15"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Jordan",
+        "category": "Total Shots",
+        "player": "Nizar Al-Rashdan",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Jordan",
+        "category": "Accurate Passes",
+        "player": "Noor Al-Rawabdeh",
+        "headshot": null,
+        "value": "20"
+      },
+      {
+        "team": "Jordan",
+        "category": "Defensive Interventions",
+        "player": "Mohannad Abu Taha",
+        "headshot": null,
+        "value": "19"
+      },
+      {
+        "team": "Jordan",
+        "category": "Saves",
+        "player": "Yazeed Abulaila",
+        "headshot": null,
+        "value": "6"
+      },
+      {
+        "team": "Algeria",
+        "category": "Total Shots",
+        "player": "Ibrahim Maza",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Algeria",
+        "category": "Accurate Passes",
+        "player": "Aïssa Mandi",
+        "headshot": null,
+        "value": "79"
+      },
+      {
+        "team": "Algeria",
+        "category": "Defensive Interventions",
+        "player": "Ramy Bensebaini",
+        "headshot": null,
+        "value": "15"
+      },
+      {
+        "team": "Algeria",
+        "category": "Saves",
+        "player": "Luca Zidane",
+        "headshot": null,
+        "value": "3"
+      }
+    ]
+  },
+  "8ba93d190f1f934e33862a97a6353a6e": {
+    "espn_id": "760461",
+    "fetched_at": "2026-06-24T19:54:07+00:00",
+    "teams": [
+      {
+        "team": "Portugal",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "14",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "3",
+          "saves": "2",
+          "possessionPct": "65.9",
+          "totalShots": "17",
+          "shotsOnTarget": "9",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "561",
+          "totalPasses": "624",
+          "passPct": "0.9",
+          "accurateCrosses": "5",
+          "totalCrosses": "22",
+          "crossPct": "0.2",
+          "totalLongBalls": "40",
+          "accurateLongBalls": "22",
+          "longballPct": "0.6",
+          "blockedShots": "3",
+          "effectiveTackles": "10",
+          "totalTackles": "14",
+          "tacklePct": "0.7",
+          "interceptions": "6",
+          "effectiveClearance": "16",
+          "totalClearance": "16"
+        }
+      },
+      {
+        "team": "Uzbekistan",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "15",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "2",
+          "saves": "4",
+          "possessionPct": "34.1",
+          "totalShots": "7",
+          "shotsOnTarget": "2",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "262",
+          "totalPasses": "327",
+          "passPct": "0.8",
+          "accurateCrosses": "0",
+          "totalCrosses": "8",
+          "crossPct": "0.0",
+          "totalLongBalls": "30",
+          "accurateLongBalls": "9",
+          "longballPct": "0.3",
+          "blockedShots": "3",
+          "effectiveTackles": "13",
+          "totalTackles": "18",
+          "tacklePct": "0.7",
+          "interceptions": "14",
+          "effectiveClearance": "30",
+          "totalClearance": "30"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Portugal",
+        "category": "Total Shots",
+        "player": "Cristiano Ronaldo",
+        "headshot": null,
+        "value": "7"
+      },
+      {
+        "team": "Portugal",
+        "category": "Accurate Passes",
+        "player": "Vitinha ",
+        "headshot": null,
+        "value": "95"
+      },
+      {
+        "team": "Portugal",
+        "category": "Defensive Interventions",
+        "player": "Renato Veiga",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Portugal",
+        "category": "Saves",
+        "player": "Diogo Costa",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Uzbekistan",
+        "category": "Total Shots",
+        "player": "Otabek Shukurov",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Uzbekistan",
+        "category": "Accurate Passes",
+        "player": "Rustam Ashurmatov",
+        "headshot": null,
+        "value": "35"
+      },
+      {
+        "team": "Uzbekistan",
+        "category": "Defensive Interventions",
+        "player": "Rustam Ashurmatov",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Uzbekistan",
+        "category": "Saves",
+        "player": "Abduvohid Nematov",
+        "headshot": null,
+        "value": "4"
+      }
+    ]
+  },
+  "2f49dd8deae3079dc4eb2d634d18a99c": {
+    "espn_id": "760458",
+    "fetched_at": "2026-06-24T19:54:07+00:00",
+    "teams": [
+      {
+        "team": "England",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "14",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "9",
+          "saves": "0",
+          "possessionPct": "78.9",
+          "totalShots": "19",
+          "shotsOnTarget": "3",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "586",
+          "totalPasses": "633",
+          "passPct": "0.9",
+          "accurateCrosses": "7",
+          "totalCrosses": "30",
+          "crossPct": "0.2",
+          "totalLongBalls": "26",
+          "accurateLongBalls": "14",
+          "longballPct": "0.5",
+          "blockedShots": "6",
+          "effectiveTackles": "7",
+          "totalTackles": "14",
+          "tacklePct": "0.5",
+          "interceptions": "1",
+          "effectiveClearance": "6",
+          "totalClearance": "6"
+        }
+      },
+      {
+        "team": "Ghana",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "24",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "2",
+          "saves": "3",
+          "possessionPct": "21.1",
+          "totalShots": "2",
+          "shotsOnTarget": "1",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "127",
+          "totalPasses": "172",
+          "passPct": "0.7",
+          "accurateCrosses": "0",
+          "totalCrosses": "5",
+          "crossPct": "0.0",
+          "totalLongBalls": "57",
+          "accurateLongBalls": "24",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "17",
+          "totalTackles": "22",
+          "tacklePct": "0.8",
+          "interceptions": "8",
+          "effectiveClearance": "39",
+          "totalClearance": "39"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "England",
+        "category": "Total Shots",
+        "player": "Elliot Anderson",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "England",
+        "category": "Accurate Passes",
+        "player": "Marc Guéhi",
+        "headshot": null,
+        "value": "126"
+      },
+      {
+        "team": "England",
+        "category": "Defensive Interventions",
+        "player": "Reece James",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Ghana",
+        "category": "Total Shots",
+        "player": "Marvin Senaya",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Ghana",
+        "category": "Accurate Passes",
+        "player": "Thomas Partey",
+        "headshot": null,
+        "value": "23"
+      },
+      {
+        "team": "Ghana",
+        "category": "Defensive Interventions",
+        "player": "Gideon Mensah",
+        "headshot": null,
+        "value": "18"
+      },
+      {
+        "team": "Ghana",
+        "category": "Saves",
+        "player": "Benjamin Asare",
+        "headshot": null,
+        "value": "3"
+      }
+    ]
+  },
+  "c1bc8c26480cd42b89a0de5329581314": {
+    "espn_id": "760460",
+    "fetched_at": "2026-06-24T19:54:11+00:00",
+    "teams": [
+      {
+        "team": "Panama",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "19",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "7",
+          "saves": "1",
+          "possessionPct": "42",
+          "totalShots": "8",
+          "shotsOnTarget": "1",
+          "shotPct": "0.1",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "277",
+          "totalPasses": "352",
+          "passPct": "0.8",
+          "accurateCrosses": "6",
+          "totalCrosses": "31",
+          "crossPct": "0.2",
+          "totalLongBalls": "54",
+          "accurateLongBalls": "25",
+          "longballPct": "0.5",
+          "blockedShots": "2",
+          "effectiveTackles": "5",
+          "totalTackles": "10",
+          "tacklePct": "0.5",
+          "interceptions": "5",
+          "effectiveClearance": "29",
+          "totalClearance": "29"
+        }
+      },
+      {
+        "team": "Croatia",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "12",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "2",
+          "saves": "1",
+          "possessionPct": "58",
+          "totalShots": "6",
+          "shotsOnTarget": "2",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "432",
+          "totalPasses": "512",
+          "passPct": "0.8",
+          "accurateCrosses": "5",
+          "totalCrosses": "18",
+          "crossPct": "0.3",
+          "totalLongBalls": "51",
+          "accurateLongBalls": "19",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "7",
+          "totalTackles": "19",
+          "tacklePct": "0.4",
+          "interceptions": "5",
+          "effectiveClearance": "38",
+          "totalClearance": "38"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Panama",
+        "category": "Total Shots",
+        "player": "Amir Murillo",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/216420.png",
+        "value": "3"
+      },
+      {
+        "team": "Panama",
+        "category": "Accurate Passes",
+        "player": "Édgar Yoel Bárcenas",
+        "headshot": null,
+        "value": "40"
+      },
+      {
+        "team": "Panama",
+        "category": "Defensive Interventions",
+        "player": "José Córdoba",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Panama",
+        "category": "Saves",
+        "player": "Orlando Mosquera",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Croatia",
+        "category": "Total Shots",
+        "player": "Marco Pasalic",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Croatia",
+        "category": "Accurate Passes",
+        "player": "Luka Modric",
+        "headshot": null,
+        "value": "69"
+      },
+      {
+        "team": "Croatia",
+        "category": "Defensive Interventions",
+        "player": "Marin Pongracic",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Croatia",
+        "category": "Saves",
+        "player": "Dominik Livakovic",
+        "headshot": null,
+        "value": "1"
+      }
+    ]
+  },
+  "dfc5202cf1b8ae002cf952cd04f235b9": {
+    "espn_id": "760449",
+    "fetched_at": "2026-06-24T19:54:13+00:00",
+    "teams": [
+      {
+        "team": "Tunisia",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "8",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "3",
+          "saves": "1",
+          "possessionPct": "37.9",
+          "totalShots": "2",
+          "shotsOnTarget": "0",
+          "shotPct": "0.0",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "284",
+          "totalPasses": "354",
+          "passPct": "0.8",
+          "accurateCrosses": "2",
+          "totalCrosses": "10",
+          "crossPct": "0.2",
+          "totalLongBalls": "56",
+          "accurateLongBalls": "16",
+          "longballPct": "0.3",
+          "blockedShots": "1",
+          "effectiveTackles": "16",
+          "totalTackles": "18",
+          "tacklePct": "0.9",
+          "interceptions": "14",
+          "effectiveClearance": "23",
+          "totalClearance": "23"
+        }
+      },
+      {
+        "team": "Japan",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "15",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "5",
+          "saves": "0",
+          "possessionPct": "62.1",
+          "totalShots": "11",
+          "shotsOnTarget": "5",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "521",
+          "totalPasses": "583",
+          "passPct": "0.9",
+          "accurateCrosses": "2",
+          "totalCrosses": "11",
+          "crossPct": "0.2",
+          "totalLongBalls": "32",
+          "accurateLongBalls": "18",
+          "longballPct": "0.6",
+          "blockedShots": "3",
+          "effectiveTackles": "12",
+          "totalTackles": "18",
+          "tacklePct": "0.7",
+          "interceptions": "7",
+          "effectiveClearance": "25",
+          "totalClearance": "25"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Tunisia",
+        "category": "Total Shots",
+        "player": "Hannibal Mejbri",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Accurate Passes",
+        "player": "Montassar Talbi",
+        "headshot": null,
+        "value": "47"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Defensive Interventions",
+        "player": "Omar Rekik",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/303848.png",
+        "value": "11"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Saves",
+        "player": "Aymen Dahmen",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Japan",
+        "category": "Total Shots",
+        "player": "Ayase Ueda",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Japan",
+        "category": "Accurate Passes",
+        "player": "Kou Itakura",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238033.png",
+        "value": "85"
+      },
+      {
+        "team": "Japan",
+        "category": "Defensive Interventions",
+        "player": "Kou Itakura",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238033.png",
+        "value": "12"
+      }
+    ]
+  },
+  "681895f294b670b4c7b14495dfb583bc": {
+    "espn_id": "760446",
+    "fetched_at": "2026-06-24T19:54:14+00:00",
+    "teams": [
+      {
+        "team": "Ecuador",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "9",
+          "saves": "3",
+          "possessionPct": "74.6",
+          "totalShots": "27",
+          "shotsOnTarget": "15",
+          "shotPct": "0.6",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "581",
+          "totalPasses": "644",
+          "passPct": "0.9",
+          "accurateCrosses": "11",
+          "totalCrosses": "33",
+          "crossPct": "0.3",
+          "totalLongBalls": "34",
+          "accurateLongBalls": "14",
+          "longballPct": "0.4",
+          "blockedShots": "2",
+          "effectiveTackles": "11",
+          "totalTackles": "19",
+          "tacklePct": "0.6",
+          "interceptions": "7",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      },
+      {
+        "team": "Curaçao",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "5",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "0",
+          "saves": "15",
+          "possessionPct": "25.4",
+          "totalShots": "10",
+          "shotsOnTarget": "3",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "159",
+          "totalPasses": "227",
+          "passPct": "0.7",
+          "accurateCrosses": "1",
+          "totalCrosses": "1",
+          "crossPct": "1.0",
+          "totalLongBalls": "50",
+          "accurateLongBalls": "15",
+          "longballPct": "0.3",
+          "blockedShots": "3",
+          "effectiveTackles": "7",
+          "totalTackles": "17",
+          "tacklePct": "0.4",
+          "interceptions": "8",
+          "effectiveClearance": "32",
+          "totalClearance": "32"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Ecuador",
+        "category": "Total Shots",
+        "player": "Enner Valencia",
+        "headshot": null,
+        "value": "7"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Accurate Passes",
+        "player": "Moisés Caicedo",
+        "headshot": null,
+        "value": "100"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Defensive Interventions",
+        "player": "Alan Franco",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/262111.png",
+        "value": "12"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Saves",
+        "player": "Hernán Galíndez",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Total Shots",
+        "player": "Livano Comenencia",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Accurate Passes",
+        "player": "Joshua Brenet",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/178433.png",
+        "value": "19"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Defensive Interventions",
+        "player": "Sherel Floranus",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/224786.png",
+        "value": "13"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Saves",
+        "player": "Eloy Room",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/127444.png",
+        "value": "15"
+      }
+    ]
+  },
+  "f1ab0f69832972a329243522ceaa7804": {
+    "espn_id": "760448",
+    "fetched_at": "2026-06-24T19:54:15+00:00",
+    "teams": [
+      {
+        "team": "Germany",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "5",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "8",
+          "saves": "1",
+          "possessionPct": "59.5",
+          "totalShots": "16",
+          "shotsOnTarget": "7",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "555",
+          "totalPasses": "624",
+          "passPct": "0.9",
+          "accurateCrosses": "5",
+          "totalCrosses": "21",
+          "crossPct": "0.2",
+          "totalLongBalls": "31",
+          "accurateLongBalls": "18",
+          "longballPct": "0.6",
+          "blockedShots": "4",
+          "effectiveTackles": "17",
+          "totalTackles": "26",
+          "tacklePct": "0.7",
+          "interceptions": "8",
+          "effectiveClearance": "14",
+          "totalClearance": "14"
+        }
+      },
+      {
+        "team": "Ivory Coast",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "3",
+          "saves": "5",
+          "possessionPct": "40.5",
+          "totalShots": "9",
+          "shotsOnTarget": "2",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "367",
+          "totalPasses": "431",
+          "passPct": "0.9",
+          "accurateCrosses": "5",
+          "totalCrosses": "9",
+          "crossPct": "0.6",
+          "totalLongBalls": "57",
+          "accurateLongBalls": "28",
+          "longballPct": "0.5",
+          "blockedShots": "5",
+          "effectiveTackles": "11",
+          "totalTackles": "20",
+          "tacklePct": "0.6",
+          "interceptions": "13",
+          "effectiveClearance": "26",
+          "totalClearance": "26"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Germany",
+        "category": "Total Shots",
+        "player": "Kai Havertz",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Germany",
+        "category": "Accurate Passes",
+        "player": "Jonathan Tah",
+        "headshot": null,
+        "value": "89"
+      },
+      {
+        "team": "Germany",
+        "category": "Defensive Interventions",
+        "player": "Jonathan Tah",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Germany",
+        "category": "Saves",
+        "player": "Manuel Neuer",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Total Shots",
+        "player": "Franck Kessié",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Accurate Passes",
+        "player": "Emmanuel Agbadou",
+        "headshot": null,
+        "value": "50"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Defensive Interventions",
+        "player": "Emmanuel Agbadou",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Saves",
+        "player": "Yahia Fofana",
+        "headshot": null,
+        "value": "5"
+      }
+    ]
+  },
+  "4f0c518545b0096c68326daf25bffc1e": {
+    "espn_id": "760447",
+    "fetched_at": "2026-06-24T19:54:16+00:00",
+    "teams": [
+      {
+        "team": "Netherlands",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "9",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "2",
+          "saves": "7",
+          "possessionPct": "50.9",
+          "totalShots": "10",
+          "shotsOnTarget": "7",
+          "shotPct": "0.7",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "398",
+          "totalPasses": "449",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "16",
+          "crossPct": "0.2",
+          "totalLongBalls": "35",
+          "accurateLongBalls": "18",
+          "longballPct": "0.5",
+          "blockedShots": "1",
+          "effectiveTackles": "8",
+          "totalTackles": "15",
+          "tacklePct": "0.5",
+          "interceptions": "8",
+          "effectiveClearance": "24",
+          "totalClearance": "24"
+        }
+      },
+      {
+        "team": "Sweden",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "12",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "5",
+          "saves": "2",
+          "possessionPct": "49.1",
+          "totalShots": "16",
+          "shotsOnTarget": "8",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "361",
+          "totalPasses": "425",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "21",
+          "crossPct": "0.1",
+          "totalLongBalls": "30",
+          "accurateLongBalls": "6",
+          "longballPct": "0.2",
+          "blockedShots": "3",
+          "effectiveTackles": "9",
+          "totalTackles": "18",
+          "tacklePct": "0.5",
+          "interceptions": "5",
+          "effectiveClearance": "14",
+          "totalClearance": "14"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Netherlands",
+        "category": "Total Shots",
+        "player": "Cody Gakpo",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/249524.png",
+        "value": "5"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Accurate Passes",
+        "player": "Virgil van Dijk",
+        "headshot": null,
+        "value": "75"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Defensive Interventions",
+        "player": "Virgil van Dijk",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Saves",
+        "player": "Bart Verbruggen",
+        "headshot": null,
+        "value": "7"
+      },
+      {
+        "team": "Sweden",
+        "category": "Total Shots",
+        "player": "Viktor Gyökeres",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Sweden",
+        "category": "Accurate Passes",
+        "player": "Victor Lindelöf",
+        "headshot": null,
+        "value": "56"
+      },
+      {
+        "team": "Sweden",
+        "category": "Defensive Interventions",
+        "player": "Gustaf Lagerbielke",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "Sweden",
+        "category": "Saves",
+        "player": "Kristoffer Nordfeldt",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "ef0f74a991d3e35798ae5af77667bce1": {
+    "espn_id": "760444",
+    "fetched_at": "2026-06-24T19:54:18+00:00",
+    "teams": [
+      {
+        "team": "Brazil",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "8",
+          "wonCorners": "4",
+          "saves": "3",
+          "possessionPct": "56.7",
+          "totalShots": "8",
+          "shotsOnTarget": "5",
+          "shotPct": "0.6",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "462",
+          "totalPasses": "525",
+          "passPct": "0.9",
+          "accurateCrosses": "1",
+          "totalCrosses": "9",
+          "crossPct": "0.1",
+          "totalLongBalls": "44",
+          "accurateLongBalls": "20",
+          "longballPct": "0.5",
+          "blockedShots": "1",
+          "effectiveTackles": "10",
+          "totalTackles": "21",
+          "tacklePct": "0.5",
+          "interceptions": "10",
+          "effectiveClearance": "14",
+          "totalClearance": "14"
+        }
+      },
+      {
+        "team": "Haiti",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "14",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "4",
+          "wonCorners": "4",
+          "saves": "2",
+          "possessionPct": "43.3",
+          "totalShots": "7",
+          "shotsOnTarget": "3",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "332",
+          "totalPasses": "399",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "11",
+          "crossPct": "0.3",
+          "totalLongBalls": "56",
+          "accurateLongBalls": "31",
+          "longballPct": "0.6",
+          "blockedShots": "1",
+          "effectiveTackles": "10",
+          "totalTackles": "16",
+          "tacklePct": "0.6",
+          "interceptions": "9",
+          "effectiveClearance": "22",
+          "totalClearance": "22"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Brazil",
+        "category": "Total Shots",
+        "player": "Vinícius Júnior",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Brazil",
+        "category": "Accurate Passes",
+        "player": "Marquinhos",
+        "headshot": null,
+        "value": "81"
+      },
+      {
+        "team": "Brazil",
+        "category": "Defensive Interventions",
+        "player": "Marquinhos",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Brazil",
+        "category": "Saves",
+        "player": "Alisson Becker",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Haiti",
+        "category": "Total Shots",
+        "player": "Ricardo Adé",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Haiti",
+        "category": "Accurate Passes",
+        "player": "Hannes Delcroix",
+        "headshot": null,
+        "value": "47"
+      },
+      {
+        "team": "Haiti",
+        "category": "Defensive Interventions",
+        "player": "Hannes Delcroix",
+        "headshot": null,
+        "value": "11"
+      },
+      {
+        "team": "Haiti",
+        "category": "Saves",
+        "player": "Johny Placide",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "4cd769aa7bae0ad9762bd69b80ef2903": {
+    "espn_id": "760445",
+    "fetched_at": "2026-06-24T19:54:20+00:00",
+    "teams": [
+      {
+        "team": "Scotland",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "2",
+          "saves": "1",
+          "possessionPct": "41.1",
+          "totalShots": "6",
+          "shotsOnTarget": "0",
+          "shotPct": "0.0",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "388",
+          "totalPasses": "456",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "13",
+          "crossPct": "0.2",
+          "totalLongBalls": "47",
+          "accurateLongBalls": "20",
+          "longballPct": "0.4",
+          "blockedShots": "3",
+          "effectiveTackles": "12",
+          "totalTackles": "20",
+          "tacklePct": "0.6",
+          "interceptions": "9",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      },
+      {
+        "team": "Morocco",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "8",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "5",
+          "saves": "0",
+          "possessionPct": "58.9",
+          "totalShots": "12",
+          "shotsOnTarget": "2",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "600",
+          "totalPasses": "670",
+          "passPct": "0.9",
+          "accurateCrosses": "2",
+          "totalCrosses": "10",
+          "crossPct": "0.2",
+          "totalLongBalls": "44",
+          "accurateLongBalls": "14",
+          "longballPct": "0.3",
+          "blockedShots": "4",
+          "effectiveTackles": "6",
+          "totalTackles": "10",
+          "tacklePct": "0.6",
+          "interceptions": "5",
+          "effectiveClearance": "14",
+          "totalClearance": "14"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Scotland",
+        "category": "Total Shots",
+        "player": "Scott McTominay",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Scotland",
+        "category": "Accurate Passes",
+        "player": "Jack Hendry",
+        "headshot": null,
+        "value": "69"
+      },
+      {
+        "team": "Scotland",
+        "category": "Defensive Interventions",
+        "player": "Lewis Ferguson",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Scotland",
+        "category": "Saves",
+        "player": "Angus Gunn",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Morocco",
+        "category": "Total Shots",
+        "player": "Achraf Hakimi",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Morocco",
+        "category": "Accurate Passes",
+        "player": "Issa Diop",
+        "headshot": null,
+        "value": "79"
+      },
+      {
+        "team": "Morocco",
+        "category": "Defensive Interventions",
+        "player": "Neil El Aynaoui",
+        "headshot": null,
+        "value": "9"
+      }
+    ]
+  },
+  "c375e36f6aeb463f808c6811018cc716": {
+    "espn_id": "760415",
+    "fetched_at": "2026-06-24T19:54:21+00:00",
+    "teams": [
+      {
+        "team": "Mexico",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "12",
+          "yellowCards": "1",
+          "redCards": "1",
+          "offsides": "1",
+          "wonCorners": "3",
+          "saves": "2",
+          "possessionPct": "60.5",
+          "totalShots": "16",
+          "shotsOnTarget": "4",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "467",
+          "totalPasses": "520",
+          "passPct": "0.9",
+          "accurateCrosses": "4",
+          "totalCrosses": "12",
+          "crossPct": "0.3",
+          "totalLongBalls": "48",
+          "accurateLongBalls": "31",
+          "longballPct": "0.6",
+          "blockedShots": "5",
+          "effectiveTackles": "6",
+          "totalTackles": "12",
+          "tacklePct": "0.5",
+          "interceptions": "8",
+          "effectiveClearance": "15",
+          "totalClearance": "15"
+        }
+      },
+      {
+        "team": "South Africa",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "2",
+          "redCards": "2",
+          "offsides": "1",
+          "wonCorners": "1",
+          "saves": "2",
+          "possessionPct": "39.5",
+          "totalShots": "3",
+          "shotsOnTarget": "2",
+          "shotPct": "0.7",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "272",
+          "totalPasses": "334",
+          "passPct": "0.8",
+          "accurateCrosses": "1",
+          "totalCrosses": "8",
+          "crossPct": "0.1",
+          "totalLongBalls": "46",
+          "accurateLongBalls": "17",
+          "longballPct": "0.4",
+          "blockedShots": "0",
+          "effectiveTackles": "7",
+          "totalTackles": "14",
+          "tacklePct": "0.5",
+          "interceptions": "7",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Mexico",
+        "category": "Total Shots",
+        "player": "Julián Quiñones",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Mexico",
+        "category": "Accurate Passes",
+        "player": "Johan Vásquez",
+        "headshot": null,
+        "value": "75"
+      },
+      {
+        "team": "Mexico",
+        "category": "Defensive Interventions",
+        "player": "Jesús Gallardo",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Mexico",
+        "category": "Saves",
+        "player": "Raúl Rangel",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "South Africa",
+        "category": "Total Shots",
+        "player": "Mbekezeli Mbokazi",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "South Africa",
+        "category": "Accurate Passes",
+        "player": "Ime Okon",
+        "headshot": null,
+        "value": "45"
+      },
+      {
+        "team": "South Africa",
+        "category": "Defensive Interventions",
+        "player": "Ime Okon",
+        "headshot": null,
+        "value": "11"
+      },
+      {
+        "team": "South Africa",
+        "category": "Saves",
+        "player": "Ronwen Williams",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "dbf527e7e26a4115a9d9e8d1210f1397": {
+    "espn_id": "760414",
+    "fetched_at": "2026-06-24T19:54:22+00:00",
+    "teams": [
+      {
+        "team": "South Korea",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "9",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "4",
+          "saves": "3",
+          "possessionPct": "61.5",
+          "totalShots": "15",
+          "shotsOnTarget": "6",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "469",
+          "totalPasses": "541",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "12",
+          "crossPct": "0.3",
+          "totalLongBalls": "61",
+          "accurateLongBalls": "30",
+          "longballPct": "0.5",
+          "blockedShots": "4",
+          "effectiveTackles": "4",
+          "totalTackles": "7",
+          "tacklePct": "0.6",
+          "interceptions": "9",
+          "effectiveClearance": "32",
+          "totalClearance": "32"
+        }
+      },
+      {
+        "team": "Czechia",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "16",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "5",
+          "saves": "4",
+          "possessionPct": "38.5",
+          "totalShots": "7",
+          "shotsOnTarget": "4",
+          "shotPct": "0.6",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "230",
+          "totalPasses": "327",
+          "passPct": "0.7",
+          "accurateCrosses": "3",
+          "totalCrosses": "15",
+          "crossPct": "0.2",
+          "totalLongBalls": "69",
+          "accurateLongBalls": "23",
+          "longballPct": "0.3",
+          "blockedShots": "1",
+          "effectiveTackles": "7",
+          "totalTackles": "9",
+          "tacklePct": "0.8",
+          "interceptions": "6",
+          "effectiveClearance": "21",
+          "totalClearance": "21"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "South Korea",
+        "category": "Total Shots",
+        "player": "Son Heung-Min",
+        "headshot": null,
+        "value": "6"
+      },
+      {
+        "team": "South Korea",
+        "category": "Accurate Passes",
+        "player": "Hwang In-Beom",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/280061.png",
+        "value": "73"
+      },
+      {
+        "team": "South Korea",
+        "category": "Defensive Interventions",
+        "player": "Lee Gi-Hyuk",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "South Korea",
+        "category": "Saves",
+        "player": "Kim Seung-Gyu",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Czechia",
+        "category": "Total Shots",
+        "player": "Adam Hlozek",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Czechia",
+        "category": "Accurate Passes",
+        "player": "Ladislav Krejcí",
+        "headshot": null,
+        "value": "31"
+      },
+      {
+        "team": "Czechia",
+        "category": "Defensive Interventions",
+        "player": "Jaroslav Zelený",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Czechia",
+        "category": "Saves",
+        "player": "Matej Kovár",
+        "headshot": null,
+        "value": "4"
+      }
+    ]
+  },
+  "4908343dcd7442f78c7187fe3e59bb5e": {
+    "espn_id": "760419",
+    "fetched_at": "2026-06-24T19:54:23+00:00",
+    "teams": [
+      {
+        "team": "Brazil",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "16",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "6",
+          "saves": "2",
+          "possessionPct": "51.4",
+          "totalShots": "12",
+          "shotsOnTarget": "5",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "449",
+          "totalPasses": "514",
+          "passPct": "0.9",
+          "accurateCrosses": "4",
+          "totalCrosses": "16",
+          "crossPct": "0.3",
+          "totalLongBalls": "36",
+          "accurateLongBalls": "18",
+          "longballPct": "0.5",
+          "blockedShots": "3",
+          "effectiveTackles": "13",
+          "totalTackles": "23",
+          "tacklePct": "0.6",
+          "interceptions": "5",
+          "effectiveClearance": "23",
+          "totalClearance": "23"
+        }
+      },
+      {
+        "team": "Morocco",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "14",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "2",
+          "saves": "4",
+          "possessionPct": "48.6",
+          "totalShots": "14",
+          "shotsOnTarget": "3",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "419",
+          "totalPasses": "486",
+          "passPct": "0.9",
+          "accurateCrosses": "2",
+          "totalCrosses": "15",
+          "crossPct": "0.1",
+          "totalLongBalls": "52",
+          "accurateLongBalls": "17",
+          "longballPct": "0.3",
+          "blockedShots": "6",
+          "effectiveTackles": "18",
+          "totalTackles": "26",
+          "tacklePct": "0.7",
+          "interceptions": "5",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Brazil",
+        "category": "Total Shots",
+        "player": "Raphinha ",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Brazil",
+        "category": "Accurate Passes",
+        "player": "Gabriel Magalhães",
+        "headshot": null,
+        "value": "82"
+      },
+      {
+        "team": "Brazil",
+        "category": "Defensive Interventions",
+        "player": "Gabriel Magalhães",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "Brazil",
+        "category": "Saves",
+        "player": "Alisson Becker",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Morocco",
+        "category": "Total Shots",
+        "player": "Neil El Aynaoui",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Morocco",
+        "category": "Accurate Passes",
+        "player": "Ayyoub Bouaddi",
+        "headshot": null,
+        "value": "60"
+      },
+      {
+        "team": "Morocco",
+        "category": "Defensive Interventions",
+        "player": "Noussair Mazraoui",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/239350.png",
+        "value": "13"
+      },
+      {
+        "team": "Morocco",
+        "category": "Saves",
+        "player": "Yassine Bounou",
+        "headshot": null,
+        "value": "4"
+      }
+    ]
+  },
+  "734293aa9c4f44caba255672edbfbc10": {
+    "espn_id": "760418",
+    "fetched_at": "2026-06-24T19:54:24+00:00",
+    "teams": [
+      {
+        "team": "Haiti",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "23",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "4",
+          "saves": "1",
+          "possessionPct": "53.7",
+          "totalShots": "15",
+          "shotsOnTarget": "2",
+          "shotPct": "0.1",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "367",
+          "totalPasses": "431",
+          "passPct": "0.9",
+          "accurateCrosses": "5",
+          "totalCrosses": "23",
+          "crossPct": "0.2",
+          "totalLongBalls": "59",
+          "accurateLongBalls": "26",
+          "longballPct": "0.4",
+          "blockedShots": "4",
+          "effectiveTackles": "7",
+          "totalTackles": "12",
+          "tacklePct": "0.6",
+          "interceptions": "6",
+          "effectiveClearance": "20",
+          "totalClearance": "20"
+        }
+      },
+      {
+        "team": "Scotland",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "21",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "3",
+          "saves": "2",
+          "possessionPct": "46.3",
+          "totalShots": "9",
+          "shotsOnTarget": "2",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "307",
+          "totalPasses": "374",
+          "passPct": "0.8",
+          "accurateCrosses": "5",
+          "totalCrosses": "14",
+          "crossPct": "0.4",
+          "totalLongBalls": "58",
+          "accurateLongBalls": "30",
+          "longballPct": "0.5",
+          "blockedShots": "2",
+          "effectiveTackles": "5",
+          "totalTackles": "12",
+          "tacklePct": "0.4",
+          "interceptions": "6",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Haiti",
+        "category": "Total Shots",
+        "player": "Frantzdy Pierrot",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Haiti",
+        "category": "Accurate Passes",
+        "player": "Hannes Delcroix",
+        "headshot": null,
+        "value": "66"
+      },
+      {
+        "team": "Haiti",
+        "category": "Defensive Interventions",
+        "player": "Hannes Delcroix",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Haiti",
+        "category": "Saves",
+        "player": "Johny Placide",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Scotland",
+        "category": "Total Shots",
+        "player": "Scott McTominay",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Scotland",
+        "category": "Accurate Passes",
+        "player": "Jack Hendry",
+        "headshot": null,
+        "value": "51"
+      },
+      {
+        "team": "Scotland",
+        "category": "Defensive Interventions",
+        "player": "Lewis Ferguson",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Scotland",
+        "category": "Saves",
+        "player": "Angus Gunn",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "20d270fc8dd64b038c21935ebe50f4e5": {
+    "espn_id": "760422",
+    "fetched_at": "2026-06-24T19:54:25+00:00",
+    "teams": [
+      {
+        "team": "Germany",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "18",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "8",
+          "saves": "1",
+          "possessionPct": "64.6",
+          "totalShots": "26",
+          "shotsOnTarget": "12",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "1",
+          "accuratePasses": "554",
+          "totalPasses": "637",
+          "passPct": "0.9",
+          "accurateCrosses": "5",
+          "totalCrosses": "12",
+          "crossPct": "0.4",
+          "totalLongBalls": "25",
+          "accurateLongBalls": "12",
+          "longballPct": "0.5",
+          "blockedShots": "8",
+          "effectiveTackles": "13",
+          "totalTackles": "19",
+          "tacklePct": "0.7",
+          "interceptions": "12",
+          "effectiveClearance": "8",
+          "totalClearance": "8"
+        }
+      },
+      {
+        "team": "Curaçao",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "1",
+          "saves": "4",
+          "possessionPct": "35.4",
+          "totalShots": "8",
+          "shotsOnTarget": "2",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "282",
+          "totalPasses": "343",
+          "passPct": "0.8",
+          "accurateCrosses": "2",
+          "totalCrosses": "7",
+          "crossPct": "0.3",
+          "totalLongBalls": "44",
+          "accurateLongBalls": "17",
+          "longballPct": "0.4",
+          "blockedShots": "0",
+          "effectiveTackles": "8",
+          "totalTackles": "16",
+          "tacklePct": "0.5",
+          "interceptions": "16",
+          "effectiveClearance": "25",
+          "totalClearance": "25"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Germany",
+        "category": "Total Shots",
+        "player": "Kai Havertz",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Germany",
+        "category": "Accurate Passes",
+        "player": "Nico Schlotterbeck",
+        "headshot": null,
+        "value": "74"
+      },
+      {
+        "team": "Germany",
+        "category": "Defensive Interventions",
+        "player": "Nico Schlotterbeck",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Germany",
+        "category": "Saves",
+        "player": "Manuel Neuer",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Total Shots",
+        "player": "Livano Comenencia",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Accurate Passes",
+        "player": "Leandro Bacuna",
+        "headshot": null,
+        "value": "49"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Defensive Interventions",
+        "player": "Armando Obispo",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/245918.png",
+        "value": "15"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Saves",
+        "player": "Eloy Room",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/127444.png",
+        "value": "4"
+      }
+    ]
+  },
+  "f4703b2c0205482abe404f98926f875d": {
+    "espn_id": "760423",
+    "fetched_at": "2026-06-24T19:54:26+00:00",
+    "teams": [
+      {
+        "team": "Ivory Coast",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "3",
+          "saves": "1",
+          "possessionPct": "48.4",
+          "totalShots": "15",
+          "shotsOnTarget": "4",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "397",
+          "totalPasses": "470",
+          "passPct": "0.8",
+          "accurateCrosses": "2",
+          "totalCrosses": "8",
+          "crossPct": "0.3",
+          "totalLongBalls": "40",
+          "accurateLongBalls": "18",
+          "longballPct": "0.5",
+          "blockedShots": "3",
+          "effectiveTackles": "9",
+          "totalTackles": "14",
+          "tacklePct": "0.6",
+          "interceptions": "11",
+          "effectiveClearance": "29",
+          "totalClearance": "29"
+        }
+      },
+      {
+        "team": "Ecuador",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "6",
+          "saves": "3",
+          "possessionPct": "51.6",
+          "totalShots": "12",
+          "shotsOnTarget": "1",
+          "shotPct": "0.1",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "419",
+          "totalPasses": "492",
+          "passPct": "0.9",
+          "accurateCrosses": "4",
+          "totalCrosses": "14",
+          "crossPct": "0.3",
+          "totalLongBalls": "36",
+          "accurateLongBalls": "11",
+          "longballPct": "0.3",
+          "blockedShots": "3",
+          "effectiveTackles": "15",
+          "totalTackles": "21",
+          "tacklePct": "0.7",
+          "interceptions": "13",
+          "effectiveClearance": "18",
+          "totalClearance": "18"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Ivory Coast",
+        "category": "Total Shots",
+        "player": "Seko Fofana",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Accurate Passes",
+        "player": "Emmanuel Agbadou",
+        "headshot": null,
+        "value": "57"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Defensive Interventions",
+        "player": "Emmanuel Agbadou",
+        "headshot": null,
+        "value": "17"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Saves",
+        "player": "Yahia Fofana",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Total Shots",
+        "player": "John Yeboah",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Accurate Passes",
+        "player": "Willian Pacho",
+        "headshot": null,
+        "value": "72"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Defensive Interventions",
+        "player": "Willian Pacho",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Saves",
+        "player": "Hernán Galíndez",
+        "headshot": null,
+        "value": "3"
+      }
+    ]
+  },
+  "4c39b6c77cab46f4a82fd98337b3b92a": {
+    "espn_id": "760425",
+    "fetched_at": "2026-06-24T19:54:27+00:00",
+    "teams": [
+      {
+        "team": "Netherlands",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "5",
+          "saves": "1",
+          "possessionPct": "59.8",
+          "totalShots": "10",
+          "shotsOnTarget": "6",
+          "shotPct": "0.6",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "463",
+          "totalPasses": "524",
+          "passPct": "0.9",
+          "accurateCrosses": "8",
+          "totalCrosses": "21",
+          "crossPct": "0.4",
+          "totalLongBalls": "35",
+          "accurateLongBalls": "16",
+          "longballPct": "0.5",
+          "blockedShots": "1",
+          "effectiveTackles": "5",
+          "totalTackles": "11",
+          "tacklePct": "0.5",
+          "interceptions": "7",
+          "effectiveClearance": "23",
+          "totalClearance": "23"
+        }
+      },
+      {
+        "team": "Japan",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "4",
+          "saves": "4",
+          "possessionPct": "40.2",
+          "totalShots": "10",
+          "shotsOnTarget": "3",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "286",
+          "totalPasses": "341",
+          "passPct": "0.8",
+          "accurateCrosses": "6",
+          "totalCrosses": "23",
+          "crossPct": "0.3",
+          "totalLongBalls": "36",
+          "accurateLongBalls": "13",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "10",
+          "totalTackles": "11",
+          "tacklePct": "0.9",
+          "interceptions": "4",
+          "effectiveClearance": "32",
+          "totalClearance": "32"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Netherlands",
+        "category": "Total Shots",
+        "player": "Cody Gakpo",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/249524.png",
+        "value": "2"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Accurate Passes",
+        "player": "Virgil van Dijk",
+        "headshot": null,
+        "value": "95"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Defensive Interventions",
+        "player": "Jan Paul van Hecke",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/282583.png",
+        "value": "9"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Saves",
+        "player": "Bart Verbruggen",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Japan",
+        "category": "Total Shots",
+        "player": "Keito Nakamura",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Japan",
+        "category": "Accurate Passes",
+        "player": "Shogo Taniguchi",
+        "headshot": null,
+        "value": "49"
+      },
+      {
+        "team": "Japan",
+        "category": "Defensive Interventions",
+        "player": "Shogo Taniguchi",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "Japan",
+        "category": "Saves",
+        "player": "Zion Suzuki",
+        "headshot": null,
+        "value": "4"
+      }
+    ]
+  },
+  "d87524a6ac0e4d87bb11222ef0c50955": {
+    "espn_id": "760424",
+    "fetched_at": "2026-06-24T19:54:29+00:00",
+    "teams": [
+      {
+        "team": "Sweden",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "4",
+          "saves": "1",
+          "possessionPct": "48.7",
+          "totalShots": "13",
+          "shotsOnTarget": "7",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "278",
+          "totalPasses": "356",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "12",
+          "crossPct": "0.3",
+          "totalLongBalls": "58",
+          "accurateLongBalls": "22",
+          "longballPct": "0.4",
+          "blockedShots": "3",
+          "effectiveTackles": "9",
+          "totalTackles": "14",
+          "tacklePct": "0.6",
+          "interceptions": "6",
+          "effectiveClearance": "23",
+          "totalClearance": "23"
+        }
+      },
+      {
+        "team": "Tunisia",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "8",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "6",
+          "wonCorners": "2",
+          "saves": "1",
+          "possessionPct": "51.3",
+          "totalShots": "6",
+          "shotsOnTarget": "2",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "292",
+          "totalPasses": "371",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "13",
+          "crossPct": "0.2",
+          "totalLongBalls": "53",
+          "accurateLongBalls": "24",
+          "longballPct": "0.5",
+          "blockedShots": "1",
+          "effectiveTackles": "12",
+          "totalTackles": "21",
+          "tacklePct": "0.6",
+          "interceptions": "6",
+          "effectiveClearance": "13",
+          "totalClearance": "13"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Sweden",
+        "category": "Total Shots",
+        "player": "Viktor Gyökeres",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Sweden",
+        "category": "Accurate Passes",
+        "player": "Victor Lindelöf",
+        "headshot": null,
+        "value": "51"
+      },
+      {
+        "team": "Sweden",
+        "category": "Defensive Interventions",
+        "player": "Alexander Bernhardsson",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "Sweden",
+        "category": "Saves",
+        "player": "Kristoffer Nordfeldt",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Total Shots",
+        "player": "Omar Rekik",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/303848.png",
+        "value": "1"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Accurate Passes",
+        "player": "Mohamed Amine Ben Hamida",
+        "headshot": null,
+        "value": "46"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Defensive Interventions",
+        "player": "Mohamed Amine Ben Hamida",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Saves",
+        "player": "Mouhib Chamakh",
+        "headshot": null,
+        "value": "1"
+      }
+    ]
+  },
+  "4d132cc19da84e7f9ede6e76fa0ccc24": {
+    "espn_id": "760426",
+    "fetched_at": "2026-06-24T19:54:30+00:00",
+    "teams": [
+      {
+        "team": "Belgium",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "15",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "2",
+          "saves": "2",
+          "possessionPct": "53.6",
+          "totalShots": "15",
+          "shotsOnTarget": "3",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "391",
+          "totalPasses": "455",
+          "passPct": "0.9",
+          "accurateCrosses": "6",
+          "totalCrosses": "16",
+          "crossPct": "0.4",
+          "totalLongBalls": "30",
+          "accurateLongBalls": "18",
+          "longballPct": "0.6",
+          "blockedShots": "5",
+          "effectiveTackles": "11",
+          "totalTackles": "17",
+          "tacklePct": "0.6",
+          "interceptions": "10",
+          "effectiveClearance": "25",
+          "totalClearance": "25"
+        }
+      },
+      {
+        "team": "Egypt",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "15",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "7",
+          "saves": "3",
+          "possessionPct": "46.4",
+          "totalShots": "14",
+          "shotsOnTarget": "3",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "323",
+          "totalPasses": "398",
+          "passPct": "0.8",
+          "accurateCrosses": "2",
+          "totalCrosses": "13",
+          "crossPct": "0.2",
+          "totalLongBalls": "53",
+          "accurateLongBalls": "20",
+          "longballPct": "0.4",
+          "blockedShots": "7",
+          "effectiveTackles": "17",
+          "totalTackles": "28",
+          "tacklePct": "0.6",
+          "interceptions": "16",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Belgium",
+        "category": "Total Shots",
+        "player": "Kevin De Bruyne",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Belgium",
+        "category": "Accurate Passes",
+        "player": "Nathan Ngoy",
+        "headshot": null,
+        "value": "69"
+      },
+      {
+        "team": "Belgium",
+        "category": "Defensive Interventions",
+        "player": "Brandon Mechele",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Belgium",
+        "category": "Saves",
+        "player": "Thibaut Courtois",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Egypt",
+        "category": "Total Shots",
+        "player": "Omar Marmoush",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Egypt",
+        "category": "Accurate Passes",
+        "player": "Yasser Ibrahim",
+        "headshot": null,
+        "value": "48"
+      },
+      {
+        "team": "Egypt",
+        "category": "Defensive Interventions",
+        "player": "Mohamed Hany",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Egypt",
+        "category": "Saves",
+        "player": "Mostafa Shoubir",
+        "headshot": null,
+        "value": "3"
+      }
+    ]
+  },
+  "f571b44b4d584e8e8c6b08fadbdcd101": {
+    "espn_id": "760427",
+    "fetched_at": "2026-06-24T19:54:31+00:00",
+    "teams": [
+      {
+        "team": "Iran",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "4",
+          "saves": "6",
+          "possessionPct": "48.5",
+          "totalShots": "17",
+          "shotsOnTarget": "4",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "314",
+          "totalPasses": "409",
+          "passPct": "0.8",
+          "accurateCrosses": "6",
+          "totalCrosses": "19",
+          "crossPct": "0.3",
+          "totalLongBalls": "61",
+          "accurateLongBalls": "27",
+          "longballPct": "0.4",
+          "blockedShots": "5",
+          "effectiveTackles": "10",
+          "totalTackles": "17",
+          "tacklePct": "0.6",
+          "interceptions": "11",
+          "effectiveClearance": "27",
+          "totalClearance": "27"
+        }
+      },
+      {
+        "team": "New Zealand",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "8",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "1",
+          "saves": "2",
+          "possessionPct": "51.5",
+          "totalShots": "14",
+          "shotsOnTarget": "8",
+          "shotPct": "0.6",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "376",
+          "totalPasses": "446",
+          "passPct": "0.8",
+          "accurateCrosses": "1",
+          "totalCrosses": "12",
+          "crossPct": "0.1",
+          "totalLongBalls": "40",
+          "accurateLongBalls": "21",
+          "longballPct": "0.5",
+          "blockedShots": "2",
+          "effectiveTackles": "10",
+          "totalTackles": "13",
+          "tacklePct": "0.8",
+          "interceptions": "15",
+          "effectiveClearance": "26",
+          "totalClearance": "26"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Iran",
+        "category": "Total Shots",
+        "player": "Shahriyar Moghanloo",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Iran",
+        "category": "Accurate Passes",
+        "player": "Ali Nemati",
+        "headshot": null,
+        "value": "50"
+      },
+      {
+        "team": "Iran",
+        "category": "Defensive Interventions",
+        "player": "Ali Nemati",
+        "headshot": null,
+        "value": "15"
+      },
+      {
+        "team": "Iran",
+        "category": "Saves",
+        "player": "Alireza Beiranvand",
+        "headshot": null,
+        "value": "6"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Total Shots",
+        "player": "Chris Wood",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Accurate Passes",
+        "player": "Finn Surman",
+        "headshot": null,
+        "value": "51"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Defensive Interventions",
+        "player": "Finn Surman",
+        "headshot": null,
+        "value": "18"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Saves",
+        "player": "Max Crocombe",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "56e9b28a279640e9b657b7447534e21e": {
+    "espn_id": "760428",
+    "fetched_at": "2026-06-24T19:54:33+00:00",
+    "teams": [
+      {
+        "team": "Spain",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "11",
+          "saves": "1",
+          "possessionPct": "74.3",
+          "totalShots": "27",
+          "shotsOnTarget": "7",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "734",
+          "totalPasses": "800",
+          "passPct": "0.9",
+          "accurateCrosses": "6",
+          "totalCrosses": "36",
+          "crossPct": "0.2",
+          "totalLongBalls": "30",
+          "accurateLongBalls": "24",
+          "longballPct": "0.8",
+          "blockedShots": "8",
+          "effectiveTackles": "12",
+          "totalTackles": "13",
+          "tacklePct": "0.9",
+          "interceptions": "6",
+          "effectiveClearance": "7",
+          "totalClearance": "7"
+        }
+      },
+      {
+        "team": "Cape Verde",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "1",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "1",
+          "saves": "7",
+          "possessionPct": "25.7",
+          "totalShots": "6",
+          "shotsOnTarget": "1",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "205",
+          "totalPasses": "278",
+          "passPct": "0.7",
+          "accurateCrosses": "1",
+          "totalCrosses": "4",
+          "crossPct": "0.3",
+          "totalLongBalls": "56",
+          "accurateLongBalls": "19",
+          "longballPct": "0.3",
+          "blockedShots": "2",
+          "effectiveTackles": "11",
+          "totalTackles": "18",
+          "tacklePct": "0.6",
+          "interceptions": "15",
+          "effectiveClearance": "46",
+          "totalClearance": "46"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Spain",
+        "category": "Total Shots",
+        "player": "Mikel Oyarzabal",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Spain",
+        "category": "Accurate Passes",
+        "player": "Rodri ",
+        "headshot": null,
+        "value": "116"
+      },
+      {
+        "team": "Spain",
+        "category": "Defensive Interventions",
+        "player": "Pau Cubarsí",
+        "headshot": null,
+        "value": "6"
+      },
+      {
+        "team": "Spain",
+        "category": "Saves",
+        "player": "Unai Simón",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Cape Verde",
+        "category": "Total Shots",
+        "player": "Kevin Pina",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Cape Verde",
+        "category": "Accurate Passes",
+        "player": "Diney Borges",
+        "headshot": null,
+        "value": "32"
+      },
+      {
+        "team": "Cape Verde",
+        "category": "Defensive Interventions",
+        "player": "Diney Borges",
+        "headshot": null,
+        "value": "18"
+      },
+      {
+        "team": "Cape Verde",
+        "category": "Saves",
+        "player": "Vozinha",
+        "headshot": null,
+        "value": "7"
+      }
+    ]
+  },
+  "5d8976cddab84a9f898321bc565f1bf0": {
+    "espn_id": "760429",
+    "fetched_at": "2026-06-24T19:54:34+00:00",
+    "teams": [
+      {
+        "team": "Saudi Arabia",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "4",
+          "saves": "9",
+          "possessionPct": "33.2",
+          "totalShots": "7",
+          "shotsOnTarget": "3",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "236",
+          "totalPasses": "322",
+          "passPct": "0.7",
+          "accurateCrosses": "3",
+          "totalCrosses": "6",
+          "crossPct": "0.5",
+          "totalLongBalls": "41",
+          "accurateLongBalls": "10",
+          "longballPct": "0.2",
+          "blockedShots": "1",
+          "effectiveTackles": "8",
+          "totalTackles": "11",
+          "tacklePct": "0.7",
+          "interceptions": "9",
+          "effectiveClearance": "43",
+          "totalClearance": "43"
+        }
+      },
+      {
+        "team": "Uruguay",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "6",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "6",
+          "wonCorners": "14",
+          "saves": "2",
+          "possessionPct": "66.8",
+          "totalShots": "27",
+          "shotsOnTarget": "10",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "540",
+          "totalPasses": "612",
+          "passPct": "0.9",
+          "accurateCrosses": "16",
+          "totalCrosses": "47",
+          "crossPct": "0.3",
+          "totalLongBalls": "41",
+          "accurateLongBalls": "24",
+          "longballPct": "0.6",
+          "blockedShots": "7",
+          "effectiveTackles": "2",
+          "totalTackles": "3",
+          "tacklePct": "0.7",
+          "interceptions": "10",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Saudi Arabia",
+        "category": "Total Shots",
+        "player": "Mohamed Kanno",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Accurate Passes",
+        "player": "Mohamed Kanno",
+        "headshot": null,
+        "value": "33"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Defensive Interventions",
+        "player": "Mohamed Kanno",
+        "headshot": null,
+        "value": "11"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Saves",
+        "player": "Mohammed Al-Owais",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Total Shots",
+        "player": "Federico Viñas",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Accurate Passes",
+        "player": "Mathías Olivera",
+        "headshot": null,
+        "value": "99"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Defensive Interventions",
+        "player": "Mathías Olivera",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Saves",
+        "player": "Fernando Muslera",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "bdd98c7838834cc9806d2108d9406490": {
+    "espn_id": "760433",
+    "fetched_at": "2026-06-24T19:54:35+00:00",
+    "teams": [
+      {
+        "team": "Argentina",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "2",
+          "saves": "0",
+          "possessionPct": "47.8",
+          "totalShots": "10",
+          "shotsOnTarget": "6",
+          "shotPct": "0.6",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "504",
+          "totalPasses": "561",
+          "passPct": "0.9",
+          "accurateCrosses": "1",
+          "totalCrosses": "6",
+          "crossPct": "0.2",
+          "totalLongBalls": "32",
+          "accurateLongBalls": "17",
+          "longballPct": "0.5",
+          "blockedShots": "1",
+          "effectiveTackles": "19",
+          "totalTackles": "27",
+          "tacklePct": "0.7",
+          "interceptions": "10",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      },
+      {
+        "team": "Algeria",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "8",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "2",
+          "saves": "3",
+          "possessionPct": "52.2",
+          "totalShots": "7",
+          "shotsOnTarget": "1",
+          "shotPct": "0.0",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "563",
+          "totalPasses": "609",
+          "passPct": "0.9",
+          "accurateCrosses": "1",
+          "totalCrosses": "9",
+          "crossPct": "0.1",
+          "totalLongBalls": "25",
+          "accurateLongBalls": "15",
+          "longballPct": "0.6",
+          "blockedShots": "3",
+          "effectiveTackles": "10",
+          "totalTackles": "17",
+          "tacklePct": "0.6",
+          "interceptions": "8",
+          "effectiveClearance": "12",
+          "totalClearance": "12"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Argentina",
+        "category": "Total Shots",
+        "player": "Lionel Messi",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/45843.png",
+        "value": "6"
+      },
+      {
+        "team": "Argentina",
+        "category": "Accurate Passes",
+        "player": "Cristian Romero",
+        "headshot": null,
+        "value": "65"
+      },
+      {
+        "team": "Argentina",
+        "category": "Defensive Interventions",
+        "player": "Enzo Fernández",
+        "headshot": null,
+        "value": "11"
+      },
+      {
+        "team": "Algeria",
+        "category": "Total Shots",
+        "player": "Farès Chaïbi",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Algeria",
+        "category": "Accurate Passes",
+        "player": "Aïssa Mandi",
+        "headshot": null,
+        "value": "100"
+      },
+      {
+        "team": "Algeria",
+        "category": "Defensive Interventions",
+        "player": "Rayan Aït-Nouri",
+        "headshot": null,
+        "value": "7"
+      },
+      {
+        "team": "Algeria",
+        "category": "Saves",
+        "player": "Luca Zidane",
+        "headshot": null,
+        "value": "3"
+      }
+    ]
+  },
+  "e455f8d9e83248c78445529564e4ac26": {
+    "espn_id": "760431",
+    "fetched_at": "2026-06-24T19:54:35+00:00",
+    "teams": [
+      {
+        "team": "Austria",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "12",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "4",
+          "saves": "3",
+          "possessionPct": "63.2",
+          "totalShots": "11",
+          "shotsOnTarget": "4",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "1",
+          "accuratePasses": "487",
+          "totalPasses": "580",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "17",
+          "crossPct": "0.2",
+          "totalLongBalls": "47",
+          "accurateLongBalls": "18",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "7",
+          "totalTackles": "17",
+          "tacklePct": "0.4",
+          "interceptions": "15",
+          "effectiveClearance": "24",
+          "totalClearance": "24"
+        }
+      },
+      {
+        "team": "Jordan",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "3",
+          "saves": "1",
+          "possessionPct": "36.8",
+          "totalShots": "11",
+          "shotsOnTarget": "4",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "241",
+          "totalPasses": "332",
+          "passPct": "0.7",
+          "accurateCrosses": "3",
+          "totalCrosses": "15",
+          "crossPct": "0.2",
+          "totalLongBalls": "52",
+          "accurateLongBalls": "23",
+          "longballPct": "0.4",
+          "blockedShots": "2",
+          "effectiveTackles": "6",
+          "totalTackles": "15",
+          "tacklePct": "0.4",
+          "interceptions": "12",
+          "effectiveClearance": "39",
+          "totalClearance": "39"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Austria",
+        "category": "Total Shots",
+        "player": "Stefan Posch",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Austria",
+        "category": "Accurate Passes",
+        "player": "Philipp Lienhart",
+        "headshot": null,
+        "value": "79"
+      },
+      {
+        "team": "Austria",
+        "category": "Defensive Interventions",
+        "player": "Philipp Lienhart",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Austria",
+        "category": "Saves",
+        "player": "Alexander Schlager",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Jordan",
+        "category": "Total Shots",
+        "player": "Ali Olwan",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Jordan",
+        "category": "Accurate Passes",
+        "player": "Yazan Al-Arab",
+        "headshot": null,
+        "value": "40"
+      },
+      {
+        "team": "Jordan",
+        "category": "Defensive Interventions",
+        "player": "Yazan Al-Arab",
+        "headshot": null,
+        "value": "17"
+      },
+      {
+        "team": "Jordan",
+        "category": "Saves",
+        "player": "Yazeed Abulaila",
+        "headshot": null,
+        "value": "1"
+      }
+    ]
+  },
+  "9f46b9589d8a499487663bebe6d3253f": {
+    "espn_id": "760432",
+    "fetched_at": "2026-06-24T19:54:36+00:00",
+    "teams": [
+      {
+        "team": "France",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "5",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "6",
+          "saves": "2",
+          "possessionPct": "53.4",
+          "totalShots": "11",
+          "shotsOnTarget": "8",
+          "shotPct": "0.7",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "505",
+          "totalPasses": "575",
+          "passPct": "0.9",
+          "accurateCrosses": "0",
+          "totalCrosses": "9",
+          "crossPct": "0.0",
+          "totalLongBalls": "44",
+          "accurateLongBalls": "20",
+          "longballPct": "0.5",
+          "blockedShots": "2",
+          "effectiveTackles": "14",
+          "totalTackles": "19",
+          "tacklePct": "0.7",
+          "interceptions": "7",
+          "effectiveClearance": "14",
+          "totalClearance": "14"
+        }
+      },
+      {
+        "team": "Senegal",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "9",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "4",
+          "saves": "5",
+          "possessionPct": "46.6",
+          "totalShots": "6",
+          "shotsOnTarget": "2",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "430",
+          "totalPasses": "502",
+          "passPct": "0.9",
+          "accurateCrosses": "1",
+          "totalCrosses": "9",
+          "crossPct": "0.1",
+          "totalLongBalls": "49",
+          "accurateLongBalls": "25",
+          "longballPct": "0.5",
+          "blockedShots": "1",
+          "effectiveTackles": "10",
+          "totalTackles": "14",
+          "tacklePct": "0.7",
+          "interceptions": "8",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "France",
+        "category": "Total Shots",
+        "player": "Kylian Mbappé",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "France",
+        "category": "Accurate Passes",
+        "player": "Dayot Upamecano",
+        "headshot": null,
+        "value": "70"
+      },
+      {
+        "team": "France",
+        "category": "Defensive Interventions",
+        "player": "Dayot Upamecano",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "France",
+        "category": "Saves",
+        "player": "Mike Maignan",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Senegal",
+        "category": "Total Shots",
+        "player": "Ismaïla Sarr",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Senegal",
+        "category": "Accurate Passes",
+        "player": "Moussa Niakhaté",
+        "headshot": null,
+        "value": "76"
+      },
+      {
+        "team": "Senegal",
+        "category": "Defensive Interventions",
+        "player": "El Hadji Malick Diouf",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Senegal",
+        "category": "Saves",
+        "player": "Édouard Mendy",
+        "headshot": null,
+        "value": "5"
+      }
+    ]
+  },
+  "11258e272dda47eb9f0835bd788298d0": {
+    "espn_id": "760434",
+    "fetched_at": "2026-06-24T19:54:37+00:00",
+    "teams": [
+      {
+        "team": "Ghana",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "9",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "4",
+          "wonCorners": "2",
+          "saves": "4",
+          "possessionPct": "38",
+          "totalShots": "7",
+          "shotsOnTarget": "2",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "292",
+          "totalPasses": "352",
+          "passPct": "0.8",
+          "accurateCrosses": "4",
+          "totalCrosses": "16",
+          "crossPct": "0.3",
+          "totalLongBalls": "52",
+          "accurateLongBalls": "30",
+          "longballPct": "0.6",
+          "blockedShots": "1",
+          "effectiveTackles": "9",
+          "totalTackles": "16",
+          "tacklePct": "0.6",
+          "interceptions": "8",
+          "effectiveClearance": "28",
+          "totalClearance": "28"
+        }
+      },
+      {
+        "team": "Panama",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "2",
+          "saves": "2",
+          "possessionPct": "62",
+          "totalShots": "11",
+          "shotsOnTarget": "4",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "503",
+          "totalPasses": "583",
+          "passPct": "0.9",
+          "accurateCrosses": "4",
+          "totalCrosses": "21",
+          "crossPct": "0.2",
+          "totalLongBalls": "70",
+          "accurateLongBalls": "34",
+          "longballPct": "0.5",
+          "blockedShots": "2",
+          "effectiveTackles": "11",
+          "totalTackles": "29",
+          "tacklePct": "0.4",
+          "interceptions": "5",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Ghana",
+        "category": "Total Shots",
+        "player": "Caleb Yirenkyi",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Ghana",
+        "category": "Accurate Passes",
+        "player": "Jonas Adjetey",
+        "headshot": null,
+        "value": "47"
+      },
+      {
+        "team": "Ghana",
+        "category": "Defensive Interventions",
+        "player": "Jonas Adjetey",
+        "headshot": null,
+        "value": "16"
+      },
+      {
+        "team": "Ghana",
+        "category": "Saves",
+        "player": "Benjamin Asare",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Panama",
+        "category": "Total Shots",
+        "player": "Jiovany Ramos",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Panama",
+        "category": "Accurate Passes",
+        "player": "José Córdoba",
+        "headshot": null,
+        "value": "91"
+      },
+      {
+        "team": "Panama",
+        "category": "Defensive Interventions",
+        "player": "Andrés Andrade",
+        "headshot": null,
+        "value": "11"
+      },
+      {
+        "team": "Panama",
+        "category": "Saves",
+        "player": "Orlando Mosquera",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "812cdf49fe5c4c458dafc701cfe05220": {
+    "espn_id": "760437",
+    "fetched_at": "2026-06-24T19:54:37+00:00",
+    "teams": [
+      {
+        "team": "England",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "8",
+          "saves": "3",
+          "possessionPct": "51.7",
+          "totalShots": "22",
+          "shotsOnTarget": "11",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "1",
+          "accuratePasses": "406",
+          "totalPasses": "474",
+          "passPct": "0.9",
+          "accurateCrosses": "6",
+          "totalCrosses": "13",
+          "crossPct": "0.5",
+          "totalLongBalls": "41",
+          "accurateLongBalls": "15",
+          "longballPct": "0.4",
+          "blockedShots": "5",
+          "effectiveTackles": "7",
+          "totalTackles": "9",
+          "tacklePct": "0.8",
+          "interceptions": "7",
+          "effectiveClearance": "16",
+          "totalClearance": "16"
+        }
+      },
+      {
+        "team": "Croatia",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "12",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "2",
+          "saves": "7",
+          "possessionPct": "48.3",
+          "totalShots": "10",
+          "shotsOnTarget": "5",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "381",
+          "totalPasses": "443",
+          "passPct": "0.9",
+          "accurateCrosses": "2",
+          "totalCrosses": "13",
+          "crossPct": "0.2",
+          "totalLongBalls": "42",
+          "accurateLongBalls": "18",
+          "longballPct": "0.4",
+          "blockedShots": "2",
+          "effectiveTackles": "8",
+          "totalTackles": "11",
+          "tacklePct": "0.7",
+          "interceptions": "9",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "England",
+        "category": "Total Shots",
+        "player": "Harry Kane",
+        "headshot": null,
+        "value": "7"
+      },
+      {
+        "team": "England",
+        "category": "Accurate Passes",
+        "player": "Ezri Konsa",
+        "headshot": null,
+        "value": "67"
+      },
+      {
+        "team": "England",
+        "category": "Defensive Interventions",
+        "player": "Elliot Anderson",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "England",
+        "category": "Saves",
+        "player": "Jordan Pickford",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Croatia",
+        "category": "Total Shots",
+        "player": "Petar Sucic",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Croatia",
+        "category": "Accurate Passes",
+        "player": "Josip Sutalo",
+        "headshot": null,
+        "value": "63"
+      },
+      {
+        "team": "Croatia",
+        "category": "Defensive Interventions",
+        "player": "Luka Vuskovic",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "Croatia",
+        "category": "Saves",
+        "player": "Dominik Livakovic",
+        "headshot": null,
+        "value": "7"
+      }
+    ]
+  },
+  "a669ce207ed5486ca3eaeb00d9a04df5": {
+    "espn_id": "760438",
+    "fetched_at": "2026-06-24T19:54:39+00:00",
+    "teams": [
+      {
+        "team": "Czechia",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "12",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "5",
+          "saves": "3",
+          "possessionPct": "38.3",
+          "totalShots": "14",
+          "shotsOnTarget": "3",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "272",
+          "totalPasses": "341",
+          "passPct": "0.8",
+          "accurateCrosses": "7",
+          "totalCrosses": "16",
+          "crossPct": "0.4",
+          "totalLongBalls": "45",
+          "accurateLongBalls": "22",
+          "longballPct": "0.5",
+          "blockedShots": "3",
+          "effectiveTackles": "4",
+          "totalTackles": "12",
+          "tacklePct": "0.3",
+          "interceptions": "9",
+          "effectiveClearance": "22",
+          "totalClearance": "22"
+        }
+      },
+      {
+        "team": "South Africa",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "5",
+          "saves": "2",
+          "possessionPct": "61.7",
+          "totalShots": "17",
+          "shotsOnTarget": "4",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "1",
+          "accuratePasses": "508",
+          "totalPasses": "563",
+          "passPct": "0.9",
+          "accurateCrosses": "4",
+          "totalCrosses": "17",
+          "crossPct": "0.2",
+          "totalLongBalls": "58",
+          "accurateLongBalls": "30",
+          "longballPct": "0.5",
+          "blockedShots": "8",
+          "effectiveTackles": "11",
+          "totalTackles": "20",
+          "tacklePct": "0.6",
+          "interceptions": "9",
+          "effectiveClearance": "24",
+          "totalClearance": "24"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Czechia",
+        "category": "Total Shots",
+        "player": "Ladislav Krejcí",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Czechia",
+        "category": "Accurate Passes",
+        "player": "Ladislav Krejcí",
+        "headshot": null,
+        "value": "45"
+      },
+      {
+        "team": "Czechia",
+        "category": "Defensive Interventions",
+        "player": "Ladislav Krejcí",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "Czechia",
+        "category": "Saves",
+        "player": "Matej Kovár",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "South Africa",
+        "category": "Total Shots",
+        "player": "Mbekezeli Mbokazi",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "South Africa",
+        "category": "Accurate Passes",
+        "player": "Teboho Mokoena",
+        "headshot": null,
+        "value": "93"
+      },
+      {
+        "team": "South Africa",
+        "category": "Defensive Interventions",
+        "player": "Mbekezeli Mbokazi",
+        "headshot": null,
+        "value": "15"
+      },
+      {
+        "team": "South Africa",
+        "category": "Saves",
+        "player": "Ronwen Williams",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "de0c2c404f224176b08b00a7ae3c29ed": {
+    "espn_id": "760440",
+    "fetched_at": "2026-06-24T19:54:40+00:00",
+    "teams": [
+      {
+        "team": "Canada",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "9",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "19",
+          "saves": "0",
+          "possessionPct": "79",
+          "totalShots": "32",
+          "shotsOnTarget": "10",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "515",
+          "totalPasses": "567",
+          "passPct": "0.9",
+          "accurateCrosses": "13",
+          "totalCrosses": "55",
+          "crossPct": "0.2",
+          "totalLongBalls": "16",
+          "accurateLongBalls": "10",
+          "longballPct": "0.6",
+          "blockedShots": "14",
+          "effectiveTackles": "5",
+          "totalTackles": "9",
+          "tacklePct": "0.6",
+          "interceptions": "6",
+          "effectiveClearance": "3",
+          "totalClearance": "3"
+        }
+      },
+      {
+        "team": "Qatar",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "1",
+          "redCards": "2",
+          "offsides": "1",
+          "wonCorners": "1",
+          "saves": "4",
+          "possessionPct": "21",
+          "totalShots": "2",
+          "shotsOnTarget": "0",
+          "shotPct": "0.0",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "104",
+          "totalPasses": "162",
+          "passPct": "0.6",
+          "accurateCrosses": "1",
+          "totalCrosses": "3",
+          "crossPct": "0.3",
+          "totalLongBalls": "54",
+          "accurateLongBalls": "17",
+          "longballPct": "0.3",
+          "blockedShots": "1",
+          "effectiveTackles": "10",
+          "totalTackles": "16",
+          "tacklePct": "0.6",
+          "interceptions": "10",
+          "effectiveClearance": "61",
+          "totalClearance": "61"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Canada",
+        "category": "Total Shots",
+        "player": "Jonathan David",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Canada",
+        "category": "Accurate Passes",
+        "player": "Stephen Eustáquio",
+        "headshot": null,
+        "value": "87"
+      },
+      {
+        "team": "Canada",
+        "category": "Defensive Interventions",
+        "player": "Maxime Crépeau",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/159382.png",
+        "value": "4"
+      },
+      {
+        "team": "Qatar",
+        "category": "Total Shots",
+        "player": "Boualem Khoukhi",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Qatar",
+        "category": "Accurate Passes",
+        "player": "Boualem Khoukhi",
+        "headshot": null,
+        "value": "18"
+      },
+      {
+        "team": "Qatar",
+        "category": "Defensive Interventions",
+        "player": "Boualem Khoukhi",
+        "headshot": null,
+        "value": "21"
+      },
+      {
+        "team": "Qatar",
+        "category": "Saves",
+        "player": "Mahmoud Abunada",
+        "headshot": null,
+        "value": "4"
+      }
+    ]
+  },
+  "0f2aeae6ac8e77223848d23a4ca86b0d": {
+    "espn_id": "760441",
+    "fetched_at": "2026-06-24T19:54:41+00:00",
+    "teams": [
+      {
+        "team": "Mexico",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "9",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "1",
+          "saves": "2",
+          "possessionPct": "42.4",
+          "totalShots": "8",
+          "shotsOnTarget": "4",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "349",
+          "totalPasses": "427",
+          "passPct": "0.8",
+          "accurateCrosses": "4",
+          "totalCrosses": "6",
+          "crossPct": "0.7",
+          "totalLongBalls": "56",
+          "accurateLongBalls": "16",
+          "longballPct": "0.3",
+          "blockedShots": "1",
+          "effectiveTackles": "7",
+          "totalTackles": "14",
+          "tacklePct": "0.5",
+          "interceptions": "6",
+          "effectiveClearance": "20",
+          "totalClearance": "20"
+        }
+      },
+      {
+        "team": "South Korea",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "6",
+          "wonCorners": "2",
+          "saves": "3",
+          "possessionPct": "57.6",
+          "totalShots": "9",
+          "shotsOnTarget": "2",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "488",
+          "totalPasses": "578",
+          "passPct": "0.8",
+          "accurateCrosses": "5",
+          "totalCrosses": "9",
+          "crossPct": "0.6",
+          "totalLongBalls": "64",
+          "accurateLongBalls": "23",
+          "longballPct": "0.4",
+          "blockedShots": "3",
+          "effectiveTackles": "10",
+          "totalTackles": "17",
+          "tacklePct": "0.6",
+          "interceptions": "5",
+          "effectiveClearance": "12",
+          "totalClearance": "12"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Mexico",
+        "category": "Total Shots",
+        "player": "Raúl Jiménez",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Mexico",
+        "category": "Accurate Passes",
+        "player": "Edson Álvarez",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/241627.png",
+        "value": "71"
+      },
+      {
+        "team": "Mexico",
+        "category": "Defensive Interventions",
+        "player": "Edson Álvarez",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/241627.png",
+        "value": "12"
+      },
+      {
+        "team": "Mexico",
+        "category": "Saves",
+        "player": "Raúl Rangel",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "South Korea",
+        "category": "Total Shots",
+        "player": "Lee Kang-In",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "South Korea",
+        "category": "Accurate Passes",
+        "player": "Kim Min-Jae",
+        "headshot": null,
+        "value": "91"
+      },
+      {
+        "team": "South Korea",
+        "category": "Defensive Interventions",
+        "player": "Lee Gi-Hyuk",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "South Korea",
+        "category": "Saves",
+        "player": "Kim Seung-Gyu",
+        "headshot": null,
+        "value": "3"
+      }
+    ]
+  }
+}
