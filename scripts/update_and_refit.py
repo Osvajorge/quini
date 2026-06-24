@@ -98,14 +98,40 @@ def count_completed_wc26() -> int:
     return count
 
 
+MIN_NEW_MATCHES = 2          # refit when at least 2 new matches completed
+MAX_REFIT_AGE_HOURS = 36     # force refit if older than 36h regardless of new matches
+
+
 def needs_refit(current_count: int) -> bool:
     from model.bivariate_poisson import FIT_PATH
     if not FIT_PATH.exists():
+        print("[refit] no fit.pkl → refit required")
         return True
     if not REFIT_STATE.exists():
+        print("[refit] no refit_state → refit required")
         return True
     state = json.load(open(REFIT_STATE))
-    return current_count > state.get("completed_wc26_count", 0)
+    last_count = state.get("completed_wc26_count", 0)
+    delta = current_count - last_count
+
+    # Force refit if too old (catches missed updates / stale fit)
+    last_iso = state.get("refitted_at")
+    if last_iso:
+        try:
+            last_dt = datetime.fromisoformat(last_iso.replace("Z", "+00:00"))
+            age_h = (datetime.now(timezone.utc) - last_dt).total_seconds() / 3600.0
+            if age_h >= MAX_REFIT_AGE_HOURS:
+                print(f"[refit] fit is {age_h:.1f}h old (>{MAX_REFIT_AGE_HOURS}h) → forcing refit")
+                return True
+        except Exception:
+            pass
+
+    if delta >= MIN_NEW_MATCHES:
+        print(f"[refit] {delta} new completed matches since last fit (≥{MIN_NEW_MATCHES}) → refit")
+        return True
+    if delta > 0:
+        print(f"[refit] only {delta} new match(es) (<{MIN_NEW_MATCHES}), waiting for batch")
+    return False
 
 
 def save_refit_state(count: int) -> None:

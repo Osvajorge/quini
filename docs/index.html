@@ -137,11 +137,12 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
   <div class="flex items-center gap-4 sm:gap-6 mb-6 border-b overflow-x-auto" style="border-color:var(--border);">
     <button onclick="setTab('upcoming')" id="tab-upcoming" class="pb-3 text-sm font-medium tab-active cursor-pointer whitespace-nowrap" data-i18n="tab_picks">Picks</button>
-    <button onclick="setTab('groups')" id="tab-groups" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap">Grupos</button>
-    <button onclick="setTab('rankings')" id="tab-rankings" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap">Rankings</button>
+    <button onclick="setTab('groups')" id="tab-groups" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_groups">Grupos</button>
+    <button onclick="setTab('rankings')" id="tab-rankings" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_rankings">Rankings</button>
+    <button onclick="setTab('bracket')" id="tab-bracket" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_bracket">Bracket</button>
     <button onclick="setTab('results')" id="tab-results" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_results">Resultados</button>
     <button onclick="setTab('history')" id="tab-history" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_history">Historial</button>
-    <button onclick="setTab('quiniela')" id="tab-quiniela" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap">Quiniela</button>
+    <button onclick="setTab('quiniela')" id="tab-quiniela" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_quiniela">Quiniela</button>
   </div>
 
   <!-- Search bar — shown on picks + history tabs -->
@@ -168,6 +169,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
   <div id="fixtures-container"></div>
   <div id="groups-container" class="hidden"></div>
   <div id="rankings-container" class="hidden"></div>
+  <div id="bracket-container" class="hidden"></div>
   <div id="results-container" class="hidden"></div>
   <div id="history-container" class="hidden"></div>
   <div id="quiniela-container" class="hidden"></div>
@@ -215,7 +217,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 // ── i18n ──
 const T = {
   es: {
-    tab_picks:'Picks', tab_results:'Resultados', tab_history:'Historial',
+    tab_picks:'Picks', tab_groups:'Grupos', tab_rankings:'Rankings', tab_bracket:'Bracket', tab_results:'Resultados', tab_history:'Historial', tab_quiniela:'Quiniela',
     filter_all:'Todos', filter_bet:'Solo BET', filter_alta:'Confianza ALTA', filter_today:'Hoy',
     header_sub:'Predicciones Mundial 2026',
     hero_title:'Encuentra apuestas de valor en el Mundial',
@@ -247,7 +249,7 @@ const T = {
     quiniela_desc:'Predicciones optimizadas para quiniela, respaldadas por Dixon-Coles.',
   },
   en: {
-    tab_picks:'Picks', tab_results:'Results', tab_history:'Track Record',
+    tab_picks:'Picks', tab_groups:'Groups', tab_rankings:'Rankings', tab_bracket:'Bracket', tab_results:'Results', tab_history:'Track Record', tab_quiniela:'Pool',
     filter_all:'All', filter_bet:'BET only', filter_alta:'HIGH confidence', filter_today:'Today',
     header_sub:'World Cup 2026 Predictions',
     hero_title:'Find value bets in the World Cup',
@@ -412,14 +414,17 @@ function toggleTheme() {
 applyTheme();
 
 // ── Data loading ──
+let PROJECTIONS = null;
 async function loadData() {
   try {
-    const [r1, r2] = await Promise.all([
+    const [r1, r2, r3] = await Promise.all([
       fetch('./data/predictions.json?' + Date.now()),
       fetch('./data/history.json?' + Date.now()).catch(() => null),
+      fetch('./data/projections.json?' + Date.now()).catch(() => null),
     ]);
     DATA = await r1.json();
     if (r2 && r2.ok) HISTORY = await r2.json();
+    if (r3 && r3.ok) PROJECTIONS = await r3.json();
     document.getElementById('loading').classList.add('hidden');
     applyLang();
     renderStats();
@@ -484,7 +489,15 @@ function renderStats() {
     document.getElementById('stat-winrate').textContent = t('no_bets_yet');
   }
   const gen = new Date(DATA.generated_at);
-  document.getElementById('update-time').textContent = `${t('updated')} ${gen.toLocaleString()}`;
+  let upd = `${t('updated')} ${gen.toLocaleString()}`;
+  const rs = DATA.refit_state;
+  if (rs && rs.refitted_at) {
+    const rd = new Date(rs.refitted_at);
+    const ageH = Math.round((Date.now() - rd.getTime()) / 36e5);
+    const ageStr = ageH < 24 ? `${ageH}h` : `${Math.round(ageH/24)}d`;
+    upd += ` · ${LANG === 'es' ? 'modelo reajustado hace' : 'model retuned'} ${ageStr}${LANG === 'es' ? '' : ' ago'}`;
+  }
+  document.getElementById('update-time').textContent = upd;
   renderModelHealth();
 }
 
@@ -810,7 +823,7 @@ async function _tickLive() {
 // ── Tabs & Filters ──
 function setTab(tab) {
   currentTab = tab;
-  ['upcoming','groups','rankings','results','history','quiniela'].forEach(t => {
+  ['upcoming','groups','rankings','bracket','results','history','quiniela'].forEach(t => {
     const btn = document.getElementById('tab-' + t);
     const container = document.getElementById(t === 'upcoming' ? 'fixtures-container' : t + '-container');
     if (btn) btn.className = 'pb-3 text-sm font-medium cursor-pointer whitespace-nowrap ' + (tab === t ? 'tab-active' : 'tab-inactive');
@@ -1007,10 +1020,89 @@ function renderAll() {
   renderFixtures();
   renderGroups();
   renderRankings();
+  renderBracket();
   renderResults();
   renderHistory();
   renderQuiniela();
   applyTooltips();
+}
+
+function renderBracket() {
+  const el = document.getElementById('bracket-container');
+  if (!el) return;
+  const p = PROJECTIONS;
+  if (!p || !p.teams || !p.teams.length) {
+    el.innerHTML = `<div class="text-center py-16 text-sm" style="color:var(--mute);">${LANG==='es'?'Proyecciones no disponibles aún.':'Projections not available yet.'}</div>`;
+    return;
+  }
+  const teams = p.teams; // already sorted by p_win desc
+  const top16 = teams.slice(0, 16);
+  const fmt = v => `${v.toFixed(1)}%`;
+
+  // Bar fill helper
+  const bar = (v, max, color) => `<div class="h-1.5 rounded-full overflow-hidden" style="background:var(--panel2);"><div class="h-full" style="width:${(v/max*100).toFixed(1)}%;background:${color};"></div></div>`;
+
+  const headerCell = (label) => `<th class="text-[10px] font-semibold uppercase tracking-wider py-2 px-2 text-right" style="color:var(--mute);">${label}</th>`;
+  const cell = (v, color) => `<td class="py-2 px-2 text-right font-mono text-xs" style="color:${color};">${fmt(v)}</td>`;
+
+  const rows = top16.map((t, i) => {
+    const isFav = i < 3 ? 'var(--bet)' : i < 8 ? 'var(--alta)' : 'var(--ink)';
+    return `<tr style="border-bottom:1px solid color-mix(in srgb,var(--border) 40%,transparent);">
+      <td class="py-2 pl-3 pr-2 text-xs font-mono w-8" style="color:var(--mute);">${i+1}</td>
+      <td class="py-2 px-2 text-sm font-semibold" style="color:${isFav};">${teamName(t.team) || t.team}</td>
+      <td class="py-2 px-2 text-[10px] font-mono w-12 hidden sm:table-cell" style="color:var(--mute);">${Math.round(t.elo)}</td>
+      ${cell(t.p_r32, 'var(--mute)')}
+      ${cell(t.p_qf, 'var(--ink)')}
+      ${cell(t.p_sf, 'var(--alta)')}
+      ${cell(t.p_f, 'var(--bet)')}
+      <td class="py-2 pr-3 pl-2 text-right font-mono text-sm font-bold w-20" style="color:var(--bet);">${fmt(t.p_win)}</td>
+    </tr>`;
+  }).join('');
+
+  // Hero: top 3 with championship %
+  const top3 = teams.slice(0, 3);
+  const heroCards = top3.map((t, i) => `
+    <div class="rounded-xl p-4 text-center" style="background:color-mix(in srgb,var(--bet) ${i===0?'14':i===1?'9':'5'}%,var(--panel)); border:1px solid color-mix(in srgb,var(--bet) ${i===0?'40':'20'}%,var(--border));">
+      <div class="text-[10px] font-mono uppercase tracking-wider mb-1" style="color:var(--mute);">${i===0?'🥇':i===1?'🥈':'🥉'} ${LANG==='es'?'Favorito':'Favorite'} #${i+1}</div>
+      <div class="text-base font-bold mb-1">${teamName(t.team) || t.team}</div>
+      <div class="text-2xl font-bold font-mono" style="color:var(--bet);">${fmt(t.p_win)}</div>
+      <div class="text-[10px]" style="color:var(--mute);">${LANG==='es'?'campeón':'champion'}</div>
+    </div>`).join('');
+
+  el.innerHTML = `
+    <div class="grid grid-cols-3 gap-3 mb-4">${heroCards}</div>
+    <div class="rounded-xl border overflow-hidden" style="background:var(--panel); border-color:var(--border);">
+      <div class="px-4 py-3" style="border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent);">
+        <div class="flex items-center justify-between flex-wrap gap-2">
+          <div>
+            <h2 class="text-base font-bold">${LANG==='es'?'Proyecciones del torneo':'Tournament projections'}</h2>
+            <p class="text-[11px]" style="color:var(--mute);">${LANG==='es'?'Probabilidad de avanzar por ronda — Monte Carlo':'Probability of advancing per round — Monte Carlo'} (n=${p.n_sims.toLocaleString()})</p>
+          </div>
+          <span class="text-[10px] font-mono px-2 py-1 rounded" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">Elo + BivariatePoisson</span>
+        </div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr style="background:color-mix(in srgb,var(--panel2) 50%,transparent);">
+              <th class="text-[10px] font-semibold uppercase tracking-wider py-2 pl-3 pr-2 text-left" style="color:var(--mute);">#</th>
+              <th class="text-[10px] font-semibold uppercase tracking-wider py-2 px-2 text-left" style="color:var(--mute);">${LANG==='es'?'Selección':'Team'}</th>
+              <th class="text-[10px] font-semibold uppercase tracking-wider py-2 px-2 text-right hidden sm:table-cell" style="color:var(--mute);">Elo</th>
+              ${headerCell('R32')}
+              ${headerCell('QF')}
+              ${headerCell('SF')}
+              ${headerCell(LANG==='es'?'Final':'Final')}
+              <th class="text-[10px] font-semibold uppercase tracking-wider py-2 pl-2 pr-3 text-right" style="color:var(--mute);">${LANG==='es'?'Campeón':'Champ'}</th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>
+    </div>
+    <p class="text-[11px] text-center mt-3" style="color:var(--mute);">
+      ${LANG==='es'?'Simulación retrospectiva de las jornadas restantes del torneo (top 16 mostrados). Bracket aleatorio en KO porque FIFA no publicó el cuadro detallado de WC2026.':'Retrospective sim of remaining group + KO matches (top 16 shown). Random bracket draw used since FIFA has not published the detailed WC2026 bracket.'}
+    </p>
+  `;
 }
 
 function renderRankings() {
@@ -1400,40 +1492,109 @@ function renderResults() {
   }
 
   let html = '<div class="space-y-2">';
-  completed.forEach(f => {
-    const score = f.actual_home !== null ? `${f.actual_home} - ${f.actual_away}` : '? - ?';
-    // Show all individual bet results
-    const allBets = f.bets && f.bets.length ? f.bets : (f.best_bet ? [f.best_bet] : []);
-    let betBadges = '';
-    allBets.forEach(b => {
-      const side = b.side || b.market || '';
-      const won = _sideWon(side, f.actual_home, f.actual_away);
-      betBadges += `<span class="px-2 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb, ${won ? 'var(--bet)' : 'var(--fade)'} 20%, transparent); color:${won ? 'var(--bet)' : 'var(--fade)'};">${won ? 'W' : 'L'} ${b.market || side}</span> `;
-    });
-    // Score hit check
-    let scoreHitBadge = '';
-    if (f.top_scores && f.actual_home !== null) {
-      const hitIdx = f.top_scores.findIndex(ts => ts.home === f.actual_home && ts.away === f.actual_away);
-      if (hitIdx === 0) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? '✓ EXACTO' : '✓ EXACT'}</span>`;
-      else if (hitIdx === 1 || hitIdx === 2) scoreHitBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">#${hitIdx+1}</span>`;
-    }
-    html += `
-      <div class="rounded-lg border px-4 py-3" style="background:var(--panel); border-color:var(--border);">
-        <div class="flex items-center justify-between">
-          <div class="flex-1">
-            <div class="text-sm font-medium">${teamName(f.home)} vs ${teamName(f.away)}</div>
-            <div class="text-xs" style="color:var(--mute);">${new Date(f.commence_time).toLocaleDateString(LANG === 'es' ? 'es' : 'en', {month:'short', day:'numeric'})}</div>
-          </div>
-          <div class="flex items-center gap-2">
-            ${scoreHitBadge}
-            ${betBadges}
-            <div class="text-lg font-bold font-mono">${score}</div>
-          </div>
-        </div>
-      </div>`;
-  });
+  completed.forEach(f => html += _renderMatchSummary(f));
   html += '</div>';
   document.getElementById('results-container').innerHTML = html;
+}
+
+// ── Match summary card (expandable post-game narrative) ──
+function toggleMatchSummary(fid) {
+  const el = document.getElementById(`ms-${fid}`);
+  const arr = document.getElementById(`ms-arr-${fid}`);
+  if (!el || !arr) return;
+  const hidden = el.classList.toggle('hidden');
+  arr.textContent = hidden ? '▸' : '▾';
+}
+
+function _renderMatchSummary(f) {
+  const ah = f.actual_home, aa = f.actual_away;
+  const score = (ah != null && aa != null) ? `${ah}-${aa}` : '?-?';
+  const allBets = f.bets && f.bets.length ? f.bets : (f.best_bet ? [f.best_bet] : []);
+
+  // Bet outcomes
+  let won = 0, lost = 0, profit = 0;
+  const betRows = allBets.map(b => {
+    const side = b.side || b.market || '';
+    const w = _sideWon(side, ah, aa);
+    if (w) { won++; profit += (Number(b.odds || 1) - 1); }
+    else { lost++; profit -= 1; }
+    let desc = LANG === 'es' ? (b.description_es || b.market) : (b.description_en || b.market);
+    if (f.home && f.away) desc = desc.replace(f.home, teamName(f.home)).replace(f.away, teamName(f.away));
+    const c = w ? 'var(--bet)' : 'var(--fade)';
+    return `<div class="flex items-center gap-2 text-xs">
+      <span class="w-4 text-center font-bold" style="color:${c};">${w ? '✓' : '✗'}</span>
+      <span class="flex-1 truncate">${desc}</span>
+      <span class="font-mono text-[10px]" style="color:var(--mute);">+${b.edge ?? 0}% @${Number(b.odds || 0).toFixed(2)}</span>
+    </div>`;
+  }).join('');
+
+  // 1X2 outcome
+  const p1x2 = f.predicted_1x2;
+  const r1x2 = f.result_1x2;
+  const oneX2Label = v => v === '1' ? (LANG === 'es' ? 'Local' : 'Home') : v === '2' ? (LANG === 'es' ? 'Visita' : 'Away') : (LANG === 'es' ? 'Empate' : 'Draw');
+  const oneX2Correct = f.correct_1x2;
+  const oneX2Line = (p1x2 && r1x2)
+    ? (oneX2Correct
+        ? `<span style="color:var(--bet);">✓ ${oneX2Label(r1x2)}</span>`
+        : `<span style="color:var(--fade);">✗ ${LANG === 'es' ? 'predijo' : 'predicted'} ${oneX2Label(p1x2)} → ${oneX2Label(r1x2)}</span>`)
+    : '—';
+
+  // Score hit
+  const sh = f.score_hit;
+  const scoreHitLine = sh === 1
+    ? (LANG === 'es' ? '<span style="color:var(--alta);">✓ marcador EXACTO</span>' : '<span style="color:var(--alta);">✓ EXACT score</span>')
+    : sh === 2 || sh === 3
+      ? `<span style="color:var(--bet);">${LANG === 'es' ? 'top' : 'top'} #${sh}</span>`
+      : `<span style="color:var(--mute);">${LANG === 'es' ? 'fuera de top 3' : 'outside top 3'}</span>`;
+
+  // xG vs actual
+  const totalGoals = (ah ?? 0) + (aa ?? 0);
+  const xgTotal = (f.xg_home ?? 0) + (f.xg_away ?? 0);
+  const xgLine = f.xg_home != null
+    ? `xG <b>${f.xg_home}</b>–<b>${f.xg_away}</b> (${xgTotal.toFixed(2)} esperado vs ${totalGoals} real)`
+    : '';
+
+  // Summary top-line
+  let topBadges = '';
+  if (allBets.length) {
+    const c = profit >= 0 ? 'var(--bet)' : 'var(--fade)';
+    topBadges += `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,${c} 18%,transparent); color:${c};">${won}W-${lost}L · ${profit >= 0 ? '+' : ''}${profit.toFixed(1)}u</span>`;
+  }
+  if (sh === 1) topBadges += ` <span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? '✓ EXACTO' : '✓ EXACT'}</span>`;
+  else if (sh === 2 || sh === 3) topBadges += ` <span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">#${sh}</span>`;
+
+  // Top 3 predicted scores
+  const top3 = (f.top_scores || []).slice(0, 3).map(ts => {
+    const isHit = ts.home === ah && ts.away === aa;
+    return `<span class="font-mono ${isHit ? 'font-bold' : ''}" style="color:${isHit ? 'var(--alta)' : 'var(--ink)'};">${ts.home}-${ts.away}</span> <span style="color:var(--mute);">${ts.prob}%</span>`;
+  }).join(' · ');
+
+  return `
+    <div class="rounded-lg border" style="background:var(--panel); border-color:var(--border);">
+      <button onclick="toggleMatchSummary('${f.id}')" class="w-full text-left px-4 py-3 flex items-center justify-between gap-2" style="background:none;border:none;cursor:pointer;color:inherit;">
+        <div class="flex-1 min-w-0">
+          <div class="text-sm font-medium truncate">${teamName(f.home)} vs ${teamName(f.away)}</div>
+          <div class="text-xs" style="color:var(--mute);">${new Date(f.commence_time).toLocaleDateString(LANG === 'es' ? 'es' : 'en', {month:'short', day:'numeric'})}</div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          ${topBadges}
+          <div class="text-lg font-bold font-mono">${score}</div>
+          <span id="ms-arr-${f.id}" class="text-xs" style="color:var(--mute);">▸</span>
+        </div>
+      </button>
+      <div id="ms-${f.id}" class="hidden px-4 pb-3 space-y-2 text-xs" style="border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent);">
+        <div class="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+          <div><b style="color:var(--ink);">1X2:</b> ${oneX2Line}</div>
+          <div><b style="color:var(--ink);">${LANG === 'es' ? 'Marcador exacto' : 'Exact score'}:</b> ${scoreHitLine}</div>
+          ${xgLine ? `<div class="sm:col-span-2" style="color:var(--mute);">${xgLine}</div>` : ''}
+          ${top3 ? `<div class="sm:col-span-2"><b style="color:var(--ink);">${LANG === 'es' ? 'Top 3 predichos' : 'Top 3 predicted'}:</b> ${top3}</div>` : ''}
+        </div>
+        ${betRows ? `<div class="pt-2 space-y-1" style="border-top:1px solid color-mix(in srgb,var(--border) 30%,transparent);">
+          <div class="text-[10px] font-semibold uppercase tracking-wider mt-2" style="color:var(--mute);">${LANG === 'es' ? 'Apuestas' : 'Bets'}</div>
+          ${betRows}
+        </div>` : ''}
+      </div>
+    </div>`;
 }
 
 function _sideWon(side, ah, aa) {

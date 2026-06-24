@@ -436,6 +436,17 @@ def _model_health(history: dict) -> dict:
     }
 
 
+def _load_refit_state() -> dict:
+    """Returns last refit timestamp + match count for UI freshness display."""
+    path = Path(__file__).resolve().parent.parent / "data" / "refit_state.json"
+    if not path.exists():
+        return {}
+    try:
+        return json.load(open(path))
+    except Exception:
+        return {}
+
+
 def _top_elo_ratings(n: int = 40) -> list[dict]:
     """Top N teams by current Elo — surfaced as a Rankings tab."""
     try:
@@ -521,12 +532,35 @@ def _save_odds_snapshot(fixtures: list[dict]) -> None:
         if not odds_by_side:
             continue
 
+        # Sharp-book odds per side — proxy for "true" / closing line
+        # Priority: Pinnacle > Betfair Exchange > Marathonbet > Bwin
+        sharp_by_side = {}
+        sharp_book_used = None
+        for cmp_row in fx.get("book_comparison", []) or []:
+            book_key = (cmp_row.get("name") or "").lower().replace(" ", "").replace("_", "")
+            for sharp in _SHARP_BOOKS:
+                sk = sharp.replace("_", "")
+                if sk in book_key or book_key.startswith(sk[:6]):
+                    # Found a sharp book — extract its odds for any sides we have
+                    for side in odds_by_side:
+                        v = cmp_row.get(side)
+                        if v and side not in sharp_by_side:
+                            sharp_by_side[side] = round(float(v), 3)
+                    if sharp_by_side and not sharp_book_used:
+                        sharp_book_used = cmp_row.get("name")
+                    break
+            if sharp_by_side and len(sharp_by_side) == len(odds_by_side):
+                break
+
         snap = {
             "ts": ts,
             "commence_time": fx["commence_time"],
             "minutes_until": round((ct - now).total_seconds() / 60.0, 1),
             "odds": odds_by_side,
         }
+        if sharp_by_side:
+            snap["sharp_odds"] = sharp_by_side
+            snap["sharp_book"] = sharp_book_used
         history.setdefault(fx["id"], []).append(snap)
 
     ODDS_HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -534,18 +568,25 @@ def _save_odds_snapshot(fixtures: list[dict]) -> None:
         json.dump(history, f, indent=2)
 
 
-def _closing_odds_for(fixture_id: str, odds_history: dict) -> dict[str, float]:
-    """Return the closest-to-kickoff odds snapshot per side."""
+def _closing_odds_for(fixture_id: str, odds_history: dict, prefer_sharp: bool = True) -> dict[str, float]:
+    """Return the closest-to-kickoff odds snapshot per side.
+
+    prefer_sharp=True (default): prefer sharp-book odds (Pinnacle/Betfair Ex)
+    when available — these are the gold standard for "closing line" because
+    sharp books move slowly and reflect informed money.
+    """
     snaps = odds_history.get(fixture_id, [])
     if not snaps:
         return {}
-    # Find snapshot with smallest positive minutes_until (closest to kickoff)
     pre_kickoff = [s for s in snaps if s.get("minutes_until", -1) >= 0]
     if not pre_kickoff:
-        # fallback: most recent overall
         last = snaps[-1]
+        if prefer_sharp and last.get("sharp_odds"):
+            return last["sharp_odds"]
         return last.get("odds", {})
     closest = min(pre_kickoff, key=lambda s: s["minutes_until"])
+    if prefer_sharp and closest.get("sharp_odds"):
+        return closest["sharp_odds"]
     return closest.get("odds", {})
 
 
@@ -1160,6 +1201,7 @@ def generate():
         "standings": standings,
         "elo_top": _top_elo_ratings(40),
         "model_health": _model_health(_load_history()),
+        "refit_state": _load_refit_state(),
         "fixtures": fixtures,
     }
 
@@ -1188,6 +1230,13 @@ def generate():
         _social()
     except Exception as e:
         print(f"[social] generation skipped: {e}")
+
+    # Tournament Monte Carlo projection
+    try:
+        from tools.simulate_tournament import simulate as _sim_tournament
+        _sim_tournament()
+    except Exception as e:
+        print(f"[sim] tournament projection skipped: {e}")
 
 
 def _side_won(side: str, ah: int, aa: int) -> bool:
