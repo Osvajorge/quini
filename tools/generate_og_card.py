@@ -155,7 +155,7 @@ def generate() -> None:
 
     # Bottom URL
     f_url = _load_font(18)
-    draw.text((60, H - 40), "quini-bzs.pages.dev", font=f_url, fill=MUTE)
+    draw.text((60, H - 40), "kini.bet", font=f_url, fill=MUTE)
 
     img.convert("RGB").save(OUT, "PNG", optimize=True)
     print(f"✓ OG card written: {OUT}")

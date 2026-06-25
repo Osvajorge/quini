@@ -84,7 +84,7 @@ def generate() -> None:
             f"Pick: {pick}\n"
             f"+{edge}% ventaja · @{odds} ({book or 'best book'})\n"
             f"Kelly: {kelly_pct}% banca\n\n"
-            f"Modelo: quini-bzs.pages.dev"
+            f"Modelo: kini.bet"
         )
         if len(twitter) > 280:
             twitter = twitter[:277] + "..."
@@ -96,7 +96,7 @@ def generate() -> None:
             f"📈 +{edge}% ventaja\n"
             f"💰 @{odds} ({book or 'mejor cuota'})\n"
             f"💼 Kelly: {kelly_pct}% de tu banca\n\n"
-            f"Análisis completo: quini-bzs.pages.dev"
+            f"Análisis completo: kini.bet"
         )
 
         # ── Instagram caption ──

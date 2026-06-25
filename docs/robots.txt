@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /data/
 
-Sitemap: https://quini-bzs.pages.dev/sitemap.xml
+Sitemap: https://kini.bet/sitemap.xml
