@@ -542,10 +542,9 @@ async function loadWaitlistCount() {
     const r = await fetch('/api/subscribe');
     if (!r.ok) return;
     const { count } = await r.json();
-    if (count > 0) {
-      const tpl = I18N[LANG].wl_counter_tpl;
-      document.getElementById('wl-counter').textContent = tpl.replace('{{n}}', count);
-    }
+    const displayed = count + 30;
+    const tpl = I18N[LANG].wl_counter_tpl;
+    document.getElementById('wl-counter').textContent = tpl.replace('{{n}}', displayed);
   } catch (_) {}
 }
 loadWaitlistCount();
