@@ -1847,13 +1847,22 @@ let _compareTeams = [];
 
 function _toggleCompareMode() {
   _compareMode = !_compareMode;
-  if (!_compareMode) _compareTeams = [];
+  if (_compareMode) {
+    _compareTeams = _resultsTeamFilter ? [_resultsTeamFilter] : [];
+    _resultsTeamFilter = null;
+  } else {
+    _compareTeams = [];
+  }
   renderResults();
 }
 
 function _addToCompare(team) {
   if (_compareTeams.includes(team) || _compareTeams.length >= 3) return;
   _compareTeams.push(team);
+  const dd = document.getElementById('team-search-dd');
+  if (dd) dd.classList.add('hidden');
+  const inp = document.getElementById('team-search-input');
+  if (inp) inp.value = '';
   _renderResultsContent();
 }
 
@@ -2008,7 +2017,7 @@ function renderResults() {
       const tn = LANG==='es'?(TEAM_ES[t]||t):t;
       return `<div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold" style="background:color-mix(in srgb,${colors[i]} 12%,transparent);color:${colors[i]};border:1px solid color-mix(in srgb,${colors[i]} 30%,transparent);">
         ${TEAM_FLAG[t]||''} ${tn}
-        <button onclick="_removeFromCompare('${t.replace(/'/g,"\\'")}'" style="background:none;border:none;cursor:pointer;color:${colors[i]};padding:0;margin-left:2px;font-size:11px;">✕</button>
+        <button onclick="_removeFromCompare('${t.replace(/'/g,"\\'")}');" style="background:none;border:none;cursor:pointer;color:${colors[i]};padding:0;margin-left:2px;font-size:11px;">✕</button>
       </div>`;
     }).join('')}</div>` : ''}
     <div id="results-body"></div>`;
