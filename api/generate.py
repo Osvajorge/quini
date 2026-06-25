@@ -659,7 +659,7 @@ def _compute_clv(pick_odds: float, closing_odds: float) -> float:
         = (pick / closing - 1) × 100
     """
     if not pick_odds or not closing_odds or closing_odds <= 1.0 or pick_odds <= 1.0:
-        return 0.0
+        return None
     return round((pick_odds / closing_odds - 1) * 100, 2)
 
 
@@ -718,7 +718,8 @@ def _update_history_summary(history: dict) -> None:
     for fx in fixtures:
         for b in fx.get("bets", []):
             v = b.get("clv_pct")
-            if v is not None:
+            # Exclude None and 0.0 — 0.0 was the sentinel for "no closing data" in old bets
+            if v is not None and v != 0.0 and b.get("closing_odds"):
                 clv_values.append(v)
                 if v > 0:
                     clv_pos += 1

@@ -489,7 +489,8 @@ function renderStats() {
   document.getElementById('stat-matches').textContent = `${(m.matches_trained/1000).toFixed(0)}k+`;
   document.getElementById('stat-threshold').textContent = `${m.edge_threshold.toFixed(0)}%`;
   document.getElementById('stat-fixtures').textContent = s.total_fixtures;
-  document.getElementById('stat-bets').textContent = t('bet_signals').replace('{n}', s.total_bets);
+  const _as = _alignedHistoryStats();
+  document.getElementById('stat-bets').textContent = t('bet_signals').replace('{n}', _as.n || s.total_bets);
 
   // Use aligned stats (BET picks only) for header record + winrate
   const as = _alignedHistoryStats();
