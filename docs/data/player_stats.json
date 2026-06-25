@@ -45,6 +45,24 @@
       }
     },
     {
+      "player": "Chris Richards",
+      "team": "United States",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/272585.png",
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 175.0,
+          "max": 91.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 12.0,
+          "max": 12.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Mathías Olivera",
       "team": "Uruguay",
       "headshot": null,
@@ -1203,6 +1221,19 @@
       }
     },
     {
+      "player": "Paul Okon-Engstler",
+      "team": "Australia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 32.0,
+          "max": 32.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Son Heung-Min",
       "team": "South Korea",
       "headshot": null,
@@ -1372,6 +1403,32 @@
       }
     },
     {
+      "player": "Malik Tillman",
+      "team": "United States",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 5.0,
+          "max": 5.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Andrés Cubas",
+      "team": "Paraguay",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/202501.png",
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 25.0,
+          "max": 25.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Thomas Partey",
       "team": "Ghana",
       "headshot": null,
@@ -1511,6 +1568,19 @@
     {
       "player": "Ali Olwan",
       "team": "Jordan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 4.0,
+          "max": 4.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Diego Gómez",
+      "team": "Paraguay",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -1672,6 +1742,19 @@
     {
       "player": "Jean-Ricner Bellegarde",
       "team": "Haiti",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Sergiño Dest",
+      "team": "United States",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -1969,6 +2052,24 @@
         "Total Shots": {
           "total": 1.0,
           "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Alessandro Circati",
+      "team": "Australia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 13.0,
+          "max": 13.0,
           "appearances": 1
         }
       }
@@ -2936,6 +3037,71 @@
         "Defensive Interventions": {
           "total": 19.0,
           "max": 19.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Matt Freese",
+      "team": "United States",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/252974.png",
+      "matches": 1,
+      "categories": {
+        "Saves": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Patrick Beach",
+      "team": "Australia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Saves": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Tyler Adams",
+      "team": "United States",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/222776.png",
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 11.0,
+          "max": 11.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Omar Alderete",
+      "team": "Paraguay",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 13.0,
+          "max": 13.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Orlando Gil",
+      "team": "Paraguay",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Saves": {
+          "total": 3.0,
+          "max": 3.0,
           "appearances": 1
         }
       }

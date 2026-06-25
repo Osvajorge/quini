@@ -5361,5 +5361,262 @@
         "value": "3"
       }
     ]
+  },
+  "065b3573e875f8d23803357f73e5b99e": {
+    "espn_id": "760442",
+    "fetched_at": "2026-06-25T20:25:51+00:00",
+    "teams": [
+      {
+        "team": "United States",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "12",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "7",
+          "saves": "2",
+          "possessionPct": "61.9",
+          "totalShots": "10",
+          "shotsOnTarget": "2",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "444",
+          "totalPasses": "523",
+          "passPct": "0.8",
+          "accurateCrosses": "4",
+          "totalCrosses": "14",
+          "crossPct": "0.3",
+          "totalLongBalls": "59",
+          "accurateLongBalls": "26",
+          "longballPct": "0.4",
+          "blockedShots": "6",
+          "effectiveTackles": "8",
+          "totalTackles": "20",
+          "tacklePct": "0.4",
+          "interceptions": "20",
+          "effectiveClearance": "31",
+          "totalClearance": "31"
+        }
+      },
+      {
+        "team": "Australia",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "16",
+          "yellowCards": "4",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "4",
+          "saves": "1",
+          "possessionPct": "38.1",
+          "totalShots": "5",
+          "shotsOnTarget": "2",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "219",
+          "totalPasses": "310",
+          "passPct": "0.7",
+          "accurateCrosses": "4",
+          "totalCrosses": "19",
+          "crossPct": "0.2",
+          "totalLongBalls": "46",
+          "accurateLongBalls": "19",
+          "longballPct": "0.4",
+          "blockedShots": "0",
+          "effectiveTackles": "11",
+          "totalTackles": "13",
+          "tacklePct": "0.8",
+          "interceptions": "6",
+          "effectiveClearance": "24",
+          "totalClearance": "24"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "United States",
+        "category": "Total Shots",
+        "player": "Sergiño Dest",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "United States",
+        "category": "Accurate Passes",
+        "player": "Chris Richards",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/272585.png",
+        "value": "91"
+      },
+      {
+        "team": "United States",
+        "category": "Defensive Interventions",
+        "player": "Chris Richards",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/272585.png",
+        "value": "12"
+      },
+      {
+        "team": "United States",
+        "category": "Saves",
+        "player": "Matt Freese",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/252974.png",
+        "value": "2"
+      },
+      {
+        "team": "Australia",
+        "category": "Total Shots",
+        "player": "Alessandro Circati",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Australia",
+        "category": "Accurate Passes",
+        "player": "Paul Okon-Engstler",
+        "headshot": null,
+        "value": "32"
+      },
+      {
+        "team": "Australia",
+        "category": "Defensive Interventions",
+        "player": "Alessandro Circati",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Australia",
+        "category": "Saves",
+        "player": "Patrick Beach",
+        "headshot": null,
+        "value": "1"
+      }
+    ]
+  },
+  "b792fff073974ebeb831cc35bad779be": {
+    "espn_id": "760417",
+    "fetched_at": "2026-06-25T20:25:51+00:00",
+    "teams": [
+      {
+        "team": "United States",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "3",
+          "saves": "1",
+          "possessionPct": "65.3",
+          "totalShots": "16",
+          "shotsOnTarget": "6",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "509",
+          "totalPasses": "598",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "19",
+          "crossPct": "0.2",
+          "totalLongBalls": "48",
+          "accurateLongBalls": "26",
+          "longballPct": "0.5",
+          "blockedShots": "4",
+          "effectiveTackles": "7",
+          "totalTackles": "9",
+          "tacklePct": "0.8",
+          "interceptions": "9",
+          "effectiveClearance": "15",
+          "totalClearance": "15"
+        }
+      },
+      {
+        "team": "Paraguay",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "17",
+          "yellowCards": "5",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "1",
+          "saves": "3",
+          "possessionPct": "34.7",
+          "totalShots": "9",
+          "shotsOnTarget": "1",
+          "shotPct": "0.1",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "232",
+          "totalPasses": "319",
+          "passPct": "0.7",
+          "accurateCrosses": "1",
+          "totalCrosses": "5",
+          "crossPct": "0.0",
+          "totalLongBalls": "59",
+          "accurateLongBalls": "20",
+          "longballPct": "0.3",
+          "blockedShots": "5",
+          "effectiveTackles": "16",
+          "totalTackles": "21",
+          "tacklePct": "0.8",
+          "interceptions": "10",
+          "effectiveClearance": "33",
+          "totalClearance": "33"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "United States",
+        "category": "Total Shots",
+        "player": "Malik Tillman",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "United States",
+        "category": "Accurate Passes",
+        "player": "Chris Richards",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/272585.png",
+        "value": "84"
+      },
+      {
+        "team": "United States",
+        "category": "Defensive Interventions",
+        "player": "Tyler Adams",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/222776.png",
+        "value": "11"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Total Shots",
+        "player": "Diego Gómez",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Accurate Passes",
+        "player": "Andrés Cubas",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/202501.png",
+        "value": "25"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Defensive Interventions",
+        "player": "Omar Alderete",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Saves",
+        "player": "Orlando Gil",
+        "headshot": null,
+        "value": "3"
+      }
+    ]
   }
 }

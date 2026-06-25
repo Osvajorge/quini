@@ -3408,8 +3408,8 @@
     "correct_1x2": 31,
     "total_1x2": 44,
     "accuracy_1x2": 70.5,
-    "avg_clv_pct": 0.0,
-    "clv_sample_size": 23,
-    "pct_beating_close": 0.0
+    "avg_clv_pct": null,
+    "clv_sample_size": 0,
+    "pct_beating_close": null
   }
 }
