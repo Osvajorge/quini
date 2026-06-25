@@ -1842,6 +1842,129 @@ function renderFixtureCard(f, featured = false) {
 
 // ── Results tab ──
 let _resultsTeamFilter = null;
+let _compareMode = false;
+let _compareTeams = [];
+
+function _toggleCompareMode() {
+  _compareMode = !_compareMode;
+  if (!_compareMode) _compareTeams = [];
+  renderResults();
+}
+
+function _addToCompare(team) {
+  if (_compareTeams.includes(team) || _compareTeams.length >= 3) return;
+  _compareTeams.push(team);
+  _renderResultsContent();
+}
+
+function _removeFromCompare(team) {
+  _compareTeams = _compareTeams.filter(t => t !== team);
+  _renderResultsContent();
+}
+
+function _teamStats(team, completed) {
+  const matches = completed.filter(f => f.home===team||f.away===team);
+  let gf=0,ga=0,xgf=0,xga=0,w=0,d=0,l=0,shots=0,shotsOn=0,poss=0,possN=0,corners=0,fouls=0,yellows=0,statsN=0;
+  for (const f of matches) {
+    const isHome = f.home===team;
+    const gFor = isHome?(f.actual_home??0):(f.actual_away??0);
+    const gAg  = isHome?(f.actual_away??0):(f.actual_home??0);
+    gf+=gFor; ga+=gAg;
+    xgf+=(isHome?(f.xg_home??0):(f.xg_away??0));
+    xga+=(isHome?(f.xg_away??0):(f.xg_home??0));
+    if(gFor>gAg)w++; else if(gFor===gAg)d++; else l++;
+    if(MATCH_STATS&&MATCH_STATS[f.id]){
+      const tb=MATCH_STATS[f.id].teams?.find(t=>t.side===(isHome?'home':'away'));
+      if(tb?.stats){
+        const s=tb.stats;
+        shots+=parseInt(s.totalShots||s.shotsTotal||0);
+        shotsOn+=parseInt(s.shotsOnTarget||s.shotsOnGoal||0);
+        corners+=parseInt(s.wonCorners||0);
+        fouls+=parseInt(s.foulsCommitted||0);
+        yellows+=parseInt(s.yellowCards||0);
+        const p=parseFloat(s.possessionPct);
+        if(!isNaN(p)){poss+=p;possN++;}
+        statsN++;
+      }
+    }
+  }
+  const n=matches.length;
+  return { n, gf, ga, xgf, xga, w, d, l, pts:w*3+d,
+    shots, shotsOn, corners, fouls, yellows,
+    poss: possN?(poss/possN):null, statsN,
+    avgGf: n?gf/n:0, avgGa: n?ga/n:0,
+    avgShots: statsN?shots/statsN:null,
+    avgShotsOn: statsN?shotsOn/statsN:null,
+    avgCorners: statsN?corners/statsN:null,
+    avgFouls: statsN?fouls/statsN:null };
+}
+
+function _renderCompareView(completed) {
+  const teams = _compareTeams;
+  if (!teams.length) {
+    return `<div class="text-center py-8 text-sm" style="color:var(--mute);">${LANG==='es'?'Agrega equipos arriba para comparar':'Add teams above to compare'}</div>`;
+  }
+  const stats = teams.map(t => ({ team: t, s: _teamStats(t, completed) }));
+  // For each numeric row, find best/worst
+  const rows = [
+    { key:'pts',   lbl:LANG==='es'?'Puntos':'Points',     fmt:v=>v,     higher:true },
+    { key:'n',     lbl:'PJ',                              fmt:v=>v,     higher:false, neutral:true },
+    { key:'gf',    lbl:'GF',                              fmt:v=>v,     higher:true },
+    { key:'ga',    lbl:'GC',                              fmt:v=>v,     higher:false },
+    { key:'avgGf', lbl:LANG==='es'?'GF/PJ':'GF/GM',      fmt:v=>v.toFixed(1), higher:true },
+    { key:'avgGa', lbl:LANG==='es'?'GC/PJ':'GC/GM',      fmt:v=>v.toFixed(1), higher:false },
+    { key:'xgf',   lbl:'xGF',                             fmt:v=>v.toFixed(2), higher:true },
+    { key:'xga',   lbl:'xGC',                             fmt:v=>v.toFixed(2), higher:false },
+    { key:'poss',  lbl:LANG==='es'?'Posesión %':'Poss %', fmt:v=>v!=null?v.toFixed(0)+'%':'—', higher:true },
+    { key:'shots', lbl:LANG==='es'?'Tiros':'Shots',       fmt:v=>v,     higher:true },
+    { key:'avgShots',lbl:LANG==='es'?'Tiros/PJ':'Shots/GM',fmt:v=>v!=null?v.toFixed(1):'—', higher:true },
+    { key:'shotsOn',lbl:LANG==='es'?'A puerta':'On target',fmt:v=>v,    higher:true },
+    { key:'corners',lbl:LANG==='es'?'Córners':'Corners',  fmt:v=>v,     higher:true },
+    { key:'fouls', lbl:LANG==='es'?'Faltas':'Fouls',      fmt:v=>v,     higher:false },
+    { key:'yellows',lbl:LANG==='es'?'Amarillas':'Yellows', fmt:v=>v,    higher:false },
+  ];
+  const colColors = ['var(--bet)', '#818cf8', '#f59e0b'];
+  const colW = teams.length === 1 ? '1fr' : teams.length === 2 ? '1fr 1fr' : '1fr 1fr 1fr';
+
+  // Header
+  const headerCells = teams.map((team, i) => {
+    const tn = LANG==='es'?(TEAM_ES[team]||team):team;
+    const flag = TEAM_FLAG[team]||'';
+    const s = stats[i].s;
+    return `<div class="text-center p-3 relative">
+      <button onclick="_removeFromCompare('${team.replace(/'/g,"\\'")}'" class="absolute top-1 right-1 text-[10px] w-4 h-4 flex items-center justify-center rounded-full" style="background:color-mix(in srgb,var(--mute) 20%,transparent);color:var(--mute);" title="Quitar">✕</button>
+      <div class="text-2xl mb-0.5">${flag}</div>
+      <div class="text-xs font-bold leading-tight">${tn}</div>
+      <div class="text-[10px] mt-1 font-mono font-bold" style="color:${colColors[i]};">${s.pts} pts · ${s.w}${LANG==='es'?'G':'W'}-${s.d}${LANG==='es'?'E':'D'}-${s.l}${LANG==='es'?'P':'L'}</div>
+    </div>`;
+  }).join('');
+
+  // Rows
+  const rowsHtml = rows.map((row, ri) => {
+    const vals = stats.map(({s}) => s[row.key]);
+    const numericVals = vals.filter(v => v != null && !isNaN(v));
+    const best = numericVals.length ? (row.higher ? Math.max(...numericVals) : Math.min(...numericVals)) : null;
+    const worst = numericVals.length ? (row.higher ? Math.min(...numericVals) : Math.max(...numericVals)) : null;
+    const cells = vals.map((v, i) => {
+      const fmtd = v != null && !isNaN(v) ? row.fmt(v) : '—';
+      const isBest = !row.neutral && v!=null && !isNaN(v) && numericVals.length>1 && v===best;
+      const isWorst = !row.neutral && v!=null && !isNaN(v) && numericVals.length>1 && v===worst && best!==worst;
+      const color = isBest ? colColors[i] : isWorst ? 'var(--mute)' : 'var(--ink)';
+      const bg = isBest ? `color-mix(in srgb,${colColors[i]} 10%,transparent)` : 'transparent';
+      return `<div class="text-center py-2 px-1 font-mono text-sm font-semibold rounded" style="color:${color};background:${bg};">${fmtd}${isBest&&numericVals.length>1?' ▲':''}</div>`;
+    }).join('');
+    const bg = ri%2===0 ? 'color-mix(in srgb,var(--panel2) 40%,transparent)' : 'transparent';
+    return `<div class="grid items-center px-3 py-0.5 rounded" style="grid-template-columns:120px ${colW};background:${bg};">
+      <div class="text-[11px]" style="color:var(--mute);">${row.lbl}</div>
+      ${cells}
+    </div>`;
+  }).join('');
+
+  return `<div class="rounded-xl border overflow-hidden" style="background:var(--panel);border-color:var(--border);">
+    <div class="grid border-b" style="grid-template-columns:120px ${colW};border-color:var(--border);">${headerCells}</div>
+    <div class="py-2">${rowsHtml}</div>
+  </div>`;
+}
 
 function renderResults() {
   const completed = DATA.fixtures.filter(f => f.completed);
@@ -1855,19 +1978,38 @@ function renderResults() {
   });
   const optsHtml = teams.map(team => {
     const tn = LANG==='es'?(TEAM_ES[team]||team):team;
-    return `<div class="team-opt px-3 py-2 cursor-pointer text-sm flex items-center gap-2" data-team="${team.replace(/"/g,'&quot;')}" onclick="_selectTeamOpt(this)" style="color:var(--ink);">${TEAM_FLAG[team]||''} ${tn}</div>`;
+    const inCompare = _compareTeams.includes(team);
+    const onclick = _compareMode
+      ? `onclick="_addToCompare('${team.replace(/'/g,"\\'")}')"`
+      : `onclick="_selectTeamOpt(this)"`;
+    const extra = inCompare ? `style="color:var(--bet);font-weight:600;" data-in-compare="1"` : `style="color:var(--ink);"`;
+    return `<div class="team-opt px-3 py-2 cursor-pointer text-sm flex items-center gap-2" data-team="${team.replace(/"/g,'&quot;')}" ${onclick} ${extra}>${TEAM_FLAG[team]||''} ${tn}${inCompare?' ✓':''}</div>`;
   }).join('');
+
+  const compareBtn = `<button onclick="_toggleCompareMode()" class="shrink-0 px-3 py-2.5 rounded-lg text-xs font-semibold" style="${_compareMode ? 'background:color-mix(in srgb,var(--bet) 18%,transparent);color:var(--bet);border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);' : 'background:var(--panel2);color:var(--mute);border:1px solid var(--border);'}">${LANG==='es'?'⚔️ Comparar':'⚔️ Compare'}</button>`;
+
   document.getElementById('results-container').innerHTML = `
-    <div class="mb-4 relative">
-      <input id="team-search-input" type="text" autocomplete="off"
-        placeholder="${LANG==='es'?'Buscar equipo…':'Search team…'}"
-        oninput="_onTeamSearch(this.value)"
-        onfocus="_showTeamDropdown()"
-        class="w-full px-3 py-2.5 rounded-lg text-sm"
-        style="background:var(--panel);border:1px solid var(--border);color:var(--ink);outline:none;padding-right:2rem;"/>
-      <button id="team-search-clear" onclick="_clearTeamFilter()" class="hidden absolute right-2 top-1/2 -translate-y-1/2 text-sm leading-none" style="color:var(--mute);background:none;border:none;cursor:pointer;padding:4px;">✕</button>
-      <div id="team-search-dd" class="hidden absolute z-30 left-0 right-0 mt-1 rounded-lg border overflow-y-auto" style="background:var(--panel);border-color:var(--border);max-height:220px;box-shadow:0 6px 20px var(--shadow);">${optsHtml}</div>
+    <div class="mb-4 flex gap-2">
+      <div class="flex-1 relative">
+        <input id="team-search-input" type="text" autocomplete="off"
+          placeholder="${_compareMode ? (LANG==='es'?'Añadir equipo… (máx 3)':'Add team… (max 3)') : (LANG==='es'?'Buscar equipo…':'Search team…')}"
+          oninput="_onTeamSearch(this.value)"
+          onfocus="_showTeamDropdown()"
+          class="w-full px-3 py-2.5 rounded-lg text-sm"
+          style="background:var(--panel);border:1px solid ${_compareMode ? 'var(--bet)' : 'var(--border)'};color:var(--ink);outline:none;padding-right:2rem;"/>
+        <button id="team-search-clear" onclick="${_compareMode ? '' : '_clearTeamFilter()'}" class="hidden absolute right-2 top-1/2 -translate-y-1/2 text-sm leading-none" style="color:var(--mute);background:none;border:none;cursor:pointer;padding:4px;">✕</button>
+        <div id="team-search-dd" class="hidden absolute z-30 left-0 right-0 mt-1 rounded-lg border overflow-y-auto" style="background:var(--panel);border-color:var(--border);max-height:220px;box-shadow:0 6px 20px var(--shadow);">${optsHtml}</div>
+      </div>
+      ${compareBtn}
     </div>
+    ${_compareMode && _compareTeams.length ? `<div class="flex gap-2 mb-4 flex-wrap">${_compareTeams.map((t,i) => {
+      const colors = ['var(--bet)','#818cf8','#f59e0b'];
+      const tn = LANG==='es'?(TEAM_ES[t]||t):t;
+      return `<div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold" style="background:color-mix(in srgb,${colors[i]} 12%,transparent);color:${colors[i]};border:1px solid color-mix(in srgb,${colors[i]} 30%,transparent);">
+        ${TEAM_FLAG[t]||''} ${tn}
+        <button onclick="_removeFromCompare('${t.replace(/'/g,"\\'")}'" style="background:none;border:none;cursor:pointer;color:${colors[i]};padding:0;margin-left:2px;font-size:11px;">✕</button>
+      </div>`;
+    }).join('')}</div>` : ''}
     <div id="results-body"></div>`;
   _renderResultsContent();
   // Close dropdown on outside click
@@ -1914,6 +2056,7 @@ function _onTeamSearch(val) {
 
 function _selectTeamOpt(el) {
   const team = el.dataset.team;
+  if (_compareMode) { _addToCompare(team); return; }
   const inp = document.getElementById('team-search-input');
   const tn = LANG==='es'?(TEAM_ES[team]||team):team;
   if (inp) inp.value = `${TEAM_FLAG[team]||''} ${tn}`;
@@ -1939,6 +2082,11 @@ function _renderResultsContent() {
   if (!cont) return;
   const completed = DATA.fixtures.filter(f => f.completed);
   completed.sort((a,b) => new Date(b.commence_time) - new Date(a.commence_time));
+
+  if (_compareMode) {
+    cont.innerHTML = _renderCompareView(completed);
+    return;
+  }
 
   if (!_resultsTeamFilter) {
     let html = '<div class="space-y-2">';
