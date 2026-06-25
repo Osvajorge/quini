@@ -16,7 +16,10 @@
 <link rel="alternate" hreflang="es" href="https://kini.bet/" />
 <link rel="alternate" hreflang="en" href="https://kini.bet/?lang=en" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" />
-<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #050a14;
@@ -399,11 +402,11 @@ async function loadStats() {
       const desc = (LANG === 'en' ? (b.description_en || b.market) : (b.description_es || b.market)) || '';
       return `<a href="/app" class="block rounded-xl p-4 card-hover" style="background: var(--panel); border: 1px solid var(--border); text-decoration: none;">
         <div class="text-xs mb-1" style="color: var(--mute);">${dtStr}</div>
-        <div class="font-semibold mb-2 text-sm">${f.home} <span style="color: var(--mute);">vs</span> ${f.away}</div>
+        <div class="font-semibold mb-2 text-sm">${f.home||'—'} <span style="color: var(--mute);">vs</span> ${f.away||'—'}</div>
         <div class="text-xs mb-3" style="color: var(--ink);">${desc}</div>
         <div class="flex items-center justify-between">
-          <span class="text-xs px-2 py-1 rounded font-bold" style="background: rgba(16,185,129,0.15); color: var(--bet2);">+${b.edge}% edge</span>
-          <span class="font-mono font-bold" style="color: var(--bet2);">@ ${Number(b.best_odds || b.odds).toFixed(2)}</span>
+          <span class="text-xs px-2 py-1 rounded font-bold" style="background: rgba(16,185,129,0.15); color: var(--bet2);">+${Number(b.edge||0).toFixed(1)}% edge</span>
+          <span class="font-mono font-bold" style="color: var(--bet2);">@ ${Number(b.best_odds || b.odds || 0).toFixed(2)}</span>
         </div>
       </a>`;
     }).join('');
