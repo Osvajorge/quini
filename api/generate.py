@@ -19,8 +19,33 @@ from quiniela.tournament import risk_adjusted_pick
 
 BASE = "https://api.the-odds-api.com/v4"
 SPORT = "soccer_fifa_world_cup"
-# Odds API may rename the sport key per tournament year; try these in order
+# Resolved at runtime via _resolve_wc_sport(); these are fallback guesses
 SPORT_FALLBACKS = ["soccer_fifa_world_cup_2026", "soccer_world_cup", "soccer_fifa_world_cup"]
+
+_resolved_sport: str | None = None
+
+def _resolve_wc_sport(api_key: str) -> str:
+    """Call /sports to find active WC sport key. Caches result for the run."""
+    global _resolved_sport
+    if _resolved_sport:
+        return _resolved_sport
+    try:
+        r = requests.get(f"{BASE}/sports", params={"apiKey": api_key, "all": "false"}, timeout=20)
+        if r.ok:
+            for s in r.json():
+                key = s.get("key", "")
+                title = s.get("title", "").lower()
+                if ("world cup" in title or "world_cup" in key) and "soccer" in key:
+                    print(f"[sports] found WC sport: key='{key}' title='{s.get('title')}'")
+                    _resolved_sport = key
+                    return key
+            print(f"[sports] no active WC sport found, using default '{SPORT}'")
+        else:
+            print(f"[sports] /sports returned {r.status_code}, using default '{SPORT}'")
+    except Exception as e:
+        print(f"[sports] discovery failed: {e}, using default '{SPORT}'")
+    _resolved_sport = SPORT
+    return SPORT
 OUT = Path(__file__).resolve().parent.parent / "docs" / "data" / "predictions.json"
 HISTORY_PATH = Path(__file__).resolve().parent.parent / "docs" / "data" / "history.json"
 
@@ -86,7 +111,12 @@ def normalize_team(api_name: str) -> str:
 
 
 def fetch_odds(api_key: str) -> list[dict]:
-    for sport in SPORT_FALLBACKS:
+    primary = _resolve_wc_sport(api_key)
+    tried = set()
+    for sport in [primary] + [s for s in SPORT_FALLBACKS if s != primary]:
+        if sport in tried:
+            continue
+        tried.add(sport)
         r = requests.get(
             f"{BASE}/sports/{sport}/odds",
             params={
@@ -97,8 +127,8 @@ def fetch_odds(api_key: str) -> list[dict]:
             },
             timeout=20,
         )
-        if r.status_code == 422:
-            print(f"[odds] sport '{sport}' → 422, trying next key...")
+        if r.status_code in (404, 422):
+            print(f"[odds] sport '{sport}' → {r.status_code}, trying next...")
             continue
         r.raise_for_status()
         remaining = r.headers.get("x-requests-remaining", "?")
@@ -156,14 +186,19 @@ def fetch_standings() -> list[dict]:
 
 
 def fetch_scores(api_key: str, days_from: int = 3) -> list[dict]:
-    for sport in SPORT_FALLBACKS:
+    primary = _resolved_sport or SPORT
+    tried = set()
+    for sport in [primary] + [s for s in SPORT_FALLBACKS if s != primary]:
+        if sport in tried:
+            continue
+        tried.add(sport)
         r = requests.get(
             f"{BASE}/sports/{sport}/scores",
             params={"apiKey": api_key, "daysFrom": days_from},
             timeout=20,
         )
-        if r.status_code == 422:
-            print(f"[scores] sport '{sport}' → 422, trying next key...")
+        if r.status_code in (404, 422):
+            print(f"[scores] sport '{sport}' → {r.status_code}, trying next...")
             continue
         r.raise_for_status()
         remaining = r.headers.get("x-requests-remaining", "?")
