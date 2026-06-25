@@ -1837,19 +1837,202 @@ function renderFixtureCard(f, featured = false) {
 }
 
 // ── Results tab ──
+let _resultsTeamFilter = null;
+
 function renderResults() {
   const completed = DATA.fixtures.filter(f => f.completed);
-  completed.sort((a, b) => new Date(b.commence_time) - new Date(a.commence_time));
-
   if (!completed.length) {
     document.getElementById('results-container').innerHTML = `<div class="text-center py-12 text-sm" style="color:var(--mute);">${t('no_results')}</div>`;
     return;
   }
+  const teams = [...new Set(completed.flatMap(f => [f.home, f.away]))].sort((a,b) => {
+    const na = LANG==='es'?(TEAM_ES[a]||a):a, nb = LANG==='es'?(TEAM_ES[b]||b):b;
+    return na.localeCompare(nb);
+  });
+  const optsHtml = teams.map(team => {
+    const tn = LANG==='es'?(TEAM_ES[team]||team):team;
+    return `<div class="team-opt px-3 py-2 cursor-pointer text-sm flex items-center gap-2" data-team="${team.replace(/"/g,'&quot;')}" onclick="_selectTeamOpt(this)" style="color:var(--ink);">${TEAM_FLAG[team]||''} ${tn}</div>`;
+  }).join('');
+  document.getElementById('results-container').innerHTML = `
+    <div class="mb-4 relative">
+      <input id="team-search-input" type="text" autocomplete="off"
+        placeholder="${LANG==='es'?'Buscar equipo…':'Search team…'}"
+        oninput="_onTeamSearch(this.value)"
+        onfocus="_showTeamDropdown()"
+        class="w-full px-3 py-2.5 rounded-lg text-sm"
+        style="background:var(--panel);border:1px solid var(--border);color:var(--ink);outline:none;padding-right:2rem;"/>
+      <button id="team-search-clear" onclick="_clearTeamFilter()" class="hidden absolute right-2 top-1/2 -translate-y-1/2 text-sm leading-none" style="color:var(--mute);background:none;border:none;cursor:pointer;padding:4px;">✕</button>
+      <div id="team-search-dd" class="hidden absolute z-30 left-0 right-0 mt-1 rounded-lg border overflow-y-auto" style="background:var(--panel);border-color:var(--border);max-height:220px;box-shadow:0 6px 20px var(--shadow);">${optsHtml}</div>
+    </div>
+    <div id="results-body"></div>`;
+  _renderResultsContent();
+  // Close dropdown on outside click
+  setTimeout(() => {
+    document.addEventListener('click', _closeTeamDDOutside, {once:false, capture:false});
+  }, 0);
+}
 
-  let html = '<div class="space-y-2">';
-  completed.forEach(f => html += _renderMatchSummary(f));
-  html += '</div>';
-  document.getElementById('results-container').innerHTML = html;
+function _closeTeamDDOutside(e) {
+  const dd = document.getElementById('team-search-dd');
+  const inp = document.getElementById('team-search-input');
+  if (dd && inp && !dd.contains(e.target) && e.target !== inp) dd.classList.add('hidden');
+}
+
+function _showTeamDropdown() {
+  const dd = document.getElementById('team-search-dd');
+  if (!dd) return;
+  dd.querySelectorAll('.team-opt').forEach(o => o.style.display = '');
+  dd.classList.remove('hidden');
+}
+
+function _onTeamSearch(val) {
+  const q = val.trim().toLowerCase();
+  const dd = document.getElementById('team-search-dd');
+  const clearBtn = document.getElementById('team-search-clear');
+  if (clearBtn) clearBtn.classList.toggle('hidden', !val);
+  if (!dd) return;
+  if (!q) {
+    dd.querySelectorAll('.team-opt').forEach(o => o.style.display = '');
+    dd.classList.remove('hidden');
+    if (_resultsTeamFilter) { _resultsTeamFilter = null; _renderResultsContent(); }
+    return;
+  }
+  let visible = 0;
+  dd.querySelectorAll('.team-opt').forEach(o => {
+    const team = o.dataset.team || '';
+    const tn = LANG==='es'?(TEAM_ES[team]||team):team;
+    const match = team.toLowerCase().includes(q) || tn.toLowerCase().includes(q);
+    o.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+  dd.classList.toggle('hidden', visible === 0);
+}
+
+function _selectTeamOpt(el) {
+  const team = el.dataset.team;
+  const inp = document.getElementById('team-search-input');
+  const tn = LANG==='es'?(TEAM_ES[team]||team):team;
+  if (inp) inp.value = `${TEAM_FLAG[team]||''} ${tn}`;
+  const clearBtn = document.getElementById('team-search-clear');
+  if (clearBtn) clearBtn.classList.remove('hidden');
+  const dd = document.getElementById('team-search-dd');
+  if (dd) dd.classList.add('hidden');
+  _resultsTeamFilter = team;
+  _renderResultsContent();
+}
+
+function _clearTeamFilter() {
+  _resultsTeamFilter = null;
+  const inp = document.getElementById('team-search-input');
+  if (inp) { inp.value = ''; inp.focus(); }
+  document.getElementById('team-search-clear')?.classList.add('hidden');
+  _showTeamDropdown();
+  _renderResultsContent();
+}
+
+function _renderResultsContent() {
+  const cont = document.getElementById('results-body');
+  if (!cont) return;
+  const completed = DATA.fixtures.filter(f => f.completed);
+  completed.sort((a,b) => new Date(b.commence_time) - new Date(a.commence_time));
+
+  if (!_resultsTeamFilter) {
+    let html = '<div class="space-y-2">';
+    completed.forEach(f => html += _renderMatchSummary(f));
+    cont.innerHTML = html + '</div>';
+    return;
+  }
+
+  const team = _resultsTeamFilter;
+  const teamMatches = completed.filter(f => f.home===team||f.away===team);
+  teamMatches.sort((a,b) => new Date(a.commence_time) - new Date(b.commence_time));
+
+  // Aggregate
+  let gf=0,ga=0,xgf=0,xga=0,w=0,d=0,l=0;
+  let shots=0,shotsOn=0,poss=0,possN=0,corners=0,fouls=0,yellows=0,statsN=0;
+  for (const f of teamMatches) {
+    const isHome = f.home===team;
+    const goalsFor  = isHome?(f.actual_home??0):(f.actual_away??0);
+    const goalsAg   = isHome?(f.actual_away??0):(f.actual_home??0);
+    gf+=goalsFor; ga+=goalsAg;
+    xgf+=(isHome?(f.xg_home??0):(f.xg_away??0));
+    xga+=(isHome?(f.xg_away??0):(f.xg_home??0));
+    if(goalsFor>goalsAg)w++; else if(goalsFor===goalsAg)d++; else l++;
+    if(MATCH_STATS&&MATCH_STATS[f.id]){
+      const ms=MATCH_STATS[f.id];
+      const side=isHome?'home':'away';
+      const tb=ms.teams?.find(t=>t.side===side);
+      if(tb?.stats){
+        const s=tb.stats;
+        shots+=parseInt(s.totalShots||s.shotsTotal||0);
+        shotsOn+=parseInt(s.shotsOnTarget||s.shotsOnGoal||0);
+        corners+=parseInt(s.wonCorners||0);
+        fouls+=parseInt(s.foulsCommitted||0);
+        yellows+=parseInt(s.yellowCards||0);
+        const p=parseFloat(s.possessionPct);
+        if(!isNaN(p)){poss+=p;possN++;}
+        statsN++;
+      }
+    }
+  }
+  const n=teamMatches.length, pts=w*3+d;
+  const flag=TEAM_FLAG[team]||'';
+  const tn=LANG==='es'?(TEAM_ES[team]||team):team;
+  const xgdiff=xgf-xga;
+  const xgdiffStr=(xgdiff>=0?'+':'')+xgdiff.toFixed(2);
+  const hasStats = statsN > 0;
+  const avg = (v, dec=1) => statsN ? (v/statsN).toFixed(dec) : '—';
+  const avgPoss = possN ? (poss/possN).toFixed(0)+'%' : '—';
+  // stat row helper: label | total | avg/partido
+  const sRow = (label, total, avgVal, color='var(--ink)') =>
+    `<div class="flex items-center py-1.5" style="border-bottom:1px solid color-mix(in srgb,var(--border) 40%,transparent);">
+      <span class="text-[11px] flex-1" style="color:var(--mute);">${label}</span>
+      <span class="text-[11px] font-mono w-10 text-right font-semibold" style="color:${color};">${total}</span>
+      <span class="text-[10px] font-mono w-10 text-right" style="color:var(--mute);">${avgVal}</span>
+    </div>`;
+  const xgBar=xgf+xga>0?`<div class="flex items-center gap-2 pt-2 text-[10px]">
+    <span style="color:var(--bet);">xGF ${xgf.toFixed(2)}</span>
+    <div class="flex-1 flex rounded-full overflow-hidden" style="height:3px;">
+      <div style="width:${(xgf/(xgf+xga)*100).toFixed(0)}%;background:var(--bet);"></div>
+      <div style="flex:1;background:var(--fade);opacity:0.4;"></div>
+    </div>
+    <span style="color:var(--fade);">xGC ${xga.toFixed(2)}</span>
+  </div>`:'';
+
+  cont.innerHTML = `
+    <div class="rounded-xl border p-4 mb-4" style="background:var(--panel);border-color:var(--border);">
+      <!-- header -->
+      <div class="flex items-start gap-3 mb-4">
+        <span class="text-3xl leading-none">${flag}</span>
+        <div class="flex-1">
+          <div class="text-xl font-bold">${tn}</div>
+          <div class="text-xs mt-0.5" style="color:var(--mute);">${n} ${LANG==='es'?'partidos':'matches'} · WC 2026</div>
+        </div>
+        <div class="text-right shrink-0">
+          <div class="text-2xl font-bold font-mono">${pts} <span class="text-xs font-normal" style="color:var(--mute);">pts</span></div>
+          <div class="text-xs font-mono mt-0.5" style="color:var(--mute);">${w}${LANG==='es'?'G':'W'}-${d}${LANG==='es'?'E':'D'}-${l}${LANG==='es'?'P':'L'}</div>
+        </div>
+      </div>
+      <!-- stat table -->
+      <div class="rounded-lg px-3 pt-1 pb-0" style="background:var(--panel2);">
+        <div class="flex items-center pb-1 mb-0.5" style="border-bottom:1px solid var(--border);">
+          <span class="text-[9px] font-semibold uppercase tracking-wider flex-1" style="color:var(--mute);">${LANG==='es'?'Estadística':'Stat'}</span>
+          <span class="text-[9px] font-semibold uppercase tracking-wider w-10 text-right" style="color:var(--mute);">${LANG==='es'?'Total':'Total'}</span>
+          <span class="text-[9px] font-semibold uppercase tracking-wider w-10 text-right" style="color:var(--mute);">/${LANG==='es'?'PJ':'GM'}</span>
+        </div>
+        ${sRow(LANG==='es'?'Goles a favor':'Goals scored', gf, n?(gf/n).toFixed(1):'—', 'var(--bet)')}
+        ${sRow(LANG==='es'?'Goles en contra':'Goals conceded', ga, n?(ga/n).toFixed(1):'—', ga>gf?'var(--fade)':'var(--ink)')}
+        ${hasStats?sRow(LANG==='es'?'Posesión %':'Possession %', avgPoss, avgPoss, 'var(--ink)'):''}
+        ${hasStats?sRow(LANG==='es'?'Tiros totales':'Shots', shots, avg(shots)):''}
+        ${hasStats?sRow(LANG==='es'?'A puerta':'On target', shotsOn, avg(shotsOn)):''}
+        ${hasStats?sRow(LANG==='es'?'Córners':'Corners', corners, avg(corners)):''}
+        ${hasStats?sRow(LANG==='es'?'Faltas':'Fouls', fouls, avg(fouls)):''}
+        ${hasStats?sRow(LANG==='es'?'Amarillas':'Yellows', yellows, avg(yellows, 2), yellows>0?'#ca8a04':'var(--ink)'):''}
+        ${xgBar?`<div class="py-1.5">${xgBar}</div>`:''}
+      </div>
+    </div>
+    <div class="text-[10px] font-semibold uppercase tracking-wider mb-2" style="color:var(--mute);">${LANG==='es'?'Partidos':'Matches'}</div>
+    <div class="space-y-2">${teamMatches.map(f=>_renderMatchSummary(f)).join('')}</div>`;
 }
 
 // ── Match summary card (expandable post-game narrative) ──
