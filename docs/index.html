@@ -519,8 +519,12 @@ function renderStats() {
 }
 
 function renderModelHealth() {
+  // Internal metric — not shown to users
+  const el = document.getElementById('model-health-banner');
+  if (el) el.remove();
+  return;
   const h = DATA && DATA.model_health;
-  let el = document.getElementById('model-health-banner');
+  let el2 = document.getElementById('model-health-banner');
   if (!h) { if (el) el.remove(); return; }
   if (!el) {
     el = document.createElement('div');
@@ -2494,7 +2498,7 @@ function _alignedHistoryStats() {
 
 // Replays the historical bet sequence with 3 stake strategies:
 // flat (€1 per bet), Kelly (qtr-Kelly with cap), value (proportional to edge)
-let _bankSettings = { initial: 1000, strategy: 'kelly', market: 'all', modelOnly: 'current' };
+let _bankSettings = { initial: 1000, strategy: 'kelly', market: 'all', modelOnly: 'all' };
 
 function setBankrollInitial(v) {
   const n = parseFloat(v);
@@ -2566,11 +2570,17 @@ function _simulateBankroll(initial, strategy, marketFilter, modelOnly) {
     if (strategy === 'flat') {
       stakePct = 0.01; // 1% of initial bank flat
     } else if (strategy === 'kelly') {
-      const p = bet.model_prob || 0.5;
-      const b_ = bet.odds - 1;
-      if (b_ > 0 && p > 0) {
-        const f = (b_ * p - (1 - p)) / b_;
-        stakePct = Math.max(0, Math.min(f * 0.25, 0.05));
+      if (bet.model_prob) {
+        const p = bet.model_prob;
+        const b_ = bet.odds - 1;
+        if (b_ > 0 && p > 0) {
+          const f = (b_ * p - (1 - p)) / b_;
+          stakePct = Math.max(0, Math.min(f * 0.25, 0.05));
+        }
+      } else {
+        // No model_prob: edge-based quarter-Kelly (edge/100 * 0.25, cap 5%)
+        const edgeFrac = Number(bet.edge || 0) / 100;
+        if (edgeFrac > 0) stakePct = Math.min(edgeFrac * 0.25, 0.05);
       }
     } else if (strategy === 'value') {
       stakePct = Math.max(0, Math.min(bet.edge / 100 * 0.5, 0.04));
@@ -2629,25 +2639,12 @@ function _renderBankrollSim(s) {
           </div>
         </div>
       </div>
-      <div class="mt-3 pt-3" style="border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent);">
-        <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Modelo':'Model'}</label>
-        <div class="flex gap-1.5">
-          ${[['current', LANG==='es'?'ACTUAL (v2)':'CURRENT (v2)'],['all', LANG==='es'?'BACKTEST ALINEADO':'ALIGNED BACKTEST']].map(([m, lbl]) => `
-            <button onclick="setBankrollModel('${m}')" class="flex-1 px-3 py-2 rounded-lg text-[10px] font-semibold uppercase tracking-wider"
-              style="${_bankSettings.modelOnly === m
-                ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
-                : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${lbl}</button>`).join('')}
-        </div>
-        <div class="text-[10px] mt-1.5" style="color:var(--mute);">
-          ${LANG==='es' ? 'ACTUAL: solo apuestas v2 (modelo alineado). BACKTEST: historial legacy filtrado igual que v2 → simula el +5.1% ROI del backtest.' : 'CURRENT: v2 bets only (aligned model). BACKTEST: legacy history filtered same as v2 → simulates the +5.1% ROI backtest.'}
-        </div>
-      </div>
       <div class="text-xs mt-3 leading-relaxed" style="color:var(--mute);">
         ${_bankSettings.strategy === 'kelly'
-          ? (LANG==='es' ? '🎯 <b>Kelly</b>: stake óptimo basado en probabilidad y cuota. Quarter-Kelly capped al 5% — reduce varianza vs Kelly completo.' : '🎯 <b>Kelly</b>: optimal stake from probability × odds. Quarter-Kelly capped at 5% — lower variance than full Kelly.')
+          ? (LANG==='es' ? '🎯 <b>Kelly</b>: stake óptimo basado en ventaja y cuota. Quarter-Kelly con tope 5% — reduce varianza.' : '🎯 <b>Kelly</b>: optimal stake from edge × odds. Quarter-Kelly capped at 5% — lower variance.')
           : _bankSettings.strategy === 'flat'
           ? (LANG==='es' ? '💵 <b>Flat</b>: 1% de la banca inicial por apuesta. Conservador y simple.' : '💵 <b>Flat</b>: 1% of initial bankroll per bet. Conservative and simple.')
-          : (LANG==='es' ? '⚡ <b>Value</b>: stake proporcional al edge (cap 4%). Apuestas con más ventaja se llevan más banca.' : '⚡ <b>Value</b>: stake scales with edge (cap 4%). Bigger edge = bigger stake.')}
+          : (LANG==='es' ? '⚡ <b>Value</b>: stake proporcional al edge (tope 4%). Más ventaja = más banca.' : '⚡ <b>Value</b>: stake scales with edge (cap 4%). Bigger edge = bigger stake.')}
       </div>
     </div>`;
 
