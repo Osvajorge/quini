@@ -112,29 +112,35 @@ def normalize_team(api_name: str) -> str:
 
 def fetch_odds(api_key: str) -> list[dict]:
     primary = _resolve_wc_sport(api_key)
-    tried = set()
-    for sport in [primary] + [s for s in SPORT_FALLBACKS if s != primary]:
-        if sport in tried:
-            continue
-        tried.add(sport)
-        r = requests.get(
-            f"{BASE}/sports/{sport}/odds",
-            params={
-                "apiKey": api_key,
-                "regions": "eu",
-                "markets": "h2h,totals,btts",
-                "oddsFormat": "decimal",
-            },
-            timeout=20,
-        )
-        if r.status_code in (404, 422):
-            print(f"[odds] sport '{sport}' → {r.status_code}, trying next...")
-            continue
-        r.raise_for_status()
-        remaining = r.headers.get("x-requests-remaining", "?")
-        print(f"[odds] sport='{sport}' {len(r.json())} events · credits: {remaining}")
-        return r.json()
-    print("[odds] all sport keys failed — returning empty")
+    tried: set[tuple] = set()
+    # Try each sport × markets combo; btts may not be available depending on API plan
+    market_variants = ["h2h,totals,btts", "h2h,totals", "h2h"]
+    sports_to_try = [primary] + [s for s in SPORT_FALLBACKS if s != primary]
+    for sport in sports_to_try:
+        for markets in market_variants:
+            key = (sport, markets)
+            if key in tried:
+                continue
+            tried.add(key)
+            r = requests.get(
+                f"{BASE}/sports/{sport}/odds",
+                params={
+                    "apiKey": api_key,
+                    "regions": "eu",
+                    "markets": markets,
+                    "oddsFormat": "decimal",
+                },
+                timeout=20,
+            )
+            if r.status_code in (404, 422):
+                print(f"[odds] {sport}+{markets} → {r.status_code}, trying next...")
+                continue
+            r.raise_for_status()
+            data = r.json()
+            remaining = r.headers.get("x-requests-remaining", "?")
+            print(f"[odds] sport='{sport}' markets='{markets}' {len(data)} events · credits: {remaining}")
+            return data
+    print("[odds] all combinations failed — returning empty")
     return []
 
 
