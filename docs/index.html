@@ -2646,7 +2646,9 @@ function _alignedHistoryStats() {
 
 // Replays the historical bet sequence with 3 stake strategies:
 // flat (€1 per bet), Kelly (qtr-Kelly with cap), value (proportional to edge)
-let _bankSettings = { initial: 1000, strategy: 'kelly', market: 'all', modelOnly: 'all' };
+let _bankSettings = { initial: 1000, strategy: 'kelly', market: 'ou', modelOnly: 'all', stopLoss: 20 };
+
+function setBankrollStopLoss(v) { _bankSettings.stopLoss = Number(v); renderHistory(); }
 
 function setBankrollInitial(v) {
   const n = parseFloat(v);
@@ -2675,7 +2677,7 @@ function _marketCategory(market) {
   return 'other';
 }
 
-function _simulateBankroll(initial, strategy, marketFilter, modelOnly) {
+function _simulateBankroll(initial, strategy, marketFilter, modelOnly, stopLossPct = 0) {
   const currentVer = _currentModelVersion();
   const all = [];
   for (const fx of HISTORY.fixtures) {
@@ -2712,11 +2714,21 @@ function _simulateBankroll(initial, strategy, marketFilter, modelOnly) {
   let peak = bank;
   let maxDD = 0;
   let totalStake = 0, totalProfit = 0;
+  let stoppedAt = null; // index where stop-loss triggered
+  const stopFloor = stopLossPct > 0 ? initial * (1 - stopLossPct / 100) : -Infinity;
 
   all.forEach((bet, i) => {
+    // Stop-loss: freeze bankroll once floor is hit
+    if (bank <= stopFloor && stoppedAt === null) {
+      stoppedAt = i;
+    }
+    if (stoppedAt !== null) {
+      points.push({ x: i + 1, y: bank, date: bet.date, stopped: true });
+      return;
+    }
     let stakePct = 0;
     if (strategy === 'flat') {
-      stakePct = 0.01; // 1% of initial bank flat
+      stakePct = 0.01;
     } else if (strategy === 'kelly') {
       if (bet.model_prob) {
         const p = bet.model_prob;
@@ -2726,7 +2738,6 @@ function _simulateBankroll(initial, strategy, marketFilter, modelOnly) {
           stakePct = Math.max(0, Math.min(f * 0.25, 0.05));
         }
       } else {
-        // No model_prob: edge-based quarter-Kelly (edge/100 * 0.25, cap 5%)
         const edgeFrac = Number(bet.edge || 0) / 100;
         if (edgeFrac > 0) stakePct = Math.min(edgeFrac * 0.25, 0.05);
       }
@@ -2746,12 +2757,13 @@ function _simulateBankroll(initial, strategy, marketFilter, modelOnly) {
   return {
     points, finalBank: bank, totalStake, totalProfit,
     roi: totalStake > 0 ? (totalProfit / totalStake) * 100 : 0,
-    maxDD, nBets: all.length,
+    maxDD, nBets: all.length, stoppedAt,
+    stopFloor: stopLossPct > 0 ? stopFloor : null,
   };
 }
 
 function _renderBankrollSim(s) {
-  const sim = _simulateBankroll(_bankSettings.initial, _bankSettings.strategy, _bankSettings.market, _bankSettings.modelOnly);
+  const sim = _simulateBankroll(_bankSettings.initial, _bankSettings.strategy, _bankSettings.market, _bankSettings.modelOnly, _bankSettings.stopLoss);
 
   // ── Settings panel (always rendered so user can always change market/model) ──
   const settingsPanel = `
@@ -2785,6 +2797,21 @@ function _renderBankrollSim(s) {
                   ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
                   : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${lbl}</button>`).join('')}
           </div>
+        </div>
+      </div>
+      <div class="mt-3 pt-3" style="border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent);">
+        <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'🛡️ Stop-loss (guardrail)':'🛡️ Stop-loss (guardrail)'}</label>
+        <div class="flex gap-1.5 flex-wrap">
+          ${[0,10,15,20,25].map(pct => `
+            <button onclick="setBankrollStopLoss(${pct})" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold"
+              style="${_bankSettings.stopLoss === pct
+                ? 'background:color-mix(in srgb,var(--fade) 18%,transparent);color:var(--fade);border:1px solid color-mix(in srgb,var(--fade) 35%,transparent);'
+                : 'background:var(--panel2);color:var(--mute);border:1px solid var(--border);'}">${pct === 0 ? (LANG==='es'?'Sin límite':'No limit') : `-${pct}%`}</button>`).join('')}
+        </div>
+        <div class="text-[10px] mt-1.5" style="color:var(--mute);">
+          ${_bankSettings.stopLoss > 0
+            ? (LANG==='es' ? `Si la banca cae un <b>${_bankSettings.stopLoss}%</b> respecto al inicial, el modelo deja de apostar automáticamente.` : `If bankroll drops <b>${_bankSettings.stopLoss}%</b> below initial, model stops betting automatically.`)
+            : (LANG==='es' ? 'Sin guardrail — el modelo sigue apostando aunque la banca caiga.' : 'No guardrail — model keeps betting regardless of drawdown.')}
         </div>
       </div>
       <div class="text-xs mt-3 leading-relaxed" style="color:var(--mute);">
@@ -2825,6 +2852,17 @@ function _renderBankrollSim(s) {
   // Baseline y for initial
   const baselineY = sy(_bankSettings.initial);
 
+  // Stop-loss floor line
+  const stopFloorLine = sim.stopFloor != null ? (() => {
+    const fy = sy(sim.stopFloor);
+    const fLabel = `–${_bankSettings.stopLoss}% (€${sim.stopFloor.toFixed(0)})`;
+    const stopX = sim.stoppedAt != null ? sx(sim.stoppedAt) : null;
+    return `<line x1="${PAD}" y1="${fy}" x2="${W - PAD}" y2="${fy}" stroke="#ef4444" stroke-dasharray="5,3" opacity="0.7" stroke-width="1.5"/>
+            <text x="${PAD + 4}" y="${fy - 4}" font-size="9" fill="#ef4444" font-family="monospace" opacity="0.8">${fLabel}</text>
+            ${stopX != null ? `<line x1="${stopX}" y1="${PAD}" x2="${stopX}" y2="${H - PAD}" stroke="#ef4444" stroke-dasharray="3,3" opacity="0.5"/>
+            <text x="${stopX + 3}" y="${PAD + 10}" font-size="8" fill="#ef4444" font-family="monospace">STOP</text>` : ''}`;
+  })() : '';
+
   // Gridlines: 4 horizontal
   const gridLines = [0.25, 0.5, 0.75, 1].map(f => {
     const v = minY + yRange * f;
@@ -2833,6 +2871,11 @@ function _renderBankrollSim(s) {
   }).join('');
 
   const profitColor = sim.totalProfit >= 0 ? 'var(--bet)' : 'var(--fade)';
+  const stoppedBadge = sim.stoppedAt != null
+    ? `<div class="flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-lg" style="background:color-mix(in srgb,#ef4444 10%,transparent);color:#ef4444;border:1px solid color-mix(in srgb,#ef4444 25%,transparent);">
+        🛡️ ${LANG==='es'?`Stop-loss activado en apuesta #${sim.stoppedAt}. Banca protegida a €${sim.finalBank.toFixed(0)}.`:`Stop-loss triggered at bet #${sim.stoppedAt}. Bankroll protected at €${sim.finalBank.toFixed(0)}.`}
+       </div>`
+    : '';
 
   return `
     <div class="rounded-xl border p-4 mb-4" style="background:var(--panel); border-color:var(--border);">
@@ -2841,6 +2884,7 @@ function _renderBankrollSim(s) {
           <div class="text-xs uppercase mb-1" style="color:var(--mute);">${LANG==='es'?'Banca actual':'Current bankroll'}</div>
           <div class="text-3xl font-bold metric" style="color:${profitColor};">€${sim.finalBank.toFixed(2)}</div>
           <div class="text-xs mt-1" style="color:var(--mute);">${LANG==='es'?'Inicial':'Initial'} €${_bankSettings.initial.toFixed(0)} · ${sim.totalProfit >= 0 ? '+' : ''}€${sim.totalProfit.toFixed(2)}</div>
+          ${stoppedBadge}
         </div>
         <div class="grid grid-cols-3 gap-3 text-right">
           <div>
@@ -2867,6 +2911,7 @@ function _renderBankrollSim(s) {
         </defs>
         ${gridLines}
         <line x1="${PAD}" y1="${baselineY}" x2="${W - PAD}" y2="${baselineY}" stroke="var(--mute)" stroke-dasharray="4,3" opacity="0.6"/>
+        ${stopFloorLine}
         <path d="${areaPath}" fill="url(#bk-grad)"/>
         <path d="${path}" fill="none" stroke="${profitColor}" stroke-width="2"/>
       </svg>
