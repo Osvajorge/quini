@@ -300,9 +300,9 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
       <div class="text-xs" style="color: var(--mute);" data-i18n="trust1_body">Todas las apuestas, ganadas y perdidas. Sin esconder los fracasos.</div>
     </div>
     <div class="rounded-xl p-5" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-2xl mb-2">🔓</div>
-      <div class="font-bold mb-1" data-i18n="trust2_title">Código abierto</div>
-      <div class="text-xs" style="color: var(--mute);" data-i18n="trust2_body">Todo el modelo en GitHub. Puedes revisar la lógica.</div>
+      <div class="text-2xl mb-2">🔬</div>
+      <div class="font-bold mb-1" data-i18n="trust2_title">Modelo verificable</div>
+      <div class="text-xs" style="color: var(--mute);" data-i18n="trust2_body">Bivariate-Poisson + Elo. Fuentes públicas. Lógica reproducible.</div>
     </div>
     <div class="rounded-xl p-5" style="background: var(--panel); border: 1px solid var(--border);">
       <div class="text-2xl mb-2">📈</div>
@@ -318,7 +318,6 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
     <div data-i18n="footer_copy">© 2026 Quini · Predicción estadística, no asesoría de apuestas</div>
     <div class="flex gap-4">
       <a href="/" class="hover:underline" data-i18n="footer_app">Ver app</a>
-      <a href="https://github.com/Osvajorge/quini" target="_blank" rel="noopener" class="hover:underline">GitHub</a>
     </div>
   </div>
 </footer>
@@ -447,7 +446,7 @@ const I18N = {
     wl_done_cta: 'Ver picks de hoy →',
     trust_title: '100% transparente',
     trust1_title: 'Historial público', trust1_body: 'Todas las apuestas, ganadas y perdidas. Sin esconder los fracasos.',
-    trust2_title: 'Código abierto', trust2_body: 'Todo el modelo en GitHub. Puedes revisar la lógica.',
+    trust2_title: 'Modelo verificable', trust2_body: 'Bivariate-Poisson + Elo. Fuentes públicas. Lógica reproducible.',
     trust3_title: 'CLV trackeado', trust3_body: 'Métrica que valida edge real, no solo suerte.',
     footer_copy: '© 2026 Quini · Predicción estadística, no asesoría de apuestas',
     footer_app: 'Ver app',
@@ -491,7 +490,7 @@ const I18N = {
     wl_done_cta: "See today's picks →",
     trust_title: '100% transparent',
     trust1_title: 'Public history', trust1_body: 'Every bet, wins and losses. We do not hide failures.',
-    trust2_title: 'Open source', trust2_body: 'The whole model is on GitHub. You can audit the logic.',
+    trust2_title: 'Verifiable model', trust2_body: 'Bivariate-Poisson + Elo. Public sources. Reproducible logic.',
     trust3_title: 'CLV tracked', trust3_body: 'Metric that validates real edge, not just luck.',
     footer_copy: '© 2026 Quini · Statistical prediction, not betting advice',
     footer_app: 'Open app',
@@ -586,10 +585,17 @@ document.getElementById('wl-form2').addEventListener('submit', async e => {
   e.preventDefault();
   const form = e.target;
   const btn = form.querySelector('button[type=submit]');
+  const cc = (form.phone_cc?.value || '+52').trim();
+  const local = (form.phone_local?.value || '').trim().replace(/[\s\-().]/g, '');
+  // Validate: if filled, must be 6-15 digits
+  if (local && !/^\d{6,15}$/.test(local)) {
+    form.phone_local.style.borderColor = 'var(--warn)';
+    form.phone_local.focus();
+    return;
+  }
+  form.phone_local.style.borderColor = '';
   btn.disabled = true;
   btn.textContent = '…';
-  const cc = (form.phone_cc?.value || '+52').trim();
-  const local = (form.phone_local?.value || '').trim().replace(/\s+/g, '');
   const phone = local ? `${cc} ${local}` : '';
   const name = (form.name.value || '').trim();
   try {

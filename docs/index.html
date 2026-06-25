@@ -491,15 +491,12 @@ function renderStats() {
   document.getElementById('stat-fixtures').textContent = s.total_fixtures;
   document.getElementById('stat-bets').textContent = t('bet_signals').replace('{n}', s.total_bets);
 
-  const hist = HISTORY && HISTORY.summary;
-  if (hist && (hist.won + hist.lost) > 0) {
-    document.getElementById('stat-record').textContent = `${hist.won}W-${hist.lost}L`;
-    document.getElementById('stat-record').style.color = hist.win_rate >= 50 ? 'var(--bet)' : 'var(--fade)';
-    document.getElementById('stat-winrate').textContent = t('win_rate').replace('{r}', hist.win_rate);
-  } else if (s.won + s.lost > 0) {
-    document.getElementById('stat-record').textContent = `${s.won}W-${s.lost}L`;
-    document.getElementById('stat-record').style.color = s.win_rate >= 50 ? 'var(--bet)' : 'var(--fade)';
-    document.getElementById('stat-winrate').textContent = t('win_rate').replace('{r}', s.win_rate);
+  // Use aligned stats (BET picks only) for header record + winrate
+  const as = _alignedHistoryStats();
+  if (as.n > 0) {
+    document.getElementById('stat-record').textContent = `${as.won}W-${as.lost}L`;
+    document.getElementById('stat-record').style.color = parseFloat(as.winRate) >= 50 ? 'var(--bet)' : 'var(--fade)';
+    document.getElementById('stat-winrate').textContent = t('win_rate').replace('{r}', as.winRate);
   } else {
     document.getElementById('stat-record').textContent = '—';
     document.getElementById('stat-record').style.color = '';

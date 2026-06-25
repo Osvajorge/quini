@@ -440,6 +440,13 @@ def _model_health(history: dict) -> dict:
             if not b.get("model_version"):
                 legacy_n += 1
                 continue
+            # Only count actual BET picks (same filter as _isBetPick in JS)
+            pick = b.get("pick")
+            edge = float(b.get("edge", 0))
+            if pick and pick != "BET":
+                continue
+            if not pick and edge < 8.0:
+                continue
             flat.append({
                 "won": bool(b["won"]),
                 "odds": float(b.get("odds", 1.0)),
