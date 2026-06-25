@@ -1924,18 +1924,19 @@ function _renderCompareView(completed) {
     { key:'yellows',lbl:LANG==='es'?'Amarillas':'Yellows', fmt:v=>v,    higher:false },
   ];
   const colColors = ['var(--bet)', '#818cf8', '#f59e0b'];
-  const colW = teams.length === 1 ? '1fr' : teams.length === 2 ? '1fr 1fr' : '1fr 1fr 1fr';
+  const nCols = teams.length;
+  const gridCols = `minmax(90px,1.2fr) repeat(${nCols},1fr)`;
 
-  // Header
-  const headerCells = teams.map((team, i) => {
+  // Header — first cell is empty spacer for label column
+  const headerCells = `<div></div>` + teams.map((team, i) => {
     const tn = LANG==='es'?(TEAM_ES[team]||team):team;
     const flag = TEAM_FLAG[team]||'';
     const s = stats[i].s;
-    return `<div class="text-center p-3 relative">
-      <button onclick="_removeFromCompare('${team.replace(/'/g,"\\'")}'" class="absolute top-1 right-1 text-[10px] w-4 h-4 flex items-center justify-center rounded-full" style="background:color-mix(in srgb,var(--mute) 20%,transparent);color:var(--mute);" title="Quitar">✕</button>
-      <div class="text-2xl mb-0.5">${flag}</div>
-      <div class="text-xs font-bold leading-tight">${tn}</div>
-      <div class="text-[10px] mt-1 font-mono font-bold" style="color:${colColors[i]};">${s.pts} pts · ${s.w}${LANG==='es'?'G':'W'}-${s.d}${LANG==='es'?'E':'D'}-${s.l}${LANG==='es'?'P':'L'}</div>
+    return `<div class="text-center py-3 px-2 relative" style="border-left:1px solid color-mix(in srgb,var(--border) 60%,transparent);">
+      <button onclick="_removeFromCompare('${team.replace(/'/g,"\\'")}');" class="absolute top-2 right-2 w-5 h-5 flex items-center justify-center rounded-full text-[11px] leading-none" style="background:color-mix(in srgb,var(--mute) 20%,transparent);color:var(--mute);border:none;cursor:pointer;" title="Quitar">✕</button>
+      <div class="text-3xl mb-1 leading-none">${flag}</div>
+      <div class="text-xs font-bold">${tn}</div>
+      <div class="text-[10px] mt-1 font-mono font-semibold" style="color:${colColors[i]};">${s.pts}pts · ${s.w}G-${s.d}E-${s.l}P</div>
     </div>`;
   }).join('');
 
@@ -1949,20 +1950,20 @@ function _renderCompareView(completed) {
       const fmtd = v != null && !isNaN(v) ? row.fmt(v) : '—';
       const isBest = !row.neutral && v!=null && !isNaN(v) && numericVals.length>1 && v===best;
       const isWorst = !row.neutral && v!=null && !isNaN(v) && numericVals.length>1 && v===worst && best!==worst;
-      const color = isBest ? colColors[i] : isWorst ? 'var(--mute)' : 'var(--ink)';
-      const bg = isBest ? `color-mix(in srgb,${colColors[i]} 10%,transparent)` : 'transparent';
-      return `<div class="text-center py-2 px-1 font-mono text-sm font-semibold rounded" style="color:${color};background:${bg};">${fmtd}${isBest&&numericVals.length>1?' ▲':''}</div>`;
+      const color = isBest ? colColors[i] : isWorst ? 'color-mix(in srgb,var(--mute) 60%,transparent)' : 'var(--ink)';
+      const bg = isBest ? `color-mix(in srgb,${colColors[i]} 12%,transparent)` : 'transparent';
+      return `<div class="text-center py-2 px-1 font-mono text-sm font-semibold" style="color:${color};background:${bg};border-left:1px solid color-mix(in srgb,var(--border) 40%,transparent);">${fmtd}${isBest&&numericVals.length>1?'<span style="font-size:8px;vertical-align:super;margin-left:1px;">▲</span>':''}</div>`;
     }).join('');
-    const bg = ri%2===0 ? 'color-mix(in srgb,var(--panel2) 40%,transparent)' : 'transparent';
-    return `<div class="grid items-center px-3 py-0.5 rounded" style="grid-template-columns:120px ${colW};background:${bg};">
-      <div class="text-[11px]" style="color:var(--mute);">${row.lbl}</div>
+    const bg = ri%2===0 ? 'color-mix(in srgb,var(--panel2) 35%,transparent)' : 'transparent';
+    return `<div class="grid items-center" style="grid-template-columns:${gridCols};background:${bg};">
+      <div class="text-[11px] px-3 py-2" style="color:var(--mute);">${row.lbl}</div>
       ${cells}
     </div>`;
   }).join('');
 
   return `<div class="rounded-xl border overflow-hidden" style="background:var(--panel);border-color:var(--border);">
-    <div class="grid border-b" style="grid-template-columns:120px ${colW};border-color:var(--border);">${headerCells}</div>
-    <div class="py-2">${rowsHtml}</div>
+    <div class="grid" style="grid-template-columns:${gridCols};border-bottom:1px solid var(--border);">${headerCells}</div>
+    <div>${rowsHtml}</div>
   </div>`;
 }
 
