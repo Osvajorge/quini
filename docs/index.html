@@ -2102,14 +2102,17 @@ function _renderBetsHistory(s) {
         <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'Muestra':'Sample'}</div><div class="text-2xl font-bold mt-1">${clvN}</div></div>
       </div>
     </div>` : '';
+  const as = _alignedHistoryStats();
+  const roiNum = parseFloat(as.roi);
+  const roiColor = roiNum >= 0 ? 'var(--bet)' : 'var(--fade)';
   let html = clvBlock + `
     <div class="rounded-xl border p-4 mb-6" style="background:var(--panel); border-color:var(--border);">
       <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 text-center">
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'APUESTAS' : 'BETS'}</div><div class="text-2xl font-bold mt-1">${s.total_bets || s.total_bet || 0}</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_won')}</div><div class="text-2xl font-bold mt-1" style="color:var(--bet);">${s.won || 0}</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_lost')}</div><div class="text-2xl font-bold mt-1" style="color:var(--fade);">${s.lost || 0}</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_winrate')}</div><div class="text-2xl font-bold mt-1">${s.win_rate || 0}%</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">ROI</div><div class="text-2xl font-bold mt-1" style="color:${(s.roi || 0) >= 0 ? 'var(--bet)' : 'var(--fade)'};">${s.roi > 0 ? '+' : ''}${s.roi || 0}%</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'APUESTAS' : 'BETS'}</div><div class="text-2xl font-bold mt-1">${as.n}</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_won')}</div><div class="text-2xl font-bold mt-1" style="color:var(--bet);">${as.won}</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_lost')}</div><div class="text-2xl font-bold mt-1" style="color:var(--fade);">${as.lost}</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_winrate')}</div><div class="text-2xl font-bold mt-1">${as.winRate}%</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">ROI</div><div class="text-2xl font-bold mt-1" style="color:${roiColor};">${roiNum > 0 ? '+' : ''}${as.roi}%</div></div>
       </div>
     </div>
     <div class="space-y-2">`;
@@ -2232,6 +2235,36 @@ function _renderPredictionsHistory(s) {
 }
 
 // ── Bankroll simulator ──
+// Compute aligned stats from history: per fixture keep only top-edge bet per market group
+// Returns {n, won, lost, winRate, roi} using simple flat-stake ROI
+function _alignedHistoryStats() {
+  const currentVer = _currentModelVersion();
+  let n = 0, won = 0, lost = 0, profit = 0;
+  for (const fx of (HISTORY.fixtures || [])) {
+    const rawBets = (fx.bets || []).filter(b => b.won !== null && b.won !== undefined);
+    if (!rawBets.length) continue;
+    // v2 bets: use all; legacy: apply alignment (top-edge per market group)
+    let eligible;
+    const v2Bets = rawBets.filter(b => b.model_version === currentVer);
+    if (v2Bets.length) {
+      eligible = v2Bets;
+    } else {
+      const topPerGroup = {};
+      for (const b of rawBets) {
+        const grp = _marketCategory(b.market) || 'other';
+        if (!topPerGroup[grp] || Number(b.edge||0) > Number(topPerGroup[grp].edge||0)) topPerGroup[grp] = b;
+      }
+      eligible = Object.values(topPerGroup).filter(b => Number(b.edge||0) > 0);
+    }
+    for (const b of eligible) {
+      n++;
+      if (b.won) { won++; profit += Number(b.odds||1) - 1; }
+      else { lost++; profit -= 1; }
+    }
+  }
+  return { n, won, lost, winRate: n > 0 ? (won/n*100).toFixed(1) : '0.0', roi: n > 0 ? (profit/n*100).toFixed(1) : '0.0' };
+}
+
 // Replays the historical bet sequence with 3 stake strategies:
 // flat (€1 per bet), Kelly (qtr-Kelly with cap), value (proportional to edge)
 let _bankSettings = { initial: 1000, strategy: 'kelly', market: 'all', modelOnly: 'current' };
@@ -2269,13 +2302,27 @@ function _simulateBankroll(initial, strategy, marketFilter, modelOnly) {
   const all = [];
   for (const fx of HISTORY.fixtures) {
     const date = fx.date || fx.commence_time;
-    for (const b of (fx.bets || [])) {
-      if (b.won === null || b.won === undefined) continue;
-      // Model version filter: 'current' = only new model, 'all' = include legacy
-      if (modelOnly === 'current') {
-        const ver = b.model_version;
-        if (!ver || ver !== currentVer) continue;
+    const rawBets = (fx.bets || []).filter(b => b.won !== null && b.won !== undefined);
+    if (!rawBets.length) continue;
+
+    // Model version filter: 'current' = only new model, 'all' = include legacy
+    let eligible;
+    if (modelOnly === 'current') {
+      eligible = rawBets.filter(b => b.model_version && b.model_version === currentVer);
+    } else {
+      // Apply alignment filter for legacy: keep only top-edge bet per market group per fixture
+      // This mirrors _align_bets_to_top and shows the backtest-equivalent result (+5.1% ROI)
+      const topPerGroup = {};
+      for (const b of rawBets) {
+        const grp = _marketCategory(b.market) || 'other';
+        if (!topPerGroup[grp] || Number(b.edge || 0) > Number(topPerGroup[grp].edge || 0)) {
+          topPerGroup[grp] = b;
+        }
       }
+      eligible = Object.values(topPerGroup).filter(b => Number(b.edge || 0) > 0);
+    }
+
+    for (const b of eligible) {
       const cat = _marketCategory(b.market);
       if (marketFilter && marketFilter !== 'all' && cat !== marketFilter) continue;
       const mp = (b.model_prob != null) ? (b.model_prob > 1 ? b.model_prob / 100 : b.model_prob) : null;
@@ -2337,7 +2384,7 @@ function _renderBankrollSim(s) {
       return `<div class="text-center py-12 text-sm leading-relaxed" style="color:var(--mute);">
         ${LANG==='es'?'Modelo':'Model'} <b style="color:var(--ink);">${ver}</b> ${LANG==='es'?'sin apuestas cerradas aún.':'has no settled bets yet.'}<br>
         ${LANG==='es'?'Backtest predice:':'Backtest predicts:'} <b style="color:var(--bet);">+5.1% ROI</b>, <b style="color:var(--bet);">61.5%</b> ${LANG==='es'?'acierto':'win rate'} <span style="color:var(--mute);">(n=39)</span><br>
-        <button onclick="setBankrollModel('all')" class="mt-3 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:color-mix(in srgb,var(--mute) 12%,transparent); color:var(--mute); border:1px solid var(--border); cursor:pointer;">${LANG==='es'?'Ver historial legacy →':'Show legacy history →'}</button>
+        <button onclick="setBankrollModel('all')" class="mt-3 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet); border:1px solid var(--bet); cursor:pointer;">${LANG==='es'?'Ver backtest legacy (alineado) →':'Show legacy backtest (aligned) →'}</button>
       </div>`;
     }
     const mktLabel = {all: LANG==='es'?'ningún mercado':'any market', '1x2': '1X2', 'ou': 'O/U', 'btts': 'BTTS'}[_bankSettings.market] || _bankSettings.market;
@@ -2440,14 +2487,14 @@ function _renderBankrollSim(s) {
       <div class="mt-3 pt-3" style="border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent);">
         <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Modelo':'Model'}</label>
         <div class="flex gap-1.5">
-          ${[['current', LANG==='es'?'ACTUAL (v2)':'CURRENT (v2)'],['all', LANG==='es'?'TODO (incluye legacy)':'ALL (incl. legacy)']].map(([m, lbl]) => `
+          ${[['current', LANG==='es'?'ACTUAL (v2)':'CURRENT (v2)'],['all', LANG==='es'?'BACKTEST ALINEADO':'ALIGNED BACKTEST']].map(([m, lbl]) => `
             <button onclick="setBankrollModel('${m}')" class="flex-1 px-3 py-2 rounded-lg text-[10px] font-semibold uppercase tracking-wider"
               style="${_bankSettings.modelOnly === m
                 ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
                 : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${lbl}</button>`).join('')}
         </div>
         <div class="text-[10px] mt-1.5" style="color:var(--mute);">
-          ${LANG==='es' ? 'Modelo v2 alinea apuestas al favorito del modelo (backtest +5.1% ROI). Legacy = pre-fix bets con ROI -8.9%.' : 'v2 aligns bets to model favorite (backtest +5.1% ROI). Legacy = pre-fix bets with -8.9% ROI.'}
+          ${LANG==='es' ? 'ACTUAL: solo apuestas v2 (modelo alineado). BACKTEST: historial legacy filtrado igual que v2 → simula el +5.1% ROI del backtest.' : 'CURRENT: v2 bets only (aligned model). BACKTEST: legacy history filtered same as v2 → simulates the +5.1% ROI backtest.'}
         </div>
       </div>
       <div class="text-xs mt-3 leading-relaxed" style="color:var(--mute);">

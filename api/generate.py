@@ -19,6 +19,8 @@ from quiniela.tournament import risk_adjusted_pick
 
 BASE = "https://api.the-odds-api.com/v4"
 SPORT = "soccer_fifa_world_cup"
+# Odds API may rename the sport key per tournament year; try these in order
+SPORT_FALLBACKS = ["soccer_fifa_world_cup_2026", "soccer_world_cup", "soccer_fifa_world_cup"]
 OUT = Path(__file__).resolve().parent.parent / "docs" / "data" / "predictions.json"
 HISTORY_PATH = Path(__file__).resolve().parent.parent / "docs" / "data" / "history.json"
 
@@ -84,20 +86,26 @@ def normalize_team(api_name: str) -> str:
 
 
 def fetch_odds(api_key: str) -> list[dict]:
-    r = requests.get(
-        f"{BASE}/sports/{SPORT}/odds",
-        params={
-            "apiKey": api_key,
-            "regions": "eu",
-            "markets": "h2h,totals,btts",
-            "oddsFormat": "decimal",
-        },
-        timeout=20,
-    )
-    r.raise_for_status()
-    remaining = r.headers.get("x-requests-remaining", "?")
-    print(f"odds: {len(r.json())} events · credits remaining: {remaining}")
-    return r.json()
+    for sport in SPORT_FALLBACKS:
+        r = requests.get(
+            f"{BASE}/sports/{sport}/odds",
+            params={
+                "apiKey": api_key,
+                "regions": "eu",
+                "markets": "h2h,totals,btts",
+                "oddsFormat": "decimal",
+            },
+            timeout=20,
+        )
+        if r.status_code == 422:
+            print(f"[odds] sport '{sport}' → 422, trying next key...")
+            continue
+        r.raise_for_status()
+        remaining = r.headers.get("x-requests-remaining", "?")
+        print(f"[odds] sport='{sport}' {len(r.json())} events · credits: {remaining}")
+        return r.json()
+    print("[odds] all sport keys failed — returning empty")
+    return []
 
 
 def fetch_standings() -> list[dict]:
@@ -148,15 +156,21 @@ def fetch_standings() -> list[dict]:
 
 
 def fetch_scores(api_key: str, days_from: int = 3) -> list[dict]:
-    r = requests.get(
-        f"{BASE}/sports/{SPORT}/scores",
-        params={"apiKey": api_key, "daysFrom": days_from},
-        timeout=20,
-    )
-    r.raise_for_status()
-    remaining = r.headers.get("x-requests-remaining", "?")
-    print(f"scores: {len(r.json())} events · credits remaining: {remaining}")
-    return r.json()
+    for sport in SPORT_FALLBACKS:
+        r = requests.get(
+            f"{BASE}/sports/{sport}/scores",
+            params={"apiKey": api_key, "daysFrom": days_from},
+            timeout=20,
+        )
+        if r.status_code == 422:
+            print(f"[scores] sport '{sport}' → 422, trying next key...")
+            continue
+        r.raise_for_status()
+        remaining = r.headers.get("x-requests-remaining", "?")
+        print(f"[scores] sport='{sport}' {len(r.json())} events · credits: {remaining}")
+        return r.json()
+    print("[scores] all sport keys failed — returning empty")
+    return []
 
 
 _BOOK_DISPLAY: dict[str, str] = {
@@ -831,6 +845,7 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
                 "won": won,
                 "closing_odds": closing_odds.get(side),
                 "clv_pct": clv,
+                "model_version": MODEL_VERSION,
                 "description_es": b.get("description_es", b.get("market", "")),
                 "description_en": b.get("description_en", b.get("market", "")),
             })
@@ -947,6 +962,10 @@ def generate():
 
     odds_data = fetch_odds(api_key)
     scores_data = fetch_scores(api_key)
+
+    if not odds_data:
+        print("[generate] no odds data from any sport key — keeping existing predictions unchanged")
+        return
 
     score_map = {}
     for ev in scores_data:
