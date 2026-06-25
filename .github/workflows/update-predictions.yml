@@ -5,6 +5,10 @@ on:
     - cron: '*/5 * * * *'  # Every 5 min; smart exit + rate limiting handles API credits
   workflow_dispatch:
 
+concurrency:
+  group: update-predictions
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -19,7 +23,7 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install numpy scipy pandas requests python-dotenv penaltyblog Pillow cloudscraper lxml html5lib beautifulsoup4 requests-oauthlib
+        run: pip install -r requirements.txt
 
       - name: Update results and refit model if new scores
         run: python scripts/update_and_refit.py

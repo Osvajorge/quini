@@ -87,7 +87,8 @@ def generate() -> None:
     summary = {}
     if HISTORY.exists():
         try:
-            data = json.load(open(HISTORY))
+            with open(HISTORY) as f:
+                data = json.load(f)
             summary = data.get("summary", {})
         except Exception:
             summary = {}

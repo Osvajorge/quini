@@ -46,7 +46,8 @@ def _hours_until(commence_time: str) -> float:
 
 
 def generate() -> None:
-    data = json.load(open(PRED))
+    with open(PRED) as f:
+        data = json.load(f)
     fixtures = data.get("fixtures", [])
 
     posts = []
@@ -151,7 +152,10 @@ def generate() -> None:
 
     posts.sort(key=lambda p: -p["edge"])
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    json.dump(posts, open(OUT_JSON, "w"), indent=2, ensure_ascii=False)
+    tmp = OUT_JSON.with_suffix(".tmp")
+    with open(tmp, "w") as f:
+        json.dump(posts, f, indent=2, ensure_ascii=False)
+    tmp.rename(OUT_JSON)
     OUT_MD.write_text("\n".join(md_lines))
     print(f"✓ {len(posts)} social posts generated")
     print(f"  JSON: {OUT_JSON}")

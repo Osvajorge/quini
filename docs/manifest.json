@@ -1,8 +1,8 @@
 {
-  "name": "Quini — Mundial 2026",
-  "short_name": "Quini",
+  "name": "Kini — Mundial 2026",
+  "short_name": "Kini",
   "description": "Predicciones Bivariate-Poisson para el Mundial 2026",
-  "start_url": "/",
+  "start_url": "/app",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#059669",

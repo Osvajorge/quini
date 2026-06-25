@@ -3,14 +3,16 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Quini — Predicciones del Mundial 2026 con valor de apuesta</title>
+<title>Kini — Predicciones del Mundial 2026 con valor de apuesta</title>
 <meta name="description" content="Encuentra apuestas de valor en el Mundial 2026 usando un modelo Bivariate-Poisson + Elo. Tracking público de ROI, edge y CLV." />
-<meta property="og:title" content="Quini — Apuestas de valor para el Mundial 2026" />
+<meta property="og:title" content="Kini — Apuestas de valor para el Mundial 2026" />
 <meta property="og:description" content="Modelo estadístico que detecta cuándo las casas de apuestas subestiman un resultado. Tracking público y transparente." />
 <meta property="og:image" content="https://kini.bet/og-card.png" />
+<meta property="og:url" content="https://kini.bet/" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="og:locale" content="es_LA" />
 <meta property="og:locale:alternate" content="en_US" />
+<link rel="canonical" href="https://kini.bet/" />
 <link rel="alternate" hreflang="es" href="https://kini.bet/" />
 <link rel="alternate" hreflang="en" href="https://kini.bet/?lang=en" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" />
@@ -99,6 +101,9 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
 #wl-step2, #wl-done { animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Kini","url":"https://kini.bet","description":"Modelo estadístico para detectar apuestas de valor en el Mundial 2026","applicationCategory":"SportsApplication","operatingSystem":"Web"}
+</script>
 </head>
 <body class="relative overflow-x-hidden">
 <div class="glow"></div>
@@ -107,7 +112,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
 <header class="relative z-10 max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
   <a href="/" class="flex items-center gap-2">
     <div class="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white" style="background: linear-gradient(135deg, var(--bet) 0%, var(--accent) 100%);">Q</div>
-    <span class="font-bold text-xl">Quini</span>
+    <span class="font-bold text-xl">Kini</span>
   </a>
   <div class="flex items-center gap-3">
     <button onclick="toggleLang()" id="lang-btn" class="px-2 py-1 rounded text-xs font-mono border" style="border-color:var(--border); color:var(--mute);">EN</button>
@@ -217,10 +222,9 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
   <!-- Step 1: email -->
   <div id="wl-step1">
     <form id="wl-form1" class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto" autocomplete="on">
-      <!-- Honeypot: bots fill this, humans don't -->
-      <input type="text" name="_hp" style="display:none;position:absolute;" tabindex="-1" autocomplete="off" />
+      <input type="text" name="website" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true" />
       <input
-        type="email" name="email" required autocomplete="email"
+        type="email" name="email" required autocomplete="email" maxlength="254"
         placeholder="tucorreo@gmail.com"
         data-ph-en="youremail@gmail.com"
         class="flex-1 px-4 py-3 rounded-xl outline-none text-base"
@@ -256,7 +260,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
             <option value="+506">🇨🇷 +506</option>
           </select>
           <input
-            type="tel" name="phone_local" autocomplete="tel-national"
+            type="tel" name="phone_local" autocomplete="tel-national" maxlength="15"
             placeholder="3310212964"
             class="flex-1 px-4 py-3 rounded-xl outline-none text-base"
             style="background: var(--panel2); border: 1px solid var(--border); color: var(--ink);"
@@ -315,7 +319,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
 <!-- Footer -->
 <footer class="relative z-10 border-t mt-16 py-8" style="border-color: var(--border);">
   <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm" style="color: var(--mute);">
-    <div data-i18n="footer_copy">© 2026 Quini · Predicción estadística, no asesoría de apuestas</div>
+    <div data-i18n="footer_copy">© 2026 Kini · Predicción estadística, no asesoría de apuestas</div>
     <div class="flex gap-4">
       <a href="/app" class="hover:underline" data-i18n="footer_app">Ver app</a>
     </div>
@@ -350,9 +354,10 @@ function _alignedStats(hist) {
 // ── Load live stats ──
 async function loadStats() {
   try {
+    const timeout = ms => new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms));
     const [pred, hist] = await Promise.all([
-      fetch('/data/predictions.json').then(r => r.json()),
-      fetch('/data/history.json').then(r => r.json()),
+      Promise.race([fetch('/data/predictions.json').then(r => r.json()), timeout(8000)]),
+      Promise.race([fetch('/data/history.json').then(r => r.json()), timeout(8000)]),
     ]);
 
     // Aligned stats (excludes legacy SKIP picks)
@@ -448,7 +453,7 @@ const I18N = {
     trust1_title: 'Historial público', trust1_body: 'Todas las apuestas, ganadas y perdidas. Sin esconder los fracasos.',
     trust2_title: 'Modelo verificable', trust2_body: 'Bivariate-Poisson + Elo. Fuentes públicas. Lógica reproducible.',
     trust3_title: 'CLV trackeado', trust3_body: 'Métrica que valida edge real, no solo suerte.',
-    footer_copy: '© 2026 Quini · Predicción estadística, no asesoría de apuestas',
+    footer_copy: '© 2026 Kini · Predicción estadística, no asesoría de apuestas',
     footer_app: 'Ver app',
     no_picks: 'No hay BETs activos en este momento.',
     picks_view_all_inline: 'Ver predicciones →',
@@ -492,7 +497,7 @@ const I18N = {
     trust1_title: 'Public history', trust1_body: 'Every bet, wins and losses. We do not hide failures.',
     trust2_title: 'Verifiable model', trust2_body: 'Bivariate-Poisson + Elo. Public sources. Reproducible logic.',
     trust3_title: 'CLV tracked', trust3_body: 'Metric that validates real edge, not just luck.',
-    footer_copy: '© 2026 Quini · Statistical prediction, not betting advice',
+    footer_copy: '© 2026 Kini · Statistical prediction, not betting advice',
     footer_app: 'Open app',
     no_picks: 'No active BETs right now.',
     picks_view_all_inline: 'See predictions →',
@@ -560,17 +565,22 @@ document.getElementById('wl-form1').addEventListener('submit', async e => {
   const form = e.target;
   const btn = form.querySelector('button[type=submit]');
   const email = form.email.value.trim();
-  const hp = form._hp.value;
+  const hp = form.website.value;
   if (!email) return;
   btn.disabled = true;
   btn.textContent = '…';
   try {
-    await fetch('/api/subscribe', {
+    const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, _hp: hp, lang: LANG }),
+      body: JSON.stringify({ email, website: hp, lang: LANG }),
     });
-  } catch (_) {}
+    if (!res.ok) throw new Error('subscribe failed');
+  } catch (_) {
+    btn.disabled = false;
+    btn.textContent = LANG === 'es' ? 'Unirme →' : 'Join →';
+    return;
+  }
   _wlEmail = email;
   localStorage.setItem('quini_wl_email', email);
   // Show step 2

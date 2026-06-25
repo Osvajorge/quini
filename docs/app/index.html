@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Quini — Predicciones Mundial 2026</title>
+<title>Kini — Predicciones Mundial 2026</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
 <link rel="manifest" href="/manifest.json">
 <meta name="theme-color" content="#059669">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Quini">
+<meta name="apple-mobile-web-app-title" content="Kini">
 <meta name="description" content="Predicciones Bivariate-Poisson para el Mundial 2026. Análisis de valor, quiniela optimizada y track record en tiempo real.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Quini — Apuestas con ventaja matemática">
+<meta property="og:title" content="Kini — Apuestas con ventaja matemática">
 <meta property="og:description" content="Modelo Bivariate-Poisson + Elo para el Mundial 2026. Tracking público de ROI, edge y CLV.">
 <meta property="og:image" content="https://kini.bet/og-card.png">
 <meta property="og:url" content="https://kini.bet/app">
+<link rel="canonical" href="https://kini.bet/app" />
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Quini — Apuestas con ventaja matemática">
+<meta name="twitter:title" content="Kini — Apuestas con ventaja matemática">
 <meta name="twitter:description" content="Modelo estadístico para el Mundial 2026. Tracking público.">
 <meta name="twitter:image" content="https://kini.bet/og-card.png">
 <script src="https://cdn.tailwindcss.com"></script>
@@ -82,7 +83,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
     <div class="flex items-center gap-3">
       <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-sm" style="background:linear-gradient(135deg, var(--accent-from), var(--accent-to));">Q</div>
       <div>
-        <div class="font-bold text-lg leading-tight">Quini</div>
+        <div class="font-bold text-lg leading-tight">Kini</div>
         <div class="text-[10px]" style="color:var(--mute);" data-i18n="header_sub">Predicciones Mundial 2026</div>
       </div>
     </div>
@@ -193,7 +194,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
       <div>
         <div class="flex items-center gap-2 mb-3">
           <div class="w-6 h-6 rounded flex items-center justify-center font-bold text-white text-[10px]" style="background:linear-gradient(135deg, var(--accent-from), var(--accent-to));">Q</div>
-          <span class="font-bold">Quini</span>
+          <span class="font-bold">Kini</span>
         </div>
         <p class="text-xs leading-relaxed" style="color:var(--mute);" data-i18n="footer_about">Predicciones deportivas basadas en datos. Analizamos cada partido del Mundial y detectamos oportunidades de valor en las cuotas.</p>
       </div>
@@ -335,6 +336,7 @@ const TEAM_FLAG = {
   'Ukraine':'🇺🇦','United Arab Emirates':'🇦🇪','United States':'🇺🇸','Uruguay':'🇺🇾',
   'USA':'🇺🇸','Uzbekistan':'🇺🇿','Venezuela':'🇻🇪','Wales':'🏴󠁧󠁢󠁷󠁬󠁳󠁿',
 };
+function _esc(s) { const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
 function teamFlag(name) { return TEAM_FLAG[name] || ''; }
 function teamName(name) {
   const flag = teamFlag(name);
@@ -376,7 +378,7 @@ let currentFilter = 'all';
 let currentSearch = '';
 let currentDateFilter = '';
 const PW_HASH = '5d7df06cd4fd705ee3172c065da16c18f0c00231348bd688ed0a8679f231d39c';
-let quinielaAuth = sessionStorage.getItem('q_auth') === '1';
+let quinielaAuth = sessionStorage.getItem('q_auth') === PW_HASH;
 document.addEventListener('click', () => {
   document.querySelectorAll('.tooltip-trigger.tt-open').forEach(o => o.classList.remove('tt-open'));
 });
@@ -565,6 +567,7 @@ function renderModelHealth() {
 }
 
 function checkLive() {
+  if (!DATA?.fixtures) return;
   const hasLive = DATA.fixtures.some(f => f.is_live);
   const el = document.getElementById('live-indicator');
   if (hasLive) { el.classList.remove('hidden'); el.classList.add('flex'); startLiveTicker(); }
@@ -746,8 +749,8 @@ function _buildEventsHtml(details) {
   const icons = { 'Goal': '⚽', 'Own Goal': '⚽', 'Yellow Card': '🟨', 'Red Card': '🟥', 'Yellow Red Card': '🟥' };
   const items = details.map(d => {
     const icon = icons[d.type] || '•';
-    const name = d.athlete ? `${d.athlete}` : d.team;
-    return `<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px]" style="background:color-mix(in srgb,var(--panel2) 80%,transparent);">${icon} ${name} <span style="color:var(--mute);">${d.clock}</span></span>`;
+    const name = _esc(d.athlete || d.team || '');
+    return `<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px]" style="background:color-mix(in srgb,var(--panel2) 80%,transparent);">${icon} ${name} <span style="color:var(--mute);">${_esc(d.clock||'')}</span></span>`;
   }).join('');
   return `<div class="flex flex-wrap gap-1 mt-2">${items}</div>`;
 }
@@ -755,7 +758,7 @@ function _buildEventsHtml(details) {
 function _updateScoreEl(fId, h, a, clock, isOver) {
   const el = document.getElementById(`live-score-${fId}`);
   if (!el) return;
-  const clockStr = clock ? `${clock} · ` : '';
+  const clockStr = clock ? `${_esc(String(clock))} · ` : '';
   const label = isOver ? `FT` : `${clockStr}LIVE`;
   const labelColor = isOver ? 'var(--mute)' : 'var(--live)';
   el.innerHTML = `
@@ -1833,7 +1836,7 @@ function renderFixtureCard(f, featured = false) {
         ${scoresHtml}
         ${liveMarketsHtml}
         ${(f.xg_home && !f.completed) ? `<div class="heatmap-container mt-2">
-          <button onclick="toggleHeatmap(this, '${f.id}', ${f.xg_home}, ${f.xg_away}${f.is_live ? `, '${f.commence_time}'` : ''})" class="text-[10px] px-2 py-1 rounded" style="color:var(--mute);border:1px solid var(--border);cursor:pointer;">&#9660; ${LANG==='es'?'Mapa de goles':'Score map'}</button>
+          <button onclick="toggleHeatmap(this, '${_esc(f.id)}', ${Number(f.xg_home)||0}, ${Number(f.xg_away)||0}${f.is_live ? `, '${_esc(f.commence_time||'')}'` : ''})" class="text-[10px] px-2 py-1 rounded" style="color:var(--mute);border:1px solid var(--border);cursor:pointer;">&#9660; ${LANG==='es'?'Mapa de goles':'Score map'}</button>
           <div class="score-heatmap"></div>
         </div>` : ''}
       </div>
@@ -1942,7 +1945,7 @@ function _renderCompareView(completed) {
     const flag = TEAM_FLAG[team]||'';
     const s = stats[i].s;
     return `<div class="text-center py-3 px-2 relative" style="border-left:1px solid color-mix(in srgb,var(--border) 60%,transparent);">
-      <button onclick="_removeFromCompare('${team.replace(/'/g,"\\'")}');" class="absolute top-2 right-2 w-5 h-5 flex items-center justify-center rounded-full text-[11px] leading-none" style="background:color-mix(in srgb,var(--mute) 20%,transparent);color:var(--mute);border:none;cursor:pointer;" title="Quitar">✕</button>
+      <button data-remove-team="${team.replace(/"/g,'&quot;')}" class="absolute top-2 right-2 w-5 h-5 flex items-center justify-center rounded-full text-[11px] leading-none" style="background:color-mix(in srgb,var(--mute) 20%,transparent);color:var(--mute);border:none;cursor:pointer;" title="Quitar">✕</button>
       <div class="text-3xl mb-1 leading-none">${flag}</div>
       <div class="text-xs font-bold">${tn}</div>
       <div class="text-[10px] mt-1 font-mono font-semibold" style="color:${colColors[i]};">${s.pts}pts · ${s.w}G-${s.d}E-${s.l}P</div>
@@ -2016,16 +2019,18 @@ function renderResults() {
       const colors = ['var(--bet)','#818cf8','#f59e0b'];
       const tn = LANG==='es'?(TEAM_ES[t]||t):t;
       return `<div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full text-xs font-semibold" style="background:color-mix(in srgb,${colors[i]} 12%,transparent);color:${colors[i]};border:1px solid color-mix(in srgb,${colors[i]} 30%,transparent);">
-        ${TEAM_FLAG[t]||''} ${tn}
-        <button onclick="_removeFromCompare('${t.replace(/'/g,"\\'")}');" style="background:none;border:none;cursor:pointer;color:${colors[i]};padding:0;margin-left:2px;font-size:11px;">✕</button>
+        ${TEAM_FLAG[t]||''} ${_esc(tn)}
+        <button data-remove-team="${t.replace(/"/g,'&quot;')}" style="background:none;border:none;cursor:pointer;color:${colors[i]};padding:0;margin-left:2px;font-size:11px;">✕</button>
       </div>`;
     }).join('')}</div>` : ''}
     <div id="results-body"></div>`;
   _renderResultsContent();
-  // Close dropdown on outside click
-  setTimeout(() => {
-    document.addEventListener('click', _closeTeamDDOutside, {once:false, capture:false});
-  }, 0);
+  document.querySelectorAll('[data-remove-team]').forEach(btn => {
+    btn.addEventListener('click', () => _removeFromCompare(btn.dataset.removeTeam));
+  });
+  // Close dropdown on outside click (remove first to prevent stacking)
+  document.removeEventListener('click', _closeTeamDDOutside);
+  document.addEventListener('click', _closeTeamDDOutside);
 }
 
 function _closeTeamDDOutside(e) {
@@ -2095,6 +2100,9 @@ function _renderResultsContent() {
 
   if (_compareMode) {
     cont.innerHTML = _renderCompareView(completed);
+    cont.querySelectorAll('[data-remove-team]').forEach(btn => {
+      btn.addEventListener('click', () => _removeFromCompare(btn.dataset.removeTeam));
+    });
     return;
   }
 
@@ -2760,7 +2768,7 @@ function _simulateBankroll(initial, strategy, marketFilter, modelOnly, stopLossP
     bank += profit;
     totalProfit += profit;
     peak = Math.max(peak, bank);
-    maxDD = Math.max(maxDD, (peak - bank) / peak * 100);
+    if (peak > 0) maxDD = Math.max(maxDD, (peak - bank) / peak * 100);
     points.push({ x: i + 1, y: bank, date: bet.date });
   });
 
@@ -2945,7 +2953,7 @@ async function checkQuinielaPw() {
   const hash = await sha256(pw);
   if (hash === PW_HASH) {
     quinielaAuth = true;
-    sessionStorage.setItem('q_auth', '1');
+    sessionStorage.setItem('q_auth', PW_HASH);
     renderQuiniela();
   } else {
     document.getElementById('q-pw-error').classList.remove('hidden');

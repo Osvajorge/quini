@@ -1,6 +1,5 @@
-const CACHE = 'quini-v2';
-const STATIC = ['/', '/index.html'];
-const DATA_URL = '/data/predictions.json';
+const CACHE = 'kini-v3';
+const STATIC = ['/', '/app', '/app/index.html'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(STATIC)).then(() => self.skipWaiting()));
@@ -13,10 +12,9 @@ self.addEventListener('activate', e => {
   );
 });
 
-// Click on a notification → focus existing tab or open new
 self.addEventListener('notificationclick', e => {
   e.notification.close();
-  const url = (e.notification.data && e.notification.data.url) || '/';
+  const url = (e.notification.data && e.notification.data.url) || '/app';
   e.waitUntil(
     self.clients.matchAll({type: 'window', includeUncontrolled: true}).then(clients => {
       for (const c of clients) {
@@ -30,7 +28,6 @@ self.addEventListener('notificationclick', e => {
   );
 });
 
-// Periodic background sync (Chrome only, requires user install + permission)
 self.addEventListener('periodicsync', e => {
   if (e.tag === 'check-new-bets') {
     e.waitUntil(fetch('/data/predictions.json').catch(() => {}));
@@ -40,8 +37,8 @@ self.addEventListener('periodicsync', e => {
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
 
-  // predictions.json: network first, cache fallback (always fresh data)
-  if (url.pathname.includes('predictions.json') || url.pathname.includes('history.json')) {
+  // Data JSON: network first, cache fallback
+  if (url.pathname.startsWith('/data/')) {
     e.respondWith(
       fetch(e.request)
         .then(r => { caches.open(CACHE).then(c => c.put(e.request, r.clone())); return r; })
@@ -50,7 +47,21 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // Static assets: cache first
+  // HTML pages: stale-while-revalidate
+  if (e.request.mode === 'navigate' || url.pathname.endsWith('.html') || url.pathname === '/' || url.pathname === '/app') {
+    e.respondWith(
+      caches.match(e.request).then(cached => {
+        const fetched = fetch(e.request).then(r => {
+          if (r.ok) caches.open(CACHE).then(c => c.put(e.request, r.clone()));
+          return r;
+        });
+        return cached || fetched;
+      })
+    );
+    return;
+  }
+
+  // Other static assets: cache first
   e.respondWith(
     caches.match(e.request).then(cached => cached || fetch(e.request).then(r => {
       if (r.ok && e.request.method === 'GET') {

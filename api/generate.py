@@ -504,7 +504,8 @@ def _load_refit_state() -> dict:
     if not path.exists():
         return {}
     try:
-        return json.load(open(path))
+        with open(path) as f:
+            return json.load(f)
     except Exception:
         return {}
 

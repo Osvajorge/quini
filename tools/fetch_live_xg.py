@@ -55,7 +55,8 @@ def fetch() -> None:
         print("[live_xg] no predictions.json — skipping")
         return
 
-    data = json.load(open(PRED))
+    with open(PRED) as f:
+        data = json.load(f)
     fixtures = data.get("fixtures", [])
 
     live = [f for f in fixtures if f.get("is_live") and not f.get("completed")]
@@ -150,7 +151,10 @@ def fetch() -> None:
 
     if updated:
         data["xg_updated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
-        json.dump(data, open(PRED, "w"), indent=2, ensure_ascii=False)
+        tmp = PRED.with_suffix(".tmp")
+        with open(tmp, "w") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        tmp.rename(PRED)
         print(f"[live_xg] updated {updated} fixture(s) in predictions.json")
     else:
         print("[live_xg] no xG updates applied")

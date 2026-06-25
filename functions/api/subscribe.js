@@ -12,8 +12,8 @@
  *   GET  /api/subscribe  → { count: N }   (public counter)
  *   POST /api/subscribe  → { ok: true }   (save lead)
  *
- * POST body (JSON): { email, phone?, name?, _hp? }
- * _hp is honeypot — bots fill it, humans don't
+ * POST body (JSON): { email, phone?, name?, website? }
+ * website is honeypot — bots fill it, humans don't
  */
 
 export async function onRequestGet({ env }) {
@@ -33,13 +33,12 @@ export async function onRequestPost({ request, env }) {
     return new Response(JSON.stringify({ error: 'invalid json' }), { status: 400, headers: cors });
   }
 
-  // Honeypot — bots fill hidden field, humans leave it empty
-  if (body._hp) {
+  if (body.website) {
     return new Response(JSON.stringify({ ok: true }), { status: 200, headers: cors });
   }
 
-  const email = (body.email || '').trim().toLowerCase();
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  const email = (body.email || '').trim().toLowerCase().slice(0, 254);
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
     return new Response(JSON.stringify({ error: 'invalid email' }), { status: 400, headers: cors });
   }
 
