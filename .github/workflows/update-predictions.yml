@@ -29,6 +29,11 @@ jobs:
           THE_ODDS_API_KEY_FREE: ${{ secrets.THE_ODDS_API_KEY_FREE }}
         run: python api/generate.py
 
+      - name: Fetch live xG from api-football (best-effort)
+        env:
+          API_FOOTBALL_KEY: ${{ secrets.API_FOOTBALL_KEY }}
+        run: python -m tools.fetch_live_xg || true
+
       - name: Auto-post Twitter (best-effort, skips if no creds)
         env:
           TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}

@@ -71,6 +71,8 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 .tooltip-trigger:hover .help-icon, .tooltip-trigger.tt-open .help-icon { opacity:0.8; }
 .score-heatmap { display:none; }
 .score-heatmap.open { display:block; }
+@keyframes flash-val { 0%{background:color-mix(in srgb,var(--live) 30%,transparent);color:var(--live);} 100%{background:transparent;} }
+.flash-val { animation:flash-val 0.6s ease; border-radius:4px; }
 </style>
 </head>
 <body class="font-sans antialiased">
@@ -576,17 +578,30 @@ function goToLive() {
   });
 }
 
-// ── Live ticker (client-side, 30s interval) ──
+// ── Live ticker (client-side, 15s interval) ──
 let _liveTickerTimer = null;
+let _liveAgeTimer = null;
+let _lastLiveUpdate = 0;
+
+function _tickLiveAge() {
+  if (!_lastLiveUpdate) return;
+  const s = Math.round((Date.now() - _lastLiveUpdate) / 1000);
+  const label = s < 3 ? (LANG === 'es' ? 'ahora' : 'now') : `${s}s`;
+  document.querySelectorAll('.live-age').forEach(el => { el.textContent = label; });
+  const pct = Math.max(0, (1 - s / 15) * 100).toFixed(1);
+  document.querySelectorAll('.live-progress-fill').forEach(el => { el.style.width = pct + '%'; });
+}
 
 function startLiveTicker() {
   if (_liveTickerTimer) return;
   _tickLive();
-  _liveTickerTimer = setInterval(_tickLive, 15000); // 15s — snappier mid-match updates
+  _liveTickerTimer = setInterval(_tickLive, 15000);
+  if (!_liveAgeTimer) _liveAgeTimer = setInterval(_tickLiveAge, 1000);
 }
 
 function stopLiveTicker() {
   if (_liveTickerTimer) { clearInterval(_liveTickerTimer); _liveTickerTimer = null; }
+  if (_liveAgeTimer) { clearInterval(_liveAgeTimer); _liveAgeTimer = null; }
 }
 
 function computeElapsed(commenceTime) {
@@ -615,26 +630,48 @@ function computeLiveConditional(xgH, xgA, actualH, actualA, elapsedMin) {
   return { topScores, markets: { homeWin, draw, awayWin, over25, under25: 1 - over25, bttsYes, bttsNo: 1 - bttsYes } };
 }
 
+function _mktColor(v) {
+  if (v > 0.65) return 'var(--bet)';
+  if (v > 0.42) return 'var(--alta)';
+  if (v < 0.12) return 'color-mix(in srgb,var(--mute) 70%,transparent)';
+  return 'var(--ink)';
+}
+
 function buildLiveMarketsHtml(markets, elapsed, actualH, actualA) {
   const pct = v => (v * 100).toFixed(0) + '%';
   const minStr = Math.floor(elapsed) + "'";
   const rows = [
     ['1', 'homeWin', LANG === 'es' ? 'Local' : 'Home'],
-    ['X', 'draw', 'Draw'],
+    ['X', 'draw', LANG === 'es' ? 'Empate' : 'Draw'],
     ['2', 'awayWin', LANG === 'es' ? 'Visita' : 'Away'],
     ['O2.5', 'over25', 'Over 2.5'],
-    ['BTTS', 'bttsYes', 'BTTS'],
     ['U2.5', 'under25', 'Under 2.5'],
-  ].map(([lbl, key, title]) => `<div class="rounded py-1.5 text-center" title="${title}" style="background:color-mix(in srgb,var(--panel2) 80%,transparent);">
-    <div class="text-xs font-bold font-mono">${pct(markets[key])}</div>
-    <div class="text-[9px]" style="color:var(--mute);">${lbl}</div>
-  </div>`).join('');
+    ['BTTS', 'bttsYes', 'BTTS'],
+  ].map(([lbl, key, title]) => {
+    const v = markets[key];
+    const col = _mktColor(v);
+    const bg = v > 0.42
+      ? `color-mix(in srgb,${col} 10%,var(--panel2))`
+      : 'color-mix(in srgb,var(--panel2) 60%,transparent)';
+    const border = v > 0.42 ? `border:1px solid color-mix(in srgb,${col} 25%,transparent);` : 'border:1px solid transparent;';
+    return `<div class="rounded-lg py-2 text-center live-mkt-box" data-key="${key}" title="${title}" style="background:${bg};${border}">
+      <div class="text-sm font-bold font-mono" style="color:${col};">${pct(v)}</div>
+      <div class="text-[9px] mt-0.5 font-semibold" style="color:var(--mute);">${lbl}</div>
+    </div>`;
+  }).join('');
+
   return `<div class="mt-3 pt-2" style="border-top:1px solid color-mix(in srgb, var(--live) 20%, transparent);">
-    <div class="flex items-center gap-1.5 mb-2">
-      <span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span>
-      <span class="text-[10px] font-bold uppercase tracking-wider" style="color:var(--live);">${LANG === 'es' ? 'PROBABILIDADES RESTANTES' : 'REMAINING PROBS'} · ${actualH}-${actualA} · ${minStr}</span>
+    <div class="flex items-center justify-between mb-2">
+      <div class="flex items-center gap-1.5">
+        <span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span>
+        <span class="text-[10px] font-bold uppercase tracking-wider" style="color:var(--live);">${LANG === 'es' ? 'PROBS RESTANTES' : 'REMAINING PROBS'} · ${actualH}-${actualA} · ${minStr}</span>
+      </div>
+      <span class="text-[9px] font-mono live-age" style="color:var(--mute);">—</span>
     </div>
-    <div class="grid grid-cols-6 gap-1">${rows}</div>
+    <div class="grid grid-cols-6 gap-1 mb-2">${rows}</div>
+    <div class="rounded-full overflow-hidden" style="height:2px;background:color-mix(in srgb,var(--live) 15%,transparent);">
+      <div class="live-progress-fill h-full rounded-full" style="width:100%;background:var(--live);transition:width 1s linear;"></div>
+    </div>
   </div>`;
 }
 
@@ -725,7 +762,15 @@ function _updateScoreEl(fId, h, a, clock, isOver) {
     </div>`;
 }
 
+function _flashEl(el) {
+  if (!el) return;
+  el.classList.remove('flash-val');
+  void el.offsetWidth; // reflow to restart animation
+  el.classList.add('flash-val');
+}
+
 function _updateScoreDom(f, actualH, actualA, elapsed) {
+  _lastLiveUpdate = Date.now();
   const { topScores, markets } = computeLiveConditional(f.xg_home, f.xg_away, actualH, actualA, elapsed);
 
   const scoresEl = document.getElementById(`live-scores-${f.id}`);
@@ -742,7 +787,16 @@ function _updateScoreDom(f, actualH, actualA, elapsed) {
   }
 
   const mktsEl = document.getElementById(`live-markets-${f.id}`);
-  if (mktsEl) mktsEl.innerHTML = buildLiveMarketsHtml(markets, elapsed, actualH, actualA);
+  if (mktsEl) {
+    const prev = {};
+    mktsEl.querySelectorAll('.live-mkt-box').forEach(b => { prev[b.dataset.key] = b.querySelector('.text-sm')?.textContent; });
+    mktsEl.innerHTML = buildLiveMarketsHtml(markets, elapsed, actualH, actualA);
+    mktsEl.querySelectorAll('.live-mkt-box').forEach(b => {
+      const key = b.dataset.key;
+      const valEl = b.querySelector('.text-sm');
+      if (prev[key] && valEl && prev[key] !== valEl.textContent) _flashEl(valEl);
+    });
+  }
 
   const card = document.getElementById(`fix-${f.id}`);
   if (card) {
