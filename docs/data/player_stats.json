@@ -27,6 +27,24 @@
       }
     },
     {
+      "player": "Gabriel Magalhães",
+      "team": "Brazil",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 175.0,
+          "max": 93.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 18.0,
+          "max": 10.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
       "player": "Mathías Olivera",
       "team": "Uruguay",
       "headshot": null,
@@ -110,7 +128,7 @@
       "player": "Hannes Delcroix",
       "team": "Haiti",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Accurate Passes": {
           "total": 113.0,
@@ -118,9 +136,9 @@
           "appearances": 2
         },
         "Defensive Interventions": {
-          "total": 25.0,
+          "total": 39.0,
           "max": 14.0,
-          "appearances": 2
+          "appearances": 3
         }
       }
     },
@@ -205,6 +223,24 @@
       }
     },
     {
+      "player": "Ime Okon",
+      "team": "South Africa",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 93.0,
+          "max": 48.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 11.0,
+          "max": 11.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Teboho Mokoena",
       "team": "South Africa",
       "headshot": null,
@@ -227,6 +263,24 @@
           "total": 14.0,
           "max": 14.0,
           "appearances": 1
+        },
+        "Accurate Passes": {
+          "total": 91.0,
+          "max": 91.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Lee Gi-Hyuk",
+      "team": "South Korea",
+      "headshot": null,
+      "matches": 3,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 31.0,
+          "max": 12.0,
+          "appearances": 3
         },
         "Accurate Passes": {
           "total": 91.0,
@@ -262,6 +316,24 @@
         "Defensive Interventions": {
           "total": 12.0,
           "max": 12.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Lewis Ferguson",
+      "team": "Scotland",
+      "headshot": null,
+      "matches": 3,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 16.0,
+          "max": 8.0,
+          "appearances": 2
+        },
+        "Accurate Passes": {
+          "total": 87.0,
+          "max": 87.0,
           "appearances": 1
         }
       }
@@ -306,24 +378,6 @@
         "Accurate Passes": {
           "total": 82.0,
           "max": 82.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Gabriel Magalhães",
-      "team": "Brazil",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 82.0,
-          "max": 82.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 10.0,
-          "max": 10.0,
           "appearances": 1
         }
       }
@@ -603,6 +657,32 @@
       }
     },
     {
+      "player": "Manuel Akanji",
+      "team": "Switzerland",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 65.0,
+          "max": 65.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Chadi Riad",
+      "team": "Morocco",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 64.0,
+          "max": 64.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Idrissa Gueye",
       "team": "Senegal",
       "headshot": null,
@@ -651,6 +731,19 @@
           "total": 60.0,
           "max": 60.0,
           "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Vinícius Júnior",
+      "team": "Brazil",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Total Shots": {
+          "total": 11.0,
+          "max": 8.0,
+          "appearances": 2
         }
       }
     },
@@ -828,19 +921,19 @@
       }
     },
     {
-      "player": "Ime Okon",
-      "team": "South Africa",
+      "player": "Ricardo Adé",
+      "team": "Haiti",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
-        "Accurate Passes": {
-          "total": 45.0,
-          "max": 45.0,
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
           "appearances": 1
         },
-        "Defensive Interventions": {
-          "total": 11.0,
-          "max": 11.0,
+        "Accurate Passes": {
+          "total": 34.0,
+          "max": 34.0,
           "appearances": 1
         }
       }
@@ -908,6 +1001,19 @@
       }
     },
     {
+      "player": "Scott McTominay",
+      "team": "Scotland",
+      "headshot": null,
+      "matches": 3,
+      "categories": {
+        "Total Shots": {
+          "total": 8.0,
+          "max": 4.0,
+          "appearances": 3
+        }
+      }
+    },
+    {
       "player": "Yazan Al-Arab",
       "team": "Jordan",
       "headshot": null,
@@ -934,6 +1040,19 @@
         "Total Shots": {
           "total": 8.0,
           "max": 8.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Derek Cornelius",
+      "team": "Canada",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238712.png",
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 37.0,
+          "max": 37.0,
           "appearances": 1
         }
       }
@@ -1012,6 +1131,19 @@
       "player": "Cody Gakpo",
       "team": "Netherlands",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/249524.png",
+      "matches": 2,
+      "categories": {
+        "Total Shots": {
+          "total": 7.0,
+          "max": 5.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Achraf Hakimi",
+      "team": "Morocco",
+      "headshot": null,
       "matches": 2,
       "categories": {
         "Total Shots": {
@@ -1227,6 +1359,19 @@
       }
     },
     {
+      "player": "Thapelo Maseko",
+      "team": "South Africa",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 5.0,
+          "max": 5.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Thomas Partey",
       "team": "Ghana",
       "headshot": null,
@@ -1303,19 +1448,6 @@
           "total": 10.0,
           "max": 10.0,
           "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Scott McTominay",
-      "team": "Scotland",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Total Shots": {
-          "total": 4.0,
-          "max": 2.0,
-          "appearances": 2
         }
       }
     },
@@ -1442,19 +1574,6 @@
       }
     },
     {
-      "player": "Vinícius Júnior",
-      "team": "Brazil",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 3.0,
-          "max": 3.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Neil El Aynaoui",
       "team": "Morocco",
       "headshot": null,
@@ -1527,6 +1646,32 @@
     {
       "player": "Farès Chaïbi",
       "team": "Algeria",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Promise David",
+      "team": "Canada",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Jean-Ricner Bellegarde",
+      "team": "Haiti",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -1629,32 +1774,6 @@
       }
     },
     {
-      "player": "Ricardo Adé",
-      "team": "Haiti",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Achraf Hakimi",
-      "team": "Morocco",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Adam Hlozek",
       "team": "Czechia",
       "headshot": null,
@@ -1734,6 +1853,32 @@
     },
     {
       "player": "Lee Kang-In",
+      "team": "South Korea",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Johan Manzambi",
+      "team": "Switzerland",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Oh Hyeon-Gyu",
       "team": "South Korea",
       "headshot": null,
       "matches": 1,
@@ -2365,12 +2510,12 @@
       "player": "Alisson Becker",
       "team": "Brazil",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 5.0,
-          "max": 3.0,
-          "appearances": 2
+          "total": 10.0,
+          "max": 5.0,
+          "appearances": 3
         }
       }
     },
@@ -2378,25 +2523,12 @@
       "player": "Johny Placide",
       "team": "Haiti",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 3.0,
-          "max": 2.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Lewis Ferguson",
-      "team": "Scotland",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 16.0,
+          "total": 11.0,
           "max": 8.0,
-          "appearances": 2
+          "appearances": 3
         }
       }
     },
@@ -2404,12 +2536,12 @@
       "player": "Angus Gunn",
       "team": "Scotland",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 3.0,
-          "max": 2.0,
-          "appearances": 2
+          "total": 8.0,
+          "max": 5.0,
+          "appearances": 3
         }
       }
     },
@@ -2443,25 +2575,12 @@
       "player": "Ronwen Williams",
       "team": "South Africa",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 4.0,
+          "total": 6.0,
           "max": 2.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Lee Gi-Hyuk",
-      "team": "South Korea",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 20.0,
-          "max": 12.0,
-          "appearances": 2
+          "appearances": 3
         }
       }
     },
@@ -2469,12 +2588,12 @@
       "player": "Kim Seung-Gyu",
       "team": "South Korea",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 6.0,
+          "total": 9.0,
           "max": 3.0,
-          "appearances": 2
+          "appearances": 3
         }
       }
     },
@@ -2521,12 +2640,12 @@
       "player": "Yassine Bounou",
       "team": "Morocco",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 4.0,
+          "total": 5.0,
           "max": 4.0,
-          "appearances": 1
+          "appearances": 2
         }
       }
     },
@@ -2716,11 +2835,16 @@
       "player": "Maxime Crépeau",
       "team": "Canada",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/159382.png",
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Defensive Interventions": {
           "total": 4.0,
           "max": 4.0,
+          "appearances": 1
+        },
+        "Saves": {
+          "total": 2.0,
+          "max": 2.0,
           "appearances": 1
         }
       }
@@ -2734,6 +2858,84 @@
         "Saves": {
           "total": 4.0,
           "max": 4.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Nico Elvedi",
+      "team": "Switzerland",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 14.0,
+          "max": 14.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Gregor Kobel",
+      "team": "Switzerland",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Saves": {
+          "total": 6.0,
+          "max": 6.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Alistair Johnston",
+      "team": "Canada",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/293691.png",
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 10.0,
+          "max": 10.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Redouane Halhal",
+      "team": "Morocco",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 10.0,
+          "max": 10.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Nathan Patterson",
+      "team": "Scotland",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 8.0,
+          "max": 8.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Khuliso Mudau",
+      "team": "South Africa",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 19.0,
+          "max": 19.0,
           "appearances": 1
         }
       }

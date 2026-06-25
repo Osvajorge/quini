@@ -4833,5 +4833,533 @@
         "value": "3"
       }
     ]
+  },
+  "c9ef5822ee64fd5275f7c73251bb56c7": {
+    "espn_id": "760463",
+    "fetched_at": "2026-06-25T04:31:13+00:00",
+    "teams": [
+      {
+        "team": "Switzerland",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "19",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "2",
+          "saves": "6",
+          "possessionPct": "55.3",
+          "totalShots": "6",
+          "shotsOnTarget": "4",
+          "shotPct": "0.7",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "369",
+          "totalPasses": "443",
+          "passPct": "0.8",
+          "accurateCrosses": "1",
+          "totalCrosses": "6",
+          "crossPct": "0.2",
+          "totalLongBalls": "45",
+          "accurateLongBalls": "17",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "7",
+          "totalTackles": "16",
+          "tacklePct": "0.4",
+          "interceptions": "4",
+          "effectiveClearance": "44",
+          "totalClearance": "44"
+        }
+      },
+      {
+        "team": "Canada",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "7",
+          "saves": "2",
+          "possessionPct": "44.7",
+          "totalShots": "13",
+          "shotsOnTarget": "7",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "271",
+          "totalPasses": "339",
+          "passPct": "0.8",
+          "accurateCrosses": "6",
+          "totalCrosses": "26",
+          "crossPct": "0.2",
+          "totalLongBalls": "43",
+          "accurateLongBalls": "20",
+          "longballPct": "0.5",
+          "blockedShots": "3",
+          "effectiveTackles": "5",
+          "totalTackles": "9",
+          "tacklePct": "0.6",
+          "interceptions": "13",
+          "effectiveClearance": "19",
+          "totalClearance": "19"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Switzerland",
+        "category": "Total Shots",
+        "player": "Johan Manzambi",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Switzerland",
+        "category": "Accurate Passes",
+        "player": "Manuel Akanji",
+        "headshot": null,
+        "value": "65"
+      },
+      {
+        "team": "Switzerland",
+        "category": "Defensive Interventions",
+        "player": "Nico Elvedi",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Switzerland",
+        "category": "Saves",
+        "player": "Gregor Kobel",
+        "headshot": null,
+        "value": "6"
+      },
+      {
+        "team": "Canada",
+        "category": "Total Shots",
+        "player": "Promise David",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Canada",
+        "category": "Accurate Passes",
+        "player": "Derek Cornelius",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238712.png",
+        "value": "37"
+      },
+      {
+        "team": "Canada",
+        "category": "Defensive Interventions",
+        "player": "Alistair Johnston",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/293691.png",
+        "value": "10"
+      },
+      {
+        "team": "Canada",
+        "category": "Saves",
+        "player": "Maxime Crépeau",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/159382.png",
+        "value": "2"
+      }
+    ]
+  },
+  "d1279ce7f33136a33e99ad442fc855e8": {
+    "espn_id": "760464",
+    "fetched_at": "2026-06-25T04:31:13+00:00",
+    "teams": [
+      {
+        "team": "Morocco",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "5",
+          "wonCorners": "9",
+          "saves": "1",
+          "possessionPct": "69.1",
+          "totalShots": "22",
+          "shotsOnTarget": "11",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "477",
+          "totalPasses": "541",
+          "passPct": "0.9",
+          "accurateCrosses": "7",
+          "totalCrosses": "22",
+          "crossPct": "0.3",
+          "totalLongBalls": "34",
+          "accurateLongBalls": "17",
+          "longballPct": "0.5",
+          "blockedShots": "5",
+          "effectiveTackles": "8",
+          "totalTackles": "20",
+          "tacklePct": "0.4",
+          "interceptions": "8",
+          "effectiveClearance": "14",
+          "totalClearance": "14"
+        }
+      },
+      {
+        "team": "Haiti",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "18",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "1",
+          "saves": "8",
+          "possessionPct": "30.9",
+          "totalShots": "9",
+          "shotsOnTarget": "2",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "198",
+          "totalPasses": "247",
+          "passPct": "0.8",
+          "accurateCrosses": "2",
+          "totalCrosses": "3",
+          "crossPct": "0.7",
+          "totalLongBalls": "44",
+          "accurateLongBalls": "21",
+          "longballPct": "0.5",
+          "blockedShots": "3",
+          "effectiveTackles": "12",
+          "totalTackles": "25",
+          "tacklePct": "0.5",
+          "interceptions": "16",
+          "effectiveClearance": "26",
+          "totalClearance": "26"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Morocco",
+        "category": "Total Shots",
+        "player": "Achraf Hakimi",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Morocco",
+        "category": "Accurate Passes",
+        "player": "Chadi Riad",
+        "headshot": null,
+        "value": "64"
+      },
+      {
+        "team": "Morocco",
+        "category": "Defensive Interventions",
+        "player": "Redouane Halhal",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "Morocco",
+        "category": "Saves",
+        "player": "Yassine Bounou",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Haiti",
+        "category": "Total Shots",
+        "player": "Jean-Ricner Bellegarde",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Haiti",
+        "category": "Accurate Passes",
+        "player": "Ricardo Adé",
+        "headshot": null,
+        "value": "34"
+      },
+      {
+        "team": "Haiti",
+        "category": "Defensive Interventions",
+        "player": "Hannes Delcroix",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Haiti",
+        "category": "Saves",
+        "player": "Johny Placide",
+        "headshot": null,
+        "value": "8"
+      }
+    ]
+  },
+  "885ba95805db310a7bcc3fb1a7a6dd28": {
+    "espn_id": "760465",
+    "fetched_at": "2026-06-25T04:31:13+00:00",
+    "teams": [
+      {
+        "team": "Scotland",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "7",
+          "saves": "5",
+          "possessionPct": "46",
+          "totalShots": "14",
+          "shotsOnTarget": "5",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "450",
+          "totalPasses": "500",
+          "passPct": "0.9",
+          "accurateCrosses": "9",
+          "totalCrosses": "23",
+          "crossPct": "0.4",
+          "totalLongBalls": "33",
+          "accurateLongBalls": "17",
+          "longballPct": "0.5",
+          "blockedShots": "3",
+          "effectiveTackles": "8",
+          "totalTackles": "12",
+          "tacklePct": "0.7",
+          "interceptions": "2",
+          "effectiveClearance": "13",
+          "totalClearance": "13"
+        }
+      },
+      {
+        "team": "Brazil",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "7",
+          "saves": "5",
+          "possessionPct": "54",
+          "totalShots": "21",
+          "shotsOnTarget": "9",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "564",
+          "totalPasses": "605",
+          "passPct": "0.9",
+          "accurateCrosses": "2",
+          "totalCrosses": "12",
+          "crossPct": "0.2",
+          "totalLongBalls": "27",
+          "accurateLongBalls": "12",
+          "longballPct": "0.4",
+          "blockedShots": "5",
+          "effectiveTackles": "6",
+          "totalTackles": "14",
+          "tacklePct": "0.4",
+          "interceptions": "13",
+          "effectiveClearance": "24",
+          "totalClearance": "24"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Scotland",
+        "category": "Total Shots",
+        "player": "Scott McTominay",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Scotland",
+        "category": "Accurate Passes",
+        "player": "Lewis Ferguson",
+        "headshot": null,
+        "value": "87"
+      },
+      {
+        "team": "Scotland",
+        "category": "Defensive Interventions",
+        "player": "Nathan Patterson",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Scotland",
+        "category": "Saves",
+        "player": "Angus Gunn",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Brazil",
+        "category": "Total Shots",
+        "player": "Vinícius Júnior",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Brazil",
+        "category": "Accurate Passes",
+        "player": "Gabriel Magalhães",
+        "headshot": null,
+        "value": "93"
+      },
+      {
+        "team": "Brazil",
+        "category": "Defensive Interventions",
+        "player": "Gabriel Magalhães",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Brazil",
+        "category": "Saves",
+        "player": "Alisson Becker",
+        "headshot": null,
+        "value": "5"
+      }
+    ]
+  },
+  "c0355dfc6e26ec327e379b6ef5824a5f": {
+    "espn_id": "760466",
+    "fetched_at": "2026-06-25T04:31:13+00:00",
+    "teams": [
+      {
+        "team": "South Africa",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "4",
+          "saves": "2",
+          "possessionPct": "31.5",
+          "totalShots": "13",
+          "shotsOnTarget": "4",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "277",
+          "totalPasses": "338",
+          "passPct": "0.8",
+          "accurateCrosses": "1",
+          "totalCrosses": "8",
+          "crossPct": "0.1",
+          "totalLongBalls": "55",
+          "accurateLongBalls": "19",
+          "longballPct": "0.3",
+          "blockedShots": "4",
+          "effectiveTackles": "6",
+          "totalTackles": "11",
+          "tacklePct": "0.5",
+          "interceptions": "15",
+          "effectiveClearance": "42",
+          "totalClearance": "42"
+        }
+      },
+      {
+        "team": "South Korea",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "9",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "6",
+          "saves": "3",
+          "possessionPct": "68.5",
+          "totalShots": "8",
+          "shotsOnTarget": "3",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "643",
+          "totalPasses": "720",
+          "passPct": "0.9",
+          "accurateCrosses": "7",
+          "totalCrosses": "33",
+          "crossPct": "0.2",
+          "totalLongBalls": "55",
+          "accurateLongBalls": "31",
+          "longballPct": "0.6",
+          "blockedShots": "1",
+          "effectiveTackles": "9",
+          "totalTackles": "12",
+          "tacklePct": "0.8",
+          "interceptions": "4",
+          "effectiveClearance": "15",
+          "totalClearance": "15"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "South Africa",
+        "category": "Total Shots",
+        "player": "Thapelo Maseko",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "South Africa",
+        "category": "Accurate Passes",
+        "player": "Ime Okon",
+        "headshot": null,
+        "value": "48"
+      },
+      {
+        "team": "South Africa",
+        "category": "Defensive Interventions",
+        "player": "Khuliso Mudau",
+        "headshot": null,
+        "value": "19"
+      },
+      {
+        "team": "South Africa",
+        "category": "Saves",
+        "player": "Ronwen Williams",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "South Korea",
+        "category": "Total Shots",
+        "player": "Oh Hyeon-Gyu",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "South Korea",
+        "category": "Accurate Passes",
+        "player": "Lee Gi-Hyuk",
+        "headshot": null,
+        "value": "91"
+      },
+      {
+        "team": "South Korea",
+        "category": "Defensive Interventions",
+        "player": "Lee Gi-Hyuk",
+        "headshot": null,
+        "value": "11"
+      },
+      {
+        "team": "South Korea",
+        "category": "Saves",
+        "player": "Kim Seung-Gyu",
+        "headshot": null,
+        "value": "3"
+      }
+    ]
   }
 }
