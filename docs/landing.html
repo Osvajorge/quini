@@ -238,13 +238,30 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
       <p class="font-semibold mb-1 text-center" data-i18n="wl_step2_title">¡Estás en la lista!</p>
       <p class="text-sm mb-5 text-center" style="color: var(--mute);" data-i18n="wl_step2_sub">Opcional: añade tu teléfono para recibir el pick del día por WhatsApp.</p>
       <form id="wl-form2" class="flex flex-col gap-3" autocomplete="on">
-        <input
-          type="tel" name="phone" autocomplete="tel"
-          placeholder="+52 55 1234 5678"
-          data-ph-en="+1 555 123 4567"
-          class="w-full px-4 py-3 rounded-xl outline-none text-base"
-          style="background: var(--panel2); border: 1px solid var(--border); color: var(--ink);"
-        />
+        <div class="flex gap-2">
+          <select name="phone_cc" id="phone-cc"
+            class="px-3 py-3 rounded-xl outline-none text-base font-mono"
+            style="background: var(--panel2); border: 1px solid var(--border); color: var(--ink); flex-shrink: 0; width: 110px;">
+            <option value="+52">🇲🇽 +52</option>
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+34">🇪🇸 +34</option>
+            <option value="+54">🇦🇷 +54</option>
+            <option value="+57">🇨🇴 +57</option>
+            <option value="+55">🇧🇷 +55</option>
+            <option value="+56">🇨🇱 +56</option>
+            <option value="+51">🇵🇪 +51</option>
+            <option value="+58">🇻🇪 +58</option>
+            <option value="+593">🇪🇨 +593</option>
+            <option value="+502">🇬🇹 +502</option>
+            <option value="+506">🇨🇷 +506</option>
+          </select>
+          <input
+            type="tel" name="phone_local" autocomplete="tel-national"
+            placeholder="3310212964"
+            class="flex-1 px-4 py-3 rounded-xl outline-none text-base"
+            style="background: var(--panel2); border: 1px solid var(--border); color: var(--ink);"
+          />
+        </div>
         <input
           type="text" name="name" autocomplete="given-name"
           placeholder="Tu nombre (opcional)"
@@ -571,7 +588,9 @@ document.getElementById('wl-form2').addEventListener('submit', async e => {
   const btn = form.querySelector('button[type=submit]');
   btn.disabled = true;
   btn.textContent = '…';
-  const phone = (form.phone.value || '').trim();
+  const cc = (form.phone_cc?.value || '+52').trim();
+  const local = (form.phone_local?.value || '').trim().replace(/\s+/g, '');
+  const phone = local ? `${cc} ${local}` : '';
   const name = (form.name.value || '').trim();
   try {
     await fetch('/api/subscribe', {
