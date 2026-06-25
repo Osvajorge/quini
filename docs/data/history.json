@@ -3394,20 +3394,170 @@
       "predicted_1x2": "2",
       "result_1x2": "1",
       "correct_1x2": false
+    },
+    {
+      "id": "a5a0b544a984ab16e564264f3e859b43",
+      "home": "Cura\u00e7ao",
+      "away": "Ivory Coast",
+      "date": "2026-06-25T20:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "SKIP",
+          "edge": 11.9,
+          "odds": 84.97,
+          "model_prob": 12.6,
+          "devig_prob": 0.7,
+          "won": false,
+          "closing_odds": 24.0,
+          "clv_pct": 254.04
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "SKIP",
+          "edge": 13.5,
+          "odds": 16.86,
+          "model_prob": 18.8,
+          "devig_prob": 5.2,
+          "won": false,
+          "closing_odds": 8.2,
+          "clv_pct": 105.61
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "FADE",
+          "edge": -25.5,
+          "odds": 1.05,
+          "model_prob": 68.6,
+          "devig_prob": 94.1,
+          "won": true,
+          "closing_odds": 1.16,
+          "clv_pct": -9.48
+        }
+      ],
+      "bets": [],
+      "best_bet": null,
+      "has_bet": false,
+      "result": {
+        "home": 0,
+        "away": 2
+      },
+      "best_bet_won": null,
+      "score_hit": 1,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 14.9
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 14.0
+        },
+        {
+          "home": 0,
+          "away": 3,
+          "prob": 10.6
+        }
+      ],
+      "xg_home": 0.59,
+      "xg_away": 2.22,
+      "predicted_1x2": "2",
+      "result_1x2": "2",
+      "correct_1x2": true
+    },
+    {
+      "id": "0ec28b84ec399bd4dffbe8d1bc72b3c4",
+      "home": "Ecuador",
+      "away": "Germany",
+      "date": "2026-06-25T20:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "SKIP",
+          "edge": 1.7,
+          "odds": 4.43,
+          "model_prob": 23.1,
+          "devig_prob": 21.4,
+          "won": true,
+          "closing_odds": 6.0,
+          "clv_pct": -26.17
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "SKIP",
+          "edge": 9.4,
+          "odds": 3.55,
+          "model_prob": 36.3,
+          "devig_prob": 26.9,
+          "won": false,
+          "closing_odds": 5.4,
+          "clv_pct": -34.26
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "FADE",
+          "edge": -11.1,
+          "odds": 1.88,
+          "model_prob": 40.6,
+          "devig_prob": 51.7,
+          "won": false,
+          "closing_odds": 1.53,
+          "clv_pct": 22.88
+        }
+      ],
+      "bets": [],
+      "best_bet": null,
+      "has_bet": false,
+      "result": {
+        "home": 2,
+        "away": 1
+      },
+      "best_bet_won": null,
+      "score_hit": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 26.5
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 21.6
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 11.5
+        }
+      ],
+      "xg_home": 0.51,
+      "xg_away": 0.9,
+      "predicted_1x2": "2",
+      "result_1x2": "1",
+      "correct_1x2": false
     }
   ],
   "summary": {
-    "total": 44,
+    "total": 46,
     "total_bets": 65,
     "won": 32,
     "lost": 33,
     "win_rate": 49.2,
     "roi": -10.2,
-    "score_hits": 17,
-    "score_top1": 5,
-    "correct_1x2": 31,
-    "total_1x2": 44,
-    "accuracy_1x2": 70.5,
+    "score_hits": 18,
+    "score_top1": 6,
+    "correct_1x2": 32,
+    "total_1x2": 46,
+    "accuracy_1x2": 69.6,
     "avg_clv_pct": null,
     "clv_sample_size": 0,
     "pct_beating_close": null

@@ -5618,5 +5618,269 @@
         "value": "3"
       }
     ]
+  },
+  "a5a0b544a984ab16e564264f3e859b43": {
+    "espn_id": "760473",
+    "fetched_at": "2026-06-25T21:59:13+00:00",
+    "teams": [
+      {
+        "team": "Curaçao",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "4",
+          "saves": "1",
+          "possessionPct": "36.6",
+          "totalShots": "11",
+          "shotsOnTarget": "2",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "296",
+          "totalPasses": "354",
+          "passPct": "0.8",
+          "accurateCrosses": "5",
+          "totalCrosses": "15",
+          "crossPct": "0.3",
+          "totalLongBalls": "31",
+          "accurateLongBalls": "15",
+          "longballPct": "0.5",
+          "blockedShots": "2",
+          "effectiveTackles": "12",
+          "totalTackles": "20",
+          "tacklePct": "0.6",
+          "interceptions": "15",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      },
+      {
+        "team": "Ivory Coast",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "6",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "6",
+          "saves": "2",
+          "possessionPct": "63.4",
+          "totalShots": "7",
+          "shotsOnTarget": "3",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "558",
+          "totalPasses": "623",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "16",
+          "crossPct": "0.2",
+          "totalLongBalls": "39",
+          "accurateLongBalls": "21",
+          "longballPct": "0.5",
+          "blockedShots": "1",
+          "effectiveTackles": "10",
+          "totalTackles": "17",
+          "tacklePct": "0.6",
+          "interceptions": "12",
+          "effectiveClearance": "19",
+          "totalClearance": "19"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Curaçao",
+        "category": "Total Shots",
+        "player": "Tahith Chong",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Accurate Passes",
+        "player": "Sherel Floranus",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/224786.png",
+        "value": "44"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Defensive Interventions",
+        "player": "Armando Obispo",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/245918.png",
+        "value": "12"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Saves",
+        "player": "Eloy Room",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/127444.png",
+        "value": "1"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Total Shots",
+        "player": "Amad Diallo",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Accurate Passes",
+        "player": "Ibrahim Sangaré",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/213718.png",
+        "value": "82"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Defensive Interventions",
+        "player": "Christopher Operi",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Saves",
+        "player": "Yahia Fofana",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "0ec28b84ec399bd4dffbe8d1bc72b3c4": {
+    "espn_id": "760468",
+    "fetched_at": "2026-06-25T21:59:13+00:00",
+    "teams": [
+      {
+        "team": "Ecuador",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "15",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "3",
+          "saves": "2",
+          "possessionPct": "38.9",
+          "totalShots": "7",
+          "shotsOnTarget": "3",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "313",
+          "totalPasses": "379",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "12",
+          "crossPct": "0.3",
+          "totalLongBalls": "50",
+          "accurateLongBalls": "24",
+          "longballPct": "0.5",
+          "blockedShots": "2",
+          "effectiveTackles": "16",
+          "totalTackles": "26",
+          "tacklePct": "0.6",
+          "interceptions": "12",
+          "effectiveClearance": "29",
+          "totalClearance": "29"
+        }
+      },
+      {
+        "team": "Germany",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "2",
+          "saves": "1",
+          "possessionPct": "61.1",
+          "totalShots": "11",
+          "shotsOnTarget": "3",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "517",
+          "totalPasses": "592",
+          "passPct": "0.9",
+          "accurateCrosses": "5",
+          "totalCrosses": "16",
+          "crossPct": "0.3",
+          "totalLongBalls": "37",
+          "accurateLongBalls": "17",
+          "longballPct": "0.5",
+          "blockedShots": "5",
+          "effectiveTackles": "13",
+          "totalTackles": "20",
+          "tacklePct": "0.7",
+          "interceptions": "4",
+          "effectiveClearance": "15",
+          "totalClearance": "15"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Ecuador",
+        "category": "Total Shots",
+        "player": "Gonzalo Plata",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Accurate Passes",
+        "player": "Moisés Caicedo",
+        "headshot": null,
+        "value": "56"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Defensive Interventions",
+        "player": "Pedro Vite",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/297150.png",
+        "value": "16"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Saves",
+        "player": "Hernán Galíndez",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Germany",
+        "category": "Total Shots",
+        "player": "Florian Wirtz",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Germany",
+        "category": "Accurate Passes",
+        "player": "Jonathan Tah",
+        "headshot": null,
+        "value": "94"
+      },
+      {
+        "team": "Germany",
+        "category": "Defensive Interventions",
+        "player": "Jonathan Tah",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Germany",
+        "category": "Saves",
+        "player": "Manuel Neuer",
+        "headshot": null,
+        "value": "1"
+      }
+    ]
   }
 }

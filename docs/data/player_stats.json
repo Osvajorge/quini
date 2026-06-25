@@ -14,6 +14,24 @@
       }
     },
     {
+      "player": "Jonathan Tah",
+      "team": "Germany",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 183.0,
+          "max": 94.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 24.0,
+          "max": 12.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
       "player": "Aïssa Mandi",
       "team": "Algeria",
       "headshot": null,
@@ -95,6 +113,19 @@
           "total": 9.0,
           "max": 9.0,
           "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Moisés Caicedo",
+      "team": "Ecuador",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 156.0,
+          "max": 100.0,
+          "appearances": 2
         }
       }
     },
@@ -188,19 +219,6 @@
           "total": 107.0,
           "max": 56.0,
           "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Moisés Caicedo",
-      "team": "Ecuador",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 100.0,
-          "max": 100.0,
-          "appearances": 1
         }
       }
     },
@@ -321,24 +339,6 @@
       }
     },
     {
-      "player": "Jonathan Tah",
-      "team": "Germany",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 89.0,
-          "max": 89.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 12.0,
-          "max": 12.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Lewis Ferguson",
       "team": "Scotland",
       "headshot": null,
@@ -391,6 +391,19 @@
       "player": "Marawan Attia",
       "team": "Egypt",
       "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 82.0,
+          "max": 82.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ibrahim Sangaré",
+      "team": "Ivory Coast",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/213718.png",
       "matches": 1,
       "categories": {
         "Accurate Passes": {
@@ -935,6 +948,24 @@
           "total": 9.0,
           "max": 6.0,
           "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Sherel Floranus",
+      "team": "Curaçao",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/224786.png",
+      "matches": 2,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 13.0,
+          "max": 13.0,
+          "appearances": 1
+        },
+        "Accurate Passes": {
+          "total": 44.0,
+          "max": 44.0,
+          "appearances": 1
         }
       }
     },
@@ -1766,6 +1797,45 @@
       }
     },
     {
+      "player": "Tahith Chong",
+      "team": "Curaçao",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Amad Diallo",
+      "team": "Ivory Coast",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Florian Wirtz",
+      "team": "Germany",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Saeid Ezatolahi",
       "team": "Iran",
       "headshot": null,
@@ -1963,6 +2033,19 @@
     {
       "player": "Oh Hyeon-Gyu",
       "team": "South Korea",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Gonzalo Plata",
+      "team": "Ecuador",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -2507,25 +2590,12 @@
       "player": "Hernán Galíndez",
       "team": "Ecuador",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 6.0,
+          "total": 8.0,
           "max": 3.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Sherel Floranus",
-      "team": "Curaçao",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/224786.png",
-      "matches": 1,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 13.0,
-          "max": 13.0,
-          "appearances": 1
+          "appearances": 3
         }
       }
     },
@@ -2533,12 +2603,12 @@
       "player": "Eloy Room",
       "team": "Curaçao",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/127444.png",
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 19.0,
+          "total": 20.0,
           "max": 15.0,
-          "appearances": 2
+          "appearances": 3
         }
       }
     },
@@ -2546,12 +2616,12 @@
       "player": "Manuel Neuer",
       "team": "Germany",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 2.0,
+          "total": 3.0,
           "max": 1.0,
-          "appearances": 2
+          "appearances": 3
         }
       }
     },
@@ -2559,12 +2629,12 @@
       "player": "Yahia Fofana",
       "team": "Ivory Coast",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 6.0,
+          "total": 8.0,
           "max": 5.0,
-          "appearances": 2
+          "appearances": 3
         }
       }
     },
@@ -2754,12 +2824,12 @@
       "player": "Armando Obispo",
       "team": "Curaçao",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/245918.png",
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Defensive Interventions": {
-          "total": 15.0,
+          "total": 27.0,
           "max": 15.0,
-          "appearances": 1
+          "appearances": 2
         }
       }
     },
@@ -3102,6 +3172,32 @@
         "Saves": {
           "total": 3.0,
           "max": 3.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Christopher Operi",
+      "team": "Ivory Coast",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 10.0,
+          "max": 10.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Pedro Vite",
+      "team": "Ecuador",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/297150.png",
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 16.0,
+          "max": 16.0,
           "appearances": 1
         }
       }
