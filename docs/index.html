@@ -2235,30 +2235,22 @@ function _renderPredictionsHistory(s) {
 }
 
 // ── Bankroll simulator ──
-// Compute aligned stats from history: per fixture keep only top-edge bet per market group
-// Returns {n, won, lost, winRate, roi} using simple flat-stake ROI
+// Only count actual BET picks in history:
+// - bets with pick==='BET' (new entries with pick field), OR
+// - legacy entries without pick field: use edge >= 8% as proxy
+function _isBetPick(b) {
+  if (b.pick) return b.pick === 'BET';
+  return Number(b.edge || 0) >= 8;
+}
+
+// Compute aligned stats: returns {n, won, lost, winRate, roi} flat-stake ROI
 function _alignedHistoryStats() {
-  const currentVer = _currentModelVersion();
   let n = 0, won = 0, lost = 0, profit = 0;
   for (const fx of (HISTORY.fixtures || [])) {
-    const rawBets = (fx.bets || []).filter(b => b.won !== null && b.won !== undefined);
-    if (!rawBets.length) continue;
-    // v2 bets: use all; legacy: apply alignment (top-edge per market group)
-    let eligible;
-    const v2Bets = rawBets.filter(b => b.model_version === currentVer);
-    if (v2Bets.length) {
-      eligible = v2Bets;
-    } else {
-      const topPerGroup = {};
-      for (const b of rawBets) {
-        const grp = _marketCategory(b.market) || 'other';
-        if (!topPerGroup[grp] || Number(b.edge||0) > Number(topPerGroup[grp].edge||0)) topPerGroup[grp] = b;
-      }
-      eligible = Object.values(topPerGroup).filter(b => Number(b.edge||0) > 0);
-    }
-    for (const b of eligible) {
+    const bets = (fx.bets || []).filter(b => b.won !== null && b.won !== undefined && _isBetPick(b));
+    for (const b of bets) {
       n++;
-      if (b.won) { won++; profit += Number(b.odds||1) - 1; }
+      if (b.won) { won++; profit += Number(b.odds || 1) - 1; }
       else { lost++; profit -= 1; }
     }
   }
@@ -2298,28 +2290,18 @@ function _marketCategory(market) {
 
 function _simulateBankroll(initial, strategy, marketFilter, modelOnly) {
   const currentVer = _currentModelVersion();
-  // Collect all decided bets in chronological order
   const all = [];
   for (const fx of HISTORY.fixtures) {
     const date = fx.date || fx.commence_time;
-    const rawBets = (fx.bets || []).filter(b => b.won !== null && b.won !== undefined);
+    // Only actual BET picks with settled results
+    const rawBets = (fx.bets || []).filter(b => b.won !== null && b.won !== undefined && _isBetPick(b));
     if (!rawBets.length) continue;
 
-    // Model version filter: 'current' = only new model, 'all' = include legacy
     let eligible;
     if (modelOnly === 'current') {
       eligible = rawBets.filter(b => b.model_version && b.model_version === currentVer);
     } else {
-      // Apply alignment filter for legacy: keep only top-edge bet per market group per fixture
-      // This mirrors _align_bets_to_top and shows the backtest-equivalent result (+5.1% ROI)
-      const topPerGroup = {};
-      for (const b of rawBets) {
-        const grp = _marketCategory(b.market) || 'other';
-        if (!topPerGroup[grp] || Number(b.edge || 0) > Number(topPerGroup[grp].edge || 0)) {
-          topPerGroup[grp] = b;
-        }
-      }
-      eligible = Object.values(topPerGroup).filter(b => Number(b.edge || 0) > 0);
+      eligible = rawBets; // Already filtered to BETs only
     }
 
     for (const b of eligible) {
@@ -2377,18 +2359,76 @@ function _simulateBankroll(initial, strategy, marketFilter, modelOnly) {
 
 function _renderBankrollSim(s) {
   const sim = _simulateBankroll(_bankSettings.initial, _bankSettings.strategy, _bankSettings.market, _bankSettings.modelOnly);
+
+  // ── Settings panel (always rendered so user can always change market/model) ──
+  const settingsPanel = `
+    <div class="rounded-xl border p-4 mb-4" style="background:var(--panel); border-color:var(--border);">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div>
+          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Banca inicial':'Initial bankroll'}</label>
+          <div class="flex items-center gap-2">
+            <span class="text-sm" style="color:var(--mute);">€</span>
+            <input type="number" min="10" step="50" value="${_bankSettings.initial}" onchange="setBankrollInitial(this.value)"
+              class="flex-1 px-3 py-2 rounded-lg text-sm outline-none"
+              style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);"/>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Estrategia':'Strategy'}</label>
+          <div class="flex gap-1.5">
+            ${['kelly', 'flat', 'value'].map(strat => `
+              <button onclick="setBankrollStrategy('${strat}')" class="flex-1 px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider"
+                style="${_bankSettings.strategy === strat
+                  ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
+                  : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${strat}</button>`).join('')}
+          </div>
+        </div>
+        <div>
+          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Mercado':'Market'}</label>
+          <div class="flex gap-1.5">
+            ${[['all','TODOS'],['ou','O/U'],['1x2','1X2'],['btts','BTTS']].map(([m,lbl]) => `
+              <button onclick="setBankrollMarket('${m}')" class="flex-1 px-2 py-2 rounded-lg text-[10px] font-semibold uppercase tracking-wider"
+                style="${_bankSettings.market === m
+                  ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
+                  : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${lbl}</button>`).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="mt-3 pt-3" style="border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent);">
+        <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Modelo':'Model'}</label>
+        <div class="flex gap-1.5">
+          ${[['current', LANG==='es'?'ACTUAL (v2)':'CURRENT (v2)'],['all', LANG==='es'?'BACKTEST ALINEADO':'ALIGNED BACKTEST']].map(([m, lbl]) => `
+            <button onclick="setBankrollModel('${m}')" class="flex-1 px-3 py-2 rounded-lg text-[10px] font-semibold uppercase tracking-wider"
+              style="${_bankSettings.modelOnly === m
+                ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
+                : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${lbl}</button>`).join('')}
+        </div>
+        <div class="text-[10px] mt-1.5" style="color:var(--mute);">
+          ${LANG==='es' ? 'ACTUAL: solo apuestas v2 (modelo alineado). BACKTEST: historial legacy filtrado igual que v2 → simula el +5.1% ROI del backtest.' : 'CURRENT: v2 bets only (aligned model). BACKTEST: legacy history filtered same as v2 → simulates the +5.1% ROI backtest.'}
+        </div>
+      </div>
+      <div class="text-xs mt-3 leading-relaxed" style="color:var(--mute);">
+        ${_bankSettings.strategy === 'kelly'
+          ? (LANG==='es' ? '🎯 <b>Kelly</b>: stake óptimo basado en probabilidad y cuota. Quarter-Kelly capped al 5% — reduce varianza vs Kelly completo.' : '🎯 <b>Kelly</b>: optimal stake from probability × odds. Quarter-Kelly capped at 5% — lower variance than full Kelly.')
+          : _bankSettings.strategy === 'flat'
+          ? (LANG==='es' ? '💵 <b>Flat</b>: 1% de la banca inicial por apuesta. Conservador y simple.' : '💵 <b>Flat</b>: 1% of initial bankroll per bet. Conservative and simple.')
+          : (LANG==='es' ? '⚡ <b>Value</b>: stake proporcional al edge (cap 4%). Apuestas con más ventaja se llevan más banca.' : '⚡ <b>Value</b>: stake scales with edge (cap 4%). Bigger edge = bigger stake.')}
+      </div>
+    </div>`;
+
+  // ── Empty states ──
   if (sim.nBets === 0) {
     const isModelFiltered = _bankSettings.modelOnly === 'current';
     const ver = _currentModelVersion();
-    if (isModelFiltered) {
-      return `<div class="text-center py-12 text-sm leading-relaxed" style="color:var(--mute);">
-        ${LANG==='es'?'Modelo':'Model'} <b style="color:var(--ink);">${ver}</b> ${LANG==='es'?'sin apuestas cerradas aún.':'has no settled bets yet.'}<br>
-        ${LANG==='es'?'Backtest predice:':'Backtest predicts:'} <b style="color:var(--bet);">+5.1% ROI</b>, <b style="color:var(--bet);">61.5%</b> ${LANG==='es'?'acierto':'win rate'} <span style="color:var(--mute);">(n=39)</span><br>
-        <button onclick="setBankrollModel('all')" class="mt-3 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet); border:1px solid var(--bet); cursor:pointer;">${LANG==='es'?'Ver backtest legacy (alineado) →':'Show legacy backtest (aligned) →'}</button>
-      </div>`;
-    }
     const mktLabel = {all: LANG==='es'?'ningún mercado':'any market', '1x2': '1X2', 'ou': 'O/U', 'btts': 'BTTS'}[_bankSettings.market] || _bankSettings.market;
-    return `<div class="text-center py-12 text-sm" style="color:var(--mute);">${LANG==='es'?'No hay apuestas en el historial para':'No history bets for'} <b>${mktLabel}</b>${_bankSettings.market !== 'all' ? '.' : (LANG==='es'?'todavía.':' yet.')}</div>`;
+    const emptyMsg = isModelFiltered && _bankSettings.market === 'all'
+      ? `<div class="text-center py-10 text-sm leading-relaxed" style="color:var(--mute);">
+          ${LANG==='es'?'Modelo':'Model'} <b style="color:var(--ink);">${ver}</b> ${LANG==='es'?'sin apuestas cerradas aún.':'has no settled bets yet.'}<br>
+          ${LANG==='es'?'Backtest predice:':'Backtest predicts:'} <b style="color:var(--bet);">+5.1% ROI</b>, <b style="color:var(--bet);">61.5%</b> ${LANG==='es'?'acierto':'win rate'} <span style="color:var(--mute);">(n=39)</span><br>
+          <button onclick="setBankrollModel('all')" class="mt-3 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet); border:1px solid var(--bet); cursor:pointer;">${LANG==='es'?'Ver backtest legacy (alineado) →':'Show legacy backtest (aligned) →'}</button>
+        </div>`
+      : `<div class="text-center py-10 text-sm" style="color:var(--mute);">${LANG==='es'?'No hay apuestas para':'No bets for'} <b>${mktLabel}</b>. ${LANG==='es'?'Prueba otro filtro.':'Try another filter.'}</div>`;
+    return settingsPanel + emptyMsg;
   }
 
   // Build SVG path
@@ -2452,60 +2492,7 @@ function _renderBankrollSim(s) {
       </svg>
     </div>
 
-    <div class="rounded-xl border p-4 mb-4" style="background:var(--panel); border-color:var(--border);">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <div>
-          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Banca inicial':'Initial bankroll'}</label>
-          <div class="flex items-center gap-2">
-            <span class="text-sm" style="color:var(--mute);">€</span>
-            <input type="number" min="10" step="50" value="${_bankSettings.initial}" onchange="setBankrollInitial(this.value)"
-              class="flex-1 px-3 py-2 rounded-lg text-sm outline-none"
-              style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);"/>
-          </div>
-        </div>
-        <div>
-          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Estrategia':'Strategy'}</label>
-          <div class="flex gap-1.5">
-            ${['kelly', 'flat', 'value'].map(strat => `
-              <button onclick="setBankrollStrategy('${strat}')" class="flex-1 px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider"
-                style="${_bankSettings.strategy === strat
-                  ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
-                  : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${strat}</button>`).join('')}
-          </div>
-        </div>
-        <div>
-          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Mercado':'Market'}</label>
-          <div class="flex gap-1.5">
-            ${[['all','TODOS'],['ou','O/U'],['1x2','1X2'],['btts','BTTS']].map(([m,lbl]) => `
-              <button onclick="setBankrollMarket('${m}')" class="flex-1 px-2 py-2 rounded-lg text-[10px] font-semibold uppercase tracking-wider"
-                style="${_bankSettings.market === m
-                  ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
-                  : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${lbl}</button>`).join('')}
-          </div>
-        </div>
-      </div>
-      <div class="mt-3 pt-3" style="border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent);">
-        <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Modelo':'Model'}</label>
-        <div class="flex gap-1.5">
-          ${[['current', LANG==='es'?'ACTUAL (v2)':'CURRENT (v2)'],['all', LANG==='es'?'BACKTEST ALINEADO':'ALIGNED BACKTEST']].map(([m, lbl]) => `
-            <button onclick="setBankrollModel('${m}')" class="flex-1 px-3 py-2 rounded-lg text-[10px] font-semibold uppercase tracking-wider"
-              style="${_bankSettings.modelOnly === m
-                ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
-                : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${lbl}</button>`).join('')}
-        </div>
-        <div class="text-[10px] mt-1.5" style="color:var(--mute);">
-          ${LANG==='es' ? 'ACTUAL: solo apuestas v2 (modelo alineado). BACKTEST: historial legacy filtrado igual que v2 → simula el +5.1% ROI del backtest.' : 'CURRENT: v2 bets only (aligned model). BACKTEST: legacy history filtered same as v2 → simulates the +5.1% ROI backtest.'}
-        </div>
-      </div>
-      <div class="text-xs mt-3 leading-relaxed" style="color:var(--mute);">
-        ${_bankSettings.strategy === 'kelly'
-          ? (LANG==='es' ? '🎯 <b>Kelly</b>: stake óptimo basado en probabilidad y cuota. Quarter-Kelly capped al 5% — reduce varianza vs Kelly completo.' : '🎯 <b>Kelly</b>: optimal stake from probability × odds. Quarter-Kelly capped at 5% — lower variance than full Kelly.')
-          : _bankSettings.strategy === 'flat'
-          ? (LANG==='es' ? '💵 <b>Flat</b>: 1% de la banca inicial por apuesta. Conservador y simple.' : '💵 <b>Flat</b>: 1% of initial bankroll per bet. Conservative and simple.')
-          : (LANG==='es' ? '⚡ <b>Value</b>: stake proporcional al edge (cap 4%). Apuestas con más ventaja se llevan más banca.' : '⚡ <b>Value</b>: stake scales with edge (cap 4%). Bigger edge = bigger stake.')}
-      </div>
-    </div>
-
+    ${settingsPanel}
     <div class="text-xs text-center" style="color:var(--mute);">
       ${LANG==='es' ? 'Simulación retrospectiva sobre el historial real. Pasado no garantiza futuro.' : 'Retrospective sim on real history. Past performance ≠ future returns.'}
     </div>

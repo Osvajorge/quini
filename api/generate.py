@@ -868,13 +868,19 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
                 "clv_pct": clv,
             })
 
-        # All bets with descriptions (from the bets array if available, else from picks)
-        all_bets = old_fx.get("bets", [])
+        # All bets with descriptions — only store actual BET picks (not SKIP)
+        raw_bets = old_fx.get("bets", [])
         best_bet = old_fx.get("best_bet")
+        # Filter to actual BETs: if pick field present use it; else edge >= 8% proxy
+        if raw_bets:
+            all_bets = [b for b in raw_bets if b.get("pick", "BET") == "BET" or
+                        (not b.get("pick") and float(b.get("edge", 0)) >= 8.0)]
+        else:
+            all_bets = [p for p in picks if p.get("pick") == "BET"]
 
         # Evaluate each individual bet
         bets_results = []
-        for b in (all_bets if all_bets else picks):
+        for b in all_bets:
             side = b.get("side", "")
             won = _side_won(side, actual_home, actual_away) if actual_home is not None else None
             clv = _compute_clv(b.get("odds", 1.0), closing_odds.get(side, 0)) if closing_odds.get(side) else None
@@ -887,6 +893,8 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
                 "closing_odds": closing_odds.get(side),
                 "clv_pct": clv,
                 "model_version": MODEL_VERSION,
+                "pick": "BET",
+                "model_prob": b.get("model_prob"),
                 "description_es": b.get("description_es", b.get("market", "")),
                 "description_en": b.get("description_en", b.get("market", "")),
             })
