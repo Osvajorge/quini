@@ -91,6 +91,13 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
   background: linear-gradient(90deg, transparent, var(--border), transparent);
   margin: 60px 0;
 }
+/* Reserve space for async-loaded stats to prevent CLS */
+#hero-stats .stat-val { min-height: 2rem; }
+#today-picks { min-height: 120px; }
+#wl-counter { min-height: 20px; }
+/* Smooth step transitions */
+#wl-step2, #wl-done { animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 </style>
 </head>
 <body class="relative overflow-x-hidden">
@@ -125,26 +132,26 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
 
   <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
     <a href="/" class="btn-primary" data-i18n="cta_picks">Ver picks de hoy →</a>
-    <button onclick="document.getElementById('email-form').scrollIntoView({behavior:'smooth'})" class="btn-ghost" data-i18n="cta_email">Recibir picks gratis</button>
+    <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="btn-ghost" data-i18n="cta_email">Acceso anticipado</button>
   </div>
 
-  <!-- Live stats from JSON -->
+  <!-- Live stats from JSON — min-height on values prevents CLS -->
   <div id="hero-stats" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
     <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
       <div class="text-xs uppercase mb-1" style="color: var(--mute);">ROI</div>
-      <div class="text-2xl font-bold metric" id="stat-roi">—</div>
+      <div class="text-2xl font-bold metric stat-val" id="stat-roi">—</div>
     </div>
     <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
       <div class="text-xs uppercase mb-1" style="color: var(--mute);" data-i18n="stat_winrate">Acierto</div>
-      <div class="text-2xl font-bold metric" id="stat-winrate">—</div>
+      <div class="text-2xl font-bold metric stat-val" id="stat-winrate">—</div>
     </div>
     <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
       <div class="text-xs uppercase mb-1" style="color: var(--mute);" data-i18n="stat_bets">Apuestas</div>
-      <div class="text-2xl font-bold metric" id="stat-bets">—</div>
+      <div class="text-2xl font-bold metric stat-val" id="stat-bets">—</div>
     </div>
     <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
       <div class="text-xs uppercase mb-1" style="color: var(--mute);">CLV</div>
-      <div class="text-2xl font-bold metric" id="stat-clv">—</div>
+      <div class="text-2xl font-bold metric stat-val" id="stat-clv">—</div>
     </div>
   </div>
   <p class="text-xs mt-4" style="color: var(--mute);" data-i18n="stat_caption">Datos en tiempo real desde nuestro tracking público</p>
@@ -194,25 +201,74 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
 
 <div class="divider"></div>
 
-<!-- Email capture -->
-<section id="email-form" class="relative z-10 max-w-2xl mx-auto px-6 py-16 text-center">
-  <div class="inline-block mb-4 px-3 py-1 rounded-full text-xs font-mono" style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--bet2);" data-i18n="email_badge">GRATIS HASTA EL 19 JULIO</div>
-  <h2 class="text-3xl sm:text-4xl font-bold mb-4">
-    <span data-i18n="email_h1_pre">Recibe el pick del día</span>
-    <span class="gradient-text" data-i18n="email_h1_post">por email</span>
-  </h2>
-  <p class="mb-8" style="color: var(--mute);" data-i18n="email_body">Cero spam. Solo los picks con mayor edge cada mañana, dos horas antes del kickoff. Cuando lancemos el plan premium, los suscriptores actuales reciben aviso anticipado.</p>
+<!-- Waitlist / Acceso anticipado -->
+<section id="waitlist" class="relative z-10 max-w-2xl mx-auto px-6 py-16 text-center">
+  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono mb-6" style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.4); color: var(--warn);">
+    <span class="w-1.5 h-1.5 rounded-full" style="background: var(--warn); animation: pulse 2s infinite;"></span>
+    <span data-i18n="wl_badge">ACCESO LIMITADO · 500 CUPOS</span>
+  </div>
+  <h2 class="text-3xl sm:text-4xl font-bold mb-4" data-i18n="wl_h1">Reserva tu acceso anticipado</h2>
+  <p class="mb-3" style="color: var(--mute);" data-i18n="wl_sub">
+    Cuando cerremos al público general, los de la lista entran primero y sin pagar el mes de lanzamiento.
+  </p>
+  <!-- Live counter — min-height prevents CLS -->
+  <div id="wl-counter" class="mb-8 text-sm font-mono" style="color: var(--bet2); min-height: 20px;"></div>
 
-  <form id="capture" class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
-    <input
-      type="email" name="email" required
-      placeholder="tucorreo@gmail.com"
-      class="flex-1 px-4 py-3 rounded-xl outline-none"
-      style="background: var(--panel); border: 1px solid var(--border); color: var(--ink);"
-    />
-    <button type="submit" class="btn-primary justify-center" data-i18n="email_submit">Apuntarme</button>
-  </form>
-  <p id="form-status" class="text-sm mt-4 h-5" style="color: var(--mute);"></p>
+  <!-- Step 1: email -->
+  <div id="wl-step1">
+    <form id="wl-form1" class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto" autocomplete="on">
+      <!-- Honeypot: bots fill this, humans don't -->
+      <input type="text" name="_hp" style="display:none;position:absolute;" tabindex="-1" autocomplete="off" />
+      <input
+        type="email" name="email" required autocomplete="email"
+        placeholder="tucorreo@gmail.com"
+        data-ph-en="youremail@gmail.com"
+        class="flex-1 px-4 py-3 rounded-xl outline-none text-base"
+        style="background: var(--panel); border: 1px solid var(--border); color: var(--ink);"
+      />
+      <button type="submit" class="btn-primary justify-center whitespace-nowrap" data-i18n="wl_step1_cta">Quiero acceso →</button>
+    </form>
+    <p class="text-xs mt-3" style="color: var(--mute);" data-i18n="wl_privacy">Sin spam. Sin vender tu correo. Cancelas cuando quieras.</p>
+  </div>
+
+  <!-- Step 2: phone + name (optional) -->
+  <div id="wl-step2" style="display:none;">
+    <div class="rounded-2xl p-6 max-w-md mx-auto text-left" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-2xl mb-2 text-center">✅</div>
+      <p class="font-semibold mb-1 text-center" data-i18n="wl_step2_title">¡Estás en la lista!</p>
+      <p class="text-sm mb-5 text-center" style="color: var(--mute);" data-i18n="wl_step2_sub">Opcional: añade tu teléfono para recibir el pick del día por WhatsApp.</p>
+      <form id="wl-form2" class="flex flex-col gap-3" autocomplete="on">
+        <input
+          type="tel" name="phone" autocomplete="tel"
+          placeholder="+52 55 1234 5678"
+          data-ph-en="+1 555 123 4567"
+          class="w-full px-4 py-3 rounded-xl outline-none text-base"
+          style="background: var(--panel2); border: 1px solid var(--border); color: var(--ink);"
+        />
+        <input
+          type="text" name="name" autocomplete="given-name"
+          placeholder="Tu nombre (opcional)"
+          data-ph-en="Your name (optional)"
+          class="w-full px-4 py-3 rounded-xl outline-none text-base"
+          style="background: var(--panel2); border: 1px solid var(--border); color: var(--ink);"
+        />
+        <div class="flex gap-2">
+          <button type="submit" class="btn-primary flex-1 justify-center" data-i18n="wl_step2_cta">Guardar</button>
+          <button type="button" onclick="skipStep2()" class="btn-ghost flex-1 justify-center" data-i18n="wl_step2_skip">Omitir</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Final success -->
+  <div id="wl-done" style="display:none;">
+    <div class="rounded-2xl p-8 max-w-md mx-auto" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-4xl mb-3">🎉</div>
+      <p class="text-xl font-bold mb-2" data-i18n="wl_done_title">Todo listo</p>
+      <p class="text-sm mb-5" style="color: var(--mute);" data-i18n="wl_done_sub">Te avisamos antes de cerrar al público. Mientras tanto, la app es tuya.</p>
+      <a href="/" class="btn-primary justify-center inline-flex" data-i18n="wl_done_cta">Ver picks de hoy →</a>
+    </div>
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -251,20 +307,48 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
 </footer>
 
 <script>
-// Load live stats from history + predictions JSON
+// ── Aligned ROI (same logic as index.html, excludes legacy SKIP picks) ──
+function _isBetPick(b) {
+  if (b.pick) return b.pick === 'BET';
+  return Number(b.edge || 0) >= 8;
+}
+function _alignedStats(hist) {
+  let n = 0, won = 0, profit = 0;
+  for (const fx of (hist.fixtures || [])) {
+    for (const b of (fx.bets || [])) {
+      if (b.won === null || b.won === undefined) continue;
+      if (!_isBetPick(b)) continue;
+      n++;
+      if (b.won) { won++; profit += Number(b.odds || 1) - 1; }
+      else { profit -= 1; }
+    }
+  }
+  return {
+    n,
+    won,
+    roi: n > 0 ? (profit / n * 100).toFixed(1) : '0.0',
+    winRate: n > 0 ? (won / n * 100).toFixed(1) : '0.0',
+  };
+}
+
+// ── Load live stats ──
 async function loadStats() {
   try {
     const [pred, hist] = await Promise.all([
       fetch('/data/predictions.json').then(r => r.json()),
       fetch('/data/history.json').then(r => r.json()),
     ]);
-    const s = hist.summary || {};
-    const roi = s.roi ?? 0;
-    document.getElementById('stat-roi').textContent = (roi > 0 ? '+' : '') + roi + '%';
+
+    // Aligned stats (excludes legacy SKIP picks)
+    const as = _alignedStats(hist);
+    const roi = parseFloat(as.roi);
+    document.getElementById('stat-roi').textContent = (roi > 0 ? '+' : '') + as.roi + '%';
     document.getElementById('stat-roi').style.color = roi >= 0 ? 'var(--bet)' : 'var(--warn)';
-    document.getElementById('stat-winrate').textContent = (s.win_rate ?? 0) + '%';
-    document.getElementById('stat-bets').textContent = s.total_bets ?? 0;
-    const clv = s.avg_clv_pct;
+    document.getElementById('stat-winrate').textContent = as.winRate + '%';
+    document.getElementById('stat-bets').textContent = as.n;
+
+    // CLV still from summary (separate metric, not affected by pick filter)
+    const clv = (hist.summary || {}).avg_clv_pct;
     if (clv != null) {
       document.getElementById('stat-clv').textContent = (clv > 0 ? '+' : '') + clv + '%';
       document.getElementById('stat-clv').style.color = clv >= 0 ? 'var(--bet)' : 'var(--warn)';
@@ -272,13 +356,12 @@ async function loadStats() {
       document.getElementById('stat-clv').textContent = '—';
     }
 
-    // Render today's picks: top 3 BETs sorted by edge
+    // Render today's picks: top BETs sorted by edge
     const picks = [];
     for (const f of pred.fixtures || []) {
       if (f.completed || f.is_live) continue;
-      const bets = f.bets || [];
-      for (const b of bets) {
-        picks.push({ f, b });
+      for (const b of (f.bets || [])) {
+        if (_isBetPick(b)) picks.push({ f, b });
       }
     }
     picks.sort((a, b) => (b.b.edge || 0) - (a.b.edge || 0));
@@ -307,6 +390,7 @@ async function loadStats() {
     console.error(e);
   }
 }
+
 // ── i18n ──
 const I18N = {
   es: {
@@ -316,7 +400,7 @@ const I18N = {
     hero_h1_post: 'ventaja matemática',
     hero_sub: 'Detectamos cuándo las casas de apuestas subestiman un resultado. Sin tips. Sin azar. Solo modelo estadístico y datos públicos.',
     cta_picks: 'Ver picks de hoy →',
-    cta_email: 'Recibir picks gratis',
+    cta_email: 'Acceso anticipado',
     stat_winrate: 'Acierto',
     stat_bets: 'Apuestas',
     stat_caption: 'Datos en tiempo real desde nuestro tracking público',
@@ -331,12 +415,19 @@ const I18N = {
     picks_title: 'Picks del día',
     picks_sub: 'Algunos de los partidos analizados hoy.',
     picks_all: 'Ver todos →',
-    email_badge: 'GRATIS HASTA EL 19 JULIO',
-    email_h1_pre: 'Recibe el pick del día', email_h1_post: 'por email',
-    email_body: 'Cero spam. Solo los picks con mayor edge cada mañana, dos horas antes del kickoff. Cuando lancemos el plan premium, los suscriptores actuales reciben aviso anticipado.',
-    email_submit: 'Apuntarme',
-    email_sending: 'Enviando…',
-    email_saved: '✓ Guardado. Te avisamos pronto.',
+    wl_badge: 'ACCESO LIMITADO · 500 CUPOS',
+    wl_h1: 'Reserva tu acceso anticipado',
+    wl_sub: 'Cuando cerremos al público general, los de la lista entran primero y sin pagar el mes de lanzamiento.',
+    wl_counter_tpl: '{{n}} personas ya reservaron su lugar',
+    wl_step1_cta: 'Quiero acceso →',
+    wl_privacy: 'Sin spam. Sin vender tu correo. Cancelas cuando quieras.',
+    wl_step2_title: '¡Estás en la lista!',
+    wl_step2_sub: 'Opcional: añade tu teléfono para recibir el pick del día por WhatsApp.',
+    wl_step2_cta: 'Guardar',
+    wl_step2_skip: 'Omitir',
+    wl_done_title: 'Todo listo',
+    wl_done_sub: 'Te avisamos antes de cerrar al público. Mientras tanto, la app es tuya.',
+    wl_done_cta: 'Ver picks de hoy →',
     trust_title: '100% transparente',
     trust1_title: 'Historial público', trust1_body: 'Todas las apuestas, ganadas y perdidas. Sin esconder los fracasos.',
     trust2_title: 'Código abierto', trust2_body: 'Todo el modelo en GitHub. Puedes revisar la lógica.',
@@ -353,7 +444,7 @@ const I18N = {
     hero_h1_post: 'mathematical edge',
     hero_sub: 'We detect when sportsbooks underrate a result. No tipsters. No gut feel. Just a statistical model and public data.',
     cta_picks: "See today's picks →",
-    cta_email: 'Get free picks',
+    cta_email: 'Early access',
     stat_winrate: 'Win %',
     stat_bets: 'Bets',
     stat_caption: 'Real-time data from our public tracking',
@@ -368,12 +459,19 @@ const I18N = {
     picks_title: "Today's picks",
     picks_sub: 'A sample of matches analyzed today.',
     picks_all: 'See all →',
-    email_badge: 'FREE UNTIL JULY 19',
-    email_h1_pre: 'Get the pick of the day', email_h1_post: 'by email',
-    email_body: 'No spam. Only the highest-edge picks each morning, two hours before kickoff. Subscribers get early access to the premium plan when launched.',
-    email_submit: 'Notify me',
-    email_sending: 'Sending…',
-    email_saved: '✓ Saved. We will notify you soon.',
+    wl_badge: 'LIMITED ACCESS · 500 SPOTS',
+    wl_h1: 'Reserve your early access',
+    wl_sub: 'When we close to the public, waitlist members get in first — and free for the launch month.',
+    wl_counter_tpl: '{{n}} people have already reserved their spot',
+    wl_step1_cta: 'I want access →',
+    wl_privacy: 'No spam. We never sell your email. Unsubscribe anytime.',
+    wl_step2_title: "You're on the list!",
+    wl_step2_sub: 'Optional: add your phone to get the daily pick via WhatsApp.',
+    wl_step2_cta: 'Save',
+    wl_step2_skip: 'Skip',
+    wl_done_title: 'All set',
+    wl_done_sub: "We'll notify you before closing to the public. Meanwhile, the app is yours.",
+    wl_done_cta: "See today's picks →",
     trust_title: '100% transparent',
     trust1_title: 'Public history', trust1_body: 'Every bet, wins and losses. We do not hide failures.',
     trust2_title: 'Open source', trust2_body: 'The whole model is on GitHub. You can audit the logic.',
@@ -384,6 +482,7 @@ const I18N = {
     picks_view_all_inline: 'See predictions →',
   },
 };
+
 function detectLang() {
   const url = new URL(location.href);
   const q = (url.searchParams.get('lang') || '').toLowerCase();
@@ -394,6 +493,7 @@ function detectLang() {
   return nav === 'en' ? 'en' : 'es';
 }
 let LANG = detectLang();
+
 function applyLang() {
   document.documentElement.lang = LANG;
   const dict = I18N[LANG];
@@ -401,41 +501,98 @@ function applyLang() {
     const key = el.dataset.i18n;
     if (dict[key]) el.textContent = dict[key];
   });
-  const btn = document.getElementById('lang-btn');
-  if (btn) btn.textContent = LANG === 'es' ? 'EN' : 'ES';
+  // Update placeholder on email input when lang switches
+  const emailIn = document.querySelector('#wl-form1 input[type=email]');
+  if (emailIn && LANG === 'en') emailIn.placeholder = 'youremail@gmail.com';
+  else if (emailIn) emailIn.placeholder = 'tucorreo@gmail.com';
+  document.getElementById('lang-btn').textContent = LANG === 'es' ? 'EN' : 'ES';
 }
+
 function toggleLang() {
   LANG = LANG === 'es' ? 'en' : 'es';
   localStorage.setItem('quini_lang', LANG);
   applyLang();
   loadStats();
 }
+
 applyLang();
 loadStats();
 
-// Email form — Formspree-ready
-const EMAIL_FORM_URL = ''; // set to https://formspree.io/f/XXXX once registered
-document.getElementById('capture').addEventListener('submit', async e => {
+// ── Waitlist ──
+let _wlEmail = localStorage.getItem('quini_wl_email') || '';
+
+async function loadWaitlistCount() {
+  try {
+    const r = await fetch('/api/subscribe');
+    if (!r.ok) return;
+    const { count } = await r.json();
+    if (count > 0) {
+      const tpl = I18N[LANG].wl_counter_tpl;
+      document.getElementById('wl-counter').textContent = tpl.replace('{{n}}', count);
+    }
+  } catch (_) {}
+}
+loadWaitlistCount();
+
+// If already registered, jump to done state
+if (_wlEmail) {
+  document.getElementById('wl-step1').style.display = 'none';
+  document.getElementById('wl-done').style.display = '';
+}
+
+document.getElementById('wl-form1').addEventListener('submit', async e => {
   e.preventDefault();
-  const status = document.getElementById('form-status');
-  const email = e.target.email.value.trim();
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  const email = form.email.value.trim();
+  const hp = form._hp.value;
   if (!email) return;
-  status.textContent = I18N[LANG].email_sending;
-  if (EMAIL_FORM_URL) {
-    try {
-      await fetch(EMAIL_FORM_URL, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(e.target),
-      });
-    } catch (_) {}
-  }
-  // Store locally so we can also dedupe later
-  localStorage.setItem('quini_email', email);
-  status.innerHTML = I18N[LANG].email_saved;
-  status.style.color = 'var(--bet)';
-  e.target.reset();
+  btn.disabled = true;
+  btn.textContent = '…';
+  try {
+    await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, _hp: hp, lang: LANG }),
+    });
+  } catch (_) {}
+  _wlEmail = email;
+  localStorage.setItem('quini_wl_email', email);
+  // Show step 2
+  document.getElementById('wl-step1').style.display = 'none';
+  document.getElementById('wl-step2').style.display = '';
+  // Refresh counter
+  loadWaitlistCount();
 });
+
+document.getElementById('wl-form2').addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  btn.disabled = true;
+  btn.textContent = '…';
+  const phone = (form.phone.value || '').trim();
+  const name = (form.name.value || '').trim();
+  try {
+    await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: _wlEmail, phone, name, lang: LANG }),
+    });
+  } catch (_) {}
+  showDone();
+});
+
+function skipStep2() {
+  showDone();
+}
+
+function showDone() {
+  document.getElementById('wl-step2').style.display = 'none';
+  document.getElementById('wl-done').style.display = '';
+  // Re-apply i18n on newly visible elements
+  applyLang();
+}
 </script>
 </body>
 </html>
