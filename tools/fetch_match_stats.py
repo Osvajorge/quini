@@ -16,6 +16,7 @@ Run: python -m tools.fetch_match_stats
 from __future__ import annotations
 
 import json
+import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -37,8 +38,28 @@ TEAM_STAT_KEYS = {
 }
 
 
+_ESPN_ALIASES: dict[str, str] = {
+    # ESPN name → Odds API name (both will be _norm'd)
+    "unitedstates": "usa",
+    "unitedstatesmennationalteam": "usa",
+    "usmensnationalteam": "usa",
+    "korearepublic": "southkorea",
+    "republicofireland": "ireland",
+    "northernireland": "northernireland",
+    "democraticrepublicofcongo": "drcongo",
+    "drcongo": "drcongo",
+    "capeverde": "capeverde",
+    "costarica": "costarica",
+    "saudiarabia": "saudiarabia",
+    "newzealand": "newzealand",
+}
+
+
 def _norm(name: str) -> str:
-    return (name or "").lower().replace(" ", "").replace(".", "")
+    n = unicodedata.normalize("NFD", (name or "").lower())
+    n = "".join(c for c in n if unicodedata.category(c) != "Mn")
+    n = n.replace(" ", "").replace(".", "").replace("'", "").replace("-", "")
+    return _ESPN_ALIASES.get(n, n)
 
 
 def _load_existing() -> dict:

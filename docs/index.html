@@ -2122,10 +2122,10 @@ function _renderBetsHistory(s) {
 
   histList.forEach(fx => {
     const score = fx.result ? `${fx.result.home ?? '?'}-${fx.result.away ?? '?'}` : '?-?';
-    const allBets = fx.bets && fx.bets.length ? fx.bets : (fx.best_bet ? [fx.best_bet] : []);
-    const hasBet = fx.has_bet !== undefined ? fx.has_bet : allBets.length > 0;
+    const rawBets = fx.bets && fx.bets.length ? fx.bets : (fx.best_bet ? [fx.best_bet] : []);
+    const allBets = rawBets.filter(_isBetPick);
 
-    if (!hasBet) return; // skip matches without bets in bets tab
+    if (!allBets.length) return; // skip matches without actual BET picks
 
     let betsHtml = '';
     allBets.forEach(b => {
