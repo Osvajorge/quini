@@ -8126,5 +8126,429 @@
         "value": "2"
       }
     ]
+  },
+  "b86b4d60f773e9e3c46c00e9a6496e79": {
+    "espn_id": "760475",
+    "fetched_at": "2026-06-26T22:09:35+00:00",
+    "teams": [
+      {
+        "team": "Norway",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "9",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "4",
+          "saves": "5",
+          "possessionPct": "43.2",
+          "totalShots": "10",
+          "shotsOnTarget": "4",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "1",
+          "accuratePasses": "344",
+          "totalPasses": "420",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "9",
+          "crossPct": "0.3",
+          "totalLongBalls": "41",
+          "accurateLongBalls": "18",
+          "longballPct": "0.4",
+          "blockedShots": "3",
+          "effectiveTackles": "12",
+          "totalTackles": "17",
+          "tacklePct": "0.7",
+          "interceptions": "13",
+          "effectiveClearance": "16",
+          "totalClearance": "16"
+        }
+      },
+      {
+        "team": "France",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "5",
+          "saves": "3",
+          "possessionPct": "56.8",
+          "totalShots": "18",
+          "shotsOnTarget": "9",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "480",
+          "totalPasses": "557",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "9",
+          "crossPct": "0.3",
+          "totalLongBalls": "52",
+          "accurateLongBalls": "28",
+          "longballPct": "0.5",
+          "blockedShots": "3",
+          "effectiveTackles": "13",
+          "totalTackles": "18",
+          "tacklePct": "0.7",
+          "interceptions": "11",
+          "effectiveClearance": "18",
+          "totalClearance": "18"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Norway",
+        "category": "Total Shots",
+        "player": "Thelo Aasgaard",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Norway",
+        "category": "Accurate Passes",
+        "player": "Leo Østigard",
+        "headshot": null,
+        "value": "52"
+      },
+      {
+        "team": "Norway",
+        "category": "Defensive Interventions",
+        "player": "Fredrik Aursnes",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/212900.png",
+        "value": "9"
+      },
+      {
+        "team": "Norway",
+        "category": "Saves",
+        "player": "Egil Selvik",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "France",
+        "category": "Total Shots",
+        "player": "Désiré Doué",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "France",
+        "category": "Accurate Passes",
+        "player": "Aurélien Tchouaméni",
+        "headshot": null,
+        "value": "63"
+      },
+      {
+        "team": "France",
+        "category": "Defensive Interventions",
+        "player": "Aurélien Tchouaméni",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "France",
+        "category": "Saves",
+        "player": "Mike Maignan",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Ousmane Dembélé",
+        "headshot": null,
+        "value": "1",
+        "clock": "7'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Kylian Mbappé",
+        "headshot": null,
+        "value": "1",
+        "clock": "7'"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Ousmane Dembélé",
+        "headshot": null,
+        "value": "1",
+        "clock": "20'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Kylian Mbappé following a fast break",
+        "headshot": null,
+        "value": "1",
+        "clock": "20'"
+      },
+      {
+        "team": "Norway",
+        "category": "Goals",
+        "player": "Thelo Aasgaard",
+        "headshot": null,
+        "value": "1",
+        "clock": "21'"
+      },
+      {
+        "team": "Norway",
+        "category": "Assists",
+        "player": "Andreas Schjelderup",
+        "headshot": null,
+        "value": "1",
+        "clock": "21'"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Ousmane Dembélé",
+        "headshot": null,
+        "value": "1",
+        "clock": "32'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Aurélien Tchouaméni",
+        "headshot": null,
+        "value": "1",
+        "clock": "32'"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Désiré Doué",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+4'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Bradley Barcola",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+4'"
+      }
+    ]
+  },
+  "7e6aee294ea1a4792c59558791084528": {
+    "espn_id": "760474",
+    "fetched_at": "2026-06-26T22:09:35+00:00",
+    "teams": [
+      {
+        "team": "Senegal",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "12",
+          "saves": "1",
+          "possessionPct": "69.3",
+          "totalShots": "28",
+          "shotsOnTarget": "12",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "518",
+          "totalPasses": "590",
+          "passPct": "0.9",
+          "accurateCrosses": "7",
+          "totalCrosses": "25",
+          "crossPct": "0.3",
+          "totalLongBalls": "43",
+          "accurateLongBalls": "23",
+          "longballPct": "0.5",
+          "blockedShots": "5",
+          "effectiveTackles": "9",
+          "totalTackles": "12",
+          "tacklePct": "0.8",
+          "interceptions": "2",
+          "effectiveClearance": "10",
+          "totalClearance": "10"
+        }
+      },
+      {
+        "team": "Iraq",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "2",
+          "redCards": "1",
+          "offsides": "0",
+          "wonCorners": "3",
+          "saves": "7",
+          "possessionPct": "30.7",
+          "totalShots": "6",
+          "shotsOnTarget": "1",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "184",
+          "totalPasses": "265",
+          "passPct": "0.7",
+          "accurateCrosses": "0",
+          "totalCrosses": "6",
+          "crossPct": "0.0",
+          "totalLongBalls": "68",
+          "accurateLongBalls": "14",
+          "longballPct": "0.2",
+          "blockedShots": "4",
+          "effectiveTackles": "13",
+          "totalTackles": "20",
+          "tacklePct": "0.7",
+          "interceptions": "7",
+          "effectiveClearance": "35",
+          "totalClearance": "35"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Senegal",
+        "category": "Total Shots",
+        "player": "Pape Gueye",
+        "headshot": null,
+        "value": "6"
+      },
+      {
+        "team": "Senegal",
+        "category": "Accurate Passes",
+        "player": "Idrissa Gueye",
+        "headshot": null,
+        "value": "82"
+      },
+      {
+        "team": "Senegal",
+        "category": "Defensive Interventions",
+        "player": "Krépin Diatta",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "Senegal",
+        "category": "Saves",
+        "player": "Mory Diaw",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Iraq",
+        "category": "Total Shots",
+        "player": "Ali Jasim",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Iraq",
+        "category": "Accurate Passes",
+        "player": "Zidane Iqbal",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/325549.png",
+        "value": "31"
+      },
+      {
+        "team": "Iraq",
+        "category": "Defensive Interventions",
+        "player": "Akam Hashim",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Iraq",
+        "category": "Saves",
+        "player": "Jalal Hassan",
+        "headshot": null,
+        "value": "6"
+      },
+      {
+        "team": "Senegal",
+        "category": "Goals",
+        "player": "Habib Diarra",
+        "headshot": null,
+        "value": "1",
+        "clock": "4'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Assists",
+        "player": "Abdoulaye Seck following a corner",
+        "headshot": null,
+        "value": "1",
+        "clock": "4'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Goals",
+        "player": "Ismaïla Sarr",
+        "headshot": null,
+        "value": "1",
+        "clock": "56'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Assists",
+        "player": "Lamine Camara",
+        "headshot": null,
+        "value": "1",
+        "clock": "56'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Goals",
+        "player": "Pape Gueye",
+        "headshot": null,
+        "value": "1",
+        "clock": "59'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Assists",
+        "player": "Ismaïla Sarr",
+        "headshot": null,
+        "value": "1",
+        "clock": "59'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Goals",
+        "player": "Pape Gueye",
+        "headshot": null,
+        "value": "1",
+        "clock": "71'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Assists",
+        "player": "Iliman Ndiaye",
+        "headshot": null,
+        "value": "1",
+        "clock": "71'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Goals",
+        "player": "Iliman Ndiaye",
+        "headshot": null,
+        "value": "1",
+        "clock": "82'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Assists",
+        "player": "Pape Gueye",
+        "headshot": null,
+        "value": "1",
+        "clock": "82'"
+      }
+    ]
   }
 }

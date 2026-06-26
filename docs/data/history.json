@@ -4014,10 +4014,170 @@
       "predicted_1x2": "2",
       "result_1x2": "1",
       "correct_1x2": false
+    },
+    {
+      "id": "b86b4d60f773e9e3c46c00e9a6496e79",
+      "home": "Norway",
+      "away": "France",
+      "date": "2026-06-26T19:01:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "SKIP",
+          "edge": 14.8,
+          "odds": 27.75,
+          "model_prob": 17.2,
+          "devig_prob": 2.4,
+          "won": false,
+          "closing_odds": 7.6,
+          "clv_pct": 265.13
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "SKIP",
+          "edge": 13.0,
+          "odds": 9.55,
+          "model_prob": 22.1,
+          "devig_prob": 9.0,
+          "won": false,
+          "closing_odds": 5.6,
+          "clv_pct": 70.54
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "FADE",
+          "edge": -27.9,
+          "odds": 1.1,
+          "model_prob": 60.7,
+          "devig_prob": 88.6,
+          "won": true,
+          "closing_odds": 1.44,
+          "clv_pct": -23.61
+        }
+      ],
+      "bets": [],
+      "best_bet": null,
+      "has_bet": false,
+      "result": {
+        "home": 1,
+        "away": 4
+      },
+      "best_bet_won": null,
+      "score_hit": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 9.4
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 8.8
+        },
+        {
+          "home": 2,
+          "away": 2,
+          "prob": 6.9
+        }
+      ],
+      "xg_home": 0.092,
+      "xg_away": 1.573,
+      "predicted_1x2": "2",
+      "result_1x2": "2",
+      "correct_1x2": true,
+      "all_odds": {
+        "home": 27.75,
+        "draw": 9.55,
+        "away": 1.1
+      }
+    },
+    {
+      "id": "7e6aee294ea1a4792c59558791084528",
+      "home": "Senegal",
+      "away": "Iraq",
+      "date": "2026-06-26T19:02:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "FADE",
+          "edge": -11.0,
+          "odds": 1.02,
+          "model_prob": 86.4,
+          "devig_prob": 97.4,
+          "won": true,
+          "closing_odds": 1.25,
+          "clv_pct": -18.4
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "SKIP",
+          "edge": 8.0,
+          "odds": 38.0,
+          "model_prob": 10.3,
+          "devig_prob": 2.3,
+          "won": false,
+          "closing_odds": 7.0,
+          "clv_pct": 442.86
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "SKIP",
+          "edge": 3.0,
+          "odds": 170.0,
+          "model_prob": 3.3,
+          "devig_prob": 0.3,
+          "won": false,
+          "closing_odds": 12.1,
+          "clv_pct": 1304.96
+        }
+      ],
+      "bets": [],
+      "best_bet": null,
+      "has_bet": false,
+      "result": {
+        "home": 5,
+        "away": 0
+      },
+      "best_bet_won": null,
+      "score_hit": null,
+      "top_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 12.2
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 10.0
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 9.7
+        }
+      ],
+      "xg_home": 3.45,
+      "xg_away": 0.0,
+      "predicted_1x2": "1",
+      "result_1x2": "1",
+      "correct_1x2": true,
+      "all_odds": {
+        "home": 1.02,
+        "draw": 38.0,
+        "away": 170.0
+      }
     }
   ],
   "summary": {
-    "total": 50,
+    "total": 52,
     "total_bets": 79,
     "won": 36,
     "lost": 43,
@@ -4025,9 +4185,9 @@
     "roi": -13.4,
     "score_hits": 20,
     "score_top1": 6,
-    "correct_1x2": 33,
-    "total_1x2": 50,
-    "accuracy_1x2": 66.0,
+    "correct_1x2": 35,
+    "total_1x2": 52,
+    "accuracy_1x2": 67.3,
     "avg_clv_pct": 21.24,
     "clv_sample_size": 1,
     "pct_beating_close": 100.0

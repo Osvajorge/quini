@@ -19,6 +19,29 @@
       }
     },
     {
+      "player": "Kylian Mbappé",
+      "team": "France",
+      "headshot": null,
+      "matches": 3,
+      "categories": {
+        "Total Shots": {
+          "total": 12.0,
+          "max": 8.0,
+          "appearances": 2
+        },
+        "Goals": {
+          "total": 4.0,
+          "max": 1.0,
+          "appearances": 4
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Vinícius Júnior",
       "team": "Brazil",
       "headshot": null,
@@ -42,15 +65,15 @@
       }
     },
     {
-      "player": "Kylian Mbappé",
+      "player": "Ousmane Dembélé",
       "team": "France",
       "headshot": null,
       "matches": 2,
       "categories": {
-        "Total Shots": {
-          "total": 12.0,
-          "max": 8.0,
-          "appearances": 2
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
         },
         "Goals": {
           "total": 4.0,
@@ -74,6 +97,29 @@
           "total": 2.0,
           "max": 1.0,
           "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Ismaïla Sarr",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 3,
+      "categories": {
+        "Total Shots": {
+          "total": 9.0,
+          "max": 6.0,
+          "appearances": 2
+        },
+        "Goals": {
+          "total": 3.0,
+          "max": 1.0,
+          "appearances": 3
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
         }
       }
     },
@@ -158,6 +204,29 @@
       }
     },
     {
+      "player": "Pape Gueye",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 6.0,
+          "max": 6.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Mikel Oyarzabal",
       "team": "Spain",
       "headshot": null,
@@ -218,24 +287,6 @@
           "total": 1.0,
           "max": 1.0,
           "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Ismaïla Sarr",
-      "team": "Senegal",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Total Shots": {
-          "total": 9.0,
-          "max": 6.0,
-          "appearances": 2
-        },
-        "Goals": {
-          "total": 2.0,
-          "max": 1.0,
-          "appearances": 2
         }
       }
     },
@@ -549,24 +600,6 @@
       }
     },
     {
-      "player": "Ousmane Dembélé",
-      "team": "France",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Assists": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
-        },
-        "Goals": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Felix Nmecha",
       "team": "Germany",
       "headshot": null,
@@ -685,6 +718,24 @@
       }
     },
     {
+      "player": "Bradley Barcola",
+      "team": "France",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Soufiane Rahimi",
       "team": "Morocco",
       "headshot": null,
@@ -714,6 +765,24 @@
           "appearances": 1
         },
         "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Iliman Ndiaye",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Goals": {
           "total": 1.0,
           "max": 1.0,
           "appearances": 1
@@ -893,6 +962,24 @@
       }
     },
     {
+      "player": "Désiré Doué",
+      "team": "France",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 4.0,
+          "max": 4.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Florian Wirtz",
       "team": "Germany",
       "headshot": null,
@@ -1039,6 +1126,24 @@
     {
       "player": "Daizen Maeda",
       "team": "Japan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Thelo Aasgaard",
+      "team": "Norway",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -1469,19 +1574,6 @@
       }
     },
     {
-      "player": "Bradley Barcola",
-      "team": "France",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Goals": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Ibrahim Mbaye",
       "team": "Senegal",
       "headshot": null,
@@ -1666,6 +1758,19 @@
     {
       "player": "Nilson Angulo",
       "team": "Ecuador",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Habib Diarra",
+      "team": "Senegal",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -2489,6 +2594,81 @@
       }
     },
     {
+      "player": "Aurélien Tchouaméni",
+      "team": "France",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 63.0,
+          "max": 63.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 13.0,
+          "max": 13.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Kylian Mbappé following a fast break",
+      "team": "France",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Andreas Schjelderup",
+      "team": "Norway",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Abdoulaye Seck following a corner",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Lamine Camara",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Scott McTominay",
       "team": "Scotland",
       "headshot": null,
@@ -2639,6 +2819,19 @@
     {
       "player": "Diego Gómez",
       "team": "Paraguay",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 4.0,
+          "max": 4.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ali Jasim",
+      "team": "Iraq",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -3482,7 +3675,7 @@
       "player": "Akam Hashim",
       "team": "Iraq",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Accurate Passes": {
           "total": 68.0,
@@ -3490,9 +3683,9 @@
           "appearances": 1
         },
         "Defensive Interventions": {
-          "total": 14.0,
+          "total": 28.0,
           "max": 14.0,
-          "appearances": 1
+          "appearances": 2
         }
       }
     },
@@ -3552,12 +3745,12 @@
       "player": "Idrissa Gueye",
       "team": "Senegal",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Accurate Passes": {
-          "total": 63.0,
-          "max": 63.0,
-          "appearances": 1
+          "total": 145.0,
+          "max": 82.0,
+          "appearances": 2
         }
       }
     },
@@ -4661,12 +4854,12 @@
       "player": "Mike Maignan",
       "team": "France",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
+          "total": 5.0,
+          "max": 3.0,
+          "appearances": 2
         }
       }
     },
@@ -5206,6 +5399,97 @@
         "Defensive Interventions": {
           "total": 10.0,
           "max": 10.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Leo Østigard",
+      "team": "Norway",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 52.0,
+          "max": 52.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Fredrik Aursnes",
+      "team": "Norway",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/212900.png",
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 9.0,
+          "max": 9.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Egil Selvik",
+      "team": "Norway",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Saves": {
+          "total": 5.0,
+          "max": 5.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Krépin Diatta",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 9.0,
+          "max": 9.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Mory Diaw",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Saves": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Zidane Iqbal",
+      "team": "Iraq",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/325549.png",
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 31.0,
+          "max": 31.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Jalal Hassan",
+      "team": "Iraq",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Saves": {
+          "total": 6.0,
+          "max": 6.0,
           "appearances": 1
         }
       }
