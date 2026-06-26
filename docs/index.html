@@ -33,7 +33,7 @@
   --accent: #0891b2;
   --warn: #f59e0b;
 }
-html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; }
+html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; max-width: 100%; }
 .gradient-text {
   background: linear-gradient(135deg, #34d399 0%, #06b6d4 100%);
   -webkit-background-clip: text;
@@ -43,7 +43,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
 .glow {
   position: absolute;
   top: -200px; left: 50%; transform: translateX(-50%);
-  width: 800px; height: 600px;
+  width: min(800px, 100vw); height: 600px;
   background: radial-gradient(ellipse, rgba(16,185,129,0.25) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
