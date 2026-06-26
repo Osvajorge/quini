@@ -5882,5 +5882,269 @@
         "value": "1"
       }
     ]
+  },
+  "0ed0233bddc4eafc8507f86a9c17b998": {
+    "espn_id": "760471",
+    "fetched_at": "2026-06-26T01:32:37+00:00",
+    "teams": [
+      {
+        "team": "Japan",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "20",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "2",
+          "saves": "4",
+          "possessionPct": "52.3",
+          "totalShots": "8",
+          "shotsOnTarget": "3",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "379",
+          "totalPasses": "446",
+          "passPct": "0.9",
+          "accurateCrosses": "4",
+          "totalCrosses": "13",
+          "crossPct": "0.3",
+          "totalLongBalls": "51",
+          "accurateLongBalls": "20",
+          "longballPct": "0.4",
+          "blockedShots": "2",
+          "effectiveTackles": "7",
+          "totalTackles": "13",
+          "tacklePct": "0.5",
+          "interceptions": "4",
+          "effectiveClearance": "40",
+          "totalClearance": "40"
+        }
+      },
+      {
+        "team": "Sweden",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "8",
+          "saves": "2",
+          "possessionPct": "47.7",
+          "totalShots": "11",
+          "shotsOnTarget": "5",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "312",
+          "totalPasses": "395",
+          "passPct": "0.8",
+          "accurateCrosses": "4",
+          "totalCrosses": "16",
+          "crossPct": "0.3",
+          "totalLongBalls": "50",
+          "accurateLongBalls": "18",
+          "longballPct": "0.4",
+          "blockedShots": "3",
+          "effectiveTackles": "3",
+          "totalTackles": "6",
+          "tacklePct": "0.5",
+          "interceptions": "5",
+          "effectiveClearance": "21",
+          "totalClearance": "21"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Japan",
+        "category": "Total Shots",
+        "player": "Daizen Maeda",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Japan",
+        "category": "Accurate Passes",
+        "player": "Ao Tanaka",
+        "headshot": null,
+        "value": "68"
+      },
+      {
+        "team": "Japan",
+        "category": "Defensive Interventions",
+        "player": "Yukinari Sugawara",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/265965.png",
+        "value": "14"
+      },
+      {
+        "team": "Japan",
+        "category": "Saves",
+        "player": "Zion Suzuki",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Sweden",
+        "category": "Total Shots",
+        "player": "Gustaf Lagerbielke",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Sweden",
+        "category": "Accurate Passes",
+        "player": "Gustaf Lagerbielke",
+        "headshot": null,
+        "value": "46"
+      },
+      {
+        "team": "Sweden",
+        "category": "Defensive Interventions",
+        "player": "Gabriel Gudmundsson",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/250166.png",
+        "value": "8"
+      },
+      {
+        "team": "Sweden",
+        "category": "Saves",
+        "player": "Jacob Widell Zetterström",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "f3c4657daa143a0c5bd62cb370d01ce4": {
+    "espn_id": "760472",
+    "fetched_at": "2026-06-26T01:32:37+00:00",
+    "teams": [
+      {
+        "team": "Tunisia",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "4",
+          "saves": "4",
+          "possessionPct": "28.4",
+          "totalShots": "10",
+          "shotsOnTarget": "4",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "200",
+          "totalPasses": "258",
+          "passPct": "0.8",
+          "accurateCrosses": "4",
+          "totalCrosses": "13",
+          "crossPct": "0.3",
+          "totalLongBalls": "48",
+          "accurateLongBalls": "21",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "9",
+          "totalTackles": "16",
+          "tacklePct": "0.6",
+          "interceptions": "8",
+          "effectiveClearance": "36",
+          "totalClearance": "36"
+        }
+      },
+      {
+        "team": "Netherlands",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "6",
+          "saves": "3",
+          "possessionPct": "71.6",
+          "totalShots": "20",
+          "shotsOnTarget": "7",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "601",
+          "totalPasses": "652",
+          "passPct": "0.9",
+          "accurateCrosses": "7",
+          "totalCrosses": "28",
+          "crossPct": "0.3",
+          "totalLongBalls": "23",
+          "accurateLongBalls": "15",
+          "longballPct": "0.7",
+          "blockedShots": "5",
+          "effectiveTackles": "4",
+          "totalTackles": "8",
+          "tacklePct": "0.5",
+          "interceptions": "10",
+          "effectiveClearance": "10",
+          "totalClearance": "10"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Tunisia",
+        "category": "Total Shots",
+        "player": "Hazem Mastouri",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Accurate Passes",
+        "player": "Ellyes Skhiri",
+        "headshot": null,
+        "value": "35"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Defensive Interventions",
+        "player": "Ali Abdi",
+        "headshot": null,
+        "value": "16"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Saves",
+        "player": "Aymen Dahmen",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Total Shots",
+        "player": "Denzel Dumfries",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/213248.png",
+        "value": "4"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Accurate Passes",
+        "player": "Jan Paul van Hecke",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/282583.png",
+        "value": "130"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Defensive Interventions",
+        "player": "Jan Paul van Hecke",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/282583.png",
+        "value": "9"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Saves",
+        "player": "Bart Verbruggen",
+        "headshot": null,
+        "value": "3"
+      }
+    ]
   }
 }

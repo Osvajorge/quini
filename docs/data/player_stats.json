@@ -148,6 +148,24 @@
       }
     },
     {
+      "player": "Jan Paul van Hecke",
+      "team": "Netherlands",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/282583.png",
+      "matches": 2,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 18.0,
+          "max": 9.0,
+          "appearances": 2
+        },
+        "Accurate Passes": {
+          "total": 130.0,
+          "max": 130.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Marc Guéhi",
       "team": "England",
       "headshot": null,
@@ -649,6 +667,19 @@
       }
     },
     {
+      "player": "Ao Tanaka",
+      "team": "Japan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 68.0,
+          "max": 68.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Ezri Konsa",
       "team": "England",
       "headshot": null,
@@ -761,6 +792,29 @@
         "Accurate Passes": {
           "total": 60.0,
           "max": 60.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Gustaf Lagerbielke",
+      "team": "Sweden",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 9.0,
+          "max": 9.0,
+          "appearances": 1
+        },
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        },
+        "Accurate Passes": {
+          "total": 46.0,
+          "max": 46.0,
           "appearances": 1
         }
       }
@@ -1216,6 +1270,19 @@
       }
     },
     {
+      "player": "Ellyes Skhiri",
+      "team": "Tunisia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 35.0,
+          "max": 35.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Shoja Khalilzadeh",
       "team": "Iran",
       "headshot": null,
@@ -1623,6 +1690,19 @@
       }
     },
     {
+      "player": "Denzel Dumfries",
+      "team": "Netherlands",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/213248.png",
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 4.0,
+          "max": 4.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Joshua Brenet",
       "team": "Curaçao",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/178433.png",
@@ -1825,6 +1905,19 @@
     {
       "player": "Florian Wirtz",
       "team": "Germany",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Hazem Mastouri",
+      "team": "Tunisia",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -2046,6 +2139,19 @@
     {
       "player": "Gonzalo Plata",
       "team": "Ecuador",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Daizen Maeda",
+      "team": "Japan",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -2564,12 +2670,12 @@
       "player": "Aymen Dahmen",
       "team": "Tunisia",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
+          "total": 5.0,
+          "max": 4.0,
+          "appearances": 2
         }
       }
     },
@@ -2642,25 +2748,12 @@
       "player": "Bart Verbruggen",
       "team": "Netherlands",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 8.0,
+          "total": 11.0,
           "max": 7.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Gustaf Lagerbielke",
-      "team": "Sweden",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 9.0,
-          "max": 9.0,
-          "appearances": 1
+          "appearances": 3
         }
       }
     },
@@ -2834,28 +2927,15 @@
       }
     },
     {
-      "player": "Jan Paul van Hecke",
-      "team": "Netherlands",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/282583.png",
-      "matches": 1,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 9.0,
-          "max": 9.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Zion Suzuki",
       "team": "Japan",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 4.0,
+          "total": 8.0,
           "max": 4.0,
-          "appearances": 1
+          "appearances": 2
         }
       }
     },
@@ -3193,6 +3273,58 @@
       "player": "Pedro Vite",
       "team": "Ecuador",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/297150.png",
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 16.0,
+          "max": 16.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Yukinari Sugawara",
+      "team": "Japan",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/265965.png",
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 14.0,
+          "max": 14.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Gabriel Gudmundsson",
+      "team": "Sweden",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/250166.png",
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 8.0,
+          "max": 8.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Jacob Widell Zetterström",
+      "team": "Sweden",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Saves": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ali Abdi",
+      "team": "Tunisia",
+      "headshot": null,
       "matches": 1,
       "categories": {
         "Defensive Interventions": {

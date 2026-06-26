@@ -3600,22 +3600,201 @@
       "predicted_1x2": "2",
       "result_1x2": "1",
       "correct_1x2": false
+    },
+    {
+      "id": "0ed0233bddc4eafc8507f86a9c17b998",
+      "home": "Japan",
+      "away": "Sweden",
+      "date": "2026-06-25T23:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "BET",
+          "edge": 47.5,
+          "odds": 2.74,
+          "model_prob": 82.6,
+          "devig_prob": 35.2,
+          "won": false,
+          "closing_odds": 2.26,
+          "clv_pct": 21.24
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "FADE",
+          "edge": -22.0,
+          "odds": 3.08,
+          "model_prob": 9.2,
+          "devig_prob": 31.2,
+          "won": true,
+          "closing_odds": 3.45,
+          "clv_pct": -10.72
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "FADE",
+          "edge": -25.5,
+          "odds": 2.86,
+          "model_prob": 8.2,
+          "devig_prob": 33.7,
+          "won": false,
+          "closing_odds": 3.6,
+          "clv_pct": -20.56
+        }
+      ],
+      "bets": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "edge": 47.5,
+          "odds": 2.74,
+          "won": false,
+          "closing_odds": 2.26,
+          "clv_pct": 21.24,
+          "model_version": "v2.0-aligned",
+          "pick": "BET",
+          "model_prob": 82.6,
+          "description_es": "Japan gana el partido",
+          "description_en": "Japan wins the match"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "side": "home",
+        "edge": 47.5,
+        "odds": 2.74,
+        "best_odds": 2.74,
+        "best_book": "Pinnacle",
+        "pick": "BET",
+        "confidence_band": "ALTA",
+        "model_prob": 82.6,
+        "devig_prob": 35.2,
+        "description_es": "Japan gana el partido",
+        "description_en": "Japan wins the match",
+        "is_compound": false
+      },
+      "has_bet": true,
+      "result": {
+        "home": 1,
+        "away": 1
+      },
+      "best_bet_won": false,
+      "score_hit": null,
+      "top_scores": [
+        {
+          "home": 3,
+          "away": 1,
+          "prob": 7.7
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 7.5
+        },
+        {
+          "home": 4,
+          "away": 1,
+          "prob": 7.1
+        }
+      ],
+      "xg_home": 3.68,
+      "xg_away": 1.04,
+      "predicted_1x2": "1",
+      "result_1x2": "X",
+      "correct_1x2": false
+    },
+    {
+      "id": "f3c4657daa143a0c5bd62cb370d01ce4",
+      "home": "Tunisia",
+      "away": "Netherlands",
+      "date": "2026-06-25T23:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "SKIP",
+          "edge": 4.6,
+          "odds": 59.27,
+          "model_prob": 5.6,
+          "devig_prob": 1.0,
+          "won": false,
+          "closing_odds": 32.0,
+          "clv_pct": 85.22
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "SKIP",
+          "edge": -0.1,
+          "odds": 13.84,
+          "model_prob": 6.2,
+          "devig_prob": 6.3,
+          "won": false,
+          "closing_odds": 11.5,
+          "clv_pct": 20.35
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "SKIP",
+          "edge": -4.5,
+          "odds": 1.06,
+          "model_prob": 88.3,
+          "devig_prob": 92.8,
+          "won": true,
+          "closing_odds": 1.13,
+          "clv_pct": -6.19
+        }
+      ],
+      "bets": [],
+      "best_bet": null,
+      "has_bet": false,
+      "result": {
+        "home": 1,
+        "away": 3
+      },
+      "best_bet_won": null,
+      "score_hit": 5,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 4,
+          "prob": 8.8
+        },
+        {
+          "home": 0,
+          "away": 3,
+          "prob": 8.3
+        },
+        {
+          "home": 0,
+          "away": 5,
+          "prob": 7.5
+        }
+      ],
+      "xg_home": 0.79,
+      "xg_away": 4.33,
+      "predicted_1x2": "2",
+      "result_1x2": "2",
+      "correct_1x2": true
     }
   ],
   "summary": {
-    "total": 46,
-    "total_bets": 71,
+    "total": 48,
+    "total_bets": 72,
     "won": 34,
-    "lost": 37,
-    "win_rate": 47.9,
-    "roi": -10.1,
-    "score_hits": 18,
+    "lost": 38,
+    "win_rate": 47.2,
+    "roi": -11.3,
+    "score_hits": 19,
     "score_top1": 6,
-    "correct_1x2": 32,
-    "total_1x2": 46,
-    "accuracy_1x2": 69.6,
-    "avg_clv_pct": null,
-    "clv_sample_size": 0,
-    "pct_beating_close": null
+    "correct_1x2": 33,
+    "total_1x2": 48,
+    "accuracy_1x2": 68.8,
+    "avg_clv_pct": 21.24,
+    "clv_sample_size": 1,
+    "pct_beating_close": 100.0
   }
 }

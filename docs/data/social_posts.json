@@ -1,20 +1,38 @@
 [
   {
-    "fixture_id": "22f6ac06dfcc88a847920f62633e6459",
-    "home": "Paraguay",
-    "away": "Australia",
-    "commence_time": "2026-06-26T02:00:00Z",
-    "hours_until": 2.7,
-    "pick": "Australia gana el partido",
-    "edge": 14.7,
-    "odds": 4.75,
-    "book": "unibet_se",
-    "kelly_pct": 4.33,
-    "is_imminent": true,
+    "fixture_id": "13eab94a136b9c264ba974cf437a5f71",
+    "home": "DR Congo",
+    "away": "Uzbekistan",
+    "commence_time": "2026-06-27T23:30:00Z",
+    "hours_until": 46.0,
+    "pick": "Menos de 3 goles en el partido",
+    "edge": 23.4,
+    "odds": 1.97,
+    "book": "betonlineag",
+    "kelly_pct": 5.0,
+    "is_imminent": false,
     "formats": {
-      "twitter": "🚨 Paraguay vs Australia\nPick: Australia gana el partido\n+14.7% ventaja · @4.75 (unibet_se)\nKelly: 4.33% banca\n\nModelo: kini.bet",
-      "whatsapp": "⚽ *Paraguay vs Australia*\n🎯 *Australia gana el partido*\n📈 +14.7% ventaja\n💰 @4.75 (unibet_se)\n💼 Kelly: 4.33% de tu banca\n\nAnálisis completo: kini.bet",
-      "instagram": "⚽ Paraguay vs Australia\n\nNuestro modelo dice: Australia gana el partido\n\nEncontramos una ventaja de +14.7% sobre las cuotas del mercado. Si tienes una banca de €1000, deberías apostar ~€43 según Quarter-Kelly.\n\n#Mundial2026 #ApuestasDeportivas #Paraguay #Australia"
+      "twitter": "⚽ DR Congo vs Uzbekistan\nPick: Menos de 3 goles en el partido\n+23.4% ventaja · @1.97 (betonlineag)\nKelly: 5.0% banca\n\nModelo: kini.bet",
+      "whatsapp": "⚽ *DR Congo vs Uzbekistan*\n🎯 *Menos de 3 goles en el partido*\n📈 +23.4% ventaja\n💰 @1.97 (betonlineag)\n💼 Kelly: 5.0% de tu banca\n\nAnálisis completo: kini.bet",
+      "instagram": "⚽ DR Congo vs Uzbekistan\n\nNuestro modelo dice: Menos de 3 goles en el partido\n\nEncontramos una ventaja de +23.4% sobre las cuotas del mercado. Si tienes una banca de €1000, deberías apostar ~€50 según Quarter-Kelly.\n\n#Mundial2026 #ApuestasDeportivas #DRCongo #Uzbekistan"
+    }
+  },
+  {
+    "fixture_id": "67ae5751c401a98409b8566ae4897069",
+    "home": "Colombia",
+    "away": "Portugal",
+    "commence_time": "2026-06-27T23:30:00Z",
+    "hours_until": 46.0,
+    "pick": "Colombia gana el partido",
+    "edge": 19.7,
+    "odds": 4.45,
+    "book": "betsson",
+    "kelly_pct": 5.0,
+    "is_imminent": false,
+    "formats": {
+      "twitter": "⚽ Colombia vs Portugal\nPick: Colombia gana el partido\n+19.7% ventaja · @4.45 (betsson)\nKelly: 5.0% banca\n\nModelo: kini.bet",
+      "whatsapp": "⚽ *Colombia vs Portugal*\n🎯 *Colombia gana el partido*\n📈 +19.7% ventaja\n💰 @4.45 (betsson)\n💼 Kelly: 5.0% de tu banca\n\nAnálisis completo: kini.bet",
+      "instagram": "⚽ Colombia vs Portugal\n\nNuestro modelo dice: Colombia gana el partido\n\nEncontramos una ventaja de +19.7% sobre las cuotas del mercado. Si tienes una banca de €1000, deberías apostar ~€50 según Quarter-Kelly.\n\n#Mundial2026 #ApuestasDeportivas #Colombia #Portugal"
     }
   },
   {
@@ -22,17 +40,35 @@
     "home": "Cape Verde",
     "away": "Saudi Arabia",
     "commence_time": "2026-06-27T00:00:00Z",
-    "hours_until": 24.7,
+    "hours_until": 22.5,
     "pick": "Cape Verde gana el partido",
-    "edge": 14.1,
-    "odds": 2.82,
+    "edge": 13.3,
+    "odds": 2.76,
     "book": "Betfair",
-    "kelly_pct": 5.0,
+    "kelly_pct": 4.88,
     "is_imminent": false,
     "formats": {
-      "twitter": "⚽ Cape Verde vs Arabia Saudita\nPick: Cape Verde gana el partido\n+14.1% ventaja · @2.82 (Betfair)\nKelly: 5.0% banca\n\nModelo: kini.bet",
-      "whatsapp": "⚽ *Cape Verde vs Arabia Saudita*\n🎯 *Cape Verde gana el partido*\n📈 +14.1% ventaja\n💰 @2.82 (Betfair)\n💼 Kelly: 5.0% de tu banca\n\nAnálisis completo: kini.bet",
-      "instagram": "⚽ Cape Verde vs Arabia Saudita\n\nNuestro modelo dice: Cape Verde gana el partido\n\nEncontramos una ventaja de +14.1% sobre las cuotas del mercado. Si tienes una banca de €1000, deberías apostar ~€50 según Quarter-Kelly.\n\n#Mundial2026 #ApuestasDeportivas #CapeVerde #ArabiaSaudita"
+      "twitter": "⚽ Cape Verde vs Arabia Saudita\nPick: Cape Verde gana el partido\n+13.3% ventaja · @2.76 (Betfair)\nKelly: 4.88% banca\n\nModelo: kini.bet",
+      "whatsapp": "⚽ *Cape Verde vs Arabia Saudita*\n🎯 *Cape Verde gana el partido*\n📈 +13.3% ventaja\n💰 @2.76 (Betfair)\n💼 Kelly: 4.88% de tu banca\n\nAnálisis completo: kini.bet",
+      "instagram": "⚽ Cape Verde vs Arabia Saudita\n\nNuestro modelo dice: Cape Verde gana el partido\n\nEncontramos una ventaja de +13.3% sobre las cuotas del mercado. Si tienes una banca de €1000, deberías apostar ~€48 según Quarter-Kelly.\n\n#Mundial2026 #ApuestasDeportivas #CapeVerde #ArabiaSaudita"
+    }
+  },
+  {
+    "fixture_id": "22f6ac06dfcc88a847920f62633e6459",
+    "home": "Paraguay",
+    "away": "Australia",
+    "commence_time": "2026-06-26T02:00:00Z",
+    "hours_until": 0.5,
+    "pick": "Australia gana el partido",
+    "edge": 12.1,
+    "odds": 4.58,
+    "book": "1xBet",
+    "kelly_pct": 3.68,
+    "is_imminent": true,
+    "formats": {
+      "twitter": "🚨 Paraguay vs Australia\nPick: Australia gana el partido\n+12.1% ventaja · @4.58 (1xBet)\nKelly: 3.68% banca\n\nModelo: kini.bet",
+      "whatsapp": "⚽ *Paraguay vs Australia*\n🎯 *Australia gana el partido*\n📈 +12.1% ventaja\n💰 @4.58 (1xBet)\n💼 Kelly: 3.68% de tu banca\n\nAnálisis completo: kini.bet",
+      "instagram": "⚽ Paraguay vs Australia\n\nNuestro modelo dice: Australia gana el partido\n\nEncontramos una ventaja de +12.1% sobre las cuotas del mercado. Si tienes una banca de €1000, deberías apostar ~€36 según Quarter-Kelly.\n\n#Mundial2026 #ApuestasDeportivas #Paraguay #Australia"
     }
   }
 ]
