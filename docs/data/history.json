@@ -4058,7 +4058,35 @@
           "clv_pct": -23.61
         }
       ],
-      "bets": [],
+      "bets": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "edge": 14.8,
+          "odds": 27.75,
+          "won": false,
+          "description_es": "Gana Local (1)",
+          "description_en": "Gana Local (1)"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "edge": 13.0,
+          "odds": 9.55,
+          "won": false,
+          "description_es": "Empate (X)",
+          "description_en": "Empate (X)"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "edge": -27.9,
+          "odds": 1.1,
+          "won": true,
+          "description_es": "Gana Visitante (2)",
+          "description_en": "Gana Visitante (2)"
+        }
+      ],
       "best_bet": null,
       "has_bet": false,
       "result": {
@@ -4138,7 +4166,35 @@
           "clv_pct": 1304.96
         }
       ],
-      "bets": [],
+      "bets": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "edge": -11.0,
+          "odds": 1.02,
+          "won": true,
+          "description_es": "Gana Local (1)",
+          "description_en": "Gana Local (1)"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "edge": 8.0,
+          "odds": 38.0,
+          "won": false,
+          "description_es": "Empate (X)",
+          "description_en": "Empate (X)"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "edge": 3.0,
+          "odds": 170.0,
+          "won": false,
+          "description_es": "Gana Visitante (2)",
+          "description_en": "Gana Visitante (2)"
+        }
+      ],
       "best_bet": null,
       "has_bet": false,
       "result": {
@@ -4178,11 +4234,11 @@
   ],
   "summary": {
     "total": 52,
-    "total_bets": 79,
-    "won": 36,
-    "lost": 43,
-    "win_rate": 45.6,
-    "roi": -13.4,
+    "total_bets": 85,
+    "won": 38,
+    "lost": 47,
+    "win_rate": 44.7,
+    "roi": -17.0,
     "score_hits": 20,
     "score_top1": 6,
     "correct_1x2": 35,
