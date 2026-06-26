@@ -388,6 +388,19 @@
       }
     },
     {
+      "player": "Harry Souttar",
+      "team": "Australia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 86.0,
+          "max": 86.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Kou Itakura",
       "team": "Japan",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238033.png",
@@ -988,6 +1001,19 @@
         "Defensive Interventions": {
           "total": 14.0,
           "max": 14.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Gustavo Velázquez",
+      "team": "Paraguay",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 46.0,
+          "max": 46.0,
           "appearances": 1
         }
       }
@@ -1929,6 +1955,19 @@
       }
     },
     {
+      "player": "Jordan Bos",
+      "team": "Australia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Saeid Ezatolahi",
       "team": "Iran",
       "headshot": null,
@@ -2152,6 +2191,19 @@
     {
       "player": "Daizen Maeda",
       "team": "Japan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Julio Enciso",
+      "team": "Paraguay",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -3208,12 +3260,12 @@
       "player": "Patrick Beach",
       "team": "Australia",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
+          "total": 3.0,
+          "max": 2.0,
+          "appearances": 2
         }
       }
     },
@@ -3234,12 +3286,12 @@
       "player": "Omar Alderete",
       "team": "Paraguay",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Defensive Interventions": {
-          "total": 13.0,
+          "total": 25.0,
           "max": 13.0,
-          "appearances": 1
+          "appearances": 2
         }
       }
     },
@@ -3247,12 +3299,12 @@
       "player": "Orlando Gil",
       "team": "Paraguay",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 3.0,
-          "max": 3.0,
-          "appearances": 1
+          "total": 8.0,
+          "max": 5.0,
+          "appearances": 2
         }
       }
     },
@@ -3330,6 +3382,19 @@
         "Defensive Interventions": {
           "total": 16.0,
           "max": 16.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Lucas Herrington",
+      "team": "Australia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 10.0,
+          "max": 10.0,
           "appearances": 1
         }
       }

@@ -6146,5 +6146,137 @@
         "value": "3"
       }
     ]
+  },
+  "22f6ac06dfcc88a847920f62633e6459": {
+    "espn_id": "760469",
+    "fetched_at": "2026-06-26T05:54:35+00:00",
+    "teams": [
+      {
+        "team": "Paraguay",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "9",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "1",
+          "saves": "5",
+          "possessionPct": "44.1",
+          "totalShots": "7",
+          "shotsOnTarget": "2",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "330",
+          "totalPasses": "427",
+          "passPct": "0.8",
+          "accurateCrosses": "0",
+          "totalCrosses": "7",
+          "crossPct": "0.0",
+          "totalLongBalls": "58",
+          "accurateLongBalls": "14",
+          "longballPct": "0.2",
+          "blockedShots": "1",
+          "effectiveTackles": "16",
+          "totalTackles": "24",
+          "tacklePct": "0.7",
+          "interceptions": "8",
+          "effectiveClearance": "24",
+          "totalClearance": "24"
+        }
+      },
+      {
+        "team": "Australia",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "6",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "3",
+          "saves": "2",
+          "possessionPct": "55.9",
+          "totalShots": "12",
+          "shotsOnTarget": "5",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "438",
+          "totalPasses": "536",
+          "passPct": "0.8",
+          "accurateCrosses": "4",
+          "totalCrosses": "13",
+          "crossPct": "0.3",
+          "totalLongBalls": "57",
+          "accurateLongBalls": "18",
+          "longballPct": "0.3",
+          "blockedShots": "3",
+          "effectiveTackles": "12",
+          "totalTackles": "19",
+          "tacklePct": "0.6",
+          "interceptions": "7",
+          "effectiveClearance": "10",
+          "totalClearance": "10"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Paraguay",
+        "category": "Total Shots",
+        "player": "Julio Enciso",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Accurate Passes",
+        "player": "Gustavo Velázquez",
+        "headshot": null,
+        "value": "46"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Defensive Interventions",
+        "player": "Omar Alderete",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Saves",
+        "player": "Orlando Gil",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Australia",
+        "category": "Total Shots",
+        "player": "Jordan Bos",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Australia",
+        "category": "Accurate Passes",
+        "player": "Harry Souttar",
+        "headshot": null,
+        "value": "86"
+      },
+      {
+        "team": "Australia",
+        "category": "Defensive Interventions",
+        "player": "Lucas Herrington",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "Australia",
+        "category": "Saves",
+        "player": "Patrick Beach",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
   }
 }

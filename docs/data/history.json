@@ -3748,7 +3748,35 @@
           "clv_pct": -6.19
         }
       ],
-      "bets": [],
+      "bets": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "edge": 4.6,
+          "odds": 59.27,
+          "won": false,
+          "description_es": "Gana Local (1)",
+          "description_en": "Gana Local (1)"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "edge": -0.1,
+          "odds": 13.84,
+          "won": false,
+          "description_es": "Empate (X)",
+          "description_en": "Empate (X)"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "edge": -4.5,
+          "odds": 1.06,
+          "won": true,
+          "description_es": "Gana Visitante (2)",
+          "description_en": "Gana Visitante (2)"
+        }
+      ],
       "best_bet": null,
       "has_bet": false,
       "result": {
@@ -3779,20 +3807,199 @@
       "predicted_1x2": "2",
       "result_1x2": "2",
       "correct_1x2": true
+    },
+    {
+      "id": "22f6ac06dfcc88a847920f62633e6459",
+      "home": "Paraguay",
+      "away": "Australia",
+      "date": "2026-06-26T02:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "SKIP",
+          "edge": -2.4,
+          "odds": 2.63,
+          "model_prob": 34.6,
+          "devig_prob": 37.0,
+          "won": false,
+          "closing_odds": 2.63,
+          "clv_pct": 0.0
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "FADE",
+          "edge": -9.6,
+          "odds": 2.45,
+          "model_prob": 30.2,
+          "devig_prob": 39.8,
+          "won": true,
+          "closing_odds": 2.45,
+          "clv_pct": 0.0
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "BET",
+          "edge": 12.1,
+          "odds": 4.16,
+          "model_prob": 35.2,
+          "devig_prob": 23.2,
+          "won": false,
+          "closing_odds": 4.16,
+          "clv_pct": 0.0
+        }
+      ],
+      "bets": [
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "edge": 12.1,
+          "odds": 4.16,
+          "won": false,
+          "closing_odds": 4.16,
+          "clv_pct": 0.0,
+          "model_version": "v2.0-aligned",
+          "pick": "BET",
+          "model_prob": 35.2,
+          "description_es": "Australia gana el partido",
+          "description_en": "Australia wins the match"
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Visitante (2)",
+        "side": "away",
+        "edge": 12.1,
+        "odds": 4.16,
+        "best_odds": 4.58,
+        "best_book": "1xBet",
+        "pick": "BET",
+        "confidence_band": "ALTA",
+        "model_prob": 35.2,
+        "devig_prob": 23.2,
+        "description_es": "Australia gana el partido",
+        "description_en": "Australia wins the match",
+        "is_compound": false
+      },
+      "has_bet": true,
+      "result": {
+        "home": 0,
+        "away": 0
+      },
+      "best_bet_won": false,
+      "score_hit": 2,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 13.9
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 13.8
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.5
+        }
+      ],
+      "xg_home": 0.97,
+      "xg_away": 1.1,
+      "predicted_1x2": "2",
+      "result_1x2": "X",
+      "correct_1x2": false
+    },
+    {
+      "id": "f41aeac9a8343a84b4950f15ea25fba2",
+      "home": "Turkey",
+      "away": "USA",
+      "date": "2026-06-26T02:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "SKIP",
+          "edge": 4.5,
+          "odds": 3.48,
+          "model_prob": 32.4,
+          "devig_prob": 28.0,
+          "won": true,
+          "closing_odds": 3.55,
+          "clv_pct": -1.97
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "SKIP",
+          "edge": 1.1,
+          "odds": 3.99,
+          "model_prob": 25.5,
+          "devig_prob": 24.3,
+          "won": false,
+          "closing_odds": 4.1,
+          "clv_pct": -2.68
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "FADE",
+          "edge": -5.6,
+          "odds": 2.06,
+          "model_prob": 42.1,
+          "devig_prob": 47.7,
+          "won": false,
+          "closing_odds": 2.1,
+          "clv_pct": -1.9
+        }
+      ],
+      "bets": [],
+      "best_bet": null,
+      "has_bet": false,
+      "result": {
+        "home": 3,
+        "away": 2
+      },
+      "best_bet_won": null,
+      "score_hit": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 10.9
+        },
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 9.2
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 8.2
+        }
+      ],
+      "xg_home": 1.36,
+      "xg_away": 1.71,
+      "predicted_1x2": "2",
+      "result_1x2": "1",
+      "correct_1x2": false
     }
   ],
   "summary": {
-    "total": 48,
-    "total_bets": 72,
-    "won": 34,
-    "lost": 38,
-    "win_rate": 47.2,
-    "roi": -11.3,
-    "score_hits": 19,
+    "total": 50,
+    "total_bets": 76,
+    "won": 35,
+    "lost": 41,
+    "win_rate": 46.1,
+    "roi": -14.6,
+    "score_hits": 20,
     "score_top1": 6,
     "correct_1x2": 33,
-    "total_1x2": 48,
-    "accuracy_1x2": 68.8,
+    "total_1x2": 50,
+    "accuracy_1x2": 66.0,
     "avg_clv_pct": 21.24,
     "clv_sample_size": 1,
     "pct_beating_close": 100.0
