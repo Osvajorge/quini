@@ -2434,6 +2434,10 @@ function _renderMatchStats(f) {
   const away = ms.teams.find(t => t.side === 'away') || ms.teams[1];
   const hs = home.stats || {}, as = away.stats || {};
 
+  // Team colors for bars
+  const homeColor = TEAM_COLOR[home.team] || TEAM_COLOR[teamName(home.team)] || 'var(--bet)';
+  const awayColor = TEAM_COLOR[away.team] || TEAM_COLOR[teamName(away.team)] || 'var(--accent)';
+
   // Bar row: home left, label center, away right
   const stat = (k, label, max) => {
     const hv = parseFloat(hs[k]); const av = parseFloat(as[k]);
@@ -2442,8 +2446,8 @@ function _renderMatchStats(f) {
     return `<div class="flex items-center gap-2 py-1">
       <span class="font-mono w-12 text-right font-semibold">${hs[k] ?? '—'}</span>
       <div class="flex-1 flex h-1.5 rounded-full overflow-hidden" style="background:var(--panel2);">
-        <div class="h-full" style="width:${((hv||0)/lim*50).toFixed(0)}%; background:var(--bet); margin-left:auto;"></div>
-        <div class="h-full" style="width:${((av||0)/lim*50).toFixed(0)}%; background:var(--accent);"></div>
+        <div class="h-full" style="width:${((hv||0)/lim*50).toFixed(0)}%; background:${homeColor}; margin-left:auto;"></div>
+        <div class="h-full" style="width:${((av||0)/lim*50).toFixed(0)}%; background:${awayColor};"></div>
       </div>
       <span class="font-mono w-12 text-left font-semibold">${as[k] ?? '—'}</span>
       <span class="text-[10px] uppercase tracking-wider w-24 text-center" style="color:var(--mute);">${label}</span>
@@ -2472,7 +2476,7 @@ function _renderMatchStats(f) {
     <div class="pt-3 mt-2" style="border-top:1px solid color-mix(in srgb,var(--border) 30%,transparent);">
       <div class="text-[10px] font-semibold uppercase tracking-wider mb-2" style="color:var(--mute);">
         ${LANG==='es' ? 'Estadísticas del partido' : 'Match stats'}
-        <span class="ml-2 text-[9px] font-mono" style="color:var(--mute);">${teamName(home.team) || home.team} <span style="color:var(--bet);">●</span>  <span style="color:var(--accent);">●</span> ${teamName(away.team) || away.team}</span>
+        <span class="ml-2 text-[9px] font-mono" style="color:var(--mute);">${teamName(home.team) || home.team} <span style="color:${homeColor};">●</span>  <span style="color:${awayColor};">●</span> ${teamName(away.team) || away.team}</span>
       </div>
       ${blocks}
       ${leaders ? `<div class="mt-3 pt-2" style="border-top:1px dashed color-mix(in srgb,var(--border) 50%,transparent);">
