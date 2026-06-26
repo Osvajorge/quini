@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T17:27:30.632690+00:00",
+  "generated_at": "2026-06-26T19:17:30.216787+00:00",
   "model": {
     "name": "Dixon-Coles",
     "teams": 319,
@@ -26,15 +26,15 @@
       "en": "Advantage over bookmakers. Positive = good opportunity"
     },
     "confidence": {
-      "es": "Qu\u00e9 tan segura es esta predicci\u00f3n",
+      "es": "Qué tan segura es esta predicción",
       "en": "How confident this prediction is"
     },
     "model_prob": {
-      "es": "Probabilidad seg\u00fan modelo",
+      "es": "Probabilidad según modelo",
       "en": "Model probability"
     },
     "devig_prob": {
-      "es": "Probabilidad seg\u00fan mercado",
+      "es": "Probabilidad según mercado",
       "en": "Market probability"
     },
     "odds": {
@@ -295,7 +295,7 @@
           "status": "possible"
         },
         {
-          "name": "T\u00fcrkiye",
+          "name": "Türkiye",
           "abbr": "TUR",
           "flag": "https://a.espncdn.com/i/teamlogos/countries/500/tur.png",
           "rank": 4,
@@ -360,7 +360,7 @@
           "status": "possible"
         },
         {
-          "name": "Cura\u00e7ao",
+          "name": "Curaçao",
           "abbr": "CUW",
           "flag": "https://a.espncdn.com/i/teamlogos/soccer/500/11678.png",
           "rank": 4,
@@ -1016,34 +1016,34 @@
       "id": "b86b4d60f773e9e3c46c00e9a6496e79",
       "home": "Norway",
       "away": "France",
-      "commence_time": "2026-06-26T19:00:00Z",
+      "commence_time": "2026-06-26T19:01:00Z",
       "completed": false,
-      "is_live": false,
-      "actual_home": null,
-      "actual_away": null,
-      "xg_home": 2.25,
-      "xg_away": 1.73,
+      "is_live": true,
+      "actual_home": 0,
+      "actual_away": 1,
+      "xg_home": 0.092,
+      "xg_away": 1.573,
       "odds": {
-        "away": 1.4,
-        "home": 7.25,
-        "draw": 5.6
+        "away": 1.1,
+        "home": 27.75,
+        "draw": 9.55
       },
       "best_odds": {
         "away": {
-          "odds": 1.45,
-          "book": "gtbets"
+          "odds": 1.35,
+          "book": "williamhill"
         },
         "home": {
-          "odds": 7.6,
-          "book": "Betfair"
+          "odds": 27.75,
+          "book": "Pinnacle"
         },
         "draw": {
-          "odds": 5.67,
-          "book": "betonlineag"
+          "odds": 12.5,
+          "book": "matchbook"
         },
         "over_2_5": {
-          "odds": 1.52,
-          "book": "Nordic"
+          "odds": 1.44,
+          "book": "williamhill"
         },
         "under_2_5": {
           "odds": 2.62,
@@ -1052,44 +1052,44 @@
       },
       "book_comparison": [
         {
+          "name": "Pinnacle",
+          "away": 1.1,
+          "home": 27.75,
+          "draw": 9.55
+        },
+        {
           "name": "Betfair",
-          "away": 1.44,
-          "home": 7.6,
-          "draw": 5.6
+          "away": 1.13,
+          "home": 27.0,
+          "draw": 11.5
         },
         {
           "name": "matchbook",
-          "away": 1.44,
-          "home": 7.6,
-          "draw": 5.5
-        },
-        {
-          "name": "unibet_fr",
-          "away": 1.4,
-          "home": 7.5,
-          "draw": 5.5
-        },
-        {
-          "name": "tipico_de",
-          "away": 1.35,
-          "home": 7.5,
-          "draw": 5.5
+          "away": 1.13,
+          "home": 27.0,
+          "draw": 12.5
         },
         {
           "name": "Coolbet",
-          "away": 1.42,
-          "home": 7.45,
-          "draw": 5.5
+          "away": 1.12,
+          "home": 22.0,
+          "draw": 10.0
+        },
+        {
+          "name": "unibet_se",
+          "away": 1.1,
+          "home": 19.0,
+          "draw": 10.0
         }
       ],
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 28.7,
-          "devig_prob": 12.9,
-          "edge": 15.8,
-          "odds": 7.25,
+          "model_prob": 17.2,
+          "devig_prob": 2.4,
+          "edge": 14.8,
+          "odds": 27.75,
           "pick": "SKIP",
           "confidence": "ALTA",
           "kelly_pct": 0.0
@@ -1097,21 +1097,21 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 24.2,
-          "devig_prob": 17.0,
-          "edge": 7.2,
-          "odds": 5.6,
+          "model_prob": 22.1,
+          "devig_prob": 9.0,
+          "edge": 13.0,
+          "odds": 9.55,
           "pick": "SKIP",
-          "confidence": "MEDIA",
+          "confidence": "ALTA",
           "kelly_pct": 0.0
         },
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 47.1,
-          "devig_prob": 70.1,
-          "edge": -23.0,
-          "odds": 1.4,
+          "model_prob": 60.7,
+          "devig_prob": 88.6,
+          "edge": -27.9,
+          "odds": 1.1,
           "pick": "FADE",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -1195,7 +1195,33 @@
           0.07
         ]
       ],
-      "live_scores": null,
+      "live_scores": [
+        {
+          "home": 1,
+          "away": 2,
+          "prob": 11.0
+        },
+        {
+          "home": 2,
+          "away": 2,
+          "prob": 9.4
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 8.6
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 7.3
+        },
+        {
+          "home": 1,
+          "away": 3,
+          "prob": 7.1
+        }
+      ],
       "quiniela": {
         "balanced": {
           "pick_home": 2,
@@ -1274,88 +1300,92 @@
         }
       },
       "fixture_confidence": "BAJA",
-      "bets": []
+      "bets": [],
+      "xg_home_observed": 0.02,
+      "xg_away_observed": 0.34,
+      "xg_elapsed": 16,
+      "xg_source": "api-football"
     },
     {
       "id": "7e6aee294ea1a4792c59558791084528",
       "home": "Senegal",
       "away": "Iraq",
-      "commence_time": "2026-06-26T19:00:00Z",
+      "commence_time": "2026-06-26T19:02:00Z",
       "completed": false,
-      "is_live": false,
-      "actual_home": null,
-      "actual_away": null,
-      "xg_home": 2.1,
-      "xg_away": 0.72,
+      "is_live": true,
+      "actual_home": 1,
+      "actual_away": 0,
+      "xg_home": 3.45,
+      "xg_away": 0.0,
       "odds": {
-        "away": 12.1,
-        "home": 1.25,
-        "draw": 7.0
+        "away": 170.0,
+        "home": 1.02,
+        "draw": 38.0
       },
       "best_odds": {
         "away": {
-          "odds": 18.5,
-          "book": "Nordic"
+          "odds": 200.0,
+          "book": "matchbook"
         },
         "home": {
-          "odds": 1.25,
-          "book": "Pinnacle"
+          "odds": 1.23,
+          "book": "betanysports"
         },
         "draw": {
-          "odds": 7.8,
-          "book": "Betfair"
+          "odds": 48.0,
+          "book": "matchbook"
         },
         "over_2_5": {
-          "odds": 1.52,
-          "book": "betsson"
+          "odds": 1.48,
+          "book": "betanysports"
         },
         "under_2_5": {
-          "odds": 2.7,
+          "odds": 2.75,
           "book": "betanysports"
         }
       },
       "book_comparison": [
         {
-          "name": "Pinnacle",
-          "away": 12.1,
-          "home": 1.25,
-          "draw": 7.0
-        },
-        {
-          "name": "gtbets",
-          "away": 12.86,
-          "home": 1.24,
-          "draw": 6.83
-        },
-        {
-          "name": "betonlineag",
-          "away": 11.0,
-          "home": 1.24,
-          "draw": 7.5
-        },
-        {
-          "name": "Betfair",
-          "away": 14.5,
-          "home": 1.24,
-          "draw": 7.8
-        },
-        {
           "name": "betanysports",
-          "away": 11.0,
-          "home": 1.24,
-          "draw": 7.5,
-          "over_2_5": 1.45,
-          "under_2_5": 2.7
+          "away": 12.0,
+          "home": 1.23,
+          "draw": 7.25,
+          "over_2_5": 1.48,
+          "under_2_5": 2.75
+        },
+        {
+          "name": "williamhill",
+          "away": 13.0,
+          "home": 1.2,
+          "draw": 6.5
+        },
+        {
+          "name": "tipico_de",
+          "away": 25.0,
+          "home": 1.07,
+          "draw": 10.0
+        },
+        {
+          "name": "mybookieag",
+          "away": 36.0,
+          "home": 1.04,
+          "draw": 11.0
+        },
+        {
+          "name": "leovegas_se",
+          "away": 25.0,
+          "home": 1.02,
+          "draw": 11.0
         }
       ],
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 70.7,
-          "devig_prob": 78.9,
-          "edge": -8.1,
-          "odds": 1.25,
+          "model_prob": 86.4,
+          "devig_prob": 97.4,
+          "edge": -11.0,
+          "odds": 1.02,
           "pick": "FADE",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -1363,21 +1393,21 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 18.8,
-          "devig_prob": 13.6,
-          "edge": 5.2,
-          "odds": 7.0,
+          "model_prob": 10.3,
+          "devig_prob": 2.3,
+          "edge": 8.0,
+          "odds": 38.0,
           "pick": "SKIP",
-          "confidence": "MEDIA",
+          "confidence": "ALTA",
           "kelly_pct": 0.0
         },
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 10.5,
-          "devig_prob": 7.6,
-          "edge": 2.9,
-          "odds": 12.1,
+          "model_prob": 3.3,
+          "devig_prob": 0.3,
+          "edge": 3.0,
+          "odds": 170.0,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -1461,7 +1491,33 @@
           0.01
         ]
       ],
-      "live_scores": null,
+      "live_scores": [
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 15.3
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 14.0
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 10.0
+        },
+        {
+          "home": 3,
+          "away": 1,
+          "prob": 9.1
+        },
+        {
+          "home": 4,
+          "away": 0,
+          "prob": 8.5
+        }
+      ],
       "quiniela": {
         "balanced": {
           "pick_home": 2,
@@ -1540,7 +1596,11 @@
         }
       },
       "fixture_confidence": "BAJA",
-      "bets": []
+      "bets": [],
+      "xg_home_observed": 0.69,
+      "xg_away_observed": 0.0,
+      "xg_elapsed": 15,
+      "xg_source": "api-football"
     },
     {
       "id": "e07b1926be5a4d515c7eb108dbcee9c5",
@@ -1554,17 +1614,17 @@
       "xg_home": 1.51,
       "xg_away": 0.74,
       "odds": {
-        "home": 2.71,
-        "away": 2.81,
-        "draw": 3.38
+        "home": 2.7,
+        "away": 2.83,
+        "draw": 3.35
       },
       "best_odds": {
         "home": {
-          "odds": 2.75,
-          "book": "betonlineag"
+          "odds": 2.72,
+          "book": "1xBet"
         },
         "away": {
-          "odds": 2.85,
+          "odds": 2.88,
           "book": "unibet_nl"
         },
         "draw": {
@@ -1572,7 +1632,7 @@
           "book": "Betfair"
         },
         "over_2_5": {
-          "odds": 2.26,
+          "odds": 2.32,
           "book": "matchbook"
         },
         "under_2_5": {
@@ -1582,40 +1642,40 @@
       },
       "book_comparison": [
         {
-          "name": "betonlineag",
-          "home": 2.75,
-          "away": 2.72,
-          "draw": 3.36,
-          "over_2_5": 2.17,
-          "under_2_5": 1.75
-        },
-        {
-          "name": "Betfair",
-          "home": 2.74,
-          "away": 2.82,
-          "draw": 3.5
-        },
-        {
-          "name": "matchbook",
-          "home": 2.74,
-          "away": 2.84,
-          "draw": 3.5,
-          "over_2_5": 2.26,
-          "under_2_5": 1.77
-        },
-        {
           "name": "1xBet",
           "home": 2.72,
-          "away": 2.83,
+          "away": 2.85,
+          "draw": 3.38,
+          "over_2_5": 2.23,
+          "under_2_5": 1.7
+        },
+        {
+          "name": "Coolbet",
+          "home": 2.7,
+          "away": 2.8,
           "draw": 3.4,
           "over_2_5": 2.18,
           "under_2_5": 1.73
         },
         {
+          "name": "winamax_de",
+          "home": 2.7,
+          "away": 2.65,
+          "draw": 3.35
+        },
+        {
           "name": "Pinnacle",
-          "home": 2.71,
-          "away": 2.81,
-          "draw": 3.38
+          "home": 2.7,
+          "away": 2.83,
+          "draw": 3.35
+        },
+        {
+          "name": "betonlineag",
+          "home": 2.7,
+          "away": 2.78,
+          "draw": 3.33,
+          "over_2_5": 2.17,
+          "under_2_5": 1.75
         }
       ],
       "picks": [
@@ -1623,20 +1683,20 @@
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 43.5,
-          "devig_prob": 36.2,
+          "devig_prob": 36.3,
           "edge": 7.3,
-          "odds": 2.71,
+          "odds": 2.7,
           "pick": "BET",
           "confidence": "MEDIA",
-          "kelly_pct": 2.62
+          "kelly_pct": 2.58
         },
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 30.7,
-          "devig_prob": 28.9,
-          "edge": 1.8,
-          "odds": 3.38,
+          "model_prob": 30.8,
+          "devig_prob": 29.1,
+          "edge": 1.7,
+          "odds": 3.35,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -1644,10 +1704,10 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 25.7,
-          "devig_prob": 34.9,
-          "edge": -9.2,
-          "odds": 2.81,
+          "model_prob": 25.6,
+          "devig_prob": 34.6,
+          "edge": -9.0,
+          "odds": 2.83,
           "pick": "FADE",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -1657,13 +1717,13 @@
         "market": "Gana Local (1)",
         "side": "home",
         "edge": 7.3,
-        "odds": 2.71,
-        "best_odds": 2.75,
-        "best_book": "betonlineag",
+        "odds": 2.7,
+        "best_odds": 2.72,
+        "best_book": "1xBet",
         "pick": "BET",
         "confidence_band": "MEDIA",
         "model_prob": 43.5,
-        "devig_prob": 36.2,
+        "devig_prob": 36.3,
         "description_es": "Cape Verde gana el partido",
         "description_en": "Cape Verde wins the match",
         "is_compound": false
@@ -1829,14 +1889,14 @@
           "market": "Gana Local (1)",
           "side": "home",
           "edge": 7.3,
-          "odds": 2.71,
-          "best_odds": 2.75,
-          "best_book": "betonlineag",
+          "odds": 2.7,
+          "best_odds": 2.72,
+          "best_book": "1xBet",
           "pick": "BET",
           "confidence_band": "MEDIA",
           "model_prob": 43.5,
-          "devig_prob": 36.2,
-          "kelly_pct": 2.62,
+          "devig_prob": 36.3,
+          "kelly_pct": 2.58,
           "model_version": "v3.0-benter",
           "description_es": "Cape Verde gana el partido",
           "description_en": "Cape Verde wins the match"
@@ -1855,13 +1915,13 @@
       "xg_home": 0.61,
       "xg_away": 1.89,
       "odds": {
-        "away": 1.69,
-        "home": 6.3,
-        "draw": 3.6
+        "away": 1.71,
+        "home": 6.4,
+        "draw": 3.5
       },
       "best_odds": {
         "away": {
-          "odds": 1.74,
+          "odds": 1.78,
           "book": "1xBet"
         },
         "home": {
@@ -1873,60 +1933,58 @@
           "book": "unibet_fr"
         },
         "over_2_5": {
-          "odds": 2.3,
-          "book": "Nordic"
+          "odds": 2.5,
+          "book": "betonlineag"
         },
         "under_2_5": {
-          "odds": 1.69,
-          "book": "Coolbet"
+          "odds": 1.61,
+          "book": "unibet_se"
         }
       },
       "book_comparison": [
         {
           "name": "Betfair",
-          "away": 1.72,
+          "away": 1.74,
           "home": 6.6,
-          "draw": 3.7
+          "draw": 3.6
         },
         {
           "name": "matchbook",
-          "away": 1.72,
+          "away": 1.75,
           "home": 6.6,
-          "draw": 3.7
+          "draw": 3.6
+        },
+        {
+          "name": "tipico_de",
+          "away": 1.65,
+          "home": 6.5,
+          "draw": 3.4
         },
         {
           "name": "unibet_nl",
-          "away": 1.68,
+          "away": 1.71,
           "home": 6.5,
-          "draw": 3.65,
-          "over_2_5": 2.18,
-          "under_2_5": 1.65
+          "draw": 3.55,
+          "over_2_5": 2.3,
+          "under_2_5": 1.57
         },
         {
           "name": "unibet_se",
-          "away": 1.68,
+          "away": 1.71,
           "home": 6.5,
-          "draw": 3.65,
-          "over_2_5": 2.23,
-          "under_2_5": 1.68
-        },
-        {
-          "name": "betonlineag",
-          "away": 1.69,
-          "home": 6.43,
           "draw": 3.55,
-          "over_2_5": 2.28,
-          "under_2_5": 1.69
+          "over_2_5": 2.35,
+          "under_2_5": 1.61
         }
       ],
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 13.5,
-          "devig_prob": 15.1,
-          "edge": -1.6,
-          "odds": 6.3,
+          "model_prob": 13.4,
+          "devig_prob": 14.9,
+          "edge": -1.4,
+          "odds": 6.4,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -1934,10 +1992,10 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 25.1,
-          "devig_prob": 26.9,
-          "edge": -1.7,
-          "odds": 3.6,
+          "model_prob": 25.5,
+          "devig_prob": 27.7,
+          "edge": -2.3,
+          "odds": 3.5,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -1945,10 +2003,10 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 61.4,
-          "devig_prob": 58.1,
-          "edge": 3.3,
-          "odds": 1.69,
+          "model_prob": 61.1,
+          "devig_prob": 57.4,
+          "edge": 3.7,
+          "odds": 1.71,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -2143,7 +2201,7 @@
           "book": "unibet_fr"
         },
         "over_2_5": {
-          "odds": 1.32,
+          "odds": 1.31,
           "book": "Nordic"
         },
         "under_2_5": {
@@ -2154,37 +2212,37 @@
       "book_comparison": [
         {
           "name": "Nordic",
-          "away": 1.2,
+          "away": 1.21,
           "home": 17.5,
-          "draw": 6.7,
-          "over_2_5": 1.32,
-          "under_2_5": 3.45
+          "draw": 6.5,
+          "over_2_5": 1.31,
+          "under_2_5": 3.5
         },
         {
           "name": "betsson",
-          "away": 1.2,
+          "away": 1.21,
           "home": 17.5,
-          "draw": 6.7,
-          "over_2_5": 1.32,
-          "under_2_5": 3.45
+          "draw": 6.5,
+          "over_2_5": 1.31,
+          "under_2_5": 3.5
+        },
+        {
+          "name": "Betfair",
+          "away": 1.22,
+          "home": 16.5,
+          "draw": 8.0
         },
         {
           "name": "matchbook",
           "away": 1.22,
           "home": 16.5,
-          "draw": 8.2
+          "draw": 8.0
         },
         {
           "name": "Coolbet",
           "away": 1.2,
           "home": 16.0,
           "draw": 7.9
-        },
-        {
-          "name": "betclic_fr",
-          "away": 1.17,
-          "home": 16.0,
-          "draw": 8.0
         }
       ],
       "picks": [
@@ -2393,9 +2451,9 @@
       "xg_home": 1.03,
       "xg_away": 0.83,
       "odds": {
-        "home": 2.55,
-        "away": 4.02,
-        "draw": 2.62
+        "home": 2.57,
+        "away": 4.04,
+        "draw": 2.6
       },
       "best_odds": {
         "home": {
@@ -2403,8 +2461,8 @@
           "book": "1xBet"
         },
         "away": {
-          "odds": 4.17,
-          "book": "1xBet"
+          "odds": 4.3,
+          "book": "unibet_nl"
         },
         "draw": {
           "odds": 2.98,
@@ -2415,7 +2473,7 @@
           "book": "betanysports"
         },
         "under_2_5": {
-          "odds": 1.42,
+          "odds": 1.43,
           "book": "Nordic"
         }
       },
@@ -2430,35 +2488,35 @@
           "name": "Betfair",
           "home": 2.58,
           "away": 4.1,
-          "draw": 2.7
+          "draw": 2.66
         },
         {
           "name": "matchbook",
           "home": 2.58,
           "away": 4.1,
-          "draw": 2.68
+          "draw": 2.66
         },
         {
           "name": "Pinnacle",
-          "home": 2.55,
-          "away": 4.02,
-          "draw": 2.62
+          "home": 2.57,
+          "away": 4.04,
+          "draw": 2.6
         },
         {
           "name": "Coolbet",
-          "home": 2.52,
-          "away": 4.01,
-          "draw": 2.65
+          "home": 2.55,
+          "away": 4.0,
+          "draw": 2.63
         }
       ],
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 37.4,
-          "devig_prob": 38.4,
-          "edge": -1.0,
-          "odds": 2.55,
+          "model_prob": 37.3,
+          "devig_prob": 38.2,
+          "edge": -0.9,
+          "odds": 2.57,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -2466,10 +2524,10 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 36.5,
-          "devig_prob": 37.4,
-          "edge": -0.9,
-          "odds": 2.62,
+          "model_prob": 36.6,
+          "devig_prob": 37.7,
+          "edge": -1.1,
+          "odds": 2.6,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -2478,9 +2536,9 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 26.1,
-          "devig_prob": 24.2,
+          "devig_prob": 24.1,
           "edge": 2.0,
-          "odds": 4.02,
+          "odds": 4.04,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -2702,19 +2760,21 @@
           "name": "matchbook",
           "home": 1.82,
           "away": 6.2,
-          "draw": 3.4
-        },
-        {
-          "name": "Coolbet",
-          "home": 1.8,
-          "away": 6.05,
-          "draw": 3.3
+          "draw": 3.35
         },
         {
           "name": "betsson",
-          "home": 1.8,
-          "away": 5.45,
-          "draw": 3.35,
+          "home": 1.82,
+          "away": 5.25,
+          "draw": 3.4,
+          "over_2_5": 2.3,
+          "under_2_5": 1.65
+        },
+        {
+          "name": "Nordic",
+          "home": 1.82,
+          "away": 5.25,
+          "draw": 3.4,
           "over_2_5": 2.3,
           "under_2_5": 1.65
         }
@@ -2925,9 +2985,9 @@
       "xg_home": 0.63,
       "xg_away": 2.72,
       "odds": {
-        "away": 1.16,
-        "home": 15.93,
-        "draw": 8.3
+        "away": 1.15,
+        "home": 16.39,
+        "draw": 8.46
       },
       "best_odds": {
         "away": {
@@ -2939,60 +2999,60 @@
           "book": "unibet_nl"
         },
         "draw": {
-          "odds": 9.2,
-          "book": "Betfair"
+          "odds": 9.0,
+          "book": "unibet_nl"
         },
         "over_2_5": {
           "odds": 1.44,
           "book": "williamhill"
         },
         "under_2_5": {
-          "odds": 2.88,
+          "odds": 2.85,
           "book": "betsson"
         }
       },
       "book_comparison": [
         {
           "name": "unibet_nl",
-          "away": 1.17,
+          "away": 1.15,
           "home": 21.0,
-          "draw": 8.5
+          "draw": 9.0
         },
         {
           "name": "unibet_se",
-          "away": 1.17,
+          "away": 1.15,
           "home": 21.0,
-          "draw": 8.5
+          "draw": 9.0
         },
         {
           "name": "Betfair",
           "away": 1.18,
-          "home": 20.0,
-          "draw": 9.2
+          "home": 21.0,
+          "draw": 9.0
         },
         {
           "name": "matchbook",
           "away": 1.18,
-          "home": 20.0,
-          "draw": 9.2
+          "home": 21.0,
+          "draw": 9.0
         },
         {
           "name": "betsson",
-          "away": 1.16,
-          "home": 19.5,
-          "draw": 8.3,
-          "over_2_5": 1.43,
-          "under_2_5": 2.88
+          "away": 1.15,
+          "home": 21.0,
+          "draw": 8.1,
+          "over_2_5": 1.44,
+          "under_2_5": 2.85
         }
       ],
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 6.8,
-          "devig_prob": 5.1,
-          "edge": 1.7,
-          "odds": 15.93,
+          "model_prob": 6.7,
+          "devig_prob": 4.8,
+          "edge": 1.8,
+          "odds": 16.39,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -3000,10 +3060,10 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 13.8,
-          "devig_prob": 10.8,
-          "edge": 3.1,
-          "odds": 8.3,
+          "model_prob": 13.7,
+          "devig_prob": 10.4,
+          "edge": 3.2,
+          "odds": 8.46,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -3011,11 +3071,11 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 79.3,
-          "devig_prob": 84.1,
-          "edge": -4.8,
-          "odds": 1.16,
-          "pick": "SKIP",
+          "model_prob": 79.6,
+          "devig_prob": 84.7,
+          "edge": -5.1,
+          "odds": 1.15,
+          "pick": "FADE",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
         }
@@ -3200,11 +3260,11 @@
       "best_odds": {
         "home": {
           "odds": 4.3,
-          "book": "matchbook"
+          "book": "Betfair"
         },
         "away": {
           "odds": 1.94,
-          "book": "unibet_se"
+          "book": "Betfair"
         },
         "draw": {
           "odds": 3.9,
@@ -3215,18 +3275,22 @@
           "book": "Pinnacle"
         },
         "under_2_5": {
-          "odds": 1.9,
-          "book": "matchbook"
+          "odds": 1.88,
+          "book": "unibet_se"
         }
       },
       "book_comparison": [
         {
+          "name": "Betfair",
+          "home": 4.3,
+          "away": 1.94,
+          "draw": 3.9
+        },
+        {
           "name": "matchbook",
           "home": 4.3,
           "away": 1.94,
-          "draw": 3.85,
-          "over_2_5": 2.08,
-          "under_2_5": 1.9
+          "draw": 3.9
         },
         {
           "name": "unibet_fr",
@@ -3242,14 +3306,6 @@
         },
         {
           "name": "betsson",
-          "home": 4.25,
-          "away": 1.88,
-          "draw": 3.65,
-          "over_2_5": 2.05,
-          "under_2_5": 1.78
-        },
-        {
-          "name": "Nordic",
           "home": 4.25,
           "away": 1.88,
           "draw": 3.65,
@@ -3325,7 +3381,7 @@
         "confidence_band": "ALTA",
         "model_prob": 67.3,
         "devig_prob": 46.7,
-        "description_es": "3 o m\u00e1s goles en el partido",
+        "description_es": "3 o más goles en el partido",
         "description_en": "3 or more total goals in the match",
         "is_compound": false
       },
@@ -3499,7 +3555,7 @@
           "devig_prob": 46.7,
           "kelly_pct": 5.0,
           "model_version": "v3.0-benter",
-          "description_es": "3 o m\u00e1s goles en el partido",
+          "description_es": "3 o más goles en el partido",
           "description_en": "3 or more total goals in the match"
         }
       ]
@@ -3517,7 +3573,7 @@
       "xg_away": 0.44,
       "odds": {
         "home": 1.81,
-        "away": 4.21,
+        "away": 4.22,
         "draw": 4.07,
         "over_2_5": 2.03,
         "under_2_5": 1.86
@@ -3528,7 +3584,7 @@
           "book": "1xBet"
         },
         "away": {
-          "odds": 4.6,
+          "odds": 4.8,
           "book": "unibet_nl"
         },
         "draw": {
@@ -3576,7 +3632,7 @@
         {
           "name": "Pinnacle",
           "home": 1.81,
-          "away": 4.21,
+          "away": 4.22,
           "draw": 4.07,
           "over_2_5": 2.03,
           "under_2_5": 1.86
@@ -3608,10 +3664,10 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 20.5,
-          "devig_prob": 22.7,
+          "model_prob": 20.4,
+          "devig_prob": 22.6,
           "edge": -2.2,
-          "odds": 4.21,
+          "odds": 4.22,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -3841,22 +3897,22 @@
       "xg_home": 1.07,
       "xg_away": 1.49,
       "odds": {
-        "home": 3.97,
-        "away": 2.88,
-        "draw": 2.19
+        "home": 4.02,
+        "away": 2.9,
+        "draw": 2.16
       },
       "best_odds": {
         "home": {
-          "odds": 4.3,
-          "book": "Betfair"
+          "odds": 4.35,
+          "book": "unibet_nl"
         },
         "away": {
           "odds": 3.0,
-          "book": "Betfair"
+          "book": "unibet_nl"
         },
         "draw": {
-          "odds": 2.34,
-          "book": "gtbets"
+          "odds": 2.35,
+          "book": "betsson"
         },
         "over_2_5": {
           "odds": 3.05,
@@ -3869,6 +3925,18 @@
       },
       "book_comparison": [
         {
+          "name": "unibet_nl",
+          "home": 4.35,
+          "away": 3.0,
+          "draw": 2.18
+        },
+        {
+          "name": "unibet_se",
+          "home": 4.35,
+          "away": 3.0,
+          "draw": 2.18
+        },
+        {
           "name": "Betfair",
           "home": 4.3,
           "away": 3.0,
@@ -3878,24 +3946,12 @@
           "name": "matchbook",
           "home": 4.3,
           "away": 3.0,
-          "draw": 2.28
-        },
-        {
-          "name": "unibet_nl",
-          "home": 4.25,
-          "away": 2.95,
-          "draw": 2.18
-        },
-        {
-          "name": "unibet_se",
-          "home": 4.25,
-          "away": 2.95,
-          "draw": 2.18
+          "draw": 2.26
         },
         {
           "name": "1xBet",
-          "home": 4.23,
-          "away": 2.97,
+          "home": 4.28,
+          "away": 2.95,
           "draw": 2.26
         }
       ],
@@ -3903,10 +3959,10 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 27.1,
-          "devig_prob": 23.5,
-          "edge": 3.7,
-          "odds": 3.97,
+          "model_prob": 27.0,
+          "devig_prob": 23.1,
+          "edge": 3.9,
+          "odds": 4.02,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -3914,10 +3970,10 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 36.0,
-          "devig_prob": 43.7,
-          "edge": -7.7,
-          "odds": 2.19,
+          "model_prob": 36.2,
+          "devig_prob": 44.3,
+          "edge": -8.1,
+          "odds": 2.16,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -3925,10 +3981,10 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 36.9,
-          "devig_prob": 32.9,
-          "edge": 4.0,
-          "odds": 2.88,
+          "model_prob": 36.8,
+          "devig_prob": 32.6,
+          "edge": 4.2,
+          "odds": 2.9,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -4106,8 +4162,8 @@
       "xg_away": 3.73,
       "odds": {
         "away": 1.18,
-        "home": 14.41,
-        "draw": 7.71
+        "home": 14.4,
+        "draw": 7.7
       },
       "best_odds": {
         "away": {
@@ -4119,7 +4175,7 @@
           "book": "betsson"
         },
         "draw": {
-          "odds": 9.0,
+          "odds": 8.8,
           "book": "Betfair"
         },
         "over_2_5": {
@@ -4138,7 +4194,7 @@
           "home": 20.0,
           "draw": 7.0,
           "over_2_5": 1.58,
-          "under_2_5": 2.45
+          "under_2_5": 2.42
         },
         {
           "name": "Nordic",
@@ -4146,19 +4202,7 @@
           "home": 20.0,
           "draw": 7.0,
           "over_2_5": 1.58,
-          "under_2_5": 2.45
-        },
-        {
-          "name": "Betfair",
-          "away": 1.19,
-          "home": 18.5,
-          "draw": 9.0
-        },
-        {
-          "name": "matchbook",
-          "away": 1.19,
-          "home": 18.5,
-          "draw": 8.8
+          "under_2_5": 2.42
         },
         {
           "name": "unibet_nl",
@@ -4167,6 +4211,20 @@
           "draw": 8.5,
           "over_2_5": 1.51,
           "under_2_5": 2.48
+        },
+        {
+          "name": "unibet_se",
+          "away": 1.17,
+          "home": 18.0,
+          "draw": 8.5,
+          "over_2_5": 1.54,
+          "under_2_5": 2.5
+        },
+        {
+          "name": "Betfair",
+          "away": 1.2,
+          "home": 18.0,
+          "draw": 8.8
         }
       ],
       "picks": [
@@ -4176,7 +4234,7 @@
           "model_prob": 4.1,
           "devig_prob": 5.7,
           "edge": -1.6,
-          "odds": 14.41,
+          "odds": 14.4,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -4185,9 +4243,9 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 9.3,
-          "devig_prob": 11.6,
+          "devig_prob": 11.7,
           "edge": -2.3,
-          "odds": 7.71,
+          "odds": 7.7,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -4375,13 +4433,13 @@
       "xg_home": 0.69,
       "xg_away": 1.8,
       "odds": {
-        "away": 1.73,
-        "home": 5.44,
-        "draw": 3.64
+        "away": 1.74,
+        "home": 5.47,
+        "draw": 3.61
       },
       "best_odds": {
         "away": {
-          "odds": 1.79,
+          "odds": 1.78,
           "book": "1xBet"
         },
         "home": {
@@ -4393,7 +4451,7 @@
           "book": "matchbook"
         },
         "over_2_5": {
-          "odds": 2.27,
+          "odds": 2.29,
           "book": "1xBet"
         },
         "under_2_5": {
@@ -4410,15 +4468,23 @@
         },
         {
           "name": "matchbook",
-          "away": 1.76,
-          "home": 5.8,
+          "away": 1.75,
+          "home": 5.9,
           "draw": 3.75
         },
         {
           "name": "Betfair",
-          "away": 1.76,
-          "home": 5.8,
+          "away": 1.75,
+          "home": 5.9,
           "draw": 3.75
+        },
+        {
+          "name": "1xBet",
+          "away": 1.78,
+          "home": 5.63,
+          "draw": 3.63,
+          "over_2_5": 2.29,
+          "under_2_5": 1.67
         },
         {
           "name": "unibet_nl",
@@ -4427,14 +4493,6 @@
           "draw": 3.7,
           "over_2_5": 2.16,
           "under_2_5": 1.66
-        },
-        {
-          "name": "unibet_se",
-          "away": 1.72,
-          "home": 5.6,
-          "draw": 3.7,
-          "over_2_5": 2.2,
-          "under_2_5": 1.68
         }
       ],
       "picks": [
@@ -4444,7 +4502,7 @@
           "model_prob": 16.7,
           "devig_prob": 17.3,
           "edge": -0.6,
-          "odds": 5.44,
+          "odds": 5.47,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -4452,10 +4510,10 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 27.1,
-          "devig_prob": 26.3,
-          "edge": 0.8,
-          "odds": 3.64,
+          "model_prob": 27.2,
+          "devig_prob": 26.6,
+          "edge": 0.6,
+          "odds": 3.61,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -4463,10 +4521,10 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 56.2,
-          "devig_prob": 56.4,
-          "edge": -0.2,
-          "odds": 1.73,
+          "model_prob": 56.1,
+          "devig_prob": 56.1,
+          "edge": -0.1,
+          "odds": 1.74,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -4645,7 +4703,9 @@
       "odds": {
         "home": 1.71,
         "away": 5.2,
-        "draw": 3.85
+        "draw": 3.86,
+        "over_2_5": 2.08,
+        "under_2_5": 1.83
       },
       "best_odds": {
         "home": {
@@ -4654,19 +4714,19 @@
         },
         "away": {
           "odds": 5.6,
-          "book": "matchbook"
+          "book": "Betfair"
         },
         "draw": {
-          "odds": 3.85,
-          "book": "Coolbet"
+          "odds": 3.9,
+          "book": "Betfair"
         },
         "over_2_5": {
           "odds": 2.09,
           "book": "betonlineag"
         },
         "under_2_5": {
-          "odds": 1.82,
-          "book": "Coolbet"
+          "odds": 1.83,
+          "book": "Pinnacle"
         }
       },
       "book_comparison": [
@@ -4687,24 +4747,26 @@
           "under_2_5": 1.76
         },
         {
-          "name": "Betfair",
-          "home": 1.76,
-          "away": 5.5,
-          "draw": 3.85
-        },
-        {
-          "name": "matchbook",
-          "home": 1.76,
-          "away": 5.6,
-          "draw": 3.85
-        },
-        {
           "name": "1xBet",
           "home": 1.75,
           "away": 5.43,
           "draw": 3.82,
           "over_2_5": 2.05,
           "under_2_5": 1.82
+        },
+        {
+          "name": "Betfair",
+          "home": 1.75,
+          "away": 5.6,
+          "draw": 3.9
+        },
+        {
+          "name": "Nordic",
+          "home": 1.75,
+          "away": 5.15,
+          "draw": 3.75,
+          "over_2_5": 2.05,
+          "under_2_5": 1.78
         }
       ],
       "picks": [
@@ -4712,7 +4774,7 @@
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 48.1,
-          "devig_prob": 57.0,
+          "devig_prob": 57.1,
           "edge": -8.9,
           "odds": 1.71,
           "pick": "FADE",
@@ -4722,10 +4784,10 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 27.6,
+          "model_prob": 27.5,
           "devig_prob": 24.8,
-          "edge": 2.7,
-          "odds": 3.85,
+          "edge": 2.8,
+          "odds": 3.86,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -4734,9 +4796,31 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 24.3,
-          "devig_prob": 18.1,
+          "devig_prob": 18.2,
           "edge": 6.2,
           "odds": 5.2,
+          "pick": "SKIP",
+          "confidence": "MEDIA",
+          "kelly_pct": 0.0
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "model_prob": 51.0,
+          "devig_prob": 46.7,
+          "edge": 4.3,
+          "odds": 2.08,
+          "pick": "SKIP",
+          "confidence": "MEDIA",
+          "kelly_pct": 0.0
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "model_prob": 49.0,
+          "devig_prob": 53.3,
+          "edge": -4.3,
+          "odds": 1.83,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -4915,7 +4999,7 @@
       "odds": {
         "away": 3.76,
         "home": 2.15,
-        "draw": 3.29
+        "draw": 3.3
       },
       "best_odds": {
         "away": {
@@ -4923,11 +5007,11 @@
           "book": "matchbook"
         },
         "home": {
-          "odds": 2.22,
+          "odds": 2.24,
           "book": "matchbook"
         },
         "draw": {
-          "odds": 3.43,
+          "odds": 3.44,
           "book": "1xBet"
         },
         "over_2_5": {
@@ -4943,38 +5027,38 @@
         {
           "name": "matchbook",
           "away": 3.85,
-          "home": 2.22,
-          "draw": 3.35,
+          "home": 2.24,
+          "draw": 3.3,
           "over_2_5": 2.32,
           "under_2_5": 1.71
         },
         {
           "name": "Betfair",
           "away": 3.85,
-          "home": 2.22,
-          "draw": 3.35
-        },
-        {
-          "name": "unibet_se",
-          "away": 3.65,
-          "home": 2.2,
-          "draw": 3.3,
-          "over_2_5": 2.28,
-          "under_2_5": 1.64
-        },
-        {
-          "name": "unibet_nl",
-          "away": 3.65,
-          "home": 2.2,
-          "draw": 3.3,
-          "over_2_5": 2.25,
-          "under_2_5": 1.62
+          "home": 2.24,
+          "draw": 3.3
         },
         {
           "name": "Coolbet",
           "away": 3.8,
           "home": 2.19,
           "draw": 3.3
+        },
+        {
+          "name": "1xBet",
+          "away": 3.78,
+          "home": 2.17,
+          "draw": 3.44,
+          "over_2_5": 2.27,
+          "under_2_5": 1.68
+        },
+        {
+          "name": "betonlineag",
+          "away": 3.69,
+          "home": 2.17,
+          "draw": 3.3,
+          "over_2_5": 2.26,
+          "under_2_5": 1.7
         }
       ],
       "picks": [
@@ -4982,7 +5066,7 @@
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 38.8,
-          "devig_prob": 45.2,
+          "devig_prob": 45.3,
           "edge": -6.5,
           "odds": 2.15,
           "pick": "FADE",
@@ -4993,9 +5077,9 @@
           "market": "Empate (X)",
           "side": "draw",
           "model_prob": 32.1,
-          "devig_prob": 29.3,
-          "edge": 2.8,
-          "odds": 3.29,
+          "devig_prob": 29.2,
+          "edge": 2.9,
+          "odds": 3.3,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -5191,8 +5275,8 @@
       },
       "best_odds": {
         "away": {
-          "odds": 9.4,
-          "book": "Betfair"
+          "odds": 9.6,
+          "book": "matchbook"
         },
         "home": {
           "odds": 1.44,
@@ -5319,7 +5403,7 @@
         "confidence_band": "ALTA",
         "model_prob": 63.6,
         "devig_prob": 52.0,
-        "description_es": "3 o m\u00e1s goles en el partido",
+        "description_es": "3 o más goles en el partido",
         "description_en": "3 or more total goals in the match",
         "is_compound": false
       },
@@ -5493,7 +5577,7 @@
           "devig_prob": 52.0,
           "kelly_pct": 5.0,
           "model_version": "v3.0-benter",
-          "description_es": "3 o m\u00e1s goles en el partido",
+          "description_es": "3 o más goles en el partido",
           "description_en": "3 or more total goals in the match"
         }
       ]
@@ -6589,7 +6673,7 @@
     },
     {
       "id": "a5a0b544a984ab16e564264f3e859b43",
-      "home": "Cura\u00e7ao",
+      "home": "Curaçao",
       "away": "Ivory Coast",
       "commence_time": "2026-06-25T20:00:00Z",
       "completed": true,
@@ -8526,7 +8610,7 @@
     {
       "id": "681895f294b670b4c7b14495dfb583bc",
       "home": "Ecuador",
-      "away": "Cura\u00e7ao",
+      "away": "Curaçao",
       "commence_time": "2026-06-21T00:00:00Z",
       "completed": true,
       "is_live": false,
@@ -9499,7 +9583,7 @@
     {
       "id": "20d270fc8dd64b038c21935ebe50f4e5",
       "home": "Germany",
-      "away": "Cura\u00e7ao",
+      "away": "Curaçao",
       "commence_time": "2026-06-14T19:00:00Z",
       "completed": true,
       "is_live": false,
@@ -9907,5 +9991,6 @@
       },
       "fixture_confidence": null
     }
-  ]
+  ],
+  "xg_updated_at": "2026-06-26T19:17:34+00:00"
 }
