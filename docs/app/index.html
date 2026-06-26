@@ -2439,15 +2439,17 @@ function _renderMatchStats(f) {
   const awayColor = TEAM_COLOR[away.team] || TEAM_COLOR[teamName(away.team)] || 'var(--accent)';
 
   // Bar row: home left, label center, away right
-  const stat = (k, label, max) => {
+  const stat = (k, label) => {
     const hv = parseFloat(hs[k]); const av = parseFloat(as[k]);
     if (isNaN(hv) && isNaN(av)) return '';
-    const lim = max || Math.max(hv || 0, av || 0) || 1;
+    const total = (hv||0) + (av||0) || 1;
+    const hp = ((hv||0)/total*100).toFixed(1);
+    const ap = ((av||0)/total*100).toFixed(1);
     return `<div class="flex items-center gap-2 py-1">
       <span class="font-mono w-12 text-right font-semibold">${hs[k] ?? '—'}</span>
-      <div class="flex-1 flex h-1.5 rounded-full overflow-hidden" style="background:var(--panel2);">
-        <div class="h-full" style="width:${((hv||0)/lim*50).toFixed(0)}%; background:${homeColor}; margin-left:auto;"></div>
-        <div class="h-full" style="width:${((av||0)/lim*50).toFixed(0)}%; background:${awayColor};"></div>
+      <div class="flex-1 flex h-1.5 rounded-full overflow-hidden">
+        <div class="h-full" style="width:${hp}%; background:${homeColor};"></div>
+        <div class="h-full" style="width:${ap}%; background:${awayColor};"></div>
       </div>
       <span class="font-mono w-12 text-left font-semibold">${as[k] ?? '—'}</span>
       <span class="text-[10px] uppercase tracking-wider w-24 text-center" style="color:var(--mute);">${label}</span>
@@ -2455,7 +2457,7 @@ function _renderMatchStats(f) {
   };
 
   const blocks = [
-    stat('possessionPct', LANG==='es'?'Posesión %':'Possession %', 100),
+    stat('possessionPct', LANG==='es'?'Posesión %':'Possession %'),
     stat('totalShots', LANG==='es'?'Tiros':'Shots'),
     stat('shotsOnTarget', LANG==='es'?'A puerta':'On target'),
     stat('wonCorners', LANG==='es'?'Córners':'Corners'),
