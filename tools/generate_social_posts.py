@@ -51,7 +51,7 @@ def generate() -> None:
     fixtures = data.get("fixtures", [])
 
     posts = []
-    md_lines = ["# Quini · Posts del día", "", f"_Generado {datetime.now(timezone.utc).isoformat(timespec='minutes')}_", ""]
+    md_lines = ["# Kini · Posts del día", "", f"_Generado {datetime.now(timezone.utc).isoformat(timespec='minutes')}_", ""]
 
     for fx in fixtures:
         if fx.get("completed") or fx.get("is_live"):

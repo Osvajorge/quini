@@ -113,10 +113,10 @@ def generate() -> None:
     logo_x, logo_y = 60, 60
     _rounded_rect(draw, [logo_x, logo_y, logo_x + 64, logo_y + 64], r=16, fill=GREEN)
     f_logo = _load_font(36, bold=True)
-    draw.text((logo_x + 18, logo_y + 12), "Q", font=f_logo, fill=(255, 255, 255))
+    draw.text((logo_x + 18, logo_y + 12), "K", font=f_logo, fill=(255, 255, 255))
 
     f_brand = _load_font(40, bold=True)
-    draw.text((logo_x + 80, logo_y + 6), "Quini", font=f_brand, fill=INK)
+    draw.text((logo_x + 80, logo_y + 6), "Kini", font=f_brand, fill=INK)
     f_tagline = _load_font(20)
     draw.text((logo_x + 80, logo_y + 52), "Mundial 2026", font=f_tagline, fill=MUTE)
 
@@ -130,7 +130,7 @@ def generate() -> None:
     f_sub = _load_font(22)
     draw.text(
         (60, 360),
-        "Modelo Bivariate-Poisson + Elo · Tracking público de ROI y CLV",
+        "Modelo Dixon-Coles + Elo + Benter · Tracking público de ROI y CLV",
         font=f_sub,
         fill=MUTE,
     )

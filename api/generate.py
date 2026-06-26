@@ -406,7 +406,7 @@ def _compound_description(best_side: str, bets: list[dict], home: str, away: str
 # Bumped whenever the model changes meaningfully so health checks only look
 # at bets from the current model (otherwise legacy bad-streaks pollute the
 # rolling window). Bumped now: aligned BETs to model favorite per market.
-MODEL_VERSION = "v2.0-aligned"
+MODEL_VERSION = "v3.0-benter"
 
 # ─── Model health guardrail ─────────────────────────────────────────────────
 # If rolling ROI drops below MIN_ROI_PCT over MIN_SAMPLE bets, we surface a
@@ -936,6 +936,12 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
         if xg_home is not None and xg_away is not None:
             predicted_1x2 = "1" if xg_home > xg_away else "2" if xg_away > xg_home else "X"
 
+        # Store all raw odds for future backtesting (Benter: market odds are informative)
+        raw_odds = {}
+        for p in old_fx.get("picks", []):
+            if p.get("side") and p.get("odds"):
+                raw_odds[p["side"]] = p["odds"]
+
         history_entry = {
             "id": fx_id,
             "home": home_api,
@@ -954,6 +960,7 @@ def _accumulate_history(old_predictions: dict, new_score_map: dict) -> None:
             "predicted_1x2": predicted_1x2,
             "result_1x2": result_1x2,
             "correct_1x2": predicted_1x2 == result_1x2 if predicted_1x2 and result_1x2 else None,
+            "all_odds": raw_odds,
         }
         history["fixtures"].append(history_entry)
 
@@ -1259,7 +1266,7 @@ def generate():
     output = {
         "generated_at": now.isoformat(),
         "model": {
-            "name": "Bivariate-Poisson",
+            "name": "Dixon-Coles",
             "teams": len(fit.teams),
             "matches_trained": fit.n_matches,
             "fitted_at": fit.fitted_at.isoformat(),

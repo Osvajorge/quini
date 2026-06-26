@@ -1,711 +1,6 @@
 {
   "players": [
     {
-      "player": "Rodri",
-      "team": "Spain",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 229.0,
-          "max": 116.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Jonathan Tah",
-      "team": "Germany",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 183.0,
-          "max": 94.0,
-          "appearances": 2
-        },
-        "Defensive Interventions": {
-          "total": 24.0,
-          "max": 12.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Aïssa Mandi",
-      "team": "Algeria",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 179.0,
-          "max": 100.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Gabriel Magalhães",
-      "team": "Brazil",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 175.0,
-          "max": 93.0,
-          "appearances": 2
-        },
-        "Defensive Interventions": {
-          "total": 18.0,
-          "max": 10.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Chris Richards",
-      "team": "United States",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/272585.png",
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 175.0,
-          "max": 91.0,
-          "appearances": 2
-        },
-        "Defensive Interventions": {
-          "total": 12.0,
-          "max": 12.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Mathías Olivera",
-      "team": "Uruguay",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 173.0,
-          "max": 99.0,
-          "appearances": 2
-        },
-        "Defensive Interventions": {
-          "total": 8.0,
-          "max": 8.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Virgil van Dijk",
-      "team": "Netherlands",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 170.0,
-          "max": 95.0,
-          "appearances": 2
-        },
-        "Defensive Interventions": {
-          "total": 9.0,
-          "max": 9.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Moisés Caicedo",
-      "team": "Ecuador",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 156.0,
-          "max": 100.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Dayot Upamecano",
-      "team": "France",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 145.0,
-          "max": 75.0,
-          "appearances": 2
-        },
-        "Defensive Interventions": {
-          "total": 24.0,
-          "max": 14.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Jan Paul van Hecke",
-      "team": "Netherlands",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/282583.png",
-      "matches": 2,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 18.0,
-          "max": 9.0,
-          "appearances": 2
-        },
-        "Accurate Passes": {
-          "total": 130.0,
-          "max": 130.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Marc Guéhi",
-      "team": "England",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 126.0,
-          "max": 126.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Jack Hendry",
-      "team": "Scotland",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 120.0,
-          "max": 69.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Hannes Delcroix",
-      "team": "Haiti",
-      "headshot": null,
-      "matches": 3,
-      "categories": {
-        "Accurate Passes": {
-          "total": 113.0,
-          "max": 66.0,
-          "appearances": 2
-        },
-        "Defensive Interventions": {
-          "total": 39.0,
-          "max": 14.0,
-          "appearances": 3
-        }
-      }
-    },
-    {
-      "player": "Emmanuel Agbadou",
-      "team": "Ivory Coast",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 107.0,
-          "max": 57.0,
-          "appearances": 2
-        },
-        "Defensive Interventions": {
-          "total": 31.0,
-          "max": 17.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Victor Lindelöf",
-      "team": "Sweden",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 107.0,
-          "max": 56.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Ladislav Krejcí",
-      "team": "Czechia",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 76.0,
-          "max": 45.0,
-          "appearances": 2
-        },
-        "Total Shots": {
-          "total": 4.0,
-          "max": 4.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 10.0,
-          "max": 10.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Vitinha",
-      "team": "Portugal",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 95.0,
-          "max": 95.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Ime Okon",
-      "team": "South Africa",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 93.0,
-          "max": 48.0,
-          "appearances": 2
-        },
-        "Defensive Interventions": {
-          "total": 11.0,
-          "max": 11.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Teboho Mokoena",
-      "team": "South Africa",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 93.0,
-          "max": 93.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "José Córdoba",
-      "team": "Panama",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 14.0,
-          "max": 14.0,
-          "appearances": 1
-        },
-        "Accurate Passes": {
-          "total": 91.0,
-          "max": 91.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Lee Gi-Hyuk",
-      "team": "South Korea",
-      "headshot": null,
-      "matches": 3,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 31.0,
-          "max": 12.0,
-          "appearances": 3
-        },
-        "Accurate Passes": {
-          "total": 91.0,
-          "max": 91.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Kim Min-Jae",
-      "team": "South Korea",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 91.0,
-          "max": 91.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Lewis Ferguson",
-      "team": "Scotland",
-      "headshot": null,
-      "matches": 3,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 16.0,
-          "max": 8.0,
-          "appearances": 2
-        },
-        "Accurate Passes": {
-          "total": 87.0,
-          "max": 87.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Stephen Eustáquio",
-      "team": "Canada",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 87.0,
-          "max": 87.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Harry Souttar",
-      "team": "Australia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 86.0,
-          "max": 86.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Kou Itakura",
-      "team": "Japan",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238033.png",
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 85.0,
-          "max": 85.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 12.0,
-          "max": 12.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Marawan Attia",
-      "team": "Egypt",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 82.0,
-          "max": 82.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Ibrahim Sangaré",
-      "team": "Ivory Coast",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/213718.png",
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 82.0,
-          "max": 82.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Marquinhos",
-      "team": "Brazil",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 81.0,
-          "max": 81.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 8.0,
-          "max": 8.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Issa Diop",
-      "team": "Morocco",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 79.0,
-          "max": 79.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Philipp Lienhart",
-      "team": "Austria",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 79.0,
-          "max": 79.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 12.0,
-          "max": 12.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Brandon Mechele",
-      "team": "Belgium",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 77.0,
-          "max": 77.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 21.0,
-          "max": 12.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Moussa Niakhaté",
-      "team": "Senegal",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 12.0,
-          "max": 12.0,
-          "appearances": 1
-        },
-        "Accurate Passes": {
-          "total": 76.0,
-          "max": 76.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Johan Vásquez",
-      "team": "Mexico",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 75.0,
-          "max": 75.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Nico Schlotterbeck",
-      "team": "Germany",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 74.0,
-          "max": 74.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 14.0,
-          "max": 14.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Hwang In-Beom",
-      "team": "South Korea",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/280061.png",
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 73.0,
-          "max": 73.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Willian Pacho",
-      "team": "Ecuador",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 72.0,
-          "max": 72.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 13.0,
-          "max": 13.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Edson Álvarez",
-      "team": "Mexico",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/241627.png",
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 71.0,
-          "max": 71.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 12.0,
-          "max": 12.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Lisandro Martínez",
-      "team": "Argentina",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/233937.png",
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 69.0,
-          "max": 69.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Kevin Danso",
-      "team": "Austria",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 69.0,
-          "max": 69.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Luka Modric",
-      "team": "Croatia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 69.0,
-          "max": 69.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Nathan Ngoy",
-      "team": "Belgium",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 69.0,
-          "max": 69.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Akam Hashim",
-      "team": "Iraq",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 68.0,
-          "max": 68.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 14.0,
-          "max": 14.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Ao Tanaka",
-      "team": "Japan",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 68.0,
-          "max": 68.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Ezri Konsa",
-      "team": "England",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 67.0,
-          "max": 67.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Lionel Messi",
       "team": "Argentina",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/45843.png",
@@ -715,71 +10,11 @@
           "total": 13.0,
           "max": 7.0,
           "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Cristian Romero",
-      "team": "Argentina",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 65.0,
-          "max": 65.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Manuel Akanji",
-      "team": "Switzerland",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 65.0,
-          "max": 65.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Chadi Riad",
-      "team": "Morocco",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 64.0,
-          "max": 64.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Idrissa Gueye",
-      "team": "Senegal",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 63.0,
-          "max": 63.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Josip Sutalo",
-      "team": "Croatia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 63.0,
-          "max": 63.0,
-          "appearances": 1
+        },
+        "Goals": {
+          "total": 5.0,
+          "max": 1.0,
+          "appearances": 5
         }
       }
     },
@@ -793,42 +28,11 @@
           "total": 12.0,
           "max": 8.0,
           "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Ayyoub Bouaddi",
-      "team": "Morocco",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 60.0,
-          "max": 60.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Gustaf Lagerbielke",
-      "team": "Sweden",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 9.0,
-          "max": 9.0,
-          "appearances": 1
         },
-        "Total Shots": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        },
-        "Accurate Passes": {
-          "total": 46.0,
-          "max": 46.0,
-          "appearances": 1
+        "Goals": {
+          "total": 4.0,
+          "max": 1.0,
+          "appearances": 4
         }
       }
     },
@@ -836,184 +40,129 @@
       "player": "Vinícius Júnior",
       "team": "Brazil",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Total Shots": {
           "total": 11.0,
           "max": 8.0,
           "appearances": 2
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 3.0,
+          "max": 1.0,
+          "appearances": 3
         }
       }
     },
     {
-      "player": "Finn Surman",
-      "team": "New Zealand",
+      "player": "Deniz Undav",
+      "team": "Germany",
       "headshot": null,
       "matches": 2,
       "categories": {
-        "Defensive Interventions": {
-          "total": 30.0,
-          "max": 18.0,
-          "appearances": 2
+        "Goals": {
+          "total": 3.0,
+          "max": 1.0,
+          "appearances": 3
         },
-        "Accurate Passes": {
-          "total": 51.0,
-          "max": 51.0,
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
           "appearances": 1
         }
       }
     },
     {
-      "player": "Joe Bell",
-      "team": "New Zealand",
+      "player": "Jonathan David",
+      "team": "Canada",
       "headshot": null,
       "matches": 1,
       "categories": {
-        "Accurate Passes": {
-          "total": 50.0,
-          "max": 50.0,
+        "Total Shots": {
+          "total": 8.0,
+          "max": 8.0,
           "appearances": 1
+        },
+        "Goals": {
+          "total": 3.0,
+          "max": 1.0,
+          "appearances": 3
         }
       }
     },
     {
-      "player": "Viktor Gyökeres",
-      "team": "Sweden",
+      "player": "Matheus Cunha",
+      "team": "Brazil",
       "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Goals": {
+          "total": 3.0,
+          "max": 1.0,
+          "appearances": 3
+        }
+      }
+    },
+    {
+      "player": "Ismael Saibari",
+      "team": "Morocco",
+      "headshot": null,
+      "matches": 3,
+      "categories": {
+        "Goals": {
+          "total": 3.0,
+          "max": 1.0,
+          "appearances": 3
+        }
+      }
+    },
+    {
+      "player": "Cody Gakpo",
+      "team": "Netherlands",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/249524.png",
       "matches": 2,
       "categories": {
         "Total Shots": {
-          "total": 10.0,
+          "total": 7.0,
           "max": 5.0,
+          "appearances": 2
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
           "appearances": 2
         }
       }
     },
     {
-      "player": "Ali Nemati",
-      "team": "Iran",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 50.0,
-          "max": 50.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 15.0,
-          "max": 15.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Leandro Bacuna",
-      "team": "Curaçao",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 49.0,
-          "max": 49.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Shogo Taniguchi",
-      "team": "Japan",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 49.0,
-          "max": 49.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 9.0,
-          "max": 9.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Yasser Ibrahim",
-      "team": "Egypt",
+      "player": "Mikel Oyarzabal",
+      "team": "Spain",
       "headshot": null,
       "matches": 2,
       "categories": {
-        "Defensive Interventions": {
-          "total": 13.0,
-          "max": 13.0,
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
           "appearances": 1
         },
-        "Accurate Passes": {
-          "total": 48.0,
-          "max": 48.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Montassar Talbi",
-      "team": "Tunisia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 47.0,
-          "max": 47.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Jonas Adjetey",
-      "team": "Ghana",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 47.0,
-          "max": 47.0,
-          "appearances": 1
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
         },
-        "Defensive Interventions": {
-          "total": 16.0,
-          "max": 16.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Mohamed Amine Ben Hamida",
-      "team": "Tunisia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 46.0,
-          "max": 46.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 14.0,
-          "max": 14.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Gustavo Velázquez",
-      "team": "Paraguay",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 46.0,
-          "max": 46.0,
+        "Total Shots": {
+          "total": 5.0,
+          "max": 5.0,
           "appearances": 1
         }
       }
@@ -1028,103 +177,1680 @@
           "total": 9.0,
           "max": 6.0,
           "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Sherel Floranus",
-      "team": "Curaçao",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/224786.png",
-      "matches": 2,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 13.0,
-          "max": 13.0,
-          "appearances": 1
         },
-        "Accurate Passes": {
-          "total": 44.0,
-          "max": 44.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Ricardo Adé",
-      "team": "Haiti",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Total Shots": {
+        "Goals": {
           "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        },
-        "Accurate Passes": {
-          "total": 34.0,
-          "max": 34.0,
-          "appearances": 1
+          "max": 1.0,
+          "appearances": 2
         }
       }
     },
     {
-      "player": "Mohamed Kanno",
-      "team": "Saudi Arabia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        },
-        "Accurate Passes": {
-          "total": 33.0,
-          "max": 33.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 11.0,
-          "max": 11.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Saud Abdulhamid",
-      "team": "Saudi Arabia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 41.0,
-          "max": 41.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Sander Berge",
+      "player": "Erling Haaland",
       "team": "Norway",
       "headshot": null,
       "matches": 1,
       "categories": {
-        "Accurate Passes": {
-          "total": 40.0,
-          "max": 40.0,
+        "Total Shots": {
+          "total": 5.0,
+          "max": 5.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Brian Brobbey",
+      "team": "Netherlands",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Alexander Isak",
+      "team": "Sweden",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Assists": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
           "appearances": 1
         }
       }
     },
     {
-      "player": "Édgar Yoel Bárcenas",
-      "team": "Panama",
+      "player": "Crysencio Summerville",
+      "team": "Netherlands",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Yasin Ayari",
+      "team": "Sweden",
       "headshot": null,
       "matches": 1,
       "categories": {
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Elijah Just",
+      "team": "New Zealand",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Folarin Balogun",
+      "team": "United States",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Achraf Hakimi",
+      "team": "Morocco",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Total Shots": {
+          "total": 7.0,
+          "max": 5.0,
+          "appearances": 2
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Mohamed Salah",
+      "team": "Egypt",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Total Shots": {
+          "total": 5.0,
+          "max": 5.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ayase Ueda",
+      "team": "Japan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 5.0,
+          "max": 5.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Keito Nakamura",
+      "team": "Japan",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Johan Manzambi",
+      "team": "Switzerland",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Maxi Araújo",
+      "team": "Uruguay",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Michael Olise",
+      "team": "France",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Assists": {
+          "total": 3.0,
+          "max": 1.0,
+          "appearances": 3
+        }
+      }
+    },
+    {
+      "player": "Ousmane Dembélé",
+      "team": "France",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Felix Nmecha",
+      "team": "Germany",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Viktor Gyökeres",
+      "team": "Sweden",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Total Shots": {
+          "total": 10.0,
+          "max": 5.0,
+          "appearances": 2
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Hwang In-Beom",
+      "team": "South Korea",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/280061.png",
+      "matches": 1,
+      "categories": {
         "Accurate Passes": {
-          "total": 40.0,
-          "max": 40.0,
+          "total": 73.0,
+          "max": 73.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Soufiane Rahimi",
+      "team": "Morocco",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Cristiano Ronaldo",
+      "team": "Portugal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 7.0,
+          "max": 7.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Kai Havertz",
+      "team": "Germany",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Total Shots": {
+          "total": 7.0,
+          "max": 4.0,
+          "appearances": 2
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Lamine Yamal",
+      "team": "Spain",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 5.0,
+          "max": 5.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Livano Comenencia",
+      "team": "Curaçao",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Total Shots": {
+          "total": 5.0,
+          "max": 3.0,
+          "appearances": 2
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Julián Quiñones",
+      "team": "Mexico",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 5.0,
+          "max": 5.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Thapelo Maseko",
+      "team": "South Africa",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 5.0,
+          "max": 5.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ali Olwan",
+      "team": "Jordan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 4.0,
+          "max": 4.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Promise David",
+      "team": "Canada",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Oh Hyeon-Gyu",
+      "team": "South Korea",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Caleb Yirenkyi",
+      "team": "Ghana",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Agustín Canobbio",
+      "team": "Uruguay",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Hélio Varela",
+      "team": "Cape Verde",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Marcus Pedersen",
+      "team": "Norway",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Nizar Al Rashdan",
+      "team": "Jordan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Amine Gouiri",
+      "team": "Algeria",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Rafael Leão",
+      "team": "Portugal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ante Budimir",
+      "team": "Croatia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Daichi Kamada",
+      "team": "Japan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Junya Ito",
+      "team": "Japan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Franck Kessie",
+      "team": "Ivory Coast",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Denzel Dumfries",
+      "team": "Netherlands",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Anthony Elanga",
+      "team": "Sweden",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Brahim Díaz",
+      "team": "Morocco",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Assists": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Bruno Guimarães",
+      "team": "Brazil",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Assists": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "John McGinn",
+      "team": "Scotland",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Jamal Musiala",
+      "team": "Germany",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Joshua Kimmich",
+      "team": "Germany",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Amad Diallo",
+      "team": "Ivory Coast",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Mattias Svanberg",
+      "team": "Sweden",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Emam Ashour",
+      "team": "Egypt",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ramin Rezaeian",
+      "team": "Iran",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Abdulelah Al Amri",
+      "team": "Saudi Arabia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Romano Schmid",
+      "team": "Austria",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Bradley Barcola",
+      "team": "France",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ibrahim Mbaye",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Martin Baturina",
+      "team": "Croatia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Petar Musa",
+      "team": "Croatia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Jude Bellingham",
+      "team": "England",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Marcus Rashford",
+      "team": "England",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Michal Sadílek",
+      "team": "Czechia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Cyle Larin",
+      "team": "Canada",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Nathan Saliba",
+      "team": "Canada",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Assists": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Luis Romo",
+      "team": "Mexico",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Rubén Vargas",
+      "team": "Switzerland",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Wilson Isidor",
+      "team": "Haiti",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Gessime Yassine",
+      "team": "Morocco",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Mauricio",
+      "team": "Paraguay",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Giovanni Reyna",
+      "team": "United States",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Malik Tillman",
+      "team": "United States",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 5.0,
+          "max": 5.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Elliot Anderson",
+      "team": "England",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Total Shots": {
+          "total": 4.0,
+          "max": 4.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 10.0,
+          "max": 10.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Chris Wood",
+      "team": "New Zealand",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 4.0,
+          "max": 4.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Lee Kang-In",
+      "team": "South Korea",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Petar Sucic",
+      "team": "Croatia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Aymeric Laporte",
+      "team": "Spain",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Dani Olmo",
+      "team": "Spain",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Mostafa Zico",
+      "team": "Egypt",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Facundo Medina following a fast break",
+      "team": "Argentina",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Martin Ødegaard",
+      "team": "Norway",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Sadio Mané",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Patrick Berg",
+      "team": "Norway",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Nicolas Jackson",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Mousa Al Tamari",
+      "team": "Jordan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Bruno Fernandes",
+      "team": "Portugal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Josip Stanisic",
+      "team": "Croatia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ko Itakura following a fast break",
+      "team": "Japan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Nadiem Amiri",
+      "team": "Germany",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Crysencio Summerville following a fast break",
+      "team": "Netherlands",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Memphis Depay",
+      "team": "Netherlands",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Lucas Paquetá",
+      "team": "Brazil",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Érik Lira",
+      "team": "Mexico",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Florian Wirtz",
+      "team": "Germany",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Wilfried Singo",
+      "team": "Ivory Coast",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Takefusa Kubo",
+      "team": "Japan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ryan Gravenberch",
+      "team": "Netherlands",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Viktor Gyökeres following a fast break",
+      "team": "Sweden",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Alexander Isak following a set piece situation",
+      "team": "Sweden",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Lucas Bergvall",
+      "team": "Sweden",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Chris Wood following a fast break",
+      "team": "New Zealand",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Rodrigo De Paul",
+      "team": "Argentina",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Nico González",
+      "team": "Argentina",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Xaver Schlager",
+      "team": "Austria",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Noor Al Rawabdeh following a fast break",
+      "team": "Jordan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Adrien Rabiot",
+      "team": "France",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Iliman Ndiaye following a fast break",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Brandon Thomas-Asante following a fast break",
+      "team": "Ghana",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ivan Perisic",
+      "team": "Croatia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Bukayo Saka",
+      "team": "England",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Alexandr Sojka",
+      "team": "Czechia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Breel Embolo",
+      "team": "Switzerland",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Jean-Kévin Duverne",
+      "team": "Haiti",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Chadi Riad following a corner",
+      "team": "Morocco",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Rayan",
+      "team": "Brazil",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Tshepang Moremi following a fast break",
+      "team": "South Africa",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Christian Pulisic",
+      "team": "United States",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Julio Enciso following a set piece situation",
+      "team": "Paraguay",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Alex Freeman",
+      "team": "United States",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
           "appearances": 1
         }
       }
@@ -1143,50 +1869,6 @@
       }
     },
     {
-      "player": "Yazan Al-Arab",
-      "team": "Jordan",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 40.0,
-          "max": 40.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 17.0,
-          "max": 17.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Jonathan David",
-      "team": "Canada",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 8.0,
-          "max": 8.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Derek Cornelius",
-      "team": "Canada",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238712.png",
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 37.0,
-          "max": 37.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Federico Valverde",
       "team": "Uruguay",
       "headshot": null,
@@ -1195,37 +1877,6 @@
         "Total Shots": {
           "total": 7.0,
           "max": 7.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Cristiano Ronaldo",
-      "team": "Portugal",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 7.0,
-          "max": 7.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Rustam Ashurmatov",
-      "team": "Uzbekistan",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 35.0,
-          "max": 35.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 14.0,
-          "max": 14.0,
           "appearances": 1
         }
       }
@@ -1244,45 +1895,6 @@
       }
     },
     {
-      "player": "Kai Havertz",
-      "team": "Germany",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Total Shots": {
-          "total": 7.0,
-          "max": 4.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Cody Gakpo",
-      "team": "Netherlands",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/249524.png",
-      "matches": 2,
-      "categories": {
-        "Total Shots": {
-          "total": 7.0,
-          "max": 5.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Achraf Hakimi",
-      "team": "Morocco",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Total Shots": {
-          "total": 7.0,
-          "max": 5.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
       "player": "Harry Kane",
       "team": "England",
       "headshot": null,
@@ -1291,68 +1903,6 @@
         "Total Shots": {
           "total": 7.0,
           "max": 7.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Ellyes Skhiri",
-      "team": "Tunisia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 35.0,
-          "max": 35.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Shoja Khalilzadeh",
-      "team": "Iran",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 33.0,
-          "max": 33.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 22.0,
-          "max": 22.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Diney Borges",
-      "team": "Cape Verde",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 40.0,
-          "max": 22.0,
-          "appearances": 2
-        },
-        "Accurate Passes": {
-          "total": 32.0,
-          "max": 32.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Paul Okon-Engstler",
-      "team": "Australia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 32.0,
-          "max": 32.0,
           "appearances": 1
         }
       }
@@ -1371,99 +1921,8 @@
       }
     },
     {
-      "player": "Pico Lopes",
-      "team": "Cape Verde",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 27.0,
-          "max": 27.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Lamine Yamal",
-      "team": "Spain",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 5.0,
-          "max": 5.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Maxim De Cuyper",
       "team": "Belgium",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 5.0,
-          "max": 5.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Mohamed Salah",
-      "team": "Egypt",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 5.0,
-          "max": 5.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Erling Haaland",
-      "team": "Norway",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 5.0,
-          "max": 5.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Ayase Ueda",
-      "team": "Japan",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 5.0,
-          "max": 5.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Livano Comenencia",
-      "team": "Curaçao",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Total Shots": {
-          "total": 5.0,
-          "max": 3.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Julián Quiñones",
-      "team": "Mexico",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -1488,19 +1947,6 @@
       }
     },
     {
-      "player": "Mikel Oyarzabal",
-      "team": "Spain",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 5.0,
-          "max": 5.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Federico Viñas",
       "team": "Uruguay",
       "headshot": null,
@@ -1509,94 +1955,6 @@
         "Total Shots": {
           "total": 5.0,
           "max": 5.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Thapelo Maseko",
-      "team": "South Africa",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 5.0,
-          "max": 5.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Malik Tillman",
-      "team": "United States",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 5.0,
-          "max": 5.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Andrés Cubas",
-      "team": "Paraguay",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/202501.png",
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 25.0,
-          "max": 25.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Thomas Partey",
-      "team": "Ghana",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 23.0,
-          "max": 23.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Boualem Khoukhi",
-      "team": "Qatar",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
-        },
-        "Accurate Passes": {
-          "total": 18.0,
-          "max": 18.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 21.0,
-          "max": 21.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Noor Al-Rawabdeh",
-      "team": "Jordan",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 20.0,
-          "max": 20.0,
           "appearances": 1
         }
       }
@@ -1615,24 +1973,6 @@
       }
     },
     {
-      "player": "Elliot Anderson",
-      "team": "England",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Total Shots": {
-          "total": 4.0,
-          "max": 4.0,
-          "appearances": 1
-        },
-        "Defensive Interventions": {
-          "total": 10.0,
-          "max": 10.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Mbekezeli Mbokazi",
       "team": "South Africa",
       "headshot": null,
@@ -1646,6 +1986,29 @@
         "Defensive Interventions": {
           "total": 15.0,
           "max": 15.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ladislav Krejcí",
+      "team": "Czechia",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 76.0,
+          "max": 45.0,
+          "appearances": 2
+        },
+        "Total Shots": {
+          "total": 4.0,
+          "max": 4.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 10.0,
+          "max": 10.0,
           "appearances": 1
         }
       }
@@ -1677,32 +2040,6 @@
       }
     },
     {
-      "player": "Chris Wood",
-      "team": "New Zealand",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 4.0,
-          "max": 4.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Ali Olwan",
-      "team": "Jordan",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 4.0,
-          "max": 4.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Diego Gómez",
       "team": "Paraguay",
       "headshot": null,
@@ -1711,32 +2048,6 @@
         "Total Shots": {
           "total": 4.0,
           "max": 4.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Denzel Dumfries",
-      "team": "Netherlands",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/213248.png",
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 4.0,
-          "max": 4.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Joshua Brenet",
-      "team": "Curaçao",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/178433.png",
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 19.0,
-          "max": 19.0,
           "appearances": 1
         }
       }
@@ -1825,19 +2136,6 @@
       }
     },
     {
-      "player": "Keito Nakamura",
-      "team": "Japan",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 3.0,
-          "max": 3.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Shahriyar Moghanloo",
       "team": "Iran",
       "headshot": null,
@@ -1864,19 +2162,6 @@
       }
     },
     {
-      "player": "Promise David",
-      "team": "Canada",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 3.0,
-          "max": 3.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Jean-Ricner Bellegarde",
       "team": "Haiti",
       "headshot": null,
@@ -1892,71 +2177,6 @@
     {
       "player": "Sergiño Dest",
       "team": "United States",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 3.0,
-          "max": 3.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Tahith Chong",
-      "team": "Curaçao",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 3.0,
-          "max": 3.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Amad Diallo",
-      "team": "Ivory Coast",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 3.0,
-          "max": 3.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Florian Wirtz",
-      "team": "Germany",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 3.0,
-          "max": 3.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Hazem Mastouri",
-      "team": "Tunisia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 3.0,
-          "max": 3.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Jordan Bos",
-      "team": "Australia",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -2059,6 +2279,24 @@
       }
     },
     {
+      "player": "Ricardo Adé",
+      "team": "Haiti",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        },
+        "Accurate Passes": {
+          "total": 34.0,
+          "max": 34.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Adam Hlozek",
       "team": "Czechia",
       "headshot": null,
@@ -2085,8 +2323,8 @@
       }
     },
     {
-      "player": "Stefan Posch",
-      "team": "Austria",
+      "player": "Mohamed Kanno",
+      "team": "Saudi Arabia",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -2094,12 +2332,22 @@
           "total": 2.0,
           "max": 2.0,
           "appearances": 1
+        },
+        "Accurate Passes": {
+          "total": 33.0,
+          "max": 33.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 11.0,
+          "max": 11.0,
+          "appearances": 1
         }
       }
     },
     {
-      "player": "Caleb Yirenkyi",
-      "team": "Ghana",
+      "player": "Stefan Posch",
+      "team": "Austria",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -2126,84 +2374,6 @@
     {
       "player": "Raúl Jiménez",
       "team": "Mexico",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Lee Kang-In",
-      "team": "South Korea",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Johan Manzambi",
-      "team": "Switzerland",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Oh Hyeon-Gyu",
-      "team": "South Korea",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Gonzalo Plata",
-      "team": "Ecuador",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Daizen Maeda",
-      "team": "Japan",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Julio Enciso",
-      "team": "Paraguay",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -2285,14 +2455,24 @@
       }
     },
     {
-      "player": "Petar Sucic",
-      "team": "Croatia",
+      "player": "Boualem Khoukhi",
+      "team": "Qatar",
       "headshot": null,
       "matches": 1,
       "categories": {
         "Total Shots": {
           "total": 1.0,
           "max": 1.0,
+          "appearances": 1
+        },
+        "Accurate Passes": {
+          "total": 18.0,
+          "max": 18.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 21.0,
+          "max": 21.0,
           "appearances": 1
         }
       }
@@ -2312,6 +2492,19 @@
           "total": 13.0,
           "max": 13.0,
           "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Rodri",
+      "team": "Spain",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 229.0,
+          "max": 116.0,
+          "appearances": 2
         }
       }
     },
@@ -2342,6 +2535,19 @@
       }
     },
     {
+      "player": "Saud Abdulhamid",
+      "team": "Saudi Arabia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 41.0,
+          "max": 41.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Ali Lajami",
       "team": "Saudi Arabia",
       "headshot": null,
@@ -2368,6 +2574,24 @@
       }
     },
     {
+      "player": "Brandon Mechele",
+      "team": "Belgium",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 77.0,
+          "max": 77.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 21.0,
+          "max": 12.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
       "player": "Thibaut Courtois",
       "team": "Belgium",
       "headshot": null,
@@ -2381,6 +2605,24 @@
       }
     },
     {
+      "player": "Shoja Khalilzadeh",
+      "team": "Iran",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 33.0,
+          "max": 33.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 22.0,
+          "max": 22.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Alireza Beiranvand",
       "team": "Iran",
       "headshot": null,
@@ -2390,6 +2632,24 @@
           "total": 13.0,
           "max": 7.0,
           "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Mathías Olivera",
+      "team": "Uruguay",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 173.0,
+          "max": 99.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 8.0,
+          "max": 8.0,
+          "appearances": 1
         }
       }
     },
@@ -2420,6 +2680,68 @@
       }
     },
     {
+      "player": "Pico Lopes",
+      "team": "Cape Verde",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 27.0,
+          "max": 27.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Diney Borges",
+      "team": "Cape Verde",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 40.0,
+          "max": 22.0,
+          "appearances": 2
+        },
+        "Accurate Passes": {
+          "total": 32.0,
+          "max": 32.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Joe Bell",
+      "team": "New Zealand",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 50.0,
+          "max": 50.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Finn Surman",
+      "team": "New Zealand",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 30.0,
+          "max": 18.0,
+          "appearances": 2
+        },
+        "Accurate Passes": {
+          "total": 51.0,
+          "max": 51.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Max Crocombe",
       "team": "New Zealand",
       "headshot": null,
@@ -2433,6 +2755,37 @@
       }
     },
     {
+      "player": "Marawan Attia",
+      "team": "Egypt",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 82.0,
+          "max": 82.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Yasser Ibrahim",
+      "team": "Egypt",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 13.0,
+          "max": 13.0,
+          "appearances": 1
+        },
+        "Accurate Passes": {
+          "total": 48.0,
+          "max": 48.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Mostafa Shoubir",
       "team": "Egypt",
       "headshot": null,
@@ -2442,6 +2795,19 @@
           "total": 7.0,
           "max": 4.0,
           "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Lisandro Martínez",
+      "team": "Argentina",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/233937.png",
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 69.0,
+          "max": 69.0,
+          "appearances": 1
         }
       }
     },
@@ -2467,6 +2833,19 @@
         "Saves": {
           "total": 1.0,
           "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Kevin Danso",
+      "team": "Austria",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 69.0,
+          "max": 69.0,
           "appearances": 1
         }
       }
@@ -2498,6 +2877,42 @@
       }
     },
     {
+      "player": "Dayot Upamecano",
+      "team": "France",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 145.0,
+          "max": 75.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 24.0,
+          "max": 14.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Akam Hashim",
+      "team": "Iraq",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 68.0,
+          "max": 68.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 14.0,
+          "max": 14.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Ahmed Basil",
       "team": "Iraq",
       "headshot": null,
@@ -2506,6 +2921,19 @@
         "Saves": {
           "total": 2.0,
           "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Sander Berge",
+      "team": "Norway",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 40.0,
+          "max": 40.0,
           "appearances": 1
         }
       }
@@ -2537,6 +2965,37 @@
       }
     },
     {
+      "player": "Idrissa Gueye",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 63.0,
+          "max": 63.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Moussa Niakhaté",
+      "team": "Senegal",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 12.0,
+          "max": 12.0,
+          "appearances": 1
+        },
+        "Accurate Passes": {
+          "total": 76.0,
+          "max": 76.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Édouard Mendy",
       "team": "Senegal",
       "headshot": null,
@@ -2546,6 +3005,19 @@
           "total": 8.0,
           "max": 5.0,
           "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Noor Al-Rawabdeh",
+      "team": "Jordan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 20.0,
+          "max": 20.0,
+          "appearances": 1
         }
       }
     },
@@ -2571,6 +3043,19 @@
         "Saves": {
           "total": 7.0,
           "max": 6.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Aïssa Mandi",
+      "team": "Algeria",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 179.0,
+          "max": 100.0,
           "appearances": 2
         }
       }
@@ -2602,6 +3087,19 @@
       }
     },
     {
+      "player": "Vitinha",
+      "team": "Portugal",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 95.0,
+          "max": 95.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Renato Veiga",
       "team": "Portugal",
       "headshot": null,
@@ -2628,6 +3126,24 @@
       }
     },
     {
+      "player": "Rustam Ashurmatov",
+      "team": "Uzbekistan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 35.0,
+          "max": 35.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 14.0,
+          "max": 14.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Abduvohid Nematov",
       "team": "Uzbekistan",
       "headshot": null,
@@ -2641,6 +3157,19 @@
       }
     },
     {
+      "player": "Marc Guéhi",
+      "team": "England",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 126.0,
+          "max": 126.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Reece James",
       "team": "England",
       "headshot": null,
@@ -2649,6 +3178,19 @@
         "Defensive Interventions": {
           "total": 8.0,
           "max": 8.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Thomas Partey",
+      "team": "Ghana",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 23.0,
+          "max": 23.0,
           "appearances": 1
         }
       }
@@ -2680,6 +3222,37 @@
       }
     },
     {
+      "player": "Édgar Yoel Bárcenas",
+      "team": "Panama",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 40.0,
+          "max": 40.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "José Córdoba",
+      "team": "Panama",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 14.0,
+          "max": 14.0,
+          "appearances": 1
+        },
+        "Accurate Passes": {
+          "total": 91.0,
+          "max": 91.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Orlando Mosquera",
       "team": "Panama",
       "headshot": null,
@@ -2689,6 +3262,19 @@
           "total": 3.0,
           "max": 2.0,
           "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Luka Modric",
+      "team": "Croatia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 69.0,
+          "max": 69.0,
+          "appearances": 1
         }
       }
     },
@@ -2719,15 +3305,59 @@
       }
     },
     {
+      "player": "Montassar Talbi",
+      "team": "Tunisia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 47.0,
+          "max": 47.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Aymen Dahmen",
       "team": "Tunisia",
       "headshot": null,
-      "matches": 2,
+      "matches": 1,
       "categories": {
         "Saves": {
-          "total": 5.0,
-          "max": 4.0,
-          "appearances": 2
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Kou Itakura",
+      "team": "Japan",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238033.png",
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 85.0,
+          "max": 85.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 12.0,
+          "max": 12.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Moisés Caicedo",
+      "team": "Ecuador",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 100.0,
+          "max": 100.0,
+          "appearances": 1
         }
       }
     },
@@ -2748,12 +3378,38 @@
       "player": "Hernán Galíndez",
       "team": "Ecuador",
       "headshot": null,
-      "matches": 3,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 8.0,
+          "total": 6.0,
           "max": 3.0,
-          "appearances": 3
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Joshua Brenet",
+      "team": "Curaçao",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/178433.png",
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 19.0,
+          "max": 19.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Sherel Floranus",
+      "team": "Curaçao",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/224786.png",
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 13.0,
+          "max": 13.0,
+          "appearances": 1
         }
       }
     },
@@ -2761,12 +3417,30 @@
       "player": "Eloy Room",
       "team": "Curaçao",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/127444.png",
-      "matches": 3,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 20.0,
+          "total": 19.0,
           "max": 15.0,
-          "appearances": 3
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Jonathan Tah",
+      "team": "Germany",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 89.0,
+          "max": 89.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 12.0,
+          "max": 12.0,
+          "appearances": 1
         }
       }
     },
@@ -2774,12 +3448,30 @@
       "player": "Manuel Neuer",
       "team": "Germany",
       "headshot": null,
-      "matches": 3,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 3.0,
+          "total": 2.0,
           "max": 1.0,
-          "appearances": 3
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Emmanuel Agbadou",
+      "team": "Ivory Coast",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 107.0,
+          "max": 57.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 31.0,
+          "max": 17.0,
+          "appearances": 2
         }
       }
     },
@@ -2787,12 +3479,30 @@
       "player": "Yahia Fofana",
       "team": "Ivory Coast",
       "headshot": null,
-      "matches": 3,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 8.0,
+          "total": 6.0,
           "max": 5.0,
-          "appearances": 3
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Virgil van Dijk",
+      "team": "Netherlands",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 170.0,
+          "max": 95.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 9.0,
+          "max": 9.0,
+          "appearances": 1
         }
       }
     },
@@ -2800,12 +3510,38 @@
       "player": "Bart Verbruggen",
       "team": "Netherlands",
       "headshot": null,
-      "matches": 3,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 11.0,
+          "total": 8.0,
           "max": 7.0,
-          "appearances": 3
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Victor Lindelöf",
+      "team": "Sweden",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 107.0,
+          "max": 56.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Gustaf Lagerbielke",
+      "team": "Sweden",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 9.0,
+          "max": 9.0,
+          "appearances": 1
         }
       }
     },
@@ -2823,6 +3559,24 @@
       }
     },
     {
+      "player": "Marquinhos",
+      "team": "Brazil",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 81.0,
+          "max": 81.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 8.0,
+          "max": 8.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Alisson Becker",
       "team": "Brazil",
       "headshot": null,
@@ -2831,6 +3585,24 @@
         "Saves": {
           "total": 10.0,
           "max": 5.0,
+          "appearances": 3
+        }
+      }
+    },
+    {
+      "player": "Hannes Delcroix",
+      "team": "Haiti",
+      "headshot": null,
+      "matches": 3,
+      "categories": {
+        "Accurate Passes": {
+          "total": 113.0,
+          "max": 66.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 39.0,
+          "max": 14.0,
           "appearances": 3
         }
       }
@@ -2849,6 +3621,37 @@
       }
     },
     {
+      "player": "Jack Hendry",
+      "team": "Scotland",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 120.0,
+          "max": 69.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Lewis Ferguson",
+      "team": "Scotland",
+      "headshot": null,
+      "matches": 3,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 16.0,
+          "max": 8.0,
+          "appearances": 2
+        },
+        "Accurate Passes": {
+          "total": 87.0,
+          "max": 87.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Angus Gunn",
       "team": "Scotland",
       "headshot": null,
@@ -2858,6 +3661,32 @@
           "total": 8.0,
           "max": 5.0,
           "appearances": 3
+        }
+      }
+    },
+    {
+      "player": "Issa Diop",
+      "team": "Morocco",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 79.0,
+          "max": 79.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Johan Vásquez",
+      "team": "Mexico",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 75.0,
+          "max": 75.0,
+          "appearances": 1
         }
       }
     },
@@ -2888,6 +3717,24 @@
       }
     },
     {
+      "player": "Ime Okon",
+      "team": "South Africa",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 93.0,
+          "max": 48.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 11.0,
+          "max": 11.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Ronwen Williams",
       "team": "South Africa",
       "headshot": null,
@@ -2897,6 +3744,24 @@
           "total": 6.0,
           "max": 2.0,
           "appearances": 3
+        }
+      }
+    },
+    {
+      "player": "Lee Gi-Hyuk",
+      "team": "South Korea",
+      "headshot": null,
+      "matches": 3,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 31.0,
+          "max": 12.0,
+          "appearances": 3
+        },
+        "Accurate Passes": {
+          "total": 91.0,
+          "max": 91.0,
+          "appearances": 1
         }
       }
     },
@@ -2940,6 +3805,37 @@
       }
     },
     {
+      "player": "Gabriel Magalhães",
+      "team": "Brazil",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 175.0,
+          "max": 93.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 18.0,
+          "max": 10.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Ayyoub Bouaddi",
+      "team": "Morocco",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 60.0,
+          "max": 60.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Noussair Mazraoui",
       "team": "Morocco",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/239350.png",
@@ -2966,15 +3862,95 @@
       }
     },
     {
+      "player": "Nico Schlotterbeck",
+      "team": "Germany",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 74.0,
+          "max": 74.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 14.0,
+          "max": 14.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Leandro Bacuna",
+      "team": "Curaçao",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 49.0,
+          "max": 49.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Armando Obispo",
       "team": "Curaçao",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/245918.png",
-      "matches": 2,
+      "matches": 1,
       "categories": {
         "Defensive Interventions": {
-          "total": 27.0,
+          "total": 15.0,
           "max": 15.0,
-          "appearances": 2
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Willian Pacho",
+      "team": "Ecuador",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 72.0,
+          "max": 72.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 13.0,
+          "max": 13.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Jan Paul van Hecke",
+      "team": "Netherlands",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/282583.png",
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 9.0,
+          "max": 9.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Shogo Taniguchi",
+      "team": "Japan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 49.0,
+          "max": 49.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 9.0,
+          "max": 9.0,
+          "appearances": 1
         }
       }
     },
@@ -2982,12 +3958,12 @@
       "player": "Zion Suzuki",
       "team": "Japan",
       "headshot": null,
-      "matches": 2,
+      "matches": 1,
       "categories": {
         "Saves": {
-          "total": 8.0,
+          "total": 4.0,
           "max": 4.0,
-          "appearances": 2
+          "appearances": 1
         }
       }
     },
@@ -3000,6 +3976,24 @@
         "Defensive Interventions": {
           "total": 9.0,
           "max": 9.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Mohamed Amine Ben Hamida",
+      "team": "Tunisia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 46.0,
+          "max": 46.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 14.0,
+          "max": 14.0,
           "appearances": 1
         }
       }
@@ -3018,6 +4012,19 @@
       }
     },
     {
+      "player": "Nathan Ngoy",
+      "team": "Belgium",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 69.0,
+          "max": 69.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Mohamed Hany",
       "team": "Egypt",
       "headshot": null,
@@ -3026,6 +4033,24 @@
         "Defensive Interventions": {
           "total": 13.0,
           "max": 13.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ali Nemati",
+      "team": "Iran",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 50.0,
+          "max": 50.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 15.0,
+          "max": 15.0,
           "appearances": 1
         }
       }
@@ -3057,6 +4082,19 @@
       }
     },
     {
+      "player": "Cristian Romero",
+      "team": "Argentina",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 65.0,
+          "max": 65.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Rayan Aït-Nouri",
       "team": "Algeria",
       "headshot": null,
@@ -3065,6 +4103,42 @@
         "Defensive Interventions": {
           "total": 7.0,
           "max": 7.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Philipp Lienhart",
+      "team": "Austria",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 79.0,
+          "max": 79.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 12.0,
+          "max": 12.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Yazan Al-Arab",
+      "team": "Jordan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 40.0,
+          "max": 40.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 17.0,
+          "max": 17.0,
           "appearances": 1
         }
       }
@@ -3096,6 +4170,24 @@
       }
     },
     {
+      "player": "Jonas Adjetey",
+      "team": "Ghana",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 47.0,
+          "max": 47.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 16.0,
+          "max": 16.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Andrés Andrade",
       "team": "Panama",
       "headshot": null,
@@ -3104,6 +4196,19 @@
         "Defensive Interventions": {
           "total": 11.0,
           "max": 11.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ezri Konsa",
+      "team": "England",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 67.0,
+          "max": 67.0,
           "appearances": 1
         }
       }
@@ -3122,6 +4227,19 @@
       }
     },
     {
+      "player": "Josip Sutalo",
+      "team": "Croatia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 63.0,
+          "max": 63.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Luka Vuskovic",
       "team": "Croatia",
       "headshot": null,
@@ -3130,6 +4248,32 @@
         "Defensive Interventions": {
           "total": 9.0,
           "max": 9.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Teboho Mokoena",
+      "team": "South Africa",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 93.0,
+          "max": 93.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Stephen Eustáquio",
+      "team": "Canada",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 87.0,
+          "max": 87.0,
           "appearances": 1
         }
       }
@@ -3166,6 +4310,50 @@
       }
     },
     {
+      "player": "Edson Álvarez",
+      "team": "Mexico",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/241627.png",
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 71.0,
+          "max": 71.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 12.0,
+          "max": 12.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Kim Min-Jae",
+      "team": "South Korea",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 91.0,
+          "max": 91.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Manuel Akanji",
+      "team": "Switzerland",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 65.0,
+          "max": 65.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Nico Elvedi",
       "team": "Switzerland",
       "headshot": null,
@@ -3192,6 +4380,19 @@
       }
     },
     {
+      "player": "Derek Cornelius",
+      "team": "Canada",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238712.png",
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 37.0,
+          "max": 37.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Alistair Johnston",
       "team": "Canada",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/293691.png",
@@ -3200,6 +4401,19 @@
         "Defensive Interventions": {
           "total": 10.0,
           "max": 10.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Chadi Riad",
+      "team": "Morocco",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 64.0,
+          "max": 64.0,
           "appearances": 1
         }
       }
@@ -3237,8 +4451,26 @@
       "matches": 1,
       "categories": {
         "Defensive Interventions": {
-          "total": 19.0,
-          "max": 19.0,
+          "total": 20.0,
+          "max": 20.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Chris Richards",
+      "team": "United States",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/272585.png",
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 175.0,
+          "max": 91.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 12.0,
+          "max": 12.0,
           "appearances": 1
         }
       }
@@ -3257,15 +4489,28 @@
       }
     },
     {
+      "player": "Paul Okon-Engstler",
+      "team": "Australia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 32.0,
+          "max": 32.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Patrick Beach",
       "team": "Australia",
       "headshot": null,
-      "matches": 2,
+      "matches": 1,
       "categories": {
         "Saves": {
-          "total": 3.0,
-          "max": 2.0,
-          "appearances": 2
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
         }
       }
     },
@@ -3283,15 +4528,28 @@
       }
     },
     {
+      "player": "Andrés Cubas",
+      "team": "Paraguay",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/202501.png",
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 25.0,
+          "max": 25.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Omar Alderete",
       "team": "Paraguay",
       "headshot": null,
-      "matches": 2,
+      "matches": 1,
       "categories": {
         "Defensive Interventions": {
-          "total": 25.0,
+          "total": 13.0,
           "max": 13.0,
-          "appearances": 2
+          "appearances": 1
         }
       }
     },
@@ -3299,102 +4557,11 @@
       "player": "Orlando Gil",
       "team": "Paraguay",
       "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Saves": {
-          "total": 8.0,
-          "max": 5.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Christopher Operi",
-      "team": "Ivory Coast",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 10.0,
-          "max": 10.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Pedro Vite",
-      "team": "Ecuador",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/297150.png",
-      "matches": 1,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 16.0,
-          "max": 16.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Yukinari Sugawara",
-      "team": "Japan",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/265965.png",
-      "matches": 1,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 14.0,
-          "max": 14.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Gabriel Gudmundsson",
-      "team": "Sweden",
-      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/250166.png",
-      "matches": 1,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 8.0,
-          "max": 8.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Jacob Widell Zetterström",
-      "team": "Sweden",
-      "headshot": null,
       "matches": 1,
       "categories": {
         "Saves": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Ali Abdi",
-      "team": "Tunisia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 16.0,
-          "max": 16.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Lucas Herrington",
-      "team": "Australia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Defensive Interventions": {
-          "total": 10.0,
-          "max": 10.0,
+          "total": 3.0,
+          "max": 3.0,
           "appearances": 1
         }
       }

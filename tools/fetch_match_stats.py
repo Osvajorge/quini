@@ -141,7 +141,40 @@ def _extract_leaders(summary: dict) -> list[dict]:
     return leaders
 
 
-def fetch() -> None:
+def _extract_goals_assists(summary: dict) -> list[dict]:
+    """Parse goals and assists from keyEvents."""
+    import re
+    entries = []
+    for ev in summary.get("keyEvents", []):
+        if ev.get("type", {}).get("text") != "Goal":
+            continue
+        text = ev.get("text", "")
+        team_name = ev.get("team", {}).get("displayName", "")
+        clock = ev.get("clock", {}).get("displayValue", "")
+        m = re.search(r"\d+\.\s*(.+?)\s*\(", text)
+        if m:
+            entries.append({
+                "team": team_name,
+                "category": "Goals",
+                "player": m.group(1).strip(),
+                "headshot": None,
+                "value": "1",
+                "clock": clock,
+            })
+        am = re.search(r"Assisted by (.+?)(?:\s+with|\s*\.)", text)
+        if am:
+            entries.append({
+                "team": team_name,
+                "category": "Assists",
+                "player": am.group(1).strip(),
+                "headshot": None,
+                "value": "1",
+                "clock": clock,
+            })
+    return entries
+
+
+def fetch(refresh: bool = False) -> None:
     if not PRED.exists():
         print("[stats] no predictions.json; skipping")
         return
@@ -152,9 +185,17 @@ def fetch() -> None:
     print(f"[stats] {len(completed)} completed fixtures to check")
 
     existing = _load_existing()
-    # Build set of all unique dates needed (only for fixtures we don't have yet)
+
+    def _needs_fetch(fid):
+        if fid not in existing or not existing[fid].get("teams"):
+            return True
+        if refresh:
+            cats = {l.get("category") for l in existing[fid].get("leaders", [])}
+            return "Goals" not in cats
+        return False
+
     needed_dates = {fx.get("commence_time", "")[:10] for fx in completed
-                    if fx.get("id") not in existing or not existing[fx["id"]].get("teams")}
+                    if _needs_fetch(fx.get("id"))}
     needed_dates = {d for d in needed_dates if d}
     print(f"[stats] querying ESPN for {len(needed_dates)} dates")
     scoreboard = fetch_scoreboard_for_dates(needed_dates)
@@ -162,8 +203,7 @@ def fetch() -> None:
     n_fetched = 0
     for fx in completed:
         fid = fx["id"]
-        # Skip if we already have stats for this fixture
-        if fid in existing and existing[fid].get("teams"):
+        if not _needs_fetch(fid):
             continue
 
         home_n = _norm(fx["home"])
@@ -186,6 +226,7 @@ def fetch() -> None:
         teams_block = summary.get("boxscore", {}).get("teams", [])
         teams_data = [_extract_team_stats(t) for t in teams_block]
         leaders = _extract_leaders(summary)
+        leaders += _extract_goals_assists(summary)
 
         existing[fid] = {
             "espn_id": espn_id,
@@ -201,4 +242,8 @@ def fetch() -> None:
 
 
 if __name__ == "__main__":
-    fetch()
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--refresh", action="store_true", help="Re-fetch to add goals/assists data")
+    args = ap.parse_args()
+    fetch(refresh=args.refresh)

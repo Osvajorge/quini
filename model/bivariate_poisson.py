@@ -1,10 +1,8 @@
-"""Bivariate Poisson goal model via penaltyblog (Karlis-Ntzoufras).
+"""Dixon-Coles goal model via penaltyblog.
 
-Replaces Dixon-Coles as the core prediction model. Advantages:
-- Models correlation between home/away goals explicitly (λ3 shared goals)
-- Faster convergence (~70s vs ~270s on Apple Silicon)
-- Better log-likelihood on same data
-- FootballProbabilityGrid gives 1X2, BTTS, O/U, AH, exact score natively
+ρ parameter corrects low-score outcomes (0-0, 1-0, 0-1, 1-1),
+fixing the draw underestimation that Bivariate-Poisson suffered from.
+Same penaltyblog API — FootballProbabilityGrid for all markets.
 """
 from __future__ import annotations
 
@@ -16,7 +14,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
-from penaltyblog.models import BivariatePoissonGoalModel
+from penaltyblog.models import DixonColesGoalModel
 
 from model.data_loader import load_matches, team_match_counts
 
@@ -57,7 +55,7 @@ class BPFit:
     def to_dict(self) -> dict:
         params = self.model.get_params()
         return {
-            "model": "BivariatePoissonGoalModel",
+            "model": "DixonColesGoalModel",
             "teams": len(self.teams),
             "fitted_at": self.fitted_at.isoformat(),
             "n_matches": self.n_matches,
@@ -65,7 +63,7 @@ class BPFit:
             "converged": self.converged,
             "n_iter": self.n_iter,
             "home_advantage": params.get("home_advantage"),
-            "correlation_log": params.get("correlation_log"),
+            "rho": params.get("rho"),
         }
 
 
@@ -79,7 +77,7 @@ def fit(
     teams = sorted(set(df["home_team"]) | set(df["away_team"]))
 
     t0 = time.perf_counter()
-    model = BivariatePoissonGoalModel(
+    model = DixonColesGoalModel(
         goals_home=df["home_score"].values.copy(),
         goals_away=df["away_score"].values.copy(),
         teams_home=df["home_team"].values.copy(),

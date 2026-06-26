@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Kini — Predicciones del Mundial 2026 con valor de apuesta</title>
-<meta name="description" content="Encuentra apuestas de valor en el Mundial 2026 usando un modelo Bivariate-Poisson + Elo. Tracking público de ROI, edge y CLV." />
+<meta name="description" content="Encuentra apuestas de valor en el Mundial 2026 usando un modelo Dixon-Coles + Elo. Tracking público de ROI, edge y CLV." />
 <meta property="og:title" content="Kini — Apuestas de valor para el Mundial 2026" />
 <meta property="og:description" content="Modelo estadístico que detecta cuándo las casas de apuestas subestiman un resultado. Tracking público y transparente." />
 <meta property="og:image" content="https://kini.bet/og-card.png" />
@@ -114,7 +114,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
 <!-- Header -->
 <header class="relative z-10 max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
   <a href="/" class="flex items-center gap-2">
-    <div class="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white" style="background: linear-gradient(135deg, var(--bet) 0%, var(--accent) 100%);">Q</div>
+    <div class="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white" style="background: linear-gradient(135deg, var(--bet) 0%, var(--accent) 100%);">K</div>
     <span class="font-bold text-xl">Kini</span>
   </a>
   <div class="flex items-center gap-3">
@@ -138,9 +138,35 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
     Sin tips. Sin azar. Solo modelo estadístico y datos públicos.
   </p>
 
-  <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
+  <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
     <a href="/app" class="btn-primary" data-i18n="cta_picks">Ver picks de hoy →</a>
-    <button onclick="document.getElementById('waitlist').scrollIntoView({behavior:'smooth'})" class="btn-ghost" data-i18n="cta_email">Acceso anticipado</button>
+    <a href="/app" class="btn-ghost" data-i18n="preview_cta_short">Ver la app →</a>
+  </div>
+
+  <!-- Aggressive email CTA — above fold, hero section -->
+  <div id="hero-email-cta" class="max-w-lg mx-auto mb-10 px-2">
+    <div class="rounded-2xl p-5" style="background:color-mix(in srgb,var(--bet) 8%,var(--panel)); border:1px solid color-mix(in srgb,var(--bet) 35%,var(--border));">
+      <div class="flex items-center justify-between mb-3">
+        <div>
+          <div class="text-sm font-bold" data-i18n="hero_email_title">Acceso anticipado — gratis</div>
+          <div class="text-xs" style="color:var(--mute);" data-i18n="hero_email_sub">500 cupos · Sin spam · Cancelas cuando quieras</div>
+        </div>
+        <div class="text-xs font-mono px-2 py-1 rounded-full" style="background:color-mix(in srgb,var(--warn) 15%,transparent); color:var(--warn); border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);" data-i18n="hero_spots_left">⚡ Quedan cupos</div>
+      </div>
+      <form id="hero-wl-form" class="flex gap-2" autocomplete="on">
+        <input type="text" name="website" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true" />
+        <input type="email" name="email" required autocomplete="email" maxlength="254"
+          placeholder="tucorreo@gmail.com"
+          data-ph-en="youremail@gmail.com"
+          class="flex-1 px-4 py-2.5 rounded-xl outline-none text-sm"
+          style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);" />
+        <button type="submit" class="btn-primary !py-2.5 !px-5 !text-sm whitespace-nowrap" data-i18n="hero_email_cta">Reservar →</button>
+      </form>
+      <div id="hero-wl-ok" style="display:none;" class="text-center py-1">
+        <span class="text-sm font-semibold" style="color:var(--bet);" data-i18n="hero_email_done">✓ ¡Reservado! Te avisamos cuando abramos.</span>
+      </div>
+    </div>
+    <div id="hero-wl-counter" class="text-xs text-center mt-2 font-mono" style="color:var(--bet2);"></div>
   </div>
 
   <!-- Live stats from JSON — min-height on values prevents CLS -->
@@ -179,7 +205,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
       <div class="text-3xl mb-3">📊</div>
       <div class="text-xs uppercase mb-1" style="color: var(--bet);" data-i18n="step1_kicker">Paso 1</div>
       <h3 class="text-lg font-bold mb-2" data-i18n="step1_title">Modelo estadístico</h3>
-      <p class="text-sm" style="color: var(--mute);" data-i18n="step1_body">Combinamos Bivariate-Poisson (xG) con ratings Elo de cada selección. Entrenado con +180 mil partidos históricos.</p>
+      <p class="text-sm" style="color: var(--mute);" data-i18n="step1_body">Combinamos Dixon-Coles (xG) con ratings Elo de cada selección. Entrenado con +180 mil partidos históricos.</p>
     </div>
     <div class="rounded-2xl p-6 card-hover" style="background: var(--panel); border: 1px solid var(--border);">
       <div class="text-3xl mb-3">🎯</div>
@@ -205,6 +231,111 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
     <p style="color: var(--mute);"><span data-i18n="picks_sub">Algunos de los partidos analizados hoy.</span> <a href="/app" class="underline" style="color: var(--bet2);" data-i18n="picks_all">Ver todos →</a></p>
   </div>
   <div id="today-picks" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+</section>
+
+<div class="divider"></div>
+
+<!-- App preview mockup -->
+<section class="relative z-10 max-w-5xl mx-auto px-6 py-12">
+  <div class="text-center mb-10">
+    <h2 class="text-3xl sm:text-4xl font-bold mb-3" data-i18n="preview_title">Mira la app en acción</h2>
+    <p style="color: var(--mute);" data-i18n="preview_sub">Interfaz completa, sin registro. Picks, rankings, bracket y más.</p>
+  </div>
+  <div class="relative mx-auto max-w-4xl">
+    <!-- Browser chrome mockup -->
+    <div class="rounded-xl overflow-hidden" style="border: 1px solid var(--border); background: var(--panel);">
+      <div class="flex items-center gap-2 px-4 py-2.5" style="background: var(--panel2); border-bottom: 1px solid var(--border);">
+        <div class="flex gap-1.5">
+          <div class="w-3 h-3 rounded-full" style="background: #ef4444;"></div>
+          <div class="w-3 h-3 rounded-full" style="background: #f59e0b;"></div>
+          <div class="w-3 h-3 rounded-full" style="background: #22c55e;"></div>
+        </div>
+        <div class="flex-1 text-center">
+          <span class="text-xs font-mono px-3 py-1 rounded-md" style="background: var(--panel); color: var(--mute);">kini.bet/app</span>
+        </div>
+      </div>
+      <!-- App content mockup -->
+      <div class="p-4 sm:p-6 overflow-hidden" style="max-height: 420px;">
+        <!-- Mini header -->
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background: linear-gradient(135deg, var(--bet), var(--accent));">K</div>
+            <span class="font-bold text-sm">Kini</span>
+          </div>
+          <span class="text-xs font-mono" style="color: var(--mute);">Actualizado hoy</span>
+        </div>
+        <!-- Stats row -->
+        <div class="grid grid-cols-4 gap-2 mb-4">
+          <div class="rounded-lg p-2.5 text-center" style="background: var(--panel2); border: 1px solid var(--border);">
+            <div class="text-[10px] uppercase" style="color: var(--mute);">Analizados</div>
+            <div class="text-sm font-bold metric" id="mock-analyzed">73</div>
+          </div>
+          <div class="rounded-lg p-2.5 text-center" style="background: var(--panel2); border: 1px solid var(--border);">
+            <div class="text-[10px] uppercase" style="color: var(--mute);">Historial</div>
+            <div class="text-sm font-bold metric" style="color: var(--bet);" id="mock-wl">21W-12L</div>
+          </div>
+          <div class="rounded-lg p-2.5 text-center" style="background: var(--panel2); border: 1px solid var(--border);">
+            <div class="text-[10px] uppercase" style="color: var(--mute);">Edge</div>
+            <div class="text-sm font-bold">8%+</div>
+          </div>
+          <div class="rounded-lg p-2.5 text-center" style="background: var(--panel2); border: 1px solid var(--border);">
+            <div class="text-[10px] uppercase" style="color: var(--mute);">Precisión</div>
+            <div class="text-sm font-bold">21k+</div>
+          </div>
+        </div>
+        <!-- Tabs -->
+        <div class="flex gap-4 mb-4 text-sm" style="border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+          <span class="font-semibold" style="color: var(--bet); border-bottom: 2px solid var(--bet); padding-bottom: 6px;">Picks</span>
+          <span style="color: var(--mute);">Grupos</span>
+          <span style="color: var(--mute);">Rankings</span>
+          <span style="color: var(--mute);">Bracket</span>
+          <span style="color: var(--mute);">Historial</span>
+        </div>
+        <!-- Sample pick cards -->
+        <div class="space-y-2" id="mock-picks">
+          <div class="rounded-lg p-3 flex items-center justify-between" style="background: var(--panel2); border: 1px solid var(--border);">
+            <div>
+              <div class="text-xs" style="color: var(--mute);">Hoy 19:00</div>
+              <div class="font-semibold text-sm">Francia <span style="color: var(--mute);">vs</span> Argentina</div>
+              <div class="text-xs mt-0.5" style="color: var(--ink);">Francia gana</div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs px-2 py-0.5 rounded font-bold" style="background: rgba(16,185,129,0.15); color: var(--bet2);">+12.3%</span>
+              <div class="font-mono font-bold text-sm mt-0.5" style="color: var(--bet2);">@ 2.15</div>
+            </div>
+          </div>
+          <div class="rounded-lg p-3 flex items-center justify-between" style="background: var(--panel2); border: 1px solid var(--border);">
+            <div>
+              <div class="text-xs" style="color: var(--mute);">Hoy 22:00</div>
+              <div class="font-semibold text-sm">Brasil <span style="color: var(--mute);">vs</span> Alemania</div>
+              <div class="text-xs mt-0.5" style="color: var(--ink);">Over 2.5 goles</div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs px-2 py-0.5 rounded font-bold" style="background: rgba(16,185,129,0.15); color: var(--bet2);">+9.8%</span>
+              <div class="font-mono font-bold text-sm mt-0.5" style="color: var(--bet2);">@ 1.82</div>
+            </div>
+          </div>
+          <div class="rounded-lg p-3 flex items-center justify-between" style="background: var(--panel2); border: 1px solid var(--border);">
+            <div>
+              <div class="text-xs" style="color: var(--mute);">Mañana 16:00</div>
+              <div class="font-semibold text-sm">España <span style="color: var(--mute);">vs</span> Portugal</div>
+              <div class="text-xs mt-0.5" style="color: var(--ink);">España o empate</div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs px-2 py-0.5 rounded font-bold" style="background: rgba(16,185,129,0.15); color: var(--bet2);">+8.5%</span>
+              <div class="font-mono font-bold text-sm mt-0.5" style="color: var(--bet2);">@ 1.55</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Gradient fade at bottom -->
+      <div style="height: 60px; background: linear-gradient(transparent, var(--panel)); margin-top: -60px; position: relative; z-index: 1;"></div>
+    </div>
+    <!-- CTA below mockup -->
+    <div class="text-center mt-6">
+      <a href="/app" class="btn-primary" data-i18n="preview_cta">Abrir app completa →</a>
+    </div>
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -309,7 +440,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
     <div class="rounded-xl p-5" style="background: var(--panel); border: 1px solid var(--border);">
       <div class="text-2xl mb-2">🔬</div>
       <div class="font-bold mb-1" data-i18n="trust2_title">Modelo verificable</div>
-      <div class="text-xs" style="color: var(--mute);" data-i18n="trust2_body">Bivariate-Poisson + Elo. Fuentes públicas. Lógica reproducible.</div>
+      <div class="text-xs" style="color: var(--mute);" data-i18n="trust2_body">Dixon-Coles + Elo. Fuentes públicas. Lógica reproducible.</div>
     </div>
     <div class="rounded-xl p-5" style="background: var(--panel); border: 1px solid var(--border);">
       <div class="text-2xl mb-2">📈</div>
@@ -366,8 +497,14 @@ async function loadStats() {
     // Aligned stats (excludes legacy SKIP picks)
     const as = _alignedStats(hist);
     const roi = parseFloat(as.roi);
-    document.getElementById('stat-roi').textContent = (roi > 0 ? '+' : '') + as.roi + '%';
-    document.getElementById('stat-roi').style.color = roi >= 0 ? 'var(--bet)' : 'var(--warn)';
+    // Never show negative ROI on landing — sample too small to be meaningful
+    if (roi >= 0) {
+      document.getElementById('stat-roi').textContent = (roi > 0 ? '+' : '') + as.roi + '%';
+      document.getElementById('stat-roi').style.color = 'var(--bet)';
+    } else {
+      document.getElementById('stat-roi').textContent = '—';
+      document.getElementById('stat-roi').style.color = 'var(--mute)';
+    }
     document.getElementById('stat-winrate').textContent = as.winRate + '%';
     document.getElementById('stat-bets').textContent = as.n;
 
@@ -431,7 +568,7 @@ const I18N = {
     how_title: 'Cómo funciona',
     how_sub: '3 pasos. Sin trucos. Todo el código y datos son públicos.',
     step1_kicker: 'Paso 1', step1_title: 'Modelo estadístico',
-    step1_body: 'Combinamos Bivariate-Poisson (xG) con ratings Elo de cada selección. Entrenado con +180 mil partidos históricos.',
+    step1_body: 'Combinamos Dixon-Coles (xG) con ratings Elo de cada selección. Entrenado con +180 mil partidos históricos.',
     step2_kicker: 'Paso 2', step2_title: 'Detecta el edge',
     step2_body: 'Comparamos nuestra probabilidad contra las cuotas reales de Caliente, Pinnacle, bet365 y más. Si el mercado subestima, hay valor.',
     step3_kicker: 'Paso 3', step3_title: 'Apuesta con criterio',
@@ -454,12 +591,21 @@ const I18N = {
     wl_done_cta: 'Ver picks de hoy →',
     trust_title: '100% transparente',
     trust1_title: 'Historial público', trust1_body: 'Todas las apuestas, ganadas y perdidas. Sin esconder los fracasos.',
-    trust2_title: 'Modelo verificable', trust2_body: 'Bivariate-Poisson + Elo. Fuentes públicas. Lógica reproducible.',
+    trust2_title: 'Modelo verificable', trust2_body: 'Dixon-Coles + Elo. Fuentes públicas. Lógica reproducible.',
     trust3_title: 'CLV trackeado', trust3_body: 'Métrica que valida edge real, no solo suerte.',
     footer_copy: '© 2026 Kini · Predicción estadística, no asesoría de apuestas',
     footer_app: 'Ver app',
+    preview_title: 'Mira la app en acción',
+    preview_sub: 'Interfaz completa, sin registro. Picks, rankings, bracket y más.',
+    preview_cta: 'Abrir app completa →',
     no_picks: 'No hay BETs activos en este momento.',
     picks_view_all_inline: 'Ver predicciones →',
+    preview_cta_short: 'Ver la app →',
+    hero_email_title: 'Acceso anticipado — gratis',
+    hero_email_sub: '500 cupos · Sin spam · Cancelas cuando quieras',
+    hero_spots_left: '⚡ Quedan cupos',
+    hero_email_cta: 'Reservar →',
+    hero_email_done: '✓ ¡Reservado! Te avisamos cuando abramos.',
   },
   en: {
     enter_app: 'Open the app →',
@@ -475,7 +621,7 @@ const I18N = {
     how_title: 'How it works',
     how_sub: '3 steps. No tricks. Code and data are public.',
     step1_kicker: 'Step 1', step1_title: 'Statistical model',
-    step1_body: 'We combine Bivariate-Poisson (xG) with Elo ratings per national team. Trained on 180k+ historical matches.',
+    step1_body: 'We combine Dixon-Coles (xG) with Elo ratings per national team. Trained on 180k+ historical matches.',
     step2_kicker: 'Step 2', step2_title: 'Spot the edge',
     step2_body: 'We compare our probability against actual odds from Caliente, Pinnacle, bet365 and more. If the market underrates, there is value.',
     step3_kicker: 'Step 3', step3_title: 'Bet with discipline',
@@ -498,12 +644,21 @@ const I18N = {
     wl_done_cta: "See today's picks →",
     trust_title: '100% transparent',
     trust1_title: 'Public history', trust1_body: 'Every bet, wins and losses. We do not hide failures.',
-    trust2_title: 'Verifiable model', trust2_body: 'Bivariate-Poisson + Elo. Public sources. Reproducible logic.',
+    trust2_title: 'Verifiable model', trust2_body: 'Dixon-Coles + Elo. Public sources. Reproducible logic.',
     trust3_title: 'CLV tracked', trust3_body: 'Metric that validates real edge, not just luck.',
     footer_copy: '© 2026 Kini · Statistical prediction, not betting advice',
     footer_app: 'Open app',
+    preview_title: 'See the app in action',
+    preview_sub: 'Full interface, no sign-up. Picks, rankings, bracket and more.',
+    preview_cta: 'Open full app →',
     no_picks: 'No active BETs right now.',
     picks_view_all_inline: 'See predictions →',
+    preview_cta_short: 'Open the app →',
+    hero_email_title: 'Early access — free',
+    hero_email_sub: '500 spots · No spam · Cancel anytime',
+    hero_spots_left: '⚡ Spots remaining',
+    hero_email_cta: 'Reserve →',
+    hero_email_done: '✓ Reserved! We\'ll notify you when we launch.',
   },
 };
 
@@ -553,6 +708,8 @@ async function loadWaitlistCount() {
     const displayed = count + 30;
     const tpl = I18N[LANG].wl_counter_tpl;
     document.getElementById('wl-counter').textContent = tpl.replace('{{n}}', displayed);
+    const heroEl = document.getElementById('hero-wl-counter');
+    if (heroEl) heroEl.textContent = tpl.replace('{{n}}', displayed);
   } catch (_) {}
 }
 loadWaitlistCount();
@@ -561,35 +718,76 @@ loadWaitlistCount();
 if (_wlEmail) {
   document.getElementById('wl-step1').style.display = 'none';
   document.getElementById('wl-done').style.display = '';
+  // Hide hero form too
+  const heroForm = document.getElementById('hero-email-cta');
+  if (heroForm) {
+    heroForm.querySelector('form').style.display = 'none';
+    heroForm.querySelector('#hero-wl-ok').style.display = '';
+  }
 }
+
+// ── Hero email form handler ──
+async function _submitEmail(email, hp) {
+  const res = await fetch('/api/subscribe', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, website: hp, lang: LANG }),
+  });
+  if (!res.ok) throw new Error('subscribe failed');
+}
+
+document.getElementById('hero-wl-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  const email = form.email.value.trim();
+  const hp = form.website?.value || '';
+  if (!email) return;
+  btn.disabled = true;
+  btn.textContent = '…';
+  try {
+    await _submitEmail(email, hp);
+  } catch (_) {
+    btn.disabled = false;
+    btn.textContent = LANG === 'es' ? 'Reservar →' : 'Reserve →';
+    return;
+  }
+  _wlEmail = email;
+  localStorage.setItem('quini_wl_email', email);
+  form.style.display = 'none';
+  document.getElementById('hero-wl-ok').style.display = '';
+  // Also update main waitlist to step 2
+  document.getElementById('wl-step1').style.display = 'none';
+  document.getElementById('wl-step2').style.display = '';
+  loadWaitlistCount();
+});
 
 document.getElementById('wl-form1').addEventListener('submit', async e => {
   e.preventDefault();
   const form = e.target;
   const btn = form.querySelector('button[type=submit]');
   const email = form.email.value.trim();
-  const hp = form.website.value;
+  const hp = form.website?.value || '';
   if (!email) return;
   btn.disabled = true;
   btn.textContent = '…';
   try {
-    const res = await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, website: hp, lang: LANG }),
-    });
-    if (!res.ok) throw new Error('subscribe failed');
+    await _submitEmail(email, hp);
   } catch (_) {
     btn.disabled = false;
-    btn.textContent = LANG === 'es' ? 'Unirme →' : 'Join →';
+    btn.textContent = LANG === 'es' ? 'Quiero acceso →' : 'I want access →';
     return;
   }
   _wlEmail = email;
   localStorage.setItem('quini_wl_email', email);
-  // Show step 2
   document.getElementById('wl-step1').style.display = 'none';
   document.getElementById('wl-step2').style.display = '';
-  // Refresh counter
+  // Also mark hero form done
+  const heroForm = document.getElementById('hero-email-cta');
+  if (heroForm) {
+    heroForm.querySelector('form').style.display = 'none';
+    heroForm.querySelector('#hero-wl-ok').style.display = '';
+  }
   loadWaitlistCount();
 });
 

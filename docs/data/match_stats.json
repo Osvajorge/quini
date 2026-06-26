@@ -1,7 +1,7 @@
 {
   "73529a242e319a86bf3d00ddb4accc37": {
     "espn_id": "760453",
-    "fetched_at": "2026-06-24T19:54:01+00:00",
+    "fetched_at": "2026-06-26T10:21:25+00:00",
     "teams": [
       {
         "team": "Spain",
@@ -83,7 +83,7 @@
       {
         "team": "Spain",
         "category": "Accurate Passes",
-        "player": "Rodri ",
+        "player": "Rodri",
         "headshot": null,
         "value": "113"
       },
@@ -128,12 +128,60 @@
         "player": "Mohammed Al-Owais",
         "headshot": null,
         "value": "5"
+      },
+      {
+        "team": "Spain",
+        "category": "Goals",
+        "player": "Lamine Yamal",
+        "headshot": null,
+        "value": "1",
+        "clock": "10'"
+      },
+      {
+        "team": "Spain",
+        "category": "Assists",
+        "player": "Mikel Oyarzabal",
+        "headshot": null,
+        "value": "1",
+        "clock": "10'"
+      },
+      {
+        "team": "Spain",
+        "category": "Goals",
+        "player": "Mikel Oyarzabal",
+        "headshot": null,
+        "value": "1",
+        "clock": "21'"
+      },
+      {
+        "team": "Spain",
+        "category": "Assists",
+        "player": "Aymeric Laporte",
+        "headshot": null,
+        "value": "1",
+        "clock": "21'"
+      },
+      {
+        "team": "Spain",
+        "category": "Goals",
+        "player": "Mikel Oyarzabal",
+        "headshot": null,
+        "value": "1",
+        "clock": "24'"
+      },
+      {
+        "team": "Spain",
+        "category": "Assists",
+        "player": "Dani Olmo",
+        "headshot": null,
+        "value": "1",
+        "clock": "24'"
       }
     ]
   },
   "5f92f257386ec5bf7c6e2498a21f3a61": {
     "espn_id": "760451",
-    "fetched_at": "2026-06-24T19:54:02+00:00",
+    "fetched_at": "2026-06-26T10:21:25+00:00",
     "teams": [
       {
         "team": "Belgium",
@@ -265,7 +313,7 @@
   },
   "852a3abe6d46820720febc0fedebff9a": {
     "espn_id": "760450",
-    "fetched_at": "2026-06-24T19:54:02+00:00",
+    "fetched_at": "2026-06-26T10:21:26+00:00",
     "teams": [
       {
         "team": "Uruguay",
@@ -385,12 +433,36 @@
         "player": "Diney Borges",
         "headshot": null,
         "value": "22"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Goals",
+        "player": "Agustín Canobbio",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+6'"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Assists",
+        "player": "Maxi Araújo",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+6'"
+      },
+      {
+        "team": "Cape Verde",
+        "category": "Goals",
+        "player": "Hélio Varela",
+        "headshot": null,
+        "value": "1",
+        "clock": "61'"
       }
     ]
   },
   "c1ec9a65f4b4cf74477b368a7d6282de": {
     "espn_id": "760452",
-    "fetched_at": "2026-06-24T19:54:03+00:00",
+    "fetched_at": "2026-06-26T10:21:26+00:00",
     "teams": [
       {
         "team": "New Zealand",
@@ -517,12 +589,28 @@
         "player": "Mostafa Shoubir",
         "headshot": null,
         "value": "4"
+      },
+      {
+        "team": "Egypt",
+        "category": "Goals",
+        "player": "Mohamed Salah",
+        "headshot": null,
+        "value": "1",
+        "clock": "67'"
+      },
+      {
+        "team": "Egypt",
+        "category": "Assists",
+        "player": "Mostafa Zico",
+        "headshot": null,
+        "value": "1",
+        "clock": "67'"
       }
     ]
   },
   "be6c63f416c67bca1300a98f5b89c3af": {
     "espn_id": "760456",
-    "fetched_at": "2026-06-24T19:54:03+00:00",
+    "fetched_at": "2026-06-26T10:21:24+00:00",
     "teams": [
       {
         "team": "Argentina",
@@ -649,12 +737,36 @@
         "player": "Alexander Schlager",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "Argentina",
+        "category": "Goals",
+        "player": "Lionel Messi",
+        "headshot": null,
+        "value": "1",
+        "clock": "38'"
+      },
+      {
+        "team": "Argentina",
+        "category": "Assists",
+        "player": "Facundo Medina following a fast break",
+        "headshot": null,
+        "value": "1",
+        "clock": "38'"
+      },
+      {
+        "team": "Argentina",
+        "category": "Goals",
+        "player": "Lionel Messi",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+5'"
       }
     ]
   },
   "7ad7a0ce2ef2618bb59b066da5642f70": {
     "espn_id": "760457",
-    "fetched_at": "2026-06-24T19:54:04+00:00",
+    "fetched_at": "2026-06-26T10:21:20+00:00",
     "teams": [
       {
         "team": "France",
@@ -774,12 +886,60 @@
         "player": "Ahmed Basil",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Kylian Mbappé",
+        "headshot": null,
+        "value": "1",
+        "clock": "14'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Michael Olise",
+        "headshot": null,
+        "value": "1",
+        "clock": "14'"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Kylian Mbappé",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Ousmane Dembélé",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Ousmane Dembélé",
+        "headshot": null,
+        "value": "1",
+        "clock": "66'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Michael Olise",
+        "headshot": null,
+        "value": "1",
+        "clock": "66'"
       }
     ]
   },
   "3f48473742ca0fd2a85930554720c75e": {
     "espn_id": "760454",
-    "fetched_at": "2026-06-24T19:54:05+00:00",
+    "fetched_at": "2026-06-26T10:21:20+00:00",
     "teams": [
       {
         "team": "Norway",
@@ -906,12 +1066,84 @@
         "player": "Édouard Mendy",
         "headshot": null,
         "value": "3"
+      },
+      {
+        "team": "Norway",
+        "category": "Goals",
+        "player": "Marcus Pedersen",
+        "headshot": null,
+        "value": "1",
+        "clock": "43'"
+      },
+      {
+        "team": "Norway",
+        "category": "Goals",
+        "player": "Erling Haaland",
+        "headshot": null,
+        "value": "1",
+        "clock": "48'"
+      },
+      {
+        "team": "Norway",
+        "category": "Assists",
+        "player": "Martin Ødegaard",
+        "headshot": null,
+        "value": "1",
+        "clock": "48'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Goals",
+        "player": "Ismaïla Sarr",
+        "headshot": null,
+        "value": "1",
+        "clock": "53'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Assists",
+        "player": "Sadio Mané",
+        "headshot": null,
+        "value": "1",
+        "clock": "53'"
+      },
+      {
+        "team": "Norway",
+        "category": "Goals",
+        "player": "Erling Haaland",
+        "headshot": null,
+        "value": "1",
+        "clock": "58'"
+      },
+      {
+        "team": "Norway",
+        "category": "Assists",
+        "player": "Patrick Berg",
+        "headshot": null,
+        "value": "1",
+        "clock": "58'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Goals",
+        "player": "Ismaïla Sarr",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+3'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Assists",
+        "player": "Nicolas Jackson",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+3'"
       }
     ]
   },
   "fd8533b650e655030f6a7946f8795db2": {
     "espn_id": "760455",
-    "fetched_at": "2026-06-24T19:54:06+00:00",
+    "fetched_at": "2026-06-26T10:21:21+00:00",
     "teams": [
       {
         "team": "Jordan",
@@ -1038,12 +1270,36 @@
         "player": "Luca Zidane",
         "headshot": null,
         "value": "3"
+      },
+      {
+        "team": "Jordan",
+        "category": "Goals",
+        "player": "Nizar Al Rashdan",
+        "headshot": null,
+        "value": "1",
+        "clock": "36'"
+      },
+      {
+        "team": "Jordan",
+        "category": "Assists",
+        "player": "Mousa Al Tamari",
+        "headshot": null,
+        "value": "1",
+        "clock": "36'"
+      },
+      {
+        "team": "Algeria",
+        "category": "Goals",
+        "player": "Amine Gouiri",
+        "headshot": null,
+        "value": "1",
+        "clock": "82'"
       }
     ]
   },
   "8ba93d190f1f934e33862a97a6353a6e": {
     "espn_id": "760461",
-    "fetched_at": "2026-06-24T19:54:07+00:00",
+    "fetched_at": "2026-06-26T10:21:21+00:00",
     "teams": [
       {
         "team": "Portugal",
@@ -1170,12 +1426,36 @@
         "player": "Abduvohid Nematov",
         "headshot": null,
         "value": "4"
+      },
+      {
+        "team": "Portugal",
+        "category": "Goals",
+        "player": "Cristiano Ronaldo",
+        "headshot": null,
+        "value": "1",
+        "clock": "39'"
+      },
+      {
+        "team": "Portugal",
+        "category": "Assists",
+        "player": "Bruno Fernandes",
+        "headshot": null,
+        "value": "1",
+        "clock": "39'"
+      },
+      {
+        "team": "Portugal",
+        "category": "Goals",
+        "player": "Rafael Leão",
+        "headshot": null,
+        "value": "1",
+        "clock": "87'"
       }
     ]
   },
   "2f49dd8deae3079dc4eb2d634d18a99c": {
     "espn_id": "760458",
-    "fetched_at": "2026-06-24T19:54:07+00:00",
+    "fetched_at": "2026-06-26T10:21:21+00:00",
     "teams": [
       {
         "team": "England",
@@ -1300,7 +1580,7 @@
   },
   "c1bc8c26480cd42b89a0de5329581314": {
     "espn_id": "760460",
-    "fetched_at": "2026-06-24T19:54:11+00:00",
+    "fetched_at": "2026-06-26T10:21:21+00:00",
     "teams": [
       {
         "team": "Panama",
@@ -1427,12 +1707,28 @@
         "player": "Dominik Livakovic",
         "headshot": null,
         "value": "1"
+      },
+      {
+        "team": "Croatia",
+        "category": "Goals",
+        "player": "Ante Budimir",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
+      },
+      {
+        "team": "Croatia",
+        "category": "Assists",
+        "player": "Josip Stanisic",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
       }
     ]
   },
   "dfc5202cf1b8ae002cf952cd04f235b9": {
     "espn_id": "760449",
-    "fetched_at": "2026-06-24T19:54:13+00:00",
+    "fetched_at": "2026-06-26T10:21:27+00:00",
     "teams": [
       {
         "team": "Tunisia",
@@ -1552,12 +1848,60 @@
         "player": "Kou Itakura",
         "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238033.png",
         "value": "12"
+      },
+      {
+        "team": "Japan",
+        "category": "Goals",
+        "player": "Daichi Kamada",
+        "headshot": null,
+        "value": "1",
+        "clock": "4'"
+      },
+      {
+        "team": "Japan",
+        "category": "Assists",
+        "player": "Keito Nakamura",
+        "headshot": null,
+        "value": "1",
+        "clock": "4'"
+      },
+      {
+        "team": "Japan",
+        "category": "Goals",
+        "player": "Ayase Ueda",
+        "headshot": null,
+        "value": "1",
+        "clock": "31'"
+      },
+      {
+        "team": "Japan",
+        "category": "Assists",
+        "player": "Ko Itakura following a fast break",
+        "headshot": null,
+        "value": "1",
+        "clock": "31'"
+      },
+      {
+        "team": "Japan",
+        "category": "Goals",
+        "player": "Junya Ito",
+        "headshot": null,
+        "value": "1",
+        "clock": "69'"
+      },
+      {
+        "team": "Japan",
+        "category": "Assists",
+        "player": "Ayase Ueda",
+        "headshot": null,
+        "value": "1",
+        "clock": "69'"
       }
     ]
   },
   "681895f294b670b4c7b14495dfb583bc": {
     "espn_id": "760446",
-    "fetched_at": "2026-06-24T19:54:14+00:00",
+    "fetched_at": "2026-06-26T10:21:27+00:00",
     "teams": [
       {
         "team": "Ecuador",
@@ -1689,7 +2033,7 @@
   },
   "f1ab0f69832972a329243522ceaa7804": {
     "espn_id": "760448",
-    "fetched_at": "2026-06-24T19:54:15+00:00",
+    "fetched_at": "2026-06-26T10:21:28+00:00",
     "teams": [
       {
         "team": "Germany",
@@ -1816,12 +2160,52 @@
         "player": "Yahia Fofana",
         "headshot": null,
         "value": "5"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Goals",
+        "player": "Franck Kessie",
+        "headshot": null,
+        "value": "1",
+        "clock": "30'"
+      },
+      {
+        "team": "Germany",
+        "category": "Goals",
+        "player": "Deniz Undav",
+        "headshot": null,
+        "value": "1",
+        "clock": "68'"
+      },
+      {
+        "team": "Germany",
+        "category": "Assists",
+        "player": "Nadiem Amiri",
+        "headshot": null,
+        "value": "1",
+        "clock": "68'"
+      },
+      {
+        "team": "Germany",
+        "category": "Goals",
+        "player": "Deniz Undav",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+4'"
+      },
+      {
+        "team": "Germany",
+        "category": "Assists",
+        "player": "Felix Nmecha",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+4'"
       }
     ]
   },
   "4f0c518545b0096c68326daf25bffc1e": {
     "espn_id": "760447",
-    "fetched_at": "2026-06-24T19:54:16+00:00",
+    "fetched_at": "2026-06-26T10:21:28+00:00",
     "teams": [
       {
         "team": "Netherlands",
@@ -1948,12 +2332,108 @@
         "player": "Kristoffer Nordfeldt",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Goals",
+        "player": "Brian Brobbey",
+        "headshot": null,
+        "value": "1",
+        "clock": "5'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Assists",
+        "player": "Cody Gakpo",
+        "headshot": null,
+        "value": "1",
+        "clock": "5'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Goals",
+        "player": "Brian Brobbey",
+        "headshot": null,
+        "value": "1",
+        "clock": "17'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Assists",
+        "player": "Denzel Dumfries",
+        "headshot": null,
+        "value": "1",
+        "clock": "17'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Goals",
+        "player": "Cody Gakpo",
+        "headshot": null,
+        "value": "1",
+        "clock": "47'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Assists",
+        "player": "Denzel Dumfries",
+        "headshot": null,
+        "value": "1",
+        "clock": "47'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Goals",
+        "player": "Cody Gakpo",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Assists",
+        "player": "Crysencio Summerville following a fast break",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Goals",
+        "player": "Anthony Elanga",
+        "headshot": null,
+        "value": "1",
+        "clock": "59'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Assists",
+        "player": "Alexander Isak",
+        "headshot": null,
+        "value": "1",
+        "clock": "59'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Goals",
+        "player": "Crysencio Summerville",
+        "headshot": null,
+        "value": "1",
+        "clock": "89'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Assists",
+        "player": "Memphis Depay",
+        "headshot": null,
+        "value": "1",
+        "clock": "89'"
       }
     ]
   },
   "ef0f74a991d3e35798ae5af77667bce1": {
     "espn_id": "760444",
-    "fetched_at": "2026-06-24T19:54:18+00:00",
+    "fetched_at": "2026-06-26T10:21:29+00:00",
     "teams": [
       {
         "team": "Brazil",
@@ -2080,12 +2560,52 @@
         "player": "Johny Placide",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "Brazil",
+        "category": "Goals",
+        "player": "Matheus Cunha",
+        "headshot": null,
+        "value": "1",
+        "clock": "23'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Goals",
+        "player": "Matheus Cunha",
+        "headshot": null,
+        "value": "1",
+        "clock": "36'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Assists",
+        "player": "Vinícius Júnior",
+        "headshot": null,
+        "value": "1",
+        "clock": "36'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Goals",
+        "player": "Vinícius Júnior",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+3'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Assists",
+        "player": "Lucas Paquetá",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+3'"
       }
     ]
   },
   "4cd769aa7bae0ad9762bd69b80ef2903": {
     "espn_id": "760445",
-    "fetched_at": "2026-06-24T19:54:20+00:00",
+    "fetched_at": "2026-06-26T10:21:29+00:00",
     "teams": [
       {
         "team": "Scotland",
@@ -2205,12 +2725,28 @@
         "player": "Neil El Aynaoui",
         "headshot": null,
         "value": "9"
+      },
+      {
+        "team": "Morocco",
+        "category": "Goals",
+        "player": "Ismael Saibari",
+        "headshot": null,
+        "value": "1",
+        "clock": "2'"
+      },
+      {
+        "team": "Morocco",
+        "category": "Assists",
+        "player": "Brahim Díaz",
+        "headshot": null,
+        "value": "1",
+        "clock": "2'"
       }
     ]
   },
   "c375e36f6aeb463f808c6811018cc716": {
     "espn_id": "760415",
-    "fetched_at": "2026-06-24T19:54:21+00:00",
+    "fetched_at": "2026-06-26T10:21:30+00:00",
     "teams": [
       {
         "team": "Mexico",
@@ -2337,12 +2873,28 @@
         "player": "Ronwen Williams",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "Mexico",
+        "category": "Goals",
+        "player": "Julián Quiñones",
+        "headshot": null,
+        "value": "1",
+        "clock": "9'"
+      },
+      {
+        "team": "Mexico",
+        "category": "Assists",
+        "player": "Érik Lira",
+        "headshot": null,
+        "value": "1",
+        "clock": "9'"
       }
     ]
   },
   "dbf527e7e26a4115a9d9e8d1210f1397": {
     "espn_id": "760414",
-    "fetched_at": "2026-06-24T19:54:22+00:00",
+    "fetched_at": "2026-06-26T10:21:30+00:00",
     "teams": [
       {
         "team": "South Korea",
@@ -2469,12 +3021,44 @@
         "player": "Matej Kovár",
         "headshot": null,
         "value": "4"
+      },
+      {
+        "team": "South Korea",
+        "category": "Goals",
+        "player": "Hwang In-Beom",
+        "headshot": null,
+        "value": "1",
+        "clock": "67'"
+      },
+      {
+        "team": "South Korea",
+        "category": "Assists",
+        "player": "Lee Kang-In",
+        "headshot": null,
+        "value": "1",
+        "clock": "67'"
+      },
+      {
+        "team": "South Korea",
+        "category": "Goals",
+        "player": "Oh Hyeon-Gyu",
+        "headshot": null,
+        "value": "1",
+        "clock": "80'"
+      },
+      {
+        "team": "South Korea",
+        "category": "Assists",
+        "player": "Hwang In-Beom",
+        "headshot": null,
+        "value": "1",
+        "clock": "80'"
       }
     ]
   },
   "4908343dcd7442f78c7187fe3e59bb5e": {
     "espn_id": "760419",
-    "fetched_at": "2026-06-24T19:54:23+00:00",
+    "fetched_at": "2026-06-26T10:21:32+00:00",
     "teams": [
       {
         "team": "Brazil",
@@ -2601,12 +3185,44 @@
         "player": "Yassine Bounou",
         "headshot": null,
         "value": "4"
+      },
+      {
+        "team": "Morocco",
+        "category": "Goals",
+        "player": "Ismael Saibari",
+        "headshot": null,
+        "value": "1",
+        "clock": "21'"
+      },
+      {
+        "team": "Morocco",
+        "category": "Assists",
+        "player": "Brahim Díaz",
+        "headshot": null,
+        "value": "1",
+        "clock": "21'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Goals",
+        "player": "Vinícius Júnior",
+        "headshot": null,
+        "value": "1",
+        "clock": "32'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Assists",
+        "player": "Bruno Guimarães",
+        "headshot": null,
+        "value": "1",
+        "clock": "32'"
       }
     ]
   },
   "734293aa9c4f44caba255672edbfbc10": {
     "espn_id": "760418",
-    "fetched_at": "2026-06-24T19:54:24+00:00",
+    "fetched_at": "2026-06-26T10:21:32+00:00",
     "teams": [
       {
         "team": "Haiti",
@@ -2733,12 +3349,20 @@
         "player": "Angus Gunn",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "Scotland",
+        "category": "Goals",
+        "player": "John McGinn",
+        "headshot": null,
+        "value": "1",
+        "clock": "28'"
       }
     ]
   },
   "20d270fc8dd64b038c21935ebe50f4e5": {
     "espn_id": "760422",
-    "fetched_at": "2026-06-24T19:54:25+00:00",
+    "fetched_at": "2026-06-26T10:21:32+00:00",
     "teams": [
       {
         "team": "Germany",
@@ -2865,12 +3489,84 @@
         "player": "Eloy Room",
         "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/127444.png",
         "value": "4"
+      },
+      {
+        "team": "Germany",
+        "category": "Goals",
+        "player": "Felix Nmecha",
+        "headshot": null,
+        "value": "1",
+        "clock": "6'"
+      },
+      {
+        "team": "Germany",
+        "category": "Assists",
+        "player": "Florian Wirtz",
+        "headshot": null,
+        "value": "1",
+        "clock": "6'"
+      },
+      {
+        "team": "Curaçao",
+        "category": "Goals",
+        "player": "Livano Comenencia",
+        "headshot": null,
+        "value": "1",
+        "clock": "21'"
+      },
+      {
+        "team": "Germany",
+        "category": "Goals",
+        "player": "Jamal Musiala",
+        "headshot": null,
+        "value": "1",
+        "clock": "47'"
+      },
+      {
+        "team": "Germany",
+        "category": "Assists",
+        "player": "Joshua Kimmich",
+        "headshot": null,
+        "value": "1",
+        "clock": "47'"
+      },
+      {
+        "team": "Germany",
+        "category": "Goals",
+        "player": "Deniz Undav",
+        "headshot": null,
+        "value": "1",
+        "clock": "78'"
+      },
+      {
+        "team": "Germany",
+        "category": "Assists",
+        "player": "Joshua Kimmich",
+        "headshot": null,
+        "value": "1",
+        "clock": "78'"
+      },
+      {
+        "team": "Germany",
+        "category": "Goals",
+        "player": "Kai Havertz",
+        "headshot": null,
+        "value": "1",
+        "clock": "88'"
+      },
+      {
+        "team": "Germany",
+        "category": "Assists",
+        "player": "Deniz Undav",
+        "headshot": null,
+        "value": "1",
+        "clock": "88'"
       }
     ]
   },
   "f4703b2c0205482abe404f98926f875d": {
     "espn_id": "760423",
-    "fetched_at": "2026-06-24T19:54:26+00:00",
+    "fetched_at": "2026-06-26T10:21:32+00:00",
     "teams": [
       {
         "team": "Ivory Coast",
@@ -2997,12 +3693,28 @@
         "player": "Hernán Galíndez",
         "headshot": null,
         "value": "3"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Goals",
+        "player": "Amad Diallo",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Assists",
+        "player": "Wilfried Singo",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'"
       }
     ]
   },
   "4c39b6c77cab46f4a82fd98337b3b92a": {
     "espn_id": "760425",
-    "fetched_at": "2026-06-24T19:54:27+00:00",
+    "fetched_at": "2026-06-26T10:21:33+00:00",
     "teams": [
       {
         "team": "Netherlands",
@@ -3129,12 +3841,44 @@
         "player": "Zion Suzuki",
         "headshot": null,
         "value": "4"
+      },
+      {
+        "team": "Japan",
+        "category": "Goals",
+        "player": "Keito Nakamura",
+        "headshot": null,
+        "value": "1",
+        "clock": "57'"
+      },
+      {
+        "team": "Japan",
+        "category": "Assists",
+        "player": "Takefusa Kubo",
+        "headshot": null,
+        "value": "1",
+        "clock": "57'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Goals",
+        "player": "Crysencio Summerville",
+        "headshot": null,
+        "value": "1",
+        "clock": "64'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Assists",
+        "player": "Ryan Gravenberch",
+        "headshot": null,
+        "value": "1",
+        "clock": "64'"
       }
     ]
   },
   "d87524a6ac0e4d87bb11222ef0c50955": {
     "espn_id": "760424",
-    "fetched_at": "2026-06-24T19:54:29+00:00",
+    "fetched_at": "2026-06-26T10:21:33+00:00",
     "teams": [
       {
         "team": "Sweden",
@@ -3261,12 +4005,84 @@
         "player": "Mouhib Chamakh",
         "headshot": null,
         "value": "1"
+      },
+      {
+        "team": "Sweden",
+        "category": "Goals",
+        "player": "Yasin Ayari",
+        "headshot": null,
+        "value": "1",
+        "clock": "7'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Goals",
+        "player": "Alexander Isak",
+        "headshot": null,
+        "value": "1",
+        "clock": "30'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Assists",
+        "player": "Viktor Gyökeres following a fast break",
+        "headshot": null,
+        "value": "1",
+        "clock": "30'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Goals",
+        "player": "Viktor Gyökeres",
+        "headshot": null,
+        "value": "1",
+        "clock": "59'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Assists",
+        "player": "Alexander Isak",
+        "headshot": null,
+        "value": "1",
+        "clock": "59'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Goals",
+        "player": "Mattias Svanberg",
+        "headshot": null,
+        "value": "1",
+        "clock": "84'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Assists",
+        "player": "Alexander Isak following a set piece situation",
+        "headshot": null,
+        "value": "1",
+        "clock": "84'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Goals",
+        "player": "Yasin Ayari",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+6'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Assists",
+        "player": "Lucas Bergvall",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+6'"
       }
     ]
   },
   "4d132cc19da84e7f9ede6e76fa0ccc24": {
     "espn_id": "760426",
-    "fetched_at": "2026-06-24T19:54:30+00:00",
+    "fetched_at": "2026-06-26T10:21:34+00:00",
     "teams": [
       {
         "team": "Belgium",
@@ -3393,12 +4209,28 @@
         "player": "Mostafa Shoubir",
         "headshot": null,
         "value": "3"
+      },
+      {
+        "team": "Egypt",
+        "category": "Goals",
+        "player": "Emam Ashour",
+        "headshot": null,
+        "value": "1",
+        "clock": "20'"
+      },
+      {
+        "team": "Egypt",
+        "category": "Assists",
+        "player": "Mohamed Salah",
+        "headshot": null,
+        "value": "1",
+        "clock": "20'"
       }
     ]
   },
   "f571b44b4d584e8e8c6b08fadbdcd101": {
     "espn_id": "760427",
-    "fetched_at": "2026-06-24T19:54:31+00:00",
+    "fetched_at": "2026-06-26T10:21:34+00:00",
     "teams": [
       {
         "team": "Iran",
@@ -3525,12 +4357,52 @@
         "player": "Max Crocombe",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Goals",
+        "player": "Elijah Just",
+        "headshot": null,
+        "value": "1",
+        "clock": "7'"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Assists",
+        "player": "Chris Wood",
+        "headshot": null,
+        "value": "1",
+        "clock": "7'"
+      },
+      {
+        "team": "Iran",
+        "category": "Goals",
+        "player": "Ramin Rezaeian",
+        "headshot": null,
+        "value": "1",
+        "clock": "32'"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Goals",
+        "player": "Elijah Just",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Assists",
+        "player": "Chris Wood following a fast break",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
       }
     ]
   },
   "56e9b28a279640e9b657b7447534e21e": {
     "espn_id": "760428",
-    "fetched_at": "2026-06-24T19:54:33+00:00",
+    "fetched_at": "2026-06-26T10:21:35+00:00",
     "teams": [
       {
         "team": "Spain",
@@ -3612,7 +4484,7 @@
       {
         "team": "Spain",
         "category": "Accurate Passes",
-        "player": "Rodri ",
+        "player": "Rodri",
         "headshot": null,
         "value": "116"
       },
@@ -3662,7 +4534,7 @@
   },
   "5d8976cddab84a9f898321bc565f1bf0": {
     "espn_id": "760429",
-    "fetched_at": "2026-06-24T19:54:34+00:00",
+    "fetched_at": "2026-06-26T10:21:36+00:00",
     "teams": [
       {
         "team": "Saudi Arabia",
@@ -3789,12 +4661,28 @@
         "player": "Fernando Muslera",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Goals",
+        "player": "Abdulelah Al Amri",
+        "headshot": null,
+        "value": "1",
+        "clock": "41'"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Goals",
+        "player": "Maxi Araújo",
+        "headshot": null,
+        "value": "1",
+        "clock": "80'"
       }
     ]
   },
   "bdd98c7838834cc9806d2108d9406490": {
     "espn_id": "760433",
-    "fetched_at": "2026-06-24T19:54:35+00:00",
+    "fetched_at": "2026-06-26T10:21:36+00:00",
     "teams": [
       {
         "team": "Argentina",
@@ -3914,12 +4802,52 @@
         "player": "Luca Zidane",
         "headshot": null,
         "value": "3"
+      },
+      {
+        "team": "Argentina",
+        "category": "Goals",
+        "player": "Lionel Messi",
+        "headshot": null,
+        "value": "1",
+        "clock": "17'"
+      },
+      {
+        "team": "Argentina",
+        "category": "Assists",
+        "player": "Rodrigo De Paul",
+        "headshot": null,
+        "value": "1",
+        "clock": "17'"
+      },
+      {
+        "team": "Argentina",
+        "category": "Goals",
+        "player": "Lionel Messi",
+        "headshot": null,
+        "value": "1",
+        "clock": "60'"
+      },
+      {
+        "team": "Argentina",
+        "category": "Goals",
+        "player": "Lionel Messi",
+        "headshot": null,
+        "value": "1",
+        "clock": "76'"
+      },
+      {
+        "team": "Argentina",
+        "category": "Assists",
+        "player": "Nico González",
+        "headshot": null,
+        "value": "1",
+        "clock": "76'"
       }
     ]
   },
   "e455f8d9e83248c78445529564e4ac26": {
     "espn_id": "760431",
-    "fetched_at": "2026-06-24T19:54:35+00:00",
+    "fetched_at": "2026-06-26T10:21:37+00:00",
     "teams": [
       {
         "team": "Austria",
@@ -4046,12 +4974,44 @@
         "player": "Yazeed Abulaila",
         "headshot": null,
         "value": "1"
+      },
+      {
+        "team": "Austria",
+        "category": "Goals",
+        "player": "Romano Schmid",
+        "headshot": null,
+        "value": "1",
+        "clock": "21'"
+      },
+      {
+        "team": "Austria",
+        "category": "Assists",
+        "player": "Xaver Schlager",
+        "headshot": null,
+        "value": "1",
+        "clock": "21'"
+      },
+      {
+        "team": "Jordan",
+        "category": "Goals",
+        "player": "Ali Olwan",
+        "headshot": null,
+        "value": "1",
+        "clock": "50'"
+      },
+      {
+        "team": "Jordan",
+        "category": "Assists",
+        "player": "Noor Al Rawabdeh following a fast break",
+        "headshot": null,
+        "value": "1",
+        "clock": "50'"
       }
     ]
   },
   "9f46b9589d8a499487663bebe6d3253f": {
     "espn_id": "760432",
-    "fetched_at": "2026-06-24T19:54:36+00:00",
+    "fetched_at": "2026-06-26T10:21:37+00:00",
     "teams": [
       {
         "team": "France",
@@ -4178,12 +5138,68 @@
         "player": "Édouard Mendy",
         "headshot": null,
         "value": "5"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Kylian Mbappé",
+        "headshot": null,
+        "value": "1",
+        "clock": "66'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Michael Olise",
+        "headshot": null,
+        "value": "1",
+        "clock": "66'"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Bradley Barcola",
+        "headshot": null,
+        "value": "1",
+        "clock": "82'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Adrien Rabiot",
+        "headshot": null,
+        "value": "1",
+        "clock": "82'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Goals",
+        "player": "Ibrahim Mbaye",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+5'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Assists",
+        "player": "Iliman Ndiaye following a fast break",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+5'"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Kylian Mbappé",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+6'"
       }
     ]
   },
   "11258e272dda47eb9f0835bd788298d0": {
     "espn_id": "760434",
-    "fetched_at": "2026-06-24T19:54:37+00:00",
+    "fetched_at": "2026-06-26T10:21:38+00:00",
     "teams": [
       {
         "team": "Ghana",
@@ -4310,12 +5326,28 @@
         "player": "Orlando Mosquera",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "Ghana",
+        "category": "Goals",
+        "player": "Caleb Yirenkyi",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+5'"
+      },
+      {
+        "team": "Ghana",
+        "category": "Assists",
+        "player": "Brandon Thomas-Asante following a fast break",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+5'"
       }
     ]
   },
   "812cdf49fe5c4c458dafc701cfe05220": {
     "espn_id": "760437",
-    "fetched_at": "2026-06-24T19:54:37+00:00",
+    "fetched_at": "2026-06-26T10:21:38+00:00",
     "teams": [
       {
         "team": "England",
@@ -4442,12 +5474,76 @@
         "player": "Dominik Livakovic",
         "headshot": null,
         "value": "7"
+      },
+      {
+        "team": "Croatia",
+        "category": "Goals",
+        "player": "Martin Baturina",
+        "headshot": null,
+        "value": "1",
+        "clock": "36'"
+      },
+      {
+        "team": "Croatia",
+        "category": "Assists",
+        "player": "Petar Sucic",
+        "headshot": null,
+        "value": "1",
+        "clock": "36'"
+      },
+      {
+        "team": "Croatia",
+        "category": "Goals",
+        "player": "Petar Musa",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+5'"
+      },
+      {
+        "team": "Croatia",
+        "category": "Assists",
+        "player": "Ivan Perisic",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+5'"
+      },
+      {
+        "team": "England",
+        "category": "Goals",
+        "player": "Jude Bellingham",
+        "headshot": null,
+        "value": "1",
+        "clock": "47'"
+      },
+      {
+        "team": "England",
+        "category": "Assists",
+        "player": "Elliot Anderson",
+        "headshot": null,
+        "value": "1",
+        "clock": "47'"
+      },
+      {
+        "team": "England",
+        "category": "Goals",
+        "player": "Marcus Rashford",
+        "headshot": null,
+        "value": "1",
+        "clock": "85'"
+      },
+      {
+        "team": "England",
+        "category": "Assists",
+        "player": "Bukayo Saka",
+        "headshot": null,
+        "value": "1",
+        "clock": "85'"
       }
     ]
   },
   "a669ce207ed5486ca3eaeb00d9a04df5": {
     "espn_id": "760438",
-    "fetched_at": "2026-06-24T19:54:39+00:00",
+    "fetched_at": "2026-06-26T10:21:38+00:00",
     "teams": [
       {
         "team": "Czechia",
@@ -4574,12 +5670,28 @@
         "player": "Ronwen Williams",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "Czechia",
+        "category": "Goals",
+        "player": "Michal Sadílek",
+        "headshot": null,
+        "value": "1",
+        "clock": "6'"
+      },
+      {
+        "team": "Czechia",
+        "category": "Assists",
+        "player": "Alexandr Sojka",
+        "headshot": null,
+        "value": "1",
+        "clock": "6'"
       }
     ]
   },
   "de0c2c404f224176b08b00a7ae3c29ed": {
     "espn_id": "760440",
-    "fetched_at": "2026-06-24T19:54:40+00:00",
+    "fetched_at": "2026-06-26T10:21:39+00:00",
     "teams": [
       {
         "team": "Canada",
@@ -4699,12 +5811,52 @@
         "player": "Mahmoud Abunada",
         "headshot": null,
         "value": "4"
+      },
+      {
+        "team": "Canada",
+        "category": "Goals",
+        "player": "Cyle Larin",
+        "headshot": null,
+        "value": "1",
+        "clock": "16'"
+      },
+      {
+        "team": "Canada",
+        "category": "Goals",
+        "player": "Jonathan David",
+        "headshot": null,
+        "value": "1",
+        "clock": "29'"
+      },
+      {
+        "team": "Canada",
+        "category": "Goals",
+        "player": "Jonathan David",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+3'"
+      },
+      {
+        "team": "Canada",
+        "category": "Goals",
+        "player": "Jonathan David",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+2'"
+      },
+      {
+        "team": "Canada",
+        "category": "Assists",
+        "player": "Nathan Saliba",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+2'"
       }
     ]
   },
   "0f2aeae6ac8e77223848d23a4ca86b0d": {
     "espn_id": "760441",
-    "fetched_at": "2026-06-24T19:54:41+00:00",
+    "fetched_at": "2026-06-26T10:21:39+00:00",
     "teams": [
       {
         "team": "Mexico",
@@ -4831,12 +5983,20 @@
         "player": "Kim Seung-Gyu",
         "headshot": null,
         "value": "3"
+      },
+      {
+        "team": "Mexico",
+        "category": "Goals",
+        "player": "Luis Romo",
+        "headshot": null,
+        "value": "1",
+        "clock": "50'"
       }
     ]
   },
   "c9ef5822ee64fd5275f7c73251bb56c7": {
     "espn_id": "760463",
-    "fetched_at": "2026-06-25T04:31:13+00:00",
+    "fetched_at": "2026-06-26T10:21:23+00:00",
     "teams": [
       {
         "team": "Switzerland",
@@ -4963,12 +6123,60 @@
         "player": "Maxime Crépeau",
         "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/159382.png",
         "value": "2"
+      },
+      {
+        "team": "Switzerland",
+        "category": "Goals",
+        "player": "Rubén Vargas",
+        "headshot": null,
+        "value": "1",
+        "clock": "46'"
+      },
+      {
+        "team": "Switzerland",
+        "category": "Assists",
+        "player": "Johan Manzambi",
+        "headshot": null,
+        "value": "1",
+        "clock": "46'"
+      },
+      {
+        "team": "Switzerland",
+        "category": "Goals",
+        "player": "Johan Manzambi",
+        "headshot": null,
+        "value": "1",
+        "clock": "57'"
+      },
+      {
+        "team": "Switzerland",
+        "category": "Assists",
+        "player": "Breel Embolo",
+        "headshot": null,
+        "value": "1",
+        "clock": "57'"
+      },
+      {
+        "team": "Canada",
+        "category": "Goals",
+        "player": "Promise David",
+        "headshot": null,
+        "value": "1",
+        "clock": "76'"
+      },
+      {
+        "team": "Canada",
+        "category": "Assists",
+        "player": "Nathan Saliba",
+        "headshot": null,
+        "value": "1",
+        "clock": "76'"
       }
     ]
   },
   "d1279ce7f33136a33e99ad442fc855e8": {
     "espn_id": "760464",
-    "fetched_at": "2026-06-25T04:31:13+00:00",
+    "fetched_at": "2026-06-26T10:21:23+00:00",
     "teams": [
       {
         "team": "Morocco",
@@ -5095,12 +6303,84 @@
         "player": "Johny Placide",
         "headshot": null,
         "value": "8"
+      },
+      {
+        "team": "Morocco",
+        "category": "Goals",
+        "player": "Achraf Hakimi",
+        "headshot": null,
+        "value": "1",
+        "clock": "39'"
+      },
+      {
+        "team": "Haiti",
+        "category": "Goals",
+        "player": "Wilson Isidor",
+        "headshot": null,
+        "value": "1",
+        "clock": "43'"
+      },
+      {
+        "team": "Haiti",
+        "category": "Assists",
+        "player": "Jean-Kévin Duverne",
+        "headshot": null,
+        "value": "1",
+        "clock": "43'"
+      },
+      {
+        "team": "Morocco",
+        "category": "Goals",
+        "player": "Ismael Saibari",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+1'"
+      },
+      {
+        "team": "Morocco",
+        "category": "Assists",
+        "player": "Achraf Hakimi",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+1'"
+      },
+      {
+        "team": "Morocco",
+        "category": "Goals",
+        "player": "Soufiane Rahimi",
+        "headshot": null,
+        "value": "1",
+        "clock": "78'"
+      },
+      {
+        "team": "Morocco",
+        "category": "Assists",
+        "player": "Chadi Riad following a corner",
+        "headshot": null,
+        "value": "1",
+        "clock": "78'"
+      },
+      {
+        "team": "Morocco",
+        "category": "Goals",
+        "player": "Gessime Yassine",
+        "headshot": null,
+        "value": "1",
+        "clock": "89'"
+      },
+      {
+        "team": "Morocco",
+        "category": "Assists",
+        "player": "Soufiane Rahimi",
+        "headshot": null,
+        "value": "1",
+        "clock": "89'"
       }
     ]
   },
   "885ba95805db310a7bcc3fb1a7a6dd28": {
     "espn_id": "760465",
-    "fetched_at": "2026-06-25T04:31:13+00:00",
+    "fetched_at": "2026-06-26T10:21:23+00:00",
     "teams": [
       {
         "team": "Scotland",
@@ -5227,12 +6507,44 @@
         "player": "Alisson Becker",
         "headshot": null,
         "value": "5"
+      },
+      {
+        "team": "Brazil",
+        "category": "Goals",
+        "player": "Vinícius Júnior",
+        "headshot": null,
+        "value": "1",
+        "clock": "7'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Assists",
+        "player": "Rayan",
+        "headshot": null,
+        "value": "1",
+        "clock": "7'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Goals",
+        "player": "Matheus Cunha",
+        "headshot": null,
+        "value": "1",
+        "clock": "60'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Assists",
+        "player": "Bruno Guimarães",
+        "headshot": null,
+        "value": "1",
+        "clock": "60'"
       }
     ]
   },
   "c0355dfc6e26ec327e379b6ef5824a5f": {
     "espn_id": "760466",
-    "fetched_at": "2026-06-25T04:31:13+00:00",
+    "fetched_at": "2026-06-26T10:21:24+00:00",
     "teams": [
       {
         "team": "South Africa",
@@ -5244,28 +6556,28 @@
           "offsides": "3",
           "wonCorners": "4",
           "saves": "2",
-          "possessionPct": "31.5",
+          "possessionPct": "31.6",
           "totalShots": "13",
           "shotsOnTarget": "4",
           "shotPct": "0.3",
           "penaltyKickGoals": "0",
           "penaltyKickShots": "0",
           "accuratePasses": "277",
-          "totalPasses": "338",
+          "totalPasses": "340",
           "passPct": "0.8",
           "accurateCrosses": "1",
           "totalCrosses": "8",
           "crossPct": "0.1",
-          "totalLongBalls": "55",
+          "totalLongBalls": "57",
           "accurateLongBalls": "19",
           "longballPct": "0.3",
           "blockedShots": "4",
-          "effectiveTackles": "6",
+          "effectiveTackles": "7",
           "totalTackles": "11",
-          "tacklePct": "0.5",
+          "tacklePct": "0.6",
           "interceptions": "15",
-          "effectiveClearance": "42",
-          "totalClearance": "42"
+          "effectiveClearance": "40",
+          "totalClearance": "40"
         }
       },
       {
@@ -5278,28 +6590,28 @@
           "offsides": "0",
           "wonCorners": "6",
           "saves": "3",
-          "possessionPct": "68.5",
+          "possessionPct": "68.4",
           "totalShots": "8",
           "shotsOnTarget": "3",
           "shotPct": "0.4",
           "penaltyKickGoals": "0",
           "penaltyKickShots": "0",
-          "accuratePasses": "643",
-          "totalPasses": "720",
+          "accuratePasses": "641",
+          "totalPasses": "719",
           "passPct": "0.9",
           "accurateCrosses": "7",
-          "totalCrosses": "33",
+          "totalCrosses": "34",
           "crossPct": "0.2",
-          "totalLongBalls": "55",
-          "accurateLongBalls": "31",
+          "totalLongBalls": "52",
+          "accurateLongBalls": "29",
           "longballPct": "0.6",
           "blockedShots": "1",
           "effectiveTackles": "9",
           "totalTackles": "12",
           "tacklePct": "0.8",
           "interceptions": "4",
-          "effectiveClearance": "15",
-          "totalClearance": "15"
+          "effectiveClearance": "16",
+          "totalClearance": "16"
         }
       }
     ],
@@ -5323,7 +6635,7 @@
         "category": "Defensive Interventions",
         "player": "Khuliso Mudau",
         "headshot": null,
-        "value": "19"
+        "value": "20"
       },
       {
         "team": "South Africa",
@@ -5359,12 +6671,28 @@
         "player": "Kim Seung-Gyu",
         "headshot": null,
         "value": "3"
+      },
+      {
+        "team": "South Africa",
+        "category": "Goals",
+        "player": "Thapelo Maseko",
+        "headshot": null,
+        "value": "1",
+        "clock": "63'"
+      },
+      {
+        "team": "South Africa",
+        "category": "Assists",
+        "player": "Tshepang Moremi following a fast break",
+        "headshot": null,
+        "value": "1",
+        "clock": "63'"
       }
     ]
   },
   "065b3573e875f8d23803357f73e5b99e": {
     "espn_id": "760442",
-    "fetched_at": "2026-06-25T20:25:51+00:00",
+    "fetched_at": "2026-06-26T10:21:29+00:00",
     "teams": [
       {
         "team": "United States",
@@ -5496,7 +6824,7 @@
   },
   "b792fff073974ebeb831cc35bad779be": {
     "espn_id": "760417",
-    "fetched_at": "2026-06-25T20:25:51+00:00",
+    "fetched_at": "2026-06-26T10:21:31+00:00",
     "teams": [
       {
         "team": "United States",
@@ -5616,6 +6944,70 @@
         "player": "Orlando Gil",
         "headshot": null,
         "value": "3"
+      },
+      {
+        "team": "United States",
+        "category": "Goals",
+        "player": "Folarin Balogun",
+        "headshot": null,
+        "value": "1",
+        "clock": "31'"
+      },
+      {
+        "team": "United States",
+        "category": "Assists",
+        "player": "Christian Pulisic",
+        "headshot": null,
+        "value": "1",
+        "clock": "31'"
+      },
+      {
+        "team": "United States",
+        "category": "Goals",
+        "player": "Folarin Balogun",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+5'"
+      },
+      {
+        "team": "United States",
+        "category": "Assists",
+        "player": "Malik Tillman",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+5'"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Goals",
+        "player": "Mauricio",
+        "headshot": null,
+        "value": "1",
+        "clock": "73'"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Assists",
+        "player": "Julio Enciso following a set piece situation",
+        "headshot": null,
+        "value": "1",
+        "clock": "73'"
+      },
+      {
+        "team": "United States",
+        "category": "Goals",
+        "player": "Giovanni Reyna",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+8'"
+      },
+      {
+        "team": "United States",
+        "category": "Assists",
+        "player": "Alex Freeman",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+8'"
       }
     ]
   },

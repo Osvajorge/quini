@@ -75,22 +75,22 @@ def aggregate() -> None:
             "categories": cats,
         })
 
-    # Sort by total shots descending as primary (most attacking impact)
     def score(p):
         cats = p["categories"]
+        goals = cats.get("Goals", {}).get("total", 0)
+        assists = cats.get("Assists", {}).get("total", 0)
         shots = cats.get("Total Shots", {}).get("total", 0)
-        passes = cats.get("Accurate Passes", {}).get("total", 0)
-        return shots * 5 + passes  # weight shots higher
+        return goals * 100 + assists * 50 + shots * 5
     out.sort(key=score, reverse=True)
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     json.dump({"players": out}, open(OUT, "w"), indent=2, ensure_ascii=False)
     print(f"[players] {len(out)} unique players aggregated")
-    print(f"[players] top 5 by attacking impact:")
-    for p in out[:5]:
-        ts = p["categories"].get("Total Shots", {}).get("total", 0)
-        ap = p["categories"].get("Accurate Passes", {}).get("total", 0)
-        print(f"  {p['player']:30} ({p['team']}) — {p['matches']}M · shots={ts} · passes={ap}")
+    print(f"[players] top 10 scorers:")
+    for p in out[:10]:
+        g = p["categories"].get("Goals", {}).get("total", 0)
+        a = p["categories"].get("Assists", {}).get("total", 0)
+        print(f"  {p['player']:30} ({p['team']}) — {p['matches']}M · {int(g)}G {int(a)}A")
 
 
 if __name__ == "__main__":
