@@ -1,7 +1,7 @@
 {
   "73529a242e319a86bf3d00ddb4accc37": {
     "espn_id": "760453",
-    "fetched_at": "2026-06-26T10:21:25+00:00",
+    "fetched_at": "2026-06-26T16:49:06+00:00",
     "teams": [
       {
         "team": "Spain",
@@ -181,7 +181,7 @@
   },
   "5f92f257386ec5bf7c6e2498a21f3a61": {
     "espn_id": "760451",
-    "fetched_at": "2026-06-26T10:21:25+00:00",
+    "fetched_at": "2026-06-26T16:49:07+00:00",
     "teams": [
       {
         "team": "Belgium",
@@ -313,7 +313,7 @@
   },
   "852a3abe6d46820720febc0fedebff9a": {
     "espn_id": "760450",
-    "fetched_at": "2026-06-26T10:21:26+00:00",
+    "fetched_at": "2026-06-26T16:49:07+00:00",
     "teams": [
       {
         "team": "Uruguay",
@@ -435,6 +435,22 @@
         "value": "22"
       },
       {
+        "team": "Cape Verde",
+        "category": "Goals",
+        "player": "Kevin Pina",
+        "headshot": null,
+        "value": "1",
+        "clock": "21'"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Goals",
+        "player": "Maxi Araújo",
+        "headshot": null,
+        "value": "1",
+        "clock": "44'"
+      },
+      {
         "team": "Uruguay",
         "category": "Goals",
         "player": "Agustín Canobbio",
@@ -462,7 +478,7 @@
   },
   "c1ec9a65f4b4cf74477b368a7d6282de": {
     "espn_id": "760452",
-    "fetched_at": "2026-06-26T10:21:26+00:00",
+    "fetched_at": "2026-06-26T16:49:08+00:00",
     "teams": [
       {
         "team": "New Zealand",
@@ -591,6 +607,38 @@
         "value": "4"
       },
       {
+        "team": "New Zealand",
+        "category": "Goals",
+        "player": "Finn Surman",
+        "headshot": null,
+        "value": "1",
+        "clock": "15'"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Assists",
+        "player": "Tim Payne",
+        "headshot": null,
+        "value": "1",
+        "clock": "15'"
+      },
+      {
+        "team": "Egypt",
+        "category": "Goals",
+        "player": "Mostafa Zico",
+        "headshot": null,
+        "value": "1",
+        "clock": "58'"
+      },
+      {
+        "team": "Egypt",
+        "category": "Assists",
+        "player": "Mohamed Hany",
+        "headshot": null,
+        "value": "1",
+        "clock": "58'"
+      },
+      {
         "team": "Egypt",
         "category": "Goals",
         "player": "Mohamed Salah",
@@ -605,12 +653,28 @@
         "headshot": null,
         "value": "1",
         "clock": "67'"
+      },
+      {
+        "team": "Egypt",
+        "category": "Goals",
+        "player": "Trezeguet",
+        "headshot": null,
+        "value": "1",
+        "clock": "82'"
+      },
+      {
+        "team": "Egypt",
+        "category": "Assists",
+        "player": "Mohamed Salah",
+        "headshot": null,
+        "value": "1",
+        "clock": "82'"
       }
     ]
   },
   "be6c63f416c67bca1300a98f5b89c3af": {
     "espn_id": "760456",
-    "fetched_at": "2026-06-26T10:21:24+00:00",
+    "fetched_at": "2026-06-26T16:49:06+00:00",
     "teams": [
       {
         "team": "Argentina",
@@ -766,7 +830,7 @@
   },
   "7ad7a0ce2ef2618bb59b066da5642f70": {
     "espn_id": "760457",
-    "fetched_at": "2026-06-26T10:21:20+00:00",
+    "fetched_at": "2026-06-26T16:49:06+00:00",
     "teams": [
       {
         "team": "France",
@@ -939,7 +1003,7 @@
   },
   "3f48473742ca0fd2a85930554720c75e": {
     "espn_id": "760454",
-    "fetched_at": "2026-06-26T10:21:20+00:00",
+    "fetched_at": "2026-06-26T16:49:05+00:00",
     "teams": [
       {
         "team": "Norway",
@@ -1143,7 +1207,7 @@
   },
   "fd8533b650e655030f6a7946f8795db2": {
     "espn_id": "760455",
-    "fetched_at": "2026-06-26T10:21:21+00:00",
+    "fetched_at": "2026-06-26T16:49:04+00:00",
     "teams": [
       {
         "team": "Jordan",
@@ -1290,6 +1354,22 @@
       {
         "team": "Algeria",
         "category": "Goals",
+        "player": "Nadhir Benbouali",
+        "headshot": null,
+        "value": "1",
+        "clock": "69'"
+      },
+      {
+        "team": "Algeria",
+        "category": "Assists",
+        "player": "Riyad Mahrez",
+        "headshot": null,
+        "value": "1",
+        "clock": "69'"
+      },
+      {
+        "team": "Algeria",
+        "category": "Goals",
         "player": "Amine Gouiri",
         "headshot": null,
         "value": "1",
@@ -1299,7 +1379,7 @@
   },
   "8ba93d190f1f934e33862a97a6353a6e": {
     "espn_id": "760461",
-    "fetched_at": "2026-06-26T10:21:21+00:00",
+    "fetched_at": "2026-06-26T16:49:02+00:00",
     "teams": [
       {
         "team": "Portugal",
@@ -1433,6 +1513,30 @@
         "player": "Cristiano Ronaldo",
         "headshot": null,
         "value": "1",
+        "clock": "6'"
+      },
+      {
+        "team": "Portugal",
+        "category": "Assists",
+        "player": "João Cancelo",
+        "headshot": null,
+        "value": "1",
+        "clock": "6'"
+      },
+      {
+        "team": "Portugal",
+        "category": "Goals",
+        "player": "Nuno Mendes",
+        "headshot": null,
+        "value": "1",
+        "clock": "17'"
+      },
+      {
+        "team": "Portugal",
+        "category": "Goals",
+        "player": "Cristiano Ronaldo",
+        "headshot": null,
+        "value": "1",
         "clock": "39'"
       },
       {
@@ -1455,7 +1559,7 @@
   },
   "2f49dd8deae3079dc4eb2d634d18a99c": {
     "espn_id": "760458",
-    "fetched_at": "2026-06-26T10:21:21+00:00",
+    "fetched_at": "2026-06-26T16:49:02+00:00",
     "teams": [
       {
         "team": "England",
@@ -1580,7 +1684,7 @@
   },
   "c1bc8c26480cd42b89a0de5329581314": {
     "espn_id": "760460",
-    "fetched_at": "2026-06-26T10:21:21+00:00",
+    "fetched_at": "2026-06-26T16:49:02+00:00",
     "teams": [
       {
         "team": "Panama",
@@ -1728,7 +1832,7 @@
   },
   "dfc5202cf1b8ae002cf952cd04f235b9": {
     "espn_id": "760449",
-    "fetched_at": "2026-06-26T10:21:27+00:00",
+    "fetched_at": "2026-06-26T16:49:09+00:00",
     "teams": [
       {
         "team": "Tunisia",
@@ -1896,12 +2000,28 @@
         "headshot": null,
         "value": "1",
         "clock": "69'"
+      },
+      {
+        "team": "Japan",
+        "category": "Goals",
+        "player": "Ayase Ueda",
+        "headshot": null,
+        "value": "1",
+        "clock": "83'"
+      },
+      {
+        "team": "Japan",
+        "category": "Assists",
+        "player": "Kaishu Sano",
+        "headshot": null,
+        "value": "1",
+        "clock": "83'"
       }
     ]
   },
   "681895f294b670b4c7b14495dfb583bc": {
     "espn_id": "760446",
-    "fetched_at": "2026-06-26T10:21:27+00:00",
+    "fetched_at": "2026-06-26T16:49:09+00:00",
     "teams": [
       {
         "team": "Ecuador",
@@ -2033,7 +2153,7 @@
   },
   "f1ab0f69832972a329243522ceaa7804": {
     "espn_id": "760448",
-    "fetched_at": "2026-06-26T10:21:28+00:00",
+    "fetched_at": "2026-06-26T16:49:10+00:00",
     "teams": [
       {
         "team": "Germany",
@@ -2205,7 +2325,7 @@
   },
   "4f0c518545b0096c68326daf25bffc1e": {
     "espn_id": "760447",
-    "fetched_at": "2026-06-26T10:21:28+00:00",
+    "fetched_at": "2026-06-26T16:49:10+00:00",
     "teams": [
       {
         "team": "Netherlands",
@@ -2433,7 +2553,7 @@
   },
   "ef0f74a991d3e35798ae5af77667bce1": {
     "espn_id": "760444",
-    "fetched_at": "2026-06-26T10:21:29+00:00",
+    "fetched_at": "2026-06-26T16:49:11+00:00",
     "teams": [
       {
         "team": "Brazil",
@@ -2605,7 +2725,7 @@
   },
   "4cd769aa7bae0ad9762bd69b80ef2903": {
     "espn_id": "760445",
-    "fetched_at": "2026-06-26T10:21:29+00:00",
+    "fetched_at": "2026-06-26T16:49:11+00:00",
     "teams": [
       {
         "team": "Scotland",
@@ -2746,7 +2866,7 @@
   },
   "c375e36f6aeb463f808c6811018cc716": {
     "espn_id": "760415",
-    "fetched_at": "2026-06-26T10:21:30+00:00",
+    "fetched_at": "2026-06-26T16:49:12+00:00",
     "teams": [
       {
         "team": "Mexico",
@@ -2889,12 +3009,28 @@
         "headshot": null,
         "value": "1",
         "clock": "9'"
+      },
+      {
+        "team": "Mexico",
+        "category": "Goals",
+        "player": "Raúl Jiménez",
+        "headshot": null,
+        "value": "1",
+        "clock": "67'"
+      },
+      {
+        "team": "Mexico",
+        "category": "Assists",
+        "player": "Roberto Alvarado",
+        "headshot": null,
+        "value": "1",
+        "clock": "67'"
       }
     ]
   },
   "dbf527e7e26a4115a9d9e8d1210f1397": {
     "espn_id": "760414",
-    "fetched_at": "2026-06-26T10:21:30+00:00",
+    "fetched_at": "2026-06-26T16:49:12+00:00",
     "teams": [
       {
         "team": "South Korea",
@@ -3023,6 +3159,22 @@
         "value": "4"
       },
       {
+        "team": "Czechia",
+        "category": "Goals",
+        "player": "Ladislav Krejcí",
+        "headshot": null,
+        "value": "1",
+        "clock": "59'"
+      },
+      {
+        "team": "Czechia",
+        "category": "Assists",
+        "player": "Vladimír Coufal",
+        "headshot": null,
+        "value": "1",
+        "clock": "59'"
+      },
+      {
         "team": "South Korea",
         "category": "Goals",
         "player": "Hwang In-Beom",
@@ -3058,7 +3210,7 @@
   },
   "4908343dcd7442f78c7187fe3e59bb5e": {
     "espn_id": "760419",
-    "fetched_at": "2026-06-26T10:21:32+00:00",
+    "fetched_at": "2026-06-26T16:49:13+00:00",
     "teams": [
       {
         "team": "Brazil",
@@ -3222,7 +3374,7 @@
   },
   "734293aa9c4f44caba255672edbfbc10": {
     "espn_id": "760418",
-    "fetched_at": "2026-06-26T10:21:32+00:00",
+    "fetched_at": "2026-06-26T16:49:14+00:00",
     "teams": [
       {
         "team": "Haiti",
@@ -3362,7 +3514,7 @@
   },
   "20d270fc8dd64b038c21935ebe50f4e5": {
     "espn_id": "760422",
-    "fetched_at": "2026-06-26T10:21:32+00:00",
+    "fetched_at": "2026-06-26T16:49:14+00:00",
     "teams": [
       {
         "team": "Germany",
@@ -3517,6 +3669,22 @@
       {
         "team": "Germany",
         "category": "Goals",
+        "player": "Nico Schlotterbeck",
+        "headshot": null,
+        "value": "1",
+        "clock": "38'"
+      },
+      {
+        "team": "Germany",
+        "category": "Assists",
+        "player": "Nathaniel Brown",
+        "headshot": null,
+        "value": "1",
+        "clock": "38'"
+      },
+      {
+        "team": "Germany",
+        "category": "Goals",
         "player": "Jamal Musiala",
         "headshot": null,
         "value": "1",
@@ -3529,6 +3697,22 @@
         "headshot": null,
         "value": "1",
         "clock": "47'"
+      },
+      {
+        "team": "Germany",
+        "category": "Goals",
+        "player": "Nathaniel Brown",
+        "headshot": null,
+        "value": "1",
+        "clock": "68'"
+      },
+      {
+        "team": "Germany",
+        "category": "Assists",
+        "player": "Deniz Undav",
+        "headshot": null,
+        "value": "1",
+        "clock": "68'"
       },
       {
         "team": "Germany",
@@ -3566,7 +3750,7 @@
   },
   "f4703b2c0205482abe404f98926f875d": {
     "espn_id": "760423",
-    "fetched_at": "2026-06-26T10:21:32+00:00",
+    "fetched_at": "2026-06-26T16:49:15+00:00",
     "teams": [
       {
         "team": "Ivory Coast",
@@ -3714,7 +3898,7 @@
   },
   "4c39b6c77cab46f4a82fd98337b3b92a": {
     "espn_id": "760425",
-    "fetched_at": "2026-06-26T10:21:33+00:00",
+    "fetched_at": "2026-06-26T16:49:15+00:00",
     "teams": [
       {
         "team": "Netherlands",
@@ -3843,6 +4027,22 @@
         "value": "4"
       },
       {
+        "team": "Netherlands",
+        "category": "Goals",
+        "player": "Virgil van Dijk",
+        "headshot": null,
+        "value": "1",
+        "clock": "51'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Assists",
+        "player": "Ryan Gravenberch",
+        "headshot": null,
+        "value": "1",
+        "clock": "51'"
+      },
+      {
         "team": "Japan",
         "category": "Goals",
         "player": "Keito Nakamura",
@@ -3873,12 +4073,28 @@
         "headshot": null,
         "value": "1",
         "clock": "64'"
+      },
+      {
+        "team": "Japan",
+        "category": "Goals",
+        "player": "Daichi Kamada",
+        "headshot": null,
+        "value": "1",
+        "clock": "89'"
+      },
+      {
+        "team": "Japan",
+        "category": "Assists",
+        "player": "Koki Ogawa following a corner",
+        "headshot": null,
+        "value": "1",
+        "clock": "89'"
       }
     ]
   },
   "d87524a6ac0e4d87bb11222ef0c50955": {
     "espn_id": "760424",
-    "fetched_at": "2026-06-26T10:21:33+00:00",
+    "fetched_at": "2026-06-26T16:49:15+00:00",
     "teams": [
       {
         "team": "Sweden",
@@ -4031,6 +4247,22 @@
         "clock": "30'"
       },
       {
+        "team": "Tunisia",
+        "category": "Goals",
+        "player": "Omar Rekik",
+        "headshot": null,
+        "value": "1",
+        "clock": "43'"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Assists",
+        "player": "Hannibal Mejbri",
+        "headshot": null,
+        "value": "1",
+        "clock": "43'"
+      },
+      {
         "team": "Sweden",
         "category": "Goals",
         "player": "Viktor Gyökeres",
@@ -4082,7 +4314,7 @@
   },
   "4d132cc19da84e7f9ede6e76fa0ccc24": {
     "espn_id": "760426",
-    "fetched_at": "2026-06-26T10:21:34+00:00",
+    "fetched_at": "2026-06-26T16:49:15+00:00",
     "teams": [
       {
         "team": "Belgium",
@@ -4230,7 +4462,7 @@
   },
   "f571b44b4d584e8e8c6b08fadbdcd101": {
     "espn_id": "760427",
-    "fetched_at": "2026-06-26T10:21:34+00:00",
+    "fetched_at": "2026-06-26T16:49:16+00:00",
     "teams": [
       {
         "team": "Iran",
@@ -4397,12 +4629,28 @@
         "headshot": null,
         "value": "1",
         "clock": "54'"
+      },
+      {
+        "team": "Iran",
+        "category": "Goals",
+        "player": "Mohammad Mohebbi",
+        "headshot": null,
+        "value": "1",
+        "clock": "64'"
+      },
+      {
+        "team": "Iran",
+        "category": "Assists",
+        "player": "Ramin Rezaeian",
+        "headshot": null,
+        "value": "1",
+        "clock": "64'"
       }
     ]
   },
   "56e9b28a279640e9b657b7447534e21e": {
     "espn_id": "760428",
-    "fetched_at": "2026-06-26T10:21:35+00:00",
+    "fetched_at": "2026-06-26T16:49:16+00:00",
     "teams": [
       {
         "team": "Spain",
@@ -4534,7 +4782,7 @@
   },
   "5d8976cddab84a9f898321bc565f1bf0": {
     "espn_id": "760429",
-    "fetched_at": "2026-06-26T10:21:36+00:00",
+    "fetched_at": "2026-06-26T16:49:17+00:00",
     "teams": [
       {
         "team": "Saudi Arabia",
@@ -4682,7 +4930,7 @@
   },
   "bdd98c7838834cc9806d2108d9406490": {
     "espn_id": "760433",
-    "fetched_at": "2026-06-26T10:21:36+00:00",
+    "fetched_at": "2026-06-26T16:49:17+00:00",
     "teams": [
       {
         "team": "Argentina",
@@ -4847,7 +5095,7 @@
   },
   "e455f8d9e83248c78445529564e4ac26": {
     "espn_id": "760431",
-    "fetched_at": "2026-06-26T10:21:37+00:00",
+    "fetched_at": "2026-06-26T16:49:17+00:00",
     "teams": [
       {
         "team": "Austria",
@@ -5011,7 +5259,7 @@
   },
   "9f46b9589d8a499487663bebe6d3253f": {
     "espn_id": "760432",
-    "fetched_at": "2026-06-26T10:21:37+00:00",
+    "fetched_at": "2026-06-26T16:49:18+00:00",
     "teams": [
       {
         "team": "France",
@@ -5199,7 +5447,7 @@
   },
   "11258e272dda47eb9f0835bd788298d0": {
     "espn_id": "760434",
-    "fetched_at": "2026-06-26T10:21:38+00:00",
+    "fetched_at": "2026-06-26T16:49:19+00:00",
     "teams": [
       {
         "team": "Ghana",
@@ -5347,7 +5595,7 @@
   },
   "812cdf49fe5c4c458dafc701cfe05220": {
     "espn_id": "760437",
-    "fetched_at": "2026-06-26T10:21:38+00:00",
+    "fetched_at": "2026-06-26T16:49:19+00:00",
     "teams": [
       {
         "team": "England",
@@ -5492,6 +5740,22 @@
         "clock": "36'"
       },
       {
+        "team": "England",
+        "category": "Goals",
+        "player": "Harry Kane",
+        "headshot": null,
+        "value": "1",
+        "clock": "42'"
+      },
+      {
+        "team": "England",
+        "category": "Assists",
+        "player": "Declan Rice",
+        "headshot": null,
+        "value": "1",
+        "clock": "42'"
+      },
+      {
         "team": "Croatia",
         "category": "Goals",
         "player": "Petar Musa",
@@ -5543,7 +5807,7 @@
   },
   "a669ce207ed5486ca3eaeb00d9a04df5": {
     "espn_id": "760438",
-    "fetched_at": "2026-06-26T10:21:38+00:00",
+    "fetched_at": "2026-06-26T16:49:20+00:00",
     "teams": [
       {
         "team": "Czechia",
@@ -5691,7 +5955,7 @@
   },
   "de0c2c404f224176b08b00a7ae3c29ed": {
     "espn_id": "760440",
-    "fetched_at": "2026-06-26T10:21:39+00:00",
+    "fetched_at": "2026-06-26T16:49:20+00:00",
     "teams": [
       {
         "team": "Canada",
@@ -5839,6 +6103,14 @@
       {
         "team": "Canada",
         "category": "Goals",
+        "player": "Nathan Saliba",
+        "headshot": null,
+        "value": "1",
+        "clock": "64'"
+      },
+      {
+        "team": "Canada",
+        "category": "Goals",
         "player": "Jonathan David",
         "headshot": null,
         "value": "1",
@@ -5856,7 +6128,7 @@
   },
   "0f2aeae6ac8e77223848d23a4ca86b0d": {
     "espn_id": "760441",
-    "fetched_at": "2026-06-26T10:21:39+00:00",
+    "fetched_at": "2026-06-26T16:49:20+00:00",
     "teams": [
       {
         "team": "Mexico",
@@ -5996,7 +6268,7 @@
   },
   "c9ef5822ee64fd5275f7c73251bb56c7": {
     "espn_id": "760463",
-    "fetched_at": "2026-06-26T10:21:23+00:00",
+    "fetched_at": "2026-06-26T16:49:03+00:00",
     "teams": [
       {
         "team": "Switzerland",
@@ -6176,7 +6448,7 @@
   },
   "d1279ce7f33136a33e99ad442fc855e8": {
     "espn_id": "760464",
-    "fetched_at": "2026-06-26T10:21:23+00:00",
+    "fetched_at": "2026-06-26T16:49:03+00:00",
     "teams": [
       {
         "team": "Morocco",
@@ -6380,7 +6652,7 @@
   },
   "885ba95805db310a7bcc3fb1a7a6dd28": {
     "espn_id": "760465",
-    "fetched_at": "2026-06-26T10:21:23+00:00",
+    "fetched_at": "2026-06-26T16:49:03+00:00",
     "teams": [
       {
         "team": "Scotland",
@@ -6527,6 +6799,22 @@
       {
         "team": "Brazil",
         "category": "Goals",
+        "player": "Vinícius Júnior",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+3'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Assists",
+        "player": "Bruno Guimarães",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'+3'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Goals",
         "player": "Matheus Cunha",
         "headshot": null,
         "value": "1",
@@ -6544,7 +6832,7 @@
   },
   "c0355dfc6e26ec327e379b6ef5824a5f": {
     "espn_id": "760466",
-    "fetched_at": "2026-06-26T10:21:24+00:00",
+    "fetched_at": "2026-06-26T16:49:03+00:00",
     "teams": [
       {
         "team": "South Africa",
@@ -6692,7 +6980,7 @@
   },
   "065b3573e875f8d23803357f73e5b99e": {
     "espn_id": "760442",
-    "fetched_at": "2026-06-26T10:21:29+00:00",
+    "fetched_at": "2026-06-26T16:49:11+00:00",
     "teams": [
       {
         "team": "United States",
@@ -6819,12 +7107,20 @@
         "player": "Patrick Beach",
         "headshot": null,
         "value": "1"
+      },
+      {
+        "team": "United States",
+        "category": "Goals",
+        "player": "Alex Freeman",
+        "headshot": null,
+        "value": "1",
+        "clock": "43'"
       }
     ]
   },
   "b792fff073974ebeb831cc35bad779be": {
     "espn_id": "760417",
-    "fetched_at": "2026-06-26T10:21:31+00:00",
+    "fetched_at": "2026-06-26T16:49:13+00:00",
     "teams": [
       {
         "team": "United States",
@@ -7013,7 +7309,7 @@
   },
   "a5a0b544a984ab16e564264f3e859b43": {
     "espn_id": "760473",
-    "fetched_at": "2026-06-25T21:59:13+00:00",
+    "fetched_at": "2026-06-26T16:49:04+00:00",
     "teams": [
       {
         "team": "Curaçao",
@@ -7025,24 +7321,24 @@
           "offsides": "2",
           "wonCorners": "4",
           "saves": "1",
-          "possessionPct": "36.6",
+          "possessionPct": "36.7",
           "totalShots": "11",
           "shotsOnTarget": "2",
           "shotPct": "0.2",
           "penaltyKickGoals": "0",
           "penaltyKickShots": "0",
-          "accuratePasses": "296",
-          "totalPasses": "354",
+          "accuratePasses": "295",
+          "totalPasses": "355",
           "passPct": "0.8",
           "accurateCrosses": "5",
           "totalCrosses": "15",
           "crossPct": "0.3",
-          "totalLongBalls": "31",
-          "accurateLongBalls": "15",
+          "totalLongBalls": "30",
+          "accurateLongBalls": "14",
           "longballPct": "0.5",
           "blockedShots": "2",
-          "effectiveTackles": "12",
-          "totalTackles": "20",
+          "effectiveTackles": "11",
+          "totalTackles": "17",
           "tacklePct": "0.6",
           "interceptions": "15",
           "effectiveClearance": "17",
@@ -7059,24 +7355,24 @@
           "offsides": "1",
           "wonCorners": "6",
           "saves": "2",
-          "possessionPct": "63.4",
+          "possessionPct": "63.3",
           "totalShots": "7",
           "shotsOnTarget": "3",
           "shotPct": "0.4",
           "penaltyKickGoals": "0",
           "penaltyKickShots": "0",
           "accuratePasses": "558",
-          "totalPasses": "623",
+          "totalPasses": "624",
           "passPct": "0.9",
           "accurateCrosses": "3",
           "totalCrosses": "16",
           "crossPct": "0.2",
-          "totalLongBalls": "39",
-          "accurateLongBalls": "21",
+          "totalLongBalls": "38",
+          "accurateLongBalls": "20",
           "longballPct": "0.5",
           "blockedShots": "1",
-          "effectiveTackles": "10",
-          "totalTackles": "17",
+          "effectiveTackles": "9",
+          "totalTackles": "16",
           "tacklePct": "0.6",
           "interceptions": "12",
           "effectiveClearance": "19",
@@ -7130,9 +7426,9 @@
       {
         "team": "Ivory Coast",
         "category": "Defensive Interventions",
-        "player": "Christopher Operi",
+        "player": "Guela Doué",
         "headshot": null,
-        "value": "10"
+        "value": "9"
       },
       {
         "team": "Ivory Coast",
@@ -7140,12 +7436,44 @@
         "player": "Yahia Fofana",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Goals",
+        "player": "Nicolas Pépé",
+        "headshot": null,
+        "value": "1",
+        "clock": "7'"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Assists",
+        "player": "Yan Diomande",
+        "headshot": null,
+        "value": "1",
+        "clock": "7'"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Goals",
+        "player": "Nicolas Pépé",
+        "headshot": null,
+        "value": "1",
+        "clock": "64'"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Assists",
+        "player": "Ibrahim Sangaré",
+        "headshot": null,
+        "value": "1",
+        "clock": "64'"
       }
     ]
   },
   "0ec28b84ec399bd4dffbe8d1bc72b3c4": {
     "espn_id": "760468",
-    "fetched_at": "2026-06-25T21:59:13+00:00",
+    "fetched_at": "2026-06-26T16:49:04+00:00",
     "teams": [
       {
         "team": "Ecuador",
@@ -7163,12 +7491,12 @@
           "shotPct": "0.4",
           "penaltyKickGoals": "0",
           "penaltyKickShots": "0",
-          "accuratePasses": "313",
-          "totalPasses": "379",
+          "accuratePasses": "312",
+          "totalPasses": "378",
           "passPct": "0.8",
           "accurateCrosses": "3",
-          "totalCrosses": "12",
-          "crossPct": "0.3",
+          "totalCrosses": "13",
+          "crossPct": "0.2",
           "totalLongBalls": "50",
           "accurateLongBalls": "24",
           "longballPct": "0.5",
@@ -7177,8 +7505,8 @@
           "totalTackles": "26",
           "tacklePct": "0.6",
           "interceptions": "12",
-          "effectiveClearance": "29",
-          "totalClearance": "29"
+          "effectiveClearance": "30",
+          "totalClearance": "30"
         }
       },
       {
@@ -7272,12 +7600,60 @@
         "player": "Manuel Neuer",
         "headshot": null,
         "value": "1"
+      },
+      {
+        "team": "Germany",
+        "category": "Goals",
+        "player": "Leroy Sané",
+        "headshot": null,
+        "value": "1",
+        "clock": "2'"
+      },
+      {
+        "team": "Germany",
+        "category": "Assists",
+        "player": "Florian Wirtz",
+        "headshot": null,
+        "value": "1",
+        "clock": "2'"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Goals",
+        "player": "Nilson Angulo",
+        "headshot": null,
+        "value": "1",
+        "clock": "9'"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Assists",
+        "player": "Pedro Vite",
+        "headshot": null,
+        "value": "1",
+        "clock": "9'"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Goals",
+        "player": "Gonzalo Plata",
+        "headshot": null,
+        "value": "1",
+        "clock": "77'"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Assists",
+        "player": "Kevin Rodríguez",
+        "headshot": null,
+        "value": "1",
+        "clock": "77'"
       }
     ]
   },
   "0ed0233bddc4eafc8507f86a9c17b998": {
     "espn_id": "760471",
-    "fetched_at": "2026-06-26T01:32:37+00:00",
+    "fetched_at": "2026-06-26T16:49:04+00:00",
     "teams": [
       {
         "team": "Japan",
@@ -7295,14 +7671,14 @@
           "shotPct": "0.4",
           "penaltyKickGoals": "0",
           "penaltyKickShots": "0",
-          "accuratePasses": "379",
-          "totalPasses": "446",
-          "passPct": "0.9",
+          "accuratePasses": "378",
+          "totalPasses": "445",
+          "passPct": "0.8",
           "accurateCrosses": "4",
           "totalCrosses": "13",
           "crossPct": "0.3",
-          "totalLongBalls": "51",
-          "accurateLongBalls": "20",
+          "totalLongBalls": "49",
+          "accurateLongBalls": "18",
           "longballPct": "0.4",
           "blockedShots": "2",
           "effectiveTackles": "7",
@@ -7340,8 +7716,8 @@
           "longballPct": "0.4",
           "blockedShots": "3",
           "effectiveTackles": "3",
-          "totalTackles": "6",
-          "tacklePct": "0.5",
+          "totalTackles": "7",
+          "tacklePct": "0.4",
           "interceptions": "5",
           "effectiveClearance": "21",
           "totalClearance": "21"
@@ -7404,12 +7780,44 @@
         "player": "Jacob Widell Zetterström",
         "headshot": null,
         "value": "2"
+      },
+      {
+        "team": "Japan",
+        "category": "Goals",
+        "player": "Daizen Maeda",
+        "headshot": null,
+        "value": "1",
+        "clock": "56'"
+      },
+      {
+        "team": "Japan",
+        "category": "Assists",
+        "player": "Ritsu Doan",
+        "headshot": null,
+        "value": "1",
+        "clock": "56'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Goals",
+        "player": "Anthony Elanga",
+        "headshot": null,
+        "value": "1",
+        "clock": "62'"
+      },
+      {
+        "team": "Sweden",
+        "category": "Assists",
+        "player": "Viktor Gyökeres",
+        "headshot": null,
+        "value": "1",
+        "clock": "62'"
       }
     ]
   },
   "f3c4657daa143a0c5bd62cb370d01ce4": {
     "espn_id": "760472",
-    "fetched_at": "2026-06-26T01:32:37+00:00",
+    "fetched_at": "2026-06-26T16:49:04+00:00",
     "teams": [
       {
         "team": "Tunisia",
@@ -7421,28 +7829,28 @@
           "offsides": "2",
           "wonCorners": "4",
           "saves": "4",
-          "possessionPct": "28.4",
+          "possessionPct": "28.6",
           "totalShots": "10",
           "shotsOnTarget": "4",
           "shotPct": "0.4",
           "penaltyKickGoals": "0",
           "penaltyKickShots": "0",
-          "accuratePasses": "200",
+          "accuratePasses": "199",
           "totalPasses": "258",
           "passPct": "0.8",
           "accurateCrosses": "4",
           "totalCrosses": "13",
           "crossPct": "0.3",
-          "totalLongBalls": "48",
-          "accurateLongBalls": "21",
+          "totalLongBalls": "47",
+          "accurateLongBalls": "20",
           "longballPct": "0.4",
           "blockedShots": "1",
           "effectiveTackles": "9",
-          "totalTackles": "16",
-          "tacklePct": "0.6",
+          "totalTackles": "17",
+          "tacklePct": "0.5",
           "interceptions": "8",
-          "effectiveClearance": "36",
-          "totalClearance": "36"
+          "effectiveClearance": "35",
+          "totalClearance": "35"
         }
       },
       {
@@ -7455,28 +7863,28 @@
           "offsides": "1",
           "wonCorners": "6",
           "saves": "3",
-          "possessionPct": "71.6",
+          "possessionPct": "71.4",
           "totalShots": "20",
           "shotsOnTarget": "7",
           "shotPct": "0.4",
           "penaltyKickGoals": "0",
           "penaltyKickShots": "0",
-          "accuratePasses": "601",
-          "totalPasses": "652",
+          "accuratePasses": "602",
+          "totalPasses": "647",
           "passPct": "0.9",
-          "accurateCrosses": "7",
-          "totalCrosses": "28",
-          "crossPct": "0.3",
-          "totalLongBalls": "23",
+          "accurateCrosses": "6",
+          "totalCrosses": "27",
+          "crossPct": "0.2",
+          "totalLongBalls": "22",
           "accurateLongBalls": "15",
           "longballPct": "0.7",
           "blockedShots": "5",
-          "effectiveTackles": "4",
+          "effectiveTackles": "5",
           "totalTackles": "8",
-          "tacklePct": "0.5",
+          "tacklePct": "0.6",
           "interceptions": "10",
-          "effectiveClearance": "10",
-          "totalClearance": "10"
+          "effectiveClearance": "17",
+          "totalClearance": "17"
         }
       }
     ],
@@ -7493,14 +7901,14 @@
         "category": "Accurate Passes",
         "player": "Ellyes Skhiri",
         "headshot": null,
-        "value": "35"
+        "value": "34"
       },
       {
         "team": "Tunisia",
         "category": "Defensive Interventions",
         "player": "Ali Abdi",
         "headshot": null,
-        "value": "16"
+        "value": "17"
       },
       {
         "team": "Tunisia",
@@ -7526,9 +7934,9 @@
       {
         "team": "Netherlands",
         "category": "Defensive Interventions",
-        "player": "Jan Paul van Hecke",
-        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/282583.png",
-        "value": "9"
+        "player": "Virgil van Dijk",
+        "headshot": null,
+        "value": "12"
       },
       {
         "team": "Netherlands",
@@ -7536,12 +7944,60 @@
         "player": "Bart Verbruggen",
         "headshot": null,
         "value": "3"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Goals",
+        "player": "Brian Brobbey",
+        "headshot": null,
+        "value": "1",
+        "clock": "7'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Assists",
+        "player": "Virgil van Dijk",
+        "headshot": null,
+        "value": "1",
+        "clock": "7'"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Goals",
+        "player": "Hazem Mastouri",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
+      },
+      {
+        "team": "Tunisia",
+        "category": "Assists",
+        "player": "Hannibal Mejbri",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Goals",
+        "player": "Jan Paul van Hecke",
+        "headshot": null,
+        "value": "1",
+        "clock": "62'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Assists",
+        "player": "Tijjani Reijnders",
+        "headshot": null,
+        "value": "1",
+        "clock": "62'"
       }
     ]
   },
   "22f6ac06dfcc88a847920f62633e6459": {
     "espn_id": "760469",
-    "fetched_at": "2026-06-26T05:54:35+00:00",
+    "fetched_at": "2026-06-26T16:49:04+00:00",
     "teams": [
       {
         "team": "Paraguay",
@@ -7553,23 +8009,23 @@
           "offsides": "0",
           "wonCorners": "1",
           "saves": "5",
-          "possessionPct": "44.1",
+          "possessionPct": "44",
           "totalShots": "7",
           "shotsOnTarget": "2",
           "shotPct": "0.3",
           "penaltyKickGoals": "0",
           "penaltyKickShots": "0",
           "accuratePasses": "330",
-          "totalPasses": "427",
+          "totalPasses": "426",
           "passPct": "0.8",
           "accurateCrosses": "0",
           "totalCrosses": "7",
           "crossPct": "0.0",
-          "totalLongBalls": "58",
+          "totalLongBalls": "59",
           "accurateLongBalls": "14",
           "longballPct": "0.2",
           "blockedShots": "1",
-          "effectiveTackles": "16",
+          "effectiveTackles": "17",
           "totalTackles": "24",
           "tacklePct": "0.7",
           "interceptions": "8",
@@ -7587,24 +8043,24 @@
           "offsides": "0",
           "wonCorners": "3",
           "saves": "2",
-          "possessionPct": "55.9",
+          "possessionPct": "56",
           "totalShots": "12",
           "shotsOnTarget": "5",
           "shotPct": "0.4",
           "penaltyKickGoals": "0",
           "penaltyKickShots": "0",
           "accuratePasses": "438",
-          "totalPasses": "536",
+          "totalPasses": "537",
           "passPct": "0.8",
           "accurateCrosses": "4",
           "totalCrosses": "13",
           "crossPct": "0.3",
-          "totalLongBalls": "57",
-          "accurateLongBalls": "18",
+          "totalLongBalls": "58",
+          "accurateLongBalls": "17",
           "longballPct": "0.3",
           "blockedShots": "3",
           "effectiveTackles": "12",
-          "totalTackles": "19",
+          "totalTackles": "20",
           "tacklePct": "0.6",
           "interceptions": "7",
           "effectiveClearance": "10",

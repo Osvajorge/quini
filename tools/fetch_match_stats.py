@@ -125,10 +125,13 @@ def _extract_team_stats(team_block: dict) -> dict:
 
 
 def _extract_leaders(summary: dict) -> list[dict]:
-    """Top performers per stat category."""
+    """Top performers per stat category (shots, passes, saves — NOT goals/assists)."""
     leaders = []
+    skip_cats = {"Goals", "Assists"}
     for L in summary.get("leaders", []) or []:
         for cat in L.get("leaders", []) or []:
+            if cat.get("displayName") in skip_cats:
+                continue
             for athlete in (cat.get("leaders") or [])[:1]:
                 a = athlete.get("athlete", {})
                 leaders.append({
@@ -142,16 +145,20 @@ def _extract_leaders(summary: dict) -> list[dict]:
 
 
 def _extract_goals_assists(summary: dict) -> list[dict]:
-    """Parse goals and assists from keyEvents."""
+    """Parse ALL goals and assists from keyEvents (complete scorer data)."""
     import re
     entries = []
     for ev in summary.get("keyEvents", []):
-        if ev.get("type", {}).get("text") != "Goal":
+        ev_type = ev.get("type", {}).get("type", "")  # slug: "goal", "goal---volley", "own-goal"
+        if "goal" not in ev_type or "own-goal" in ev_type:
             continue
         text = ev.get("text", "")
         team_name = ev.get("team", {}).get("displayName", "")
         clock = ev.get("clock", {}).get("displayValue", "")
-        m = re.search(r"\d+\.\s*(.+?)\s*\(", text)
+        # Text format: "Goal! Portugal 2, Uzbekistan 0. Nuno Mendes (Portugal) ..."
+        m = re.search(r"(?:Goal[^.]*\.\s+)(.+?)\s+\(", text)
+        if not m:
+            m = re.search(r"\d+\.\s*(.+?)\s*\(", text)
         if m:
             entries.append({
                 "team": team_name,
@@ -189,10 +196,7 @@ def fetch(refresh: bool = False) -> None:
     def _needs_fetch(fid):
         if fid not in existing or not existing[fid].get("teams"):
             return True
-        if refresh:
-            cats = {l.get("category") for l in existing[fid].get("leaders", [])}
-            return "Goals" not in cats
-        return False
+        return refresh
 
     needed_dates = {fx.get("commence_time", "")[:10] for fx in completed
                     if _needs_fetch(fx.get("id"))}

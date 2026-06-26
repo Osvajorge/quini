@@ -2600,7 +2600,6 @@ function renderHistory() {
       <div class="flex gap-2 mb-4 flex-wrap">
         <button onclick="setHistorySubTab('bets')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle2(false)}">${LANG === 'es' ? '💰 Apuestas' : '💰 Bets'}</button>
         <button onclick="setHistorySubTab('predictions')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle2(false)}">${LANG === 'es' ? '🎯 Predicciones' : '🎯 Predictions'}</button>
-        <button onclick="setHistorySubTab('bankroll')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle2(false)}">${LANG === 'es' ? '📈 Banca' : '📈 Bankroll'}</button>
         <button onclick="setHistorySubTab('results')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle2(true)}">${LANG === 'es' ? '⚽ Resultados' : '⚽ Results'}</button>
       </div>`;
     renderResults();
@@ -2617,16 +2616,13 @@ function renderHistory() {
     <div class="flex gap-2 mb-4 flex-wrap">
       <button onclick="setHistorySubTab('bets')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(sub==='bets')}">${LANG === 'es' ? '💰 Apuestas' : '💰 Bets'}</button>
       <button onclick="setHistorySubTab('predictions')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(sub==='predictions')}">${LANG === 'es' ? '🎯 Predicciones' : '🎯 Predictions'}</button>
-      <button onclick="setHistorySubTab('bankroll')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(sub==='bankroll')}">${LANG === 'es' ? '📈 Banca' : '📈 Bankroll'}</button>
       <button onclick="setHistorySubTab('results')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(sub==='results')}">${LANG === 'es' ? '⚽ Resultados' : '⚽ Results'}</button>
     </div>`;
 
-  if (sub === 'bets') {
-    html += _renderBetsHistory(s);
-  } else if (sub === 'predictions') {
+  if (sub === 'predictions') {
     html += _renderPredictionsHistory(s);
   } else {
-    html += _renderBankrollSim(s);
+    html += _renderBetsHistory(s);
   }
 
   document.getElementById('history-container').innerHTML = html;
@@ -3392,8 +3388,8 @@ setTimeout(checkForNewBets, 3000);
 setInterval(checkForNewBets, 5 * 60 * 1000);
 
 // ── Presentation mode ──
-let presIdx = 0;
-let presFixtures = [];
+var presIdx = 0;
+var presFixtures = [];
 
 function startPresentation(fid) {
   const fx = DATA && DATA.fixtures && DATA.fixtures.filter(f => !f.is_live);
