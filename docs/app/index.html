@@ -450,9 +450,10 @@ let MATCH_STATS = null;
 let PLAYER_STATS = null;
 let WC22_PLAYERS = null;
 let WC22_TEAMS = null;
+let LINEUPS = null;
 async function loadData() {
   try {
-    const [r1, r2, r3, r4, r5, r6, r7] = await Promise.all([
+    const [r1, r2, r3, r4, r5, r6, r7, r8] = await Promise.all([
       fetch('/data/predictions.json?' + Date.now()),
       fetch('/data/history.json?' + Date.now()).catch(() => null),
       fetch('/data/projections.json?' + Date.now()).catch(() => null),
@@ -460,6 +461,7 @@ async function loadData() {
       fetch('/data/player_stats.json?' + Date.now()).catch(() => null),
       fetch('/data/statsbomb_wc2022_players.json?' + Date.now()).catch(() => null),
       fetch('/data/statsbomb_wc2022_teams.json?' + Date.now()).catch(() => null),
+      fetch('/data/lineups.json?' + Date.now()).catch(() => null),
     ]);
     DATA = await r1.json();
     if (r2 && r2.ok) HISTORY = await r2.json();
@@ -468,6 +470,7 @@ async function loadData() {
     if (r5 && r5.ok) PLAYER_STATS = await r5.json();
     if (r6 && r6.ok) WC22_PLAYERS = await r6.json();
     if (r7 && r7.ok) WC22_TEAMS = await r7.json();
+    if (r8 && r8.ok) LINEUPS = await r8.json();
     document.getElementById('loading').classList.add('hidden');
     applyLang();
     renderStats();
@@ -1924,8 +1927,8 @@ function renderFixtureCard(f, featured = false) {
         </div>
         <div class="flex items-center justify-between mb-1">
           <div class="flex-1">
-            <div class="text-base font-semibold flex items-center gap-1.5"><span class="inline-block w-2 h-2 rounded-sm shrink-0" style="background:${homeColor};opacity:0.8;"></span>${teamName(f.home)}</div>
-            <div class="text-base font-semibold flex items-center gap-1.5 mt-0.5" style="color:var(--mute);"><span class="inline-block w-2 h-2 rounded-sm shrink-0" style="background:${awayColor};opacity:0.8;"></span>${teamName(f.away)}</div>
+            <div class="text-base font-semibold flex items-center gap-1.5 flex-wrap"><span class="inline-block w-2 h-2 rounded-sm shrink-0" style="background:${homeColor};opacity:0.8;"></span>${teamName(f.home)}${_qualBadge(f.home)}</div>
+            <div class="text-base font-semibold flex items-center gap-1.5 mt-0.5 flex-wrap" style="color:var(--mute);"><span class="inline-block w-2 h-2 rounded-sm shrink-0" style="background:${awayColor};opacity:0.8;"></span>${teamName(f.away)}${_qualBadge(f.away)}</div>
           </div>
           ${liveScoreHtml}
           <div class="text-right mr-4">
@@ -1937,6 +1940,7 @@ function renderFixtureCard(f, featured = false) {
           </div>
         </div>
         ${bestBetHtml}
+        ${_renderLineupSection(f)}
         <details class="mt-3">
           <summary class="text-xs cursor-pointer select-none" style="color:var(--mute);">
             ${t('all_markets')} (${f.picks.length}) — ${t('click_expand')}
@@ -2424,6 +2428,58 @@ function _renderMatchSummary(f) {
         </div>` : ''}
       </div>
     </div>`;
+}
+
+// ── Group qualification badge ──
+function _qualBadge(name) {
+  if (!DATA?.standings) return '';
+  for (const grp of DATA.standings) {
+    const idx = grp.teams.findIndex(t => t.name === name);
+    if (idx < 0) continue;
+    const t = grp.teams[idx];
+    if (t.status === 'direct')
+      return ` <span class="px-1 py-0.5 rounded text-[9px] font-bold" style="background:color-mix(in srgb,var(--bet) 15%,transparent);color:var(--bet);">${LANG==='es'?'✓ CLASIF.':'✓ QUALIFIED'}</span>`;
+    if (t.status === 'eliminated')
+      return ` <span class="px-1 py-0.5 rounded text-[9px] font-bold" style="background:color-mix(in srgb,var(--fade) 15%,transparent);color:var(--fade);">${LANG==='es'?'✗ ELIM.':'✗ ELIM.'}</span>`;
+    if (t.status === 'possible')
+      return ` <span class="px-1 py-0.5 rounded text-[9px] font-bold" style="background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn);">${LANG==='es'?'3° POSIBLE':'3RD POSSIBLE'}</span>`;
+    return '';
+  }
+  return '';
+}
+
+// ── Lineup section ──
+function _renderLineupSection(f) {
+  if (!LINEUPS || !LINEUPS[f.id]) return '';
+  const lu = LINEUPS[f.id];
+  const teams = lu.teams || [];
+  if (!teams.length || !teams.some(t => t.starters && t.starters.length)) return '';
+  const homeT = teams.find(t => t.team === f.home) || teams[0];
+  const awayT = teams.find(t => t.team === f.away) || teams[1];
+  const absences = lu.absences || {};
+  const hc = TEAM_COLOR[f.home] || 'var(--bet)';
+  const ac = TEAM_COLOR[f.away] || 'var(--accent)';
+
+  const renderTeam = (t, color) => {
+    const abs = absences[t.team] || [];
+    const starters = t.starters || [];
+    return `<div class="flex-1 min-w-0">
+      <div class="text-[10px] font-bold uppercase tracking-wider mb-1" style="color:${color};">${teamName(t.team)} · ${t.formation || '—'}</div>
+      ${abs.length ? `<div class="mb-1 px-1.5 py-0.5 rounded text-[9px] leading-tight" style="background:color-mix(in srgb,var(--warn) 12%,transparent);color:var(--warn);">⚠ ${LANG==='es'?'Ausentes':'Out'}: ${abs.join(', ')}</div>` : ''}
+      <div class="space-y-0.5">
+        ${starters.map(p => `<div class="flex items-center gap-1 text-[10px]">
+          <span class="font-mono w-4 text-right shrink-0" style="color:var(--mute);">${p.jersey}</span>
+          <span class="truncate flex-1">${p.short || p.name}</span>
+          <span class="shrink-0 text-[9px] w-8 text-right" style="color:${color};opacity:0.75;">${p.pos}</span>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  };
+
+  return `<div class="mt-3 pt-2" style="border-top:1px solid color-mix(in srgb,var(--border) 40%,transparent);">
+    <div class="text-[10px] font-semibold uppercase tracking-wider mb-2" style="color:var(--mute);">${LANG==='es'?'Alineaciones confirmadas':'Confirmed lineups'}</div>
+    <div class="flex gap-4">${renderTeam(homeT, hc)}${renderTeam(awayT, ac)}</div>
+  </div>`;
 }
 
 function _renderMatchStats(f) {
