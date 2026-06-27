@@ -8550,5 +8550,638 @@
         "clock": "82'"
       }
     ]
+  },
+  "3e3b5fa2b3c963e74cf044c60db0b573": {
+    "espn_id": "760476",
+    "fetched_at": "2026-06-27T05:08:42+00:00",
+    "teams": [
+      {
+        "team": "Egypt",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "11",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "8",
+          "saves": "3",
+          "possessionPct": "61.3",
+          "totalShots": "15",
+          "shotsOnTarget": "3",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "512",
+          "totalPasses": "587",
+          "passPct": "0.9",
+          "accurateCrosses": "4",
+          "totalCrosses": "15",
+          "crossPct": "0.3",
+          "totalLongBalls": "44",
+          "accurateLongBalls": "18",
+          "longballPct": "0.4",
+          "blockedShots": "6",
+          "effectiveTackles": "10",
+          "totalTackles": "17",
+          "tacklePct": "0.6",
+          "interceptions": "7",
+          "effectiveClearance": "40",
+          "totalClearance": "40"
+        }
+      },
+      {
+        "team": "Iran",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "16",
+          "yellowCards": "4",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "2",
+          "saves": "2",
+          "possessionPct": "38.7",
+          "totalShots": "13",
+          "shotsOnTarget": "4",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "1",
+          "accuratePasses": "281",
+          "totalPasses": "367",
+          "passPct": "0.8",
+          "accurateCrosses": "1",
+          "totalCrosses": "10",
+          "crossPct": "0.1",
+          "totalLongBalls": "66",
+          "accurateLongBalls": "29",
+          "longballPct": "0.4",
+          "blockedShots": "2",
+          "effectiveTackles": "16",
+          "totalTackles": "23",
+          "tacklePct": "0.7",
+          "interceptions": "8",
+          "effectiveClearance": "32",
+          "totalClearance": "32"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Egypt",
+        "category": "Total Shots",
+        "player": "Trézéguet",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Egypt",
+        "category": "Accurate Passes",
+        "player": "Ramy Rabia",
+        "headshot": null,
+        "value": "81"
+      },
+      {
+        "team": "Egypt",
+        "category": "Defensive Interventions",
+        "player": "Mohamed Hany",
+        "headshot": null,
+        "value": "22"
+      },
+      {
+        "team": "Egypt",
+        "category": "Saves",
+        "player": "Mostafa Shoubir",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Iran",
+        "category": "Total Shots",
+        "player": "Ramin Rezaeian",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Iran",
+        "category": "Accurate Passes",
+        "player": "Shoja Khalilzadeh",
+        "headshot": null,
+        "value": "47"
+      },
+      {
+        "team": "Iran",
+        "category": "Defensive Interventions",
+        "player": "Shoja Khalilzadeh",
+        "headshot": null,
+        "value": "16"
+      },
+      {
+        "team": "Iran",
+        "category": "Saves",
+        "player": "Alireza Beiranvand",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Egypt",
+        "category": "Goals",
+        "player": "Mahmoud Saber",
+        "headshot": null,
+        "value": "1",
+        "clock": "5'"
+      },
+      {
+        "team": "Egypt",
+        "category": "Assists",
+        "player": "Trezeguet",
+        "headshot": null,
+        "value": "1",
+        "clock": "5'"
+      },
+      {
+        "team": "Iran",
+        "category": "Goals",
+        "player": "Ramin Rezaeian",
+        "headshot": null,
+        "value": "1",
+        "clock": "14'"
+      }
+    ]
+  },
+  "581691da05dcd75b5c6d3be91ee9d2ab": {
+    "espn_id": "760477",
+    "fetched_at": "2026-06-27T05:08:43+00:00",
+    "teams": [
+      {
+        "team": "New Zealand",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "5",
+          "saves": "5",
+          "possessionPct": "45.4",
+          "totalShots": "6",
+          "shotsOnTarget": "2",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "369",
+          "totalPasses": "435",
+          "passPct": "0.8",
+          "accurateCrosses": "2",
+          "totalCrosses": "17",
+          "crossPct": "0.1",
+          "totalLongBalls": "38",
+          "accurateLongBalls": "16",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "6",
+          "totalTackles": "10",
+          "tacklePct": "0.6",
+          "interceptions": "6",
+          "effectiveClearance": "34",
+          "totalClearance": "34"
+        }
+      },
+      {
+        "team": "Belgium",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "8",
+          "saves": "1",
+          "possessionPct": "54.6",
+          "totalShots": "35",
+          "shotsOnTarget": "10",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "463",
+          "totalPasses": "526",
+          "passPct": "0.9",
+          "accurateCrosses": "6",
+          "totalCrosses": "16",
+          "crossPct": "0.4",
+          "totalLongBalls": "47",
+          "accurateLongBalls": "29",
+          "longballPct": "0.6",
+          "blockedShots": "12",
+          "effectiveTackles": "8",
+          "totalTackles": "13",
+          "tacklePct": "0.6",
+          "interceptions": "10",
+          "effectiveClearance": "26",
+          "totalClearance": "26"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "New Zealand",
+        "category": "Total Shots",
+        "player": "Elijah Just",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Accurate Passes",
+        "player": "Marko Stamenic",
+        "headshot": null,
+        "value": "58"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Defensive Interventions",
+        "player": "Tyler Bindon",
+        "headshot": null,
+        "value": "16"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Saves",
+        "player": "Max Crocombe",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Belgium",
+        "category": "Total Shots",
+        "player": "Leandro Trossard",
+        "headshot": null,
+        "value": "7"
+      },
+      {
+        "team": "Belgium",
+        "category": "Accurate Passes",
+        "player": "Brandon Mechele",
+        "headshot": null,
+        "value": "54"
+      },
+      {
+        "team": "Belgium",
+        "category": "Defensive Interventions",
+        "player": "Timothy Castagne",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Belgium",
+        "category": "Saves",
+        "player": "Thibaut Courtois",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Belgium",
+        "category": "Goals",
+        "player": "Leandro Trossard",
+        "headshot": null,
+        "value": "1",
+        "clock": "28'"
+      },
+      {
+        "team": "Belgium",
+        "category": "Goals",
+        "player": "Leandro Trossard",
+        "headshot": null,
+        "value": "1",
+        "clock": "50'"
+      },
+      {
+        "team": "Belgium",
+        "category": "Assists",
+        "player": "Hans Vanaken",
+        "headshot": null,
+        "value": "1",
+        "clock": "50'"
+      },
+      {
+        "team": "Belgium",
+        "category": "Goals",
+        "player": "Kevin De Bruyne",
+        "headshot": null,
+        "value": "1",
+        "clock": "66'"
+      },
+      {
+        "team": "New Zealand",
+        "category": "Goals",
+        "player": "Elijah Just",
+        "headshot": null,
+        "value": "1",
+        "clock": "84'"
+      },
+      {
+        "team": "Belgium",
+        "category": "Goals",
+        "player": "Romelu Lukaku",
+        "headshot": null,
+        "value": "1",
+        "clock": "86'"
+      },
+      {
+        "team": "Belgium",
+        "category": "Assists",
+        "player": "Nicolas Raskin",
+        "headshot": null,
+        "value": "1",
+        "clock": "86'"
+      },
+      {
+        "team": "Belgium",
+        "category": "Goals",
+        "player": "Alexis Saelemaekers",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+4'"
+      },
+      {
+        "team": "Belgium",
+        "category": "Assists",
+        "player": "Romelu Lukaku following a fast break",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+4'"
+      }
+    ]
+  },
+  "e07b1926be5a4d515c7eb108dbcee9c5": {
+    "espn_id": "760478",
+    "fetched_at": "2026-06-27T05:08:43+00:00",
+    "teams": [
+      {
+        "team": "Cape Verde",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "4",
+          "saves": "3",
+          "possessionPct": "51.2",
+          "totalShots": "15",
+          "shotsOnTarget": "2",
+          "shotPct": "0.1",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "385",
+          "totalPasses": "452",
+          "passPct": "0.9",
+          "accurateCrosses": "2",
+          "totalCrosses": "18",
+          "crossPct": "0.1",
+          "totalLongBalls": "56",
+          "accurateLongBalls": "29",
+          "longballPct": "0.5",
+          "blockedShots": "5",
+          "effectiveTackles": "12",
+          "totalTackles": "16",
+          "tacklePct": "0.8",
+          "interceptions": "13",
+          "effectiveClearance": "30",
+          "totalClearance": "30"
+        }
+      },
+      {
+        "team": "Saudi Arabia",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "16",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "2",
+          "saves": "2",
+          "possessionPct": "48.8",
+          "totalShots": "7",
+          "shotsOnTarget": "3",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "355",
+          "totalPasses": "442",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "10",
+          "crossPct": "0.3",
+          "totalLongBalls": "54",
+          "accurateLongBalls": "23",
+          "longballPct": "0.4",
+          "blockedShots": "3",
+          "effectiveTackles": "15",
+          "totalTackles": "29",
+          "tacklePct": "0.5",
+          "interceptions": "10",
+          "effectiveClearance": "23",
+          "totalClearance": "23"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Cape Verde",
+        "category": "Total Shots",
+        "player": "Kevin Pina",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Cape Verde",
+        "category": "Accurate Passes",
+        "player": "Diney Borges",
+        "headshot": null,
+        "value": "57"
+      },
+      {
+        "team": "Cape Verde",
+        "category": "Defensive Interventions",
+        "player": "João Paulo",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Cape Verde",
+        "category": "Saves",
+        "player": "Vozinha",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Total Shots",
+        "player": "Saud Abdulhamid",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Accurate Passes",
+        "player": "Nasser Al-Dawsari",
+        "headshot": null,
+        "value": "48"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Defensive Interventions",
+        "player": "Saud Abdulhamid",
+        "headshot": null,
+        "value": "15"
+      },
+      {
+        "team": "Saudi Arabia",
+        "category": "Saves",
+        "player": "Mohammed Al-Owais",
+        "headshot": null,
+        "value": "2"
+      }
+    ]
+  },
+  "dcff2e31c0bce001a4db5caaf4fa8822": {
+    "espn_id": "760479",
+    "fetched_at": "2026-06-27T05:08:43+00:00",
+    "teams": [
+      {
+        "team": "Uruguay",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "14",
+          "yellowCards": "3",
+          "redCards": "1",
+          "offsides": "5",
+          "wonCorners": "1",
+          "saves": "0",
+          "possessionPct": "33.1",
+          "totalShots": "5",
+          "shotsOnTarget": "1",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "228",
+          "totalPasses": "301",
+          "passPct": "0.8",
+          "accurateCrosses": "1",
+          "totalCrosses": "16",
+          "crossPct": "0.1",
+          "totalLongBalls": "43",
+          "accurateLongBalls": "15",
+          "longballPct": "0.3",
+          "blockedShots": "1",
+          "effectiveTackles": "15",
+          "totalTackles": "25",
+          "tacklePct": "0.6",
+          "interceptions": "14",
+          "effectiveClearance": "14",
+          "totalClearance": "14"
+        }
+      },
+      {
+        "team": "Spain",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "14",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "6",
+          "saves": "2",
+          "possessionPct": "66.9",
+          "totalShots": "6",
+          "shotsOnTarget": "1",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "553",
+          "totalPasses": "622",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "12",
+          "crossPct": "0.3",
+          "totalLongBalls": "34",
+          "accurateLongBalls": "18",
+          "longballPct": "0.5",
+          "blockedShots": "1",
+          "effectiveTackles": "10",
+          "totalTackles": "17",
+          "tacklePct": "0.6",
+          "interceptions": "9",
+          "effectiveClearance": "23",
+          "totalClearance": "23"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Uruguay",
+        "category": "Total Shots",
+        "player": "Darwin Núñez",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Accurate Passes",
+        "player": "Mathías Olivera",
+        "headshot": null,
+        "value": "38"
+      },
+      {
+        "team": "Uruguay",
+        "category": "Defensive Interventions",
+        "player": "Rodrigo Bentancur",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Spain",
+        "category": "Total Shots",
+        "player": "Pau Cubarsí",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Spain",
+        "category": "Accurate Passes",
+        "player": "Rodri",
+        "headshot": null,
+        "value": "99"
+      },
+      {
+        "team": "Spain",
+        "category": "Defensive Interventions",
+        "player": "Aymeric Laporte",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Spain",
+        "category": "Saves",
+        "player": "Unai Simón",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Spain",
+        "category": "Goals",
+        "player": "Álex Baena",
+        "headshot": null,
+        "value": "1",
+        "clock": "42'"
+      },
+      {
+        "team": "Spain",
+        "category": "Assists",
+        "player": "Marcos Llorente",
+        "headshot": null,
+        "value": "1",
+        "clock": "42'"
+      }
+    ]
   }
 }
