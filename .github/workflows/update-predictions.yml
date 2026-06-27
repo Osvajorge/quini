@@ -58,3 +58,14 @@ jobs:
           git rm -f docs/data/sofascore.json 2>/dev/null || true
           git diff --cached --quiet || git commit -m "data: update predictions $(date -u +%Y-%m-%dT%H:%M:%SZ)"
           git push
+
+      - name: Send picks email to waitlist (best-effort, once per day)
+        if: env.PICKS_SECRET != ''
+        env:
+          PICKS_SECRET: ${{ secrets.PICKS_SECRET }}
+        run: |
+          curl -s -o /tmp/picks_resp.json -w "%{http_code}" \
+            -X POST https://kini.bet/api/send-picks \
+            -H "Authorization: Bearer $PICKS_SECRET" \
+            -H "Content-Type: application/json" \
+            && echo "" && cat /tmp/picks_resp.json || true

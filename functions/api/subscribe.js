@@ -2,19 +2,21 @@
  * CF Pages Function — Waitlist endpoint
  *
  * SETUP (one-time in Cloudflare dashboard):
- * 1. Go to Workers & Pages → quini-bzs → Settings → Functions
- * 2. Under "KV namespace bindings", click "Add binding"
- * 3. Variable name: WAITLIST_KV
- * 4. KV namespace: create one called "quini-waitlist" in KV section first
- * 5. Save and redeploy
+ * 1. Pages → kini-ar3 → Settings → Functions → KV namespace bindings
+ *    Variable: WAITLIST_KV → namespace: quini-waitlist
+ * 2. Pages → kini-ar3 → Settings → Functions → Email bindings
+ *    Variable: EMAIL  (Cloudflare Email Service — requires kini.bet onboarded)
+ *    Run once: npx wrangler email sending enable kini.bet
  *
  * Endpoints:
- *   GET  /api/subscribe  → { count: N }   (public counter)
- *   POST /api/subscribe  → { ok: true }   (save lead)
+ *   GET  /api/subscribe  → { count: N }
+ *   POST /api/subscribe  → { ok: true }
  *
- * POST body (JSON): { email, phone?, name?, website? }
- * website is honeypot — bots fill it, humans don't
+ * POST body: { email, phone?, name?, lang?, website? }
+ * website = honeypot
  */
+
+import { welcomeEmail } from './_email_templates.js';
 
 export async function onRequestGet({ env }) {
   const count = parseInt(await env.WAITLIST_KV.get('meta:count') || '0', 10);
@@ -33,6 +35,7 @@ export async function onRequestPost({ request, env }) {
     return new Response(JSON.stringify({ error: 'invalid json' }), { status: 400, headers: cors });
   }
 
+  // Honeypot
   if (body.website) {
     return new Response(JSON.stringify({ ok: true }), { status: 200, headers: cors });
   }
@@ -42,17 +45,19 @@ export async function onRequestPost({ request, env }) {
     return new Response(JSON.stringify({ error: 'invalid email' }), { status: 400, headers: cors });
   }
 
-  // Rate limit: 1 submission per IP per 5 minutes
+  // Rate limit: 1 submission per IP per 5 min
   const ip = request.headers.get('CF-Connecting-IP') || 'anon';
   const rlKey = `rl:${ip}`;
   if (await env.WAITLIST_KV.get(rlKey)) {
-    return new Response(JSON.stringify({ ok: true }), { status: 200, headers: cors }); // silent pass
+    return new Response(JSON.stringify({ ok: true }), { status: 200, headers: cors });
   }
 
-  // Idempotent: update phone/name if email already exists
   const leadKey = `lead:${email}`;
   const existing = await env.WAITLIST_KV.get(leadKey);
+  let isNew = false;
+
   if (!existing) {
+    isNew = true;
     const lead = {
       email,
       phone: (body.phone || '').trim(),
@@ -61,19 +66,36 @@ export async function onRequestPost({ request, env }) {
       lang: body.lang || 'es',
     };
     await env.WAITLIST_KV.put(leadKey, JSON.stringify(lead));
-    // Increment counter
     const prev = parseInt(await env.WAITLIST_KV.get('meta:count') || '0', 10);
     await env.WAITLIST_KV.put('meta:count', String(prev + 1));
   } else if (body.phone || body.name) {
-    // Update step-2 data
     const lead = JSON.parse(existing);
     if (body.phone) lead.phone = (body.phone || '').trim();
     if (body.name) lead.name = (body.name || '').trim();
     await env.WAITLIST_KV.put(leadKey, JSON.stringify(lead));
   }
 
-  // Rate-limit this IP for 5 min
   await env.WAITLIST_KV.put(rlKey, '1', { expirationTtl: 300 });
+
+  // Welcome email — only for new signups, best-effort
+  if (isNew && env.EMAIL) {
+    const lang = body.lang || 'es';
+    const name = (body.name || '').trim();
+    const { subject, html, text } = welcomeEmail({ name, lang });
+    try {
+      await env.EMAIL.send({
+        to: email,
+        from: { email: 'hola@kini.bet', name: 'Kini' },
+        replyTo: 'hola@kini.bet',
+        subject,
+        html,
+        text,
+      });
+    } catch (e) {
+      // Non-fatal — lead is saved, email failure doesn't break signup
+      console.error('[subscribe] welcome email failed:', e?.code, e?.message);
+    }
+  }
 
   return new Response(JSON.stringify({ ok: true }), { status: 200, headers: cors });
 }
