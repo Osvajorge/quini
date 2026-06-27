@@ -2465,7 +2465,7 @@ function _renderLineupSection(f) {
     const starters = t.starters || [];
     return `<div class="flex-1 min-w-0">
       <div class="text-[10px] font-bold uppercase tracking-wider mb-1" style="color:${color};">${teamName(t.team)} · ${t.formation || '—'}</div>
-      ${abs.length ? `<div class="mb-1 px-1.5 py-0.5 rounded text-[9px] leading-tight" style="background:color-mix(in srgb,var(--warn) 12%,transparent);color:var(--warn);">⚠ ${LANG==='es'?'Ausentes':'Out'}: ${abs.join(', ')}</div>` : ''}
+      ${abs.length ? `<div class="mb-1 px-1.5 py-0.5 rounded text-[9px] leading-tight" style="background:color-mix(in srgb,var(--warn) 12%,transparent);color:var(--warn);">⚠ ${LANG==='es'?'No arranca':'Not starting'}: ${abs.join(', ')}</div>` : ''}
       <div class="space-y-0.5">
         ${starters.map(p => `<div class="flex items-center gap-1 text-[10px]">
           <span class="font-mono w-4 text-right shrink-0" style="color:var(--mute);">${p.jersey}</span>

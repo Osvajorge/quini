@@ -179,15 +179,22 @@ def fetch(window_hours: int = 24, force: bool = False) -> None:
             print(f"[lineups] rosters empty (not published yet) for {fx['home']} vs {fx['away']}")
             continue
 
-        # Detect notable absences: players seen before but not starting
+        # Detect notable players not in starting XI
+        # Uses fuzzy last-name matching to handle "Marcus Pedersen" vs "Marcus Holmgren Pedersen"
+        def _last(name):
+            return _norm(name.split()[-1]) if name else ""
+
         absences = {}
         for t in teams:
             team_known = known_players.get(t["team"], set())
-            starter_names = {s["name"] for s in t["starters"]}
-            sub_names = {s["name"] for s in t["subs"]}
-            absent = [p for p in team_known if p not in starter_names and p not in sub_names]
-            if absent:
-                absences[t["team"]] = absent
+            starter_lasts = {_last(s["name"]) for s in t["starters"]}
+            starter_fulls = {s["name"] for s in t["starters"]}
+            not_starting = []
+            for p in team_known:
+                if p not in starter_fulls and _last(p) not in starter_lasts:
+                    not_starting.append(p)
+            if not_starting:
+                absences[t["team"]] = not_starting
 
         existing[fid] = {
             "espn_id": espn_id,
