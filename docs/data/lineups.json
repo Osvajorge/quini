@@ -1,1 +1,787 @@
-{}
+{
+  "537c0997cd899394f47f16545b7068b2": {
+    "espn_id": "760480",
+    "fetched_at": "2026-06-27T20:05:47+00:00",
+    "teams": [
+      {
+        "team": "Croatia",
+        "formation": "4-2-3-1",
+        "starters": [
+          {
+            "name": "Dominik Livakovic",
+            "short": "D. Livakovic",
+            "jersey": "1",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Marin Pongracic",
+            "short": "M. Pongracic",
+            "jersey": "3",
+            "pos": "CD-L",
+            "headshot": null
+          },
+          {
+            "name": "Josip Sutalo",
+            "short": "J. Sutalo",
+            "jersey": "6",
+            "pos": "CD-R",
+            "headshot": null
+          },
+          {
+            "name": "Ivan Perisic",
+            "short": "I. Perisic",
+            "jersey": "14",
+            "pos": "LB",
+            "headshot": null
+          },
+          {
+            "name": "Josip Stanisic",
+            "short": "J. Stanisic",
+            "jersey": "2",
+            "pos": "RB",
+            "headshot": null
+          },
+          {
+            "name": "Petar Sucic",
+            "short": "P. Sucic",
+            "jersey": "17",
+            "pos": "AM",
+            "headshot": null
+          },
+          {
+            "name": "Mateo Kovacic",
+            "short": "M. Kovacic",
+            "jersey": "8",
+            "pos": "LM",
+            "headshot": null
+          },
+          {
+            "name": "Luka Modric",
+            "short": "L. Modric",
+            "jersey": "10",
+            "pos": "RM",
+            "headshot": null
+          },
+          {
+            "name": "Ante Budimir",
+            "short": "A. Budimir",
+            "jersey": "11",
+            "pos": "F",
+            "headshot": null
+          },
+          {
+            "name": "Martin Baturina",
+            "short": "M. Baturina",
+            "jersey": "16",
+            "pos": "AM-L",
+            "headshot": null
+          },
+          {
+            "name": "Nikola Vlasic",
+            "short": "N. Vlasic",
+            "jersey": "13",
+            "pos": "AM-R",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Duje Caleta-Car",
+            "short": "D. Caleta-Car",
+            "jersey": "5",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Martin Erlic",
+            "short": "M. Erlic",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Mario Pasalic",
+            "short": "M. Pasalic",
+            "jersey": "15",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Marco Pasalic",
+            "short": "M. Pasalic",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Igor Matanovic",
+            "short": "I. Matanovic",
+            "jersey": "20",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Kristijan Jakic",
+            "short": "K. Jakic",
+            "jersey": "18",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Nikola Moro",
+            "short": "N. Moro",
+            "jersey": "7",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Andrej Kramaric",
+            "short": "A. Kramaric",
+            "jersey": "9",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Luka Sucic",
+            "short": "L. Sucic",
+            "jersey": "21",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Dominik Kotarski",
+            "short": "D. Kotarski",
+            "jersey": "23",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/239411.png"
+          },
+          {
+            "name": "Josko Gvardiol",
+            "short": "J. Gvardiol",
+            "jersey": "4",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Ivor Pandur",
+            "short": "I. Pandur",
+            "jersey": "12",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/277234.png"
+          },
+          {
+            "name": "Luka Vuskovic",
+            "short": "L. Vuskovic",
+            "jersey": "22",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Petar Musa",
+            "short": "P. Musa",
+            "jersey": "26",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Toni Fruk",
+            "short": "T. Fruk",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      },
+      {
+        "team": "Ghana",
+        "formation": "4-3-3",
+        "starters": [
+          {
+            "name": "Benjamin Asare",
+            "short": "B. Asare",
+            "jersey": "16",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Derrick Luckassen",
+            "short": "D. Luckassen",
+            "jersey": "23",
+            "pos": "CD-L",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/205737.png"
+          },
+          {
+            "name": "Jonas Adjetey",
+            "short": "J. Adjetey",
+            "jersey": "4",
+            "pos": "CD-R",
+            "headshot": null
+          },
+          {
+            "name": "Gideon Mensah",
+            "short": "G. Mensah",
+            "jersey": "14",
+            "pos": "LB",
+            "headshot": null
+          },
+          {
+            "name": "Marvin Senaya",
+            "short": "M. Senaya",
+            "jersey": "26",
+            "pos": "RB",
+            "headshot": null
+          },
+          {
+            "name": "Elisha Owusu",
+            "short": "E. Owusu",
+            "jersey": "15",
+            "pos": "CM",
+            "headshot": null
+          },
+          {
+            "name": "Kwasi Sibo",
+            "short": "K. Sibo",
+            "jersey": "8",
+            "pos": "LM",
+            "headshot": null
+          },
+          {
+            "name": "Thomas Partey",
+            "short": "T. Partey",
+            "jersey": "5",
+            "pos": "RM",
+            "headshot": null
+          },
+          {
+            "name": "Jordan Ayew",
+            "short": "J. Ayew",
+            "jersey": "9",
+            "pos": "F",
+            "headshot": null
+          },
+          {
+            "name": "Antoine Semenyo",
+            "short": "A. Semenyo",
+            "jersey": "11",
+            "pos": "LF",
+            "headshot": null
+          },
+          {
+            "name": "Kamaldeen Sulemana",
+            "short": "K. Sulemana",
+            "jersey": "22",
+            "pos": "RF",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Abdul Mumin",
+            "short": "A. Mumin",
+            "jersey": "6",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Joseph Anang",
+            "short": "J. Anang",
+            "jersey": "12",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Jerome Opoku",
+            "short": "J. Opoku",
+            "jersey": "18",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Brandon Thomas-Asante",
+            "short": "B. Thomas-Asante",
+            "jersey": "10",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Iñaki Williams",
+            "short": "I. Williams",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Caleb Yirenkyi",
+            "short": "C. Yirenkyi",
+            "jersey": "3",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Fatawu Issahaku",
+            "short": "F. Issahaku",
+            "jersey": "7",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Alidu Seidu",
+            "short": "A. Seidu",
+            "jersey": "2",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Augustine Boakye",
+            "short": "A. Boakye",
+            "jersey": "20",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Christopher Bonsu Baah",
+            "short": "C. Baah",
+            "jersey": "13",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Lawrence Ati Zigi",
+            "short": "L. Zigi",
+            "jersey": "1",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Kojo Peprah Oppong",
+            "short": "K. Oppong",
+            "jersey": "21",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Ernest Nuamah",
+            "short": "E. Nuamah",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Prince Adu",
+            "short": "P. Adu",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Baba Rahman",
+            "short": "B. Rahman",
+            "jersey": "17",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      }
+    ],
+    "absences": {
+      "Croatia": [
+        "Luka Vuskovic",
+        "Petar Musa",
+        "Marco Pasalic"
+      ],
+      "Ghana": [
+        "Caleb Yirenkyi",
+        "Brandon Thomas-Asante following a fast break"
+      ]
+    }
+  },
+  "4be17c8e1ccfecb0f2a5ef79e045c415": {
+    "espn_id": "760485",
+    "fetched_at": "2026-06-27T20:05:47+00:00",
+    "teams": [
+      {
+        "team": "Panama",
+        "formation": "5-4-1",
+        "starters": [
+          {
+            "name": "Orlando Mosquera",
+            "short": "O. Mosquera",
+            "jersey": "22",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "José Córdoba",
+            "short": "J. Córdoba",
+            "jersey": "3",
+            "pos": "CD",
+            "headshot": null
+          },
+          {
+            "name": "Andrés Andrade",
+            "short": "A. Andrade",
+            "jersey": "16",
+            "pos": "CD-L",
+            "headshot": null
+          },
+          {
+            "name": "Fidel Escobar",
+            "short": "F. Escobar",
+            "jersey": "4",
+            "pos": "CD-R",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/216418.png"
+          },
+          {
+            "name": "Jorge Gutiérrez",
+            "short": "J. Gutiérrez",
+            "jersey": "26",
+            "pos": "LB",
+            "headshot": null
+          },
+          {
+            "name": "Amir Murillo",
+            "short": "A. Murillo",
+            "jersey": "23",
+            "pos": "RB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/216420.png"
+          },
+          {
+            "name": "Carlos Harvey",
+            "short": "C. Harvey",
+            "jersey": "14",
+            "pos": "CM-L",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/285452.png"
+          },
+          {
+            "name": "Édgar Yoel Bárcenas",
+            "short": "É. Bárcenas",
+            "jersey": "11",
+            "pos": "CM-R",
+            "headshot": null
+          },
+          {
+            "name": "José Luis Rodríguez",
+            "short": "J. Rodríguez",
+            "jersey": "7",
+            "pos": "LM",
+            "headshot": null
+          },
+          {
+            "name": "Cristian Martínez",
+            "short": "C. Martínez",
+            "jersey": "6",
+            "pos": "RM",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/176145.png"
+          },
+          {
+            "name": "Tomás Rodríguez",
+            "short": "T. Rodríguez",
+            "jersey": "9",
+            "pos": "F",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Ismael Díaz",
+            "short": "I. Díaz",
+            "jersey": "10",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Aníbal Godoy",
+            "short": "A. Godoy",
+            "jersey": "20",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/116825.png"
+          },
+          {
+            "name": "Roderick Miller",
+            "short": "R. Miller",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Alberto Quintero",
+            "short": "A. Quintero",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "César Samudio",
+            "short": "C. Samudio",
+            "jersey": "12",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Jiovany Ramos",
+            "short": "J. Ramos",
+            "jersey": "13",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Adalberto Carrasquilla",
+            "short": "A. Carrasquilla",
+            "jersey": "8",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/219508.png"
+          },
+          {
+            "name": "Cecilio Waterman",
+            "short": "C. Waterman",
+            "jersey": "18",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Luis Mejía",
+            "short": "L. Mejía",
+            "jersey": "1",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Éric Davis",
+            "short": "É. Davis",
+            "jersey": "15",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Azarias Londoño",
+            "short": "A. Londoño",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Edgardo Fariña",
+            "short": "E. Fariña",
+            "jersey": "5",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "José Fajardo",
+            "short": "J. Fajardo",
+            "jersey": "17",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "César Blackman",
+            "short": "C. Blackman",
+            "jersey": "2",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "César Yanis",
+            "short": "C. Yanis",
+            "jersey": "21",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      },
+      {
+        "team": "England",
+        "formation": "4-2-3-1",
+        "starters": [
+          {
+            "name": "Jordan Pickford",
+            "short": "J. Pickford",
+            "jersey": "1",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Marc Guéhi",
+            "short": "M. Guéhi",
+            "jersey": "6",
+            "pos": "CD-L",
+            "headshot": null
+          },
+          {
+            "name": "Ezri Konsa",
+            "short": "E. Konsa",
+            "jersey": "2",
+            "pos": "CD-R",
+            "headshot": null
+          },
+          {
+            "name": "Nico O'Reilly",
+            "short": "N. O'Reilly",
+            "jersey": "3",
+            "pos": "LB",
+            "headshot": null
+          },
+          {
+            "name": "Jarell Quansah",
+            "short": "J. Quansah",
+            "jersey": "26",
+            "pos": "RB",
+            "headshot": null
+          },
+          {
+            "name": "Morgan Rogers",
+            "short": "M. Rogers",
+            "jersey": "17",
+            "pos": "AM",
+            "headshot": null
+          },
+          {
+            "name": "Jude Bellingham",
+            "short": "J. Bellingham",
+            "jersey": "10",
+            "pos": "LM",
+            "headshot": null
+          },
+          {
+            "name": "Elliot Anderson",
+            "short": "E. Anderson",
+            "jersey": "8",
+            "pos": "RM",
+            "headshot": null
+          },
+          {
+            "name": "Harry Kane",
+            "short": "H. Kane",
+            "jersey": "9",
+            "pos": "F",
+            "headshot": null
+          },
+          {
+            "name": "Marcus Rashford",
+            "short": "M. Rashford",
+            "jersey": "11",
+            "pos": "AM-L",
+            "headshot": null
+          },
+          {
+            "name": "Bukayo Saka",
+            "short": "B. Saka",
+            "jersey": "7",
+            "pos": "AM-R",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "John Stones",
+            "short": "J. Stones",
+            "jersey": "5",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Kobbie Mainoo",
+            "short": "K. Mainoo",
+            "jersey": "16",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Dean Henderson",
+            "short": "D. Henderson",
+            "jersey": "13",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Dan Burn",
+            "short": "D. Burn",
+            "jersey": "15",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Noni Madueke",
+            "short": "N. Madueke",
+            "jersey": "20",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/293236.png"
+          },
+          {
+            "name": "Anthony Gordon",
+            "short": "A. Gordon",
+            "jersey": "18",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Declan Rice",
+            "short": "D. Rice",
+            "jersey": "4",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Djed Spence",
+            "short": "D. Spence",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "James Trafford",
+            "short": "J. Trafford",
+            "jersey": "23",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Ivan Toney",
+            "short": "I. Toney",
+            "jersey": "22",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Eberechi Eze",
+            "short": "E. Eze",
+            "jersey": "21",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Trevoh Chalobah",
+            "short": "T. Chalobah",
+            "jersey": "12",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Ollie Watkins",
+            "short": "O. Watkins",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Jordan Henderson",
+            "short": "J. Henderson",
+            "jersey": "14",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      }
+    ],
+    "absences": {
+      "Panama": [
+        "Jiovany Ramos"
+      ],
+      "England": [
+        "Declan Rice",
+        "Reece James"
+      ]
+    }
+  }
+}
