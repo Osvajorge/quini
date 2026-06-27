@@ -783,5 +783,396 @@
         "Reece James"
       ]
     }
+  },
+  "67ae5751c401a98409b8566ae4897069": {
+    "espn_id": "760481",
+    "fetched_at": "2026-06-27T23:19:44+00:00",
+    "teams": [
+      {
+        "team": "Colombia",
+        "formation": "4-3-3",
+        "starters": [
+          {
+            "name": "Camilo Vargas",
+            "short": "C. Vargas",
+            "jersey": "12",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Santiago Arias",
+            "short": "S. Arias",
+            "jersey": "4",
+            "pos": "D",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/164756.png"
+          },
+          {
+            "name": "Deiver Machado",
+            "short": "D. Machado",
+            "jersey": "22",
+            "pos": "D",
+            "headshot": null
+          },
+          {
+            "name": "Davinson Sánchez",
+            "short": "D. Sánchez",
+            "jersey": "23",
+            "pos": "D",
+            "headshot": null
+          },
+          {
+            "name": "Jhon Lucumí",
+            "short": "J. Lucumí",
+            "jersey": "3",
+            "pos": "D",
+            "headshot": null
+          },
+          {
+            "name": "Gustavo Puerta",
+            "short": "G. Puerta",
+            "jersey": "14",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Jhon Arias",
+            "short": "J. Arias",
+            "jersey": "11",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Jefferson Lerma",
+            "short": "J. Lerma",
+            "jersey": "16",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Luis Díaz",
+            "short": "L. Díaz",
+            "jersey": "7",
+            "pos": "F",
+            "headshot": null
+          },
+          {
+            "name": "James Rodríguez",
+            "short": "J. Rodríguez",
+            "jersey": "10",
+            "pos": "F",
+            "headshot": null
+          },
+          {
+            "name": "Jhon Córdoba",
+            "short": "J. Córdoba",
+            "jersey": "9",
+            "pos": "F",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Daniel Muñoz",
+            "short": "D. Muñoz",
+            "jersey": "2",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Luis Suárez",
+            "short": "L. Suárez",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Jáminton Campaz",
+            "short": "J. Campaz",
+            "jersey": "21",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Cucho Hernández",
+            "short": "C. Hernández",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/336809.png"
+          },
+          {
+            "name": "David Ospina",
+            "short": "D. Ospina",
+            "jersey": "1",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Kevin Castaño",
+            "short": "K. Castaño",
+            "jersey": "5",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Willer Ditta",
+            "short": "W. Ditta",
+            "jersey": "18",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Andrés Gómez",
+            "short": "A. Gómez",
+            "jersey": "26",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/330924.png"
+          },
+          {
+            "name": "Álvaro Montero",
+            "short": "Á. Montero",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Jorge Carrascal",
+            "short": "J. Carrascal",
+            "jersey": "8",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Yerry Mina",
+            "short": "Y. Mina",
+            "jersey": "13",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Juan Portilla",
+            "short": "J. Portilla",
+            "jersey": "15",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Johan Mojica",
+            "short": "J. Mojica",
+            "jersey": "17",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Juan Fernando Quintero",
+            "short": "J. Quintero",
+            "jersey": "20",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Richard Ríos",
+            "short": "R. Ríos",
+            "jersey": "6",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      },
+      {
+        "team": "Portugal",
+        "formation": "4-2-3-1",
+        "starters": [
+          {
+            "name": "Diogo Costa",
+            "short": "D. Costa",
+            "jersey": "1",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Nuno Mendes",
+            "short": "N. Mendes",
+            "jersey": "25",
+            "pos": "D",
+            "headshot": null
+          },
+          {
+            "name": "Rúben Dias",
+            "short": "R. Dias",
+            "jersey": "3",
+            "pos": "D",
+            "headshot": null
+          },
+          {
+            "name": "Renato Veiga",
+            "short": "R. Veiga",
+            "jersey": "13",
+            "pos": "D",
+            "headshot": null
+          },
+          {
+            "name": "João Cancelo",
+            "short": "J. Cancelo",
+            "jersey": "20",
+            "pos": "D",
+            "headshot": null
+          },
+          {
+            "name": "Vitinha ",
+            "short": "Vitinha ",
+            "jersey": "23",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Rúben Neves",
+            "short": "R. Neves",
+            "jersey": "21",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Pedro Neto",
+            "short": "P. Neto",
+            "jersey": "18",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Bruno Fernandes",
+            "short": "B. Fernandes",
+            "jersey": "8",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "João Félix",
+            "short": "J. Félix",
+            "jersey": "11",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Cristiano Ronaldo",
+            "short": "C. Ronaldo",
+            "jersey": "7",
+            "pos": "F",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Francisco Trincão",
+            "short": "F. Trincão",
+            "jersey": "16",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "João Neves",
+            "short": "J. Neves",
+            "jersey": "15",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Gonçalo Ramos",
+            "short": "G. Ramos",
+            "jersey": "9",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Nélson Semedo",
+            "short": "N. Semedo",
+            "jersey": "2",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Gonçalo Guedes",
+            "short": "G. Guedes",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Rafael Leão",
+            "short": "R. Leão",
+            "jersey": "17",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Rui Silva",
+            "short": "R. Silva",
+            "jersey": "22",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Samú Costa",
+            "short": "S. Costa",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Diogo Dalot",
+            "short": "D. Dalot",
+            "jersey": "5",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Bernardo Silva",
+            "short": "B. Silva",
+            "jersey": "10",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Tomás Araújo",
+            "short": "T. Araújo",
+            "jersey": "4",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Gonçalo Inácio",
+            "short": "G. Inácio",
+            "jersey": "14",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Matheus Nunes",
+            "short": "M. Nunes",
+            "jersey": "6",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "José Sá",
+            "short": "J. Sá",
+            "jersey": "12",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Francisco Conceição",
+            "short": "F. Conceição",
+            "jersey": "26",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/312659.png"
+          }
+        ]
+      }
+    ],
+    "absences": {
+      "Portugal": [
+        "Rafael Leão"
+      ]
+    }
   }
 }

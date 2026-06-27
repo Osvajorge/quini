@@ -332,10 +332,46 @@
       }
     },
     {
+      "player": "Jude Bellingham",
+      "team": "England",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Cristiano Ronaldo",
       "team": "Portugal",
       "headshot": null,
       "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 7.0,
+          "max": 7.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Harry Kane",
+      "team": "England",
+      "headshot": null,
+      "matches": 2,
       "categories": {
         "Total Shots": {
           "total": 7.0,
@@ -615,6 +651,29 @@
       }
     },
     {
+      "player": "Petar Sucic",
+      "team": "Croatia",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Total Shots": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Mostafa Zico",
       "team": "Egypt",
       "headshot": null,
@@ -854,24 +913,6 @@
       }
     },
     {
-      "player": "Harry Kane",
-      "team": "England",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 7.0,
-          "max": 7.0,
-          "appearances": 1
-        },
-        "Goals": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Lamine Yamal",
       "team": "Spain",
       "headshot": null,
@@ -921,6 +962,24 @@
         "Goals": {
           "total": 1.0,
           "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Marcus Rashford",
+      "team": "England",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        },
+        "Total Shots": {
+          "total": 5.0,
+          "max": 5.0,
           "appearances": 1
         }
       }
@@ -1226,6 +1285,24 @@
     {
       "player": "Thelo Aasgaard",
       "team": "Norway",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Nikola Vlasic",
+      "team": "Croatia",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -1664,28 +1741,15 @@
       }
     },
     {
-      "player": "Jude Bellingham",
+      "player": "Bukayo Saka",
       "team": "England",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
-        "Goals": {
-          "total": 1.0,
+        "Assists": {
+          "total": 2.0,
           "max": 1.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Marcus Rashford",
-      "team": "England",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Goals": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
+          "appearances": 2
         }
       }
     },
@@ -1885,6 +1949,24 @@
       }
     },
     {
+      "player": "Derrick Luckassen",
+      "team": "Ghana",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/205737.png",
+      "matches": 1,
+      "categories": {
+        "Accurate Passes": {
+          "total": 71.0,
+          "max": 71.0,
+          "appearances": 1
+        },
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Malik Tillman",
       "team": "United States",
       "headshot": null,
@@ -1957,24 +2039,6 @@
         "Total Shots": {
           "total": 2.0,
           "max": 2.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Petar Sucic",
-      "team": "Croatia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
-        },
-        "Assists": {
-          "total": 1.0,
-          "max": 1.0,
           "appearances": 1
         }
       }
@@ -2151,6 +2215,24 @@
       "headshot": null,
       "matches": 1,
       "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Luka Modric",
+      "team": "Croatia",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Accurate Passes": {
+          "total": 69.0,
+          "max": 69.0,
+          "appearances": 1
+        },
         "Assists": {
           "total": 1.0,
           "max": 1.0,
@@ -2497,19 +2579,6 @@
       }
     },
     {
-      "player": "Bukayo Saka",
-      "team": "England",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Assists": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Alexandr Sojka",
       "team": "Czechia",
       "headshot": null,
@@ -2829,6 +2898,32 @@
       }
     },
     {
+      "player": "Mateo Kovacic",
+      "team": "Croatia",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ernest Nuamah",
+      "team": "Ghana",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Scott McTominay",
       "team": "Scotland",
       "headshot": null,
@@ -2992,6 +3087,19 @@
     {
       "player": "Ali Jasim",
       "team": "Iraq",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 4.0,
+          "max": 4.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Ismael Díaz",
+      "team": "Panama",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -3389,6 +3497,19 @@
       }
     },
     {
+      "player": "Fatawu Issahaku",
+      "team": "Ghana",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Salem Al-Dawsari",
       "team": "Saudi Arabia",
       "headshot": null,
@@ -3428,11 +3549,16 @@
       "player": "Marvin Senaya",
       "team": "Ghana",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Total Shots": {
           "total": 1.0,
           "max": 1.0,
+          "appearances": 1
+        },
+        "Defensive Interventions": {
+          "total": 11.0,
+          "max": 11.0,
           "appearances": 1
         }
       }
@@ -4143,12 +4269,12 @@
       "player": "Marc Guéhi",
       "team": "England",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Accurate Passes": {
-          "total": 126.0,
+          "total": 203.0,
           "max": 126.0,
-          "appearances": 1
+          "appearances": 2
         }
       }
     },
@@ -4195,12 +4321,12 @@
       "player": "Benjamin Asare",
       "team": "Ghana",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 6.0,
+          "total": 8.0,
           "max": 3.0,
-          "appearances": 2
+          "appearances": 3
         }
       }
     },
@@ -4221,17 +4347,17 @@
       "player": "José Córdoba",
       "team": "Panama",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Defensive Interventions": {
-          "total": 14.0,
-          "max": 14.0,
-          "appearances": 1
+          "total": 30.0,
+          "max": 16.0,
+          "appearances": 2
         },
         "Accurate Passes": {
-          "total": 91.0,
+          "total": 127.0,
           "max": 91.0,
-          "appearances": 1
+          "appearances": 2
         }
       }
     },
@@ -4239,25 +4365,12 @@
       "player": "Orlando Mosquera",
       "team": "Panama",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Saves": {
-          "total": 3.0,
-          "max": 2.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Luka Modric",
-      "team": "Croatia",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Accurate Passes": {
-          "total": 69.0,
-          "max": 69.0,
-          "appearances": 1
+          "total": 7.0,
+          "max": 4.0,
+          "appearances": 3
         }
       }
     },
@@ -5117,11 +5230,16 @@
       "player": "Jordan Pickford",
       "team": "England",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 3.0,
+          "total": 5.0,
           "max": 3.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 9.0,
+          "max": 9.0,
           "appearances": 1
         }
       }
@@ -5130,11 +5248,16 @@
       "player": "Josip Sutalo",
       "team": "Croatia",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Accurate Passes": {
-          "total": 63.0,
-          "max": 63.0,
+          "total": 145.0,
+          "max": 82.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 12.0,
+          "max": 12.0,
           "appearances": 1
         }
       }

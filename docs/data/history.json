@@ -4663,20 +4663,180 @@
         "draw": 2.71,
         "away": 3.5
       }
+    },
+    {
+      "id": "537c0997cd899394f47f16545b7068b2",
+      "home": "Croatia",
+      "away": "Ghana",
+      "date": "2026-06-27T21:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "FADE",
+          "edge": -17.4,
+          "odds": 1.17,
+          "model_prob": 65.8,
+          "devig_prob": 83.2,
+          "won": true,
+          "closing_odds": 1.86,
+          "clv_pct": -37.1
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "SKIP",
+          "edge": 10.1,
+          "odds": 6.25,
+          "model_prob": 24.6,
+          "devig_prob": 14.5,
+          "won": false,
+          "closing_odds": 3.35,
+          "clv_pct": 86.57
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "SKIP",
+          "edge": 7.4,
+          "odds": 29.37,
+          "model_prob": 9.6,
+          "devig_prob": 2.3,
+          "won": false,
+          "closing_odds": 5.9,
+          "clv_pct": 397.8
+        }
+      ],
+      "bets": [],
+      "best_bet": null,
+      "has_bet": false,
+      "result": {
+        "home": 2,
+        "away": 1
+      },
+      "best_bet_won": null,
+      "score_hit": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 15.8
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 14.9
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 13.6
+        }
+      ],
+      "xg_home": 0.162,
+      "xg_away": 0.023,
+      "predicted_1x2": "1",
+      "result_1x2": "1",
+      "correct_1x2": true,
+      "all_odds": {
+        "home": 1.17,
+        "draw": 6.25,
+        "away": 29.37
+      }
+    },
+    {
+      "id": "4be17c8e1ccfecb0f2a5ef79e045c415",
+      "home": "Panama",
+      "away": "England",
+      "date": "2026-06-27T21:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "SKIP",
+          "edge": 1.7,
+          "odds": 13.81,
+          "model_prob": 7.6,
+          "devig_prob": 5.9,
+          "won": false,
+          "closing_odds": 22.0,
+          "clv_pct": -37.23
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "SKIP",
+          "edge": -3.0,
+          "odds": 3.82,
+          "model_prob": 21.4,
+          "devig_prob": 24.5,
+          "won": false,
+          "closing_odds": 9.6,
+          "clv_pct": -60.21
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "SKIP",
+          "edge": 1.3,
+          "odds": 1.39,
+          "model_prob": 71.0,
+          "devig_prob": 69.7,
+          "won": true,
+          "closing_odds": 1.17,
+          "clv_pct": 18.8
+        }
+      ],
+      "bets": [],
+      "best_bet": null,
+      "has_bet": false,
+      "result": {
+        "home": 0,
+        "away": 2
+      },
+      "best_bet_won": null,
+      "score_hit": 1,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 15.4
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 13.8
+        },
+        {
+          "home": 0,
+          "away": 3,
+          "prob": 10.8
+        }
+      ],
+      "xg_home": 0.079,
+      "xg_away": 0.273,
+      "predicted_1x2": "2",
+      "result_1x2": "2",
+      "correct_1x2": true,
+      "all_odds": {
+        "home": 13.81,
+        "draw": 3.82,
+        "away": 1.39
+      }
     }
   ],
   "summary": {
-    "total": 56,
+    "total": 58,
     "total_bets": 95,
     "won": 41,
     "lost": 54,
     "win_rate": 43.2,
     "roi": -20.3,
-    "score_hits": 23,
-    "score_top1": 6,
-    "correct_1x2": 37,
-    "total_1x2": 56,
-    "accuracy_1x2": 66.1,
+    "score_hits": 24,
+    "score_top1": 7,
+    "correct_1x2": 39,
+    "total_1x2": 58,
+    "accuracy_1x2": 67.2,
     "avg_clv_pct": 16.48,
     "clv_sample_size": 2,
     "pct_beating_close": 100.0

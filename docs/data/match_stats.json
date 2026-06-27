@@ -9183,5 +9183,342 @@
         "clock": "42'"
       }
     ]
+  },
+  "537c0997cd899394f47f16545b7068b2": {
+    "espn_id": "760480",
+    "fetched_at": "2026-06-27T23:19:43+00:00",
+    "teams": [
+      {
+        "team": "Croatia",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "9",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "3",
+          "saves": "0",
+          "possessionPct": "53.3",
+          "totalShots": "8",
+          "shotsOnTarget": "4",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "478",
+          "totalPasses": "523",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "15",
+          "crossPct": "0.2",
+          "totalLongBalls": "37",
+          "accurateLongBalls": "16",
+          "longballPct": "0.4",
+          "blockedShots": "2",
+          "effectiveTackles": "8",
+          "totalTackles": "14",
+          "tacklePct": "0.6",
+          "interceptions": "4",
+          "effectiveClearance": "23",
+          "totalClearance": "23"
+        }
+      },
+      {
+        "team": "Ghana",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "2",
+          "saves": "2",
+          "possessionPct": "46.7",
+          "totalShots": "6",
+          "shotsOnTarget": "1",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "402",
+          "totalPasses": "455",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "12",
+          "crossPct": "0.3",
+          "totalLongBalls": "40",
+          "accurateLongBalls": "18",
+          "longballPct": "0.5",
+          "blockedShots": "2",
+          "effectiveTackles": "7",
+          "totalTackles": "13",
+          "tacklePct": "0.5",
+          "interceptions": "10",
+          "effectiveClearance": "10",
+          "totalClearance": "10"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Croatia",
+        "category": "Total Shots",
+        "player": "Nikola Vlasic",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Croatia",
+        "category": "Accurate Passes",
+        "player": "Josip Sutalo",
+        "headshot": null,
+        "value": "82"
+      },
+      {
+        "team": "Croatia",
+        "category": "Defensive Interventions",
+        "player": "Josip Sutalo",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Ghana",
+        "category": "Total Shots",
+        "player": "Fatawu Issahaku",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Ghana",
+        "category": "Accurate Passes",
+        "player": "Derrick Luckassen",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/205737.png",
+        "value": "71"
+      },
+      {
+        "team": "Ghana",
+        "category": "Defensive Interventions",
+        "player": "Marvin Senaya",
+        "headshot": null,
+        "value": "11"
+      },
+      {
+        "team": "Ghana",
+        "category": "Saves",
+        "player": "Benjamin Asare",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Croatia",
+        "category": "Goals",
+        "player": "Petar Sucic",
+        "headshot": null,
+        "value": "1",
+        "clock": "31'"
+      },
+      {
+        "team": "Croatia",
+        "category": "Assists",
+        "player": "Mateo Kovacic",
+        "headshot": null,
+        "value": "1",
+        "clock": "31'"
+      },
+      {
+        "team": "Ghana",
+        "category": "Goals",
+        "player": "Derrick Luckassen",
+        "headshot": null,
+        "value": "1",
+        "clock": "73'"
+      },
+      {
+        "team": "Ghana",
+        "category": "Assists",
+        "player": "Ernest Nuamah",
+        "headshot": null,
+        "value": "1",
+        "clock": "73'"
+      },
+      {
+        "team": "Croatia",
+        "category": "Goals",
+        "player": "Nikola Vlasic",
+        "headshot": null,
+        "value": "1",
+        "clock": "83'"
+      },
+      {
+        "team": "Croatia",
+        "category": "Assists",
+        "player": "Luka Modric",
+        "headshot": null,
+        "value": "1",
+        "clock": "83'"
+      }
+    ]
+  },
+  "4be17c8e1ccfecb0f2a5ef79e045c415": {
+    "espn_id": "760485",
+    "fetched_at": "2026-06-27T23:19:43+00:00",
+    "teams": [
+      {
+        "team": "Panama",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "16",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "4",
+          "wonCorners": "3",
+          "saves": "4",
+          "possessionPct": "32.8",
+          "totalShots": "13",
+          "shotsOnTarget": "2",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "201",
+          "totalPasses": "267",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "9",
+          "crossPct": "0.3",
+          "totalLongBalls": "54",
+          "accurateLongBalls": "24",
+          "longballPct": "0.4",
+          "blockedShots": "3",
+          "effectiveTackles": "11",
+          "totalTackles": "16",
+          "tacklePct": "0.7",
+          "interceptions": "6",
+          "effectiveClearance": "36",
+          "totalClearance": "36"
+        }
+      },
+      {
+        "team": "England",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "4",
+          "wonCorners": "7",
+          "saves": "2",
+          "possessionPct": "67.2",
+          "totalShots": "17",
+          "shotsOnTarget": "6",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "492",
+          "totalPasses": "557",
+          "passPct": "0.9",
+          "accurateCrosses": "4",
+          "totalCrosses": "25",
+          "crossPct": "0.2",
+          "totalLongBalls": "36",
+          "accurateLongBalls": "20",
+          "longballPct": "0.6",
+          "blockedShots": "3",
+          "effectiveTackles": "17",
+          "totalTackles": "18",
+          "tacklePct": "0.9",
+          "interceptions": "5",
+          "effectiveClearance": "21",
+          "totalClearance": "21"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Panama",
+        "category": "Total Shots",
+        "player": "Ismael Díaz",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Panama",
+        "category": "Accurate Passes",
+        "player": "José Córdoba",
+        "headshot": null,
+        "value": "36"
+      },
+      {
+        "team": "Panama",
+        "category": "Defensive Interventions",
+        "player": "José Córdoba",
+        "headshot": null,
+        "value": "16"
+      },
+      {
+        "team": "Panama",
+        "category": "Saves",
+        "player": "Orlando Mosquera",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "England",
+        "category": "Total Shots",
+        "player": "Marcus Rashford",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "England",
+        "category": "Accurate Passes",
+        "player": "Marc Guéhi",
+        "headshot": null,
+        "value": "77"
+      },
+      {
+        "team": "England",
+        "category": "Defensive Interventions",
+        "player": "Jordan Pickford",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "England",
+        "category": "Saves",
+        "player": "Jordan Pickford",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "England",
+        "category": "Goals",
+        "player": "Jude Bellingham",
+        "headshot": null,
+        "value": "1",
+        "clock": "62'"
+      },
+      {
+        "team": "England",
+        "category": "Assists",
+        "player": "Bukayo Saka",
+        "headshot": null,
+        "value": "1",
+        "clock": "62'"
+      },
+      {
+        "team": "England",
+        "category": "Goals",
+        "player": "Harry Kane",
+        "headshot": null,
+        "value": "1",
+        "clock": "67'"
+      },
+      {
+        "team": "England",
+        "category": "Assists",
+        "player": "Jude Bellingham",
+        "headshot": null,
+        "value": "1",
+        "clock": "67'"
+      }
+    ]
   }
 }
