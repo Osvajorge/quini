@@ -1923,6 +1923,22 @@
         "away": 5.9
       },
       "sharp_book": "Betfair"
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-27T21:00:00Z",
+      "minutes_until": -16.8,
+      "odds": {
+        "home": 1.87,
+        "draw": 3.07,
+        "away": 5.57
+      },
+      "sharp_odds": {
+        "home": 1.92,
+        "draw": 2.98,
+        "away": 6.8
+      },
+      "sharp_book": "Betfair"
     }
   ],
   "4be17c8e1ccfecb0f2a5ef79e045c415": [
@@ -2141,6 +2157,22 @@
         "away": 1.17
       },
       "sharp_book": "Betfair"
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-27T21:00:00Z",
+      "minutes_until": -16.8,
+      "odds": {
+        "home": 19.13,
+        "draw": 7.96,
+        "away": 1.15
+      },
+      "sharp_odds": {
+        "home": 24.0,
+        "draw": 8.8,
+        "away": 1.17
+      },
+      "sharp_book": "Betfair"
     }
   ],
   "67ae5751c401a98409b8566ae4897069": [
@@ -2327,6 +2359,22 @@
         "draw": 4.0,
         "away": 2.1
       }
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-27T23:30:00Z",
+      "minutes_until": 133.2,
+      "odds": {
+        "home": 3.41,
+        "draw": 4.03,
+        "away": 2.08
+      },
+      "sharp_odds": {
+        "home": 3.5,
+        "draw": 4.0,
+        "away": 2.12
+      },
+      "sharp_book": "Betfair"
     }
   ],
   "13eab94a136b9c264ba974cf437a5f71": [
@@ -2587,6 +2635,22 @@
         "away": 5.5
       },
       "sharp_book": "Betfair"
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-27T23:30:00Z",
+      "minutes_until": 133.2,
+      "odds": {
+        "home": 1.71,
+        "draw": 3.91,
+        "away": 5.41
+      },
+      "sharp_odds": {
+        "home": 1.73,
+        "draw": 4.0,
+        "away": 5.6
+      },
+      "sharp_book": "Betfair"
     }
   ],
   "8756200e539155e571557c4f2e0d7f05": [
@@ -2810,6 +2874,16 @@
         "home": 3.56,
         "draw": 2.04,
         "away": 3.88
+      }
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-28T02:00:00Z",
+      "minutes_until": 283.2,
+      "odds": {
+        "home": 3.6,
+        "draw": 2.05,
+        "away": 3.82
       }
     }
   ],
@@ -3035,6 +3109,16 @@
         "draw": 9.0,
         "away": 1.15
       }
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-28T02:00:00Z",
+      "minutes_until": 283.2,
+      "odds": {
+        "home": 19.0,
+        "draw": 9.0,
+        "away": 1.15
+      }
     }
   ],
   "def55b09ef3d6854e3c01e74b5c63415": [
@@ -3238,6 +3322,22 @@
         "home": 5.39,
         "draw": 3.53,
         "away": 1.76
+      },
+      "sharp_odds": {
+        "home": 5.9,
+        "draw": 3.65,
+        "away": 1.78
+      },
+      "sharp_book": "Betfair"
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-28T19:00:00Z",
+      "minutes_until": 1303.2,
+      "odds": {
+        "home": 5.46,
+        "draw": 3.55,
+        "away": 1.75
       },
       "sharp_odds": {
         "home": 5.9,
@@ -3451,6 +3551,26 @@
         "under_2_5": 2.03
       },
       "sharp_book": "Betfair"
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-07-02T00:00:00Z",
+      "minutes_until": 5923.2,
+      "odds": {
+        "home": 1.4,
+        "draw": 4.78,
+        "away": 8.63,
+        "over_2_5": 1.86,
+        "under_2_5": 2.03
+      },
+      "sharp_odds": {
+        "home": 1.41,
+        "draw": 4.9,
+        "away": 10.0,
+        "over_2_5": 1.86,
+        "under_2_5": 2.03
+      },
+      "sharp_book": "Betfair"
     }
   ],
   "4f3d72fba877939d36a5315618184093": [
@@ -3586,6 +3706,24 @@
       "ts": "2026-06-27T20:05:43+00:00",
       "commence_time": "2026-06-29T17:00:00Z",
       "minutes_until": 2694.3,
+      "odds": {
+        "home": 1.7,
+        "draw": 3.88,
+        "away": 5.27,
+        "over_2_5": 2.08,
+        "under_2_5": 1.83
+      },
+      "sharp_odds": {
+        "home": 1.73,
+        "draw": 4.0,
+        "away": 5.5
+      },
+      "sharp_book": "Betfair"
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-29T17:00:00Z",
+      "minutes_until": 2623.2,
       "odds": {
         "home": 1.7,
         "draw": 3.88,
@@ -3735,6 +3873,22 @@
         "away": 4.1
       },
       "sharp_book": "Betfair"
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-30T01:00:00Z",
+      "minutes_until": 3103.2,
+      "odds": {
+        "home": 2.11,
+        "draw": 3.26,
+        "away": 3.96
+      },
+      "sharp_odds": {
+        "home": 2.18,
+        "draw": 3.3,
+        "away": 4.1
+      },
+      "sharp_book": "Betfair"
     }
   ],
   "ce017bea1a26252278053ce759e2416b": [
@@ -3803,6 +3957,18 @@
         "over_2_5": 1.94,
         "under_2_5": 1.94
       }
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-30T17:00:00Z",
+      "minutes_until": 4063.2,
+      "odds": {
+        "home": 3.64,
+        "draw": 3.55,
+        "away": 2.09,
+        "over_2_5": 1.94,
+        "under_2_5": 1.94
+      }
     }
   ],
   "4930db8e83436874d09e59bd0e29c1a5": [
@@ -3831,6 +3997,22 @@
         "away": 10.0
       },
       "sharp_book": "Betfair"
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-29T20:30:00Z",
+      "minutes_until": 2833.2,
+      "odds": {
+        "home": 1.37,
+        "draw": 5.15,
+        "away": 8.57
+      },
+      "sharp_odds": {
+        "home": 1.4,
+        "draw": 5.3,
+        "away": 9.8
+      },
+      "sharp_book": "Betfair"
     }
   ],
   "0b5491529142c9bcc3f88bf45ccb0a7b": [
@@ -3848,6 +4030,22 @@
       "ts": "2026-06-27T20:05:43+00:00",
       "commence_time": "2026-06-30T21:00:00Z",
       "minutes_until": 4374.3,
+      "odds": {
+        "home": 1.3,
+        "draw": 5.89,
+        "away": 10.1
+      },
+      "sharp_odds": {
+        "home": 1.32,
+        "draw": 6.0,
+        "away": 12.0
+      },
+      "sharp_book": "Betfair"
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-06-30T21:00:00Z",
+      "minutes_until": 4303.2,
       "odds": {
         "home": 1.3,
         "draw": 5.89,
@@ -3887,6 +4085,22 @@
         "away": 23.0
       },
       "sharp_book": "Betfair"
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-07-03T22:00:00Z",
+      "minutes_until": 8683.2,
+      "odds": {
+        "home": 1.16,
+        "draw": 8.4,
+        "away": 19.23
+      },
+      "sharp_odds": {
+        "home": 1.17,
+        "draw": 9.0,
+        "away": 22.0
+      },
+      "sharp_book": "Betfair"
     }
   ],
   "fb270a3dac2b682c861bd674a5ff4a04": [
@@ -3901,6 +4115,22 @@
       },
       "sharp_odds": {
         "home": 3.45,
+        "draw": 3.0,
+        "away": 2.6
+      },
+      "sharp_book": "Betfair"
+    },
+    {
+      "ts": "2026-06-27T21:16:47+00:00",
+      "commence_time": "2026-07-03T18:00:00Z",
+      "minutes_until": 8443.2,
+      "odds": {
+        "home": 3.29,
+        "draw": 3.01,
+        "away": 2.52
+      },
+      "sharp_odds": {
+        "home": 3.5,
         "draw": 3.0,
         "away": 2.6
       },
