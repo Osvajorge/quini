@@ -1312,6 +1312,27 @@ def generate():
                             t["status"] = "eliminated"
             print(f"[standings] KO-resolved: {len(teams_in_ko)} teams in bracket")
 
+        # Mark KO fixtures + compute P(advance) from score grid
+        grp_of_std = grp_of  # reuse
+        for fx in fixtures:
+            h_grp = grp_of_std.get(_standing_name(fx["home"]))
+            a_grp = grp_of_std.get(_standing_name(fx["away"]))
+            is_ko = bool(h_grp and a_grp and h_grp != a_grp)
+            fx["is_ko"] = is_ko
+            if is_ko and fx.get("score_grid"):
+                g = fx["score_grid"]  # 6x6, values are % (already ×100)
+                sz = len(g)
+                total = sum(g[h][a] for h in range(sz) for a in range(sz)) / 100.0
+                if total > 0.01:
+                    # Normalize by grid coverage — high-xG games (France/Argentina) only
+                    # capture 80-95% of Poisson mass in 6x6; normalize to avoid underestimating.
+                    p_h = sum(g[h][a] for h in range(sz) for a in range(sz) if h > a) / 100.0 / total
+                    p_a = sum(g[h][a] for h in range(sz) for a in range(sz) if a > h) / 100.0 / total
+                    p_d = sum(g[i][i] for i in range(sz)) / 100.0 / total
+                    # draws → ET → assume 50/50 pens
+                    fx["p_advance_home"] = round(p_h + p_d * 0.5, 3)
+                    fx["p_advance_away"] = round(p_a + p_d * 0.5, 3)
+
     output = {
         "generated_at": now.isoformat(),
         "model": {

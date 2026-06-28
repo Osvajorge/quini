@@ -143,13 +143,40 @@ def save_refit_state(count: int) -> None:
     json.dump(state, open(REFIT_STATE, "w"), indent=2)
 
 
+def _is_ko_phase() -> bool:
+    """True if predictions.json has upcoming cross-group (KO) fixtures."""
+    if not PREDICTIONS_JSON.exists():
+        return False
+    try:
+        d = json.load(open(PREDICTIONS_JSON))
+        team_group: dict[str, str] = {}
+        for grp in d.get("standings", []):
+            for t in grp.get("teams", []):
+                team_group[t["name"]] = grp["group"]
+        for fx in d.get("fixtures", []):
+            if not fx.get("completed"):
+                hg = team_group.get(fx["home"])
+                ag = team_group.get(fx["away"])
+                if hg and ag and hg != ag:
+                    return True
+    except Exception:
+        pass
+    return False
+
+
 def run_refit() -> None:
-    from model.data_loader import load_matches
+    from model.data_loader import load_matches, HALF_LIFE_DAYS
     from model.bivariate_poisson import fit, save_fit
 
-    df = load_matches()
+    # KO phase: shorter half-life (45d) emphasizes last 3 WC group games
+    # over historical baseline — weights Brazil's 3-0/3-0 form vs old records
+    half_life = 45 if _is_ko_phase() else HALF_LIFE_DAYS
+    if half_life != HALF_LIFE_DAYS:
+        print(f"  [form] KO phase — half_life={half_life}d (vs default {HALF_LIFE_DAYS}d)")
+
+    df = load_matches(half_life=half_life)
     wc26 = df[(df["tournament"] == "FIFA World Cup") & (df["date"] >= "2026-06-11")]
-    print(f"  Loaded {len(df):,} matches · WC 2026 group stage: {len(wc26)}")
+    print(f"  Loaded {len(df):,} matches · WC 2026: {len(wc26)} · half_life={half_life}d")
     fit_obj = fit(df, verbose=True)
     save_fit(fit_obj)
     print(f"  Saved fit.pkl · log-L={fit_obj.log_likelihood:.1f}")

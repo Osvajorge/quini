@@ -1486,10 +1486,11 @@ function renderBracket() {
     const as_ = standingByName[_stdName(aName)] || {name: aName};
     const ph = projByTeam[hs.name] || projByTeam[hName];
     const pa = projByTeam[as_.name] || projByTeam[aName];
-    const eloH = ph ? ph.elo : 1500;
-    const eloA = pa ? pa.elo : 1500;
-    const pHome = eloWinProb(eloH, eloA);
-    const pAway = 1 - pHome;
+    // Use Dixon-Coles P(advance) when available (accounts for draw→ET/pens)
+    // else fall back to Elo win prob
+    const pHome = fx.p_advance_home != null ? fx.p_advance_home : eloWinProb(ph ? ph.elo : 1500, pa ? pa.elo : 1500);
+    const pAway = fx.p_advance_away != null ? fx.p_advance_away : 1 - pHome;
+    const usingModel = fx.p_advance_home != null;
     const hColor = TEAM_COLOR[hName] || TEAM_COLOR[hs.name] || 'var(--bet)';
     const aColor = TEAM_COLOR[aName] || TEAM_COLOR[as_.name] || 'var(--mute)';
     const isFavH = pHome >= pAway;
@@ -1531,9 +1532,14 @@ function renderBracket() {
         </div>
         ${betHtml}
         <div class="mt-2 pt-2 flex items-center gap-1" style="border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent);">
-          <div class="text-[10px]" style="color:var(--mute);">${LANG==='es'?'Camp.':'WC%'}</div>
-          ${ph ? `<span class="ml-auto font-mono text-[10px]" style="color:${hColor}cc;">${ph.p_win.toFixed(1)}%</span>` : ''}
-          ${pa ? `<span class="font-mono text-[10px] ml-1" style="color:${aColor}cc;">${pa.p_win.toFixed(1)}%</span>` : ''}
+          <div class="text-[10px]" style="color:var(--mute);">${usingModel?(LANG==='es'?'P(avanza)':'P(advance)'):(LANG==='es'?'Camp.':'WC%')}</div>
+          ${usingModel
+            ? `<span class="ml-auto font-mono text-xs font-bold" style="color:${hColor};">${(pHome*100).toFixed(0)}%</span>
+               <span class="text-[10px] mx-1" style="color:var(--mute);">·</span>
+               <span class="font-mono text-xs font-bold" style="color:${aColor};">${(pAway*100).toFixed(0)}%</span>`
+            : `${ph ? `<span class="ml-auto font-mono text-[10px]" style="color:${hColor}cc;">${ph.p_win.toFixed(1)}%</span>` : ''}
+               ${pa ? `<span class="font-mono text-[10px] ml-1" style="color:${aColor}cc;">${pa.p_win.toFixed(1)}%</span>` : ''}`
+          }
         </div>
       </div>
     </div>`;
@@ -1939,6 +1945,7 @@ function renderFixtureCard(f, featured = false) {
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-3">
             ${f.is_live ? `<span class="flex items-center gap-1.5 px-2 py-0.5 rounded-full" style="background:color-mix(in srgb, var(--live) 10%, transparent); border:1px solid color-mix(in srgb, var(--live) 30%, transparent);"><span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span><span class="text-[10px] font-mono" style="color:var(--live);">LIVE</span></span>` : ''}
+            ${f.is_ko ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider" style="background:color-mix(in srgb,var(--warn) 12%,transparent); color:var(--warn); border:1px solid color-mix(in srgb,var(--warn) 25%,transparent);">R32</span>` : ''}
             <span class="text-xs" style="color:var(--mute);">${formatDate(f.commence_time)}</span>
           </div>
           <div class="flex items-center gap-2">
@@ -1954,6 +1961,15 @@ function renderFixtureCard(f, featured = false) {
             <div class="text-base font-semibold flex items-center gap-1.5 mt-0.5 flex-wrap" style="color:var(--mute);"><span class="inline-block w-2 h-2 rounded-sm shrink-0" style="background:${awayColor};opacity:0.8;"></span>${teamName(f.away)}${_qualBadge(f.away)}</div>
           </div>
           ${liveScoreHtml}
+          ${f.is_ko && f.p_advance_home != null ? `
+          <div class="text-right mr-3">
+            <div class="text-sm font-bold font-mono" style="color:var(--bet);">${(f.p_advance_home*100).toFixed(0)}%</div>
+            <div class="text-sm font-bold font-mono" style="color:var(--mute);">${(f.p_advance_away*100).toFixed(0)}%</div>
+          </div>
+          <div class="text-right mr-4">
+            <div class="text-[10px]" style="color:var(--warn);">${LANG==='es'?'P(avanza)':'P(adv)'}</div>
+            <div class="text-[10px]" style="color:var(--mute);"> </div>
+          </div>` : ''}
           <div class="text-right mr-4">
             <div class="text-lg font-bold font-mono" style="color:var(--alta);">${f.xg_home}</div>
             <div class="text-lg font-bold font-mono" style="color:var(--mute);">${f.xg_away}</div>
