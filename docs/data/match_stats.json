@@ -10022,5 +10022,145 @@
         "clock": "80'"
       }
     ]
+  },
+  "def55b09ef3d6854e3c01e74b5c63415": {
+    "espn_id": "760486",
+    "fetched_at": "2026-06-28T21:17:31+00:00",
+    "teams": [
+      {
+        "team": "South Africa",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "1",
+          "saves": "5",
+          "possessionPct": "58.2",
+          "totalShots": "6",
+          "shotsOnTarget": "1",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "466",
+          "totalPasses": "550",
+          "passPct": "0.8",
+          "accurateCrosses": "2",
+          "totalCrosses": "8",
+          "crossPct": "0.3",
+          "totalLongBalls": "70",
+          "accurateLongBalls": "31",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "14",
+          "totalTackles": "23",
+          "tacklePct": "0.6",
+          "interceptions": "16",
+          "effectiveClearance": "34",
+          "totalClearance": "34"
+        }
+      },
+      {
+        "team": "Canada",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "16",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "4",
+          "saves": "1",
+          "possessionPct": "41.8",
+          "totalShots": "12",
+          "shotsOnTarget": "7",
+          "shotPct": "0.6",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "298",
+          "totalPasses": "381",
+          "passPct": "0.8",
+          "accurateCrosses": "5",
+          "totalCrosses": "12",
+          "crossPct": "0.4",
+          "totalLongBalls": "31",
+          "accurateLongBalls": "15",
+          "longballPct": "0.5",
+          "blockedShots": "0",
+          "effectiveTackles": "15",
+          "totalTackles": "20",
+          "tacklePct": "0.8",
+          "interceptions": "8",
+          "effectiveClearance": "14",
+          "totalClearance": "14"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "South Africa",
+        "category": "Total Shots",
+        "player": "Oswin Appollis",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "South Africa",
+        "category": "Accurate Passes",
+        "player": "Ime Okon",
+        "headshot": null,
+        "value": "81"
+      },
+      {
+        "team": "South Africa",
+        "category": "Defensive Interventions",
+        "player": "Khuliso Mudau",
+        "headshot": null,
+        "value": "19"
+      },
+      {
+        "team": "South Africa",
+        "category": "Saves",
+        "player": "Ronwen Williams",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Canada",
+        "category": "Total Shots",
+        "player": "Tani Oluwaseyi",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/294039.png",
+        "value": "3"
+      },
+      {
+        "team": "Canada",
+        "category": "Accurate Passes",
+        "player": "Derek Cornelius",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238712.png",
+        "value": "45"
+      },
+      {
+        "team": "Canada",
+        "category": "Defensive Interventions",
+        "player": "Luc de Fougerolles",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Canada",
+        "category": "Saves",
+        "player": "Maxime Crépeau",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/159382.png",
+        "value": "1"
+      },
+      {
+        "team": "Canada",
+        "category": "Goals",
+        "player": "Stephen Eustaquio",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+2'"
+      }
+    ]
   }
 }

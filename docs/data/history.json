@@ -5312,20 +5312,100 @@
         "draw": 9.0,
         "away": 1.15
       }
+    },
+    {
+      "id": "def55b09ef3d6854e3c01e74b5c63415",
+      "home": "South Africa",
+      "away": "Canada",
+      "date": "2026-06-28T19:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "SKIP",
+          "edge": 3.2,
+          "odds": 5.46,
+          "model_prob": 20.4,
+          "devig_prob": 17.1,
+          "won": false,
+          "closing_odds": 5.3,
+          "clv_pct": 3.02
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "SKIP",
+          "edge": -4.9,
+          "odds": 2.43,
+          "model_prob": 34.8,
+          "devig_prob": 39.7,
+          "won": false,
+          "closing_odds": 3.45,
+          "clv_pct": -29.57
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "SKIP",
+          "edge": 1.7,
+          "odds": 2.24,
+          "model_prob": 44.8,
+          "devig_prob": 43.2,
+          "won": true,
+          "closing_odds": 1.9,
+          "clv_pct": 17.89
+        }
+      ],
+      "bets": [],
+      "best_bet": null,
+      "has_bet": false,
+      "result": {
+        "home": 0,
+        "away": 1
+      },
+      "best_bet_won": null,
+      "score_hit": 2,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 14.3
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 12.8
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 12.0
+        }
+      ],
+      "xg_home": 0.05,
+      "xg_away": 0.82,
+      "predicted_1x2": "2",
+      "result_1x2": "2",
+      "correct_1x2": true,
+      "all_odds": {
+        "home": 5.46,
+        "draw": 2.43,
+        "away": 2.24
+      }
     }
   ],
   "summary": {
-    "total": 62,
+    "total": 63,
     "total_bets": 111,
     "won": 47,
     "lost": 64,
     "win_rate": 42.3,
     "roi": -20.2,
-    "score_hits": 24,
+    "score_hits": 25,
     "score_top1": 7,
-    "correct_1x2": 41,
-    "total_1x2": 62,
-    "accuracy_1x2": 66.1,
+    "correct_1x2": 42,
+    "total_1x2": 63,
+    "accuracy_1x2": 66.7,
     "avg_clv_pct": 55.63,
     "clv_sample_size": 3,
     "pct_beating_close": 100.0

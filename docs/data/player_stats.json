@@ -2086,6 +2086,19 @@
       }
     },
     {
+      "player": "Stephen Eustaquio",
+      "team": "Canada",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Malik Tillman",
       "team": "United States",
       "headshot": null,
@@ -3445,6 +3458,19 @@
       }
     },
     {
+      "player": "Tani Oluwaseyi",
+      "team": "Canada",
+      "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/294039.png",
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Saeid Ezatolahi",
       "team": "Iran",
       "headshot": null,
@@ -3708,6 +3734,19 @@
     {
       "player": "Mousa Al-Tamari",
       "team": "Jordan",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Total Shots": {
+          "total": 2.0,
+          "max": 2.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Oswin Appollis",
+      "team": "South Africa",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -4991,12 +5030,12 @@
       "player": "Ime Okon",
       "team": "South Africa",
       "headshot": null,
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Accurate Passes": {
-          "total": 93.0,
-          "max": 48.0,
-          "appearances": 2
+          "total": 174.0,
+          "max": 81.0,
+          "appearances": 3
         },
         "Defensive Interventions": {
           "total": 11.0,
@@ -5009,12 +5048,12 @@
       "player": "Ronwen Williams",
       "team": "South Africa",
       "headshot": null,
-      "matches": 3,
+      "matches": 4,
       "categories": {
         "Saves": {
-          "total": 6.0,
-          "max": 2.0,
-          "appearances": 3
+          "total": 11.0,
+          "max": 5.0,
+          "appearances": 4
         }
       }
     },
@@ -5506,7 +5545,7 @@
       "player": "Maxime Crépeau",
       "team": "Canada",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/159382.png",
-      "matches": 2,
+      "matches": 3,
       "categories": {
         "Defensive Interventions": {
           "total": 4.0,
@@ -5514,9 +5553,9 @@
           "appearances": 1
         },
         "Saves": {
-          "total": 2.0,
+          "total": 3.0,
           "max": 2.0,
-          "appearances": 1
+          "appearances": 2
         }
       }
     },
@@ -5607,12 +5646,12 @@
       "player": "Derek Cornelius",
       "team": "Canada",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238712.png",
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Accurate Passes": {
-          "total": 37.0,
-          "max": 37.0,
-          "appearances": 1
+          "total": 82.0,
+          "max": 45.0,
+          "appearances": 2
         }
       }
     },
@@ -5672,12 +5711,12 @@
       "player": "Khuliso Mudau",
       "team": "South Africa",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Defensive Interventions": {
-          "total": 20.0,
+          "total": 39.0,
           "max": 20.0,
-          "appearances": 1
+          "appearances": 2
         }
       }
     },
@@ -6124,6 +6163,19 @@
         "Defensive Interventions": {
           "total": 10.0,
           "max": 10.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Luc de Fougerolles",
+      "team": "Canada",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Defensive Interventions": {
+          "total": 8.0,
+          "max": 8.0,
           "appearances": 1
         }
       }
