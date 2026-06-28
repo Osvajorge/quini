@@ -1437,11 +1437,6 @@ function renderBracket() {
   const projByTeam = {};
   p.teams.forEach(t => projByTeam[t.team] = t);
 
-  // Simple Elo win probability (neutral venue)
-  function eloWinProb(eloH, eloA) {
-    return 1 / (1 + Math.pow(10, (eloA - eloH) / 400));
-  }
-
   // Name normalization for cross-group detection
   const _FX_TO_STD = {
     'USA':'United States','Bosnia & Herzegovina':'Bosnia-Herzegovina',
@@ -1461,18 +1456,9 @@ function renderBracket() {
     });
   }
 
-  // Build standings lookup: team name → standing entry (for flag, rank, etc.)
-  const standingByName = {};
-  if (standings) {
-    standings.forEach(grp => grp.teams.forEach(t => {
-      standingByName[t.name] = t;
-      standingByName[_stdName(t.name)] = t;
-    }));
-  }
-
   // Derive R32 fixtures from actual DATA.fixtures (cross-group = KO)
   const allFixtures = (DATA && DATA.fixtures) || [];
-  const r32Fixtures = allFixtures
+  const r32 = allFixtures
     .filter(f => {
       const hg = teamGroupMap[_stdName(f.home)];
       const ag = teamGroupMap[_stdName(f.away)];
@@ -1480,72 +1466,74 @@ function renderBracket() {
     })
     .sort((a, b) => a.commence_time.localeCompare(b.commence_time));
 
-  function matchCard(fx, matchNum) {
-    const hName = fx.home, aName = fx.away;
-    const hs = standingByName[_stdName(hName)] || {name: hName};
-    const as_ = standingByName[_stdName(aName)] || {name: aName};
-    const ph = projByTeam[hs.name] || projByTeam[hName];
-    const pa = projByTeam[as_.name] || projByTeam[aName];
-    // Use Dixon-Coles P(advance) when available (accounts for draw→ET/pens)
-    // else fall back to Elo win prob
-    const pHome = fx.p_advance_home != null ? fx.p_advance_home : eloWinProb(ph ? ph.elo : 1500, pa ? pa.elo : 1500);
-    const pAway = fx.p_advance_away != null ? fx.p_advance_away : 1 - pHome;
-    const usingModel = fx.p_advance_home != null;
-    const hColor = TEAM_COLOR[hName] || TEAM_COLOR[hs.name] || 'var(--bet)';
-    const aColor = TEAM_COLOR[aName] || TEAM_COLOR[as_.name] || 'var(--mute)';
-    const isFavH = pHome >= pAway;
-    const bet = fx.bets && fx.bets.length ? fx.bets[0] : fx.best_bet;
-    const betHtml = bet
-      ? `<div class="mt-1.5 px-2 py-1 rounded text-[10px] font-semibold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">
-           BET · ${bet.description_es || bet.market} +${bet.edge}% edge
-         </div>`
-      : '';
-    const dateStr = new Date(fx.commence_time).toLocaleDateString(LANG==='es'?'es-ES':'en-US',{month:'short',day:'numeric'});
-    const isCompleted = fx.completed;
-    const scoreHtml = isCompleted && fx.actual_home !== null
-      ? `<span class="font-mono font-bold text-sm" style="color:var(--ink);">${fx.actual_home} – ${fx.actual_away}</span>`
-      : `<span class="text-[10px]" style="color:var(--mute);">${dateStr}</span>`;
-    // Winner highlight
-    const hWon = isCompleted && fx.actual_home > fx.actual_away;
-    const aWon = isCompleted && fx.actual_away > fx.actual_home;
-    return `<div class="rounded-xl overflow-hidden" style="background:var(--panel); border:1px solid var(--border);">
-      <div style="height:3px; background:linear-gradient(to right, ${hColor}cc 50%, ${aColor}cc 50%);"></div>
-      <div class="p-3">
-        <div class="flex items-center justify-between mb-2">
-          <div class="text-[10px] font-mono uppercase tracking-wider" style="color:var(--mute);">R32 · ${matchNum}</div>
-          ${scoreHtml}
-        </div>
-        <div class="flex items-center justify-between mb-1.5">
-          <div class="flex items-center gap-1.5 text-sm font-semibold ${(!isCompleted&&isFavH)||hWon?'':'opacity-60'}">
-            <span class="inline-block w-1.5 h-1.5 rounded-full" style="background:${hColor};"></span>
-            ${teamName(hName)}
-          </div>
-          <span class="font-mono text-xs font-bold" style="color:${(!isCompleted&&isFavH)||hWon?'var(--bet)':'var(--mute)'};">${(pHome*100).toFixed(0)}%</span>
-        </div>
-        <div class="text-[10px] text-center font-mono my-0.5" style="color:var(--mute);">vs</div>
-        <div class="flex items-center justify-between mt-1.5">
-          <div class="flex items-center gap-1.5 text-sm font-semibold ${(!isCompleted&&!isFavH)||aWon?'':'opacity-60'}">
-            <span class="inline-block w-1.5 h-1.5 rounded-full" style="background:${aColor};"></span>
-            ${teamName(aName)}
-          </div>
-          <span class="font-mono text-xs font-bold" style="color:${(!isCompleted&&!isFavH)||aWon?'var(--bet)':'var(--mute)'};">${(pAway*100).toFixed(0)}%</span>
-        </div>
-        ${betHtml}
-        <div class="mt-2 pt-2 flex items-center gap-1" style="border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent);">
-          <div class="text-[10px]" style="color:var(--mute);">${usingModel?(LANG==='es'?'P(avanza)':'P(advance)'):(LANG==='es'?'Camp.':'WC%')}</div>
-          ${usingModel
-            ? `<span class="ml-auto font-mono text-xs font-bold" style="color:${hColor};">${(pHome*100).toFixed(0)}%</span>
-               <span class="text-[10px] mx-1" style="color:var(--mute);">·</span>
-               <span class="font-mono text-xs font-bold" style="color:${aColor};">${(pAway*100).toFixed(0)}%</span>`
-            : `${ph ? `<span class="ml-auto font-mono text-[10px]" style="color:${hColor}cc;">${ph.p_win.toFixed(1)}%</span>` : ''}
-               ${pa ? `<span class="font-mono text-[10px] ml-1" style="color:${aColor}cc;">${pa.p_win.toFixed(1)}%</span>` : ''}`
-          }
-        </div>
+  // Get winner of completed KO fixture
+  function getWinner(fx) {
+    if (!fx || !fx.completed || fx.actual_home == null) return null;
+    if (fx.actual_home > fx.actual_away) return fx.home;
+    if (fx.actual_away > fx.actual_home) return fx.away;
+    return null;
+  }
+
+  function deriveNext(m1, m2) {
+    const w1 = getWinner(m1);
+    const w2 = getWinner(m2);
+    return { home: w1, away: w2, tbd: !w1 || !w2 };
+  }
+
+  // Build bracket tree from R32 fixtures
+  const leftR32 = r32.slice(0, 8);
+  const rightR32 = r32.slice(8, 16);
+  const leftR16 = [
+    deriveNext(leftR32[0], leftR32[1]), deriveNext(leftR32[2], leftR32[3]),
+    deriveNext(leftR32[4], leftR32[5]), deriveNext(leftR32[6], leftR32[7]),
+  ];
+  const rightR16 = [
+    deriveNext(rightR32[0], rightR32[1]), deriveNext(rightR32[2], rightR32[3]),
+    deriveNext(rightR32[4], rightR32[5]), deriveNext(rightR32[6], rightR32[7]),
+  ];
+  const leftQF = [deriveNext(leftR16[0], leftR16[1]), deriveNext(leftR16[2], leftR16[3])];
+  const rightQF = [deriveNext(rightR16[0], rightR16[1]), deriveNext(rightR16[2], rightR16[3])];
+  const leftSF = deriveNext(leftQF[0], leftQF[1]);
+  const rightSF = deriveNext(rightQF[0], rightQF[1]);
+  const bracketFinal = deriveNext(leftSF, rightSF);
+
+  function bkSlot(fx) {
+    if (!fx || (fx.tbd && !fx.home && !fx.away))
+      return '<div class="bk-s bk-tbd"><div class="bk-t"><span class="bk-n">TBD</span></div><div class="bk-t"><span class="bk-n">TBD</span></div></div>';
+    const h = fx.home, a = fx.away;
+    const done = fx.completed;
+    const hWon = done && fx.actual_home > fx.actual_away;
+    const aWon = done && fx.actual_away > fx.actual_home;
+    const hc = TEAM_COLOR[h] || 'var(--mute)';
+    const ac = TEAM_COLOR[a] || 'var(--mute)';
+    return `<div class="bk-s${done?' bk-done':''}${fx.tbd?' bk-tbd':''}">
+      <div class="bk-t${hWon?' bk-w':''}${aWon?' bk-l':''}">
+        <span class="bk-d" style="background:${hc}"></span>
+        <span class="bk-n">${h?teamName(h):'?'}</span>
+        ${done?`<span class="bk-sc">${fx.actual_home}</span>`:
+          fx.p_advance_home!=null?`<span class="bk-p">${(fx.p_advance_home*100).toFixed(0)}%</span>`:''}
+      </div>
+      <div class="bk-t${aWon?' bk-w':''}${hWon?' bk-l':''}">
+        <span class="bk-d" style="background:${ac}"></span>
+        <span class="bk-n">${a?teamName(a):'?'}</span>
+        ${done?`<span class="bk-sc">${fx.actual_away}</span>`:
+          fx.p_advance_away!=null?`<span class="bk-p">${(fx.p_advance_away*100).toFixed(0)}%</span>`:''}
       </div>
     </div>`;
   }
 
-  // Top 3 favorites hero row
+  const roundCol = ms => ms.map(fx => `<div class="bk-mc">${bkSlot(fx)}</div>`).join('');
+  const armR = n => Array(n).fill('<div class="bk-ac"><div class="bk-ar"></div></div>').join('');
+  const armL = n => Array(n).fill('<div class="bk-ac"><div class="bk-al"></div></div>').join('');
+  const lineH = '<div class="bk-hc"></div>';
+
+  const R32L = LANG==='es'?'16avos':'R32';
+  const R16L = LANG==='es'?'8vos':'R16';
+  const QFL = LANG==='es'?'Cuartos':'QF';
+  const SFL = LANG==='es'?'Semis':'SF';
+  const FL = LANG==='es'?'Final':'Final';
+
+  // Top 3 hero
   const top3 = p.teams.slice(0, 3);
   const heroCards = top3.map((t, i) => `
     <div class="rounded-xl p-4 text-center" style="background:color-mix(in srgb,${TEAM_COLOR[t.team]||'var(--bet)'} ${i===0?'18':i===1?'10':'6'}%,var(--panel)); border:1px solid color-mix(in srgb,${TEAM_COLOR[t.team]||'var(--bet)'} ${i===0?'40':'20'}%,var(--border));">
@@ -1555,11 +1543,7 @@ function renderBracket() {
       <div class="text-[10px]" style="color:var(--mute);">${LANG==='es'?'de ganar el Mundial':'to win the World Cup'}</div>
     </div>`).join('');
 
-  // R32 bracket grid
-  const r32Html = r32Fixtures.map((fx, i) => matchCard(fx, i + 1)).join('')
-    || `<div class="col-span-4 text-center py-8 text-sm" style="color:var(--mute);">${LANG==='es'?'Llaves pendientes — fase de grupos en curso':'Bracket pending — group stage in progress'}</div>`;
-
-  // Projections table (top 16)
+  // Projections table
   const top16 = p.teams.slice(0, 16);
   const projRows = top16.map((t, i) => {
     const c = i < 3 ? 'var(--bet)' : i < 8 ? 'var(--alta)' : 'var(--ink)';
@@ -1576,23 +1560,68 @@ function renderBracket() {
   }).join('');
 
   el.innerHTML = `
+    <style>
+      .bk-wrap{overflow-x:auto;padding:0 0 8px;-webkit-overflow-scrolling:touch;}
+      .bk-tree{display:flex;align-items:stretch;min-height:460px;min-width:1060px;}
+      .bk-round{display:flex;flex-direction:column;min-width:105px;padding:22px 2px 2px;position:relative;}
+      .bk-round::before{content:attr(data-rnd);position:absolute;top:0;left:0;right:0;text-align:center;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);}
+      .bk-mc{flex:1;display:flex;align-items:center;padding:2px 0;}
+      .bk-conn{display:flex;flex-direction:column;width:16px;padding:22px 0 2px;}
+      .bk-ac{flex:1;position:relative;}
+      .bk-ar{position:absolute;top:22%;bottom:22%;left:0;right:0;border-top:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-right:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-bottom:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-radius:0 5px 5px 0;}
+      .bk-al{position:absolute;top:22%;bottom:22%;left:0;right:0;border-top:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-left:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-bottom:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-radius:5px 0 0 5px;}
+      .bk-hc{flex:1;display:flex;align-items:center;}
+      .bk-hc::after{content:'';width:100%;border-top:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);}
+      .bk-s{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:3px 5px;width:100%;}
+      .bk-s.bk-done{border-color:color-mix(in srgb,var(--bet) 50%,var(--border));background:color-mix(in srgb,var(--bet) 4%,var(--panel));}
+      .bk-s.bk-tbd{opacity:0.35;}
+      .bk-t{display:flex;align-items:center;gap:3px;line-height:1.6;font-size:11px;}
+      .bk-w{font-weight:700;}
+      .bk-l{opacity:0.3;text-decoration:line-through;}
+      .bk-d{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+      .bk-n{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+      .bk-sc{font-family:var(--font-mono,monospace);font-weight:700;font-size:12px;min-width:12px;text-align:right;}
+      .bk-p{font-family:var(--font-mono,monospace);font-size:9px;color:var(--mute);min-width:20px;text-align:right;}
+      .bk-final .bk-s{background:color-mix(in srgb,var(--bet) 8%,var(--panel));border-color:color-mix(in srgb,var(--bet) 50%,var(--border));padding:5px 8px;}
+      .bk-final .bk-t{font-size:13px;}
+      @media(max-width:640px){.bk-round{min-width:80px;}.bk-s{padding:2px 3px;}.bk-t{font-size:10px;gap:2px;}.bk-d{width:4px;height:4px;}}
+    </style>
+
     <div class="grid grid-cols-3 gap-3 mb-6">${heroCards}</div>
 
-    <!-- R32 Bracket -->
     <div class="mb-6">
       <div class="flex items-center justify-between mb-3">
-        <h2 class="text-sm font-bold uppercase tracking-wider" style="color:var(--ink);">${LANG==='es'?'16avos de Final':'Round of 32'}</h2>
-        <span class="text-[10px] font-mono px-2 py-1 rounded" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">Elo + Dixon-Coles</span>
+        <h2 class="text-sm font-bold uppercase tracking-wider" style="color:var(--ink);">${LANG==='es'?'Cuadro de eliminación':'Knockout Bracket'}</h2>
+        <span class="text-[10px] font-mono px-2 py-1 rounded" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">Dixon-Coles + Elo</span>
       </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">${r32Html}</div>
-      <p class="text-[10px] mt-2" style="color:var(--mute);">${r32Fixtures.length===16?(LANG==='es'?'Llaves confirmadas · Fase de grupos completada':'Confirmed bracket · Group stage complete'):(LANG==='es'?`${r32Fixtures.length}/16 llaves confirmadas — fase de grupos en curso`:`${r32Fixtures.length}/16 matches confirmed — group stage in progress`)}</p>
+      <div class="bk-wrap">
+        <div class="bk-tree">
+          <div class="bk-round" data-rnd="${R32L}">${roundCol(leftR32)}</div>
+          <div class="bk-conn">${armR(4)}</div>
+          <div class="bk-round" data-rnd="${R16L}">${roundCol(leftR16)}</div>
+          <div class="bk-conn">${armR(2)}</div>
+          <div class="bk-round" data-rnd="${QFL}">${roundCol(leftQF)}</div>
+          <div class="bk-conn">${armR(1)}</div>
+          <div class="bk-round" data-rnd="${SFL}">${roundCol([leftSF])}</div>
+          <div class="bk-conn">${lineH}</div>
+          <div class="bk-round bk-final" data-rnd="${FL}">${roundCol([bracketFinal])}</div>
+          <div class="bk-conn">${lineH}</div>
+          <div class="bk-round" data-rnd="${SFL}">${roundCol([rightSF])}</div>
+          <div class="bk-conn">${armL(1)}</div>
+          <div class="bk-round" data-rnd="${QFL}">${roundCol(rightQF)}</div>
+          <div class="bk-conn">${armL(2)}</div>
+          <div class="bk-round" data-rnd="${R16L}">${roundCol(rightR16)}</div>
+          <div class="bk-conn">${armL(4)}</div>
+          <div class="bk-round" data-rnd="${R32L}">${roundCol(rightR32)}</div>
+        </div>
+      </div>
+      <p class="text-[10px] mt-2" style="color:var(--mute);">${r32.length >= 16 ? (LANG==='es'?'Cuadro completo — 16 llaves confirmadas. Ganadores avanzan automáticamente.':'Complete bracket — 16 R32 matches confirmed. Winners advance automatically.') : (LANG==='es'?r32.length+'/16 llaves confirmadas.':r32.length+'/16 matches confirmed.')}</p>
     </div>
 
-    <!-- Projections Table -->
     <div class="rounded-xl border overflow-hidden" style="background:var(--panel); border-color:var(--border);">
       <div class="px-4 py-3" style="border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent);">
         <h2 class="text-sm font-bold">${LANG==='es'?'Probabilidad por ronda':'Probability by round'}</h2>
-        <p class="text-[10px]" style="color:var(--mute);">Monte Carlo (n=${p.n_sims.toLocaleString()}) · ${LANG==='es'?'Top 16':'Top 16'}</p>
+        <p class="text-[10px]" style="color:var(--mute);">Monte Carlo (n=${p.n_sims.toLocaleString()}) · Top 16</p>
       </div>
       <div class="overflow-x-auto">
         <table class="w-full">
@@ -1612,6 +1641,8 @@ function renderBracket() {
         </table>
       </div>
     </div>`;
+
+
 }
 
 function renderRankings() {
