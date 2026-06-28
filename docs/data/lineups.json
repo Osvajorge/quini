@@ -1174,5 +1174,385 @@
         "Rafael Leão"
       ]
     }
+  },
+  "def55b09ef3d6854e3c01e74b5c63415": {
+    "espn_id": "760486",
+    "fetched_at": "2026-06-28T18:57:04+00:00",
+    "teams": [
+      {
+        "team": "South Africa",
+        "formation": "4-2-3-1",
+        "starters": [
+          {
+            "name": "Ronwen Williams",
+            "short": "R. Williams",
+            "jersey": "1",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Mbekezeli Mbokazi",
+            "short": "M. Mbokazi",
+            "jersey": "14",
+            "pos": "D",
+            "headshot": null
+          },
+          {
+            "name": "Khuliso Mudau",
+            "short": "K. Mudau",
+            "jersey": "20",
+            "pos": "D",
+            "headshot": null
+          },
+          {
+            "name": "Ime Okon",
+            "short": "I. Okon",
+            "jersey": "21",
+            "pos": "D",
+            "headshot": null
+          },
+          {
+            "name": "Aubrey Modiba",
+            "short": "A. Modiba",
+            "jersey": "6",
+            "pos": "D",
+            "headshot": null
+          },
+          {
+            "name": "Relebohile Mofokeng",
+            "short": "R. Mofokeng",
+            "jersey": "10",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Oswin Appollis",
+            "short": "O. Appollis",
+            "jersey": "7",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Thapelo Maseko",
+            "short": "T. Maseko",
+            "jersey": "12",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Teboho Mokoena",
+            "short": "T. Mokoena",
+            "jersey": "4",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Sphephelo Sithole",
+            "short": "S. Sithole",
+            "jersey": "13",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Evidence Makgopa",
+            "short": "E. Makgopa",
+            "jersey": "17",
+            "pos": "F",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Iqraam Rayners",
+            "short": "I. Rayners",
+            "jersey": "15",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Nkosinathi Sibisi",
+            "short": "N. Sibisi",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Kamogelo Sebelebele",
+            "short": "K. Sebelebele",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Jayden Adams",
+            "short": "J. Adams",
+            "jersey": "23",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Samukele Kabini",
+            "short": "S. Kabini",
+            "jersey": "18",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Sipho Chaine",
+            "short": "S. Chaine",
+            "jersey": "16",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Olwethu Makhanya",
+            "short": "O. Makhanya",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Tshepang Moremi",
+            "short": "T. Moremi",
+            "jersey": "8",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Bradley Cross",
+            "short": "B. Cross",
+            "jersey": "26",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Khulumani Ndamane",
+            "short": "K. Ndamane",
+            "jersey": "3",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Thabang Matuludi",
+            "short": "T. Matuludi",
+            "jersey": "2",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Lyle Foster",
+            "short": "L. Foster",
+            "jersey": "9",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Thalente Mbatha",
+            "short": "T. Mbatha",
+            "jersey": "5",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Ricardo Goss",
+            "short": "R. Goss",
+            "jersey": "22",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      },
+      {
+        "team": "Canada",
+        "formation": "4-4-2",
+        "starters": [
+          {
+            "name": "Maxime Crépeau",
+            "short": "M. Crépeau",
+            "jersey": "16",
+            "pos": "G",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/159382.png"
+          },
+          {
+            "name": "Derek Cornelius",
+            "short": "D. Cornelius",
+            "jersey": "13",
+            "pos": "D",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238712.png"
+          },
+          {
+            "name": "Richie Laryea",
+            "short": "R. Laryea",
+            "jersey": "22",
+            "pos": "D",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/230626.png"
+          },
+          {
+            "name": "Alistair Johnston",
+            "short": "A. Johnston",
+            "jersey": "2",
+            "pos": "D",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/293691.png"
+          },
+          {
+            "name": "Moïse Bombito",
+            "short": "M. Bombito",
+            "jersey": "15",
+            "pos": "D",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/358975.png"
+          },
+          {
+            "name": "Liam Millar",
+            "short": "L. Millar",
+            "jersey": "11",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Tajon Buchanan",
+            "short": "T. Buchanan",
+            "jersey": "17",
+            "pos": "M",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/284769.png"
+          },
+          {
+            "name": "Nathan Saliba",
+            "short": "N. Saliba",
+            "jersey": "25",
+            "pos": "M",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/311163.png"
+          },
+          {
+            "name": "Stephen Eustáquio",
+            "short": "S. Eustáquio",
+            "jersey": "7",
+            "pos": "M",
+            "headshot": null
+          },
+          {
+            "name": "Jonathan David",
+            "short": "J. David",
+            "jersey": "10",
+            "pos": "F",
+            "headshot": null
+          },
+          {
+            "name": "Tani Oluwaseyi",
+            "short": "T. Oluwaseyi",
+            "jersey": "12",
+            "pos": "F",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/294039.png"
+          }
+        ],
+        "subs": [
+          {
+            "name": "Jonathan Osorio",
+            "short": "J. Osorio",
+            "jersey": "21",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/184221.png"
+          },
+          {
+            "name": "Dayne St. Clair",
+            "short": "D. St. Clair",
+            "jersey": "1",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/231059.png"
+          },
+          {
+            "name": "Jacob Shaffelburg",
+            "short": "J. Shaffelburg",
+            "jersey": "14",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/286214.png"
+          },
+          {
+            "name": "Owen Goodman",
+            "short": "O. Goodman",
+            "jersey": "18",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Promise David",
+            "short": "P. David",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Jayden Nelson",
+            "short": "J. Nelson",
+            "jersey": "26",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/280612.png"
+          },
+          {
+            "name": "Ali Ahmed",
+            "short": "A. Ahmed",
+            "jersey": "20",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/340228.png"
+          },
+          {
+            "name": "Joel Waterman",
+            "short": "J. Waterman",
+            "jersey": "5",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/236890.png"
+          },
+          {
+            "name": "Mathieu Choinière",
+            "short": "M. Choinière",
+            "jersey": "6",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/274296.png"
+          },
+          {
+            "name": "Alfie Jones",
+            "short": "A. Jones",
+            "jersey": "3",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Luc de Fougerolles",
+            "short": "L. de Fougerolles",
+            "jersey": "4",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Niko Sigur",
+            "short": "N. Sigur",
+            "jersey": "23",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Alphonso Davies",
+            "short": "A. Davies",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/236721.png"
+          },
+          {
+            "name": "Cyle Larin",
+            "short": "C. Larin",
+            "jersey": "9",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      }
+    ],
+    "absences": {
+      "South Africa": [
+        "Tshepang Moremi following a fast break"
+      ],
+      "Canada": [
+        "Cyle Larin"
+      ]
+    }
   }
 }
