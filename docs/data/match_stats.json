@@ -9520,5 +9520,507 @@
         "clock": "67'"
       }
     ]
+  },
+  "67ae5751c401a98409b8566ae4897069": {
+    "espn_id": "760481",
+    "fetched_at": "2026-06-28T04:55:38+00:00",
+    "teams": [
+      {
+        "team": "Colombia",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "12",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "5",
+          "saves": "2",
+          "possessionPct": "54.6",
+          "totalShots": "24",
+          "shotsOnTarget": "6",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "485",
+          "totalPasses": "544",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "11",
+          "crossPct": "0.3",
+          "totalLongBalls": "46",
+          "accurateLongBalls": "25",
+          "longballPct": "0.5",
+          "blockedShots": "7",
+          "effectiveTackles": "8",
+          "totalTackles": "15",
+          "tacklePct": "0.5",
+          "interceptions": "6",
+          "effectiveClearance": "16",
+          "totalClearance": "16"
+        }
+      },
+      {
+        "team": "Portugal",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "6",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "2",
+          "saves": "6",
+          "possessionPct": "45.4",
+          "totalShots": "13",
+          "shotsOnTarget": "2",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "405",
+          "totalPasses": "446",
+          "passPct": "0.9",
+          "accurateCrosses": "2",
+          "totalCrosses": "13",
+          "crossPct": "0.2",
+          "totalLongBalls": "29",
+          "accurateLongBalls": "20",
+          "longballPct": "0.7",
+          "blockedShots": "4",
+          "effectiveTackles": "5",
+          "totalTackles": "9",
+          "tacklePct": "0.6",
+          "interceptions": "13",
+          "effectiveClearance": "22",
+          "totalClearance": "22"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Colombia",
+        "category": "Total Shots",
+        "player": "Gustavo Puerta",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Colombia",
+        "category": "Accurate Passes",
+        "player": "Gustavo Puerta",
+        "headshot": null,
+        "value": "72"
+      },
+      {
+        "team": "Colombia",
+        "category": "Defensive Interventions",
+        "player": "Davinson Sánchez",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Colombia",
+        "category": "Saves",
+        "player": "Camilo Vargas",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Portugal",
+        "category": "Total Shots",
+        "player": "Cristiano Ronaldo",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Portugal",
+        "category": "Accurate Passes",
+        "player": "Vitinha ",
+        "headshot": null,
+        "value": "54"
+      },
+      {
+        "team": "Portugal",
+        "category": "Defensive Interventions",
+        "player": "Renato Veiga",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Portugal",
+        "category": "Saves",
+        "player": "Diogo Costa",
+        "headshot": null,
+        "value": "6"
+      }
+    ]
+  },
+  "8756200e539155e571557c4f2e0d7f05": {
+    "espn_id": "760484",
+    "fetched_at": "2026-06-28T04:55:38+00:00",
+    "teams": [
+      {
+        "team": "Algeria",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "3",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "0",
+          "saves": "1",
+          "possessionPct": "65.1",
+          "totalShots": "12",
+          "shotsOnTarget": "5",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "706",
+          "totalPasses": "755",
+          "passPct": "0.9",
+          "accurateCrosses": "0",
+          "totalCrosses": "5",
+          "crossPct": "0.0",
+          "totalLongBalls": "43",
+          "accurateLongBalls": "25",
+          "longballPct": "0.6",
+          "blockedShots": "2",
+          "effectiveTackles": "6",
+          "totalTackles": "12",
+          "tacklePct": "0.5",
+          "interceptions": "3",
+          "effectiveClearance": "17",
+          "totalClearance": "17"
+        }
+      },
+      {
+        "team": "Austria",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "3",
+          "saves": "2",
+          "possessionPct": "34.9",
+          "totalShots": "10",
+          "shotsOnTarget": "3",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "346",
+          "totalPasses": "396",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "13",
+          "crossPct": "0.2",
+          "totalLongBalls": "33",
+          "accurateLongBalls": "14",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "4",
+          "totalTackles": "10",
+          "tacklePct": "0.4",
+          "interceptions": "10",
+          "effectiveClearance": "19",
+          "totalClearance": "19"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Algeria",
+        "category": "Total Shots",
+        "player": "Ibrahim Maza",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Algeria",
+        "category": "Accurate Passes",
+        "player": "Ramy Bensebaini",
+        "headshot": null,
+        "value": "128"
+      },
+      {
+        "team": "Algeria",
+        "category": "Defensive Interventions",
+        "player": "Farès Chaïbi",
+        "headshot": null,
+        "value": "7"
+      },
+      {
+        "team": "Austria",
+        "category": "Total Shots",
+        "player": "Nicolas Seiwald",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Austria",
+        "category": "Accurate Passes",
+        "player": "David Alaba",
+        "headshot": null,
+        "value": "49"
+      },
+      {
+        "team": "Austria",
+        "category": "Defensive Interventions",
+        "player": "Stefan Posch",
+        "headshot": null,
+        "value": "8"
+      },
+      {
+        "team": "Austria",
+        "category": "Saves",
+        "player": "Alexander Schlager",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Austria",
+        "category": "Goals",
+        "player": "Marko Arnautovic",
+        "headshot": null,
+        "value": "1",
+        "clock": "28'"
+      },
+      {
+        "team": "Austria",
+        "category": "Assists",
+        "player": "David Alaba",
+        "headshot": null,
+        "value": "1",
+        "clock": "28'"
+      },
+      {
+        "team": "Algeria",
+        "category": "Goals",
+        "player": "Rafik Belghali",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'"
+      },
+      {
+        "team": "Austria",
+        "category": "Goals",
+        "player": "Marcel Sabitzer",
+        "headshot": null,
+        "value": "1",
+        "clock": "55'"
+      },
+      {
+        "team": "Austria",
+        "category": "Assists",
+        "player": "Konrad Laimer",
+        "headshot": null,
+        "value": "1",
+        "clock": "55'"
+      },
+      {
+        "team": "Algeria",
+        "category": "Goals",
+        "player": "Riyad Mahrez",
+        "headshot": null,
+        "value": "1",
+        "clock": "60'"
+      },
+      {
+        "team": "Algeria",
+        "category": "Assists",
+        "player": "Houssem Aouar",
+        "headshot": null,
+        "value": "1",
+        "clock": "60'"
+      },
+      {
+        "team": "Algeria",
+        "category": "Goals",
+        "player": "Riyad Mahrez",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+3'"
+      },
+      {
+        "team": "Algeria",
+        "category": "Assists",
+        "player": "Houssem Aouar",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+3'"
+      },
+      {
+        "team": "Austria",
+        "category": "Goals",
+        "player": "Sasa Kalajdzic",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+6'"
+      },
+      {
+        "team": "Austria",
+        "category": "Assists",
+        "player": "Michael Gregoritsch",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+6'"
+      }
+    ]
+  },
+  "54697f453437ab26276d773be1d72e9b": {
+    "espn_id": "760483",
+    "fetched_at": "2026-06-28T04:55:38+00:00",
+    "teams": [
+      {
+        "team": "Jordan",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "2",
+          "saves": "1",
+          "possessionPct": "26.7",
+          "totalShots": "5",
+          "shotsOnTarget": "1",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "228",
+          "totalPasses": "285",
+          "passPct": "0.8",
+          "accurateCrosses": "2",
+          "totalCrosses": "7",
+          "crossPct": "0.3",
+          "totalLongBalls": "37",
+          "accurateLongBalls": "15",
+          "longballPct": "0.4",
+          "blockedShots": "2",
+          "effectiveTackles": "8",
+          "totalTackles": "16",
+          "tacklePct": "0.5",
+          "interceptions": "19",
+          "effectiveClearance": "13",
+          "totalClearance": "13"
+        }
+      },
+      {
+        "team": "Argentina",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "6",
+          "saves": "0",
+          "possessionPct": "73.3",
+          "totalShots": "12",
+          "shotsOnTarget": "4",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "1",
+          "accuratePasses": "736",
+          "totalPasses": "800",
+          "passPct": "0.9",
+          "accurateCrosses": "3",
+          "totalCrosses": "5",
+          "crossPct": "0.6",
+          "totalLongBalls": "25",
+          "accurateLongBalls": "15",
+          "longballPct": "0.6",
+          "blockedShots": "1",
+          "effectiveTackles": "5",
+          "totalTackles": "14",
+          "tacklePct": "0.4",
+          "interceptions": "12",
+          "effectiveClearance": "11",
+          "totalClearance": "11"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Jordan",
+        "category": "Total Shots",
+        "player": "Mousa Al-Tamari",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Jordan",
+        "category": "Accurate Passes",
+        "player": "Yazan Al-Arab",
+        "headshot": null,
+        "value": "38"
+      },
+      {
+        "team": "Jordan",
+        "category": "Defensive Interventions",
+        "player": "Mohannad Abu Taha",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Jordan",
+        "category": "Saves",
+        "player": "Yazeed Abulaila",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Argentina",
+        "category": "Total Shots",
+        "player": "Lautaro Martínez",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Argentina",
+        "category": "Accurate Passes",
+        "player": "Leandro Paredes",
+        "headshot": null,
+        "value": "154"
+      },
+      {
+        "team": "Argentina",
+        "category": "Defensive Interventions",
+        "player": "Exequiel Palacios",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "Argentina",
+        "category": "Goals",
+        "player": "Giovani Lo Celso",
+        "headshot": null,
+        "value": "1",
+        "clock": "19'"
+      },
+      {
+        "team": "Jordan",
+        "category": "Goals",
+        "player": "Mousa Al Tamari",
+        "headshot": null,
+        "value": "1",
+        "clock": "55'"
+      },
+      {
+        "team": "Jordan",
+        "category": "Assists",
+        "player": "Ehsan Haddad",
+        "headshot": null,
+        "value": "1",
+        "clock": "55'"
+      },
+      {
+        "team": "Argentina",
+        "category": "Goals",
+        "player": "Lionel Messi",
+        "headshot": null,
+        "value": "1",
+        "clock": "80'"
+      }
+    ]
   }
 }
