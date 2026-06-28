@@ -4923,7 +4923,35 @@
           "clv_pct": 19.05
         }
       ],
-      "bets": [],
+      "bets": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "edge": 6.8,
+          "odds": 3.56,
+          "won": false,
+          "description_es": "Gana Local (1)",
+          "description_en": "Gana Local (1)"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "edge": -2.4,
+          "odds": 3.13,
+          "won": true,
+          "description_es": "Empate (X)",
+          "description_en": "Empate (X)"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "edge": -4.4,
+          "odds": 2.25,
+          "won": false,
+          "description_es": "Gana Visitante (2)",
+          "description_en": "Gana Visitante (2)"
+        }
+      ],
       "best_bet": null,
       "has_bet": false,
       "result": {
@@ -5112,7 +5140,35 @@
           "clv_pct": -0.26
         }
       ],
-      "bets": [],
+      "bets": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "edge": 3.9,
+          "odds": 3.54,
+          "won": false,
+          "description_es": "Gana Local (1)",
+          "description_en": "Gana Local (1)"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "edge": -9.7,
+          "odds": 2.07,
+          "won": true,
+          "description_es": "Empate (X)",
+          "description_en": "Empate (X)"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "edge": 5.7,
+          "odds": 3.79,
+          "won": false,
+          "description_es": "Gana Visitante (2)",
+          "description_en": "Gana Visitante (2)"
+        }
+      ],
       "best_bet": null,
       "has_bet": false,
       "result": {
@@ -5192,7 +5248,35 @@
           "clv_pct": -0.86
         }
       ],
-      "bets": [],
+      "bets": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "edge": -0.9,
+          "odds": 19.0,
+          "won": false,
+          "description_es": "Gana Local (1)",
+          "description_en": "Gana Local (1)"
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "edge": -2.3,
+          "odds": 9.0,
+          "won": false,
+          "description_es": "Empate (X)",
+          "description_en": "Empate (X)"
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "edge": 3.2,
+          "odds": 1.15,
+          "won": true,
+          "description_es": "Gana Visitante (2)",
+          "description_en": "Gana Visitante (2)"
+        }
+      ],
       "best_bet": null,
       "has_bet": false,
       "result": {
@@ -5232,11 +5316,11 @@
   ],
   "summary": {
     "total": 62,
-    "total_bets": 102,
-    "won": 44,
-    "lost": 58,
-    "win_rate": 43.1,
-    "roi": -19.3,
+    "total_bets": 111,
+    "won": 47,
+    "lost": 64,
+    "win_rate": 42.3,
+    "roi": -20.2,
     "score_hits": 24,
     "score_top1": 7,
     "correct_1x2": 41,
