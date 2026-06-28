@@ -143,28 +143,79 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
     <a href="/app" class="btn-ghost" data-i18n="preview_cta_short">Ver la app →</a>
   </div>
 
-  <!-- Aggressive email CTA — above fold, hero section -->
+  <!-- Full waitlist CTA — above fold -->
   <div id="hero-email-cta" class="max-w-lg mx-auto mb-10 px-2">
     <div class="rounded-2xl p-5" style="background:color-mix(in srgb,var(--bet) 8%,var(--panel)); border:1px solid color-mix(in srgb,var(--bet) 35%,var(--border));">
-      <div class="flex items-center justify-between mb-3">
-        <div>
-          <div class="text-sm font-bold" data-i18n="hero_email_title">Acceso anticipado — gratis</div>
-          <div class="text-xs" style="color:var(--mute);" data-i18n="hero_email_sub">500 cupos · Sin spam · Cancelas cuando quieras</div>
+
+      <!-- Step 1: email -->
+      <div id="hero-step1">
+        <div class="flex items-center justify-between mb-3">
+          <div>
+            <div class="text-sm font-bold" data-i18n="hero_email_title">Reserva tu acceso anticipado</div>
+            <div class="text-xs" style="color:var(--mute);" data-i18n="hero_email_sub">Los de la lista entran primero y sin pagar el mes de lanzamiento.</div>
+          </div>
+          <div class="text-xs font-mono px-2 py-1 rounded-full flex-shrink-0 ml-2" style="background:color-mix(in srgb,var(--warn) 15%,transparent); color:var(--warn); border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);" data-i18n="hero_spots_left">⚡ Quedan cupos</div>
         </div>
-        <div class="text-xs font-mono px-2 py-1 rounded-full" style="background:color-mix(in srgb,var(--warn) 15%,transparent); color:var(--warn); border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);" data-i18n="hero_spots_left">⚡ Quedan cupos</div>
+        <form id="hero-wl-form" class="flex gap-2" autocomplete="on">
+          <input type="text" name="website" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="email" name="email" required autocomplete="email" maxlength="254"
+            placeholder="tucorreo@gmail.com"
+            data-ph-en="youremail@gmail.com"
+            class="flex-1 px-4 py-2.5 rounded-xl outline-none text-sm"
+            style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);" />
+          <button type="submit" class="btn-primary !py-2.5 !px-5 !text-sm whitespace-nowrap" data-i18n="hero_email_cta">Reservar →</button>
+        </form>
       </div>
-      <form id="hero-wl-form" class="flex gap-2" autocomplete="on">
-        <input type="text" name="website" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        <input type="email" name="email" required autocomplete="email" maxlength="254"
-          placeholder="tucorreo@gmail.com"
-          data-ph-en="youremail@gmail.com"
-          class="flex-1 px-4 py-2.5 rounded-xl outline-none text-sm"
-          style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);" />
-        <button type="submit" class="btn-primary !py-2.5 !px-5 !text-sm whitespace-nowrap" data-i18n="hero_email_cta">Reservar →</button>
-      </form>
-      <div id="hero-wl-ok" style="display:none;" class="text-center py-1">
-        <span class="text-sm font-semibold" style="color:var(--bet);" data-i18n="hero_email_done">✓ ¡Reservado! Te avisamos cuando abramos.</span>
+
+      <!-- Step 2: phone + name (after email) -->
+      <div id="hero-step2" style="display:none;" class="text-left">
+        <div class="text-2xl mb-2 text-center">✅</div>
+        <p class="font-semibold mb-1 text-center text-sm" data-i18n="wl_step2_title">¡Estás en la lista!</p>
+        <p class="text-xs mb-3 text-center" style="color:var(--mute);" data-i18n="hero_step2_sub">Opcional: añade tu número para unirte a los grupos de Telegram/WhatsApp que estamos armando. Cuando estén activos te mandamos el link por correo.</p>
+        <form id="hero-wl-form2" class="flex flex-col gap-2.5" autocomplete="on">
+          <div class="flex gap-2">
+            <select name="phone_cc"
+              class="px-2.5 py-2.5 rounded-xl outline-none text-sm font-mono"
+              style="background:var(--panel2); border:1px solid var(--border); color:var(--ink); flex-shrink:0; width:100px;">
+              <option value="+52">🇲🇽 +52</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+34">🇪🇸 +34</option>
+              <option value="+54">🇦🇷 +54</option>
+              <option value="+57">🇨🇴 +57</option>
+              <option value="+55">🇧🇷 +55</option>
+              <option value="+56">🇨🇱 +56</option>
+              <option value="+51">🇵🇪 +51</option>
+              <option value="+58">🇻🇪 +58</option>
+              <option value="+593">🇪🇨 +593</option>
+              <option value="+502">🇬🇹 +502</option>
+              <option value="+506">🇨🇷 +506</option>
+            </select>
+            <input
+              type="tel" name="phone_local" autocomplete="tel-national" maxlength="15"
+              placeholder="3310212964"
+              class="flex-1 px-3 py-2.5 rounded-xl outline-none text-sm"
+              style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);" />
+          </div>
+          <input
+            type="text" name="name" autocomplete="given-name"
+            placeholder="Tu nombre (opcional)"
+            data-ph-en="Your name (optional)"
+            class="w-full px-3 py-2.5 rounded-xl outline-none text-sm"
+            style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);" />
+          <div class="flex gap-2">
+            <button type="submit" class="btn-primary flex-1 justify-center !py-2.5 !text-sm" data-i18n="wl_step2_cta">Guardar</button>
+            <button type="button" onclick="heroSkip()" class="btn-ghost flex-1 justify-center !py-2.5 !text-sm" data-i18n="wl_step2_skip">Omitir</button>
+          </div>
+        </form>
       </div>
+
+      <!-- Step 3: done -->
+      <div id="hero-step3" style="display:none;" class="text-center py-2">
+        <div class="text-2xl mb-1">🎉</div>
+        <span class="text-sm font-semibold" style="color:var(--bet);" data-i18n="hero_email_done">Todo listo — te avisamos antes de cerrar al público.</span>
+        <div class="mt-2"><a href="/app" class="text-xs underline" style="color:var(--bet2);" data-i18n="wl_done_cta">Ver picks de hoy →</a></div>
+      </div>
+
     </div>
     <div id="hero-wl-counter" class="text-xs text-center mt-2 font-mono" style="color:var(--bet2);"></div>
   </div>
@@ -601,11 +652,12 @@ const I18N = {
     no_picks: 'No hay BETs activos en este momento.',
     picks_view_all_inline: 'Ver predicciones →',
     preview_cta_short: 'Ver la app →',
-    hero_email_title: 'Acceso anticipado — gratis',
-    hero_email_sub: '500 cupos · Sin spam · Cancelas cuando quieras',
+    hero_email_title: 'Reserva tu acceso anticipado',
+    hero_email_sub: 'Los de la lista entran primero y sin pagar el mes de lanzamiento.',
     hero_spots_left: '⚡ Quedan cupos',
     hero_email_cta: 'Reservar →',
-    hero_email_done: '✓ ¡Reservado! Te avisamos cuando abramos.',
+    hero_email_done: 'Todo listo — te avisamos antes de cerrar al público.',
+    hero_step2_sub: 'Opcional: añade tu número para unirte a los grupos de Telegram/WhatsApp que estamos armando. Cuando estén activos te mandamos el link por correo.',
   },
   en: {
     enter_app: 'Open the app →',
@@ -654,11 +706,12 @@ const I18N = {
     no_picks: 'No active BETs right now.',
     picks_view_all_inline: 'See predictions →',
     preview_cta_short: 'Open the app →',
-    hero_email_title: 'Early access — free',
-    hero_email_sub: '500 spots · No spam · Cancel anytime',
+    hero_email_title: 'Reserve your early access',
+    hero_email_sub: 'Waitlist members get in first — and free for the launch month.',
     hero_spots_left: '⚡ Spots remaining',
     hero_email_cta: 'Reserve →',
-    hero_email_done: '✓ Reserved! We\'ll notify you when we launch.',
+    hero_email_done: 'All set — we\'ll notify you before closing to the public.',
+    hero_step2_sub: 'Optional: add your number to join the Telegram/WhatsApp groups we\'re setting up. When they go live, we\'ll send you the link by email.',
   },
 };
 
@@ -718,12 +771,8 @@ loadWaitlistCount();
 if (_wlEmail) {
   document.getElementById('wl-step1').style.display = 'none';
   document.getElementById('wl-done').style.display = '';
-  // Hide hero form too
-  const heroForm = document.getElementById('hero-email-cta');
-  if (heroForm) {
-    heroForm.querySelector('form').style.display = 'none';
-    heroForm.querySelector('#hero-wl-ok').style.display = '';
-  }
+  document.getElementById('hero-step1').style.display = 'none';
+  document.getElementById('hero-step3').style.display = '';
 }
 
 // ── Hero email form handler ──
@@ -754,13 +803,52 @@ document.getElementById('hero-wl-form').addEventListener('submit', async e => {
   }
   _wlEmail = email;
   localStorage.setItem('quini_wl_email', email);
-  form.style.display = 'none';
-  document.getElementById('hero-wl-ok').style.display = '';
-  // Also update main waitlist to step 2
+  // Hero → step 2 (phone+name)
+  document.getElementById('hero-step1').style.display = 'none';
+  document.getElementById('hero-step2').style.display = '';
+  // Sync main waitlist to step 2
   document.getElementById('wl-step1').style.display = 'none';
   document.getElementById('wl-step2').style.display = '';
   loadWaitlistCount();
 });
+
+// Hero step 2: phone + name submit
+document.getElementById('hero-wl-form2').addEventListener('submit', async e => {
+  e.preventDefault();
+  const form = e.target;
+  const btn = form.querySelector('button[type=submit]');
+  const cc = (form.phone_cc?.value || '+52').trim();
+  const local = (form.phone_local?.value || '').trim().replace(/[\s\-().]/g, '');
+  if (local && !/^\d{6,15}$/.test(local)) {
+    form.phone_local.style.borderColor = 'var(--warn)';
+    form.phone_local.focus();
+    return;
+  }
+  form.phone_local.style.borderColor = '';
+  btn.disabled = true;
+  btn.textContent = '…';
+  const phone = local ? `${cc} ${local}` : '';
+  const name = (form.name.value || '').trim();
+  try {
+    await fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: _wlEmail, phone, name, lang: LANG }),
+    });
+  } catch (_) {}
+  heroShowDone();
+});
+
+function heroSkip() { heroShowDone(); }
+
+function heroShowDone() {
+  document.getElementById('hero-step2').style.display = 'none';
+  document.getElementById('hero-step3').style.display = '';
+  // Sync main waitlist
+  document.getElementById('wl-step2').style.display = 'none';
+  document.getElementById('wl-done').style.display = '';
+  applyLang();
+}
 
 document.getElementById('wl-form1').addEventListener('submit', async e => {
   e.preventDefault();
