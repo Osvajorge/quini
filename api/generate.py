@@ -60,6 +60,19 @@ TEAM_NAME_MAP = {
     "IR Iran": "Iran",
 }
 
+# Odds API names → ESPN standings display names (only where they differ)
+_FIXTURE_TO_STANDING: dict[str, str] = {
+    "USA": "United States",
+    "Bosnia & Herzegovina": "Bosnia-Herzegovina",
+    "Bosnia and Herzegovina": "Bosnia-Herzegovina",
+    "DR Congo": "Congo DR",
+    "Turkey": "Türkiye",
+    "Czech Republic": "Czechia",
+}
+
+def _standing_name(fixture_name: str) -> str:
+    return _FIXTURE_TO_STANDING.get(fixture_name, fixture_name)
+
 PICK_DESC = {
     "Under 2.5": {"es": "Menos de 3 goles en el partido", "en": "Less than 3 total goals in the match"},
     "Over 2.5": {"es": "3 o más goles en el partido", "en": "3 or more total goals in the match"},
@@ -1262,6 +1275,42 @@ def generate():
     lost = sum(1 for f in completed_fixtures if f["best_bet"] and not _bet_won(f) and f["actual_home"] is not None)
 
     standings = fetch_standings()
+
+    # Resolve 3rd-place "possible" statuses using KO fixtures as ground truth.
+    # ESPN standings color codes lag behind bracket announcement.
+    if standings:
+        grp_of: dict[str, str] = {}
+        for grp in standings:
+            for t in grp["teams"]:
+                grp_of[t["name"]] = grp["group"]
+                grp_of[_standing_name(t["name"])] = grp["group"]
+
+        teams_in_ko: set[str] = set()
+        for fx in fixtures:
+            h = _standing_name(fx["home"])
+            a = _standing_name(fx["away"])
+            if grp_of.get(h) and grp_of.get(a) and grp_of[h] != grp_of[a]:
+                teams_in_ko.add(h)
+                teams_in_ko.add(a)
+
+        if teams_in_ko:
+            for grp in standings:
+                g_name = grp["group"]
+                group_team_names = {t["name"] for t in grp["teams"]}
+                group_fx = [
+                    f for f in fixtures
+                    if _standing_name(f["home"]) in {_standing_name(n) for n in group_team_names}
+                    and _standing_name(f["away"]) in {_standing_name(n) for n in group_team_names}
+                ]
+                group_complete = len(group_fx) >= 6 and all(f.get("completed") for f in group_fx)
+                for t in grp["teams"]:
+                    if t["status"] == "possible":
+                        sn = _standing_name(t["name"])
+                        if sn in teams_in_ko or t["name"] in teams_in_ko:
+                            t["status"] = "direct"
+                        elif group_complete:
+                            t["status"] = "eliminated"
+            print(f"[standings] KO-resolved: {len(teams_in_ko)} teams in bracket")
 
     output = {
         "generated_at": now.isoformat(),

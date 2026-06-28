@@ -26,15 +26,15 @@
       "en": "Advantage over bookmakers. Positive = good opportunity"
     },
     "confidence": {
-      "es": "Qu\u00e9 tan segura es esta predicci\u00f3n",
+      "es": "Qué tan segura es esta predicción",
       "en": "How confident this prediction is"
     },
     "model_prob": {
-      "es": "Probabilidad seg\u00fan modelo",
+      "es": "Probabilidad según modelo",
       "en": "Model probability"
     },
     "devig_prob": {
-      "es": "Probabilidad seg\u00fan mercado",
+      "es": "Probabilidad según mercado",
       "en": "Market probability"
     },
     "odds": {
@@ -97,7 +97,7 @@
           "ga": 3,
           "gd": "-1",
           "pts": 3,
-          "status": "possible"
+          "status": "eliminated"
         },
         {
           "name": "Czechia",
@@ -162,7 +162,7 @@
           "ga": 6,
           "gd": "-1",
           "pts": 4,
-          "status": "possible"
+          "status": "direct"
         },
         {
           "name": "Qatar",
@@ -227,7 +227,7 @@
           "ga": 4,
           "gd": "-3",
           "pts": 3,
-          "status": "possible"
+          "status": "eliminated"
         },
         {
           "name": "Haiti",
@@ -292,10 +292,10 @@
           "ga": 4,
           "gd": "-2",
           "pts": 4,
-          "status": "possible"
+          "status": "direct"
         },
         {
-          "name": "T\u00fcrkiye",
+          "name": "Türkiye",
           "abbr": "TUR",
           "flag": "https://a.espncdn.com/i/teamlogos/countries/500/tur.png",
           "rank": 4,
@@ -357,10 +357,10 @@
           "ga": 2,
           "gd": "0",
           "pts": 4,
-          "status": "possible"
+          "status": "direct"
         },
         {
-          "name": "Cura\u00e7ao",
+          "name": "Curaçao",
           "abbr": "CUW",
           "flag": "https://a.espncdn.com/i/teamlogos/soccer/500/11678.png",
           "rank": 4,
@@ -422,7 +422,7 @@
           "ga": 7,
           "gd": "0",
           "pts": 4,
-          "status": "possible"
+          "status": "direct"
         },
         {
           "name": "Tunisia",
@@ -487,7 +487,7 @@
           "ga": 3,
           "gd": "0",
           "pts": 3,
-          "status": "possible"
+          "status": "eliminated"
         },
         {
           "name": "New Zealand",
@@ -552,7 +552,7 @@
           "ga": 4,
           "gd": "-1",
           "pts": 2,
-          "status": "possible"
+          "status": "eliminated"
         },
         {
           "name": "Saudi Arabia",
@@ -617,7 +617,7 @@
           "ga": 6,
           "gd": "+2",
           "pts": 3,
-          "status": "possible"
+          "status": "direct"
         },
         {
           "name": "Iraq",
@@ -682,7 +682,7 @@
           "ga": 7,
           "gd": "-2",
           "pts": 4,
-          "status": "possible"
+          "status": "direct"
         },
         {
           "name": "Jordan",
@@ -747,7 +747,7 @@
           "ga": 3,
           "gd": "+1",
           "pts": 4,
-          "status": "possible"
+          "status": "direct"
         },
         {
           "name": "Uzbekistan",
@@ -812,7 +812,7 @@
           "ga": 2,
           "gd": "0",
           "pts": 4,
-          "status": "possible"
+          "status": "direct"
         },
         {
           "name": "Panama",
@@ -2234,7 +2234,7 @@
         "confidence_band": "ALTA",
         "model_prob": 59.2,
         "devig_prob": 50.3,
-        "description_es": "3 o m\u00e1s goles en el partido",
+        "description_es": "3 o más goles en el partido",
         "description_en": "3 or more total goals in the match",
         "is_compound": false
       },
@@ -2408,7 +2408,7 @@
           "devig_prob": 50.3,
           "kelly_pct": 3.81,
           "model_version": "v3.0-benter",
-          "description_es": "3 o m\u00e1s goles en el partido",
+          "description_es": "3 o más goles en el partido",
           "description_en": "3 or more total goals in the match"
         }
       ]
@@ -3731,7 +3731,7 @@
         "confidence_band": "ALTA",
         "model_prob": 69.6,
         "devig_prob": 52.9,
-        "description_es": "3 o m\u00e1s goles en el partido",
+        "description_es": "3 o más goles en el partido",
         "description_en": "3 or more total goals in the match",
         "is_compound": false
       },
@@ -3905,7 +3905,7 @@
           "devig_prob": 52.9,
           "kelly_pct": 5.0,
           "model_version": "v3.0-benter",
-          "description_es": "3 o m\u00e1s goles en el partido",
+          "description_es": "3 o más goles en el partido",
           "description_en": "3 or more total goals in the match"
         }
       ]
@@ -5625,7 +5625,7 @@
     },
     {
       "id": "a5a0b544a984ab16e564264f3e859b43",
-      "home": "Cura\u00e7ao",
+      "home": "Curaçao",
       "away": "Ivory Coast",
       "commence_time": "2026-06-25T20:00:00Z",
       "completed": true,
@@ -10103,7 +10103,7 @@
     {
       "id": "681895f294b670b4c7b14495dfb583bc",
       "home": "Ecuador",
-      "away": "Cura\u00e7ao",
+      "away": "Curaçao",
       "commence_time": "2026-06-21T00:00:00Z",
       "completed": true,
       "is_live": false,
@@ -11076,7 +11076,7 @@
     {
       "id": "20d270fc8dd64b038c21935ebe50f4e5",
       "home": "Germany",
-      "away": "Cura\u00e7ao",
+      "away": "Curaçao",
       "commence_time": "2026-06-14T19:00:00Z",
       "completed": true,
       "is_live": false,
