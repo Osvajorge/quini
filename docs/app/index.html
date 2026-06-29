@@ -1838,6 +1838,19 @@ function renderFixtureCard(f, featured = false) {
             </div>
           </div>
           <div class="text-sm font-semibold mb-1.5">${desc}</div>
+          ${(() => {
+            const side = (bb.side||'').toLowerCase();
+            const is1X2 = ['home','away'].includes(side);
+            const topScore = f.top_scores && f.top_scores[0];
+            const topIsDraw = topScore && topScore.home === topScore.away;
+            if (is1X2 && topIsDraw && bb.model_prob) {
+              const note = LANG==='es'
+                ? `Marcador más frecuente (${topScore.home}-${topScore.away}) es empate, pero suma de victorias = ${bb.model_prob}% > implícita ${bb.devig_prob}%`
+                : `Most frequent score (${topScore.home}-${topScore.away}) is a draw, but aggregate win prob = ${bb.model_prob}% > implied ${bb.devig_prob}%`;
+              return `<div class="text-[10px] mb-1.5 px-2 py-1 rounded" style="color:var(--warn);background:color-mix(in srgb,var(--warn) 8%,transparent);">${note}</div>`;
+            }
+            return '';
+          })()}
           <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
             <span class="font-bold font-mono" style="color:var(--bet);">+${bb.edge}% ${LANG === 'es' ? 'ventaja' : 'edge'}</span>
             ${bb.best_odds && bb.best_book
@@ -1982,7 +1995,7 @@ function renderFixtureCard(f, featured = false) {
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-3">
             ${f.is_live ? `<span class="flex items-center gap-1.5 px-2 py-0.5 rounded-full" style="background:color-mix(in srgb, var(--live) 10%, transparent); border:1px solid color-mix(in srgb, var(--live) 30%, transparent);"><span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span><span class="text-[10px] font-mono" style="color:var(--live);">LIVE</span></span>` : ''}
-            ${f.is_ko ? `<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider" style="background:color-mix(in srgb,var(--warn) 12%,transparent); color:var(--warn); border:1px solid color-mix(in srgb,var(--warn) 25%,transparent);">R32</span>` : ''}
+            ${f.is_ko && !f.completed ? `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold" style="color:var(--warn);">KO</span>` : ''}
             <span class="text-xs" style="color:var(--mute);">${formatDate(f.commence_time)}</span>
           </div>
           <div class="flex items-center gap-2">
