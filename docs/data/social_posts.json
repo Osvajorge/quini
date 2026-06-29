@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "fixture_id": "5ff7744314f224c18d1604ee9cc19263",
+    "home": "England",
+    "away": "DR Congo",
+    "commence_time": "2026-07-01T16:00:00Z",
+    "hours_until": 46.4,
+    "pick": "Menos de 3 goles en el partido",
+    "edge": 10.7,
+    "odds": 1.97,
+    "book": "unibet_se",
+    "kelly_pct": 4.84,
+    "is_imminent": false,
+    "formats": {
+      "twitter": "⚽ England vs DR Congo\nPick: Menos de 3 goles en el partido\n+10.7% ventaja · @1.97 (unibet_se)\nKelly: 4.84% banca\n\nModelo: kini.bet",
+      "whatsapp": "⚽ *England vs DR Congo*\n🎯 *Menos de 3 goles en el partido*\n📈 +10.7% ventaja\n💰 @1.97 (unibet_se)\n💼 Kelly: 4.84% de tu banca\n\nAnálisis completo: kini.bet",
+      "instagram": "⚽ England vs DR Congo\n\nNuestro modelo dice: Menos de 3 goles en el partido\n\nEncontramos una ventaja de +10.7% sobre las cuotas del mercado. Si tienes una banca de €1000, deberías apostar ~€48 según Quarter-Kelly.\n\n#Mundial2026 #ApuestasDeportivas #England #DRCongo"
+    }
+  }
+]

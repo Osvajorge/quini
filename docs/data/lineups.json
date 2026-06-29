@@ -1554,5 +1554,397 @@
         "Cyle Larin"
       ]
     }
+  },
+  "4f3d72fba877939d36a5315618184093": {
+    "espn_id": "760487",
+    "fetched_at": "2026-06-29T17:36:42+00:00",
+    "teams": [
+      {
+        "team": "Brazil",
+        "formation": "4-3-3",
+        "starters": [
+          {
+            "name": "Alisson Becker",
+            "short": "A. Becker",
+            "jersey": "1",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Gabriel Magalhães",
+            "short": "G. Magalhães",
+            "jersey": "3",
+            "pos": "CD-L",
+            "headshot": null
+          },
+          {
+            "name": "Marquinhos",
+            "short": "Marquinhos",
+            "jersey": "4",
+            "pos": "CD-R",
+            "headshot": null
+          },
+          {
+            "name": "Douglas Santos",
+            "short": "D. Santos",
+            "jersey": "16",
+            "pos": "LB",
+            "headshot": null
+          },
+          {
+            "name": "Danilo",
+            "short": "Danilo",
+            "jersey": "13",
+            "pos": "RB",
+            "headshot": null
+          },
+          {
+            "name": "Casemiro",
+            "short": "Casemiro",
+            "jersey": "5",
+            "pos": "CM",
+            "headshot": null
+          },
+          {
+            "name": "Lucas Paquetá",
+            "short": "L. Paquetá",
+            "jersey": "20",
+            "pos": "LM",
+            "headshot": null
+          },
+          {
+            "name": "Bruno Guimarães",
+            "short": "B. Guimarães",
+            "jersey": "8",
+            "pos": "RM",
+            "headshot": null
+          },
+          {
+            "name": "Matheus Cunha",
+            "short": "M. Cunha",
+            "jersey": "9",
+            "pos": "F",
+            "headshot": null
+          },
+          {
+            "name": "Vinícius Júnior",
+            "short": "Vinícius Júnior",
+            "jersey": "7",
+            "pos": "LF",
+            "headshot": null
+          },
+          {
+            "name": "Rayan",
+            "short": "Rayan",
+            "jersey": "26",
+            "pos": "RF",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Neymar",
+            "short": "Neymar",
+            "jersey": "10",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Gabriel Martinelli",
+            "short": "G. Martinelli",
+            "jersey": "22",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Léo Pereira",
+            "short": "L. Pereira",
+            "jersey": "15",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Igor Thiago",
+            "short": "I. Thiago",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Danilo Santos",
+            "short": "D. Santos",
+            "jersey": "18",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Éderson",
+            "short": "Éderson",
+            "jersey": "2",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Fabinho",
+            "short": "Fabinho",
+            "jersey": "17",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Endrick",
+            "short": "Endrick",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Roger Ibañez",
+            "short": "R. Ibañez",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Bremer",
+            "short": "Bremer",
+            "jersey": "14",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Luiz Henrique",
+            "short": "L. Henrique",
+            "jersey": "21",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Alex Sandro",
+            "short": "Alex Sandro",
+            "jersey": "6",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Ederson",
+            "short": "Ederson",
+            "jersey": "23",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Weverton",
+            "short": "Weverton",
+            "jersey": "12",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      },
+      {
+        "team": "Japan",
+        "formation": "3-4-2-1",
+        "starters": [
+          {
+            "name": "Zion Suzuki",
+            "short": "Z. Suzuki",
+            "jersey": "1",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Shogo Taniguchi",
+            "short": "S. Taniguchi",
+            "jersey": "3",
+            "pos": "CD",
+            "headshot": null
+          },
+          {
+            "name": "Hiroki Ito",
+            "short": "H. Ito",
+            "jersey": "21",
+            "pos": "CD-L",
+            "headshot": null
+          },
+          {
+            "name": "Takehiro Tomiyasu",
+            "short": "T. Tomiyasu",
+            "jersey": "22",
+            "pos": "CD-R",
+            "headshot": null
+          },
+          {
+            "name": "Daichi Kamada",
+            "short": "D. Kamada",
+            "jersey": "15",
+            "pos": "CM-L",
+            "headshot": null
+          },
+          {
+            "name": "Kaishu Sano",
+            "short": "K. Sano",
+            "jersey": "24",
+            "pos": "CM-R",
+            "headshot": null
+          },
+          {
+            "name": "Keito Nakamura",
+            "short": "K. Nakamura",
+            "jersey": "13",
+            "pos": "LM",
+            "headshot": null
+          },
+          {
+            "name": "Ritsu Doan",
+            "short": "R. Doan",
+            "jersey": "10",
+            "pos": "RM",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/219627.png"
+          },
+          {
+            "name": "Ayase Ueda",
+            "short": "A. Ueda",
+            "jersey": "18",
+            "pos": "F",
+            "headshot": null
+          },
+          {
+            "name": "Daizen Maeda",
+            "short": "D. Maeda",
+            "jersey": "11",
+            "pos": "CF-L",
+            "headshot": null
+          },
+          {
+            "name": "Junya Ito",
+            "short": "J. Ito",
+            "jersey": "14",
+            "pos": "CF-R",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Keisuke Osako",
+            "short": "K. Osako",
+            "jersey": "12",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Kou Itakura",
+            "short": "K. Itakura",
+            "jersey": "4",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238033.png"
+          },
+          {
+            "name": "Koki Ogawa",
+            "short": "K. Ogawa",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/238016.png"
+          },
+          {
+            "name": "Yuto Nagatomo",
+            "short": "Y. Nagatomo",
+            "jersey": "5",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Yuito Suzuki",
+            "short": "Y. Suzuki",
+            "jersey": "17",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Tsuyoshi Watanabe",
+            "short": "T. Watanabe",
+            "jersey": "16",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Kento Shiogai",
+            "short": "K. Shiogai",
+            "jersey": "26",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Tomoki Hayakawa",
+            "short": "T. Hayakawa",
+            "jersey": "23",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Shuto Machino",
+            "short": "S. Machino",
+            "jersey": "6",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Ayumu Seko",
+            "short": "A. Seko",
+            "jersey": "20",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Yukinari Sugawara",
+            "short": "Y. Sugawara",
+            "jersey": "2",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/265965.png"
+          },
+          {
+            "name": "Junnosuke Suzuki",
+            "short": "J. Suzuki",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Keisuke Goto",
+            "short": "K. Goto",
+            "jersey": "9",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Takefusa Kubo",
+            "short": "T. Kubo",
+            "jersey": "8",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Ao Tanaka",
+            "short": "A. Tanaka",
+            "jersey": "7",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      }
+    ],
+    "absences": {
+      "Brazil": [
+        "Raphinha "
+      ],
+      "Japan": [
+        "Takefusa Kubo",
+        "Koki Ogawa following a corner",
+        "Ko Itakura following a fast break",
+        "Yukinari Sugawara",
+        "Ao Tanaka",
+        "Kou Itakura"
+      ]
+    }
   }
 }
