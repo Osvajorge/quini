@@ -1793,7 +1793,10 @@ function renderFixtures() {
       return new Date(a.commence_time) - new Date(b.commence_time);
     });
     const label = new Date(d + 'T12:00:00').toLocaleDateString(LANG === 'es' ? 'es' : 'en', {weekday:'long', month:'long', day:'numeric'});
-    html += `<div class="mb-8"><h3 class="text-sm font-medium mb-3 uppercase tracking-wider" style="color:var(--mute);">${label}</h3><div class="space-y-3">`;
+    const hasKO = group.some(f => f.is_ko);
+    const phaseLabel = hasKO ? (LANG==='es'?'16avos de Final':'Round of 32') : (LANG==='es'?'Fase de Grupos':'Group Stage');
+    const phaseColor = hasKO ? 'var(--warn)' : 'var(--mute)';
+    html += `<div class="mb-8"><div class="flex items-center justify-between mb-3"><h3 class="text-sm font-medium uppercase tracking-wider" style="color:var(--mute);">${label}</h3><span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="color:${phaseColor}; background:color-mix(in srgb,${phaseColor} 10%,transparent);">${phaseLabel}</span></div><div class="space-y-3">`;
     group.forEach(f => { html += renderFixtureCard(f); });
     html += `</div></div>`;
   });
@@ -1988,8 +1991,8 @@ function renderFixtureCard(f, featured = false) {
         </div>
         <div class="flex items-center justify-between mb-1">
           <div class="flex-1">
-            <div class="text-base font-semibold flex items-center gap-1.5 flex-wrap"><span class="inline-block w-2 h-2 rounded-sm shrink-0" style="background:${homeColor};opacity:0.8;"></span>${teamName(f.home)}${_qualBadge(f.home)}</div>
-            <div class="text-base font-semibold flex items-center gap-1.5 mt-0.5 flex-wrap" style="color:var(--mute);"><span class="inline-block w-2 h-2 rounded-sm shrink-0" style="background:${awayColor};opacity:0.8;"></span>${teamName(f.away)}${_qualBadge(f.away)}</div>
+            <div class="text-base font-semibold flex items-center gap-1.5 flex-wrap"><span class="inline-block w-2 h-2 rounded-sm shrink-0" style="background:${homeColor};opacity:0.8;"></span>${teamName(f.home)}</div>
+            <div class="text-base font-semibold flex items-center gap-1.5 mt-0.5 flex-wrap" style="color:var(--mute);"><span class="inline-block w-2 h-2 rounded-sm shrink-0" style="background:${awayColor};opacity:0.8;"></span>${teamName(f.away)}</div>
           </div>
           ${liveScoreHtml}
           ${f.is_ko && f.p_advance_home != null ? `
