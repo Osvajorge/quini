@@ -1,4 +1,17 @@
-/** Shared HTML email templates for Kini */
+/** Shared HTML email templates + Resend sender for Kini */
+
+export async function sendEmail(apiKey, { to, from, reply_to, subject, html, text, headers }) {
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify({ to, from, reply_to, subject, html, text, headers }),
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(`Resend ${res.status}: ${err}`);
+  }
+  return res.json();
+}
 
 export function welcomeEmail({ name, lang = 'es' }) {
   const es = lang !== 'en';

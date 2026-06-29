@@ -8,14 +8,12 @@
  * Headers: Authorization: Bearer <PICKS_SECRET>
  *
  * SETUP:
- * 1. Pages → kini-ar3 → Settings → Functions → Email bindings
- *    Variable: EMAIL
- * 2. Pages → kini-ar3 → Settings → Environment variables
- *    PICKS_SECRET = <random secret, same value in GitHub Actions secret>
- * 3. KV binding WAITLIST_KV already configured
+ * 1. Pages → kini-ar3 → Settings → Environment variables
+ *    RESEND_API_KEY, PICKS_SECRET
+ * 2. KV binding WAITLIST_KV already configured
  */
 
-import { picksEmail } from './_email_templates.js';
+import { picksEmail, sendEmail } from './_email_templates.js';
 
 const PREDICTIONS_URL = 'https://kini.bet/data/predictions.json';
 const BATCH_SIZE = 10;   // send N emails, then yield (avoids rate limits)
@@ -33,8 +31,8 @@ export async function onRequestPost({ request, env }) {
     return new Response(JSON.stringify({ error: 'unauthorized' }), { status: 401 });
   }
 
-  if (!env.EMAIL) {
-    return new Response(JSON.stringify({ error: 'EMAIL binding not configured' }), { status: 500 });
+  if (!env.RESEND_API_KEY) {
+    return new Response(JSON.stringify({ error: 'RESEND_API_KEY not configured' }), { status: 500 });
   }
 
   // Load today's picks from predictions.json
@@ -115,10 +113,10 @@ export async function onRequestPost({ request, env }) {
       const personalHtml = html.replace('{{EMAIL}}', encodeURIComponent(lead.email));
 
       try {
-        await env.EMAIL.send({
+        await sendEmail(env.RESEND_API_KEY, {
           to: lead.email,
-          from: { email: 'picks@kini.bet', name: 'Kini Picks' },
-          replyTo: 'hola@kini.bet',
+          from: 'Kini Picks <picks@kini.bet>',
+          reply_to: 'hola@kini.bet',
           subject,
           html: personalHtml,
           text,
@@ -129,7 +127,7 @@ export async function onRequestPost({ request, env }) {
         });
         sent++;
       } catch (e) {
-        console.error(`[send-picks] failed ${lead.email}:`, e?.code);
+        console.error(`[send-picks] failed ${lead.email}:`, e?.message);
         failed++;
       }
     }));

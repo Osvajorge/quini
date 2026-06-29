@@ -4,9 +4,8 @@
  * SETUP (one-time in Cloudflare dashboard):
  * 1. Pages → kini-ar3 → Settings → Functions → KV namespace bindings
  *    Variable: WAITLIST_KV → namespace: quini-waitlist
- * 2. Pages → kini-ar3 → Settings → Functions → Email bindings
- *    Variable: EMAIL  (Cloudflare Email Service — requires kini.bet onboarded)
- *    Run once: npx wrangler email sending enable kini.bet
+ * 2. Pages → kini-ar3 → Settings → Environment variables
+ *    RESEND_API_KEY = re_xxx...
  *
  * Endpoints:
  *   GET  /api/subscribe  → { count: N }
@@ -16,7 +15,7 @@
  * website = honeypot
  */
 
-import { welcomeEmail } from './_email_templates.js';
+import { welcomeEmail, sendEmail } from './_email_templates.js';
 
 export async function onRequestGet({ env }) {
   const count = parseInt(await env.WAITLIST_KV.get('meta:count') || '0', 10);
@@ -78,22 +77,21 @@ export async function onRequestPost({ request, env }) {
   await env.WAITLIST_KV.put(rlKey, '1', { expirationTtl: 300 });
 
   // Welcome email — only for new signups, best-effort
-  if (isNew && env.EMAIL) {
+  if (isNew && env.RESEND_API_KEY) {
     const lang = body.lang || 'es';
     const name = (body.name || '').trim();
     const { subject, html, text } = welcomeEmail({ name, lang });
     try {
-      await env.EMAIL.send({
+      await sendEmail(env.RESEND_API_KEY, {
         to: email,
-        from: { email: 'hola@kini.bet', name: 'Kini' },
-        replyTo: 'hola@kini.bet',
+        from: 'Kini <hola@kini.bet>',
+        reply_to: 'hola@kini.bet',
         subject,
         html,
         text,
       });
     } catch (e) {
-      // Non-fatal — lead is saved, email failure doesn't break signup
-      console.error('[subscribe] welcome email failed:', e?.code, e?.message);
+      console.error('[subscribe] welcome email failed:', e?.message);
     }
   }
 
