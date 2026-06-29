@@ -1840,16 +1840,28 @@ function renderFixtureCard(f, featured = false) {
           <div class="text-sm font-semibold mb-1.5">${desc}</div>
           ${(() => {
             const side = (bb.side||'').toLowerCase();
-            const is1X2 = ['home','away'].includes(side);
             const topScore = f.top_scores && f.top_scores[0];
-            const topIsDraw = topScore && topScore.home === topScore.away;
-            if (is1X2 && topIsDraw && bb.model_prob) {
-              const note = LANG==='es'
-                ? `Marcador más frecuente (${topScore.home}-${topScore.away}) es empate, pero suma de victorias = ${bb.model_prob}% > implícita ${bb.devig_prob}%`
-                : `Most frequent score (${topScore.home}-${topScore.away}) is a draw, but aggregate win prob = ${bb.model_prob}% > implied ${bb.devig_prob}%`;
-              return `<div class="text-[10px] mb-1.5 px-2 py-1 rounded" style="color:var(--warn);background:color-mix(in srgb,var(--warn) 8%,transparent);">${note}</div>`;
+            if (!topScore || !bb.model_prob) return '';
+            const topTotal = topScore.home + topScore.away;
+            const topIsDraw = topScore.home === topScore.away;
+            const is1X2 = ['home','away'].includes(side);
+            const isOver = side.startsWith('over');
+            const isUnder = side.startsWith('under');
+            let note = '';
+            if (is1X2 && topIsDraw) {
+              note = LANG==='es'
+                ? `El marcador individual más probable (${topScore.home}-${topScore.away}) es empate, pero la suma de todas las victorias = ${bb.model_prob}% > implícita ${bb.devig_prob}%`
+                : `Most likely individual score (${topScore.home}-${topScore.away}) is a draw, but total win probability = ${bb.model_prob}% > implied ${bb.devig_prob}%`;
+            } else if (isOver && topTotal <= 2) {
+              note = LANG==='es'
+                ? `El marcador individual más probable (${topScore.home}-${topScore.away}) tiene ${topTotal} goles, pero la suma de resultados con 3+ goles = ${bb.model_prob}% > implícita ${bb.devig_prob}%`
+                : `Most likely individual score (${topScore.home}-${topScore.away}) has ${topTotal} goals, but total probability of 3+ goals = ${bb.model_prob}% > implied ${bb.devig_prob}%`;
+            } else if (isUnder && topTotal >= 3) {
+              note = LANG==='es'
+                ? `El marcador individual más probable (${topScore.home}-${topScore.away}) tiene ${topTotal} goles, pero la suma de resultados con menos de 3 = ${bb.model_prob}% > implícita ${bb.devig_prob}%`
+                : `Most likely individual score (${topScore.home}-${topScore.away}) has ${topTotal} goals, but total probability of under 3 = ${bb.model_prob}% > implied ${bb.devig_prob}%`;
             }
-            return '';
+            return note ? `<div class="text-[10px] mb-1.5 px-2 py-1 rounded" style="color:var(--warn);background:color-mix(in srgb,var(--warn) 8%,transparent);">${note}</div>` : '';
           })()}
           <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
             <span class="font-bold font-mono" style="color:var(--bet);">+${bb.edge}% ${LANG === 'es' ? 'ventaja' : 'edge'}</span>
