@@ -1466,11 +1466,12 @@ function renderBracket() {
     })
     .sort((a, b) => a.commence_time.localeCompare(b.commence_time));
 
-  // Get winner of completed KO fixture
+  // Get winner of completed KO fixture (handles extra time + penalties)
   function getWinner(fx) {
     if (!fx || !fx.completed || fx.actual_home == null) return null;
     if (fx.actual_home > fx.actual_away) return fx.home;
     if (fx.actual_away > fx.actual_home) return fx.away;
+    if (fx.penalty_winner) return fx.penalty_winner;
     return null;
   }
 
@@ -1502,23 +1503,25 @@ function renderBracket() {
       return '<div class="bk-s bk-tbd"><div class="bk-t"><span class="bk-n">TBD</span></div><div class="bk-t"><span class="bk-n">TBD</span></div></div>';
     const h = fx.home, a = fx.away;
     const done = fx.completed;
-    const hWon = done && fx.actual_home > fx.actual_away;
-    const aWon = done && fx.actual_away > fx.actual_home;
+    const penW = fx.penalty_winner;
+    const hWon = done && (fx.actual_home > fx.actual_away || penW === h);
+    const aWon = done && (fx.actual_away > fx.actual_home || penW === a);
     const hc = TEAM_COLOR[h] || 'var(--mute)';
     const ac = TEAM_COLOR[a] || 'var(--mute)';
     return `<div class="bk-s${done?' bk-done':''}${fx.tbd?' bk-tbd':''}">
       <div class="bk-t${hWon?' bk-w':''}${aWon?' bk-l':''}">
         <span class="bk-d" style="background:${hc}"></span>
         <span class="bk-n">${h?teamName(h):'?'}</span>
-        ${done?`<span class="bk-sc">${fx.actual_home}</span>`:
+        ${done?`<span class="bk-sc">${fx.actual_home}${penW?'<span style="font-size:7px;color:var(--mute);margin-left:2px;">'+(penW===h?'✓':'')+'</span>':''}</span>`:
           fx.p_advance_home!=null?`<span class="bk-p">${(fx.p_advance_home*100).toFixed(0)}%</span>`:''}
       </div>
       <div class="bk-t${aWon?' bk-w':''}${hWon?' bk-l':''}">
         <span class="bk-d" style="background:${ac}"></span>
         <span class="bk-n">${a?teamName(a):'?'}</span>
-        ${done?`<span class="bk-sc">${fx.actual_away}</span>`:
+        ${done?`<span class="bk-sc">${fx.actual_away}${penW?'<span style="font-size:7px;color:var(--mute);margin-left:2px;">'+(penW===a?'✓':'')+'</span>':''}</span>`:
           fx.p_advance_away!=null?`<span class="bk-p">${(fx.p_advance_away*100).toFixed(0)}%</span>`:''}
       </div>
+      ${penW?`<div style="text-align:center;font-size:7px;color:var(--warn);margin-top:1px;">pen.</div>`:''}
     </div>`;
   }
 

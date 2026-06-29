@@ -1049,6 +1049,16 @@ def generate():
     for ev in scores_data:
         score_map[ev["id"]] = ev
 
+    # Penalty winners override (manual, for KO draws after ET)
+    pen_file = OUT.parent / "penalty_winners.json"
+    pen_overrides: dict[str, str] = {}
+    if pen_file.exists():
+        try:
+            pen_overrides = json.loads(pen_file.read_text())
+            print(f"[penalties] loaded {len(pen_overrides)} overrides")
+        except Exception as e:
+            print(f"[penalties] failed to load: {e}")
+
     # --- History accumulation: find newly completed fixtures ---
     if existing_predictions:
         _accumulate_history(existing_predictions, score_map)
@@ -1112,6 +1122,9 @@ def generate():
                 actual_home, actual_away, commence
             )
 
+        # Penalty winner: check override for completed KO draws
+        pen_winner = pen_overrides.get(event_id)
+
         fixture = {
             "id": event_id,
             "home": home_api,
@@ -1121,6 +1134,7 @@ def generate():
             "is_live": is_live,
             "actual_home": actual_home,
             "actual_away": actual_away,
+            "penalty_winner": pen_winner,
             "xg_home": round(pred["xg_home"], 2),
             "xg_away": round(pred["xg_away"], 2),
             "odds": {k: round(v, 2) for k, v in odds.items()},
@@ -1223,6 +1237,7 @@ def generate():
             "is_live": False,
             "actual_home": actual_home,
             "actual_away": actual_away,
+            "penalty_winner": pen_overrides.get(ev["id"]),
             "xg_home": None,
             "xg_away": None,
             "odds": {},
