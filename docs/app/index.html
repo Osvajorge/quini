@@ -1458,13 +1458,29 @@ function renderBracket() {
 
   // Derive R32 fixtures from actual DATA.fixtures (cross-group = KO)
   const allFixtures = (DATA && DATA.fixtures) || [];
-  const r32 = allFixtures
-    .filter(f => {
-      const hg = teamGroupMap[_stdName(f.home)];
-      const ag = teamGroupMap[_stdName(f.away)];
-      return hg && ag && hg !== ag;
-    })
-    .sort((a, b) => a.commence_time.localeCompare(b.commence_time));
+  // Official FIFA 2026 bracket order (home team → position)
+  const BRACKET_POS = {
+    'Germany':0,'France':1,'South Africa':2,'Netherlands':3,
+    'Portugal':4,'Spain':5,'USA':6,'Belgium':7,
+    'Brazil':8,'Ivory Coast':9,'Mexico':10,'England':11,
+    'Argentina':12,'Australia':13,'Switzerland':14,'Colombia':15,
+  };
+  const r32raw = allFixtures.filter(f => {
+    const hg = teamGroupMap[_stdName(f.home)];
+    const ag = teamGroupMap[_stdName(f.away)];
+    return hg && ag && hg !== ag;
+  });
+  const r32 = Array(16).fill(null);
+  r32raw.forEach(f => {
+    const pos = BRACKET_POS[f.home];
+    if (pos != null) r32[pos] = f;
+  });
+  // Fallback: any unplaced fixtures fill remaining null slots
+  const unplaced = r32raw.filter(f => BRACKET_POS[f.home] == null);
+  let ui = 0;
+  for (let i = 0; i < 16 && ui < unplaced.length; i++) {
+    if (!r32[i]) r32[i] = unplaced[ui++];
+  }
 
   // Get winner of completed KO fixture (handles extra time + penalties)
   function getWinner(fx) {
