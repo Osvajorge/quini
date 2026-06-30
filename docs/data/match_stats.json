@@ -10662,5 +10662,185 @@
         "clock": "90'+1'"
       }
     ]
+  },
+  "ce017bea1a26252278053ce759e2416b": {
+    "espn_id": "760490",
+    "fetched_at": "2026-06-30T19:53:33+00:00",
+    "teams": [
+      {
+        "team": "Ivory Coast",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "6",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "14",
+          "saves": "1",
+          "possessionPct": "47.1",
+          "totalShots": "14",
+          "shotsOnTarget": "5",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "339",
+          "totalPasses": "401",
+          "passPct": "0.8",
+          "accurateCrosses": "7",
+          "totalCrosses": "29",
+          "crossPct": "0.2",
+          "totalLongBalls": "38",
+          "accurateLongBalls": "17",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "18",
+          "totalTackles": "24",
+          "tacklePct": "0.8",
+          "interceptions": "4",
+          "effectiveClearance": "11",
+          "totalClearance": "11"
+        }
+      },
+      {
+        "team": "Norway",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "7",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "3",
+          "saves": "4",
+          "possessionPct": "52.9",
+          "totalShots": "9",
+          "shotsOnTarget": "4",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "415",
+          "totalPasses": "473",
+          "passPct": "0.9",
+          "accurateCrosses": "5",
+          "totalCrosses": "10",
+          "crossPct": "0.5",
+          "totalLongBalls": "34",
+          "accurateLongBalls": "18",
+          "longballPct": "0.5",
+          "blockedShots": "3",
+          "effectiveTackles": "11",
+          "totalTackles": "19",
+          "tacklePct": "0.6",
+          "interceptions": "6",
+          "effectiveClearance": "37",
+          "totalClearance": "37"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Ivory Coast",
+        "category": "Total Shots",
+        "player": "Emmanuel Agbadou",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Accurate Passes",
+        "player": "Ibrahim Sangaré",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/213718.png",
+        "value": "47"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Defensive Interventions",
+        "player": "Guela Doué",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Saves",
+        "player": "Yahia Fofana",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Norway",
+        "category": "Total Shots",
+        "player": "Erling Haaland",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Norway",
+        "category": "Accurate Passes",
+        "player": "Sander Berge",
+        "headshot": null,
+        "value": "71"
+      },
+      {
+        "team": "Norway",
+        "category": "Defensive Interventions",
+        "player": "Kristoffer Ajer",
+        "headshot": null,
+        "value": "16"
+      },
+      {
+        "team": "Norway",
+        "category": "Saves",
+        "player": "Ørjan Nyland",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Norway",
+        "category": "Goals",
+        "player": "Antonio Nusa",
+        "headshot": null,
+        "value": "1",
+        "clock": "39'"
+      },
+      {
+        "team": "Norway",
+        "category": "Assists",
+        "player": "Martin Ødegaard",
+        "headshot": null,
+        "value": "1",
+        "clock": "39'"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Goals",
+        "player": "Amad Diallo",
+        "headshot": null,
+        "value": "1",
+        "clock": "74'"
+      },
+      {
+        "team": "Ivory Coast",
+        "category": "Assists",
+        "player": "Nicolas Pépé",
+        "headshot": null,
+        "value": "1",
+        "clock": "74'"
+      },
+      {
+        "team": "Norway",
+        "category": "Goals",
+        "player": "Erling Haaland",
+        "headshot": null,
+        "value": "1",
+        "clock": "86'"
+      },
+      {
+        "team": "Norway",
+        "category": "Assists",
+        "player": "Patrick Berg",
+        "headshot": null,
+        "value": "1",
+        "clock": "86'"
+      }
+    ]
   }
 }

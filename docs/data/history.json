@@ -5744,20 +5744,155 @@
         "draw": 3.12,
         "away": 3.52
       }
+    },
+    {
+      "id": "ce017bea1a26252278053ce759e2416b",
+      "home": "Ivory Coast",
+      "away": "Norway",
+      "date": "2026-06-30T17:00:00Z",
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "pick": "SKIP",
+          "edge": 17.5,
+          "odds": 8.93,
+          "model_prob": 27.3,
+          "devig_prob": 9.8,
+          "won": false,
+          "closing_odds": 3.75,
+          "clv_pct": 138.13
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "pick": "SKIP",
+          "edge": 6.4,
+          "odds": 3.88,
+          "model_prob": 30.6,
+          "devig_prob": 24.2,
+          "won": false,
+          "closing_odds": 3.45,
+          "clv_pct": 12.46
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "pick": "FADE",
+          "edge": -23.9,
+          "odds": 1.47,
+          "model_prob": 42.1,
+          "devig_prob": 66.0,
+          "won": true,
+          "closing_odds": 2.22,
+          "clv_pct": -33.78
+        },
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "pick": "BET",
+          "edge": 8.1,
+          "odds": 1.99,
+          "model_prob": 56.8,
+          "devig_prob": 48.7,
+          "won": true,
+          "closing_odds": null,
+          "clv_pct": null
+        },
+        {
+          "market": "Under 2.5",
+          "side": "under_2_5",
+          "pick": "FADE",
+          "edge": -8.1,
+          "odds": 1.89,
+          "model_prob": 43.2,
+          "devig_prob": 51.3,
+          "won": false,
+          "closing_odds": null,
+          "clv_pct": null
+        }
+      ],
+      "bets": [
+        {
+          "market": "Over 2.5",
+          "side": "over_2_5",
+          "edge": 8.1,
+          "odds": 1.99,
+          "won": true,
+          "closing_odds": null,
+          "clv_pct": null,
+          "model_version": "v3.0-benter",
+          "pick": "BET",
+          "model_prob": 56.8,
+          "description_es": "3 o m\u00e1s goles en el partido",
+          "description_en": "3 or more total goals in the match"
+        }
+      ],
+      "best_bet": {
+        "market": "Over 2.5",
+        "side": "over_2_5",
+        "edge": 8.1,
+        "odds": 1.99,
+        "best_odds": 2.0,
+        "best_book": "matchbook",
+        "pick": "BET",
+        "confidence_band": "ALTA",
+        "model_prob": 56.8,
+        "devig_prob": 48.7,
+        "description_es": "3 o m\u00e1s goles en el partido",
+        "description_en": "3 or more total goals in the match",
+        "is_compound": false
+      },
+      "has_bet": true,
+      "result": {
+        "home": 1,
+        "away": 2
+      },
+      "best_bet_won": true,
+      "score_hit": null,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 13.7
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.9
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 9.0
+        }
+      ],
+      "xg_home": 0.37,
+      "xg_away": 0.66,
+      "predicted_1x2": "2",
+      "result_1x2": "2",
+      "correct_1x2": true,
+      "all_odds": {
+        "home": 8.93,
+        "draw": 3.88,
+        "away": 1.47,
+        "over_2_5": 1.99,
+        "under_2_5": 1.89
+      }
     }
   ],
   "summary": {
-    "total": 66,
-    "total_bets": 123,
-    "won": 51,
+    "total": 67,
+    "total_bets": 124,
+    "won": 52,
     "lost": 72,
-    "win_rate": 41.5,
-    "roi": -17.8,
+    "win_rate": 41.9,
+    "roi": -16.8,
     "score_hits": 28,
     "score_top1": 8,
-    "correct_1x2": 43,
-    "total_1x2": 66,
-    "accuracy_1x2": 65.2,
+    "correct_1x2": 44,
+    "total_1x2": 67,
+    "accuracy_1x2": 65.7,
     "avg_clv_pct": 55.63,
     "clv_sample_size": 3,
     "pct_beating_close": 100.0
