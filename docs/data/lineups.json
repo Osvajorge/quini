@@ -1946,5 +1946,404 @@
         "Kou Itakura"
       ]
     }
+  },
+  "ce017bea1a26252278053ce759e2416b": {
+    "espn_id": "760490",
+    "fetched_at": "2026-06-30T17:58:41+00:00",
+    "teams": [
+      {
+        "team": "Ivory Coast",
+        "formation": "4-1-4-1",
+        "starters": [
+          {
+            "name": "Yahia Fofana",
+            "short": "Y. Fofana",
+            "jersey": "1",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Emmanuel Agbadou",
+            "short": "E. Agbadou",
+            "jersey": "20",
+            "pos": "CD-L",
+            "headshot": null
+          },
+          {
+            "name": "Odilon Kossounou",
+            "short": "O. Kossounou",
+            "jersey": "7",
+            "pos": "CD-R",
+            "headshot": null
+          },
+          {
+            "name": "Ibrahim Sangaré",
+            "short": "I. Sangaré",
+            "jersey": "18",
+            "pos": "DM",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/213718.png"
+          },
+          {
+            "name": "Ghislain Konan",
+            "short": "G. Konan",
+            "jersey": "3",
+            "pos": "LB",
+            "headshot": null
+          },
+          {
+            "name": "Guela Doué",
+            "short": "G. Doué",
+            "jersey": "17",
+            "pos": "RB",
+            "headshot": null
+          },
+          {
+            "name": "Christ Inao Oulaï",
+            "short": "C. Inao Oulaï",
+            "jersey": "26",
+            "pos": "CM-L",
+            "headshot": null
+          },
+          {
+            "name": "Franck Kessié",
+            "short": "F. Kessié",
+            "jersey": "8",
+            "pos": "CM-R",
+            "headshot": null
+          },
+          {
+            "name": "Yan Diomande",
+            "short": "Y. Diomande",
+            "jersey": "11",
+            "pos": "LM",
+            "headshot": null
+          },
+          {
+            "name": "Nicolas Pépé",
+            "short": "N. Pépé",
+            "jersey": "19",
+            "pos": "RM",
+            "headshot": null
+          },
+          {
+            "name": "Ange-Yoan Bonny",
+            "short": "A. Bonny",
+            "jersey": "9",
+            "pos": "F",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Jean Michaël Seri",
+            "short": "J. Seri",
+            "jersey": "4",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Alban Lafont",
+            "short": "A. Lafont",
+            "jersey": "23",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Seko Fofana",
+            "short": "S. Fofana",
+            "jersey": "6",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Mohamed Koné",
+            "short": "M. Koné",
+            "jersey": "16",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Evann Guessand",
+            "short": "E. Guessand",
+            "jersey": "22",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Christopher Operi",
+            "short": "C. Operi",
+            "jersey": "13",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Evan Ndicka",
+            "short": "E. Ndicka",
+            "jersey": "21",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Bazoumana Touré",
+            "short": "B. Touré",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Ousmane Diomande",
+            "short": "O. Diomande",
+            "jersey": "2",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Elye Wahi",
+            "short": "E. Wahi",
+            "jersey": "12",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Oumar Diakité",
+            "short": "O. Diakité",
+            "jersey": "14",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Wilfried Singo",
+            "short": "W. Singo",
+            "jersey": "5",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Parfait Guiagon",
+            "short": "P. Guiagon",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Simon Adingra",
+            "short": "S. Adingra",
+            "jersey": "10",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Amad Diallo",
+            "short": "A. Diallo",
+            "jersey": "15",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      },
+      {
+        "team": "Norway",
+        "formation": "4-3-3",
+        "starters": [
+          {
+            "name": "Ørjan Nyland",
+            "short": "Ø. Nyland",
+            "jersey": "1",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Torbjørn Heggem",
+            "short": "T. Heggem",
+            "jersey": "17",
+            "pos": "CD-L",
+            "headshot": null
+          },
+          {
+            "name": "Kristoffer Ajer",
+            "short": "K. Ajer",
+            "jersey": "3",
+            "pos": "CD-R",
+            "headshot": null
+          },
+          {
+            "name": "David Møller Wolfe",
+            "short": "D. Møller Wolfe",
+            "jersey": "5",
+            "pos": "LB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/313361.png"
+          },
+          {
+            "name": "Marcus Holmgren Pedersen",
+            "short": "M. Holmgren Pedersen",
+            "jersey": "16",
+            "pos": "RB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/129285.png"
+          },
+          {
+            "name": "Sander Berge",
+            "short": "S. Berge",
+            "jersey": "8",
+            "pos": "CM",
+            "headshot": null
+          },
+          {
+            "name": "Patrick Berg",
+            "short": "P. Berg",
+            "jersey": "6",
+            "pos": "LM",
+            "headshot": null
+          },
+          {
+            "name": "Martin Ødegaard",
+            "short": "M. Ødegaard",
+            "jersey": "10",
+            "pos": "RM",
+            "headshot": null
+          },
+          {
+            "name": "Erling Haaland",
+            "short": "E. Haaland",
+            "jersey": "9",
+            "pos": "F",
+            "headshot": null
+          },
+          {
+            "name": "Antonio Nusa",
+            "short": "A. Nusa",
+            "jersey": "20",
+            "pos": "LF",
+            "headshot": null
+          },
+          {
+            "name": "Alexander Sørloth",
+            "short": "A. Sørloth",
+            "jersey": "7",
+            "pos": "RF",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Sondre Langas",
+            "short": "S. Langas",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Sander Tangvik",
+            "short": "S. Tangvik",
+            "jersey": "12",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Jens Petter Hauge",
+            "short": "J. Hauge",
+            "jersey": "23",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Oscar Bobb",
+            "short": "O. Bobb",
+            "jersey": "22",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Fredrik Aursnes",
+            "short": "F. Aursnes",
+            "jersey": "14",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/212900.png"
+          },
+          {
+            "name": "Leo Østigard",
+            "short": "L. Østigard",
+            "jersey": "4",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Egil Selvik",
+            "short": "E. Selvik",
+            "jersey": "13",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Fredrik André Bjørkan",
+            "short": "F. Bjørkan",
+            "jersey": "15",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Morten Thorsby",
+            "short": "M. Thorsby",
+            "jersey": "2",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Andreas Schjelderup",
+            "short": "A. Schjelderup",
+            "jersey": "21",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Jørgen Strand Larsen",
+            "short": "J. Larsen",
+            "jersey": "11",
+            "pos": "SUB",
+            "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/252747.png"
+          },
+          {
+            "name": "Julian Ryerson",
+            "short": "J. Ryerson",
+            "jersey": "26",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Thelo Aasgaard",
+            "short": "T. Aasgaard",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Henrik Falchener",
+            "short": "H. Falchener",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Kristian Thorstvedt",
+            "short": "K. Thorstvedt",
+            "jersey": "18",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      }
+    ],
+    "absences": {
+      "Ivory Coast": [
+        "Wilfried Singo",
+        "Amad Diallo"
+      ],
+      "Norway": [
+        "Thelo Aasgaard",
+        "Egil Selvik",
+        "Leo Østigard",
+        "Fredrik Aursnes",
+        "Andreas Schjelderup"
+      ]
+    }
   }
 }
