@@ -10162,5 +10162,505 @@
         "clock": "90'+2'"
       }
     ]
+  },
+  "4f3d72fba877939d36a5315618184093": {
+    "espn_id": "760487",
+    "fetched_at": "2026-06-30T11:53:45+00:00",
+    "teams": [
+      {
+        "team": "Brazil",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "4",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "6",
+          "saves": "1",
+          "possessionPct": "68.6",
+          "totalShots": "19",
+          "shotsOnTarget": "7",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "625",
+          "totalPasses": "682",
+          "passPct": "0.9",
+          "accurateCrosses": "10",
+          "totalCrosses": "39",
+          "crossPct": "0.3",
+          "totalLongBalls": "45",
+          "accurateLongBalls": "21",
+          "longballPct": "0.5",
+          "blockedShots": "6",
+          "effectiveTackles": "7",
+          "totalTackles": "12",
+          "tacklePct": "0.6",
+          "interceptions": "9",
+          "effectiveClearance": "19",
+          "totalClearance": "19"
+        }
+      },
+      {
+        "team": "Japan",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "13",
+          "yellowCards": "3",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "2",
+          "saves": "4",
+          "possessionPct": "31.4",
+          "totalShots": "5",
+          "shotsOnTarget": "2",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "260",
+          "totalPasses": "313",
+          "passPct": "0.8",
+          "accurateCrosses": "2",
+          "totalCrosses": "11",
+          "crossPct": "0.2",
+          "totalLongBalls": "45",
+          "accurateLongBalls": "24",
+          "longballPct": "0.5",
+          "blockedShots": "2",
+          "effectiveTackles": "4",
+          "totalTackles": "10",
+          "tacklePct": "0.4",
+          "interceptions": "6",
+          "effectiveClearance": "45",
+          "totalClearance": "45"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Brazil",
+        "category": "Total Shots",
+        "player": "Bruno Guimarães",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Brazil",
+        "category": "Accurate Passes",
+        "player": "Gabriel Magalhães",
+        "headshot": null,
+        "value": "130"
+      },
+      {
+        "team": "Brazil",
+        "category": "Defensive Interventions",
+        "player": "Douglas Santos",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "Brazil",
+        "category": "Saves",
+        "player": "Alisson Becker",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Japan",
+        "category": "Total Shots",
+        "player": "Ayase Ueda",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Japan",
+        "category": "Accurate Passes",
+        "player": "Shogo Taniguchi",
+        "headshot": null,
+        "value": "44"
+      },
+      {
+        "team": "Japan",
+        "category": "Defensive Interventions",
+        "player": "Shogo Taniguchi",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Japan",
+        "category": "Saves",
+        "player": "Zion Suzuki",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Japan",
+        "category": "Goals",
+        "player": "Kaishu Sano",
+        "headshot": null,
+        "value": "1",
+        "clock": "29'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Goals",
+        "player": "Casemiro",
+        "headshot": null,
+        "value": "1",
+        "clock": "56'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Assists",
+        "player": "Gabriel Magalhães",
+        "headshot": null,
+        "value": "1",
+        "clock": "56'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Goals",
+        "player": "Gabriel Martinelli",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+5'"
+      },
+      {
+        "team": "Brazil",
+        "category": "Assists",
+        "player": "Bruno Guimarães",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+5'"
+      }
+    ]
+  },
+  "4930db8e83436874d09e59bd0e29c1a5": {
+    "espn_id": "760489",
+    "fetched_at": "2026-06-30T11:53:45+00:00",
+    "teams": [
+      {
+        "team": "Germany",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "18",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "4",
+          "wonCorners": "16",
+          "saves": "2",
+          "possessionPct": "75.6",
+          "totalShots": "21",
+          "shotsOnTarget": "6",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "725",
+          "totalPasses": "805",
+          "passPct": "0.9",
+          "accurateCrosses": "9",
+          "totalCrosses": "55",
+          "crossPct": "0.2",
+          "totalLongBalls": "40",
+          "accurateLongBalls": "27",
+          "longballPct": "0.7",
+          "blockedShots": "8",
+          "effectiveTackles": "7",
+          "totalTackles": "13",
+          "tacklePct": "0.5",
+          "interceptions": "4",
+          "effectiveClearance": "23",
+          "totalClearance": "23"
+        }
+      },
+      {
+        "team": "Paraguay",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "12",
+          "yellowCards": "2",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "6",
+          "saves": "6",
+          "possessionPct": "24.4",
+          "totalShots": "7",
+          "shotsOnTarget": "3",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "160",
+          "totalPasses": "255",
+          "passPct": "0.6",
+          "accurateCrosses": "6",
+          "totalCrosses": "21",
+          "crossPct": "0.3",
+          "totalLongBalls": "78",
+          "accurateLongBalls": "20",
+          "longballPct": "0.3",
+          "blockedShots": "2",
+          "effectiveTackles": "20",
+          "totalTackles": "33",
+          "tacklePct": "0.6",
+          "interceptions": "13",
+          "effectiveClearance": "55",
+          "totalClearance": "55"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Germany",
+        "category": "Total Shots",
+        "player": "Joshua Kimmich",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Germany",
+        "category": "Accurate Passes",
+        "player": "Joshua Kimmich",
+        "headshot": null,
+        "value": "128"
+      },
+      {
+        "team": "Germany",
+        "category": "Defensive Interventions",
+        "player": "Antonio Rüdiger",
+        "headshot": null,
+        "value": "12"
+      },
+      {
+        "team": "Germany",
+        "category": "Saves",
+        "player": "Manuel Neuer",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Total Shots",
+        "player": "Julio Enciso",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Accurate Passes",
+        "player": "Júnior Alonso",
+        "headshot": null,
+        "value": "17"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Defensive Interventions",
+        "player": "José Canale",
+        "headshot": null,
+        "value": "26"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Saves",
+        "player": "Orlando Gill",
+        "headshot": null,
+        "value": "6"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Goals",
+        "player": "Julio Enciso",
+        "headshot": null,
+        "value": "1",
+        "clock": "42'"
+      },
+      {
+        "team": "Paraguay",
+        "category": "Assists",
+        "player": "Matías Galarza",
+        "headshot": null,
+        "value": "1",
+        "clock": "42'"
+      },
+      {
+        "team": "Germany",
+        "category": "Goals",
+        "player": "Kai Havertz",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
+      },
+      {
+        "team": "Germany",
+        "category": "Assists",
+        "player": "Florian Wirtz",
+        "headshot": null,
+        "value": "1",
+        "clock": "54'"
+      }
+    ]
+  },
+  "5a34afe2de99513ba48360b983cfe80c": {
+    "espn_id": "760488",
+    "fetched_at": "2026-06-30T11:53:45+00:00",
+    "teams": [
+      {
+        "team": "Netherlands",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "18",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "5",
+          "saves": "5",
+          "possessionPct": "29.9",
+          "totalShots": "6",
+          "shotsOnTarget": "2",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "292",
+          "totalPasses": "371",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "10",
+          "crossPct": "0.3",
+          "totalLongBalls": "47",
+          "accurateLongBalls": "16",
+          "longballPct": "0.3",
+          "blockedShots": "3",
+          "effectiveTackles": "10",
+          "totalTackles": "19",
+          "tacklePct": "0.5",
+          "interceptions": "11",
+          "effectiveClearance": "22",
+          "totalClearance": "22"
+        }
+      },
+      {
+        "team": "Morocco",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "15",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "8",
+          "saves": "1",
+          "possessionPct": "70.1",
+          "totalShots": "11",
+          "shotsOnTarget": "5",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "801",
+          "totalPasses": "879",
+          "passPct": "0.9",
+          "accurateCrosses": "4",
+          "totalCrosses": "18",
+          "crossPct": "0.2",
+          "totalLongBalls": "48",
+          "accurateLongBalls": "21",
+          "longballPct": "0.4",
+          "blockedShots": "2",
+          "effectiveTackles": "14",
+          "totalTackles": "19",
+          "tacklePct": "0.7",
+          "interceptions": "11",
+          "effectiveClearance": "34",
+          "totalClearance": "34"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Netherlands",
+        "category": "Total Shots",
+        "player": "Micky van de Ven",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Accurate Passes",
+        "player": "Virgil van Dijk",
+        "headshot": null,
+        "value": "62"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Defensive Interventions",
+        "player": "Frenkie de Jong",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Saves",
+        "player": "Bart Verbruggen",
+        "headshot": null,
+        "value": "5"
+      },
+      {
+        "team": "Morocco",
+        "category": "Total Shots",
+        "player": "Achraf Hakimi",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Morocco",
+        "category": "Accurate Passes",
+        "player": "Neil El Aynaoui",
+        "headshot": null,
+        "value": "135"
+      },
+      {
+        "team": "Morocco",
+        "category": "Defensive Interventions",
+        "player": "Noussair Mazraoui",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/239350.png",
+        "value": "19"
+      },
+      {
+        "team": "Morocco",
+        "category": "Saves",
+        "player": "Yassine Bounou",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Goals",
+        "player": "Cody Gakpo",
+        "headshot": null,
+        "value": "1",
+        "clock": "72'"
+      },
+      {
+        "team": "Netherlands",
+        "category": "Assists",
+        "player": "Crysencio Summerville",
+        "headshot": null,
+        "value": "1",
+        "clock": "72'"
+      },
+      {
+        "team": "Morocco",
+        "category": "Goals",
+        "player": "Issa Diop",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+1'"
+      },
+      {
+        "team": "Morocco",
+        "category": "Assists",
+        "player": "Chemsdine Talbi",
+        "headshot": null,
+        "value": "1",
+        "clock": "90'+1'"
+      }
+    ]
   }
 }
