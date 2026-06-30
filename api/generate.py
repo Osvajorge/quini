@@ -316,7 +316,7 @@ def build_score_predictions(fit, home_model: str, away_model: str) -> tuple[list
     try:
         grid = fit.predict_grid(home_model, away_model, neutral=False)
         lam_h, lam_a = fit.expected_goals(home_model, away_model, neutral=False)
-    except KeyError:
+    except (KeyError, ValueError):
         return [], None, 0.0, 0.0
     flat = [(h, a, grid.exact_score(h, a)) for h in range(6) for a in range(6)]
     flat.sort(key=lambda x: -x[2])
@@ -1106,7 +1106,8 @@ def generate():
 
         try:
             pred = predict(fit, home_model, away_model, odds, neutral=False)
-        except KeyError:
+        except (KeyError, ValueError) as e:
+            print(f"[skip] {home_api} vs {away_api}: {e}")
             continue
 
         bets = [p for p in pred["picks"] if p["pick"] == "BET"]
