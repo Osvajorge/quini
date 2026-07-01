@@ -141,6 +141,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
   <div id="history-container" class="hidden"></div>
   <div id="results-container" class="hidden"></div>
   <div id="quiniela-container" class="hidden"></div>
+  <div id="disclaimer-container" class="hidden"></div>
   <div id="detail-container" class="hidden"></div>
 
   <div id="loading" class="text-center py-20">
@@ -227,8 +228,9 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
         </ul>
       </div>
     </div>
-    <div class="border-t pt-6 text-center" style="border-color:var(--border);">
+    <div class="border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-3" style="border-color:var(--border);">
       <p class="text-[10px]" style="color:var(--mute);" data-i18n="footer_disclaimer">Predicciones para análisis y entretenimiento. No es asesoría financiera. Apuesta de forma responsable.</p>
+      <button onclick="setTab('disclaimer')" class="text-[11px] font-semibold underline flex-none" style="color:var(--mute);" data-i18n="footer_rg">Juega con responsabilidad</button>
     </div>
   </div>
 </footer>
@@ -239,7 +241,8 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
    _onTeamSearch, _selectTeamOpt, _clearTeamFilter, toggleMatchSummary,
    checkQuinielaPw, dismissEmailBanner,
    requestNotificationPermission, startPresentation, shareFixture, toggleLang,
-   toggleTheme, openDetail, closeDetail, openAuth, closeAuth, setSeg --
+   toggleTheme, openDetail, closeDetail, openAuth, closeAuth, setSeg,
+   _toggleHistCompare, _removeHistTeam --
    all invoked from onclick="" attributes in markup, invisible to static analysis */
 // ── i18n ──
 const T = {
@@ -267,6 +270,7 @@ const T = {
     footer_data_title:'Datos', footer_data_1:'Cuotas en vivo via The Odds API',
     footer_data_2:'Actualización cada 5 min en vivo, cada 15 min pre-partido', footer_data_3:'Historial de apuestas 100% transparente',
     footer_disclaimer:'Predicciones para análisis y entretenimiento. No es asesoría financiera. Apuesta de forma responsable.',
+    footer_rg:'Juega con responsabilidad',
     strategy:'Estrategia:', optimal_pick:'Pick óptimo', alternatives:'Alternativas:',
     balanced:'Equilibrado (default)', aggressive:'Agresivo (remontando)', defensive:'Defensivo (liderando)',
     strategy_desc:'Equilibrado = E[pts] + varianza + desempate. Agresivo = max varianza. Defensivo = valor esperado puro.',
@@ -300,6 +304,7 @@ const T = {
     footer_data_title:'Data', footer_data_1:'Live odds via The Odds API',
     footer_data_2:'Updates every 5 min live, every 15 min pre-match', footer_data_3:'100% transparent bet history',
     footer_disclaimer:'Predictions for analysis and entertainment. Not financial advice. Bet responsibly.',
+    footer_rg:'Responsible gaming',
     strategy:'Strategy:', optimal_pick:'Optimal pick', alternatives:'Alternatives:',
     balanced:'Balanced (default)', aggressive:'Aggressive (trailing)', defensive:'Defensive (leading)',
     strategy_desc:'Balanced = E[pts] + variance + tiebreak. Aggressive = max variance. Defensive = pure expected value.',
@@ -941,6 +946,7 @@ const SCREEN_TITLES = {
   rankings: {es:'Ranking', en:'Ranking'},
   bracket: {es:'Cuadro de eliminación', en:'Knockout bracket'},
   history: {es:'Rendimiento', en:'Performance'},
+  disclaimer: {es:'Juega con responsabilidad', en:'Responsible gaming'},
 };
 
 function setTab(tab) {
@@ -954,7 +960,7 @@ function setTab(tab) {
     if (btn) {btn.classList.toggle('active', tab === t);}
   });
   // Show/hide content containers (includes hidden extras: groups/players/quiniela)
-  ['upcoming','picks','groups','rankings','bracket','players','history','quiniela'].forEach(t => {
+  ['upcoming','picks','groups','rankings','bracket','players','history','quiniela','disclaimer'].forEach(t => {
     const container = document.getElementById(t === 'upcoming' ? 'fixtures-container' : t + '-container');
     if (container) {container.classList.toggle('hidden', tab !== t);}
   });
@@ -1137,6 +1143,7 @@ function renderAll() {
   renderPlayers();
   renderResults();
   renderHistory();
+  renderDisclaimer();
   renderQuiniela();
   applyTooltips();
 }
@@ -1893,7 +1900,7 @@ function renderPicks() {
         <div style="filter:blur(5px); pointer-events:none; user-select:none; opacity:.7;">
           <div class="flex flex-col gap-3">${blurCards}</div>
         </div>
-        <div class="absolute inset-0 flex flex-col items-center justify-center rounded-2xl" style="background:linear-gradient(to bottom,rgba(245,245,247,0) 0%,rgba(245,245,247,.85) 35%,rgba(245,245,247,.98) 100%); [data-theme='dark']_&:background:linear-gradient(to bottom,rgba(10,14,26,0),rgba(10,14,26,.95));">
+        <div class="absolute inset-0 flex flex-col items-center justify-center rounded-2xl" style="background:linear-gradient(to bottom,transparent 0%,var(--bg) 45%,var(--bg) 100%)">
           <div class="text-center px-6 pt-8">
             <div class="text-sm font-bold mb-1" style="color:var(--ink);">${LANG==='es'?`+${locked.length} picks más`:`+${locked.length} more picks`}</div>
             <p class="text-xs mb-4" style="color:var(--mute);">${LANG==='es'?'Desbloquea todos los picks con Pro':'Unlock all picks with Pro'}</p>
@@ -1979,8 +1986,9 @@ function _renderSegProx() {
       chipsHtml += `<button onclick="setDateFilter('${d}')" class="px-2.5 py-1 rounded-lg text-xs font-medium" style="${style}">${label}</button>`;
     });
     chipsBar.innerHTML = chipsHtml;
-    chipsBar.classList.toggle('hidden', !chipsHtml);
-    if (chipsHtml) {chipsBar.classList.add('flex');}
+    const showChips = !!chipsHtml && currentTab === 'upcoming';
+    chipsBar.classList.toggle('hidden', !showChips);
+    if (showChips) {chipsBar.classList.add('flex');}
   }
 
   // Apply date filter
@@ -2858,7 +2866,104 @@ function renderHistory() {
     list = list.filter(fx => (fx.home || '').toLowerCase().includes(q) || (fx.away || '').toLowerCase().includes(q) ||
       teamName(fx.home).toLowerCase().includes(q) || teamName(fx.away).toLowerCase().includes(q));
   }
-  el.innerHTML = band + `<div class="space-y-2.5">${list.map(_renderHistoryRow).join('')}</div>`;
+  const compareSection = `
+    <div class="mt-8 pt-6" style="border-top:1px solid var(--border);">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-base font-bold">${LANG==='es'?'Comparar equipos':'Compare teams'}</h3>
+        <button onclick="_toggleHistCompare()" id="hist-compare-toggle" class="px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:var(--panel2);color:var(--mute);border:1px solid var(--border);">${LANG==='es'?'Expandir':'Expand'}</button>
+      </div>
+      <div id="hist-compare-body" class="hidden"></div>
+    </div>`;
+  el.innerHTML = band + `<div class="space-y-2.5">${list.map(_renderHistoryRow).join('')}</div>` + compareSection;
+}
+
+let _histCompareOpen = false;
+function _toggleHistCompare() {
+  _histCompareOpen = !_histCompareOpen;
+  const body = document.getElementById('hist-compare-body');
+  const btn = document.getElementById('hist-compare-toggle');
+  if (!body || !btn) {return;}
+  if (_histCompareOpen) {
+    body.classList.remove('hidden');
+    btn.textContent = LANG==='es'?'Colapsar':'Collapse';
+    btn.style.cssText = 'background:color-mix(in srgb,var(--bet) 12%,transparent);color:var(--bet);border:1px solid color-mix(in srgb,var(--bet) 25%,transparent);';
+    // Re-use existing compare logic: set _compareMode and render into body
+    _compareMode = true;
+    _compareTeams = [];
+    const completed = DATA.fixtures.filter(f => f.completed);
+    body.innerHTML = _renderCompareSearch(completed) + `<div id="hist-compare-view" class="mt-4"></div>`;
+    _attachCompareListeners();
+  } else {
+    body.classList.add('hidden');
+    btn.textContent = LANG==='es'?'Expandir':'Expand';
+    btn.style.cssText = 'background:var(--panel2);color:var(--mute);border:1px solid var(--border);';
+    _compareMode = false;
+    _compareTeams = [];
+  }
+}
+
+function _renderCompareSearch(completed) {
+  const teams = [...new Set(completed.flatMap(f => [f.home, f.away]))].sort((a,b) => {
+    const na = LANG==='es'?(TEAM_ES[a]||a):a, nb = LANG==='es'?(TEAM_ES[b]||b):b;
+    return na.localeCompare(nb);
+  });
+  const pills = () => _compareTeams.map(t => `<span class="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold" style="background:color-mix(in srgb,var(--bet) 14%,transparent);color:var(--bet);">${teamFlag(t)} ${LANG==='es'?(TEAM_ES[t]||t):t} <button onclick="_removeHistTeam('${t.replace(/'/g,"\\'")}')" style="margin-left:2px;cursor:pointer;color:inherit;background:none;border:none;line-height:1;font-size:11px;">✕</button></span>`).join('');
+  const opts = teams.map(t => {
+    const tn = LANG==='es'?(TEAM_ES[t]||t):t;
+    return `<div class="hist-team-opt px-3 py-2 cursor-pointer text-sm flex items-center gap-2 hover:bg-[var(--panel2)]" data-team="${t.replace(/"/g,'&quot;')}">${TEAM_FLAG[t]||''} ${tn}</div>`;
+  }).join('');
+  return `
+    <div>
+      <div id="hist-compare-pills" class="flex flex-wrap gap-2 mb-3 min-h-[28px]">${pills()}</div>
+      <div class="relative">
+        <input id="hist-team-input" type="text" autocomplete="off" placeholder="${LANG==='es'?'Buscar selección...':'Search team...'}"
+          class="w-full pl-3 pr-3 py-2 rounded-lg text-sm outline-none"
+          style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);"
+          oninput="this.nextElementSibling.classList.toggle('hidden', !this.value)"/>
+        <div id="hist-team-dd" class="hidden absolute z-10 w-full rounded-lg mt-1 overflow-y-auto max-h-48" style="background:var(--panel); border:1px solid var(--border); box-shadow:var(--shadow-card);">${opts}</div>
+      </div>
+    </div>`;
+}
+
+function _attachCompareListeners() {
+  const input = document.getElementById('hist-team-input');
+  const dd = document.getElementById('hist-team-dd');
+  if (!input || !dd) {return;}
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase();
+    dd.querySelectorAll('.hist-team-opt').forEach(opt => {
+      const name = (opt.dataset.team || '').toLowerCase();
+      const label = opt.textContent.toLowerCase();
+      opt.style.display = (!q || name.includes(q) || label.includes(q)) ? '' : 'none';
+    });
+    dd.classList.toggle('hidden', !input.value);
+  });
+  dd.addEventListener('click', e => {
+    const opt = e.target.closest('.hist-team-opt');
+    if (!opt) {return;}
+    const team = opt.dataset.team;
+    if (team && !_compareTeams.includes(team) && _compareTeams.length < 3) {
+      _compareTeams.push(team);
+      input.value = '';
+      dd.classList.add('hidden');
+      _updateHistCompare();
+    }
+  });
+}
+
+function _removeHistTeam(team) {
+  _compareTeams = _compareTeams.filter(t => t !== team);
+  _updateHistCompare();
+}
+
+function _updateHistCompare() {
+  const pills = document.getElementById('hist-compare-pills');
+  if (pills) {pills.innerHTML = _compareTeams.map(t => `<span class="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold" style="background:color-mix(in srgb,var(--bet) 14%,transparent);color:var(--bet);">${teamFlag(t)} ${LANG==='es'?(TEAM_ES[t]||t):t} <button onclick="_removeHistTeam('${t.replace(/'/g,"\\'")}')" style="margin-left:2px;cursor:pointer;color:inherit;background:none;border:none;line-height:1;font-size:11px;">✕</button></span>`).join('');}
+  const view = document.getElementById('hist-compare-view');
+  if (view) {
+    const completed = DATA.fixtures.filter(f => f.completed);
+    view.innerHTML = _renderCompareView(completed);
+  }
 }
 
 // One completed-match row: header (teams, score, neutral outcome badges) that
@@ -2974,6 +3079,49 @@ async function checkQuinielaPw() {
   } else {
     document.getElementById('q-pw-error').classList.remove('hidden');
   }
+}
+
+function renderDisclaimer() {
+  const el = document.getElementById('disclaimer-container');
+  if (!el) {return;}
+  el.innerHTML = `
+    <div class="max-w-xl mx-auto">
+      <div class="rounded-2xl p-6 mb-4" style="background:var(--panel); box-shadow:var(--shadow-card);">
+        <div class="text-4xl mb-3">⚽</div>
+        <h2 class="text-xl font-extrabold mb-1" style="letter-spacing:-.02em;">${LANG==='es'?'Apuesta con cabeza':'Bet smart, stay in control'}</h2>
+        <p class="text-sm leading-relaxed" style="color:var(--mute);">${LANG==='es'?'Las predicciones de kini son herramientas de análisis, no garantías de ganancia. El pasado no predice el futuro.':'kini predictions are analysis tools, not profit guarantees. Past performance does not predict future results.'}</p>
+      </div>
+      <div class="space-y-3">
+        <div class="rounded-2xl p-5" style="background:var(--panel); box-shadow:var(--shadow-card);">
+          <h3 class="font-bold text-sm mb-3">${LANG==='es'?'Reglas de oro':'Golden rules'}</h3>
+          <ul class="space-y-2.5 text-sm" style="color:var(--mute);">
+            <li class="flex gap-2.5"><span>✓</span>${LANG==='es'?'Solo apuesta lo que puedas perder sin afectar tu vida.':'Only bet what you can afford to lose without affecting your life.'}</li>
+            <li class="flex gap-2.5"><span>✓</span>${LANG==='es'?'Fija un presupuesto diario/semanal y respétalo.':'Set a daily/weekly budget and stick to it.'}</li>
+            <li class="flex gap-2.5"><span>✓</span>${LANG==='es'?'No persigas pérdidas. Cada partido es independiente.':'Don\'t chase losses. Each match is independent.'}</li>
+            <li class="flex gap-2.5"><span>✓</span>${LANG==='es'?'Apuesta por diversión, no como fuente de ingresos.':'Bet for fun, not as income.'}</li>
+            <li class="flex gap-2.5"><span>✓</span>${LANG==='es'?'+18 años. Las apuestas no son para menores.':'18+. Betting is not for minors.'}</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl p-5" style="background:var(--panel); box-shadow:var(--shadow-card);">
+          <h3 class="font-bold text-sm mb-3">${LANG==='es'?'¿Necesitas ayuda?':'Need help?'}</h3>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center justify-between py-2" style="border-bottom:1px solid var(--border);">
+              <div><div class="font-medium">🇲🇽 CIJ México</div><div class="text-xs" style="color:var(--mute);">Centros de Integración Juvenil</div></div>
+              <a href="tel:8008008008" class="font-mono font-bold text-sm" style="color:var(--bet);">800-290-0024</a>
+            </div>
+            <div class="flex items-center justify-between py-2" style="border-bottom:1px solid var(--border);">
+              <div><div class="font-medium">🇪🇸 FEJAR España</div><div class="text-xs" style="color:var(--mute);">Federación Española de Juego Responsable</div></div>
+              <a href="tel:900200225" class="font-mono font-bold text-sm" style="color:var(--bet);">900 200 225</a>
+            </div>
+            <div class="flex items-center justify-between pt-2">
+              <div><div class="font-medium">🌍 Gamblers Anonymous</div><div class="text-xs" style="color:var(--mute);">gamblersanonymous.org</div></div>
+              <span class="text-xs" style="color:var(--mute);">Internacional</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-center text-xs px-4" style="color:var(--mute);">kini · ${LANG==='es'?'Análisis deportivo, no asesoría financiera':'Sports analysis, not financial advice'}</p>
+      </div>
+    </div>`;
 }
 
 function renderQuiniela() {
