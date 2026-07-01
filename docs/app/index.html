@@ -3372,6 +3372,12 @@ function renderQuiniela() {
 
 // ── Init ──
 loadData();
+{
+  const qp = new URLSearchParams(location.search);
+  const initTab = qp.get('tab');
+  if (initTab) {currentTab = initTab;}
+  if (qp.get('auth') === '1') {openAuth();}
+}
 let refreshTimer = null;
 function scheduleRefresh() {
   if (refreshTimer) {clearInterval(refreshTimer);}

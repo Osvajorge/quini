@@ -32,572 +32,205 @@ tailwind.config = {
 </script>
 <style>
 html, body { background: var(--bg); color: var(--ink); font-family: 'Manrope', system-ui, sans-serif; overflow-x: hidden; max-width: 100%; transition: background .2s, color .2s; }
-[data-theme="dark"] body { background: radial-gradient(ellipse at top, var(--bg2) 0%, var(--bg) 50%); }
-.gradient-text {
-  background: linear-gradient(135deg, var(--accent-from) 0%, var(--accent-to) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.glow {
-  position: absolute;
-  top: -200px; left: 50%; transform: translateX(-50%);
-  width: min(800px, 100vw); height: 600px;
-  background: radial-gradient(ellipse, rgba(18,185,129,0.12) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-[data-theme="dark"] .glow {
-  background: radial-gradient(ellipse, rgba(16,185,129,0.25) 0%, transparent 70%);
-}
-.pulse {
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-.card-hover:hover {
-  transform: translateY(-2px);
-  border-color: var(--bet);
-  transition: all 0.2s;
-}
+.pulse { animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+.card-hover:hover { transform: translateY(-2px); border-color: var(--bet); transition: all 0.2s; }
 .btn-primary {
-  background: var(--ui-black);
-  color: var(--ui-black-ink);
-  font-weight: 700;
-  padding: 14px 32px;
-  border-radius: 12px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: transform 0.15s;
-  cursor: pointer;
-  border: none;
-  font-size: 16px;
+  background: var(--ui-black); color: var(--ui-black-ink); font-weight: 700;
+  padding: 15px 26px; border-radius: 14px; display: inline-flex; align-items: center;
+  gap: 8px; transition: transform 0.15s; cursor: pointer; border: none; font-size: 16px;
 }
 .btn-primary:hover { transform: scale(1.02); }
 .btn-ghost {
-  background: var(--panel);
-  color: var(--ink);
-  font-weight: 600;
-  padding: 14px 32px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
+  background: var(--panel); color: var(--ink); font-weight: 700; padding: 15px 26px;
+  border-radius: 14px; border: 1px solid var(--border); display: inline-flex;
+  align-items: center; gap: 8px; cursor: pointer;
 }
-.metric {
-  font-feature-settings: "tnum";
-  font-variant-numeric: tabular-nums;
-}
-.divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
-  margin: 60px 0;
-}
+.metric { font-feature-settings: "tnum"; font-variant-numeric: tabular-nums; }
+.lang-pill { padding: 5px 9px; cursor: pointer; color: var(--mute); }
+.lang-pill.active { background: var(--ui-black); color: var(--ui-black-ink); }
 /* Reserve space for async-loaded stats to prevent CLS */
-#hero-stats .stat-val { min-height: 2rem; }
-#today-picks { min-height: 120px; }
-#wl-counter { min-height: 20px; }
-/* Smooth step transitions */
-#wl-step2, #wl-done { animation: fadeIn 0.3s ease; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+#hero-pick-card { min-height: 260px; }
+#hero-mono-stats span.stat-fill { min-width: 2ch; display: inline-block; }
+#today-picks { min-height: 140px; }
+#track-tiles .tile-val { min-height: 2.2rem; }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Kini","url":"https://kini.bet","description":"Modelo estadístico para detectar apuestas de valor en el Mundial 2026","applicationCategory":"SportsApplication","operatingSystem":"Web"}
 </script>
 </head>
 <body class="relative overflow-x-hidden">
-<div class="glow"></div>
 
-<!-- Header -->
-<header class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-2">
-  <a href="/" class="flex items-center gap-2 flex-shrink-0">
-    <div class="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white flex-shrink-0" style="background: linear-gradient(135deg, var(--bet) 0%, var(--accent-to) 100%);">K</div>
-    <span class="font-bold text-xl hidden sm:inline">Kini</span>
-  </a>
-  <div class="flex items-center gap-1.5 sm:gap-3">
-    <button onclick="toggleLang()" id="lang-btn" class="px-2 py-1.5 rounded text-xs font-mono border flex-shrink-0" style="border-color:var(--border); color:var(--mute);">EN</button>
-    <button onclick="toggleTheme()" id="theme-btn" aria-label="Cambiar tema" class="w-8 h-8 rounded-lg border flex items-center justify-center text-sm flex-shrink-0" style="border-color:var(--border); color:var(--mute);">&#9790;</button>
-    <a href="/app" class="flex-shrink-0 whitespace-nowrap rounded-xl font-semibold text-xs sm:text-base px-3 py-2 sm:px-8 sm:py-3.5" style="background: var(--ui-black); color: var(--ui-black-ink);" data-i18n="enter_app">Entrar a la app →</a>
+<!-- NAV -->
+<header class="sticky top-0 z-40" style="background:color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter:blur(14px); border-bottom:1px solid var(--border);">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6" style="height:64px; display:flex; align-items:center; justify-content:space-between;">
+    <a href="/" class="flex items-center gap-1.5 font-extrabold text-2xl flex-shrink-0" style="letter-spacing:-.03em; color:var(--ink); text-decoration:none;">kini<span class="inline-block rounded-full" style="width:8px;height:8px;background:var(--bet);margin-bottom:3px;"></span></a>
+    <nav class="hidden md:flex items-center gap-6 text-sm font-semibold" style="color:var(--mute);">
+      <a href="#how" style="color:inherit;text-decoration:none;" data-i18n="nav_how">Cómo funciona</a>
+      <a href="#picks" style="color:inherit;text-decoration:none;" data-i18n="nav_picks">Picks</a>
+      <a href="#track" style="color:inherit;text-decoration:none;" data-i18n="nav_track">Rendimiento</a>
+    </nav>
+    <div class="flex items-center gap-2 sm:gap-3">
+      <span style="display:flex; border:1px solid var(--border); border-radius:8px; overflow:hidden; font-size:12px; font-weight:700; font-family:'JetBrains Mono',monospace;">
+        <span class="lang-pill" id="pill-es" onclick="setLang('es')">ES</span><span class="lang-pill" id="pill-en" onclick="setLang('en')">EN</span>
+      </span>
+      <button onclick="toggleTheme()" id="theme-btn" aria-label="Cambiar tema" class="w-8 h-8 rounded-lg border flex items-center justify-center text-sm flex-shrink-0" style="border-color:var(--border); color:var(--mute);">&#9790;</button>
+      <a href="/app" class="rounded-xl font-bold text-sm px-4 sm:px-[18px] py-2.5 whitespace-nowrap" style="background:var(--ui-black); color:var(--ui-black-ink); text-decoration:none;" data-i18n="enter_app">Entrar</a>
+    </div>
   </div>
 </header>
 
-<!-- Hero -->
-<section class="relative z-10 max-w-6xl mx-auto px-6 pt-12 pb-16">
-<div class="grid lg:grid-cols-[1.1fr_420px] gap-10 items-center">
-<div class="text-center lg:text-left">
-  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono mb-6" style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--bet2);">
-    <span class="w-1.5 h-1.5 rounded-full pulse" style="background: var(--bet);"></span>
-    <span data-i18n="hero_badge">MUNDIAL 2026 EN VIVO</span>
-  </div>
-  <h1 class="text-5xl sm:text-6xl font-extrabold mb-6 leading-[1.05] tracking-tight">
-    <span data-i18n="hero_h1_pre">Apuestas con</span>
-    <span class="gradient-text" data-i18n="hero_h1_post">ventaja matemática</span>
-  </h1>
-  <p class="text-lg sm:text-xl max-w-2xl lg:max-w-none mx-auto lg:mx-0 mb-10" style="color: var(--mute);" data-i18n="hero_sub">
-    Detectamos cuándo las casas de apuestas subestiman un resultado.
-    Sin tips. Sin azar. Solo modelo estadístico y datos públicos.
-  </p>
-
-  <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-8">
-    <a href="/app" class="btn-primary" data-i18n="cta_picks">Ver picks de hoy →</a>
-    <a href="/app" class="btn-ghost" data-i18n="preview_cta_short">Ver la app →</a>
-  </div>
-
-  <!-- Full waitlist CTA — above fold -->
-  <div id="hero-email-cta" class="max-w-lg mx-auto lg:max-w-none lg:mx-0 mb-6 px-2 lg:px-0">
-    <div class="rounded-2xl p-5" style="background:color-mix(in srgb,var(--bet) 8%,var(--panel)); border:1px solid color-mix(in srgb,var(--bet) 35%,var(--border));">
-
-      <!-- Step 1: email -->
-      <div id="hero-step1">
-        <div class="flex items-center justify-between mb-3">
-          <div>
-            <div class="text-sm font-bold" data-i18n="hero_email_title">Reserva tu acceso anticipado</div>
-            <div class="text-xs" style="color:var(--mute);" data-i18n="hero_email_sub">Los de la lista entran primero y sin pagar el mes de lanzamiento.</div>
-          </div>
-          <div class="text-xs font-mono px-2 py-1 rounded-full flex-shrink-0 ml-2" style="background:color-mix(in srgb,var(--warn) 15%,transparent); color:var(--warn); border:1px solid color-mix(in srgb,var(--warn) 30%,transparent);" data-i18n="hero_spots_left">⚡ Quedan cupos</div>
-        </div>
-        <form id="hero-wl-form" class="flex gap-2" autocomplete="on">
-          <input type="text" name="website" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <input type="email" name="email" required autocomplete="email" maxlength="254"
-            placeholder="tucorreo@gmail.com"
-            data-ph-en="youremail@gmail.com"
-            class="flex-1 px-4 py-2.5 rounded-xl outline-none text-sm"
-            style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);" />
-          <button type="submit" class="btn-primary !py-2.5 !px-5 !text-sm whitespace-nowrap" data-i18n="hero_email_cta">Reservar →</button>
-        </form>
+<!-- HERO -->
+<section class="relative z-10 max-w-6xl mx-auto px-6 pt-16 pb-14">
+  <div class="grid lg:grid-cols-[1fr_420px] gap-12 items-center">
+    <div class="text-center lg:text-left">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[13px] font-bold mb-6" style="background:var(--accent-soft); color:var(--bet2);">
+        <span class="w-1.5 h-1.5 rounded-full" style="background:var(--bet);"></span>
+        <span data-i18n="hero_badge">Predicciones con ventaja real · Mundial 2026</span>
       </div>
-
-      <!-- Step 2: phone + name (after email) -->
-      <div id="hero-step2" style="display:none;" class="text-left">
-        <div class="text-2xl mb-2 text-center">✅</div>
-        <p class="font-semibold mb-1 text-center text-sm" data-i18n="wl_step2_title">¡Estás en la lista!</p>
-        <p class="text-xs mb-3 text-center" style="color:var(--mute);" data-i18n="hero_step2_sub">Opcional: añade tu número para unirte a los grupos de Telegram/WhatsApp que estamos armando. Cuando estén activos te mandamos el link por correo.</p>
-        <form id="hero-wl-form2" class="flex flex-col gap-2.5" autocomplete="on">
-          <div class="flex gap-2">
-            <select name="phone_cc"
-              class="px-2.5 py-2.5 rounded-xl outline-none text-sm font-mono"
-              style="background:var(--panel2); border:1px solid var(--border); color:var(--ink); flex-shrink:0; width:100px;">
-              <option value="+52">🇲🇽 +52</option>
-              <option value="+1">🇺🇸 +1</option>
-              <option value="+34">🇪🇸 +34</option>
-              <option value="+54">🇦🇷 +54</option>
-              <option value="+57">🇨🇴 +57</option>
-              <option value="+55">🇧🇷 +55</option>
-              <option value="+56">🇨🇱 +56</option>
-              <option value="+51">🇵🇪 +51</option>
-              <option value="+58">🇻🇪 +58</option>
-              <option value="+593">🇪🇨 +593</option>
-              <option value="+502">🇬🇹 +502</option>
-              <option value="+506">🇨🇷 +506</option>
-            </select>
-            <input
-              type="tel" name="phone_local" autocomplete="tel-national" maxlength="15"
-              placeholder="3310212964"
-              class="flex-1 px-3 py-2.5 rounded-xl outline-none text-sm"
-              style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);" />
-          </div>
-          <input
-            type="text" name="name" autocomplete="given-name"
-            placeholder="Tu nombre (opcional)"
-            data-ph-en="Your name (optional)"
-            class="w-full px-3 py-2.5 rounded-xl outline-none text-sm"
-            style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);" />
-          <div class="flex gap-2">
-            <button type="submit" class="btn-primary flex-1 justify-center !py-2.5 !text-sm" data-i18n="wl_step2_cta">Guardar</button>
-            <button type="button" onclick="heroSkip()" class="btn-ghost flex-1 justify-center !py-2.5 !text-sm" data-i18n="wl_step2_skip">Omitir</button>
-          </div>
-        </form>
+      <h1 class="font-extrabold mb-5" style="font-size:56px; line-height:1.02; letter-spacing:-.035em;" data-i18n="hero_h1">El fútbol, con los números que sí importan.</h1>
+      <p class="mx-auto lg:mx-0 mb-8" style="font-size:19px; line-height:1.55; color:var(--mute); max-width:460px;" data-i18n="hero_sub">Analizamos cada partido y lo comparamos con el mercado. Cuando el modelo ve una ventaja real sobre la cuota, te lo decimos — sin humo.</p>
+      <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-7">
+        <a href="/app" class="btn-primary" data-i18n="cta_picks">Ver picks de hoy →</a>
+        <a href="#how" class="btn-ghost" data-i18n="cta_how">Cómo funciona</a>
       </div>
-
-      <!-- Step 3: done -->
-      <div id="hero-step3" style="display:none;" class="text-center py-2">
-        <div class="text-2xl mb-1">🎉</div>
-        <span class="text-sm font-semibold" style="color:var(--bet);" data-i18n="hero_email_done">Todo listo — te avisamos antes de cerrar al público.</span>
-        <div class="mt-2"><a href="/app" class="text-xs underline" style="color:var(--bet2);" data-i18n="wl_done_cta">Ver picks de hoy →</a></div>
+      <div id="hero-mono-stats" class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 text-[13px] font-semibold font-mono" style="color:var(--placeholder);">
+        <span><span class="stat-fill" id="hm-trained">—</span> <span data-i18n="hm_trained_label">partidos entrenados</span></span><span>·</span>
+        <span data-i18n="hm_edge_label">edge ≥ <span class="stat-fill" id="hm-edge">8</span>%</span><span>·</span>
+        <span>quarter-Kelly</span>
       </div>
-
     </div>
-    <div id="hero-wl-counter" class="text-xs text-center lg:text-left mt-2 font-mono" style="color:var(--bet2);"></div>
-  </div>
-</div>
 
-<!-- Live pick card — populated by loadStats() from today's highest-edge BET -->
-<div id="hero-pick-card" style="min-height:260px;">
-  <div class="rounded-2xl p-5" style="background: var(--panel); border: 1px solid var(--border); box-shadow: var(--shadow-elevated);">
-    <div class="flex items-center justify-between mb-4">
-      <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--mute);" data-i18n="hero_card_kicker">Cargando pick del día…</span>
-    </div>
-    <div class="space-y-3">
-      <div class="h-4 rounded" style="background: var(--panel2);"></div>
-      <div class="h-4 rounded w-2/3" style="background: var(--panel2);"></div>
-    </div>
-  </div>
-</div>
-
-</div>
-</section>
-
-<section class="relative z-10 max-w-6xl mx-auto px-6 pb-16 text-center">
-  <!-- Live stats from JSON — min-height on values prevents CLS -->
-  <div id="hero-stats" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
-    <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-xs uppercase mb-1" style="color: var(--mute);">ROI</div>
-      <div class="text-2xl font-bold metric stat-val" id="stat-roi">—</div>
-    </div>
-    <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-xs uppercase mb-1" style="color: var(--mute);" data-i18n="stat_winrate">Acierto</div>
-      <div class="text-2xl font-bold metric stat-val" id="stat-winrate">—</div>
-    </div>
-    <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-xs uppercase mb-1" style="color: var(--mute);" data-i18n="stat_bets">Apuestas</div>
-      <div class="text-2xl font-bold metric stat-val" id="stat-bets">—</div>
-    </div>
-    <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-xs uppercase mb-1" style="color: var(--mute);">CLV</div>
-      <div class="text-2xl font-bold metric stat-val" id="stat-clv">—</div>
-    </div>
-  </div>
-  <p class="text-xs mt-4" style="color: var(--mute);" data-i18n="stat_caption">Datos en tiempo real desde nuestro tracking público</p>
-</section>
-
-<div class="divider"></div>
-
-<!-- How it works -->
-<section class="relative z-10 max-w-5xl mx-auto px-6 py-12">
-  <div class="text-center mb-12">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-3" data-i18n="how_title">Cómo funciona</h2>
-    <p style="color: var(--mute);" data-i18n="how_sub">3 pasos. Sin trucos. Todo el código y datos son públicos.</p>
-  </div>
-
-  <div class="grid sm:grid-cols-3 gap-4">
-    <div class="rounded-2xl p-6 card-hover" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-3xl mb-3">📊</div>
-      <div class="text-xs uppercase mb-1" style="color: var(--bet);" data-i18n="step1_kicker">Paso 1</div>
-      <h3 class="text-lg font-bold mb-2" data-i18n="step1_title">Modelo estadístico</h3>
-      <p class="text-sm" style="color: var(--mute);" data-i18n="step1_body">Combinamos Dixon-Coles (xG) con ratings Elo de cada selección. Entrenado con +180 mil partidos históricos.</p>
-    </div>
-    <div class="rounded-2xl p-6 card-hover" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-3xl mb-3">🎯</div>
-      <div class="text-xs uppercase mb-1" style="color: var(--bet);" data-i18n="step2_kicker">Paso 2</div>
-      <h3 class="text-lg font-bold mb-2" data-i18n="step2_title">Detecta el edge</h3>
-      <p class="text-sm" style="color: var(--mute);" data-i18n="step2_body">Comparamos nuestra probabilidad contra las cuotas reales de Caliente, Pinnacle, bet365 y más. Si el mercado subestima, hay valor.</p>
-    </div>
-    <div class="rounded-2xl p-6 card-hover" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-3xl mb-3">💸</div>
-      <div class="text-xs uppercase mb-1" style="color: var(--bet);" data-i18n="step3_kicker">Paso 3</div>
-      <h3 class="text-lg font-bold mb-2" data-i18n="step3_title">Apuesta con criterio</h3>
-      <p class="text-sm" style="color: var(--mute);" data-i18n="step3_body">Te decimos cuánto apostar usando Kelly Criterion para maximizar tu banca a largo plazo sin arriesgar de más.</p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- Today's picks preview -->
-<section class="relative z-10 max-w-5xl mx-auto px-6 py-12">
-  <div class="text-center mb-12">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-3" data-i18n="picks_title">Picks del día</h2>
-    <p style="color: var(--mute);"><span data-i18n="picks_sub">Algunos de los partidos analizados hoy.</span> <a href="/app" class="underline" style="color: var(--bet2);" data-i18n="picks_all">Ver todos →</a></p>
-  </div>
-  <div id="today-picks" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-</section>
-
-<div class="divider"></div>
-
-<!-- App preview mockup -->
-<section class="relative z-10 max-w-5xl mx-auto px-6 py-12">
-  <div class="text-center mb-10">
-    <h2 class="text-3xl sm:text-4xl font-bold mb-3" data-i18n="preview_title">Mira la app en acción</h2>
-    <p style="color: var(--mute);" data-i18n="preview_sub">Interfaz completa, sin registro. Picks, rankings, bracket y más.</p>
-  </div>
-  <div class="relative mx-auto max-w-4xl">
-    <!-- Browser chrome mockup -->
-    <div class="rounded-xl overflow-hidden" style="border: 1px solid var(--border); background: var(--panel);">
-      <div class="flex items-center gap-2 px-4 py-2.5" style="background: var(--panel2); border-bottom: 1px solid var(--border);">
-        <div class="flex gap-1.5">
-          <div class="w-3 h-3 rounded-full" style="background: #ef4444;"></div>
-          <div class="w-3 h-3 rounded-full" style="background: #f59e0b;"></div>
-          <div class="w-3 h-3 rounded-full" style="background: #22c55e;"></div>
-        </div>
-        <div class="flex-1 text-center">
-          <span class="text-xs font-mono px-3 py-1 rounded-md" style="background: var(--panel); color: var(--mute);">kini.bet/app</span>
-        </div>
-      </div>
-      <!-- App content mockup -->
-      <div class="p-4 sm:p-6 overflow-hidden" style="max-height: 420px;">
-        <!-- Mini header -->
+    <!-- Live hero pick card -->
+    <div id="hero-pick-card">
+      <div class="rounded-2xl p-5" style="background:var(--panel); border:1px solid var(--border); box-shadow:var(--shadow-elevated);">
         <div class="flex items-center justify-between mb-4">
-          <div class="flex items-center gap-2">
-            <div class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background: linear-gradient(135deg, var(--bet), var(--accent-to));">K</div>
-            <span class="font-bold text-sm">Kini</span>
-          </div>
-          <span class="text-xs font-mono" style="color: var(--mute);">Actualizado hoy</span>
+          <span class="text-xs font-bold uppercase tracking-wider" style="color:var(--mute);" data-i18n="hero_card_loading">Cargando pick del día…</span>
         </div>
-        <!-- Stats row -->
-        <div class="grid grid-cols-4 gap-2 mb-4">
-          <div class="rounded-lg p-2.5 text-center" style="background: var(--panel2); border: 1px solid var(--border);">
-            <div class="text-[10px] uppercase" style="color: var(--mute);">Analizados</div>
-            <div class="text-sm font-bold metric" id="mock-analyzed">73</div>
-          </div>
-          <div class="rounded-lg p-2.5 text-center" style="background: var(--panel2); border: 1px solid var(--border);">
-            <div class="text-[10px] uppercase" style="color: var(--mute);">Historial</div>
-            <div class="text-sm font-bold metric" style="color: var(--bet);" id="mock-wl">21W-12L</div>
-          </div>
-          <div class="rounded-lg p-2.5 text-center" style="background: var(--panel2); border: 1px solid var(--border);">
-            <div class="text-[10px] uppercase" style="color: var(--mute);">Edge</div>
-            <div class="text-sm font-bold">8%+</div>
-          </div>
-          <div class="rounded-lg p-2.5 text-center" style="background: var(--panel2); border: 1px solid var(--border);">
-            <div class="text-[10px] uppercase" style="color: var(--mute);">Precisión</div>
-            <div class="text-sm font-bold">21k+</div>
-          </div>
-        </div>
-        <!-- Tabs -->
-        <div class="flex gap-4 mb-4 text-sm" style="border-bottom: 1px solid var(--border); padding-bottom: 8px;">
-          <span class="font-semibold" style="color: var(--bet); border-bottom: 2px solid var(--bet); padding-bottom: 6px;">Picks</span>
-          <span style="color: var(--mute);">Grupos</span>
-          <span style="color: var(--mute);">Rankings</span>
-          <span style="color: var(--mute);">Bracket</span>
-          <span style="color: var(--mute);">Historial</span>
-        </div>
-        <!-- Sample pick cards -->
-        <div class="space-y-2" id="mock-picks">
-          <div class="rounded-lg p-3 flex items-center justify-between" style="background: var(--panel2); border: 1px solid var(--border);">
-            <div>
-              <div class="text-xs" style="color: var(--mute);">Hoy 19:00</div>
-              <div class="font-semibold text-sm">Francia <span style="color: var(--mute);">vs</span> Argentina</div>
-              <div class="text-xs mt-0.5" style="color: var(--ink);">Francia gana</div>
-            </div>
-            <div class="text-right">
-              <span class="text-xs px-2 py-0.5 rounded font-bold" style="background: rgba(16,185,129,0.15); color: var(--bet2);">+12.3%</span>
-              <div class="font-mono font-bold text-sm mt-0.5" style="color: var(--bet2);">@ 2.15</div>
-            </div>
-          </div>
-          <div class="rounded-lg p-3 flex items-center justify-between" style="background: var(--panel2); border: 1px solid var(--border);">
-            <div>
-              <div class="text-xs" style="color: var(--mute);">Hoy 22:00</div>
-              <div class="font-semibold text-sm">Brasil <span style="color: var(--mute);">vs</span> Alemania</div>
-              <div class="text-xs mt-0.5" style="color: var(--ink);">Over 2.5 goles</div>
-            </div>
-            <div class="text-right">
-              <span class="text-xs px-2 py-0.5 rounded font-bold" style="background: rgba(16,185,129,0.15); color: var(--bet2);">+9.8%</span>
-              <div class="font-mono font-bold text-sm mt-0.5" style="color: var(--bet2);">@ 1.82</div>
-            </div>
-          </div>
-          <div class="rounded-lg p-3 flex items-center justify-between" style="background: var(--panel2); border: 1px solid var(--border);">
-            <div>
-              <div class="text-xs" style="color: var(--mute);">Mañana 16:00</div>
-              <div class="font-semibold text-sm">España <span style="color: var(--mute);">vs</span> Portugal</div>
-              <div class="text-xs mt-0.5" style="color: var(--ink);">España o empate</div>
-            </div>
-            <div class="text-right">
-              <span class="text-xs px-2 py-0.5 rounded font-bold" style="background: rgba(16,185,129,0.15); color: var(--bet2);">+8.5%</span>
-              <div class="font-mono font-bold text-sm mt-0.5" style="color: var(--bet2);">@ 1.55</div>
-            </div>
-          </div>
+        <div class="space-y-3">
+          <div class="h-4 rounded" style="background:var(--panel2);"></div>
+          <div class="h-4 rounded w-2/3" style="background:var(--panel2);"></div>
         </div>
       </div>
-      <!-- Gradient fade at bottom -->
-      <div style="height: 60px; background: linear-gradient(transparent, var(--panel)); margin-top: -60px; position: relative; z-index: 1;"></div>
-    </div>
-    <!-- CTA below mockup -->
-    <div class="text-center mt-6">
-      <a href="/app" class="btn-primary" data-i18n="preview_cta">Abrir app completa →</a>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- Waitlist / Acceso anticipado -->
-<section id="waitlist" class="relative z-10 max-w-2xl mx-auto px-6 py-16 text-center">
-  <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono mb-6" style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.4); color: var(--warn);">
-    <span class="w-1.5 h-1.5 rounded-full" style="background: var(--warn); animation: pulse 2s infinite;"></span>
-    <span data-i18n="wl_badge">ACCESO LIMITADO · 500 CUPOS</span>
-  </div>
-  <h2 class="text-3xl sm:text-4xl font-bold mb-4" data-i18n="wl_h1">Reserva tu acceso anticipado</h2>
-  <p class="mb-3" style="color: var(--mute);" data-i18n="wl_sub">
-    Cuando cerremos al público general, los de la lista entran primero y sin pagar el mes de lanzamiento.
-  </p>
-  <!-- Live counter — min-height prevents CLS -->
-  <div id="wl-counter" class="mb-8 text-sm font-mono" style="color: var(--bet2); min-height: 20px;"></div>
-
-  <!-- Step 1: email -->
-  <div id="wl-step1">
-    <form id="wl-form1" class="flex flex-col sm:flex-row gap-2 max-w-md mx-auto" autocomplete="on">
-      <input type="text" name="website" style="display:none;position:absolute;left:-9999px;" tabindex="-1" autocomplete="off" aria-hidden="true" />
-      <input
-        type="email" name="email" required autocomplete="email" maxlength="254"
-        placeholder="tucorreo@gmail.com"
-        data-ph-en="youremail@gmail.com"
-        class="flex-1 px-4 py-3 rounded-xl outline-none text-base"
-        style="background: var(--panel); border: 1px solid var(--border); color: var(--ink);"
-      />
-      <button type="submit" class="btn-primary justify-center whitespace-nowrap" data-i18n="wl_step1_cta">Quiero acceso →</button>
-    </form>
-    <p class="text-xs mt-3" style="color: var(--mute);" data-i18n="wl_privacy">Sin spam. Sin vender tu correo. Cancelas cuando quieras.</p>
-  </div>
-
-  <!-- Step 2: phone + name (optional) -->
-  <div id="wl-step2" style="display:none;">
-    <div class="rounded-2xl p-6 max-w-md mx-auto text-left" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-2xl mb-2 text-center">✅</div>
-      <p class="font-semibold mb-1 text-center" data-i18n="wl_step2_title">¡Estás en la lista!</p>
-      <p class="text-sm mb-3 text-center" style="color: var(--mute);" data-i18n="wl_step2_sub">Opcional: añade tu número para unirte a los grupos de Telegram/WhatsApp que estamos armando. Cuando estén activos te mandamos el link por correo.</p>
-      <form id="wl-form2" class="flex flex-col gap-3" autocomplete="on">
-        <div class="flex gap-2">
-          <select name="phone_cc" id="phone-cc"
-            class="px-3 py-3 rounded-xl outline-none text-base font-mono"
-            style="background: var(--panel2); border: 1px solid var(--border); color: var(--ink); flex-shrink: 0; width: 110px;">
-            <option value="+52">🇲🇽 +52</option>
-            <option value="+1">🇺🇸 +1</option>
-            <option value="+34">🇪🇸 +34</option>
-            <option value="+54">🇦🇷 +54</option>
-            <option value="+57">🇨🇴 +57</option>
-            <option value="+55">🇧🇷 +55</option>
-            <option value="+56">🇨🇱 +56</option>
-            <option value="+51">🇵🇪 +51</option>
-            <option value="+58">🇻🇪 +58</option>
-            <option value="+593">🇪🇨 +593</option>
-            <option value="+502">🇬🇹 +502</option>
-            <option value="+506">🇨🇷 +506</option>
-          </select>
-          <input
-            type="tel" name="phone_local" autocomplete="tel-national" maxlength="15"
-            placeholder="3310212964"
-            class="flex-1 px-4 py-3 rounded-xl outline-none text-base"
-            style="background: var(--panel2); border: 1px solid var(--border); color: var(--ink);"
-          />
-        </div>
-        <input
-          type="text" name="name" autocomplete="given-name"
-          placeholder="Tu nombre (opcional)"
-          data-ph-en="Your name (optional)"
-          class="w-full px-4 py-3 rounded-xl outline-none text-base"
-          style="background: var(--panel2); border: 1px solid var(--border); color: var(--ink);"
-        />
-        <div class="flex gap-2">
-          <button type="submit" class="btn-primary flex-1 justify-center" data-i18n="wl_step2_cta">Guardar</button>
-          <button type="button" onclick="skipStep2()" class="btn-ghost flex-1 justify-center" data-i18n="wl_step2_skip">Omitir</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- Final success -->
-  <div id="wl-done" style="display:none;">
-    <div class="rounded-2xl p-8 max-w-md mx-auto" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-4xl mb-3">🎉</div>
-      <p class="text-xl font-bold mb-2" data-i18n="wl_done_title">Todo listo</p>
-      <p class="text-sm mb-5" style="color: var(--mute);" data-i18n="wl_done_sub">Te avisamos antes de cerrar al público. Mientras tanto, la app es tuya.</p>
-      <a href="/app" class="btn-primary justify-center inline-flex" data-i18n="wl_done_cta">Ver picks de hoy →</a>
+<!-- HOW IT WORKS -->
+<section id="how" style="background:var(--panel); border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="max-w-6xl mx-auto px-6 py-14">
+    <div class="text-center text-[13px] font-extrabold uppercase tracking-widest mb-8" style="color:var(--mute);" data-i18n="how_kicker">Cómo funciona</div>
+    <div class="grid sm:grid-cols-3 gap-5">
+      <div class="rounded-2xl p-6" style="background:var(--bg);">
+        <div class="text-3xl font-extrabold mb-3" style="color:var(--bet);">01</div>
+        <div class="text-lg font-extrabold mb-1.5" data-i18n="step1_title">Modelamos el partido</div>
+        <div class="text-sm" style="color:var(--mute); line-height:1.55;" data-i18n="step1_body">Combinamos Dixon-Coles (xG) con ratings Elo de cada selección, entrenado con partidos históricos reales y actualizado cada 5 minutos.</div>
+      </div>
+      <div class="rounded-2xl p-6" style="background:var(--bg);">
+        <div class="text-3xl font-extrabold mb-3" style="color:var(--bet);">02</div>
+        <div class="text-lg font-extrabold mb-1.5" data-i18n="step2_title">Comparamos con el mercado</div>
+        <div class="text-sm" style="color:var(--mute); line-height:1.55;" data-i18n="step2_body">Nuestra probabilidad contra la cuota real de las principales casas. La diferencia es el edge — y cada mercado tiene su umbral.</div>
+      </div>
+      <div class="rounded-2xl p-6" style="background:var(--bg);">
+        <div class="text-3xl font-extrabold mb-3" style="color:var(--bet);">03</div>
+        <div class="text-lg font-extrabold mb-1.5" data-i18n="step3_title">Te avisamos del valor</div>
+        <div class="text-sm" style="color:var(--mute); line-height:1.55;" data-i18n="step3_body">Solo marcamos apuesta cuando la ventaja supera el umbral, con stake quarter-Kelly. Nada de ruido.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- PICKS PREVIEW -->
+<section id="picks" class="relative z-10 max-w-6xl mx-auto px-6 py-16">
+  <div class="flex items-baseline justify-between gap-3 mb-6">
+    <h2 class="text-3xl font-extrabold" style="letter-spacing:-.025em;" data-i18n="picks_title">Picks de valor de hoy</h2>
+    <a href="/app?tab=picks" class="text-sm font-bold whitespace-nowrap" style="color:var(--bet2); text-decoration:none;" data-i18n="picks_all">Ver todos →</a>
+  </div>
+  <div id="today-picks" class="grid sm:grid-cols-2 gap-4"></div>
+</section>
 
-<!-- Trust signals -->
-<section class="relative z-10 max-w-4xl mx-auto px-6 py-12 text-center">
-  <h3 class="text-2xl font-bold mb-8" data-i18n="trust_title">100% transparente</h3>
-  <div class="grid sm:grid-cols-3 gap-4">
-    <div class="rounded-xl p-5" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-2xl mb-2">📂</div>
-      <div class="font-bold mb-1" data-i18n="trust1_title">Historial público</div>
-      <div class="text-xs" style="color: var(--mute);" data-i18n="trust1_body">Todas las apuestas, ganadas y perdidas. Sin esconder los fracasos.</div>
+<!-- TRACK RECORD (honest, always-dark) -->
+<section id="track" class="max-w-6xl mx-auto px-6 py-4 pb-16">
+  <div class="rounded-3xl p-8 sm:p-11" style="background:#111; color:#fff;">
+    <div class="flex flex-wrap items-center gap-2.5 mb-7">
+      <span class="text-[13px] font-extrabold uppercase tracking-widest" style="color:#12b981;" data-i18n="track_kicker">Cuentas claras</span>
+      <span class="text-[13px]" style="color:#8a8a8e;" data-i18n="track_kicker_sub">· historial público, seguido con CLV</span>
     </div>
-    <div class="rounded-xl p-5" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-2xl mb-2">🔬</div>
-      <div class="font-bold mb-1" data-i18n="trust2_title">Modelo verificable</div>
-      <div class="text-xs" style="color: var(--mute);" data-i18n="trust2_body">Dixon-Coles + Elo. Fuentes públicas. Lógica reproducible.</div>
+    <div id="track-tiles" class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+      <div><div class="tile-val text-4xl font-extrabold" style="letter-spacing:-.03em; color:#12b981;" id="tt-roi">—</div><div class="text-[13px] mt-1" style="color:#a1a1a6;" data-i18n="tt_roi_label">ROI en picks de valor</div></div>
+      <div><div class="tile-val text-4xl font-extrabold" style="letter-spacing:-.03em;" id="tt-winrate">—</div><div class="text-[13px] mt-1" style="color:#a1a1a6;" data-i18n="tt_winrate_label">acierto</div></div>
+      <div><div class="tile-val text-4xl font-extrabold" style="letter-spacing:-.03em;" id="tt-bets">—</div><div class="text-[13px] mt-1" style="color:#a1a1a6;" data-i18n="tt_bets_label">apuestas registradas</div></div>
+      <div><div class="tile-val text-4xl font-extrabold" style="letter-spacing:-.03em;" id="tt-clv">—</div><div class="text-[13px] mt-1" style="color:#a1a1a6;" data-i18n="tt_clv_label">CLV promedio</div></div>
     </div>
-    <div class="rounded-xl p-5" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-2xl mb-2">📈</div>
-      <div class="font-bold mb-1" data-i18n="trust3_title">CLV trackeado</div>
-      <div class="text-xs" style="color: var(--mute);" data-i18n="trust3_body">Métrica que valida edge real, no solo suerte.</div>
+    <p class="text-[13px] mt-7 max-w-2xl" style="color:#8a8a8e; line-height:1.6;" data-i18n="track_caption">Todas las apuestas quedan registradas y son públicas, ganadas y perdidas. Seguimos el saldo real y la línea de cierre (CLV) de cada una — un resultado pasado no garantiza los futuros.</p>
+    <a href="/app?tab=history" class="inline-block text-[13px] font-bold mt-4 underline" style="color:#fff;" data-i18n="track_cta">Ver historial completo →</a>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="max-w-6xl mx-auto px-6 py-6 pb-20">
+  <div class="text-center mb-10">
+    <h2 class="text-4xl font-extrabold mb-2" style="letter-spacing:-.03em;" data-i18n="pricing_title">Elige tu plan</h2>
+    <p style="color:var(--mute);" data-i18n="pricing_sub">Empieza gratis. Sube a Pro cuando quieras todas las señales del día.</p>
+  </div>
+  <div class="grid sm:grid-cols-3 gap-4 items-stretch">
+    <div class="rounded-2xl p-6 flex flex-col" style="background:var(--panel); border:1px solid var(--border);">
+      <div class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:var(--mute);" data-i18n="free_kicker">Free</div>
+      <div class="text-4xl font-extrabold" style="letter-spacing:-.03em;">$0</div>
+      <div class="text-[13px] mb-5 mt-1" style="color:var(--mute);" data-i18n="free_period">para siempre</div>
+      <div class="flex flex-col gap-2.5 text-sm flex-1 mb-5" style="color:var(--mute);">
+        <span data-i18n="free_feat1">✓ 1–2 picks del día</span>
+        <span data-i18n="free_feat2">✓ Marcadores en vivo</span>
+        <span data-i18n="free_feat3">✓ Historial público completo</span>
+      </div>
+      <a href="/app" class="btn-ghost justify-center" data-i18n="free_cta">Empezar gratis</a>
+    </div>
+    <div class="rounded-2xl p-6 flex flex-col relative" style="background:#111; color:#fff;">
+      <span class="absolute px-3 py-1 rounded-full text-[11px] font-extrabold whitespace-nowrap" style="top:-11px; left:50%; transform:translateX(-50%); background:var(--bet); color:#fff;" data-i18n="pro_launch_badge">PRECIO DE LANZAMIENTO</span>
+      <div class="text-xs font-extrabold uppercase tracking-wider mb-2" style="color:#12b981;" data-i18n="pro_kicker">Pro · Mensual</div>
+      <div class="flex items-baseline gap-1.5"><span class="text-4xl font-extrabold" style="letter-spacing:-.03em;">$99</span><span class="text-base font-semibold" style="color:#a1a1a6;" data-i18n="pro_period">/mes</span></div>
+      <div class="text-[13px] mb-5 mt-1" style="color:#a1a1a6;"><s>$199</s> <span data-i18n="pro_was">los primeros meses</span></div>
+      <div class="flex flex-col gap-2.5 text-sm flex-1 mb-5" style="color:#e6e6e9;">
+        <span data-i18n="pro_feat1">✓ Todos los picks del día</span>
+        <span data-i18n="pro_feat2">✓ Edge, CLV y "por qué"</span>
+        <span data-i18n="pro_feat3">✓ Alertas de valor en vivo</span>
+        <span data-i18n="pro_feat4">✓ Bracket y simulaciones</span>
+      </div>
+      <a href="/app?auth=1" class="rounded-xl font-extrabold text-[15px] py-3.5 text-center" style="background:var(--bet); color:#fff; text-decoration:none;" data-i18n="pro_cta">Hazte Pro</a>
+    </div>
+    <div class="rounded-2xl p-6 flex flex-col" style="background:var(--panel); border:1px solid var(--border);">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-extrabold uppercase tracking-wider" style="color:var(--mute);" data-i18n="annual_kicker">Pro · Anual</span>
+        <span class="px-2.5 py-1 rounded-full text-[11px] font-extrabold" style="background:var(--accent-soft); color:var(--bet2);" data-i18n="annual_badge">2 MESES GRATIS</span>
+      </div>
+      <div class="flex items-baseline gap-1.5"><span class="text-4xl font-extrabold" style="letter-spacing:-.03em;">$82</span><span class="text-base font-semibold" style="color:var(--mute);" data-i18n="annual_period">/mes</span></div>
+      <div class="text-[13px] mb-5 mt-1" style="color:var(--mute);" data-i18n="annual_billed">facturado $990 al año</div>
+      <div class="flex flex-col gap-2.5 text-sm flex-1 mb-5" style="color:var(--mute);">
+        <span data-i18n="annual_feat1">✓ Todo lo de Pro</span>
+        <span data-i18n="annual_feat2">✓ Ahorras $198 al año</span>
+        <span data-i18n="annual_feat3">✓ Precio bloqueado</span>
+      </div>
+      <a href="/app?auth=1" class="rounded-xl font-bold text-[15px] py-3.5 text-center" style="border:1px solid var(--ink); color:var(--ink); text-decoration:none;" data-i18n="annual_cta">Ir al plan anual</a>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
-<footer class="relative z-10 border-t mt-16 py-8" style="border-color: var(--border);">
-  <div class="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm" style="color: var(--mute);">
-    <div data-i18n="footer_copy">© 2026 Kini · Predicción estadística, no asesoría de apuestas</div>
-    <div class="flex gap-4">
-      <a href="/app" class="hover:underline" data-i18n="footer_app">Ver app</a>
-    </div>
+<!-- FOOTER -->
+<footer style="border-top:1px solid var(--border); background:var(--panel);">
+  <div class="max-w-6xl mx-auto px-6 py-7 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px]" style="color:var(--mute);">
+    <span data-i18n="footer_copy">© 2026 kini · Predicciones con ventaja · Solo mayores de 18</span>
+    <a href="/app?tab=disclaimer" class="font-bold" style="color:var(--mute); text-decoration:none;" data-i18n="footer_rg">Juega con responsabilidad</a>
   </div>
 </footer>
 
 <script>
-/* exported toggleLang, heroSkip, skipStep2, toggleTheme --
+/* exported setLang, toggleTheme --
    invoked from onclick="" attributes in markup, invisible to static analysis */
-// ── Aligned ROI (same logic as index.html, excludes legacy SKIP picks) ──
 function _isBetPick(b) {
   if (b.pick) {return b.pick === 'BET';}
   return Number(b.edge || 0) >= 8;
 }
 
-// ── Hero pick card — today's highest-edge BET, or an honest empty state ──
-function _renderHeroPick(top0) {
-  const el = document.getElementById('hero-pick-card');
-  if (!el) {return;}
-  if (!top0) {
-    el.innerHTML = `<div class="rounded-2xl p-6 text-center" style="background: var(--panel); border: 1px solid var(--border);">
-      <div class="text-sm" style="color: var(--mute);">${LANG === 'es' ? 'Sin picks de valor ahora mismo.' : 'No value picks right now.'}</div>
-      <a href="/app" class="text-xs underline" style="color: var(--bet2);">${LANG === 'es' ? 'Ver la app →' : 'See the app →'}</a>
-    </div>`;
-    return;
-  }
-  const { f, b } = top0;
-  const dt = new Date(f.commence_time);
-  const dtStr = dt.toLocaleDateString(LANG === 'en' ? 'en' : 'es', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-  const desc = (LANG === 'en' ? (b.description_en || b.market) : (b.description_es || b.market)) || '';
-  const hFlag = teamFlag(f.home), aFlag = teamFlag(f.away);
-  const bySide = {};
-  (f.picks || []).forEach(p => { if (['home', 'draw', 'away'].includes(p.side)) {bySide[p.side] = p.model_prob;} });
-  const pH = bySide.home, pD = bySide.draw, pA = bySide.away;
-  const has1x2 = pH != null && pD != null && pA != null;
-  const bar1x2 = has1x2 ? `
-    <div class="flex h-2 rounded-full overflow-hidden mt-3 mb-2">
-      <span style="width:${pH}%;background:var(--ink);"></span>
-      <span style="width:${pD}%;background:var(--draw-bar);"></span>
-      <span style="width:${pA}%;background:var(--bet2);"></span>
-    </div>
-    <div class="flex justify-between text-xs font-mono" style="color: var(--mute);">
-      <span>${Math.round(pH)}%</span><span>${LANG === 'es' ? 'X' : 'D'} ${Math.round(pD)}%</span><span>${Math.round(pA)}%</span>
-    </div>` : '';
-  el.innerHTML = `
-    <div class="rounded-2xl p-5" style="background: var(--panel); border: 1px solid var(--border); box-shadow: var(--shadow-elevated);">
-      <div class="flex items-center justify-between mb-4">
-        <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--mute);">${LANG === 'es' ? 'PRÓXIMO' : 'UPCOMING'} · ${_esc(dtStr)}</span>
-      </div>
-      <div class="space-y-2.5 mb-1">
-        <div class="flex items-center gap-3">
-          <span class="text-2xl flex-shrink-0" aria-hidden="true">${hFlag}</span>
-          <span class="text-lg font-bold flex-1 truncate">${_esc(teamName(f.home) || f.home || '—')}</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <span class="text-2xl flex-shrink-0" aria-hidden="true">${aFlag}</span>
-          <span class="text-lg font-bold flex-1 truncate">${_esc(teamName(f.away) || f.away || '—')}</span>
-        </div>
-      </div>
-      ${bar1x2}
-      <div class="mt-4 rounded-xl p-4" style="background: var(--accent-soft2); border: 1px solid var(--accent-border);">
-        <div class="flex items-center justify-between mb-1">
-          <span class="text-[11px] font-bold uppercase tracking-wider" style="color: var(--bet2);">${LANG === 'es' ? 'PICK DE VALOR' : 'VALUE PICK'}</span>
-          <span class="text-sm font-bold" style="color: var(--bet2);">+${Number(b.edge || 0).toFixed(1)}%</span>
-        </div>
-        <div class="text-lg font-bold mb-1">${_esc(desc)}</div>
-        <div class="text-xs font-mono" style="color: var(--mute);">${LANG === 'es' ? 'modelo' : 'model'} ${Math.round(b.model_prob || 0)}% · ${LANG === 'es' ? 'mercado' : 'market'} ${Math.round(b.devig_prob || 0)}% · @${Number(b.best_odds || b.odds || 0).toFixed(2)}</div>
-      </div>
-    </div>`;
-}
 function _alignedStats(hist) {
   let n = 0, won = 0, profit = 0;
   for (const fx of (hist.fixtures || [])) {
@@ -610,14 +243,71 @@ function _alignedStats(hist) {
     }
   }
   return {
-    n,
-    won,
+    n, won,
     roi: n > 0 ? (profit / n * 100).toFixed(1) : '0.0',
     winRate: n > 0 ? (won / n * 100).toFixed(1) : '0.0',
   };
 }
 
-// ── Load live stats ──
+function _renderHeroPick(top0) {
+  const el = document.getElementById('hero-pick-card');
+  if (!el) {return;}
+  if (!top0) {
+    el.innerHTML = `<div class="rounded-2xl p-6 text-center" style="background:var(--panel); border:1px solid var(--border);">
+      <div class="text-sm" style="color:var(--mute);">${LANG === 'es' ? 'Sin picks de valor ahora mismo.' : 'No value picks right now.'}</div>
+      <a href="/app" class="text-xs underline" style="color:var(--bet2);">${LANG === 'es' ? 'Ver la app →' : 'See the app →'}</a>
+    </div>`;
+    return;
+  }
+  const { f, b } = top0;
+  const dt = new Date(f.commence_time);
+  const dtStr = dt.toLocaleDateString(LANG === 'en' ? 'en' : 'es', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  const roundLabel = f.is_ko ? (LANG === 'es' ? 'Ronda de 32' : 'Round of 32') : (LANG === 'es' ? 'Fase de grupos' : 'Group stage');
+  const desc = (LANG === 'en' ? (b.description_en || b.market) : (b.description_es || b.market)) || '';
+  const hFlag = teamFlag(f.home), aFlag = teamFlag(f.away);
+  const bySide = {};
+  (f.picks || []).forEach(p => { if (['home', 'draw', 'away'].includes(p.side)) {bySide[p.side] = p.model_prob;} });
+  const pH = bySide.home, pD = bySide.draw, pA = bySide.away;
+  const has1x2 = pH != null && pD != null && pA != null;
+  const bar1x2 = has1x2 ? `
+    <div class="flex h-2 rounded-full overflow-hidden mt-4 mb-2">
+      <span style="width:${pH}%;background:var(--ink);"></span>
+      <span style="width:${pD}%;background:var(--draw-bar);"></span>
+      <span style="width:${pA}%;background:var(--bet2);"></span>
+    </div>
+    <div class="flex justify-between text-xs font-bold font-mono" style="color:var(--mute);">
+      <span>${Math.round(pH)}%</span><span>${LANG === 'es' ? 'X' : 'D'} ${Math.round(pD)}%</span><span>${Math.round(pA)}%</span>
+    </div>` : '';
+  el.innerHTML = `
+    <div class="rounded-2xl p-5" style="background:var(--panel); border:1px solid var(--border); box-shadow:var(--shadow-elevated);">
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-xs font-extrabold uppercase tracking-wider" style="color:var(--mute);">${LANG === 'es' ? 'PRÓXIMO' : 'UPCOMING'} · ${_esc(dtStr)}</span>
+        <span class="text-xs font-semibold" style="color:var(--mute);">${_esc(roundLabel)}</span>
+      </div>
+      <div class="flex flex-col gap-3.5 mb-1">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl flex-shrink-0" aria-hidden="true">${hFlag}</span>
+          <span class="text-lg font-bold flex-1 truncate">${_esc(teamName(f.home) || f.home || '—')}</span>
+          ${pH != null ? `<span class="text-sm font-bold font-mono" style="color:var(--mute);">${Math.round(pH)}%</span>` : ''}
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-2xl flex-shrink-0" aria-hidden="true">${aFlag}</span>
+          <span class="text-lg font-bold flex-1 truncate">${_esc(teamName(f.away) || f.away || '—')}</span>
+          ${pA != null ? `<span class="text-sm font-bold font-mono" style="color:var(--mute);">${Math.round(pA)}%</span>` : ''}
+        </div>
+      </div>
+      ${bar1x2}
+      <div class="mt-4 rounded-xl p-4" style="background:var(--accent-soft2); border:1px solid var(--accent-border);">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-extrabold uppercase tracking-wider" style="color:var(--bet2);">${LANG === 'es' ? 'PICK DE VALOR' : 'VALUE PICK'}</span>
+          <span class="text-sm font-extrabold" style="color:var(--bet2);">+${Number(b.edge || 0).toFixed(1)}%</span>
+        </div>
+        <div class="text-lg font-extrabold mb-1">${_esc(desc)}</div>
+        <div class="text-xs font-mono" style="color:var(--mute);">${LANG === 'es' ? 'modelo' : 'model'} ${Math.round(b.model_prob || 0)}% · ${LANG === 'es' ? 'mercado' : 'market'} ${Math.round(b.devig_prob || 0)}% · @${Number(b.best_odds || b.odds || 0).toFixed(2)}</div>
+      </div>
+    </div>`;
+}
+
 async function loadStats() {
   try {
     const timeout = ms => new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms));
@@ -626,30 +316,36 @@ async function loadStats() {
       Promise.race([fetch('/data/history.json').then(r => r.json()), timeout(8000)]),
     ]);
 
-    // Aligned stats (excludes legacy SKIP picks)
+    // Hero mono stat row — real model metadata
+    if (pred.model) {
+      const trained = pred.model.matches_trained;
+      if (trained != null) {document.getElementById('hm-trained').textContent = trained >= 1000 ? (trained / 1000).toFixed(1) + 'k' : trained;}
+      if (pred.model.edge_threshold != null) {document.getElementById('hm-edge').textContent = pred.model.edge_threshold;}
+    }
+
+    // Track record tiles — aligned stats (excludes legacy SKIP picks), never overstate
     const as = _alignedStats(hist);
     const roi = parseFloat(as.roi);
-    // Never show negative ROI on landing — sample too small to be meaningful
-    if (roi >= 0) {
-      document.getElementById('stat-roi').textContent = (roi > 0 ? '+' : '') + as.roi + '%';
-      document.getElementById('stat-roi').style.color = 'var(--bet)';
+    if (roi >= 0 && as.n > 0) {
+      document.getElementById('tt-roi').textContent = (roi > 0 ? '+' : '') + as.roi + '%';
     } else {
-      document.getElementById('stat-roi').textContent = '—';
-      document.getElementById('stat-roi').style.color = 'var(--mute)';
+      document.getElementById('tt-roi').textContent = '—';
+      document.getElementById('tt-roi').style.color = '#fff';
     }
-    document.getElementById('stat-winrate').textContent = as.winRate + '%';
-    document.getElementById('stat-bets').textContent = as.n;
-
-    // CLV still from summary (separate metric, not affected by pick filter)
+    document.getElementById('tt-winrate').textContent = as.n > 0 ? as.winRate + '%' : '—';
+    document.getElementById('tt-winrate').style.color = '#fff';
+    document.getElementById('tt-bets').textContent = as.n > 0 ? as.n : '—';
+    document.getElementById('tt-bets').style.color = '#fff';
     const clv = (hist.summary || {}).avg_clv_pct;
     if (clv != null) {
-      document.getElementById('stat-clv').textContent = (clv > 0 ? '+' : '') + clv + '%';
-      document.getElementById('stat-clv').style.color = clv >= 0 ? 'var(--bet)' : 'var(--warn)';
+      document.getElementById('tt-clv').textContent = (clv > 0 ? '+' : '') + clv + '%';
+      document.getElementById('tt-clv').style.color = clv >= 0 ? '#12b981' : '#fff';
     } else {
-      document.getElementById('stat-clv').textContent = '—';
+      document.getElementById('tt-clv').textContent = '—';
+      document.getElementById('tt-clv').style.color = '#fff';
     }
 
-    // Render today's picks: top BETs sorted by edge
+    // Picks preview: top 2 BETs by edge
     const picks = [];
     for (const f of pred.fixtures || []) {
       if (f.completed || f.is_live) {continue;}
@@ -658,25 +354,24 @@ async function loadStats() {
       }
     }
     picks.sort((a, b) => (b.b.edge || 0) - (a.b.edge || 0));
-    const top = picks.slice(0, 6);
+    const top = picks.slice(0, 2);
     _renderHeroPick(top[0]);
     const el = document.getElementById('today-picks');
     if (!top.length) {
-      const d = I18N[LANG];
-      el.innerHTML = `<div class="col-span-full text-center py-8 text-sm" style="color: var(--mute);">${d.no_picks} <a href="/app" class="underline" style="color: var(--bet2);">${d.picks_view_all_inline}</a></div>`;
+      el.innerHTML = `<div class="col-span-full text-center py-8 text-sm" style="color:var(--mute);">${LANG === 'es' ? 'No hay picks de valor activos en este momento.' : 'No active value picks right now.'} <a href="/app" class="underline" style="color:var(--bet2);">${LANG === 'es' ? 'Ver predicciones →' : 'See predictions →'}</a></div>`;
       return;
     }
     el.innerHTML = top.map(({ f, b }) => {
-      const dt = new Date(f.commence_time);
-      const dtStr = dt.toLocaleDateString(LANG === 'en' ? 'en' : 'es', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
       const desc = (LANG === 'en' ? (b.description_en || b.market) : (b.description_es || b.market)) || '';
-      return `<a href="/app" class="block rounded-xl p-4 card-hover" style="background: var(--panel); border: 1px solid var(--border); text-decoration: none;">
-        <div class="text-xs mb-1" style="color: var(--mute);">${dtStr}</div>
-        <div class="font-semibold mb-2 text-sm">${f.home||'—'} <span style="color: var(--mute);">vs</span> ${f.away||'—'}</div>
-        <div class="text-xs mb-3" style="color: var(--ink);">${desc}</div>
+      const hFlag = teamFlag(f.home), aFlag = teamFlag(f.away);
+      return `<a href="/app" class="block rounded-2xl p-5 card-hover" style="background:var(--panel); border:1px solid var(--border); box-shadow:var(--shadow-card); text-decoration:none;">
+        <div class="flex items-center justify-between mb-3">
+          <span class="flex items-center gap-2 text-[13px] font-semibold" style="color:var(--mute);"><span aria-hidden="true">${hFlag}</span>${_esc(teamName(f.home) || f.home || '—')} <span style="color:var(--placeholder);">vs</span> ${_esc(teamName(f.away) || f.away || '—')}<span aria-hidden="true">${aFlag}</span></span>
+          <span class="text-[13px] font-extrabold px-2.5 py-1 rounded-lg flex-shrink-0" style="background:var(--accent-soft); color:var(--bet2);">+${Number(b.edge || 0).toFixed(1)}%</span>
+        </div>
         <div class="flex items-center justify-between">
-          <span class="text-xs px-2 py-1 rounded font-bold" style="background: rgba(16,185,129,0.15); color: var(--bet2);">+${Number(b.edge||0).toFixed(1)}% edge</span>
-          <span class="font-mono font-bold" style="color: var(--bet2);">@ ${Number(b.best_odds || b.odds || 0).toFixed(2)}</span>
+          <span class="text-lg font-extrabold">${_esc(desc)}</span>
+          <span class="text-xs font-mono" style="color:var(--mute);">${Math.round(b.model_prob || 0)}% vs ${Math.round(b.devig_prob || 0)}%</span>
         </div>
       </a>`;
     }).join('');
@@ -685,7 +380,6 @@ async function loadStats() {
   }
 }
 
-// ── Team display helpers (small subset mirrored from docs/app for the hero card) ──
 const TEAM_FLAG = {
   'Algeria':'🇩🇿','Argentina':'🇦🇷','Australia':'🇦🇺','Austria':'🇦🇹',
   'Belgium':'🇧🇪','Bolivia':'🇧🇴','Bosnia & Herzegovina':'🇧🇦','Bosnia and Herzegovina':'🇧🇦',
@@ -736,115 +430,76 @@ function _esc(s) { const d = document.createElement('div'); d.textContent = s; r
 function teamFlag(name) { return TEAM_FLAG[name] || ''; }
 function teamName(name) { return LANG === 'es' ? (TEAM_ES[name] || name) : name; }
 
-// ── i18n ──
 const I18N = {
   es: {
-    enter_app: 'Entrar a la app →',
-    hero_badge: 'MUNDIAL 2026 EN VIVO',
-    hero_h1_pre: 'Apuestas con',
-    hero_h1_post: 'ventaja matemática',
-    hero_sub: 'Detectamos cuándo las casas de apuestas subestiman un resultado. Sin tips. Sin azar. Solo modelo estadístico y datos públicos.',
-    cta_picks: 'Ver picks de hoy →',
-    cta_email: 'Acceso anticipado',
-    stat_winrate: 'Acierto',
-    stat_bets: 'Apuestas',
-    stat_caption: 'Datos en tiempo real desde nuestro tracking público',
-    how_title: 'Cómo funciona',
-    how_sub: '3 pasos. Sin trucos. Todo el código y datos son públicos.',
-    step1_kicker: 'Paso 1', step1_title: 'Modelo estadístico',
-    step1_body: 'Combinamos Dixon-Coles (xG) con ratings Elo de cada selección. Entrenado con +180 mil partidos históricos.',
-    step2_kicker: 'Paso 2', step2_title: 'Detecta el edge',
-    step2_body: 'Comparamos nuestra probabilidad contra las cuotas reales de Caliente, Pinnacle, bet365 y más. Si el mercado subestima, hay valor.',
-    step3_kicker: 'Paso 3', step3_title: 'Apuesta con criterio',
-    step3_body: 'Te decimos cuánto apostar usando Kelly Criterion para maximizar tu banca a largo plazo sin arriesgar de más.',
-    picks_title: 'Picks del día',
-    picks_sub: 'Algunos de los partidos analizados hoy.',
-    picks_all: 'Ver todos →',
-    wl_badge: 'ACCESO LIMITADO · 500 CUPOS',
-    wl_h1: 'Reserva tu acceso anticipado',
-    wl_sub: 'Cuando cerremos al público general, los de la lista entran primero y sin pagar el mes de lanzamiento.',
-    wl_counter_tpl: '{{n}} personas ya reservaron su lugar',
-    wl_step1_cta: 'Quiero acceso →',
-    wl_privacy: 'Sin spam. Sin vender tu correo. Cancelas cuando quieras.',
-    wl_step2_title: '¡Estás en la lista!',
-    wl_step2_sub: 'Opcional: añade tu número para unirte a los grupos de Telegram/WhatsApp que estamos armando. Cuando estén activos te mandamos el link por correo.',
-    wl_step2_cta: 'Guardar',
-    wl_step2_skip: 'Omitir',
-    wl_done_title: 'Todo listo',
-    wl_done_sub: 'Te avisamos antes de cerrar al público. Mientras tanto, la app es tuya.',
-    wl_done_cta: 'Ver picks de hoy →',
-    trust_title: '100% transparente',
-    trust1_title: 'Historial público', trust1_body: 'Todas las apuestas, ganadas y perdidas. Sin esconder los fracasos.',
-    trust2_title: 'Modelo verificable', trust2_body: 'Dixon-Coles + Elo. Fuentes públicas. Lógica reproducible.',
-    trust3_title: 'CLV trackeado', trust3_body: 'Métrica que valida edge real, no solo suerte.',
-    footer_copy: '© 2026 Kini · Predicción estadística, no asesoría de apuestas',
-    footer_app: 'Ver app',
-    preview_title: 'Mira la app en acción',
-    preview_sub: 'Interfaz completa, sin registro. Picks, rankings, bracket y más.',
-    preview_cta: 'Abrir app completa →',
-    no_picks: 'No hay BETs activos en este momento.',
-    picks_view_all_inline: 'Ver predicciones →',
-    preview_cta_short: 'Ver la app →',
-    hero_email_title: 'Reserva tu acceso anticipado',
-    hero_email_sub: 'Los de la lista entran primero y sin pagar el mes de lanzamiento.',
-    hero_spots_left: '⚡ Quedan cupos',
-    hero_email_cta: 'Reservar →',
-    hero_email_done: 'Todo listo — te avisamos antes de cerrar al público.',
-    hero_step2_sub: 'Opcional: añade tu número para unirte a los grupos de Telegram/WhatsApp que estamos armando. Cuando estén activos te mandamos el link por correo.',
+    nav_how: 'Cómo funciona', nav_picks: 'Picks', nav_track: 'Rendimiento',
+    enter_app: 'Entrar',
+    hero_badge: 'Predicciones con ventaja real · Mundial 2026',
+    hero_h1: 'El fútbol, con los números que sí importan.',
+    hero_sub: 'Analizamos cada partido y lo comparamos con el mercado. Cuando el modelo ve una ventaja real sobre la cuota, te lo decimos — sin humo.',
+    cta_picks: 'Ver picks de hoy →', cta_how: 'Cómo funciona',
+    hm_trained_label: 'partidos entrenados',
+    hero_card_loading: 'Cargando pick del día…',
+    how_kicker: 'Cómo funciona',
+    step1_title: 'Modelamos el partido',
+    step1_body: 'Combinamos Dixon-Coles (xG) con ratings Elo de cada selección, entrenado con partidos históricos reales y actualizado cada 5 minutos.',
+    step2_title: 'Comparamos con el mercado',
+    step2_body: 'Nuestra probabilidad contra la cuota real de las principales casas. La diferencia es el edge — y cada mercado tiene su umbral.',
+    step3_title: 'Te avisamos del valor',
+    step3_body: 'Solo marcamos apuesta cuando la ventaja supera el umbral, con stake quarter-Kelly. Nada de ruido.',
+    picks_title: 'Picks de valor de hoy', picks_all: 'Ver todos →',
+    track_kicker: 'Cuentas claras', track_kicker_sub: '· historial público, seguido con CLV',
+    tt_roi_label: 'ROI en picks de valor', tt_winrate_label: 'acierto',
+    tt_bets_label: 'apuestas registradas', tt_clv_label: 'CLV promedio',
+    track_caption: 'Todas las apuestas quedan registradas y son públicas, ganadas y perdidas. Seguimos el saldo real y la línea de cierre (CLV) de cada una — un resultado pasado no garantiza los futuros.',
+    track_cta: 'Ver historial completo →',
+    pricing_title: 'Elige tu plan', pricing_sub: 'Empieza gratis. Sube a Pro cuando quieras todas las señales del día.',
+    free_kicker: 'Free', free_period: 'para siempre',
+    free_feat1: '✓ 1–2 picks del día', free_feat2: '✓ Marcadores en vivo', free_feat3: '✓ Historial público completo',
+    free_cta: 'Empezar gratis',
+    pro_launch_badge: 'PRECIO DE LANZAMIENTO', pro_kicker: 'Pro · Mensual', pro_period: '/mes', pro_was: 'los primeros meses',
+    pro_feat1: '✓ Todos los picks del día', pro_feat2: '✓ Edge, CLV y "por qué"', pro_feat3: '✓ Alertas de valor en vivo', pro_feat4: '✓ Bracket y simulaciones',
+    pro_cta: 'Hazte Pro',
+    annual_kicker: 'Pro · Anual', annual_badge: '2 MESES GRATIS', annual_period: '/mes', annual_billed: 'facturado $990 al año',
+    annual_feat1: '✓ Todo lo de Pro', annual_feat2: '✓ Ahorras $198 al año', annual_feat3: '✓ Precio bloqueado',
+    annual_cta: 'Ir al plan anual',
+    footer_copy: '© 2026 kini · Predicciones con ventaja · Solo mayores de 18',
+    footer_rg: 'Juega con responsabilidad',
   },
   en: {
-    enter_app: 'Open the app →',
-    hero_badge: 'WORLD CUP 2026 LIVE',
-    hero_h1_pre: 'Betting with',
-    hero_h1_post: 'mathematical edge',
-    hero_sub: 'We detect when sportsbooks underrate a result. No tipsters. No gut feel. Just a statistical model and public data.',
-    cta_picks: "See today's picks →",
-    cta_email: 'Early access',
-    stat_winrate: 'Win %',
-    stat_bets: 'Bets',
-    stat_caption: 'Real-time data from our public tracking',
-    how_title: 'How it works',
-    how_sub: '3 steps. No tricks. Code and data are public.',
-    step1_kicker: 'Step 1', step1_title: 'Statistical model',
-    step1_body: 'We combine Dixon-Coles (xG) with Elo ratings per national team. Trained on 180k+ historical matches.',
-    step2_kicker: 'Step 2', step2_title: 'Spot the edge',
-    step2_body: 'We compare our probability against actual odds from Caliente, Pinnacle, bet365 and more. If the market underrates, there is value.',
-    step3_kicker: 'Step 3', step3_title: 'Bet with discipline',
-    step3_body: 'We tell you how much to stake using the Kelly Criterion to maximize bankroll long-term without overrisking.',
-    picks_title: "Today's picks",
-    picks_sub: 'A sample of matches analyzed today.',
-    picks_all: 'See all →',
-    wl_badge: 'LIMITED ACCESS · 500 SPOTS',
-    wl_h1: 'Reserve your early access',
-    wl_sub: 'When we close to the public, waitlist members get in first — and free for the launch month.',
-    wl_counter_tpl: '{{n}} people have already reserved their spot',
-    wl_step1_cta: 'I want access →',
-    wl_privacy: 'No spam. We never sell your email. Unsubscribe anytime.',
-    wl_step2_title: "You're on the list!",
-    wl_step2_sub: 'Optional: add your number to join the Telegram/WhatsApp groups we\'re setting up. When they go live, we\'ll send you the link by email.',
-    wl_step2_cta: 'Save',
-    wl_step2_skip: 'Skip',
-    wl_done_title: 'All set',
-    wl_done_sub: "We'll notify you before closing to the public. Meanwhile, the app is yours.",
-    wl_done_cta: "See today's picks →",
-    trust_title: '100% transparent',
-    trust1_title: 'Public history', trust1_body: 'Every bet, wins and losses. We do not hide failures.',
-    trust2_title: 'Verifiable model', trust2_body: 'Dixon-Coles + Elo. Public sources. Reproducible logic.',
-    trust3_title: 'CLV tracked', trust3_body: 'Metric that validates real edge, not just luck.',
-    footer_copy: '© 2026 Kini · Statistical prediction, not betting advice',
-    footer_app: 'Open app',
-    preview_title: 'See the app in action',
-    preview_sub: 'Full interface, no sign-up. Picks, rankings, bracket and more.',
-    preview_cta: 'Open full app →',
-    no_picks: 'No active BETs right now.',
-    picks_view_all_inline: 'See predictions →',
-    preview_cta_short: 'Open the app →',
-    hero_email_title: 'Reserve your early access',
-    hero_email_sub: 'Waitlist members get in first — and free for the launch month.',
-    hero_spots_left: '⚡ Spots remaining',
-    hero_email_cta: 'Reserve →',
-    hero_email_done: 'All set — we\'ll notify you before closing to the public.',
-    hero_step2_sub: 'Optional: add your number to join the Telegram/WhatsApp groups we\'re setting up. When they go live, we\'ll send you the link by email.',
+    nav_how: 'How it works', nav_picks: 'Picks', nav_track: 'Performance',
+    enter_app: 'Enter',
+    hero_badge: 'Predictions with real edge · World Cup 2026',
+    hero_h1: 'Football, with the numbers that actually matter.',
+    hero_sub: 'We analyze every match and compare it against the market. When the model spots a real edge over the odds, we tell you — no hype.',
+    cta_picks: "See today's picks →", cta_how: 'How it works',
+    hm_trained_label: 'matches trained',
+    hero_card_loading: "Loading today's pick…",
+    how_kicker: 'How it works',
+    step1_title: 'We model the match',
+    step1_body: 'We combine Dixon-Coles (xG) with Elo ratings per national team, trained on real historical matches and refreshed every 5 minutes.',
+    step2_title: 'We compare against the market',
+    step2_body: 'Our probability against the real odds from major sportsbooks. The gap is the edge — each market has its own threshold.',
+    step3_title: 'We flag the value',
+    step3_body: 'We only mark a bet when the edge clears the threshold, sized with quarter-Kelly stakes. No noise.',
+    picks_title: "Today's value picks", picks_all: 'See all →',
+    track_kicker: 'Honest numbers', track_kicker_sub: '· public track record, tracked with CLV',
+    tt_roi_label: 'ROI on value picks', tt_winrate_label: 'win rate',
+    tt_bets_label: 'bets logged', tt_clv_label: 'avg CLV',
+    track_caption: 'Every bet is logged and public, wins and losses. We track real balance and closing line value (CLV) on each one — past results do not guarantee future ones.',
+    track_cta: 'See full history →',
+    pricing_title: 'Choose your plan', pricing_sub: 'Start free. Upgrade to Pro when you want every signal of the day.',
+    free_kicker: 'Free', free_period: 'forever',
+    free_feat1: '✓ 1–2 picks a day', free_feat2: '✓ Live scores', free_feat3: '✓ Full public history',
+    free_cta: 'Start free',
+    pro_launch_badge: 'LAUNCH PRICE', pro_kicker: 'Pro · Monthly', pro_period: '/mo', pro_was: 'for the first months',
+    pro_feat1: '✓ Every pick of the day', pro_feat2: '✓ Edge, CLV and the "why"', pro_feat3: '✓ Live value alerts', pro_feat4: '✓ Bracket and simulations',
+    pro_cta: 'Go Pro',
+    annual_kicker: 'Pro · Annual', annual_badge: '2 MONTHS FREE', annual_period: '/mo', annual_billed: 'billed $990/year',
+    annual_feat1: '✓ Everything in Pro', annual_feat2: '✓ Save $198/year', annual_feat3: '✓ Price locked in',
+    annual_cta: 'Go annual',
+    footer_copy: '© 2026 kini · Statistical predictions · 18+ only',
+    footer_rg: 'Play responsibly',
   },
 };
 
@@ -862,19 +517,16 @@ let LANG = detectLang();
 function applyLang() {
   document.documentElement.lang = LANG;
   const dict = I18N[LANG];
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    if (dict[key]) {el.textContent = dict[key];}
+  document.querySelectorAll('[data-i18n]').forEach(elx => {
+    const key = elx.dataset.i18n;
+    if (dict[key]) {elx.textContent = dict[key];}
   });
-  // Update placeholder on email input when lang switches
-  const emailIn = document.querySelector('#wl-form1 input[type=email]');
-  if (emailIn && LANG === 'en') {emailIn.placeholder = 'youremail@gmail.com';}
-  else if (emailIn) {emailIn.placeholder = 'tucorreo@gmail.com';}
-  document.getElementById('lang-btn').textContent = LANG === 'es' ? 'EN' : 'ES';
+  document.getElementById('pill-es').classList.toggle('active', LANG === 'es');
+  document.getElementById('pill-en').classList.toggle('active', LANG === 'en');
 }
 
-function toggleLang() {
-  LANG = LANG === 'es' ? 'en' : 'es';
+function setLang(l) {
+  LANG = l;
   localStorage.setItem('quini_lang', LANG);
   applyLang();
   loadStats();
@@ -901,173 +553,6 @@ function toggleTheme() {
 applyTheme();
 applyLang();
 loadStats();
-
-// ── Waitlist ──
-let _wlEmail = localStorage.getItem('quini_wl_email') || '';
-
-async function loadWaitlistCount() {
-  try {
-    const r = await fetch('/api/subscribe');
-    if (!r.ok) {return;}
-    const { count } = await r.json();
-    const displayed = count + 30;
-    const tpl = I18N[LANG].wl_counter_tpl;
-    document.getElementById('wl-counter').textContent = tpl.replace('{{n}}', displayed);
-    const heroEl = document.getElementById('hero-wl-counter');
-    if (heroEl) {heroEl.textContent = tpl.replace('{{n}}', displayed);}
-  } catch {}
-}
-loadWaitlistCount();
-
-// If already registered, jump to done state
-if (_wlEmail) {
-  document.getElementById('wl-step1').style.display = 'none';
-  document.getElementById('wl-done').style.display = '';
-  document.getElementById('hero-step1').style.display = 'none';
-  document.getElementById('hero-step3').style.display = '';
-}
-
-// ── Hero email form handler ──
-async function _submitEmail(email, hp) {
-  const res = await fetch('/api/subscribe', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email, website: hp, lang: LANG }),
-  });
-  if (!res.ok) {throw new Error('subscribe failed');}
-}
-
-document.getElementById('hero-wl-form').addEventListener('submit', async e => {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('button[type=submit]');
-  const email = form.email.value.trim();
-  const hp = form.website?.value || '';
-  if (!email) {return;}
-  btn.disabled = true;
-  btn.textContent = '…';
-  try {
-    await _submitEmail(email, hp);
-  } catch {
-    btn.disabled = false;
-    btn.textContent = LANG === 'es' ? 'Reservar →' : 'Reserve →';
-    return;
-  }
-  _wlEmail = email;
-  localStorage.setItem('quini_wl_email', email);
-  // Hero → step 2 (phone+name)
-  document.getElementById('hero-step1').style.display = 'none';
-  document.getElementById('hero-step2').style.display = '';
-  // Sync main waitlist to step 2
-  document.getElementById('wl-step1').style.display = 'none';
-  document.getElementById('wl-step2').style.display = '';
-  loadWaitlistCount();
-});
-
-// Hero step 2: phone + name submit
-document.getElementById('hero-wl-form2').addEventListener('submit', async e => {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('button[type=submit]');
-  const cc = (form.phone_cc?.value || '+52').trim();
-  const local = (form.phone_local?.value || '').trim().replace(/[\s\-().]/g, '');
-  if (local && !/^\d{6,15}$/.test(local)) {
-    form.phone_local.style.borderColor = 'var(--warn)';
-    form.phone_local.focus();
-    return;
-  }
-  form.phone_local.style.borderColor = '';
-  btn.disabled = true;
-  btn.textContent = '…';
-  const phone = local ? `${cc} ${local}` : '';
-  const name = (form.name.value || '').trim();
-  try {
-    await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: _wlEmail, phone, name, lang: LANG }),
-    });
-  } catch {}
-  heroShowDone();
-});
-
-function heroSkip() { heroShowDone(); }
-
-function heroShowDone() {
-  document.getElementById('hero-step2').style.display = 'none';
-  document.getElementById('hero-step3').style.display = '';
-  // Sync main waitlist
-  document.getElementById('wl-step2').style.display = 'none';
-  document.getElementById('wl-done').style.display = '';
-  applyLang();
-}
-
-document.getElementById('wl-form1').addEventListener('submit', async e => {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('button[type=submit]');
-  const email = form.email.value.trim();
-  const hp = form.website?.value || '';
-  if (!email) {return;}
-  btn.disabled = true;
-  btn.textContent = '…';
-  try {
-    await _submitEmail(email, hp);
-  } catch {
-    btn.disabled = false;
-    btn.textContent = LANG === 'es' ? 'Quiero acceso →' : 'I want access →';
-    return;
-  }
-  _wlEmail = email;
-  localStorage.setItem('quini_wl_email', email);
-  document.getElementById('wl-step1').style.display = 'none';
-  document.getElementById('wl-step2').style.display = '';
-  // Also mark hero form done
-  const heroForm = document.getElementById('hero-email-cta');
-  if (heroForm) {
-    heroForm.querySelector('form').style.display = 'none';
-    heroForm.querySelector('#hero-wl-ok').style.display = '';
-  }
-  loadWaitlistCount();
-});
-
-document.getElementById('wl-form2').addEventListener('submit', async e => {
-  e.preventDefault();
-  const form = e.target;
-  const btn = form.querySelector('button[type=submit]');
-  const cc = (form.phone_cc?.value || '+52').trim();
-  const local = (form.phone_local?.value || '').trim().replace(/[\s\-().]/g, '');
-  // Validate: if filled, must be 6-15 digits
-  if (local && !/^\d{6,15}$/.test(local)) {
-    form.phone_local.style.borderColor = 'var(--warn)';
-    form.phone_local.focus();
-    return;
-  }
-  form.phone_local.style.borderColor = '';
-  btn.disabled = true;
-  btn.textContent = '…';
-  const phone = local ? `${cc} ${local}` : '';
-  const name = (form.name.value || '').trim();
-  try {
-    await fetch('/api/subscribe', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: _wlEmail, phone, name, lang: LANG }),
-    });
-  } catch {}
-  showDone();
-});
-
-function skipStep2() {
-  showDone();
-}
-
-function showDone() {
-  document.getElementById('wl-step2').style.display = 'none';
-  document.getElementById('wl-done').style.display = '';
-  // Re-apply i18n on newly visible elements
-  applyLang();
-}
 </script>
 </body>
 </html>
