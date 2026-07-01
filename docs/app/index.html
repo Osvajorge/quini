@@ -6,7 +6,7 @@
 <title>Kini — Predicciones Mundial 2026</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
 <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#059669">
+<meta name="theme-color" content="#12b981">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -24,33 +24,19 @@
 <meta name="twitter:image" content="https://kini.bet/og-card.png">
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/tokens.css">
 <script>
 tailwind.config = {
   theme: {
     extend: {
-      fontFamily: { sans:['Inter','sans-serif'], mono:['JetBrains Mono','monospace'] },
+      fontFamily: { sans:['Manrope','sans-serif'], mono:['JetBrains Mono','monospace'] },
     },
   },
 };
 </script>
 <style>
-:root {
-  --bg: #ffffff; --bg2: #f8fafc; --panel: #ffffff; --panel2: #f1f5f9;
-  --border: #e2e8f0; --ink: #1e293b; --mute: #64748b;
-  --bet: #059669; --fade: #dc2626; --skip: #64748b;
-  --alta: #0891b2; --media: #d97706; --baja: #94a3b8;
-  --live: #e11d48; --accent-from: #059669; --accent-to: #0891b2;
-  --shadow: rgba(0,0,0,0.06);
-}
-[data-theme="dark"] {
-  --bg: #0a0e1a; --bg2: #0f172a; --panel: #111827; --panel2: #1a2233;
-  --border: #1f2937; --ink: #e5e7eb; --mute: #6b7280;
-  --bet: #10b981; --fade: #ef4444; --skip: #475569;
-  --alta: #22d3ee; --media: #fbbf24; --baja: #94a3b8;
-  --live: #f43f5e; --accent-from: #10b981; --accent-to: #22d3ee;
-  --shadow: rgba(0,0,0,0.3);
-}
 body { background: var(--bg); color: var(--ink); min-height:100vh; transition: background .2s, color .2s; }
 [data-theme="dark"] body { background: radial-gradient(ellipse at top, var(--bg2) 0%, var(--bg) 50%); }
 .gradient-text { background:linear-gradient(135deg, var(--accent-from), var(--accent-to)); -webkit-background-clip:text; background-clip:text; color:transparent; }
@@ -1213,7 +1199,7 @@ function showPlayerRadar(playerName, team) {
     const a = angles[i];
     const lx = CX + (R+22)*Math.cos(a);
     const ly = CY + (R+22)*Math.sin(a) + 4;
-    return `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)" font-family="Inter,sans-serif">${ax.label}</text>`;
+    return `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink)" font-family="Manrope,sans-serif">${ax.label}</text>`;
   }).join('');
   const dataPts = axes.map((ax, i) => {
     const a = angles[i];
@@ -3388,14 +3374,13 @@ function initEmailCapture() {
 
 function showEmailBanner() {
   if (document.getElementById('email-banner')) {return;}
-  const dark = document.documentElement.classList.contains('dark');
   const banner = document.createElement('div');
   banner.id = 'email-banner';
   banner.style.cssText = `
     position:fixed; bottom:0; left:0; right:0; z-index:9999;
     padding:12px 16px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;
-    background:${dark ? '#1e293b' : '#ffffff'};
-    border-top:1px solid ${dark ? '#334155' : '#e2e8f0'};
+    background:var(--panel);
+    border-top:1px solid var(--border);
     box-shadow:0 -4px 24px rgba(0,0,0,0.12);
   `;
   const endDate = new Date('2026-07-19');
@@ -3612,7 +3597,7 @@ function showPresSlide() {
 
   const probsHtml = (pH && pD && pA) ? `
     <div class="pres-probs">
-      ${[{l:LANG==='es'?'Local':'Home',v:pH.model_prob,c:'#059669'},{l:LANG==='es'?'Empate':'Draw',v:pD.model_prob,c:'#64748b'},{l:LANG==='es'?'Visita':'Away',v:pA.model_prob,c:'#0891b2'}].map(r=>`
+      ${[{l:LANG==='es'?'Local':'Home',v:pH.model_prob,c:'#12b981'},{l:LANG==='es'?'Empate':'Draw',v:pD.model_prob,c:'#64748b'},{l:LANG==='es'?'Visita':'Away',v:pA.model_prob,c:'#0891b2'}].map(r=>`
       <div class="pres-prob-row">
         <span class="pres-prob-lbl">${r.l}</span>
         <div class="pres-prob-track"><div class="pres-prob-fill" style="width:${r.v}%;background:${r.c};"></div></div>

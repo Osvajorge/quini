@@ -19,23 +19,22 @@
 <script src="https://cdn.tailwindcss.com/3.4.17"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/tokens.css">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans:['Manrope','sans-serif'], mono:['JetBrains Mono','monospace'] },
+    },
+  },
+};
+</script>
 <style>
-:root {
-  --bg: #050a14;
-  --panel: #0e1929;
-  --panel2: #1a2638;
-  --border: #1f2a3d;
-  --ink: #f1f5f9;
-  --mute: #64748b;
-  --bet: #10b981;
-  --bet2: #34d399;
-  --accent: #0891b2;
-  --warn: #f59e0b;
-}
-html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', system-ui, sans-serif; overflow-x: hidden; max-width: 100%; }
+html, body { background: var(--bg); color: var(--ink); font-family: 'Manrope', system-ui, sans-serif; overflow-x: hidden; max-width: 100%; transition: background .2s, color .2s; }
+[data-theme="dark"] body { background: radial-gradient(ellipse at top, var(--bg2) 0%, var(--bg) 50%); }
 .gradient-text {
-  background: linear-gradient(135deg, #34d399 0%, #06b6d4 100%);
+  background: linear-gradient(135deg, var(--accent-from) 0%, var(--accent-to) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -44,9 +43,12 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
   position: absolute;
   top: -200px; left: 50%; transform: translateX(-50%);
   width: min(800px, 100vw); height: 600px;
-  background: radial-gradient(ellipse, rgba(16,185,129,0.25) 0%, transparent 70%);
+  background: radial-gradient(ellipse, rgba(18,185,129,0.12) 0%, transparent 70%);
   pointer-events: none;
   z-index: 0;
+}
+[data-theme="dark"] .glow {
+  background: radial-gradient(ellipse, rgba(16,185,129,0.25) 0%, transparent 70%);
 }
 .pulse {
   animation: pulse 2s infinite;
@@ -61,7 +63,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
   transition: all 0.2s;
 }
 .btn-primary {
-  background: linear-gradient(135deg, var(--bet) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg, var(--bet) 0%, var(--accent-to) 100%);
   color: white;
   font-weight: 700;
   padding: 14px 32px;
@@ -112,39 +114,42 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
 <div class="glow"></div>
 
 <!-- Header -->
-<header class="relative z-10 max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
-  <a href="/" class="flex items-center gap-2">
-    <div class="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white" style="background: linear-gradient(135deg, var(--bet) 0%, var(--accent) 100%);">K</div>
-    <span class="font-bold text-xl">Kini</span>
+<header class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-2">
+  <a href="/" class="flex items-center gap-2 flex-shrink-0">
+    <div class="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white flex-shrink-0" style="background: linear-gradient(135deg, var(--bet) 0%, var(--accent-to) 100%);">K</div>
+    <span class="font-bold text-xl hidden sm:inline">Kini</span>
   </a>
-  <div class="flex items-center gap-3">
-    <button onclick="toggleLang()" id="lang-btn" class="px-2 py-1 rounded text-xs font-mono border" style="border-color:var(--border); color:var(--mute);">EN</button>
-    <a href="/app" class="btn-ghost" data-i18n="enter_app">Entrar a la app →</a>
+  <div class="flex items-center gap-1.5 sm:gap-3">
+    <button onclick="toggleLang()" id="lang-btn" class="px-2 py-1.5 rounded text-xs font-mono border flex-shrink-0" style="border-color:var(--border); color:var(--mute);">EN</button>
+    <button onclick="toggleTheme()" id="theme-btn" aria-label="Cambiar tema" class="w-8 h-8 rounded-lg border flex items-center justify-center text-sm flex-shrink-0" style="border-color:var(--border); color:var(--mute);">&#9790;</button>
+    <a href="/app" class="flex-shrink-0 whitespace-nowrap rounded-xl font-semibold text-xs sm:text-base px-3 py-2 sm:px-8 sm:py-3.5" style="background: var(--panel); color: var(--ink); border: 1px solid var(--border);" data-i18n="enter_app">Entrar a la app →</a>
   </div>
 </header>
 
 <!-- Hero -->
-<section class="relative z-10 max-w-4xl mx-auto px-6 pt-12 pb-20 text-center">
+<section class="relative z-10 max-w-6xl mx-auto px-6 pt-12 pb-16">
+<div class="grid lg:grid-cols-[1.1fr_420px] gap-10 items-center">
+<div class="text-center lg:text-left">
   <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono mb-6" style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--bet2);">
     <span class="w-1.5 h-1.5 rounded-full pulse" style="background: var(--bet);"></span>
     <span data-i18n="hero_badge">MUNDIAL 2026 EN VIVO</span>
   </div>
-  <h1 class="text-5xl sm:text-7xl font-extrabold mb-6 leading-tight">
+  <h1 class="text-5xl sm:text-6xl font-extrabold mb-6 leading-[1.05] tracking-tight">
     <span data-i18n="hero_h1_pre">Apuestas con</span>
     <span class="gradient-text" data-i18n="hero_h1_post">ventaja matemática</span>
   </h1>
-  <p class="text-lg sm:text-xl max-w-2xl mx-auto mb-10" style="color: var(--mute);" data-i18n="hero_sub">
+  <p class="text-lg sm:text-xl max-w-2xl lg:max-w-none mx-auto lg:mx-0 mb-10" style="color: var(--mute);" data-i18n="hero_sub">
     Detectamos cuándo las casas de apuestas subestiman un resultado.
     Sin tips. Sin azar. Solo modelo estadístico y datos públicos.
   </p>
 
-  <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
+  <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 mb-8">
     <a href="/app" class="btn-primary" data-i18n="cta_picks">Ver picks de hoy →</a>
     <a href="/app" class="btn-ghost" data-i18n="preview_cta_short">Ver la app →</a>
   </div>
 
   <!-- Full waitlist CTA — above fold -->
-  <div id="hero-email-cta" class="max-w-lg mx-auto mb-10 px-2">
+  <div id="hero-email-cta" class="max-w-lg mx-auto lg:max-w-none lg:mx-0 mb-6 px-2 lg:px-0">
     <div class="rounded-2xl p-5" style="background:color-mix(in srgb,var(--bet) 8%,var(--panel)); border:1px solid color-mix(in srgb,var(--bet) 35%,var(--border));">
 
       <!-- Step 1: email -->
@@ -217,9 +222,27 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
       </div>
 
     </div>
-    <div id="hero-wl-counter" class="text-xs text-center mt-2 font-mono" style="color:var(--bet2);"></div>
+    <div id="hero-wl-counter" class="text-xs text-center lg:text-left mt-2 font-mono" style="color:var(--bet2);"></div>
   </div>
+</div>
 
+<!-- Live pick card — populated by loadStats() from today's highest-edge BET -->
+<div id="hero-pick-card" style="min-height:260px;">
+  <div class="rounded-2xl p-5" style="background: var(--panel); border: 1px solid var(--border); box-shadow: var(--shadow-elevated);">
+    <div class="flex items-center justify-between mb-4">
+      <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--mute);" data-i18n="hero_card_kicker">Cargando pick del día…</span>
+    </div>
+    <div class="space-y-3">
+      <div class="h-4 rounded" style="background: var(--panel2);"></div>
+      <div class="h-4 rounded w-2/3" style="background: var(--panel2);"></div>
+    </div>
+  </div>
+</div>
+
+</div>
+</section>
+
+<section class="relative z-10 max-w-6xl mx-auto px-6 pb-16 text-center">
   <!-- Live stats from JSON — min-height on values prevents CLS -->
   <div id="hero-stats" class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto">
     <div class="rounded-xl p-4" style="background: var(--panel); border: 1px solid var(--border);">
@@ -310,7 +333,7 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
         <!-- Mini header -->
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2">
-            <div class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background: linear-gradient(135deg, var(--bet), var(--accent));">K</div>
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold text-white" style="background: linear-gradient(135deg, var(--bet), var(--accent-to));">K</div>
             <span class="font-bold text-sm">Kini</span>
           </div>
           <span class="text-xs font-mono" style="color: var(--mute);">Actualizado hoy</span>
@@ -512,12 +535,68 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
 </footer>
 
 <script>
-/* exported toggleLang, heroSkip, skipStep2 --
+/* exported toggleLang, heroSkip, skipStep2, toggleTheme --
    invoked from onclick="" attributes in markup, invisible to static analysis */
 // ── Aligned ROI (same logic as index.html, excludes legacy SKIP picks) ──
 function _isBetPick(b) {
   if (b.pick) {return b.pick === 'BET';}
   return Number(b.edge || 0) >= 8;
+}
+
+// ── Hero pick card — today's highest-edge BET, or an honest empty state ──
+function _renderHeroPick(top0) {
+  const el = document.getElementById('hero-pick-card');
+  if (!el) {return;}
+  if (!top0) {
+    el.innerHTML = `<div class="rounded-2xl p-6 text-center" style="background: var(--panel); border: 1px solid var(--border);">
+      <div class="text-sm" style="color: var(--mute);">${LANG === 'es' ? 'Sin picks de valor ahora mismo.' : 'No value picks right now.'}</div>
+      <a href="/app" class="text-xs underline" style="color: var(--bet2);">${LANG === 'es' ? 'Ver la app →' : 'See the app →'}</a>
+    </div>`;
+    return;
+  }
+  const { f, b } = top0;
+  const dt = new Date(f.commence_time);
+  const dtStr = dt.toLocaleDateString(LANG === 'en' ? 'en' : 'es', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  const desc = (LANG === 'en' ? (b.description_en || b.market) : (b.description_es || b.market)) || '';
+  const hFlag = teamFlag(f.home), aFlag = teamFlag(f.away);
+  const bySide = {};
+  (f.picks || []).forEach(p => { if (['home', 'draw', 'away'].includes(p.side)) {bySide[p.side] = p.model_prob;} });
+  const pH = bySide.home, pD = bySide.draw, pA = bySide.away;
+  const has1x2 = pH != null && pD != null && pA != null;
+  const bar1x2 = has1x2 ? `
+    <div class="flex h-2 rounded-full overflow-hidden mt-3 mb-2">
+      <span style="width:${pH}%;background:var(--ink);"></span>
+      <span style="width:${pD}%;background:var(--draw-bar);"></span>
+      <span style="width:${pA}%;background:var(--bet2);"></span>
+    </div>
+    <div class="flex justify-between text-xs font-mono" style="color: var(--mute);">
+      <span>${Math.round(pH)}%</span><span>${LANG === 'es' ? 'X' : 'D'} ${Math.round(pD)}%</span><span>${Math.round(pA)}%</span>
+    </div>` : '';
+  el.innerHTML = `
+    <div class="rounded-2xl p-5" style="background: var(--panel); border: 1px solid var(--border); box-shadow: var(--shadow-elevated);">
+      <div class="flex items-center justify-between mb-4">
+        <span class="text-xs font-bold uppercase tracking-wider" style="color: var(--mute);">${LANG === 'es' ? 'PRÓXIMO' : 'UPCOMING'} · ${_esc(dtStr)}</span>
+      </div>
+      <div class="space-y-2.5 mb-1">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl flex-shrink-0" aria-hidden="true">${hFlag}</span>
+          <span class="text-lg font-bold flex-1 truncate">${_esc(teamName(f.home) || f.home || '—')}</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-2xl flex-shrink-0" aria-hidden="true">${aFlag}</span>
+          <span class="text-lg font-bold flex-1 truncate">${_esc(teamName(f.away) || f.away || '—')}</span>
+        </div>
+      </div>
+      ${bar1x2}
+      <div class="mt-4 rounded-xl p-4" style="background: var(--accent-soft2); border: 1px solid var(--accent-border);">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-bold uppercase tracking-wider" style="color: var(--bet2);">${LANG === 'es' ? 'PICK DE VALOR' : 'VALUE PICK'}</span>
+          <span class="text-sm font-bold" style="color: var(--bet2);">+${Number(b.edge || 0).toFixed(1)}%</span>
+        </div>
+        <div class="text-lg font-bold mb-1">${_esc(desc)}</div>
+        <div class="text-xs font-mono" style="color: var(--mute);">${LANG === 'es' ? 'modelo' : 'model'} ${Math.round(b.model_prob || 0)}% · ${LANG === 'es' ? 'mercado' : 'market'} ${Math.round(b.devig_prob || 0)}% · @${Number(b.best_odds || b.odds || 0).toFixed(2)}</div>
+      </div>
+    </div>`;
 }
 function _alignedStats(hist) {
   let n = 0, won = 0, profit = 0;
@@ -580,6 +659,7 @@ async function loadStats() {
     }
     picks.sort((a, b) => (b.b.edge || 0) - (a.b.edge || 0));
     const top = picks.slice(0, 6);
+    _renderHeroPick(top[0]);
     const el = document.getElementById('today-picks');
     if (!top.length) {
       const d = I18N[LANG];
@@ -604,6 +684,57 @@ async function loadStats() {
     console.error(e);
   }
 }
+
+// ── Team display helpers (small subset mirrored from docs/app for the hero card) ──
+const TEAM_FLAG = {
+  'Algeria':'🇩🇿','Argentina':'🇦🇷','Australia':'🇦🇺','Austria':'🇦🇹',
+  'Belgium':'🇧🇪','Bolivia':'🇧🇴','Bosnia & Herzegovina':'🇧🇦','Bosnia and Herzegovina':'🇧🇦',
+  'Brazil':'🇧🇷','Canada':'🇨🇦','Cape Verde':'🇨🇻','Chile':'🇨🇱',
+  'China':'🇨🇳','Colombia':'🇨🇴','Costa Rica':'🇨🇷','Croatia':'🇭🇷',
+  'Cuba':'🇨🇺','Curaçao':'🇨🇼','Czech Republic':'🇨🇿','Czechia':'🇨🇿',
+  'Denmark':'🇩🇰','DR Congo':'🇨🇩','Ecuador':'🇪🇨','Egypt':'🇪🇬',
+  'El Salvador':'🇸🇻','England':'🏴󠁧󠁢󠁥󠁮󠁧󠁿','Finland':'🇫🇮','France':'🇫🇷',
+  'Georgia':'🇬🇪','Germany':'🇩🇪','Ghana':'🇬🇭','Greece':'🇬🇷',
+  'Guatemala':'🇬🇹','Haiti':'🇭🇹','Honduras':'🇭🇳','Hungary':'🇭🇺',
+  'Iceland':'🇮🇸','India':'🇮🇳','Indonesia':'🇮🇩','Iran':'🇮🇷',
+  'Iraq':'🇮🇶','Ireland':'🇮🇪','Israel':'🇮🇱','Italy':'🇮🇹',
+  'Ivory Coast':'🇨🇮','Jamaica':'🇯🇲','Japan':'🇯🇵','Jordan':'🇯🇴',
+  'Kazakhstan':'🇰🇿','Kosovo':'🇽🇰','Kuwait':'🇰🇼','Mexico':'🇲🇽',
+  'Morocco':'🇲🇦','Netherlands':'🇳🇱','New Zealand':'🇳🇿','Nigeria':'🇳🇬',
+  'North Korea':'🇰🇵','North Macedonia':'🇲🇰','Norway':'🇳🇴','Oman':'🇴🇲',
+  'Panama':'🇵🇦','Paraguay':'🇵🇾','Peru':'🇵🇪','Philippines':'🇵🇭',
+  'Poland':'🇵🇱','Portugal':'🇵🇹','Qatar':'🇶🇦','Romania':'🇷🇴',
+  'Saudi Arabia':'🇸🇦','Scotland':'🏴󠁧󠁢󠁳󠁣󠁴󠁿','Senegal':'🇸🇳','Serbia':'🇷🇸',
+  'Slovakia':'🇸🇰','Slovenia':'🇸🇮','South Africa':'🇿🇦','South Korea':'🇰🇷',
+  'Spain':'🇪🇸','Sweden':'🇸🇪','Switzerland':'🇨🇭','Syria':'🇸🇾',
+  'Trinidad and Tobago':'🇹🇹','Tunisia':'🇹🇳','Turkey':'🇹🇷','UAE':'🇦🇪',
+  'Ukraine':'🇺🇦','United Arab Emirates':'🇦🇪','United States':'🇺🇸','Uruguay':'🇺🇾',
+  'USA':'🇺🇸','Uzbekistan':'🇺🇿','Venezuela':'🇻🇪','Wales':'🏴󠁧󠁢󠁷󠁬󠁳󠁿',
+};
+const TEAM_ES = {
+  'USA':'EE.UU.','United States':'EE.UU.','South Korea':'Corea del Sur','North Korea':'Corea del Norte',
+  'Germany':'Alemania','Netherlands':'Países Bajos','Belgium':'Bélgica','Scotland':'Escocia',
+  'Turkey':'Turquía','Sweden':'Suecia','Switzerland':'Suiza','Denmark':'Dinamarca',
+  'Norway':'Noruega','Finland':'Finlandia','Iceland':'Islandia','Croatia':'Croacia',
+  'Serbia':'Serbia','Poland':'Polonia','Czech Republic':'Rep. Checa','Czechia':'Chequia',
+  'Hungary':'Hungría','Romania':'Rumanía','Greece':'Grecia','Ireland':'Irlanda',
+  'Wales':'Gales','England':'Inglaterra','France':'Francia','Spain':'España',
+  'Italy':'Italia','Portugal':'Portugal','Japan':'Japón','China':'China',
+  'Australia':'Australia','New Zealand':'Nueva Zelanda','Egypt':'Egipto',
+  'Morocco':'Marruecos','Tunisia':'Túnez','Ivory Coast':'Costa de Marfil',
+  'Saudi Arabia':'Arabia Saudita','Iran':'Irán','Iraq':'Irak','Jordan':'Jordania',
+  'Brazil':'Brasil','Argentina':'Argentina','Mexico':'México','Haiti':'Haití',
+  'Paraguay':'Paraguay','Ecuador':'Ecuador','Uruguay':'Uruguay','Cape Verde':'Cabo Verde',
+  'Curaçao':'Curazao','Algeria':'Argelia','Senegal':'Senegal','Uzbekistan':'Uzbekistán',
+  'Austria':'Austria','Colombia':'Colombia','Chile':'Chile','Peru':'Perú',
+  'Venezuela':'Venezuela','Bolivia':'Bolivia','Panama':'Panamá','Costa Rica':'Costa Rica',
+  'Honduras':'Honduras','Canada':'Canadá','Jamaica':'Jamaica','Qatar':'Catar',
+  'South Africa':'Sudáfrica','Bosnia and Herzegovina':'Bosnia y Herzegovina',
+  'DR Congo':'RD Congo','Ghana':'Ghana',
+};
+function _esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function teamFlag(name) { return TEAM_FLAG[name] || ''; }
+function teamName(name) { return LANG === 'es' ? (TEAM_ES[name] || name) : name; }
 
 // ── i18n ──
 const I18N = {
@@ -749,6 +880,25 @@ function toggleLang() {
   loadStats();
 }
 
+let THEME = localStorage.getItem('quini_theme') || 'light';
+
+function applyTheme() {
+  if (THEME === 'dark') {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.getElementById('theme-btn').innerHTML = '&#9788;';
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+    document.getElementById('theme-btn').innerHTML = '&#9790;';
+  }
+}
+
+function toggleTheme() {
+  THEME = THEME === 'dark' ? 'light' : 'dark';
+  localStorage.setItem('quini_theme', THEME);
+  applyTheme();
+}
+
+applyTheme();
 applyLang();
 loadStats();
 

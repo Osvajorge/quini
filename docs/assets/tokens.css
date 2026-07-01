@@ -1,0 +1,95 @@
+/* Shared design tokens — Apple Sports claro direction.
+   Keeps existing variable names used across docs/app + docs/index so no
+   call-site rewrite is needed; values updated to match the design handoff.
+   New tokens (accent-soft, tier-*, radii, etc.) are additive. */
+
+:root {
+  --bg: #f5f5f7;
+  --bg2: #ececed;
+  --panel: #ffffff;
+  --panel2: #f2f2f4;
+  --border: #e2e2e5;
+  --ink: #1d1d1f;
+  --mute: #515154;
+  --placeholder: #a8a29a;
+
+  --bet: #12b981;
+  --bet2: #0e9f6e;
+  --accent-from: #12b981;
+  --accent-to: #0e9f6e;
+  --accent-soft: #e7f7f0;
+  --accent-soft2: #eafaf3;
+  --accent-border: #b8ecd5;
+
+  --fade: #dc2626;
+  --skip: #8a8a8e;
+  --alta: #0891b2;
+  --media: #d97706;
+  --baja: #94a3b8;
+  --live: #e0245e;
+
+  --info: #2a6fdb;
+  --info-bg: #eef4ff;
+  --pending-text: #c2530a;
+  --pending-bg: #fff4e5;
+  --warn: #c2530a;
+
+  --tier-pro: #12b981;
+  --tier-admin: #7c5cff;
+  --draw-bar: #c9c9ce;
+  --ui-black: #111;
+
+  --shadow: rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 10px 30px -22px rgba(0, 0, 0, 0.25);
+  --shadow-elevated: 0 24px 60px -30px rgba(0, 0, 0, 0.35);
+
+  --radius-card: 16px;
+  --radius-large: 20px;
+  --radius-chip: 9px;
+  --radius-pill: 999px;
+
+  --content-app: 760px;
+  --content-landing: 1080px;
+  --nav-height: 64px;
+}
+
+[data-theme="dark"] {
+  --bg: #0a0e1a;
+  --bg2: #0f172a;
+  --panel: #111827;
+  --panel2: #1a2233;
+  --border: #1f2937;
+  --ink: #e5e7eb;
+  --mute: #9199a6;
+  --placeholder: #6b7280;
+
+  --bet: #10b981;
+  --bet2: #34d399;
+  --accent-from: #10b981;
+  --accent-to: #0e9f6e;
+  --accent-soft: rgba(16, 185, 129, 0.12);
+  --accent-soft2: rgba(16, 185, 129, 0.16);
+  --accent-border: rgba(16, 185, 129, 0.35);
+
+  --fade: #ef4444;
+  --skip: #475569;
+  --alta: #22d3ee;
+  --media: #fbbf24;
+  --baja: #94a3b8;
+  --live: #f43f5e;
+
+  --info: #5b9bf5;
+  --info-bg: rgba(91, 155, 245, 0.12);
+  --pending-text: #f0a35c;
+  --pending-bg: rgba(240, 163, 92, 0.12);
+  --warn: #f0a35c;
+
+  --tier-pro: #10b981;
+  --tier-admin: #a389ff;
+  --draw-bar: #3a4150;
+  --ui-black: #f1f5f9;
+
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 10px 30px -18px rgba(0, 0, 0, 0.6);
+  --shadow-elevated: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+}
