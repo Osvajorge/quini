@@ -778,6 +778,7 @@ function _parseESPNEvent(events, home, away) {
       isGoal: d.scoringPlay === true,
     }));
     return {
+      id: ev.id,
       homeScore: parseInt(hc.score || '0', 10),
       awayScore: parseInt(ac.score || '0', 10),
       clock: clockStr,
@@ -793,26 +794,91 @@ function _parseESPNEvent(events, home, away) {
 function _buildEventsHtml(details) {
   if (!details || !details.length) {return '';}
   const icons = { 'Goal': '⚽', 'Own Goal': '⚽', 'Yellow Card': '🟨', 'Red Card': '🟥', 'Yellow Red Card': '🟥' };
-  const items = details.map(d => {
+  const items = details.slice().reverse().map(d => {
     const icon = icons[d.type] || '•';
     const name = _esc(d.athlete || d.team || '');
-    return `<span class="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px]" style="background:color-mix(in srgb,var(--panel2) 80%,transparent);">${icon} ${name} <span style="color:var(--mute);">${_esc(d.clock||'')}</span></span>`;
+    return `<div class="flex items-center gap-2 py-1 text-xs">
+      <span class="w-8 shrink-0 text-right font-mono" style="color:var(--mute);">${_esc(d.clock || '')}</span>
+      <span class="shrink-0">${icon}</span>
+      <span class="flex-1 truncate font-medium">${name}</span>
+      <span class="shrink-0 text-[10px]" style="color:var(--mute);">${_esc(d.team || '')}</span>
+    </div>`;
   }).join('');
-  return `<div class="flex flex-wrap gap-1 mt-2">${items}</div>`;
+  return `<div class="flex flex-col mt-2">${items}</div>`;
+}
+
+// ── Live box-score stats — fetched client-side from ESPN summary while a
+// match is live, so the detail view stays fresh without waiting on the
+// 5-min backend cron (which only fetches stats for completed fixtures). ──
+let LIVE_MATCH_STATS = {};
+let _liveSummaryCache = {}; // espnId -> {data, ts}
+
+function _extractLiveTeamStats(teamBlock) {
+  const out = { team: teamBlock.team?.displayName || '', side: teamBlock.homeAway || '', stats: {} };
+  (teamBlock.statistics || []).forEach(s => {
+    if (!s.name) {return;}
+    out.stats[s.name] = s.displayValue ?? s.value;
+  });
+  return out;
+}
+
+function _extractLiveLeaders(summary) {
+  const skipCats = new Set(['Goals', 'Assists']);
+  const leaders = [];
+  (summary.leaders || []).forEach(L => {
+    (L.leaders || []).forEach(cat => {
+      if (skipCats.has(cat.displayName)) {return;}
+      (cat.leaders || []).slice(0, 1).forEach(athlete => {
+        const a = athlete.athlete || {};
+        leaders.push({
+          team: L.team?.displayName || '',
+          category: cat.displayName,
+          player: a.displayName,
+          value: athlete.displayValue,
+        });
+      });
+    });
+  });
+  return leaders;
+}
+
+async function _fetchLiveSummary(espnId) {
+  const now = Date.now();
+  const cached = _liveSummaryCache[espnId];
+  if (cached && now - cached.ts < 14000) {return cached.data;}
+  try {
+    const r = await fetch(`https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/summary?event=${espnId}`, { cache: 'no-store' });
+    if (!r.ok) {return cached?.data || null;}
+    const summary = await r.json();
+    const teamsBlock = summary.boxscore?.teams || [];
+    const data = {
+      teams: teamsBlock.map(_extractLiveTeamStats),
+      leaders: _extractLiveLeaders(summary),
+    };
+    _liveSummaryCache[espnId] = { data, ts: now };
+    return data;
+  } catch {
+    return cached?.data || null;
+  }
+}
+
+function _updateLiveMounts(fid, selector, html) {
+  document.querySelectorAll(`${selector}[data-live-fid="${fid}"]`).forEach(el => { el.innerHTML = html; });
 }
 
 function _updateScoreEl(fId, h, a, clock, isOver) {
-  const el = document.getElementById(`live-score-${fId}`);
-  if (!el) {return;}
+  const mounts = document.querySelectorAll(`.live-score-mount[data-live-fid="${fId}"]`);
+  if (!mounts.length) {return;}
   const clockStr = clock ? `${_esc(String(clock))} · ` : '';
   const label = isOver ? `FT` : `${clockStr}LIVE`;
   const labelColor = isOver ? 'var(--mute)' : 'var(--live)';
-  el.innerHTML = `
+  const html = `
     <div class="text-2xl font-bold font-mono">${h} - ${a}</div>
     <div class="flex items-center gap-1 justify-center mt-1">
       ${isOver ? '' : '<span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span>'}
       <span class="text-[10px] font-mono" style="color:${labelColor};">${label}</span>
     </div>`;
+  mounts.forEach(el => { el.innerHTML = html; });
 }
 
 function _flashEl(el) {
@@ -826,8 +892,8 @@ function _updateScoreDom(f, actualH, actualA, elapsed) {
   _lastLiveUpdate = Date.now();
   const { topScores, markets } = computeLiveConditional(f.xg_home, f.xg_away, actualH, actualA, elapsed);
 
-  const scoresEl = document.getElementById(`live-scores-${f.id}`);
-  if (scoresEl) {
+  const scoresEls = document.querySelectorAll(`.live-scores-mount[data-live-fid="${f.id}"]`);
+  if (scoresEls.length) {
     let inner = `<div class="text-[10px] uppercase tracking-wider mb-2" style="color:var(--mute);">${t('live_scores')}</div><div class="flex gap-2">`;
     topScores.forEach((s, i) => {
       const isTop = i === 0;
@@ -836,11 +902,11 @@ function _updateScoreDom(f, actualH, actualA, elapsed) {
       const sc = isTop ? 'color:var(--bet);' : '';
       inner += `<div class="flex-1 text-center py-1.5 rounded" style="background:${bg};${border}"><div class="text-sm font-bold font-mono" style="${sc}">${s.home}-${s.away}</div><div class="text-[10px]" style="color:var(--mute);">${s.prob}%</div></div>`;
     });
-    scoresEl.innerHTML = inner + '</div>';
+    scoresEls.forEach(scoresEl => { scoresEl.innerHTML = inner + '</div>'; });
   }
 
-  const mktsEl = document.getElementById(`live-markets-${f.id}`);
-  if (mktsEl) {
+  const mktsEls = document.querySelectorAll(`.live-markets-mount[data-live-fid="${f.id}"]`);
+  mktsEls.forEach(mktsEl => {
     const prev = {};
     mktsEl.querySelectorAll('.live-mkt-box').forEach(b => { prev[b.dataset.key] = b.querySelector('.text-sm')?.textContent; });
     mktsEl.innerHTML = buildLiveMarketsHtml(markets, elapsed, actualH, actualA);
@@ -849,7 +915,7 @@ function _updateScoreDom(f, actualH, actualA, elapsed) {
       const valEl = b.querySelector('.text-sm');
       if (prev[key] && valEl && prev[key] !== valEl.textContent) {_flashEl(valEl);}
     });
-  }
+  });
 
   const card = document.getElementById(`fix-${f.id}`);
   if (card) {
@@ -919,8 +985,7 @@ async function _tickLive() {
         f.actual_home = actualH;
         f.actual_away = actualA;
 
-        const evEl = document.getElementById(`live-events-${f.id}`);
-        if (evEl) {evEl.innerHTML = _buildEventsHtml(espn.details);}
+        _updateLiveMounts(f.id, '.live-events-mount', _buildEventsHtml(espn.details));
 
         if (espn.isOver) {
           f.is_live = false;
@@ -930,6 +995,14 @@ async function _tickLive() {
           continue;
         }
         _updateScoreEl(f.id, actualH, actualA, espn.clock, false);
+
+        if (espn.id) {
+          _fetchLiveSummary(espn.id).then(stats => {
+            if (!stats) {return;}
+            LIVE_MATCH_STATS[f.id] = stats;
+            _updateLiveMounts(f.id, '.live-stats-mount', _renderMatchStats(f));
+          });
+        }
       }
 
       const elapsed = espn?.clockMin ?? computeElapsed(f.commence_time);
@@ -1606,14 +1679,41 @@ function renderDetail() {
     return;
   }
   const completed = f.completed;
+  const isLive = f.is_live && !completed;
   const backLabel = _detailBackTo === 'history'
     ? (LANG === 'es' ? '← Resultados' : '← Results')
     : (LANG === 'es' ? '← Partidos' : '← Matches');
-  const scoreCenter = completed ? `${f.actual_home ?? '?'}–${f.actual_away ?? '?'}` : 'VS';
+  const scoreCenter = (completed || isLive) ? `${f.actual_home ?? 0}–${f.actual_away ?? 0}` : 'VS';
   const statusLabel = completed
     ? (f.penalty_winner ? (LANG === 'es' ? 'Final · penales' : 'Final · penalties') : (LANG === 'es' ? 'Final' : 'Final'))
-    : (f.is_ko ? (LANG === 'es' ? 'Ronda de 32' : 'Round of 32') : (LANG === 'es' ? 'Fase de grupos' : 'Group stage'));
+    : isLive
+      ? (LANG === 'es' ? 'EN VIVO' : 'LIVE')
+      : (f.is_ko ? (LANG === 'es' ? 'Ronda de 32' : 'Round of 32') : (LANG === 'es' ? 'Fase de grupos' : 'Group stage'));
   const hasXg = f.xg_home != null || f.xg_away != null;
+
+  // ── Live clock/score mount — ticker (_updateScoreEl) refreshes this every ~15s ──
+  const liveClockHtml = isLive ? `
+    <div class="live-score-mount flex flex-col items-center" data-live-fid="${f.id}">
+      <div class="flex items-center gap-1 justify-center">
+        <span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span>
+        <span class="text-[10px] font-mono font-bold" style="color:var(--live);">${Math.floor(computeElapsed(f.commence_time))}' · LIVE</span>
+      </div>
+    </div>` : '';
+
+  // ── Live goals/cards ticker + adjusted win-probabilities (ticker-fed) ──
+  const liveEventsHtml = isLive ? `
+    <div class="mb-4">
+      <div class="text-xs font-bold uppercase tracking-wider mb-1" style="color:var(--mute);">${LANG === 'es' ? 'Jugada por jugada' : 'Play by play'}</div>
+      <div class="live-events-mount" data-live-fid="${f.id}"></div>
+    </div>
+    <div class="live-scores-mount mb-2" data-live-fid="${f.id}"></div>
+    <div class="live-markets-mount mb-4" data-live-fid="${f.id}"></div>` : '';
+
+  // ── Live box-score stats mount (fetched client-side from ESPN while live) ──
+  const liveStatsHtml = isLive ? `<div class="live-stats-mount" data-live-fid="${f.id}">${_renderMatchStats(f)}</div>` : '';
+
+  // ── Tournament group standings (works for group-stage and knockout alike) ──
+  const groupTableHtml = _miniGroupTable(f);
 
   // ── 1X2 model vs market bars ──
   const bySide = {};
@@ -1860,7 +1960,10 @@ function renderDetail() {
           <span class="text-sm font-bold text-center">${LANG === 'es' ? (TEAM_ES[f.home] || f.home) : f.home}</span>
           ${hasXg ? `<span class="text-xs font-mono" style="color:var(--alta);">xG ${f.xg_home ?? '—'}</span>` : ''}
         </div>
-        <div class="text-2xl font-bold font-mono px-2">${scoreCenter}</div>
+        <div class="flex flex-col items-center gap-1">
+          <div class="text-2xl font-bold font-mono px-2">${scoreCenter}</div>
+          ${liveClockHtml}
+        </div>
         <div class="flex flex-col items-center gap-2 flex-1">
           <span class="text-4xl">${teamFlag(f.away)}</span>
           <span class="text-sm font-bold text-center">${LANG === 'es' ? (TEAM_ES[f.away] || f.away) : f.away}</span>
@@ -1869,11 +1972,14 @@ function renderDetail() {
       </div>
       ${bars1x2}
       ${pickCard}
+      ${liveEventsHtml}
       ${matrixHtml}
       ${topScoresHtml}
       ${allMarketsHtml}
       ${lineupHtml}
       ${statsHtml}
+      ${liveStatsHtml}
+      ${groupTableHtml}
     </div>`;
 }
 
@@ -1895,7 +2001,9 @@ function renderPicks() {
   }
   const sub = `<p class="text-sm -mt-2 mb-4" style="color:var(--mute);">${LANG === 'es' ? 'Partidos donde el modelo ve ventaja real sobre el mercado.' : 'Matches where the model sees real edge over the market.'}</p>`;
   // Gating: show 2 picks, blur the rest with CTA overlay
-  const FREE_LIMIT = 2;
+  // Temporary: everyone who leaves an email gets full access until premium launches
+  const hasEmail = !!localStorage.getItem('quini_email_submitted');
+  const FREE_LIMIT = hasEmail ? bets.length : 2;
   const visible = bets.slice(0, FREE_LIMIT);
   const locked = bets.slice(FREE_LIMIT);
   let cardsHtml = `<div class="flex flex-col gap-3">${visible.map(f => renderFixtureCard(f)).join('')}</div>`;
@@ -2185,7 +2293,7 @@ function renderLiveCard(f) {
           <span>${nameH} ${Math.round(pH)}%</span><span>X ${Math.round(pD)}%</span><span>${nameA} ${Math.round(pA)}%</span>
         </div>
       </div>` : ''}
-      <div id="live-events-${f.id}" class="flex flex-wrap gap-1 mt-3"></div>
+      <div class="live-events-mount flex flex-wrap gap-1 mt-3" data-live-fid="${f.id}"></div>
     </div>`;
 }
 
@@ -2654,6 +2762,45 @@ function _renderMatchSummary(f) {
     </div>`;
 }
 
+// ── Tournament group standings mini-table (detail view) ──
+function _miniGroupTable(f) {
+  const groups = DATA && DATA.standings;
+  if (!groups || !groups.length) {return '';}
+  const grp = groups.find(g => g.teams.some(t => t.name === f.home || t.name === f.away));
+  if (!grp) {return '';}
+  const rows = grp.teams.map((team, i) => {
+    const isMatch = team.name === f.home || team.name === f.away;
+    return `<tr style="${isMatch ? 'background:color-mix(in srgb,var(--bet) 6%,transparent);' : ''}">
+      <td class="py-1 pr-1 w-4 font-mono text-center text-[10px]" style="color:var(--mute);">${i + 1}</td>
+      <td class="py-1 pr-2">
+        <div class="flex items-center gap-1.5">
+          <img src="${team.flag}" class="w-3.5 h-3.5 rounded-sm object-cover flex-shrink-0" onerror="this.style.display='none'"/>
+          <span class="${isMatch ? 'font-bold' : 'font-medium'} truncate text-[11px]" style="max-width:120px;">${teamName(team.name) || team.name}</span>
+        </div>
+      </td>
+      <td class="py-1 text-right font-mono text-[10px]" style="color:var(--mute);">${team.played ?? '–'}</td>
+      <td class="py-1 text-right font-mono text-[10px]" style="color:var(--mute);">${team.gd ?? '–'}</td>
+      <td class="py-1 text-right font-mono text-[11px] font-bold">${team.pts ?? '–'}</td>
+    </tr>`;
+  }).join('');
+  return `
+    <div class="pt-3 mt-2" style="border-top:1px solid color-mix(in srgb,var(--border) 30%,transparent);">
+      <div class="text-[10px] font-semibold uppercase tracking-wider mb-2" style="color:var(--mute);">${LANG === 'es' ? 'Torneo · Grupo' : 'Tournament · Group'} ${grp.group}</div>
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="text-left text-[9px] uppercase" style="color:var(--mute);">${LANG === 'es' ? 'Equipo' : 'Team'}</th>
+            <th class="text-right text-[9px] uppercase" style="color:var(--mute);">PJ</th>
+            <th class="text-right text-[9px] uppercase" style="color:var(--mute);">DIF</th>
+            <th class="text-right text-[9px] uppercase" style="color:var(--mute);">PTS</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+}
+
 // ── Lineup section ──
 function _renderLineupSection(f) {
   if (!LINEUPS || !LINEUPS[f.id]) {return '';}
@@ -2689,8 +2836,7 @@ function _renderLineupSection(f) {
 }
 
 function _renderMatchStats(f) {
-  if (!MATCH_STATS) {return '';}
-  const ms = MATCH_STATS[f.id];
+  const ms = (MATCH_STATS && MATCH_STATS[f.id]) || (f.is_live && LIVE_MATCH_STATS[f.id]);
   if (!ms || !ms.teams || ms.teams.length < 2) {return '';}
   const home = ms.teams.find(t => t.side === 'home') || ms.teams[0];
   const away = ms.teams.find(t => t.side === 'away') || ms.teams[1];
@@ -2739,7 +2885,8 @@ function _renderMatchStats(f) {
 
   return `
     <div class="pt-3 mt-2" style="border-top:1px solid color-mix(in srgb,var(--border) 30%,transparent);">
-      <div class="text-[10px] font-semibold uppercase tracking-wider mb-2" style="color:var(--mute);">
+      <div class="text-[10px] font-semibold uppercase tracking-wider mb-2 flex items-center gap-1.5" style="color:var(--mute);">
+        ${f.is_live ? '<span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span>' : ''}
         ${LANG==='es' ? 'Estadísticas del partido' : 'Match stats'}
         <span class="ml-2 text-[9px] font-mono" style="color:var(--mute);">${teamName(home.team) || home.team} <span style="color:${homeColor};">●</span>  <span style="color:${awayColor};">●</span> ${teamName(away.team) || away.team}</span>
       </div>
@@ -3452,8 +3599,9 @@ function showEmailBanner() {
       } catch {}
     }
     localStorage.setItem('quini_email_submitted', email);
+    if (currentTab === 'picks') {renderPicks();}
     banner.innerHTML = `<p class="text-sm font-semibold m-auto" style="color:var(--bet);">
-      ✓ ${LANG==='es'?'Guardado — te avisamos antes del lanzamiento premium.':'Saved — we\'ll notify you before premium launch.'}
+      ✓ ${LANG==='es'?'Guardado — acceso completo desbloqueado.':'Saved — full access unlocked.'}
     </p>`;
     setTimeout(() => banner.remove(), 4000);
   });
