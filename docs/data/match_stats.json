@@ -11186,5 +11186,193 @@
         "clock": "31'"
       }
     ]
+  },
+  "658ac8cbf214ca3cc150109b4ddc1e74": {
+    "espn_id": "760493",
+    "fetched_at": "2026-07-01T22:20:33+00:00",
+    "teams": [
+      {
+        "team": "Belgium",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "19",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "4",
+          "saves": "2",
+          "possessionPct": "53",
+          "totalShots": "16",
+          "shotsOnTarget": "4",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "534",
+          "totalPasses": "614",
+          "passPct": "0.9",
+          "accurateCrosses": "6",
+          "totalCrosses": "23",
+          "crossPct": "0.3",
+          "totalLongBalls": "40",
+          "accurateLongBalls": "21",
+          "longballPct": "0.5",
+          "blockedShots": "4",
+          "effectiveTackles": "4",
+          "totalTackles": "11",
+          "tacklePct": "0.4",
+          "interceptions": "5",
+          "effectiveClearance": "19",
+          "totalClearance": "19"
+        }
+      },
+      {
+        "team": "Senegal",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "1",
+          "redCards": "0",
+          "offsides": "2",
+          "wonCorners": "1",
+          "saves": "3",
+          "possessionPct": "47",
+          "totalShots": "13",
+          "shotsOnTarget": "4",
+          "shotPct": "0.3",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "463",
+          "totalPasses": "546",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "16",
+          "crossPct": "0.2",
+          "totalLongBalls": "69",
+          "accurateLongBalls": "27",
+          "longballPct": "0.4",
+          "blockedShots": "1",
+          "effectiveTackles": "5",
+          "totalTackles": "13",
+          "tacklePct": "0.4",
+          "interceptions": "10",
+          "effectiveClearance": "30",
+          "totalClearance": "30"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Belgium",
+        "category": "Total Shots",
+        "player": "Dodi Lukébakio",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Belgium",
+        "category": "Accurate Passes",
+        "player": "Brandon Mechele",
+        "headshot": null,
+        "value": "110"
+      },
+      {
+        "team": "Belgium",
+        "category": "Defensive Interventions",
+        "player": "Timothy Castagne",
+        "headshot": null,
+        "value": "11"
+      },
+      {
+        "team": "Belgium",
+        "category": "Saves",
+        "player": "Thibaut Courtois",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Senegal",
+        "category": "Total Shots",
+        "player": "Ismaïla Sarr",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Senegal",
+        "category": "Accurate Passes",
+        "player": "Moussa Niakhaté",
+        "headshot": null,
+        "value": "71"
+      },
+      {
+        "team": "Senegal",
+        "category": "Defensive Interventions",
+        "player": "Pathé Ciss",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Senegal",
+        "category": "Saves",
+        "player": "Mory Diaw",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Senegal",
+        "category": "Goals",
+        "player": "Habib Diarra",
+        "headshot": null,
+        "value": "1",
+        "clock": "25'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Goals",
+        "player": "Ismaïla Sarr",
+        "headshot": null,
+        "value": "1",
+        "clock": "51'"
+      },
+      {
+        "team": "Senegal",
+        "category": "Assists",
+        "player": "Moussa Niakhaté",
+        "headshot": null,
+        "value": "1",
+        "clock": "51'"
+      },
+      {
+        "team": "Belgium",
+        "category": "Goals",
+        "player": "Romelu Lukaku",
+        "headshot": null,
+        "value": "1",
+        "clock": "86'"
+      },
+      {
+        "team": "Belgium",
+        "category": "Assists",
+        "player": "Thomas Meunier",
+        "headshot": null,
+        "value": "1",
+        "clock": "86'"
+      },
+      {
+        "team": "Belgium",
+        "category": "Goals",
+        "player": "Youri Tielemans",
+        "headshot": null,
+        "value": "1",
+        "clock": "89'"
+      },
+      {
+        "team": "Belgium",
+        "category": "Assists",
+        "player": "Leandro Trossard",
+        "headshot": null,
+        "value": "1",
+        "clock": "89'"
+      }
+    ]
   }
 }
