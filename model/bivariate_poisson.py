@@ -15,10 +15,55 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from penaltyblog.models import DixonColesGoalModel
+from penaltyblog.models.football_probability_grid import FootballProbabilityGrid
+from scipy.stats import poisson
 
 from model.data_loader import load_matches, team_match_counts
 
 FIT_PATH = Path(__file__).resolve().parent.parent / "data" / "fit.pkl"
+
+
+def _dixon_coles_grid_clamped(model, home: str, away: str, neutral: bool, max_goals: int = 15):
+    """Reimplementation of penaltyblog's compute_dixon_coles_probabilities with
+    negative cells clamped to 0.
+
+    penaltyblog's compiled Dixon-Coles path builds the exact-score grid as
+    poisson(lh) x poisson(la), then applies the classic tau correction to the
+    four low-score cells:
+        (0,0): 1 - rho*lh*la   (0,1): 1 + rho*lh
+        (1,0): 1 + rho*la      (1,1): 1 - rho
+    For lopsided matchups (e.g. a big team's lh is large, pushing rho*lh*la
+    past 1), the (0,0) factor goes negative and FootballProbabilityGrid raises
+    "goal_matrix contains negative probabilities" — penaltyblog itself clips
+    this in goal_expectancy.py but not in the compiled dixon_coles path. We
+    mirror that same clip here, using the identical lambda/tau formula (see
+    penaltyblog/models/probabilities.pyx), so this is only a numerical-safety
+    net, not a different model.
+    """
+    home_idx, away_idx = model._predict(home, away)
+    n_teams = model.n_teams
+    home_attack = model._params[home_idx]
+    away_attack = model._params[away_idx]
+    home_defense = model._params[home_idx + n_teams]
+    away_defense = model._params[away_idx + n_teams]
+    home_advantage = 0.0 if neutral else model._params[-2]
+    rho = model._params[-1]
+
+    lh = float(np.exp(home_advantage + home_attack + away_defense))
+    la = float(np.exp(away_attack + home_defense))
+
+    home_vec = poisson.pmf(np.arange(max_goals), lh)
+    away_vec = poisson.pmf(np.arange(max_goals), la)
+    matrix = np.outer(home_vec, away_vec)
+
+    tau = np.ones_like(matrix)
+    tau[0, 0] = 1 - rho * lh * la
+    tau[0, 1] = 1 + rho * lh
+    tau[1, 0] = 1 + rho * la
+    tau[1, 1] = 1 - rho
+    matrix = np.clip(matrix * tau, 0, None)
+
+    return FootballProbabilityGrid(matrix, lh, la, normalize=True)
 
 
 @dataclass
@@ -36,7 +81,12 @@ class BPFit:
         """Return FootballProbabilityGrid for the given match-up."""
         if home not in self.teams or away not in self.teams:
             raise KeyError(f"Unknown team(s): {home!r}, {away!r}")
-        return self.model.predict(home, away, neutral_venue=neutral)
+        try:
+            return self.model.predict(home, away, neutral_venue=neutral)
+        except ValueError as e:
+            if "negative probabilities" not in str(e):
+                raise
+            return _dixon_coles_grid_clamped(self.model, home, away, neutral)
 
     def expected_goals(self, home: str, away: str, neutral: bool = False) -> tuple[float, float]:
         grid = self.predict_grid(home, away, neutral)

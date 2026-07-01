@@ -95,12 +95,28 @@
           "devig_prob": 42.5
         }
       ],
-      "xg_home": 0.0,
-      "xg_away": 0.0,
-      "top_scores": [],
-      "predicted_1x2": "X",
+      "xg_home": 1.52,
+      "xg_away": 1.07,
+      "top_scores": [
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 15.7
+        },
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 11.0
+        },
+        {
+          "home": 2,
+          "away": 1,
+          "prob": 9.3
+        }
+      ],
+      "predicted_1x2": "1",
       "result_1x2": "1",
-      "correct_1x2": false,
+      "correct_1x2": true,
       "bets": [
         {
           "market": "Under 2.5",
@@ -111,7 +127,8 @@
           "description_es": "Under 2.5",
           "description_en": "Under 2.5"
         }
-      ]
+      ],
+      "score_hit": 3
     },
     {
       "id": "backfill_can_bih",
@@ -5888,11 +5905,11 @@
     "lost": 72,
     "win_rate": 41.9,
     "roi": -16.8,
-    "score_hits": 28,
+    "score_hits": 29,
     "score_top1": 8,
-    "correct_1x2": 44,
+    "correct_1x2": 45,
     "total_1x2": 67,
-    "accuracy_1x2": 65.7,
+    "accuracy_1x2": 67.2,
     "avg_clv_pct": 55.63,
     "clv_sample_size": 3,
     "pct_beating_close": 100.0
