@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-01T17:49:35.485040+00:00",
+  "generated_at": "2026-07-01T19:25:44.155855+00:00",
   "model": {
     "name": "Dixon-Coles",
     "teams": 319,
@@ -8,9 +8,9 @@
     "edge_threshold": 8.0
   },
   "stats": {
-    "total_fixtures": 87,
+    "total_fixtures": 88,
     "upcoming": 9,
-    "completed": 78,
+    "completed": 79,
     "total_bets": 4,
     "won": 0,
     "lost": 0,
@@ -997,7 +997,7 @@
   "model_health": {
     "status": "insufficient",
     "model_version": "v3.0-benter",
-    "n": 3,
+    "n": 5,
     "legacy_n": 124,
     "rolling_roi_pct": null,
     "rolling_winrate_pct": null,
@@ -1013,373 +1013,6 @@
   },
   "fixtures": [
     {
-      "id": "5ff7744314f224c18d1604ee9cc19263",
-      "home": "England",
-      "away": "DR Congo",
-      "commence_time": "2026-07-01T16:00:00Z",
-      "completed": false,
-      "is_live": true,
-      "actual_home": 1,
-      "actual_away": 1,
-      "penalty_winner": null,
-      "xg_home": 1.22,
-      "xg_away": 0.65,
-      "odds": {
-        "away": 13.82,
-        "home": 2.54,
-        "draw": 1.71,
-        "over_2_5": 2.05,
-        "under_2_5": 1.83
-      },
-      "best_odds": {
-        "away": {
-          "odds": 640.0,
-          "book": "matchbook"
-        },
-        "home": {
-          "odds": 3.05,
-          "book": "Betfair"
-        },
-        "draw": {
-          "odds": 17.0,
-          "book": "unibet_nl"
-        },
-        "over_2_5": {
-          "odds": 2.28,
-          "book": "pmu_fr"
-        },
-        "under_2_5": {
-          "odds": 1.83,
-          "book": "Pinnacle"
-        }
-      },
-      "book_comparison": [
-        {
-          "name": "Betfair",
-          "away": 15.5,
-          "home": 3.05,
-          "draw": 1.64
-        },
-        {
-          "name": "pmu_fr",
-          "away": 17.0,
-          "home": 2.8,
-          "draw": 1.54,
-          "over_2_5": 2.28,
-          "under_2_5": 1.51
-        },
-        {
-          "name": "leovegas_se",
-          "away": 15.0,
-          "home": 2.65,
-          "draw": 1.47
-        },
-        {
-          "name": "betclic_fr",
-          "away": 13.0,
-          "home": 2.65,
-          "draw": 1.6
-        },
-        {
-          "name": "888sport",
-          "away": 12.0,
-          "home": 2.62,
-          "draw": 1.57
-        }
-      ],
-      "picks": [
-        {
-          "market": "Gana Local (1)",
-          "side": "home",
-          "model_prob": 49.0,
-          "devig_prob": 37.6,
-          "edge": 11.4,
-          "odds": 2.54,
-          "pick": "BET",
-          "confidence": "ALTA",
-          "kelly_pct": 3.98
-        },
-        {
-          "market": "Empate (X)",
-          "side": "draw",
-          "model_prob": 40.7,
-          "devig_prob": 56.5,
-          "edge": -15.8,
-          "odds": 1.71,
-          "pick": "SKIP",
-          "confidence": "MEDIA",
-          "kelly_pct": 0.0
-        },
-        {
-          "market": "Gana Visitante (2)",
-          "side": "away",
-          "model_prob": 10.3,
-          "devig_prob": 5.9,
-          "edge": 4.3,
-          "odds": 13.82,
-          "pick": "SKIP",
-          "confidence": "MEDIA",
-          "kelly_pct": 0.0
-        },
-        {
-          "market": "Over 2.5",
-          "side": "over_2_5",
-          "model_prob": 35.6,
-          "devig_prob": 47.1,
-          "edge": -11.5,
-          "odds": 2.05,
-          "pick": "FADE",
-          "confidence": "MEDIA",
-          "kelly_pct": 0.0
-        },
-        {
-          "market": "Under 2.5",
-          "side": "under_2_5",
-          "model_prob": 64.4,
-          "devig_prob": 52.9,
-          "edge": 11.5,
-          "odds": 1.83,
-          "pick": "BET",
-          "confidence": "ALTA",
-          "kelly_pct": 5.0
-        }
-      ],
-      "best_bet": {
-        "market": "Under 2.5",
-        "side": "under_2_5",
-        "edge": 11.5,
-        "odds": 1.83,
-        "best_odds": 1.83,
-        "best_book": "Pinnacle",
-        "pick": "BET",
-        "confidence_band": "ALTA",
-        "model_prob": 64.4,
-        "devig_prob": 52.9,
-        "description_es": "Menos de 3 goles en el partido",
-        "description_en": "Less than 3 total goals in the match",
-        "is_compound": false
-      },
-      "top_scores": [
-        {
-          "home": 0,
-          "away": 0,
-          "prob": 21.2
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 16.2
-        },
-        {
-          "home": 1,
-          "away": 0,
-          "prob": 15.2
-        },
-        {
-          "home": 2,
-          "away": 0,
-          "prob": 10.1
-        },
-        {
-          "home": 0,
-          "away": 1,
-          "prob": 8.1
-        }
-      ],
-      "score_grid": [
-        [
-          21.17,
-          8.1,
-          3.93,
-          0.88,
-          0.15,
-          0.02
-        ],
-        [
-          15.16,
-          16.21,
-          4.21,
-          0.94,
-          0.16,
-          0.02
-        ],
-        [
-          10.07,
-          6.74,
-          2.26,
-          0.5,
-          0.08,
-          0.01
-        ],
-        [
-          3.6,
-          2.41,
-          0.81,
-          0.18,
-          0.03,
-          0.0
-        ],
-        [
-          0.96,
-          0.65,
-          0.22,
-          0.05,
-          0.01,
-          0.0
-        ],
-        [
-          0.21,
-          0.14,
-          0.05,
-          0.01,
-          0.0,
-          0.0
-        ]
-      ],
-      "live_scores": [
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 91.7
-        },
-        {
-          "home": 2,
-          "away": 1,
-          "prob": 4.9
-        },
-        {
-          "home": 1,
-          "away": 2,
-          "prob": 3.1
-        },
-        {
-          "home": 2,
-          "away": 2,
-          "prob": 0.2
-        },
-        {
-          "home": 3,
-          "away": 1,
-          "prob": 0.1
-        }
-      ],
-      "quiniela": {
-        "balanced": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.11,
-          "sd": 1.77,
-          "e_tie": 0.88,
-          "objective": 3.53,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 3.53
-            },
-            {
-              "home": 0,
-              "away": 0,
-              "obj": 3.46
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.37
-            }
-          ]
-        },
-        "aggressive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.11,
-          "sd": 1.77,
-          "e_tie": 0.88,
-          "objective": 4.06,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 4.06
-            },
-            {
-              "home": 0,
-              "away": 0,
-              "obj": 4.0
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 3.95
-            }
-          ]
-        },
-        "defensive": {
-          "pick_home": 1,
-          "pick_away": 0,
-          "e_pts": 2.11,
-          "sd": 1.77,
-          "e_tie": 0.88,
-          "objective": 2.38,
-          "alternatives": [
-            {
-              "home": 1,
-              "away": 0,
-              "obj": 2.38
-            },
-            {
-              "home": 0,
-              "away": 0,
-              "obj": 2.31
-            },
-            {
-              "home": 2,
-              "away": 0,
-              "obj": 2.16
-            }
-          ]
-        }
-      },
-      "fixture_confidence": "ALTA",
-      "bets": [
-        {
-          "market": "Under 2.5",
-          "side": "under_2_5",
-          "edge": 11.5,
-          "odds": 1.83,
-          "best_odds": 1.83,
-          "best_book": "Pinnacle",
-          "pick": "BET",
-          "confidence_band": "ALTA",
-          "model_prob": 64.4,
-          "devig_prob": 52.9,
-          "kelly_pct": 5.0,
-          "model_version": "v3.0-benter",
-          "description_es": "Menos de 3 goles en el partido",
-          "description_en": "Less than 3 total goals in the match"
-        },
-        {
-          "market": "Gana Local (1)",
-          "side": "home",
-          "edge": 11.4,
-          "odds": 2.54,
-          "best_odds": 3.05,
-          "best_book": "Betfair",
-          "pick": "BET",
-          "confidence_band": "ALTA",
-          "model_prob": 49.0,
-          "devig_prob": 37.6,
-          "kelly_pct": 3.98,
-          "model_version": "v3.0-benter",
-          "description_es": "England gana el partido",
-          "description_en": "England wins the match"
-        }
-      ],
-      "is_ko": true,
-      "p_advance_home": 0.61,
-      "p_advance_away": 0.39
-    },
-    {
       "id": "658ac8cbf214ca3cc150109b4ddc1e74",
       "home": "Belgium",
       "away": "Senegal",
@@ -1392,91 +1025,89 @@
       "xg_home": 2.16,
       "xg_away": 0.85,
       "odds": {
-        "home": 2.15,
-        "away": 3.85,
-        "draw": 3.37,
-        "over_2_5": 1.87,
-        "under_2_5": 2.04
+        "home": 2.02,
+        "away": 4.19,
+        "draw": 3.44
       },
       "best_odds": {
         "home": {
-          "odds": 2.22,
-          "book": "matchbook"
+          "odds": 2.05,
+          "book": "unibet_fr"
         },
         "away": {
-          "odds": 3.85,
-          "book": "unibet_se"
+          "odds": 4.37,
+          "book": "betonlineag"
         },
         "draw": {
-          "odds": 3.5,
-          "book": "1xBet"
+          "odds": 3.55,
+          "book": "Betfair"
         },
         "over_2_5": {
-          "odds": 1.93,
-          "book": "matchbook"
+          "odds": 1.82,
+          "book": "unibet_se"
         },
         "under_2_5": {
-          "odds": 2.06,
-          "book": "matchbook"
+          "odds": 2.12,
+          "book": "betonlineag"
         }
       },
       "book_comparison": [
         {
-          "name": "matchbook",
-          "home": 2.22,
-          "away": 3.85,
-          "draw": 3.4,
-          "over_2_5": 1.93,
-          "under_2_5": 2.06
-        },
-        {
-          "name": "Betfair",
-          "home": 2.22,
-          "away": 3.85,
-          "draw": 3.4
-        },
-        {
           "name": "unibet_fr",
-          "home": 2.2,
-          "away": 3.45,
-          "draw": 3.4
+          "home": 2.05,
+          "away": 3.75,
+          "draw": 3.5
         },
         {
-          "name": "gtbets",
-          "home": 2.2,
-          "away": 3.65,
-          "draw": 3.25,
-          "over_2_5": 1.87,
-          "under_2_5": 1.91
+          "name": "betsson",
+          "home": 2.05,
+          "away": 3.9,
+          "draw": 3.4,
+          "over_2_5": 1.8,
+          "under_2_5": 2.02
         },
         {
-          "name": "unibet_se",
-          "home": 2.18,
-          "away": 3.85,
-          "draw": 3.3,
-          "over_2_5": 1.88,
-          "under_2_5": 1.93
+          "name": "Nordic",
+          "home": 2.05,
+          "away": 3.9,
+          "draw": 3.4,
+          "over_2_5": 1.8,
+          "under_2_5": 2.02
+        },
+        {
+          "name": "matchbook",
+          "home": 2.04,
+          "away": 4.3,
+          "draw": 3.5
+        },
+        {
+          "name": "1xBet",
+          "home": 2.04,
+          "away": 4.14,
+          "draw": 3.52,
+          "over_2_5": 1.8,
+          "under_2_5": 2.08
         }
       ],
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 53.7,
-          "devig_prob": 45.7,
-          "edge": 8.0,
-          "odds": 2.15,
+          "model_prob": 54.8,
+          "devig_prob": 48.6,
+          "edge": 6.2,
+          "odds": 2.02,
           "pick": "BET",
-          "confidence": "ALTA",
-          "kelly_pct": 3.38
+          "confidence": "MEDIA",
+          "kelly_pct": 2.64
         },
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 28.0,
-          "devig_prob": 29.0,
-          "edge": -1.0,
-          "odds": 3.37,
+          "model_prob": 27.6,
+          "devig_prob": 28.3,
+          "edge": -0.7,
+          "odds": 3.44,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -1484,33 +1115,11 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 18.3,
-          "devig_prob": 25.3,
-          "edge": -7.0,
-          "odds": 3.85,
+          "model_prob": 17.6,
+          "devig_prob": 23.1,
+          "edge": -5.5,
+          "odds": 4.19,
           "pick": "FADE",
-          "confidence": "MEDIA",
-          "kelly_pct": 0.0
-        },
-        {
-          "market": "Over 2.5",
-          "side": "over_2_5",
-          "model_prob": 55.6,
-          "devig_prob": 52.2,
-          "edge": 3.4,
-          "odds": 1.87,
-          "pick": "SKIP",
-          "confidence": "MEDIA",
-          "kelly_pct": 0.0
-        },
-        {
-          "market": "Under 2.5",
-          "side": "under_2_5",
-          "model_prob": 44.4,
-          "devig_prob": 47.8,
-          "edge": -3.4,
-          "odds": 2.04,
-          "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
         }
@@ -1518,14 +1127,14 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 8.0,
-        "odds": 2.15,
-        "best_odds": 2.22,
-        "best_book": "matchbook",
+        "edge": 6.2,
+        "odds": 2.02,
+        "best_odds": 2.05,
+        "best_book": "unibet_fr",
         "pick": "BET",
-        "confidence_band": "ALTA",
-        "model_prob": 53.7,
-        "devig_prob": 45.7,
+        "confidence_band": "MEDIA",
+        "model_prob": 54.8,
+        "devig_prob": 48.6,
         "description_es": "Belgium gana el partido",
         "description_en": "Belgium wins the match",
         "is_compound": false
@@ -1685,20 +1294,20 @@
           ]
         }
       },
-      "fixture_confidence": "ALTA",
+      "fixture_confidence": "MEDIA",
       "bets": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "edge": 8.0,
-          "odds": 2.15,
-          "best_odds": 2.22,
-          "best_book": "matchbook",
+          "edge": 6.2,
+          "odds": 2.02,
+          "best_odds": 2.05,
+          "best_book": "unibet_fr",
           "pick": "BET",
-          "confidence_band": "ALTA",
-          "model_prob": 53.7,
-          "devig_prob": 45.7,
-          "kelly_pct": 3.38,
+          "confidence_band": "MEDIA",
+          "model_prob": 54.8,
+          "devig_prob": 48.6,
+          "kelly_pct": 2.64,
           "model_version": "v3.0-benter",
           "description_es": "Belgium gana el partido",
           "description_en": "Belgium wins the match"
@@ -1721,7 +1330,7 @@
       "xg_home": 1.95,
       "xg_away": 0.46,
       "odds": {
-        "away": 10.06,
+        "away": 10.07,
         "home": 1.33,
         "draw": 5.32,
         "over_2_5": 1.87,
@@ -1737,11 +1346,11 @@
           "book": "1xBet"
         },
         "draw": {
-          "odds": 5.6,
-          "book": "unibet_fr"
+          "odds": 5.75,
+          "book": "betclic_fr"
         },
         "over_2_5": {
-          "odds": 1.9,
+          "odds": 1.88,
           "book": "matchbook"
         },
         "under_2_5": {
@@ -1759,25 +1368,9 @@
           "under_2_5": 2.01
         },
         {
-          "name": "unibet_se",
-          "away": 11.0,
-          "home": 1.35,
-          "draw": 5.3,
-          "over_2_5": 1.79,
-          "under_2_5": 2.05
-        },
-        {
-          "name": "unibet_nl",
-          "away": 11.0,
-          "home": 1.35,
-          "draw": 5.3,
-          "over_2_5": 1.76,
-          "under_2_5": 2.02
-        },
-        {
           "name": "Betfair",
-          "away": 12.0,
-          "home": 1.35,
+          "away": 11.5,
+          "home": 1.36,
           "draw": 5.5
         },
         {
@@ -1785,8 +1378,24 @@
           "away": 12.0,
           "home": 1.35,
           "draw": 5.5,
-          "over_2_5": 1.9,
+          "over_2_5": 1.88,
           "under_2_5": 2.08
+        },
+        {
+          "name": "unibet_se",
+          "away": 10.5,
+          "home": 1.34,
+          "draw": 5.25,
+          "over_2_5": 1.8,
+          "under_2_5": 2.02
+        },
+        {
+          "name": "unibet_nl",
+          "away": 10.5,
+          "home": 1.34,
+          "draw": 5.25,
+          "over_2_5": 1.78,
+          "under_2_5": 2.0
         }
       ],
       "picks": [
@@ -1818,7 +1427,7 @@
           "model_prob": 7.4,
           "devig_prob": 8.9,
           "edge": -1.5,
-          "odds": 10.06,
+          "odds": 10.07,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -2053,13 +1662,13 @@
       "xg_away": 1.41,
       "odds": {
         "away": 4.17,
-        "home": 2.05,
-        "draw": 3.27
+        "home": 2.04,
+        "draw": 3.28
       },
       "best_odds": {
         "away": {
-          "odds": 4.3,
-          "book": "matchbook"
+          "odds": 4.35,
+          "book": "unibet_nl"
         },
         "home": {
           "odds": 2.12,
@@ -2070,7 +1679,7 @@
           "book": "1xBet"
         },
         "over_2_5": {
-          "odds": 2.22,
+          "odds": 2.24,
           "book": "matchbook"
         },
         "under_2_5": {
@@ -2084,7 +1693,7 @@
           "away": 4.3,
           "home": 2.12,
           "draw": 3.3,
-          "over_2_5": 2.22,
+          "over_2_5": 2.24,
           "under_2_5": 1.78
         },
         {
@@ -2095,27 +1704,25 @@
         },
         {
           "name": "1xBet",
-          "away": 4.04,
-          "home": 2.11,
+          "away": 4.08,
+          "home": 2.1,
           "draw": 3.4,
           "over_2_5": 2.18,
           "under_2_5": 1.73
         },
         {
-          "name": "unibet_nl",
-          "away": 4.1,
-          "home": 2.08,
-          "draw": 3.25,
-          "over_2_5": 2.18,
-          "under_2_5": 1.65
+          "name": "Marathon",
+          "away": 4.0,
+          "home": 2.06,
+          "draw": 3.34
         },
         {
-          "name": "unibet_se",
-          "away": 4.1,
-          "home": 2.08,
-          "draw": 3.25,
-          "over_2_5": 2.2,
-          "under_2_5": 1.68
+          "name": "unibet_nl",
+          "away": 4.35,
+          "home": 2.05,
+          "draw": 3.3,
+          "over_2_5": 2.16,
+          "under_2_5": 1.66
         }
       ],
       "picks": [
@@ -2123,20 +1730,20 @@
           "market": "Gana Local (1)",
           "side": "home",
           "model_prob": 52.8,
-          "devig_prob": 47.5,
-          "edge": 5.2,
-          "odds": 2.05,
+          "devig_prob": 47.7,
+          "edge": 5.1,
+          "odds": 2.04,
           "pick": "BET",
           "confidence": "MEDIA",
-          "kelly_pct": 1.94
+          "kelly_pct": 1.87
         },
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 26.7,
-          "devig_prob": 29.5,
-          "edge": -2.8,
-          "odds": 3.27,
+          "model_prob": 26.6,
+          "devig_prob": 29.4,
+          "edge": -2.7,
+          "odds": 3.28,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -2145,7 +1752,7 @@
           "market": "Gana Visitante (2)",
           "side": "away",
           "model_prob": 20.5,
-          "devig_prob": 23.0,
+          "devig_prob": 22.9,
           "edge": -2.4,
           "odds": 4.17,
           "pick": "SKIP",
@@ -2156,14 +1763,14 @@
       "best_bet": {
         "market": "Gana Local (1)",
         "side": "home",
-        "edge": 5.2,
-        "odds": 2.05,
+        "edge": 5.1,
+        "odds": 2.04,
         "best_odds": 2.12,
         "best_book": "matchbook",
         "pick": "BET",
         "confidence_band": "MEDIA",
         "model_prob": 52.8,
-        "devig_prob": 47.5,
+        "devig_prob": 47.7,
         "description_es": "Switzerland gana el partido",
         "description_en": "Switzerland wins the match",
         "is_compound": false
@@ -2328,15 +1935,15 @@
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "edge": 5.2,
-          "odds": 2.05,
+          "edge": 5.1,
+          "odds": 2.04,
           "best_odds": 2.12,
           "best_book": "matchbook",
           "pick": "BET",
           "confidence_band": "MEDIA",
           "model_prob": 52.8,
-          "devig_prob": 47.5,
-          "kelly_pct": 1.94,
+          "devig_prob": 47.7,
+          "kelly_pct": 1.87,
           "model_version": "v3.0-benter",
           "description_es": "Switzerland gana el partido",
           "description_en": "Switzerland wins the match"
@@ -2365,15 +1972,15 @@
       },
       "best_odds": {
         "home": {
-          "odds": 3.55,
-          "book": "unibet_nl"
+          "odds": 3.5,
+          "book": "tipico_de"
         },
         "away": {
-          "odds": 2.58,
+          "odds": 2.6,
           "book": "matchbook"
         },
         "draw": {
-          "odds": 3.06,
+          "odds": 3.08,
           "book": "1xBet"
         },
         "over_2_5": {
@@ -2387,34 +1994,34 @@
       },
       "book_comparison": [
         {
-          "name": "unibet_nl",
-          "home": 3.55,
-          "away": 2.55,
-          "draw": 2.88
-        },
-        {
-          "name": "unibet_se",
-          "home": 3.55,
-          "away": 2.55,
-          "draw": 2.88
-        },
-        {
-          "name": "matchbook",
-          "home": 3.55,
-          "away": 2.58,
-          "draw": 2.98
-        },
-        {
-          "name": "Betfair",
-          "home": 3.55,
-          "away": 2.58,
-          "draw": 2.98
-        },
-        {
           "name": "tipico_de",
           "home": 3.5,
           "away": 2.4,
           "draw": 2.9
+        },
+        {
+          "name": "matchbook",
+          "home": 3.5,
+          "away": 2.6,
+          "draw": 2.98
+        },
+        {
+          "name": "Betfair",
+          "home": 3.5,
+          "away": 2.6,
+          "draw": 2.98
+        },
+        {
+          "name": "unibet_nl",
+          "home": 3.45,
+          "away": 2.55,
+          "draw": 2.85
+        },
+        {
+          "name": "unibet_se",
+          "home": 3.45,
+          "away": 2.55,
+          "draw": 2.85
         }
       ],
       "picks": [
@@ -2637,7 +2244,7 @@
           "book": "1xBet"
         },
         "away": {
-          "odds": 24.0,
+          "odds": 25.0,
           "book": "matchbook"
         },
         "draw": {
@@ -2673,13 +2280,13 @@
         {
           "name": "matchbook",
           "home": 1.18,
-          "away": 24.0,
-          "draw": 8.4
+          "away": 25.0,
+          "draw": 8.2
         },
         {
           "name": "Betfair",
           "home": 1.18,
-          "away": 24.0,
+          "away": 25.0,
           "draw": 8.4
         },
         {
@@ -2911,15 +2518,15 @@
           "book": "1xBet"
         },
         "away": {
-          "odds": 8.5,
-          "book": "unibet_nl"
+          "odds": 8.4,
+          "book": "matchbook"
         },
         "draw": {
           "odds": 4.1,
           "book": "tipico_de"
         },
         "over_2_5": {
-          "odds": 2.28,
+          "odds": 2.32,
           "book": "unibet_se"
         },
         "under_2_5": {
@@ -3198,7 +2805,7 @@
         },
         "under_2_5": {
           "odds": 1.67,
-          "book": "unibet_se"
+          "book": "gtbets"
         }
       },
       "book_comparison": [
@@ -3215,26 +2822,26 @@
           "draw": 3.6
         },
         {
+          "name": "unibet_nl",
+          "home": 5.3,
+          "away": 1.83,
+          "draw": 3.5,
+          "over_2_5": 2.23,
+          "under_2_5": 1.63
+        },
+        {
+          "name": "unibet_se",
+          "home": 5.3,
+          "away": 1.83,
+          "draw": 3.5,
+          "over_2_5": 2.25,
+          "under_2_5": 1.65
+        },
+        {
           "name": "tipico_de",
           "home": 5.2,
           "away": 1.75,
           "draw": 3.5
-        },
-        {
-          "name": "unibet_nl",
-          "home": 5.1,
-          "away": 1.81,
-          "draw": 3.5,
-          "over_2_5": 2.18,
-          "under_2_5": 1.65
-        },
-        {
-          "name": "unibet_se",
-          "home": 5.1,
-          "away": 1.81,
-          "draw": 3.5,
-          "over_2_5": 2.23,
-          "under_2_5": 1.67
         }
       ],
       "picks": [
@@ -3447,9 +3054,9 @@
       "xg_home": 0.32,
       "xg_away": 1.49,
       "odds": {
-        "away": 1.19,
-        "home": 17.11,
-        "draw": 7.18
+        "away": 1.2,
+        "home": 16.86,
+        "draw": 7.02
       },
       "best_odds": {
         "away": {
@@ -3457,68 +3064,68 @@
           "book": "1xBet"
         },
         "home": {
-          "odds": 23.0,
+          "odds": 22.0,
           "book": "matchbook"
         },
         "draw": {
           "odds": 7.6,
-          "book": "matchbook"
+          "book": "Betfair"
         },
         "over_2_5": {
-          "odds": 1.65,
+          "odds": 1.67,
           "book": "1xBet"
         },
         "under_2_5": {
-          "odds": 2.38,
-          "book": "Nordic"
+          "odds": 2.35,
+          "book": "unibet_se"
         }
       },
       "book_comparison": [
         {
           "name": "matchbook",
-          "away": 1.2,
-          "home": 23.0,
-          "draw": 7.6
+          "away": 1.21,
+          "home": 22.0,
+          "draw": 7.4
         },
         {
           "name": "Betfair",
-          "away": 1.2,
-          "home": 23.0,
+          "away": 1.21,
+          "home": 22.0,
           "draw": 7.6
         },
         {
-          "name": "Nordic",
-          "away": 1.2,
-          "home": 19.0,
-          "draw": 6.8,
-          "over_2_5": 1.6,
-          "under_2_5": 2.38
-        },
-        {
-          "name": "betsson",
-          "away": 1.2,
-          "home": 19.0,
-          "draw": 6.8,
-          "over_2_5": 1.6,
-          "under_2_5": 2.38
-        },
-        {
           "name": "unibet_nl",
-          "away": 1.2,
-          "home": 18.0,
+          "away": 1.19,
+          "home": 19.0,
+          "draw": 7.0,
+          "over_2_5": 1.57,
+          "under_2_5": 2.3
+        },
+        {
+          "name": "unibet_se",
+          "away": 1.19,
+          "home": 19.0,
           "draw": 7.0,
           "over_2_5": 1.61,
-          "under_2_5": 2.25
+          "under_2_5": 2.35
+        },
+        {
+          "name": "Nordic",
+          "away": 1.22,
+          "home": 19.0,
+          "draw": 6.4,
+          "over_2_5": 1.62,
+          "under_2_5": 2.35
         }
       ],
       "picks": [
         {
           "market": "Gana Local (1)",
           "side": "home",
-          "model_prob": 7.4,
-          "devig_prob": 4.9,
-          "edge": 2.5,
-          "odds": 17.11,
+          "model_prob": 7.5,
+          "devig_prob": 5.0,
+          "edge": 2.4,
+          "odds": 16.86,
           "pick": "SKIP",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -3526,10 +3133,10 @@
         {
           "market": "Empate (X)",
           "side": "draw",
-          "model_prob": 21.4,
-          "devig_prob": 12.8,
-          "edge": 8.6,
-          "odds": 7.18,
+          "model_prob": 21.6,
+          "devig_prob": 13.2,
+          "edge": 8.4,
+          "odds": 7.02,
           "pick": "SKIP",
           "confidence": "ALTA",
           "kelly_pct": 0.0
@@ -3537,10 +3144,10 @@
         {
           "market": "Gana Visitante (2)",
           "side": "away",
-          "model_prob": 71.2,
-          "devig_prob": 82.3,
-          "edge": -11.1,
-          "odds": 1.19,
+          "model_prob": 70.9,
+          "devig_prob": 81.7,
+          "edge": -10.8,
+          "odds": 1.2,
           "pick": "FADE",
           "confidence": "MEDIA",
           "kelly_pct": 0.0
@@ -3709,92 +3316,206 @@
       "p_advance_away": 0.759
     },
     {
-      "id": "def55b09ef3d6854e3c01e74b5c63415",
-      "home": "South Africa",
-      "away": "Canada",
-      "commence_time": "2026-06-28T19:00:00Z",
-      "completed": true,
+      "id": "e61a7b471cadc8e3849158ed59d49cab",
+      "home": "Mexico",
+      "away": "England",
+      "commence_time": "2026-07-06T00:00:00Z",
+      "completed": false,
       "is_live": false,
-      "actual_home": 0,
-      "actual_away": 1,
+      "actual_home": null,
+      "actual_away": null,
       "penalty_winner": null,
-      "xg_home": 0.5,
-      "xg_away": 1.06,
-      "odds": {},
-      "picks": [],
-      "best_bet": null,
+      "xg_home": 1.4,
+      "xg_away": 0.37,
+      "odds": {
+        "away": 2.3,
+        "home": 3.6,
+        "draw": 3.13
+      },
+      "best_odds": {
+        "away": {
+          "odds": 2.38,
+          "book": "1xBet"
+        },
+        "home": {
+          "odds": 3.64,
+          "book": "gtbets"
+        },
+        "draw": {
+          "odds": 3.25,
+          "book": "matchbook"
+        },
+        "over_2_5": {
+          "odds": 2.56,
+          "book": "matchbook"
+        },
+        "under_2_5": {
+          "odds": 1.6,
+          "book": "matchbook"
+        }
+      },
+      "book_comparison": [
+        {
+          "name": "gtbets",
+          "away": 2.26,
+          "home": 3.64,
+          "draw": 3.12,
+          "over_2_5": 2.43,
+          "under_2_5": 1.57
+        },
+        {
+          "name": "unibet_nl",
+          "away": 2.28,
+          "home": 3.6,
+          "draw": 3.15,
+          "over_2_5": 2.48,
+          "under_2_5": 1.51
+        },
+        {
+          "name": "unibet_se",
+          "away": 2.28,
+          "home": 3.6,
+          "draw": 3.15,
+          "over_2_5": 2.55,
+          "under_2_5": 1.53
+        },
+        {
+          "name": "Pinnacle",
+          "away": 2.3,
+          "home": 3.6,
+          "draw": 3.13
+        },
+        {
+          "name": "1xBet",
+          "away": 2.38,
+          "home": 3.56,
+          "draw": 3.19,
+          "over_2_5": 2.52,
+          "under_2_5": 1.57
+        }
+      ],
+      "picks": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "model_prob": 41.4,
+          "devig_prob": 26.8,
+          "edge": 14.7,
+          "odds": 3.6,
+          "pick": "BET",
+          "confidence": "ALTA",
+          "kelly_pct": 4.72
+        },
+        {
+          "market": "Empate (X)",
+          "side": "draw",
+          "model_prob": 34.4,
+          "devig_prob": 30.9,
+          "edge": 3.5,
+          "odds": 3.13,
+          "pick": "SKIP",
+          "confidence": "MEDIA",
+          "kelly_pct": 0.0
+        },
+        {
+          "market": "Gana Visitante (2)",
+          "side": "away",
+          "model_prob": 24.2,
+          "devig_prob": 42.3,
+          "edge": -18.2,
+          "odds": 2.3,
+          "pick": "FADE",
+          "confidence": "MEDIA",
+          "kelly_pct": 0.0
+        }
+      ],
+      "best_bet": {
+        "market": "Gana Local (1)",
+        "side": "home",
+        "edge": 14.7,
+        "odds": 3.6,
+        "best_odds": 3.64,
+        "best_book": "gtbets",
+        "pick": "BET",
+        "confidence_band": "ALTA",
+        "model_prob": 41.4,
+        "devig_prob": 26.8,
+        "description_es": "Mexico gana el partido",
+        "description_en": "Mexico wins the match",
+        "is_compound": false
+      },
       "top_scores": [
         {
           "home": 0,
           "away": 0,
-          "prob": 24.4
-        },
-        {
-          "home": 0,
-          "away": 1,
-          "prob": 19.2
-        },
-        {
-          "home": 1,
-          "away": 1,
-          "prob": 14.3
-        },
-        {
-          "home": 0,
-          "away": 2,
-          "prob": 11.8
+          "prob": 24.2
         },
         {
           "home": 1,
           "away": 0,
-          "prob": 7.3
+          "prob": 23.5
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 15.5
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 11.1
+        },
+        {
+          "home": 3,
+          "away": 0,
+          "prob": 6.2
         }
       ],
       "score_grid": [
         [
-          24.38,
-          19.16,
-          11.81,
-          4.16,
-          1.1,
-          0.23
+          24.25,
+          4.71,
+          1.19,
+          0.13,
+          0.01,
+          0.0
         ],
         [
-          7.3,
-          14.3,
-          5.86,
-          2.06,
-          0.54,
-          0.12
+          23.53,
+          11.06,
+          1.42,
+          0.16,
+          0.01,
+          0.0
         ],
         [
-          2.61,
-          2.75,
-          1.45,
-          0.51,
-          0.14,
-          0.03
+          15.53,
+          5.13,
+          0.85,
+          0.09,
+          0.01,
+          0.0
         ],
         [
-          0.43,
-          0.46,
-          0.24,
-          0.08,
+          6.18,
+          2.04,
+          0.34,
+          0.04,
+          0.0,
+          0.0
+        ],
+        [
+          1.85,
+          0.61,
+          0.1,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.44,
+          0.15,
           0.02,
-          0.0
-        ],
-        [
-          0.05,
-          0.06,
-          0.03,
-          0.01,
-          0.0,
-          0.0
-        ],
-        [
-          0.01,
-          0.01,
-          0.0,
           0.0,
           0.0,
           0.0
@@ -3803,85 +3524,103 @@
       "live_scores": null,
       "quiniela": {
         "balanced": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.35,
-          "sd": 1.82,
-          "e_tie": 0.98,
-          "objective": 3.83,
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.76,
+          "sd": 1.8,
+          "e_tie": 1.08,
+          "objective": 4.27,
           "alternatives": [
             {
-              "home": 0,
-              "away": 1,
-              "obj": 3.83
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 3.65
-            },
-            {
-              "home": 0,
+              "home": 1,
               "away": 0,
-              "obj": 3.64
+              "obj": 4.27
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.12
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 3.88
             }
           ]
         },
         "aggressive": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.35,
-          "sd": 1.82,
-          "e_tie": 0.98,
-          "objective": 4.38,
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.76,
+          "sd": 1.8,
+          "e_tie": 1.08,
+          "objective": 4.81,
           "alternatives": [
             {
-              "home": 0,
-              "away": 1,
-              "obj": 4.38
-            },
-            {
-              "home": 0,
-              "away": 2,
-              "obj": 4.22
-            },
-            {
-              "home": 0,
+              "home": 1,
               "away": 0,
-              "obj": 4.18
+              "obj": 4.81
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 4.68
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 4.41
             }
           ]
         },
         "defensive": {
-          "pick_home": 0,
-          "pick_away": 1,
-          "e_pts": 2.35,
-          "sd": 1.82,
-          "e_tie": 0.98,
-          "objective": 2.64,
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.76,
+          "sd": 1.8,
+          "e_tie": 1.08,
+          "objective": 3.09,
           "alternatives": [
             {
-              "home": 0,
-              "away": 1,
-              "obj": 2.64
-            },
-            {
-              "home": 0,
+              "home": 1,
               "away": 0,
-              "obj": 2.45
+              "obj": 3.09
             },
             {
-              "home": 0,
-              "away": 2,
-              "obj": 2.42
+              "home": 2,
+              "away": 0,
+              "obj": 2.9
+            },
+            {
+              "home": 3,
+              "away": 0,
+              "obj": 2.73
             }
           ]
         }
       },
-      "fixture_confidence": null,
+      "fixture_confidence": "ALTA",
+      "bets": [
+        {
+          "market": "Gana Local (1)",
+          "side": "home",
+          "edge": 14.7,
+          "odds": 3.6,
+          "best_odds": 3.64,
+          "best_book": "gtbets",
+          "pick": "BET",
+          "confidence_band": "ALTA",
+          "model_prob": 41.4,
+          "devig_prob": 26.8,
+          "kelly_pct": 4.72,
+          "model_version": "v3.0-benter",
+          "description_es": "Mexico gana el partido",
+          "description_en": "Mexico wins the match"
+        }
+      ],
       "is_ko": true,
-      "p_advance_home": 0.341,
-      "p_advance_away": 0.659
+      "p_advance_home": 0.741,
+      "p_advance_away": 0.259
     },
     {
       "id": "4f3d72fba877939d36a5315618184093",
@@ -4932,6 +4671,356 @@
       "is_ko": true,
       "p_advance_home": 0.831,
       "p_advance_away": 0.169
+    },
+    {
+      "id": "5ff7744314f224c18d1604ee9cc19263",
+      "home": "England",
+      "away": "DR Congo",
+      "commence_time": "2026-07-01T16:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 2,
+      "actual_away": 1,
+      "penalty_winner": null,
+      "xg_home": 1.07,
+      "xg_away": 0.67,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 21.2
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 16.2
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 15.2
+        },
+        {
+          "home": 2,
+          "away": 0,
+          "prob": 10.1
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 8.1
+        }
+      ],
+      "score_grid": [
+        [
+          21.17,
+          8.1,
+          3.93,
+          0.88,
+          0.15,
+          0.02
+        ],
+        [
+          15.16,
+          16.21,
+          4.21,
+          0.94,
+          0.16,
+          0.02
+        ],
+        [
+          10.07,
+          6.74,
+          2.26,
+          0.5,
+          0.08,
+          0.01
+        ],
+        [
+          3.6,
+          2.41,
+          0.81,
+          0.18,
+          0.03,
+          0.0
+        ],
+        [
+          0.96,
+          0.65,
+          0.22,
+          0.05,
+          0.01,
+          0.0
+        ],
+        [
+          0.21,
+          0.14,
+          0.05,
+          0.01,
+          0.0,
+          0.0
+        ]
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.11,
+          "sd": 1.77,
+          "e_tie": 0.88,
+          "objective": 3.53,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 3.53
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 3.46
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.37
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.11,
+          "sd": 1.77,
+          "e_tie": 0.88,
+          "objective": 4.06,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 4.06
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 4.0
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 3.95
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 1,
+          "pick_away": 0,
+          "e_pts": 2.11,
+          "sd": 1.77,
+          "e_tie": 0.88,
+          "objective": 2.38,
+          "alternatives": [
+            {
+              "home": 1,
+              "away": 0,
+              "obj": 2.38
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 2.31
+            },
+            {
+              "home": 2,
+              "away": 0,
+              "obj": 2.16
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null,
+      "is_ko": true,
+      "p_advance_home": 0.61,
+      "p_advance_away": 0.39
+    },
+    {
+      "id": "def55b09ef3d6854e3c01e74b5c63415",
+      "home": "South Africa",
+      "away": "Canada",
+      "commence_time": "2026-06-28T19:00:00Z",
+      "completed": true,
+      "is_live": false,
+      "actual_home": 0,
+      "actual_away": 1,
+      "penalty_winner": null,
+      "xg_home": 0.5,
+      "xg_away": 1.06,
+      "odds": {},
+      "picks": [],
+      "best_bet": null,
+      "top_scores": [
+        {
+          "home": 0,
+          "away": 0,
+          "prob": 24.4
+        },
+        {
+          "home": 0,
+          "away": 1,
+          "prob": 19.2
+        },
+        {
+          "home": 1,
+          "away": 1,
+          "prob": 14.3
+        },
+        {
+          "home": 0,
+          "away": 2,
+          "prob": 11.8
+        },
+        {
+          "home": 1,
+          "away": 0,
+          "prob": 7.3
+        }
+      ],
+      "score_grid": [
+        [
+          24.38,
+          19.16,
+          11.81,
+          4.16,
+          1.1,
+          0.23
+        ],
+        [
+          7.3,
+          14.3,
+          5.86,
+          2.06,
+          0.54,
+          0.12
+        ],
+        [
+          2.61,
+          2.75,
+          1.45,
+          0.51,
+          0.14,
+          0.03
+        ],
+        [
+          0.43,
+          0.46,
+          0.24,
+          0.08,
+          0.02,
+          0.0
+        ],
+        [
+          0.05,
+          0.06,
+          0.03,
+          0.01,
+          0.0,
+          0.0
+        ],
+        [
+          0.01,
+          0.01,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "live_scores": null,
+      "quiniela": {
+        "balanced": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.35,
+          "sd": 1.82,
+          "e_tie": 0.98,
+          "objective": 3.83,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 3.83
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 3.65
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 3.64
+            }
+          ]
+        },
+        "aggressive": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.35,
+          "sd": 1.82,
+          "e_tie": 0.98,
+          "objective": 4.38,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 4.38
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 4.22
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 4.18
+            }
+          ]
+        },
+        "defensive": {
+          "pick_home": 0,
+          "pick_away": 1,
+          "e_pts": 2.35,
+          "sd": 1.82,
+          "e_tie": 0.98,
+          "objective": 2.64,
+          "alternatives": [
+            {
+              "home": 0,
+              "away": 1,
+              "obj": 2.64
+            },
+            {
+              "home": 0,
+              "away": 0,
+              "obj": 2.45
+            },
+            {
+              "home": 0,
+              "away": 2,
+              "obj": 2.42
+            }
+          ]
+        }
+      },
+      "fixture_confidence": null,
+      "is_ko": true,
+      "p_advance_home": 0.341,
+      "p_advance_away": 0.659
     },
     {
       "id": "537c0997cd899394f47f16545b7068b2",

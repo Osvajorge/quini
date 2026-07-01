@@ -2345,5 +2345,395 @@
         "Andreas Schjelderup"
       ]
     }
+  },
+  "658ac8cbf214ca3cc150109b4ddc1e74": {
+    "espn_id": "760493",
+    "fetched_at": "2026-07-01T19:25:47+00:00",
+    "teams": [
+      {
+        "team": "Belgium",
+        "formation": "4-2-3-1",
+        "starters": [
+          {
+            "name": "Thibaut Courtois",
+            "short": "T. Courtois",
+            "jersey": "1",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Arthur Theate",
+            "short": "A. Theate",
+            "jersey": "3",
+            "pos": "CD-L",
+            "headshot": null
+          },
+          {
+            "name": "Brandon Mechele",
+            "short": "B. Mechele",
+            "jersey": "4",
+            "pos": "CD-R",
+            "headshot": null
+          },
+          {
+            "name": "Maxim De Cuyper",
+            "short": "M. De Cuyper",
+            "jersey": "5",
+            "pos": "LB",
+            "headshot": null
+          },
+          {
+            "name": "Timothy Castagne",
+            "short": "T. Castagne",
+            "jersey": "21",
+            "pos": "RB",
+            "headshot": null
+          },
+          {
+            "name": "Kevin De Bruyne",
+            "short": "K. De Bruyne",
+            "jersey": "7",
+            "pos": "AM",
+            "headshot": null
+          },
+          {
+            "name": "Hans Vanaken",
+            "short": "H. Vanaken",
+            "jersey": "20",
+            "pos": "LM",
+            "headshot": null
+          },
+          {
+            "name": "Youri Tielemans",
+            "short": "Y. Tielemans",
+            "jersey": "8",
+            "pos": "RM",
+            "headshot": null
+          },
+          {
+            "name": "Charles De Ketelaere",
+            "short": "C. De Ketelaere",
+            "jersey": "17",
+            "pos": "F",
+            "headshot": null
+          },
+          {
+            "name": "Jérémy Doku",
+            "short": "J. Doku",
+            "jersey": "11",
+            "pos": "AM-L",
+            "headshot": null
+          },
+          {
+            "name": "Leandro Trossard",
+            "short": "L. Trossard",
+            "jersey": "10",
+            "pos": "AM-R",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Joaquin Seys",
+            "short": "J. Seys",
+            "jersey": "18",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Koni De Winter",
+            "short": "K. De Winter",
+            "jersey": "16",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Senne Lammens",
+            "short": "S. Lammens",
+            "jersey": "12",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Dodi Lukébakio",
+            "short": "D. Lukébakio",
+            "jersey": "14",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Thomas Meunier",
+            "short": "T. Meunier",
+            "jersey": "15",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Romelu Lukaku",
+            "short": "R. Lukaku",
+            "jersey": "9",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Matias Fernandez-Pardo",
+            "short": "M. Fernandez-Pardo",
+            "jersey": "26",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Amadou Onana",
+            "short": "A. Onana",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Diego Moreira",
+            "short": "D. Moreira",
+            "jersey": "19",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Alexis Saelemaekers",
+            "short": "A. Saelemaekers",
+            "jersey": "22",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Axel Witsel",
+            "short": "A. Witsel",
+            "jersey": "6",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Nicolas Raskin",
+            "short": "N. Raskin",
+            "jersey": "23",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Mike Penders",
+            "short": "M. Penders",
+            "jersey": "13",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Nathan Ngoy",
+            "short": "N. Ngoy",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      },
+      {
+        "team": "Senegal",
+        "formation": "4-3-3",
+        "starters": [
+          {
+            "name": "Mory Diaw",
+            "short": "M. Diaw",
+            "jersey": "23",
+            "pos": "G",
+            "headshot": null
+          },
+          {
+            "name": "Moussa Niakhaté",
+            "short": "M. Niakhaté",
+            "jersey": "19",
+            "pos": "CD-L",
+            "headshot": null
+          },
+          {
+            "name": "Pathé Ciss",
+            "short": "P. Ciss",
+            "jersey": "6",
+            "pos": "CD-R",
+            "headshot": null
+          },
+          {
+            "name": "Ismail Jakobs",
+            "short": "I. Jakobs",
+            "jersey": "14",
+            "pos": "LB",
+            "headshot": null
+          },
+          {
+            "name": "Krépin Diatta",
+            "short": "K. Diatta",
+            "jersey": "15",
+            "pos": "RB",
+            "headshot": null
+          },
+          {
+            "name": "Idrissa Gueye",
+            "short": "I. Gueye",
+            "jersey": "5",
+            "pos": "CM",
+            "headshot": null
+          },
+          {
+            "name": "Pape Gueye",
+            "short": "P. Gueye",
+            "jersey": "26",
+            "pos": "LM",
+            "headshot": null
+          },
+          {
+            "name": "Habib Diarra",
+            "short": "H. Diarra",
+            "jersey": "21",
+            "pos": "RM",
+            "headshot": null
+          },
+          {
+            "name": "Ismaïla Sarr",
+            "short": "I. Sarr",
+            "jersey": "18",
+            "pos": "F",
+            "headshot": null
+          },
+          {
+            "name": "Sadio Mané",
+            "short": "S. Mané",
+            "jersey": "10",
+            "pos": "LF",
+            "headshot": null
+          },
+          {
+            "name": "Iliman Ndiaye",
+            "short": "I. Ndiaye",
+            "jersey": "13",
+            "pos": "RF",
+            "headshot": null
+          }
+        ],
+        "subs": [
+          {
+            "name": "Mamadou Sarr",
+            "short": "M. Sarr",
+            "jersey": "2",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Assane Diao",
+            "short": "A. Diao",
+            "jersey": "7",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Bamba Dieng",
+            "short": "B. Dieng",
+            "jersey": "9",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Pape Matar Sarr",
+            "short": "P. Sarr",
+            "jersey": "17",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Abdoulaye Seck",
+            "short": "A. Seck",
+            "jersey": "4",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "El Hadji Malick Diouf",
+            "short": "E. Diouf",
+            "jersey": "25",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Nicolas Jackson",
+            "short": "N. Jackson",
+            "jersey": "11",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Ibrahim Mbaye",
+            "short": "I. Mbaye",
+            "jersey": "20",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Lamine Camara",
+            "short": "L. Camara",
+            "jersey": "8",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Cherif Ndiaye",
+            "short": "C. Ndiaye",
+            "jersey": "12",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Kalidou Koulibaly",
+            "short": "K. Koulibaly",
+            "jersey": "3",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Bara Sapoko Ndiaye",
+            "short": "B. Ndiaye",
+            "jersey": "22",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Antoine Mendy",
+            "short": "A. Mendy",
+            "jersey": "24",
+            "pos": "SUB",
+            "headshot": null
+          },
+          {
+            "name": "Yehvann Diouf",
+            "short": "Y. Diouf",
+            "jersey": "1",
+            "pos": "SUB",
+            "headshot": null
+          }
+        ]
+      }
+    ],
+    "absences": {
+      "Belgium": [
+        "Alexis Saelemaekers",
+        "Romelu Lukaku",
+        "Nathan Ngoy",
+        "Nicolas Raskin",
+        "Romelu Lukaku following a fast break"
+      ],
+      "Senegal": [
+        "Ibrahim Mbaye",
+        "Édouard Mendy",
+        "Iliman Ndiaye following a fast break",
+        "Abdoulaye Seck following a corner",
+        "El Hadji Malick Diouf",
+        "Nicolas Jackson",
+        "Lamine Camara"
+      ]
+    }
   }
 }
