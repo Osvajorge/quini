@@ -1470,17 +1470,16 @@ function renderBracket() {
     const ag = teamGroupMap[_stdName(f.away)];
     return hg && ag && hg !== ag;
   });
+  // Only place a fixture when one side is a recognized anchor team — never
+  // guess. Cross-group fixtures with no recognized anchor (e.g. an R16 match
+  // the odds feed already lists between two R32 winners) are dropped instead
+  // of being stuffed into an unrelated empty slot, where a later real result
+  // would silently overwrite the wrong bracket position.
   const r32 = Array(16).fill(null);
   r32raw.forEach(f => {
-    const pos = BRACKET_POS[f.home];
-    if (pos != null) r32[pos] = f;
+    const pos = BRACKET_POS[f.home] ?? BRACKET_POS[f.away];
+    if (pos != null && !r32[pos]) r32[pos] = f;
   });
-  // Fallback: any unplaced fixtures fill remaining null slots
-  const unplaced = r32raw.filter(f => BRACKET_POS[f.home] == null);
-  let ui = 0;
-  for (let i = 0; i < 16 && ui < unplaced.length; i++) {
-    if (!r32[i]) r32[i] = unplaced[ui++];
-  }
 
   // Get winner of completed KO fixture (handles extra time + penalties)
   function getWinner(fx) {
