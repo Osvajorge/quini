@@ -7,7 +7,9 @@ Run: python -m tools.generate_og_card
 """
 from __future__ import annotations
 
+import hashlib
 import json
+import re
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -15,6 +17,7 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent.parent
 HISTORY = ROOT / "docs" / "data" / "history.json"
 OUT = ROOT / "docs" / "og-card.png"
+INDEX_HTML = ROOT / "docs" / "index.html"
 
 # 1200×630 = standard OG / Twitter card
 W, H = 1200, 630
@@ -159,8 +162,27 @@ def generate() -> None:
     draw.text((60, H - 40), "kini.bet", font=f_url, fill=MUTE)
 
     img.convert("RGB").save(OUT, "PNG", optimize=True)
+
+    version = hashlib.sha1(OUT.read_bytes()).hexdigest()[:10]
+    _bump_og_image_version(version)
+
     print(f"✓ OG card written: {OUT}")
     print(f"  Stats: ROI={roi}% win_rate={win_rate}% bets={total_bets} clv={avg_clv}")
+
+
+def _bump_og_image_version(version: str) -> None:
+    """Rewrite og:image URL with a content-hash query param so WhatsApp/FB
+    crawlers (which cache previews per exact URL) re-fetch on every change."""
+    if not INDEX_HTML.exists():
+        return
+    html = INDEX_HTML.read_text()
+    new_html = re.sub(
+        r'(https://kini\.bet/og-card\.png)(\?v=[0-9a-f]+)?',
+        rf'\1?v={version}',
+        html,
+    )
+    if new_html != html:
+        INDEX_HTML.write_text(new_html)
 
 
 if __name__ == "__main__":
