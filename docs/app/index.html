@@ -45,7 +45,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 .card-hover:hover { transform:translateY(-2px); box-shadow:0 8px 30px var(--shadow); }
 @keyframes pulse-live { 0%,100%{opacity:1} 50%{opacity:0.4} }
 .pulse-live { animation:pulse-live 1.5s infinite; }
-.tab-active { border-bottom:2px solid var(--bet); color:var(--ink); }
+.tab-active { border-bottom:2px solid var(--ink); color:var(--ink); font-weight:800; }
 .tab-inactive { border-bottom:2px solid transparent; color:var(--mute); }
 .tab-inactive:hover { color:var(--ink); }
 .score-bar { transition:width .3s ease; }
@@ -208,11 +208,10 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 </footer>
 
 <script>
-/* exported goToLive, setSearch, setDateFilter, toggleHeatmap, showPlayerRadar,
+/* exported goToLive, setSearch, setDateFilter, showPlayerRadar,
    setPlayersCat, setPlayersTeam, setPlayersSource, _toggleCompareMode,
    _onTeamSearch, _selectTeamOpt, _clearTeamFilter, toggleMatchSummary,
-   setHistorySubTab, setBankrollStopLoss, setBankrollInitial, setBankrollStrategy,
-   setBankrollMarket, setBankrollModel, checkQuinielaPw, dismissEmailBanner,
+   setHistorySubTab, checkQuinielaPw, dismissEmailBanner,
    requestNotificationPermission, startPresentation, shareFixture, toggleLang,
    toggleTheme, openDetail, closeDetail --
    all invoked from onclick="" attributes in markup, invisible to static analysis */
@@ -973,9 +972,9 @@ function setFilter(filter) {
   document.querySelectorAll('.filter-btn').forEach(btn => {
     const f = btn.dataset.filter;
     if (f === filter) {
-      btn.style.cssText = `background:color-mix(in srgb, var(--bet) 20%, transparent); color:var(--bet); border:1px solid color-mix(in srgb, var(--bet) 30%, transparent);`;
+      btn.style.cssText = `background:var(--panel); color:var(--ui-black); border:1px solid var(--border); box-shadow:0 2px 8px -4px rgba(0,0,0,.3); font-weight:700;`;
     } else {
-      btn.style.cssText = `background:var(--panel); color:var(--mute); border:1px solid var(--border);`;
+      btn.style.cssText = `background:var(--panel2); color:var(--mute); border:1px solid var(--border);`;
     }
   });
   renderFixtures();
@@ -1004,12 +1003,6 @@ function poissonProb(lambda, k) {
   let p = Math.exp(-lambda);
   for (let i = 1; i <= k; i++) {p *= lambda / i;}
   return p;
-}
-// Build 6x6 grid from independent Poisson (fallback for live mode)
-function poissonGrid(xgH, xgA) {
-  return Array.from({length:6}, (_,h) =>
-    Array.from({length:6}, (_,a) => poissonProb(xgH,h) * poissonProb(xgA,a) * 100)
-  );
 }
 // Compute summary stats from a 6x6 prob grid (values in %)
 function gridStats(grid) {
@@ -1105,41 +1098,6 @@ function buildHeatmapHTML(grid, lang, xgH, xgA, isLive, currentH, currentA) {
     </div>
   </div>`;
 }
-function toggleHeatmap(btn, fid, xgH, xgA, commenceTime) {
-  const container = btn.closest('.heatmap-container');
-  const map = container.querySelector('.score-heatmap');
-  const isOpen = map.classList.contains('open');
-  if (!isOpen) {
-    const fx = DATA && DATA.fixtures ? DATA.fixtures.find(f => f.id === fid) : null;
-    const isLive = !!commenceTime && fx && fx.is_live;
-    let grid, dispXgH = xgH, dispXgA = xgA, curH = null, curA = null;
-    if (isLive) {
-      // Live: build final-score grid conditional on current score + remaining xG
-      const elapsed = computeElapsed(commenceTime);
-      const rr = Math.max(0.05, (90 - elapsed) / 90);
-      const lamH = xgH * rr, lamA = xgA * rr;
-      curH = fx.actual_home || 0;
-      curA = fx.actual_away || 0;
-      grid = Array.from({length: 6}, () => Array.from({length: 6}, () => 0));
-      for (let dh = 0; dh < 12; dh++) {
-        for (let da = 0; da < 12; da++) {
-          const fh = curH + dh, fa = curA + da;
-          if (fh > 5 || fa > 5) {continue;}
-          grid[fh][fa] += poissonProb(lamH, dh) * poissonProb(lamA, da) * 100;
-        }
-      }
-      dispXgH = lamH; dispXgA = lamA;
-    } else if (fx && fx.score_grid) {
-      grid = fx.score_grid; // bivariate pre-match grid
-    } else {
-      grid = poissonGrid(xgH, xgA);
-    }
-    map.innerHTML = buildHeatmapHTML(grid, LANG, dispXgH, dispXgA, isLive, curH, curA);
-  }
-  map.classList.toggle('open', !isOpen);
-  btn.textContent = isOpen ? (LANG==='es'?'▼ Mapa de goles':'▼ Score map') : (LANG==='es'?'▲ Cerrar mapa':'▲ Close map');
-}
-
 function renderAll() {
   if (!DATA) {return;}
   renderFixtures();
@@ -1778,7 +1736,7 @@ function renderDetail() {
       </div>
     </div>` : '';
 
-  // ── Value pick card ──
+  // ── Value pick card (+ confidence, kelly, why-this-pick, book comparison) ──
   const bb = f.best_bet;
   let pickCard;
   if (bb) {
@@ -1790,17 +1748,109 @@ function renderDetail() {
         ? `<a href="${url}" target="_blank" rel="nofollow sponsored noopener noreferrer" class="text-[11px] px-1.5 py-0.5 rounded font-medium hover:underline" style="background:color-mix(in srgb,var(--mute) 12%,transparent); color:var(--mute);">${bb.best_book} ↗</a>`
         : `<span class="text-[11px] px-1.5 py-0.5 rounded font-medium" style="background:color-mix(in srgb,var(--mute) 12%,transparent); color:var(--mute);">${bb.best_book}</span>`)
       : '';
+    const confBand = bb.confidence_band || bb.confidence || '—';
+    const confColor = confBand === 'ALTA' ? 'var(--alta)' : confBand === 'MEDIA' ? 'var(--media)' : 'var(--baja)';
+    const kellyTag = bb.kelly_pct ? `<span class="text-[11px] font-mono px-1.5 py-0.5 rounded" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">${bb.kelly_pct}% bank</span>` : '';
+
+    const topScore = f.top_scores && f.top_scores[0];
+    let noteHtml = '';
+    if (topScore && bb.model_prob) {
+      const side = (bb.side || '').toLowerCase();
+      const topTotal = topScore.home + topScore.away;
+      const topIsDraw = topScore.home === topScore.away;
+      const is1X2 = ['home', 'away'].includes(side);
+      const isOver = side.startsWith('over');
+      const isUnder = side.startsWith('under');
+      let note = '';
+      if (is1X2 && topIsDraw) {
+        note = LANG === 'es'
+          ? `El marcador individual más probable (${topScore.home}-${topScore.away}) es empate, pero la suma de todas las victorias = ${bb.model_prob}% > implícita ${bb.devig_prob}%`
+          : `Most likely individual score (${topScore.home}-${topScore.away}) is a draw, but total win probability = ${bb.model_prob}% > implied ${bb.devig_prob}%`;
+      } else if (isOver && topTotal <= 2) {
+        note = LANG === 'es'
+          ? `El marcador individual más probable (${topScore.home}-${topScore.away}) tiene ${topTotal} goles, pero la suma de resultados con 3+ goles = ${bb.model_prob}% > implícita ${bb.devig_prob}%`
+          : `Most likely individual score (${topScore.home}-${topScore.away}) has ${topTotal} goals, but total probability of 3+ goals = ${bb.model_prob}% > implied ${bb.devig_prob}%`;
+      } else if (isUnder && topTotal >= 3) {
+        note = LANG === 'es'
+          ? `El marcador individual más probable (${topScore.home}-${topScore.away}) tiene ${topTotal} goles, pero la suma de resultados con menos de 3 = ${bb.model_prob}% > implícita ${bb.devig_prob}%`
+          : `Most likely individual score (${topScore.home}-${topScore.away}) has ${topTotal} goals, but total probability of under 3 = ${bb.model_prob}% > implied ${bb.devig_prob}%`;
+      }
+      noteHtml = note ? `<div class="text-[10px] mt-2 px-2 py-1 rounded" style="color:var(--warn);background:color-mix(in srgb,var(--warn) 8%,transparent);">${note}</div>` : '';
+    }
+
+    const ev = bb.model_prob && bb.odds ? ((bb.model_prob / 100) * Number(bb.best_odds || bb.odds) - 1) * 100 : null;
+    const marketCat = (bb.side || '').toLowerCase().startsWith('over') || (bb.side || '').toLowerCase().startsWith('under') ? 'O/U' :
+      ['home', 'draw', 'away'].includes((bb.side || '').toLowerCase()) ? '1X2' :
+      (bb.side || '').toLowerCase().startsWith('btts') ? 'BTTS' : '—';
+    const marketStrength = {
+      'O/U': LANG === 'es' ? 'el modelo destaca en O/U (+59% ROI histórico)' : 'model excels at O/U (+59% historical ROI)',
+      '1X2': LANG === 'es' ? 'mercado 1X2 requiere edge mayor (umbral 12%)' : '1X2 needs higher edge (12% threshold)',
+      'BTTS': LANG === 'es' ? 'mercado BTTS — umbral 10%' : 'BTTS market — 10% threshold',
+    }[marketCat] || '';
+    const whyHtml = `
+      <button onclick="const el=document.getElementById('why-${f.id}');el.classList.toggle('hidden');this.querySelector('.arr').textContent=el.classList.contains('hidden')?'▸':'▾';" class="mt-2 text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1" style="color:var(--mute); background:none; border:none; cursor:pointer; padding:0;">
+        <span class="arr">▸</span> ${LANG === 'es' ? '¿Por qué esta apuesta?' : 'Why this pick?'}
+      </button>
+      <div id="why-${f.id}" class="hidden mt-1.5 p-2 rounded text-[11px] space-y-1" style="background:color-mix(in srgb,var(--panel2) 60%,transparent); color:var(--mute);">
+        <div><b style="color:var(--ink);">Modelo:</b> ${bb.model_prob}% — ${LANG === 'es' ? 'probabilidad estimada del evento' : 'estimated probability of the event'}</div>
+        <div><b style="color:var(--ink);">Mercado:</b> ${bb.devig_prob}% — ${LANG === 'es' ? 'probabilidad implícita en las cuotas (de-vig Shin)' : 'implied probability from odds (Shin de-vig)'}</div>
+        <div><b style="color:var(--ink);">Edge:</b> +${bb.edge}% — ${LANG === 'es' ? 'cuánto subestima el mercado nuestra probabilidad' : 'how much the market underrates our probability'}</div>
+        ${ev != null ? `<div><b style="color:var(--ink);">EV:</b> +${ev.toFixed(1)}% — ${LANG === 'es' ? 'valor esperado por unidad apostada' : 'expected value per unit staked'}</div>` : ''}
+        <div><b style="color:var(--ink);">Mercado:</b> ${marketCat} — ${marketStrength}</div>
+      </div>`;
+
+    let cmpHtml = '';
+    const cmp = f.book_comparison;
+    if (cmp && cmp.length && bb.side) {
+      const sideKey = bb.side;
+      const bestPrice = bb.best_odds || bb.odds;
+      const LATAM_RANK = {caliente: 0, betcris: 1, codere: 2, winpot: 3, ganabet: 4, strendus: 5};
+      const sorted = cmp.filter(bk => bk[sideKey]).sort((a, b) => {
+        const ar = LATAM_RANK[a.name.toLowerCase()] ?? 99;
+        const br = LATAM_RANK[b.name.toLowerCase()] ?? 99;
+        if (ar !== br) {return ar - br;}
+        return Number(b[sideKey]) - Number(a[sideKey]);
+      });
+      if (sorted.length) {
+        const rows = sorted.map(bk => {
+          const isBest = Number(bk[sideKey]).toFixed(2) === Number(bestPrice).toFixed(2);
+          const isLatam = LATAM_RANK[bk.name.toLowerCase()] != null;
+          const bkUrl = affiliateUrl(bk.name);
+          const nameTag = bkUrl
+            ? `<a href="${bkUrl}" target="_blank" rel="nofollow sponsored noopener noreferrer" ${isLatam ? 'class="font-semibold hover:underline"' : 'class="hover:underline"'} style="color:${isLatam ? 'var(--ink)' : 'var(--mute)'};">${bk.name} ↗</a>`
+            : `<span ${isLatam ? 'class="font-semibold"' : ''} style="color:${isLatam ? 'var(--ink)' : 'var(--mute)'};">${bk.name}</span>`;
+          return `<div class="flex items-center justify-between py-1 px-2 rounded text-[11px]" style="background:${isBest ? 'color-mix(in srgb,var(--bet) 8%,transparent)' : 'transparent'};">
+            ${nameTag}
+            <span class="font-mono" style="color:${isBest ? 'var(--bet)' : 'var(--ink)'}; font-weight:${isBest ? '700' : '500'};">${Number(bk[sideKey]).toFixed(2)}${isBest ? ' ★' : ''}</span>
+          </div>`;
+        }).join('');
+        cmpHtml = `<div class="mt-2">
+          <button onclick="const el=document.getElementById('cmp-${f.id}'); el.classList.toggle('hidden'); this.querySelector('.arr').textContent = el.classList.contains('hidden')?'▸':'▾';" class="text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1" style="color:var(--mute); background:none; border:none; cursor:pointer; padding:0;">
+            <span class="arr">▸</span> ${LANG === 'es' ? 'Comparar momios' : 'Compare odds'} (${sorted.length})
+          </button>
+          <div id="cmp-${f.id}" class="hidden mt-1.5 grid grid-cols-2 gap-1">${rows}</div>
+        </div>`;
+      }
+    }
+
     pickCard = `
       <div class="rounded-xl p-4 mb-4" style="background:var(--accent-soft2); border:1px solid var(--accent-border);">
         <div class="flex items-center justify-between mb-1">
-          <span class="text-[11px] font-bold uppercase tracking-wider" style="color:var(--bet);">${LANG === 'es' ? 'PICK DE VALOR' : 'VALUE PICK'}</span>
-          <span class="text-sm font-bold" style="color:var(--bet);">+${bb.edge}%</span>
+          <span class="text-[11px] font-bold uppercase tracking-wider" style="color:var(--bet2);">${LANG === 'es' ? 'PICK DE VALOR' : 'VALUE PICK'}</span>
+          <div class="flex items-center gap-1.5">
+            ${kellyTag}
+            <span class="text-[11px] font-mono px-1.5 py-0.5 rounded" style="background:color-mix(in srgb,${confColor} 15%,transparent); color:${confColor};">${confBand}</span>
+            <span class="text-sm font-bold" style="color:var(--bet2);">+${bb.edge}%</span>
+          </div>
         </div>
         <div class="text-lg font-bold mb-1">${desc}</div>
         <div class="flex items-center gap-1.5 text-xs font-mono flex-wrap" style="color:var(--mute);">
           <span>${LANG === 'es' ? 'modelo' : 'model'} ${Math.round(bb.model_prob || 0)}%</span>·<span>${LANG === 'es' ? 'mercado' : 'market'} ${Math.round(bb.devig_prob || 0)}%</span>·
           <span class="font-semibold" style="color:var(--ink);">@${Number(bb.best_odds || bb.odds || 0).toFixed(2)}</span>${bookTag}
         </div>
+        ${noteHtml}
+        ${whyHtml}
+        ${cmpHtml}
       </div>`;
   } else {
     pickCard = `
@@ -1856,13 +1906,51 @@ function renderDetail() {
     </div>` : '';
 
   const statsHtml = completed ? _renderMatchStats(f) : '';
+  const lineupHtml = !completed ? _renderLineupSection(f) : '';
+
+  // ── All markets table ──
+  const betPicks = (f.picks || []).filter(p => p.pick === 'BET');
+  const otherPicks = (f.picks || []).filter(p => p.pick !== 'BET');
+  const sortedPicks = [...betPicks, ...otherPicks];
+  const picksRows = sortedPicks.map(p => {
+    const pc = p.pick === 'BET' ? 'bet' : p.pick === 'FADE' ? 'fade' : 'skip';
+    return `
+      <div class="flex items-center gap-2 sm:gap-3 py-1.5 text-xs">
+        <span class="w-10 shrink-0 text-center px-1.5 py-0.5 rounded font-bold text-[10px]" style="background:color-mix(in srgb, var(--${pc}) 20%, transparent); color:var(--${pc});">${p.pick}</span>
+        <span class="flex-1 font-medium truncate">${p.market}</span>
+        <span class="font-mono w-12 sm:w-14 text-right hidden sm:block">${p.model_prob}%</span>
+        <span class="font-mono w-12 sm:w-14 text-right hidden sm:block" style="color:var(--mute);">${p.devig_prob}%</span>
+        <span class="font-mono w-14 text-right" style="color:${p.edge > 0 ? 'var(--bet)' : p.edge < -3 ? 'var(--fade)' : 'var(--mute)'};">${p.edge > 0 ? '+' : ''}${p.edge}%</span>
+        <span class="font-mono w-12 text-right" style="color:var(--mute);">@${Number(p.odds).toFixed(2)}</span>
+      </div>`;
+  }).join('');
+  const allMarketsHtml = sortedPicks.length ? `
+    <details class="mb-4">
+      <summary class="text-xs cursor-pointer select-none" style="color:var(--mute);">${LANG === 'es' ? 'Todos los mercados' : 'All markets'} (${sortedPicks.length})</summary>
+      <div class="mt-2">
+        <div class="flex items-center gap-2 sm:gap-3 py-1 text-[10px] uppercase tracking-wider" style="color:var(--mute); border-bottom:1px solid var(--border);">
+          <span class="w-10 shrink-0"></span>
+          <span class="flex-1">${LANG === 'es' ? 'Mercado' : 'Market'}</span>
+          <span class="w-12 sm:w-14 text-right hidden sm:block">${LANG === 'es' ? 'Modelo' : 'Model'}</span>
+          <span class="w-12 sm:w-14 text-right hidden sm:block">${LANG === 'es' ? 'Implícita' : 'Implied'}</span>
+          <span class="w-14 text-right">Edge</span>
+          <span class="w-12 text-right">${LANG === 'es' ? 'Cuota' : 'Odds'}</span>
+        </div>
+        ${picksRows}
+      </div>
+    </details>` : '';
 
   el.innerHTML = `
     <button onclick="closeDetail()" class="mb-4 text-sm font-semibold flex items-center gap-1" style="color:var(--mute); background:none; border:none; cursor:pointer; padding:0;">${backLabel}</button>
     <div class="rounded-xl border p-5" style="background:var(--panel); border-color:var(--border);">
       <div class="flex items-center justify-between mb-1">
         <span class="text-[10px] font-bold uppercase tracking-wider" style="color:var(--mute);">${statusLabel}</span>
-        <span class="text-[10px] font-mono" style="color:var(--mute);">${formatDate(f.commence_time)}</span>
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] font-mono" style="color:var(--mute);">${formatDate(f.commence_time)}</span>
+          <button onclick="shareFixture('${f.id}')" title="${LANG === 'es' ? 'Compartir' : 'Share'}" class="flex items-center justify-center w-6 h-6 rounded-full" style="background:var(--panel2); color:var(--mute); border:1px solid var(--border);">
+            <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          </button>
+        </div>
       </div>
       <div class="flex items-center justify-center gap-6 py-4">
         <div class="flex flex-col items-center gap-2 flex-1">
@@ -1881,6 +1969,8 @@ function renderDetail() {
       ${pickCard}
       ${matrixHtml}
       ${topScoresHtml}
+      ${allMarketsHtml}
+      ${lineupHtml}
       ${statsHtml}
     </div>`;
 }
@@ -1952,7 +2042,7 @@ function renderFixtures() {
         <h3 class="text-sm font-bold uppercase tracking-wider" style="color:var(--live);">${LANG === 'es' ? 'EN VIVO AHORA' : 'LIVE NOW'}</h3>
       </div>
       <div class="space-y-3">`;
-    liveFixtures.forEach(f => { html += renderFixtureCard(f, true); });
+    liveFixtures.forEach(f => { html += renderLiveCard(f); });
     html += `</div></div>`;
   }
 
@@ -1985,273 +2075,116 @@ function renderFixtures() {
   document.getElementById('fixtures-container').innerHTML = html;
 }
 
-function renderFixtureCard(f, featured = false) {
-  const hasBet = f.best_bet !== null;
-  const confColors = {ALTA:'alta', MEDIA:'media', BAJA:'baja'};
-  const cc = confColors[f.fixture_confidence] || 'baja';
+function _fmtTimeCol(iso) {
+  const d = new Date(iso);
+  const time = d.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const matchDay = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  const diff = (matchDay - today) / 86400000;
+  const dateLabel = diff === 0 ? t('today') : diff === 1 ? t('tomorrow') : d.toLocaleDateString(LANG === 'es' ? 'es' : 'en', {month:'short', day:'numeric'});
+  return { time, dateLabel };
+}
 
-  // Show ALL BET picks (bets array first, fallback to best_bet)
-  let bestBetHtml = '';
-  const allBets = f.bets && f.bets.length ? f.bets : (f.best_bet ? [f.best_bet] : []);
-  if (allBets.length) {
-    bestBetHtml = `<div class="mt-3 space-y-2">`;
-    allBets.forEach((bb, idx) => {
-      let desc = LANG === 'es' ? (bb.description_es || bb.market) : (bb.description_en || bb.market);
-      desc = desc.replace(f.home, teamName(f.home)).replace(f.away, teamName(f.away));
-      const confBand = bb.confidence_band || bb.confidence || '—';
-      const confColor = confBand === 'ALTA' ? 'var(--alta)' : confBand === 'MEDIA' ? 'var(--media)' : 'var(--baja)';
-      const modelPct = bb.model_prob != null ? Number(bb.model_prob).toFixed(0) + '%' : null;
-      const devigPct = bb.devig_prob != null ? Number(bb.devig_prob).toFixed(0) + '%' : null;
-      const isPrimary = idx === 0;
-      const opacity = isPrimary ? '6%' : '3%';
-      const borderOp = isPrimary ? '20%' : '12%';
-      const label = isPrimary ? t('best_bet') : (LANG === 'es' ? 'TAMBIÉN BET' : 'ALSO BET');
-      bestBetHtml += `
-        <div class="rounded-lg px-3 py-2.5" style="background:color-mix(in srgb,var(--bet) ${opacity},transparent); border:1px solid color-mix(in srgb,var(--bet) ${borderOp},transparent);">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="text-[10px] font-bold uppercase tracking-wider" style="color:var(--bet);">${label}</span>
-            <div class="flex items-center gap-1.5">
-              ${bb.kelly_pct ? `<span class="text-[10px] font-mono px-1.5 py-0.5 rounded tooltip-trigger" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">${bb.kelly_pct}% bank<span class="tooltip-content">${LANG==='es'?'Quarter-Kelly: % de tu banca a apostar. Ej. banca €1000 × '+bb.kelly_pct+'% = €'+(10*bb.kelly_pct).toFixed(0):'Quarter-Kelly stake. E.g. €1000 bankroll × '+bb.kelly_pct+'% = €'+(10*bb.kelly_pct).toFixed(0)}</span></span>` : ''}
-              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded" style="background:color-mix(in srgb,${confColor} 15%,transparent); color:${confColor};">${confBand}</span>
-            </div>
-          </div>
-          <div class="text-sm font-semibold mb-1.5">${desc}</div>
-          ${(() => {
-            const side = (bb.side||'').toLowerCase();
-            const topScore = f.top_scores && f.top_scores[0];
-            if (!topScore || !bb.model_prob) {return '';}
-            const topTotal = topScore.home + topScore.away;
-            const topIsDraw = topScore.home === topScore.away;
-            const is1X2 = ['home','away'].includes(side);
-            const isOver = side.startsWith('over');
-            const isUnder = side.startsWith('under');
-            let note = '';
-            if (is1X2 && topIsDraw) {
-              note = LANG==='es'
-                ? `El marcador individual más probable (${topScore.home}-${topScore.away}) es empate, pero la suma de todas las victorias = ${bb.model_prob}% > implícita ${bb.devig_prob}%`
-                : `Most likely individual score (${topScore.home}-${topScore.away}) is a draw, but total win probability = ${bb.model_prob}% > implied ${bb.devig_prob}%`;
-            } else if (isOver && topTotal <= 2) {
-              note = LANG==='es'
-                ? `El marcador individual más probable (${topScore.home}-${topScore.away}) tiene ${topTotal} goles, pero la suma de resultados con 3+ goles = ${bb.model_prob}% > implícita ${bb.devig_prob}%`
-                : `Most likely individual score (${topScore.home}-${topScore.away}) has ${topTotal} goals, but total probability of 3+ goals = ${bb.model_prob}% > implied ${bb.devig_prob}%`;
-            } else if (isUnder && topTotal >= 3) {
-              note = LANG==='es'
-                ? `El marcador individual más probable (${topScore.home}-${topScore.away}) tiene ${topTotal} goles, pero la suma de resultados con menos de 3 = ${bb.model_prob}% > implícita ${bb.devig_prob}%`
-                : `Most likely individual score (${topScore.home}-${topScore.away}) has ${topTotal} goals, but total probability of under 3 = ${bb.model_prob}% > implied ${bb.devig_prob}%`;
-            }
-            return note ? `<div class="text-[10px] mb-1.5 px-2 py-1 rounded" style="color:var(--warn);background:color-mix(in srgb,var(--warn) 8%,transparent);">${note}</div>` : '';
-          })()}
-          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
-            <span class="font-bold font-mono" style="color:var(--bet);">+${bb.edge}% ${LANG === 'es' ? 'ventaja' : 'edge'}</span>
-            ${bb.best_odds && bb.best_book
-              ? (() => {
-                  const url = affiliateUrl(bb.best_book);
-                  const bookTag = url
-                    ? `<a href="${url}" target="_blank" rel="nofollow sponsored noopener noreferrer" class="text-[10px] px-1.5 py-0.5 rounded font-medium hover:underline" style="background:color-mix(in srgb,var(--mute) 12%,transparent); color:var(--mute);">${bb.best_book} ↗</a>`
-                    : `<span class="text-[10px] px-1.5 py-0.5 rounded font-medium" style="background:color-mix(in srgb,var(--mute) 12%,transparent); color:var(--mute);">${bb.best_book}</span>`;
-                  return `<span class="font-mono font-semibold" style="color:var(--ink);">@ ${Number(bb.best_odds).toFixed(2)}</span>${bookTag}`;
-                })()
-              : `<span style="color:var(--mute);">@ ${Number(bb.odds).toFixed(2)}</span>`
-            }
-            ${modelPct ? `<span style="color:var(--mute);">${modelPct} ${LANG === 'es' ? 'modelo' : 'model'} · ${devigPct} ${LANG === 'es' ? 'implícita' : 'implied'}</span>` : ''}
-          </div>
-          ${(() => {
-            // "Why this pick?" disclosure — transparency builds trust
-            const whyId = `why-${f.id}-${idx}`;
-            const ev = bb.model_prob && bb.odds ? ((bb.model_prob/100) * Number(bb.best_odds || bb.odds) - 1) * 100 : null;
-            const marketCat = (bb.side||'').toLowerCase().startsWith('over') || (bb.side||'').toLowerCase().startsWith('under') ? 'O/U' :
-              ['home','draw','away'].includes((bb.side||'').toLowerCase()) ? '1X2' :
-              (bb.side||'').toLowerCase().startsWith('btts') ? 'BTTS' : '—';
-            const marketStrength = {
-              'O/U': LANG==='es' ? 'el modelo destaca en O/U (+59% ROI histórico)' : 'model excels at O/U (+59% historical ROI)',
-              '1X2': LANG==='es' ? 'mercado 1X2 requiere edge mayor (umbral 12%)' : '1X2 needs higher edge (12% threshold)',
-              'BTTS': LANG==='es' ? 'mercado BTTS — umbral 10%' : 'BTTS market — 10% threshold',
-            }[marketCat] || '';
-            return `<button onclick="const el=document.getElementById('${whyId}');el.classList.toggle('hidden');this.querySelector('.arr').textContent=el.classList.contains('hidden')?'▸':'▾';" class="mt-2 text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1" style="color:var(--mute); background:none; border:none; cursor:pointer; padding:0;">
-              <span class="arr">▸</span> ${LANG==='es'?'¿Por qué esta apuesta?':'Why this pick?'}
-            </button>
-            <div id="${whyId}" class="hidden mt-1.5 p-2 rounded text-[11px] space-y-1" style="background:color-mix(in srgb,var(--panel2) 60%,transparent); color:var(--mute);">
-              <div><b style="color:var(--ink);">Modelo:</b> ${bb.model_prob}% — ${LANG==='es'?'probabilidad estimada del evento':'estimated probability of the event'}</div>
-              <div><b style="color:var(--ink);">Mercado:</b> ${bb.devig_prob}% — ${LANG==='es'?'probabilidad implícita en las cuotas (de-vig Shin)':'implied probability from odds (Shin de-vig)'}</div>
-              <div><b style="color:var(--ink);">Edge:</b> +${bb.edge}% — ${LANG==='es'?'cuánto subestima el mercado nuestra probabilidad':'how much the market underrates our probability'}</div>
-              ${ev != null ? `<div><b style="color:var(--ink);">EV:</b> +${ev.toFixed(1)}% — ${LANG==='es'?'valor esperado por unidad apostada':'expected value per unit staked'}</div>` : ''}
-              <div><b style="color:var(--ink);">Mercado:</b> ${marketCat} — ${marketStrength}</div>
-              <div class="pt-1 italic" style="color:var(--mute);">${LANG==='es'?'Modelo Dixon-Coles + Elo. ':'Dixon-Coles + Elo ensemble. '}${LANG==='es'?'Umbrales calibrados con backtest sobre historial real.':'Thresholds calibrated via backtest on real history.'}</div>
-            </div>`;
-          })()}
-          ${(() => {
-            const cmp = f.book_comparison;
-            if (!cmp || !cmp.length || !bb.side) {return '';}
-            const sideKey = bb.side;
-            const bestPrice = bb.best_odds || bb.odds;
-            const LATAM_RANK = {caliente:0, betcris:1, codere:2, winpot:3, ganabet:4, strendus:5};
-            const sorted = cmp.filter(bk => bk[sideKey]).sort((a,b) => {
-              const ar = LATAM_RANK[a.name.toLowerCase()] ?? 99;
-              const br = LATAM_RANK[b.name.toLowerCase()] ?? 99;
-              if (ar !== br) {return ar - br;}
-              return Number(b[sideKey]) - Number(a[sideKey]);
-            });
-            if (!sorted.length) {return '';}
-            const cmpId = `cmp-${f.id}-${idx}`;
-            const rows = sorted.map(bk => {
-              const isBest = Number(bk[sideKey]).toFixed(2) === Number(bestPrice).toFixed(2);
-              const isLatam = LATAM_RANK[bk.name.toLowerCase()] != null;
-              const bkUrl = affiliateUrl(bk.name);
-              const nameTag = bkUrl
-                ? `<a href="${bkUrl}" target="_blank" rel="nofollow sponsored noopener noreferrer" ${isLatam?'class="font-semibold hover:underline"':'class="hover:underline"'} style="color:${isLatam?'var(--ink)':'var(--mute)'};">${bk.name} ↗</a>`
-                : `<span ${isLatam?'class="font-semibold"':''} style="color:${isLatam?'var(--ink)':'var(--mute)'};">${bk.name}</span>`;
-              return `<div class="flex items-center justify-between py-1 px-2 rounded text-[11px]" style="background:${isBest?'color-mix(in srgb,var(--bet) 8%,transparent)':'transparent'};">
-                ${nameTag}
-                <span class="font-mono" style="color:${isBest?'var(--bet)':'var(--ink)'}; font-weight:${isBest?'700':'500'};">${Number(bk[sideKey]).toFixed(2)}${isBest?' ★':''}</span>
-              </div>`;
-            }).join('');
-            return `<div class="mt-2">
-              <button onclick="const el=document.getElementById('${cmpId}'); el.classList.toggle('hidden'); this.querySelector('.arr').textContent = el.classList.contains('hidden')?'▸':'▾';" class="text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1" style="color:var(--mute); background:none; border:none; cursor:pointer; padding:0;">
-                <span class="arr">▸</span> ${LANG==='es'?'Comparar momios':'Compare odds'} (${sorted.length})
-              </button>
-              <div id="${cmpId}" class="hidden mt-1.5 grid grid-cols-2 gap-1">${rows}</div>
-            </div>`;
-          })()}
-        </div>`;
-    });
-    bestBetHtml += `</div>`;
-  }
+// Clean row card, matching the design handoff exactly: fixed 52px time column,
+// two team rows (flag + name + model prob), mini 1X2 bar, fixed 104px chip,
+// chevron. The rich stuff (why this pick, book comparison, kelly stake, all
+// markets, share) lives in the detail view now — see renderDetail().
+function renderFixtureCard(f) {
+  const bb = f.best_bet;
+  const bySide = {};
+  (f.picks || []).forEach(p => { if (['home', 'draw', 'away'].includes(p.side)) {bySide[p.side] = p.model_prob;} });
+  const pH = bySide.home, pD = bySide.draw, pA = bySide.away;
+  const has1x2 = pH != null && pD != null && pA != null;
+  const { time, dateLabel } = _fmtTimeCol(f.commence_time);
 
-  const betPicks = f.picks.filter(p => p.pick === 'BET');
-  const otherPicks = f.picks.filter(p => p.pick !== 'BET');
-  const sortedPicks = [...betPicks, ...otherPicks];
+  const chipStyle = bb
+    ? `background:var(--accent-soft); color:var(--bet2);`
+    : `background:var(--panel2); color:var(--mute);`;
+  const chipTop = bb ? (LANG === 'es' ? (bb.market || bb.description_es) : (bb.market || bb.description_en)) : (LANG === 'es' ? 'Sin valor' : 'No value');
+  const chipSub = bb ? `+${Number(bb.edge).toFixed(1)}% · @${Number(bb.best_odds || bb.odds).toFixed(2)}` : '';
 
-  let picksHtml = '';
-  sortedPicks.forEach(p => {
-    const pc = p.pick === 'BET' ? 'bet' : p.pick === 'FADE' ? 'fade' : 'skip';
-    picksHtml += `
-      <div class="flex items-center gap-2 sm:gap-3 py-1.5 text-xs">
-        <span class="w-10 shrink-0 text-center px-1.5 py-0.5 rounded font-bold text-[10px]" style="background:color-mix(in srgb, var(--${pc}) 20%, transparent); color:var(--${pc});">${p.pick}</span>
-        <span class="flex-1 font-medium truncate">${p.market}</span>
-        <span class="font-mono w-12 sm:w-14 text-right hidden sm:block">${p.model_prob}%</span>
-        <span class="font-mono w-12 sm:w-14 text-right hidden sm:block" style="color:var(--mute);">${p.devig_prob}%</span>
-        <span class="font-mono w-14 text-right" style="color:${p.edge > 0 ? 'var(--bet)' : p.edge < -3 ? 'var(--fade)' : 'var(--mute)'};">${p.edge > 0 ? '+' : ''}${p.edge}%</span>
-        <span class="font-mono w-12 text-right" style="color:var(--mute);">@${Number(p.odds).toFixed(2)}</span>
-      </div>`;
-  });
-
-  const scores = (f.is_live && f.live_scores && f.live_scores.length) ? f.live_scores : f.top_scores;
-  const scoresLabel = (f.is_live && f.live_scores && f.live_scores.length) ? t('live_scores') : t('most_likely');
-
-  let scoresHtml = '';
-  if (scores && scores.length > 0) {
-    const scoresId = f.is_live ? `id="live-scores-${f.id}"` : '';
-    scoresHtml = `<div class="mt-3 pt-3" style="border-top:1px solid color-mix(in srgb, var(--border) 50%, transparent);">
-      <div ${scoresId} class="">
-        <div class="text-[10px] uppercase tracking-wider mb-2" style="color:var(--mute);">${scoresLabel}</div>
-        <div class="flex gap-2">`;
-    scores.forEach((s, i) => {
-      const isTop = i === 0;
-      const bg = isTop ? 'color-mix(in srgb, var(--bet) 12%, transparent)' : 'color-mix(in srgb, var(--panel2) 50%, transparent)';
-      const border = isTop ? 'border:1px solid color-mix(in srgb, var(--bet) 25%, transparent);' : '';
-      const scoreColor = isTop ? 'color:var(--bet);' : '';
-      scoresHtml += `<div class="flex-1 text-center py-1.5 rounded" style="background:${bg}; ${border}">
-        <div class="text-sm font-bold font-mono" style="${scoreColor}">${s.home}-${s.away}</div>
-        <div class="text-[10px]" style="color:var(--mute);">${s.prob}%</div>
-      </div>`;
-    });
-    scoresHtml += `</div></div></div>`;
-  }
-
-  let liveMarketsHtml = '';
-  if (f.is_live) {
-    const ah = f.actual_home || 0, aa = f.actual_away || 0;
-    const elapsed = computeElapsed(f.commence_time);
-    const { markets } = computeLiveConditional(f.xg_home, f.xg_away, ah, aa, elapsed);
-    liveMarketsHtml = `<div id="live-events-${f.id}" class="flex flex-wrap gap-1 mt-2"></div>
-    <div id="live-markets-${f.id}">${buildLiveMarketsHtml(markets, elapsed, ah, aa)}</div>`;
-  }
-
-  let liveScoreHtml = '';
-  if (f.is_live) {
-    const sh = f.actual_home !== null ? f.actual_home : '?';
-    const sa = f.actual_away !== null ? f.actual_away : '?';
-    liveScoreHtml = `<div class="text-center px-4" id="live-score-${f.id}">
-      <div class="text-2xl font-bold font-mono">${sh} - ${sa}</div>
-      <div class="flex items-center gap-1 justify-center mt-1"><span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span><span class="text-[10px] font-mono" style="color:var(--live);">LIVE</span></div>
-    </div>`;
-  }
-
-  const liveStyle = featured
-    ? `border-color:color-mix(in srgb, var(--live) 50%, transparent); box-shadow:0 0 0 1px color-mix(in srgb, var(--live) 40%, transparent), 0 4px 20px color-mix(in srgb, var(--live) 20%, transparent);`
-    : hasBet
-      ? `border-color:color-mix(in srgb, var(--bet) 30%, transparent); box-shadow:0 0 0 1px color-mix(in srgb, var(--bet) 40%, transparent), 0 4px 14px color-mix(in srgb, var(--bet) 15%, transparent);`
-      : `border-color:var(--border);`;
-
-  const homeColor = TEAM_COLOR[f.home] || '#10b981';
-  const awayColor = TEAM_COLOR[f.away] || '#0891b2';
-  const colorBar = `<div style="height:3px; background:linear-gradient(to right, ${homeColor}bb 0%, ${homeColor}bb 50%, ${awayColor}bb 50%, ${awayColor}bb 100%);"></div>`;
+  const nameH = LANG === 'es' ? (TEAM_ES[f.home] || f.home) : f.home;
+  const nameA = LANG === 'es' ? (TEAM_ES[f.away] || f.away) : f.away;
 
   return `
-    <div id="fix-${f.id}" onclick="if(!event.target.closest('button,a')){openDetail('${f.id}','upcoming');}" class="rounded-xl border card-hover overflow-hidden" style="background:var(--panel); cursor:pointer; ${liveStyle}">
-      ${colorBar}
-      ${featured ? `<div class="px-4 py-1.5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider" style="background:color-mix(in srgb, var(--live) 12%, transparent); color:var(--live); border-bottom:1px solid color-mix(in srgb, var(--live) 20%, transparent);"><span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span>${LANG === 'es' ? 'PARTIDO EN VIVO' : 'LIVE MATCH'}</div>` : ''}
-      <div class="px-4 sm:px-5 py-4">
-        <div class="flex items-center justify-between mb-3">
-          <div class="flex items-center gap-3">
-            ${f.is_live ? `<span class="flex items-center gap-1.5 px-2 py-0.5 rounded-full" style="background:color-mix(in srgb, var(--live) 10%, transparent); border:1px solid color-mix(in srgb, var(--live) 30%, transparent);"><span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span><span class="text-[10px] font-mono" style="color:var(--live);">LIVE</span></span>` : ''}
-            <span class="text-xs" style="color:var(--mute);">${formatDate(f.commence_time)}</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="px-2 py-0.5 rounded text-[10px] font-mono" style="color:var(--${cc}); background:color-mix(in srgb, var(--${cc}) 10%, transparent); border:1px solid color-mix(in srgb, var(--${cc}) 20%, transparent);">${f.fixture_confidence || '—'}</span>
-            <button onclick="shareFixture('${f.id}')" title="${LANG==='es'?'Compartir':'Share'}" class="flex items-center justify-center w-6 h-6 rounded-full" style="background:color-mix(in srgb,var(--mute) 10%,transparent); color:var(--mute); border:1px solid color-mix(in srgb,var(--mute) 20%,transparent);">
-              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-            </button>
-          </div>
+    <div id="fix-${f.id}" onclick="openDetail('${f.id}','upcoming')" class="rounded-2xl flex items-center gap-2 sm:gap-4 p-3 sm:p-4 cursor-pointer card-hover" style="background:var(--panel); box-shadow:var(--shadow-card);">
+      <div class="flex-none w-[44px] sm:w-[52px] text-center">
+        <div class="text-[12px] sm:text-[13px] font-bold font-mono" style="color:var(--ui-black);">${time}</div>
+        <div class="text-[10px] sm:text-[11px]" style="color:var(--placeholder);">${dateLabel}</div>
+      </div>
+      <div class="flex-1 min-w-0 flex flex-col gap-2">
+        <div class="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
+          <span class="text-base sm:text-lg flex-none">${teamFlag(f.home)}</span>
+          <span class="text-[14px] sm:text-[16px] font-bold flex-1 min-w-0 truncate">${nameH}</span>
+          ${has1x2 ? `<span class="text-[12px] sm:text-[13px] font-mono flex-none" style="color:var(--mute);">${Math.round(pH)}%</span>` : ''}
         </div>
-        <div class="flex items-center justify-between mb-1">
-          <div class="flex-1">
-            <div class="text-base font-semibold flex items-center gap-1.5 flex-wrap"><span class="inline-block w-2 h-2 rounded-sm shrink-0" style="background:${homeColor};opacity:0.8;"></span>${teamName(f.home)}</div>
-            <div class="text-base font-semibold flex items-center gap-1.5 mt-0.5 flex-wrap" style="color:var(--mute);"><span class="inline-block w-2 h-2 rounded-sm shrink-0" style="background:${awayColor};opacity:0.8;"></span>${teamName(f.away)}</div>
-          </div>
-          ${liveScoreHtml}
-          ${f.is_ko && f.p_advance_home != null ? `
-          <div class="text-right mr-3">
-            <div class="text-sm font-bold font-mono" style="color:var(--bet);">${(f.p_advance_home*100).toFixed(0)}%</div>
-            <div class="text-sm font-bold font-mono" style="color:var(--mute);">${(f.p_advance_away*100).toFixed(0)}%</div>
-          </div>
-          <div class="text-right mr-4">
-            <div class="text-[10px]" style="color:var(--warn);">${LANG==='es'?'P(avanza)':'P(adv)'}</div>
-            <div class="text-[10px]" style="color:var(--mute);"> </div>
-          </div>` : ''}
-          <div class="text-right mr-4">
-            <div class="text-lg font-bold font-mono" style="color:var(--alta);">${f.xg_home}</div>
-            <div class="text-lg font-bold font-mono" style="color:var(--mute);">${f.xg_away}</div>
-          </div>
-          <div class="text-right">
-            <div class="tooltip-trigger tooltip-right text-[10px]" style="color:var(--mute);">xG <span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="xg"></span></div>
-          </div>
+        <div class="flex items-center gap-1.5 sm:gap-2.5 min-w-0">
+          <span class="text-base sm:text-lg flex-none">${teamFlag(f.away)}</span>
+          <span class="text-[14px] sm:text-[16px] font-bold flex-1 min-w-0 truncate">${nameA}</span>
+          ${has1x2 ? `<span class="text-[12px] sm:text-[13px] font-mono flex-none" style="color:var(--mute);">${Math.round(pA)}%</span>` : ''}
         </div>
-        ${bestBetHtml}
-        ${_renderLineupSection(f)}
-        <details class="mt-3">
-          <summary class="text-xs cursor-pointer select-none" style="color:var(--mute);">
-            ${t('all_markets')} (${f.picks.length}) — ${t('click_expand')}
-          </summary>
-          <div class="mt-2">
-            <div class="flex items-center gap-2 sm:gap-3 py-1 text-[10px] uppercase tracking-wider" style="color:var(--mute); border-bottom:1px solid color-mix(in srgb, var(--border) 50%, transparent);">
-              <span class="w-10 shrink-0"></span>
-              <span class="flex-1">${t('market')}</span>
-              <span class="w-12 sm:w-14 text-right hidden sm:block tooltip-trigger">${t('model')} <span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="model_prob"></span></span>
-              <span class="w-12 sm:w-14 text-right hidden sm:block tooltip-trigger">${t('implied')} <span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="devig_prob"></span></span>
-              <span class="w-14 text-right tooltip-trigger">${t('edge')} <span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="edge"></span></span>
-              <span class="w-12 text-right tooltip-trigger tooltip-right">${t('odds_label')} <span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="odds"></span></span>
-            </div>
-            ${picksHtml}
+        ${has1x2 ? `
+        <div class="flex items-center gap-2 mt-0.5">
+          <div class="flex-1 flex h-[5px] rounded-full overflow-hidden">
+            <span style="width:${pH}%;background:var(--ui-black);"></span>
+            <span style="width:${pD}%;background:var(--draw-bar);"></span>
+            <span style="width:${pA}%;background:var(--bet2);"></span>
           </div>
-        </details>
-        ${scoresHtml}
-        ${liveMarketsHtml}
-        ${(f.xg_home && !f.completed) ? `<div class="heatmap-container mt-2">
-          <button onclick="toggleHeatmap(this, '${_esc(f.id)}', ${Number(f.xg_home)||0}, ${Number(f.xg_away)||0}${f.is_live ? `, '${_esc(f.commence_time||'')}'` : ''})" class="text-[10px] px-2 py-1 rounded" style="color:var(--mute);border:1px solid var(--border);cursor:pointer;">&#9660; ${LANG==='es'?'Mapa de goles':'Score map'}</button>
-          <div class="score-heatmap"></div>
+          <span class="text-[10px] font-bold flex-none" style="color:var(--placeholder);">X ${Math.round(pD)}%</span>
         </div>` : ''}
       </div>
+      <div class="flex-none w-[76px] sm:w-[104px] text-center rounded-lg py-1.5 px-1 sm:px-1.5 leading-tight" style="${chipStyle}">
+        <div class="text-[10px] sm:text-[12px] font-bold truncate">${chipTop}</div>
+        ${chipSub ? `<div class="text-[9px] sm:text-[11px] font-bold">${chipSub}</div>` : ''}
+      </div>
+      <span class="flex-none text-xl sm:text-2xl" style="color:var(--placeholder); margin-left:-4px;">›</span>
+    </div>`;
+}
+
+// Live match card — kept richer (score, live probability bar, ESPN event
+// feed) since the handoff treats "En vivo" as its own dedicated view, not a
+// row in the Próximos list.
+function renderLiveCard(f) {
+  const sh = f.actual_home !== null ? f.actual_home : '?';
+  const sa = f.actual_away !== null ? f.actual_away : '?';
+  const bySide = {};
+  (f.picks || []).forEach(p => { if (['home', 'draw', 'away'].includes(p.side)) {bySide[p.side] = p.model_prob;} });
+  const pH = bySide.home, pD = bySide.draw, pA = bySide.away;
+  const has1x2 = pH != null && pD != null && pA != null;
+  const nameH = LANG === 'es' ? (TEAM_ES[f.home] || f.home) : f.home;
+  const nameA = LANG === 'es' ? (TEAM_ES[f.away] || f.away) : f.away;
+
+  return `
+    <div id="fix-${f.id}" onclick="openDetail('${f.id}','upcoming')" class="rounded-2xl p-5 cursor-pointer card-hover" style="background:var(--panel); box-shadow:var(--shadow-card);">
+      <div class="flex items-center justify-between mb-4">
+        <span class="flex items-center gap-1.5 text-xs font-bold" style="color:var(--live);"><span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span>${LANG === 'es' ? 'EN VIVO' : 'LIVE'}</span>
+        <span class="text-xs" style="color:var(--mute);">${f.is_ko ? (LANG === 'es' ? 'Ronda de 32' : 'Round of 32') : (LANG === 'es' ? 'Fase de grupos' : 'Group stage')}</span>
+      </div>
+      <div class="flex flex-col gap-3 mb-3">
+        <div class="flex items-center gap-3">
+          <span class="text-xl flex-none">${teamFlag(f.home)}</span>
+          <span class="text-[17px] font-bold flex-1">${nameH}</span>
+          <span class="text-2xl font-bold font-mono" style="font-variant-numeric:tabular-nums;">${sh}</span>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xl flex-none">${teamFlag(f.away)}</span>
+          <span class="text-[17px] font-bold flex-1">${nameA}</span>
+          <span class="text-2xl font-bold font-mono" style="font-variant-numeric:tabular-nums;">${sa}</span>
+        </div>
+      </div>
+      ${has1x2 ? `
+      <div class="pt-3" style="border-top:1px solid var(--border);">
+        <div class="flex h-2 rounded-full overflow-hidden mb-1.5">
+          <span style="width:${pH}%;background:var(--ui-black);"></span>
+          <span style="width:${pD}%;background:var(--draw-bar);"></span>
+          <span style="width:${pA}%;background:var(--bet2);"></span>
+        </div>
+        <div class="flex justify-between text-xs font-mono font-semibold" style="color:var(--mute);">
+          <span>${nameH} ${Math.round(pH)}%</span><span>X ${Math.round(pD)}%</span><span>${nameA} ${Math.round(pA)}%</span>
+        </div>
+      </div>` : ''}
+      <div id="live-events-${f.id}" class="flex flex-wrap gap-1 mt-3"></div>
     </div>`;
 }
 
@@ -2831,7 +2764,7 @@ function _sideWon(side, ah, aa) {
 }
 
 // ── History tab ──
-let historySubTab = 'bets'; // 'bets' | 'predictions' | 'bankroll' | 'results'
+let historySubTab = 'bets'; // 'bets' | 'predictions' | 'results'
 
 function setHistorySubTab(sub) {
   historySubTab = sub;
@@ -2915,7 +2848,7 @@ function renderHistory() {
   }
 
   const s = HISTORY.summary || {};
-  const sub = historySubTab; // 'bets' | 'predictions' | 'bankroll'
+  const sub = historySubTab; // 'bets' | 'predictions'
 
   // When showing results sub-tab, delegate entirely to renderResults()
   const rc = document.getElementById('results-container');
@@ -2928,7 +2861,6 @@ function renderHistory() {
       <div class="flex gap-2 mb-4 flex-wrap">
         <button onclick="setHistorySubTab('bets')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle2(false)}">${LANG === 'es' ? '💰 Apuestas' : '💰 Bets'}</button>
         <button onclick="setHistorySubTab('predictions')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle2(false)}">${LANG === 'es' ? '🎯 Predicciones' : '🎯 Predictions'}</button>
-        <button onclick="setHistorySubTab('bankroll')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle2(false)}">${LANG === 'es' ? '🏦 Banca' : '🏦 Bankroll'}</button>
         <button onclick="setHistorySubTab('results')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle2(true)}">${LANG === 'es' ? '⚽ Resultados' : '⚽ Results'}</button>
       </div>`;
     renderResults();
@@ -2945,14 +2877,11 @@ function renderHistory() {
     <div class="flex gap-2 mb-4 flex-wrap">
       <button onclick="setHistorySubTab('bets')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(sub==='bets')}">${LANG === 'es' ? '💰 Apuestas' : '💰 Bets'}</button>
       <button onclick="setHistorySubTab('predictions')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(sub==='predictions')}">${LANG === 'es' ? '🎯 Predicciones' : '🎯 Predictions'}</button>
-      <button onclick="setHistorySubTab('bankroll')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(sub==='bankroll')}">${LANG === 'es' ? '🏦 Banca' : '🏦 Bankroll'}</button>
       <button onclick="setHistorySubTab('results')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(sub==='results')}">${LANG === 'es' ? '⚽ Resultados' : '⚽ Results'}</button>
     </div>`;
 
   if (sub === 'predictions') {
     html += _renderPredictionsHistory(s);
-  } else if (sub === 'bankroll') {
-    html += _renderBankrollSim();
   } else {
     html += _renderBetsHistory(s);
   }
@@ -3109,7 +3038,6 @@ function _renderPredictionsHistory(s) {
   return html;
 }
 
-// ── Bankroll simulator ──
 // Only count actual BET picks in history:
 // - bets with pick==='BET' (new entries with pick field), OR
 // - legacy entries without pick field: use edge >= 8% as proxy
@@ -3130,286 +3058,6 @@ function _alignedHistoryStats() {
     }
   }
   return { n, won, lost, winRate: n > 0 ? (won/n*100).toFixed(1) : '0.0', roi: n > 0 ? (profit/n*100).toFixed(1) : '0.0' };
-}
-
-// Replays the historical bet sequence with 3 stake strategies:
-// flat (€1 per bet), Kelly (qtr-Kelly with cap), value (proportional to edge)
-let _bankSettings = { initial: 1000, strategy: 'kelly', market: 'ou', modelOnly: 'all', stopLoss: 20 };
-
-function setBankrollStopLoss(v) { _bankSettings.stopLoss = Number(v); renderHistory(); }
-
-function setBankrollInitial(v) {
-  const n = parseFloat(v);
-  if (n > 0) { _bankSettings.initial = n; renderHistory(); }
-}
-function setBankrollStrategy(s) {
-  _bankSettings.strategy = s; renderHistory();
-}
-function setBankrollMarket(m) {
-  _bankSettings.market = m; renderHistory();
-}
-function setBankrollModel(m) {
-  _bankSettings.modelOnly = m; renderHistory();
-}
-
-function _currentModelVersion() {
-  return (DATA && DATA.model_health && DATA.model_health.model_version) || 'v2.0-aligned';
-}
-
-function _marketCategory(market) {
-  const m = (market || '').toLowerCase();
-  if (m.includes('local') || m.includes('visitante') || m.includes('empate') ||
-      m.includes('home') || m.includes('away') || m.includes('draw')) {return '1x2';}
-  if (m.includes('over') || m.includes('under')) {return 'ou';}
-  if (m.includes('btts') || m.includes('ambos marcan') || m.includes('both score')) {return 'btts';}
-  return 'other';
-}
-
-function _simulateBankroll(initial, strategy, marketFilter, modelOnly, stopLossPct = 0) {
-  const currentVer = _currentModelVersion();
-  const all = [];
-  for (const fx of HISTORY.fixtures) {
-    const date = fx.date || fx.commence_time;
-    // Only actual BET picks with settled results
-    const rawBets = (fx.bets || []).filter(b => b.won !== null && b.won !== undefined && _isBetPick(b));
-    if (!rawBets.length) {continue;}
-
-    let eligible;
-    if (modelOnly === 'current') {
-      eligible = rawBets.filter(b => b.model_version && b.model_version === currentVer);
-    } else {
-      eligible = rawBets; // Already filtered to BETs only
-    }
-
-    for (const b of eligible) {
-      const cat = _marketCategory(b.market);
-      if (marketFilter && marketFilter !== 'all' && cat !== marketFilter) {continue;}
-      const mp = (b.model_prob != null) ? (b.model_prob > 1 ? b.model_prob / 100 : b.model_prob) : null;
-      all.push({
-        date, fx,
-        market: b.market, side: b.side,
-        odds: Number(b.odds || 1),
-        edge: Number(b.edge || 0),
-        model_prob: mp,
-        won: !!b.won,
-      });
-    }
-  }
-  all.sort((a, b) => new Date(a.date) - new Date(b.date));
-
-  let bank = initial;
-  const points = [{ x: 0, y: bank, date: null }];
-  let peak = bank;
-  let maxDD = 0;
-  let totalStake = 0, totalProfit = 0;
-  let stoppedAt = null; // index where stop-loss triggered
-  const stopFloor = stopLossPct > 0 ? initial * (1 - stopLossPct / 100) : -Infinity;
-
-  all.forEach((bet, i) => {
-    // Stop-loss: freeze bankroll once floor is hit
-    if (bank <= stopFloor && stoppedAt === null) {
-      stoppedAt = i;
-    }
-    if (stoppedAt !== null) {
-      points.push({ x: i + 1, y: bank, date: bet.date, stopped: true });
-      return;
-    }
-    let stakePct = 0;
-    if (strategy === 'flat') {
-      stakePct = 0.01;
-    } else if (strategy === 'kelly') {
-      if (bet.model_prob) {
-        const p = bet.model_prob;
-        const b_ = bet.odds - 1;
-        if (b_ > 0 && p > 0) {
-          const f = (b_ * p - (1 - p)) / b_;
-          stakePct = Math.max(0, Math.min(f * 0.25, 0.05));
-        }
-      } else {
-        const edgeFrac = Number(bet.edge || 0) / 100;
-        if (edgeFrac > 0) {stakePct = Math.min(edgeFrac * 0.25, 0.05);}
-      }
-    } else if (strategy === 'value') {
-      stakePct = Math.max(0, Math.min(bet.edge / 100 * 0.5, 0.04));
-    }
-    const stake = bank * stakePct;
-    totalStake += stake;
-    const profit = bet.won ? stake * (bet.odds - 1) : -stake;
-    bank += profit;
-    totalProfit += profit;
-    peak = Math.max(peak, bank);
-    if (peak > 0) {maxDD = Math.max(maxDD, (peak - bank) / peak * 100);}
-    points.push({ x: i + 1, y: bank, date: bet.date });
-  });
-
-  return {
-    points, finalBank: bank, totalStake, totalProfit,
-    roi: totalStake > 0 ? (totalProfit / totalStake) * 100 : 0,
-    maxDD, nBets: all.length, stoppedAt,
-    stopFloor: stopLossPct > 0 ? stopFloor : null,
-  };
-}
-
-function _renderBankrollSim() {
-  const sim = _simulateBankroll(_bankSettings.initial, _bankSettings.strategy, _bankSettings.market, _bankSettings.modelOnly, _bankSettings.stopLoss);
-
-  // ── Settings panel (always rendered so user can always change market/model) ──
-  const settingsPanel = `
-    <div class="rounded-xl border p-4 mb-4" style="background:var(--panel); border-color:var(--border);">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-        <div>
-          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Banca inicial':'Initial bankroll'}</label>
-          <div class="flex items-center gap-2">
-            <span class="text-sm" style="color:var(--mute);">€</span>
-            <input type="number" min="10" step="50" value="${_bankSettings.initial}" onchange="setBankrollInitial(this.value)"
-              class="flex-1 px-3 py-2 rounded-lg text-sm outline-none"
-              style="background:var(--panel2); border:1px solid var(--border); color:var(--ink);"/>
-          </div>
-        </div>
-        <div>
-          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Estrategia':'Strategy'}</label>
-          <div class="flex gap-1.5">
-            ${['kelly', 'flat', 'value'].map(strat => `
-              <button onclick="setBankrollStrategy('${strat}')" class="flex-1 px-3 py-2 rounded-lg text-xs font-semibold uppercase tracking-wider"
-                style="${_bankSettings.strategy === strat
-                  ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
-                  : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${strat}</button>`).join('')}
-          </div>
-        </div>
-        <div>
-          <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'Mercado':'Market'}</label>
-          <div class="flex gap-1.5">
-            ${[['all','TODOS'],['ou','O/U'],['1x2','1X2'],['btts','BTTS']].map(([m,lbl]) => `
-              <button onclick="setBankrollMarket('${m}')" class="flex-1 px-2 py-2 rounded-lg text-[10px] font-semibold uppercase tracking-wider"
-                style="${_bankSettings.market === m
-                  ? 'background:color-mix(in srgb,var(--bet) 18%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 35%,transparent);'
-                  : 'background:var(--panel2); color:var(--mute); border:1px solid var(--border);'}">${lbl}</button>`).join('')}
-          </div>
-        </div>
-      </div>
-      <div class="mt-3 pt-3" style="border-top:1px solid color-mix(in srgb,var(--border) 50%,transparent);">
-        <label class="text-xs uppercase block mb-2" style="color:var(--mute);">${LANG==='es'?'🛡️ Stop-loss (guardrail)':'🛡️ Stop-loss (guardrail)'}</label>
-        <div class="flex gap-1.5 flex-wrap">
-          ${[0,10,15,20,25].map(pct => `
-            <button onclick="setBankrollStopLoss(${pct})" class="px-3 py-1.5 rounded-lg text-[10px] font-semibold"
-              style="${_bankSettings.stopLoss === pct
-                ? 'background:color-mix(in srgb,var(--fade) 18%,transparent);color:var(--fade);border:1px solid color-mix(in srgb,var(--fade) 35%,transparent);'
-                : 'background:var(--panel2);color:var(--mute);border:1px solid var(--border);'}">${pct === 0 ? (LANG==='es'?'Sin límite':'No limit') : `-${pct}%`}</button>`).join('')}
-        </div>
-        <div class="text-[10px] mt-1.5" style="color:var(--mute);">
-          ${_bankSettings.stopLoss > 0
-            ? (LANG==='es' ? `Si la banca cae un <b>${_bankSettings.stopLoss}%</b> respecto al inicial, el modelo deja de apostar automáticamente.` : `If bankroll drops <b>${_bankSettings.stopLoss}%</b> below initial, model stops betting automatically.`)
-            : (LANG==='es' ? 'Sin guardrail — el modelo sigue apostando aunque la banca caiga.' : 'No guardrail — model keeps betting regardless of drawdown.')}
-        </div>
-      </div>
-      <div class="text-xs mt-3 leading-relaxed" style="color:var(--mute);">
-        ${_bankSettings.strategy === 'kelly'
-          ? (LANG==='es' ? '🎯 <b>Kelly</b>: stake óptimo basado en ventaja y cuota. Quarter-Kelly con tope 5% — reduce varianza.' : '🎯 <b>Kelly</b>: optimal stake from edge × odds. Quarter-Kelly capped at 5% — lower variance.')
-          : _bankSettings.strategy === 'flat'
-          ? (LANG==='es' ? '💵 <b>Flat</b>: 1% de la banca inicial por apuesta. Conservador y simple.' : '💵 <b>Flat</b>: 1% of initial bankroll per bet. Conservative and simple.')
-          : (LANG==='es' ? '⚡ <b>Value</b>: stake proporcional al edge (tope 4%). Más ventaja = más banca.' : '⚡ <b>Value</b>: stake scales with edge (cap 4%). Bigger edge = bigger stake.')}
-      </div>
-    </div>`;
-
-  // ── Empty states ──
-  if (sim.nBets === 0) {
-    const isModelFiltered = _bankSettings.modelOnly === 'current';
-    const ver = _currentModelVersion();
-    const mktLabel = {all: LANG==='es'?'ningún mercado':'any market', '1x2': '1X2', 'ou': 'O/U', 'btts': 'BTTS'}[_bankSettings.market] || _bankSettings.market;
-    const emptyMsg = isModelFiltered && _bankSettings.market === 'all'
-      ? `<div class="text-center py-10 text-sm leading-relaxed" style="color:var(--mute);">
-          ${LANG==='es'?'Modelo':'Model'} <b style="color:var(--ink);">${ver}</b> ${LANG==='es'?'sin apuestas cerradas aún.':'has no settled bets yet.'}<br>
-          ${LANG==='es'?'Backtest predice:':'Backtest predicts:'} <b style="color:var(--bet);">+5.1% ROI</b>, <b style="color:var(--bet);">61.5%</b> ${LANG==='es'?'acierto':'win rate'} <span style="color:var(--mute);">(n=39)</span><br>
-          <button onclick="setBankrollModel('all')" class="mt-3 px-3 py-1.5 rounded-lg text-xs font-semibold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet); border:1px solid var(--bet); cursor:pointer;">${LANG==='es'?'Ver backtest legacy (alineado) →':'Show legacy backtest (aligned) →'}</button>
-        </div>`
-      : `<div class="text-center py-10 text-sm" style="color:var(--mute);">${LANG==='es'?'No hay apuestas para':'No bets for'} <b>${mktLabel}</b>. ${LANG==='es'?'Prueba otro filtro.':'Try another filter.'}</div>`;
-    return settingsPanel + emptyMsg;
-  }
-
-  // Build SVG path
-  const W = 800, H = 280, PAD = 40;
-  const maxY = Math.max(...sim.points.map(p => p.y), _bankSettings.initial);
-  const minY = Math.min(...sim.points.map(p => p.y), _bankSettings.initial);
-  const yRange = Math.max(maxY - minY, 1);
-  const xRange = sim.points.length - 1 || 1;
-  const sx = i => PAD + (i / xRange) * (W - PAD * 2);
-  const sy = v => H - PAD - ((v - minY) / yRange) * (H - PAD * 2);
-  const path = sim.points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${sx(i).toFixed(1)} ${sy(p.y).toFixed(1)}`).join(' ');
-  const areaPath = path + ` L ${sx(sim.points.length - 1).toFixed(1)} ${H - PAD} L ${sx(0).toFixed(1)} ${H - PAD} Z`;
-
-  // Baseline y for initial
-  const baselineY = sy(_bankSettings.initial);
-
-  // Stop-loss floor line
-  const stopFloorLine = sim.stopFloor != null ? (() => {
-    const fy = sy(sim.stopFloor);
-    const fLabel = `–${_bankSettings.stopLoss}% (€${sim.stopFloor.toFixed(0)})`;
-    const stopX = sim.stoppedAt != null ? sx(sim.stoppedAt) : null;
-    return `<line x1="${PAD}" y1="${fy}" x2="${W - PAD}" y2="${fy}" stroke="#ef4444" stroke-dasharray="5,3" opacity="0.7" stroke-width="1.5"/>
-            <text x="${PAD + 4}" y="${fy - 4}" font-size="9" fill="#ef4444" font-family="monospace" opacity="0.8">${fLabel}</text>
-            ${stopX != null ? `<line x1="${stopX}" y1="${PAD}" x2="${stopX}" y2="${H - PAD}" stroke="#ef4444" stroke-dasharray="3,3" opacity="0.5"/>
-            <text x="${stopX + 3}" y="${PAD + 10}" font-size="8" fill="#ef4444" font-family="monospace">STOP</text>` : ''}`;
-  })() : '';
-
-  // Gridlines: 4 horizontal
-  const gridLines = [0.25, 0.5, 0.75, 1].map(f => {
-    const v = minY + yRange * f;
-    return `<line x1="${PAD}" y1="${sy(v)}" x2="${W - PAD}" y2="${sy(v)}" stroke="var(--border)" stroke-dasharray="2,3" opacity="0.4"/>
-            <text x="${PAD - 8}" y="${sy(v) + 3}" text-anchor="end" font-size="9" fill="var(--mute)" font-family="monospace">${v.toFixed(0)}</text>`;
-  }).join('');
-
-  const profitColor = sim.totalProfit >= 0 ? 'var(--bet)' : 'var(--fade)';
-  const stoppedBadge = sim.stoppedAt != null
-    ? `<div class="flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-lg" style="background:color-mix(in srgb,#ef4444 10%,transparent);color:#ef4444;border:1px solid color-mix(in srgb,#ef4444 25%,transparent);">
-        🛡️ ${LANG==='es'?`Stop-loss activado en apuesta #${sim.stoppedAt}. Banca protegida a €${sim.finalBank.toFixed(0)}.`:`Stop-loss triggered at bet #${sim.stoppedAt}. Bankroll protected at €${sim.finalBank.toFixed(0)}.`}
-       </div>`
-    : '';
-
-  return `
-    <div class="rounded-xl border p-4 mb-4" style="background:var(--panel); border-color:var(--border);">
-      <div class="flex items-end justify-between mb-3 flex-wrap gap-3">
-        <div>
-          <div class="text-xs uppercase mb-1" style="color:var(--mute);">${LANG==='es'?'Banca actual':'Current bankroll'}</div>
-          <div class="text-3xl font-bold metric" style="color:${profitColor};">€${sim.finalBank.toFixed(2)}</div>
-          <div class="text-xs mt-1" style="color:var(--mute);">${LANG==='es'?'Inicial':'Initial'} €${_bankSettings.initial.toFixed(0)} · ${sim.totalProfit >= 0 ? '+' : ''}€${sim.totalProfit.toFixed(2)}</div>
-          ${stoppedBadge}
-        </div>
-        <div class="grid grid-cols-3 gap-3 text-right">
-          <div>
-            <div class="text-xs uppercase" style="color:var(--mute);">ROI</div>
-            <div class="text-xl font-bold metric" style="color:${profitColor};">${sim.roi > 0 ? '+' : ''}${sim.roi.toFixed(1)}%</div>
-          </div>
-          <div>
-            <div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'Apuestas':'Bets'}</div>
-            <div class="text-xl font-bold metric">${sim.nBets}</div>
-          </div>
-          <div>
-            <div class="text-xs uppercase" style="color:var(--mute);">Max DD</div>
-            <div class="text-xl font-bold metric" style="color:var(--fade);">-${sim.maxDD.toFixed(1)}%</div>
-          </div>
-        </div>
-      </div>
-
-      <svg viewBox="0 0 ${W} ${H}" class="w-full" style="max-height:300px;">
-        <defs>
-          <linearGradient id="bk-grad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="${profitColor}" stop-opacity="0.3"/>
-            <stop offset="100%" stop-color="${profitColor}" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        ${gridLines}
-        <line x1="${PAD}" y1="${baselineY}" x2="${W - PAD}" y2="${baselineY}" stroke="var(--mute)" stroke-dasharray="4,3" opacity="0.6"/>
-        ${stopFloorLine}
-        <path d="${areaPath}" fill="url(#bk-grad)"/>
-        <path d="${path}" fill="none" stroke="${profitColor}" stroke-width="2"/>
-      </svg>
-    </div>
-
-    ${settingsPanel}
-    <div class="text-xs text-center" style="color:var(--mute);">
-      ${LANG==='es' ? 'Simulación retrospectiva sobre el historial real. Pasado no garantiza futuro.' : 'Retrospective sim on real history. Past performance ≠ future returns.'}
-    </div>
-  `;
 }
 
 // ── Quiniela tab ──

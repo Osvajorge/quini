@@ -38,6 +38,7 @@
   --tier-admin: #7c5cff;
   --draw-bar: #c9c9ce;
   --ui-black: #111;
+  --ui-black-ink: #ffffff;
 
   --shadow: rgba(0, 0, 0, 0.06);
   --shadow-card: 0 10px 30px -22px rgba(0, 0, 0, 0.25);
@@ -88,6 +89,7 @@
   --tier-admin: #a389ff;
   --draw-bar: #3a4150;
   --ui-black: #f1f5f9;
+  --ui-black-ink: #0a0e1a;
 
   --shadow: rgba(0, 0, 0, 0.3);
   --shadow-card: 0 10px 30px -18px rgba(0, 0, 0, 0.6);
