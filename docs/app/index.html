@@ -188,7 +188,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 /* exported goToLive, setSearch, setDateFilter, showPlayerRadar,
    setPlayersCat, setPlayersTeam, setPlayersSource, _toggleCompareMode,
    _onTeamSearch, _selectTeamOpt, _clearTeamFilter, toggleMatchSummary,
-   setHistorySubTab, checkQuinielaPw, dismissEmailBanner,
+   checkQuinielaPw, dismissEmailBanner,
    requestNotificationPermission, startPresentation, shareFixture, toggleLang,
    toggleTheme, openDetail, closeDetail, openAuth, closeAuth --
    all invoked from onclick="" attributes in markup, invisible to static analysis */
@@ -895,11 +895,6 @@ const SCREEN_TITLES = {
 };
 
 function setTab(tab) {
-  // 'results' is now a sub-tab of 'history'
-  if (tab === 'results') {
-    historySubTab = 'results';
-    tab = 'history';
-  }
   currentTab = tab;
   // Leaving detail view if it was open
   const detail = document.getElementById('detail-container');
@@ -2570,9 +2565,10 @@ function _renderMatchStats(f) {
   const away = ms.teams.find(t => t.side === 'away') || ms.teams[1];
   const hs = home.stats || {}, as = away.stats || {};
 
-  // Team colors for bars
-  const homeColor = TEAM_COLOR[home.team] || TEAM_COLOR[teamName(home.team)] || 'var(--bet)';
-  const awayColor = TEAM_COLOR[away.team] || TEAM_COLOR[teamName(away.team)] || 'var(--alta)';
+  // Neutral bar colors (app palette: home dark, away green) — never national
+  // reds, which read as alarming. Team identity still shown via the crest.
+  const homeColor = 'var(--ui-black)';
+  const awayColor = 'var(--bet2)';
 
   // Bar row: home left, label center, away right
   const stat = (k, label) => {
@@ -2639,12 +2635,6 @@ function _sideWon(side, ah, aa) {
 }
 
 // ── History tab ──
-let historySubTab = 'bets'; // 'bets' | 'predictions' | 'results'
-
-function setHistorySubTab(sub) {
-  historySubTab = sub;
-  renderHistory();
-}
 
 function renderGroups() {
   const el = document.getElementById('groups-container');
@@ -2716,201 +2706,114 @@ function renderGroups() {
   el.innerHTML = html;
 }
 
+// Unified Historial: one list of completed matches. Each row expands in place
+// to show what happened — bet outcome (won/lost, neutral), whether the model's
+// prediction hit (1X2 + exact score), and the real match stats. No sub-tabs,
+// no red.
 function renderHistory() {
+  const el = document.getElementById('history-container');
+  if (!el) {return;}
   if (!HISTORY || !HISTORY.fixtures || !HISTORY.fixtures.length) {
-    document.getElementById('history-container').innerHTML = `<div class="text-center py-12 text-sm" style="color:var(--mute);">${t('no_history')}</div>`;
+    el.innerHTML = `<div class="text-center py-12 text-sm" style="color:var(--mute);">${t('no_history')}</div>`;
     return;
   }
-
   const s = HISTORY.summary || {};
-  const sub = historySubTab; // 'bets' | 'predictions'
-
-  // When showing results sub-tab, delegate entirely to renderResults()
-  const rc = document.getElementById('results-container');
-  if (sub === 'results') {
-    if (rc) {rc.classList.remove('hidden');}
-    const subTabStyle2 = (active) => active
-      ? `background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 30%,transparent);`
-      : `background:var(--panel2); color:var(--mute); border:1px solid var(--border);`;
-    document.getElementById('history-container').innerHTML = `
-      <div class="flex gap-2 mb-4 flex-wrap">
-        <button onclick="setHistorySubTab('bets')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle2(false)}">${LANG === 'es' ? '💰 Apuestas' : '💰 Bets'}</button>
-        <button onclick="setHistorySubTab('predictions')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle2(false)}">${LANG === 'es' ? '🎯 Predicciones' : '🎯 Predictions'}</button>
-        <button onclick="setHistorySubTab('results')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle2(true)}">${LANG === 'es' ? '⚽ Resultados' : '⚽ Results'}</button>
-      </div>`;
-    renderResults();
-    return;
-  }
-  // Hide results-container when on other sub-tabs
-  if (rc) {rc.classList.add('hidden');}
-
-  // Sub-tab buttons
-  const subTabStyle = (active) => active
-    ? `background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet); border:1px solid color-mix(in srgb,var(--bet) 30%,transparent);`
-    : `background:var(--panel2); color:var(--mute); border:1px solid var(--border);`;
-  let html = `
-    <div class="flex gap-2 mb-4 flex-wrap">
-      <button onclick="setHistorySubTab('bets')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(sub==='bets')}">${LANG === 'es' ? '💰 Apuestas' : '💰 Bets'}</button>
-      <button onclick="setHistorySubTab('predictions')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(sub==='predictions')}">${LANG === 'es' ? '🎯 Predicciones' : '🎯 Predictions'}</button>
-      <button onclick="setHistorySubTab('results')" class="px-3 py-1.5 rounded-lg text-xs font-medium" style="${subTabStyle(sub==='results')}">${LANG === 'es' ? '⚽ Resultados' : '⚽ Results'}</button>
-    </div>`;
-
-  if (sub === 'predictions') {
-    html += _renderPredictionsHistory(s);
-  } else {
-    html += _renderBetsHistory(s);
-  }
-
-  document.getElementById('history-container').innerHTML = html;
-}
-
-function _renderBetsHistory(s) {
-  const clvAvg = s.avg_clv_pct;
-  const clvN = s.clv_sample_size || 0;
-  const clvBeat = s.pct_beating_close;
-  const clvBlock = clvN > 0 ? `
-    <div class="rounded-xl border p-4 mb-6" style="background:color-mix(in srgb,var(--bet) 4%,var(--panel)); border-color:color-mix(in srgb,var(--bet) 20%,var(--border));">
-      <div class="flex items-center gap-2 mb-2">
-        <span class="text-xs font-semibold uppercase tracking-wider" style="color:var(--bet);">${LANG==='es'?'Closing Line Value (CLV)':'Closing Line Value (CLV)'}</span>
-        <span class="tooltip-trigger"><span class="help-icon">?</span><span class="tooltip-content">${LANG==='es'?'Diferencia entre las cuotas a las que apostamos vs las cuotas justo antes del kickoff. CLV positivo = vencimos al cierre = evidencia de edge real, independiente de la suerte del partido.':'Diff between odds we bet vs odds at kickoff. Positive CLV = beat closing line = evidence of real edge, independent of match luck.'}</span></span>
-      </div>
-      <div class="grid grid-cols-3 gap-4 text-center">
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'CLV promedio':'Avg CLV'}</div><div class="text-2xl font-bold mt-1" style="color:${clvAvg >= 0 ? 'var(--bet)' : 'var(--mute)'};">${clvAvg > 0 ? '+' : ''}${clvAvg ?? '—'}%</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'Vence cierre':'Beat close'}</div><div class="text-2xl font-bold mt-1">${clvBeat ?? '—'}%</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'Muestra':'Sample'}</div><div class="text-2xl font-bold mt-1">${clvN}</div></div>
-      </div>
-    </div>` : '';
   const as = _alignedHistoryStats();
   const roiNum = parseFloat(as.roi);
-  // Don't display negative ROI — sample size too small for significance
   const roiDisplay = roiNum >= 0 ? `${roiNum > 0 ? '+' : ''}${as.roi}%` : '—';
-  const roiColor = roiNum >= 0 ? 'var(--bet)' : 'var(--mute)';
-  let html = clvBlock + `
-    <div class="rounded-xl border p-4 mb-6" style="background:var(--panel); border-color:var(--border);">
-      <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 text-center">
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'APUESTAS' : 'BETS'}</div><div class="text-2xl font-bold mt-1">${as.n}</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_won')}</div><div class="text-2xl font-bold mt-1" style="color:var(--bet);">${as.won}</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_lost')}</div><div class="text-2xl font-bold mt-1" style="color:var(--mute);">${as.lost}</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_winrate')}</div><div class="text-2xl font-bold mt-1">${as.winRate}%</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">ROI</div><div class="text-2xl font-bold mt-1" style="color:${roiColor};">${roiDisplay}</div></div>
-      </div>
-    </div>
-    <div class="space-y-2">`;
+  const clvAvg = s.avg_clv_pct;
+  const clvStr = clvAvg != null ? `${clvAvg > 0 ? '+' : ''}${clvAvg}%` : '—';
 
-  let histList = HISTORY.fixtures.slice().reverse();
+  const cell = (label, val, accent) => `<div><div class="text-[26px] font-extrabold" style="letter-spacing:-.03em;${accent ? 'color:var(--bet2);' : ''}">${val}</div><div class="text-[11px] mt-0.5" style="color:#a1a1a6;">${label}</div></div>`;
+  const band = `
+    <div class="rounded-2xl p-5 mb-5 grid grid-cols-2 sm:grid-cols-4 gap-4" style="background:linear-gradient(180deg,#111,#2a2a2e); color:#fff; box-shadow:var(--shadow-elevated);">
+      ${cell(LANG === 'es' ? 'Récord de apuestas' : 'Bet record', `${as.won}-${as.lost}`, false)}
+      ${cell(LANG === 'es' ? 'Acierto' : 'Win rate', `${as.winRate}%`, true)}
+      ${cell('ROI', roiDisplay, roiNum > 0)}
+      ${cell(LANG === 'es' ? 'CLV promedio' : 'Avg CLV', clvStr, (clvAvg || 0) > 0)}
+    </div>
+    <p class="text-xs mb-4" style="color:var(--mute);">${LANG === 'es' ? 'Toca un partido para ver si se apostó, si se atinó y las estadísticas.' : 'Tap a match to see the bet result, prediction accuracy and stats.'}</p>`;
+
+  let list = HISTORY.fixtures.slice().reverse();
   if (currentSearch) {
     const q = currentSearch;
-    histList = histList.filter(fx => (fx.home||'').toLowerCase().includes(q) || (fx.away||'').toLowerCase().includes(q));
+    list = list.filter(fx => (fx.home || '').toLowerCase().includes(q) || (fx.away || '').toLowerCase().includes(q) ||
+      teamName(fx.home).toLowerCase().includes(q) || teamName(fx.away).toLowerCase().includes(q));
   }
-
-  histList.forEach(fx => {
-    const score = fx.result ? `${fx.result.home ?? '?'}-${fx.result.away ?? '?'}` : '?-?';
-    const rawBets = fx.bets && fx.bets.length ? fx.bets : (fx.best_bet ? [fx.best_bet] : []);
-    const allBets = rawBets.filter(_isBetPick);
-
-    if (!allBets.length) {return;} // skip matches without actual BET picks
-
-    let betsHtml = '';
-    allBets.forEach(b => {
-      const won = b.won !== undefined ? b.won : fx.best_bet_won;
-      let desc = LANG === 'es' ? (b.description_es || b.market || '') : (b.description_en || b.market || '');
-      if (fx.home && fx.away) {desc = desc.replace(fx.home, teamName(fx.home)).replace(fx.away, teamName(fx.away));}
-      const badge = won === true
-        ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 20%,transparent); color:var(--bet);">W</span>`
-        : won === false
-          ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--mute) 20%,transparent); color:var(--mute);">L</span>`
-          : `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--mute) 20%,transparent); color:var(--mute);">—</span>`;
-      const odds = b.odds ? `@ ${Number(b.odds).toFixed(2)}` : '';
-      const edge = b.edge ? `+${b.edge}%` : '';
-      const clvBadge = (b.clv_pct != null) ? `<span class="font-mono text-[10px] px-1.5 py-0.5 rounded" title="CLV: ${b.closing_odds ? '@'+Number(b.closing_odds).toFixed(2)+' close' : ''}" style="background:color-mix(in srgb,${b.clv_pct>=0?'var(--bet)':'var(--mute)'} 12%,transparent); color:${b.clv_pct>=0?'var(--bet)':'var(--mute)'};">CLV ${b.clv_pct>0?'+':''}${b.clv_pct}%</span>` : '';
-      betsHtml += `<div class="flex items-center gap-2 text-xs mt-1">${badge} <span class="truncate">${desc}</span> ${clvBadge} <span class="font-mono ml-auto shrink-0" style="color:var(--mute);">${edge} ${odds}</span></div>`;
-    });
-
-    html += `
-      <div class="rounded-lg border px-4 py-3" style="background:var(--panel); border-color:var(--border);">
-        <div class="flex items-center justify-between gap-3">
-          <div class="flex-1 min-w-0">
-            <div class="text-sm font-medium truncate">${teamName(fx.home)} vs ${teamName(fx.away)}</div>
-          </div>
-          <span class="font-mono font-bold shrink-0">${score}</span>
-        </div>
-        ${betsHtml}
-      </div>`;
-  });
-
-  html += '</div>';
-  return html;
+  el.innerHTML = band + `<div class="space-y-2.5">${list.map(_renderHistoryRow).join('')}</div>`;
 }
 
-function _renderPredictionsHistory(s) {
-  const scoreTop1 = s.score_top1 || 0;
-  const accuracy1x2 = s.accuracy_1x2 || 0;
-  const total = s.total || 0;
-  // Count "in top 3" from fixtures since summary only has top1/top5
-  const scoreTop3 = (HISTORY.fixtures || []).filter(fx => fx.score_hit && fx.score_hit <= 3).length;
+// One completed-match row: header (teams, score, neutral outcome badges) that
+// toggles open to the full breakdown (bet result, prediction hit, stats).
+function _renderHistoryRow(fx) {
+  const r = fx.result || {};
+  const ah = r.home, aa = r.away;
+  const score = (ah != null && aa != null) ? `${ah}-${aa}` : '?-?';
+  const rawBets = fx.bets && fx.bets.length ? fx.bets : (fx.best_bet ? [fx.best_bet] : []);
+  const allBets = rawBets.filter(_isBetPick);
 
-  let html = `
-    <div class="rounded-xl border p-4 mb-6" style="background:var(--panel); border-color:var(--border);">
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'PARTIDOS' : 'MATCHES'}</div><div class="text-2xl font-bold mt-1">${total}</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? '1X2 CORRECTO' : '1X2 CORRECT'}</div><div class="text-2xl font-bold mt-1" style="color:var(--bet);">${accuracy1x2}%</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'MARCADOR EXACTO' : 'EXACT SCORE'}</div><div class="text-2xl font-bold mt-1" style="color:var(--alta);">${scoreTop1}</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'EN TOP 3' : 'IN TOP 3'}</div><div class="text-2xl font-bold mt-1">${scoreTop3}</div></div>
-      </div>
-    </div>
-    <div class="space-y-2">`;
-
-  let histList = HISTORY.fixtures.slice().reverse();
-  if (currentSearch) {
-    const q = currentSearch;
-    histList = histList.filter(fx => (fx.home||'').toLowerCase().includes(q) || (fx.away||'').toLowerCase().includes(q));
+  let badges = '';
+  if (allBets.length) {
+    const won = allBets.filter(b => b.won === true).length;
+    const lost = allBets.filter(b => b.won === false).length;
+    const c = won >= lost ? 'var(--bet)' : 'var(--mute)';
+    badges += `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,${c} 16%,transparent); color:${c};">${won}W-${lost}L</span>`;
   }
+  if (fx.correct_1x2 === true) {badges += ` <span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet);">1X2 ✓</span>`;}
+  if (fx.score_hit === 1) {badges += ` <span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? '✓ EXACTO' : '✓ EXACT'}</span>`;}
+  else if (fx.score_hit === 2 || fx.score_hit === 3) {badges += ` <span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">#${fx.score_hit}</span>`;}
 
-  histList.forEach(fx => {
-    const r = fx.result || {};
-    const score = `${r.home ?? '?'}-${r.away ?? '?'}`;
-    const topScores = fx.top_scores || [];
-    const sh = fx.score_hit;
+  const _1x2Label = v => v === '1' ? (LANG === 'es' ? 'Local' : 'Home') : v === '2' ? (LANG === 'es' ? 'Visita' : 'Away') : (LANG === 'es' ? 'Empate' : 'Draw');
+  let oneX2 = '—';
+  if (fx.correct_1x2 === true) {oneX2 = `<span style="color:var(--bet);">✓ ${_1x2Label(fx.result_1x2)}</span>`;}
+  else if (fx.correct_1x2 === false) {oneX2 = `<span style="color:var(--mute);">${_1x2Label(fx.predicted_1x2)} → ${_1x2Label(fx.result_1x2)}</span>`;}
+  const scoreHitLine = fx.score_hit === 1 ? (LANG === 'es' ? '✓ marcador exacto' : '✓ exact score')
+    : (fx.score_hit === 2 || fx.score_hit === 3) ? `top #${fx.score_hit}`
+    : (LANG === 'es' ? 'fuera de top 3' : 'outside top 3');
+  const xgLine = fx.xg_home != null ? `xG ${fx.xg_home}–${fx.xg_away}` : '';
+  const top3 = (fx.top_scores || []).slice(0, 3).map(ts => `${ts.home}-${ts.away}`).join(' · ');
 
-    // Score hit badge — only celebrate true accuracy
-    // rank 1 → EXACTO (green)
-    // rank 2-3 → close (#2 / #3, muted green)
-    // rank 4-5 or null → no badge (predictions weren't really right)
-    let scoreBadge = '';
-    if (sh === 1) {scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? '✓ EXACTO' : '✓ EXACT'}</span>`;}
-    else if (sh === 2 || sh === 3) {scoreBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">#${sh}</span>`;}
-
-    // 1X2 badge
-    const r1x2 = fx.result_1x2;
-    const p1x2 = fx.predicted_1x2;
-    const correct1x2 = fx.correct_1x2;
-    let resultBadge = '';
-    const _1x2Label = v => v === '1' ? (LANG === 'es' ? 'LOCAL' : 'HOME') : v === '2' ? (LANG === 'es' ? 'VISITA' : 'AWAY') : (LANG === 'es' ? 'EMPATE' : 'DRAW');
-    if (correct1x2 === true) {resultBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet);">${_1x2Label(r1x2)} ✓</span>`;}
-    else if (correct1x2 === false) {resultBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--mute) 15%,transparent); color:var(--mute);">${_1x2Label(p1x2)} → ${_1x2Label(r1x2)}</span>`;}
-
-    // xG line
-    const xgLine = fx.xg_home != null ? `xG ${fx.xg_home}-${fx.xg_away}` : '';
-    // Top 3 predicted scores
-    const predLine = topScores.slice(0, 3).map(ts => `${ts.home}-${ts.away}`).join(', ');
-
-    html += `
-      <div class="rounded-lg border px-4 py-3" style="background:var(--panel); border-color:var(--border);">
-        <div class="flex items-center justify-between gap-3 mb-1">
-          <div class="text-sm font-medium truncate">${teamName(fx.home)} vs ${teamName(fx.away)}</div>
-          <span class="font-mono font-bold shrink-0">${score}</span>
-        </div>
-        <div class="flex flex-wrap items-center gap-2 text-xs">
-          ${resultBadge}
-          ${scoreBadge}
-          ${xgLine ? `<span style="color:var(--mute);">${xgLine}</span>` : ''}
-          ${predLine ? `<span style="color:var(--mute);">${LANG === 'es' ? 'Pred:' : 'Pred:'} ${predLine}</span>` : ''}
-        </div>
-      </div>`;
+  let betsHtml = '';
+  allBets.forEach(b => {
+    const won = b.won;
+    let desc = LANG === 'es' ? (b.description_es || b.market || '') : (b.description_en || b.market || '');
+    if (fx.home && fx.away) {desc = desc.replace(fx.home, teamName(fx.home)).replace(fx.away, teamName(fx.away));}
+    const mark = won === true ? '✓' : won === false ? '✗' : '·';
+    const c = won === true ? 'var(--bet)' : 'var(--mute)';
+    const clv = (b.clv_pct != null) ? `<span class="font-mono text-[10px]" style="color:${b.clv_pct >= 0 ? 'var(--bet)' : 'var(--mute)'};">CLV ${b.clv_pct > 0 ? '+' : ''}${b.clv_pct}%</span>` : '';
+    betsHtml += `<div class="flex items-center gap-2 text-xs">
+      <span class="w-4 text-center font-bold" style="color:${c};">${mark}</span>
+      <span class="flex-1 truncate">${desc}</span>${clv}
+      <span class="font-mono shrink-0" style="color:var(--mute);">${b.edge ? '+' + b.edge + '% ' : ''}${b.odds ? '@' + Number(b.odds).toFixed(2) : ''}</span>
+    </div>`;
   });
 
-  html += '</div>';
-  return html;
+  const stats = _renderMatchStats(fx);
+
+  return `
+    <div class="rounded-xl" style="background:var(--panel); box-shadow:var(--shadow-card);">
+      <button onclick="toggleMatchSummary('${fx.id}')" class="w-full text-left px-4 py-3 flex items-center justify-between gap-3" style="background:none;border:none;cursor:pointer;color:inherit;">
+        <div class="flex items-center gap-2.5 min-w-0 flex-1">
+          <span class="flex-none">${teamFlag(fx.home)}</span>
+          <span class="text-sm font-semibold truncate">${teamName(fx.home)} <span style="color:var(--mute);font-weight:400;">vs</span> ${teamName(fx.away)}</span>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          ${badges}
+          <span class="font-mono font-bold">${score}</span>
+          <span id="ms-arr-${fx.id}" class="text-xs" style="color:var(--mute);">▸</span>
+        </div>
+      </button>
+      <div id="ms-${fx.id}" class="hidden px-4 pb-4 space-y-2 text-xs" style="border-top:1px solid color-mix(in srgb,var(--border) 60%,transparent);">
+        <div class="pt-3 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+          <div><b>1X2:</b> ${oneX2}</div>
+          <div><b>${LANG === 'es' ? 'Marcador' : 'Score'}:</b> ${scoreHitLine}</div>
+          ${xgLine ? `<div style="color:var(--mute);">${xgLine}</div>` : ''}
+          ${top3 ? `<div style="color:var(--mute);"><b style="color:var(--ink);">${LANG === 'es' ? 'Top 3' : 'Top 3'}:</b> ${top3}</div>` : ''}
+        </div>
+        ${betsHtml ? `<div class="pt-2 space-y-1" style="border-top:1px solid color-mix(in srgb,var(--border) 40%,transparent);"><div class="text-[10px] font-semibold uppercase tracking-wider mt-1" style="color:var(--mute);">${LANG === 'es' ? 'Apuestas' : 'Bets'}</div>${betsHtml}</div>` : `<div class="text-[11px]" style="color:var(--mute);">${LANG === 'es' ? 'Sin apuesta en este partido.' : 'No bet on this match.'}</div>`}
+        ${stats}
+      </div>
+    </div>`;
 }
 
 // Only count actual BET picks in history:
