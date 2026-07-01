@@ -127,7 +127,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 </div>
 
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-  <div class="flex items-center gap-4 sm:gap-6 mb-6 border-b overflow-x-auto" style="border-color:var(--border);">
+  <div id="tab-bar" class="flex items-center gap-4 sm:gap-6 mb-6 border-b overflow-x-auto" style="border-color:var(--border);">
     <button onclick="setTab('upcoming')" id="tab-upcoming" class="pb-3 text-sm font-medium tab-active cursor-pointer whitespace-nowrap" data-i18n="tab_picks">Picks</button>
     <button onclick="setTab('groups')" id="tab-groups" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_groups">Grupos</button>
     <button onclick="setTab('rankings')" id="tab-rankings" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_rankings">Rankings</button>
@@ -166,6 +166,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
   <div id="history-container" class="hidden"></div>
   <div id="results-container" class="hidden"></div>
   <div id="quiniela-container" class="hidden"></div>
+  <div id="detail-container" class="hidden"></div>
 
   <div id="loading" class="text-center py-20">
     <div class="inline-block w-8 h-8 border-2 rounded-full animate-spin" style="border-color:color-mix(in srgb, var(--bet) 30%, transparent); border-top-color:var(--bet);"></div>
@@ -213,7 +214,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
    setHistorySubTab, setBankrollStopLoss, setBankrollInitial, setBankrollStrategy,
    setBankrollMarket, setBankrollModel, checkQuinielaPw, dismissEmailBanner,
    requestNotificationPermission, startPresentation, shareFixture, toggleLang,
-   toggleTheme --
+   toggleTheme, openDetail, closeDetail --
    all invoked from onclick="" attributes in markup, invisible to static analysis */
 // ── i18n ──
 const T = {
@@ -1710,6 +1711,180 @@ function formatDate(iso) {
   return d.toLocaleDateString(LANG === 'es' ? 'es' : 'en', {month:'short', day:'numeric'}) + ` ${time}`;
 }
 
+// ── Match detail (score matrix, pick card, 1X2 bars) ──
+let _detailId = null;
+let _detailBackTo = 'upcoming';
+
+function openDetail(id, backTo) {
+  _detailId = id;
+  _detailBackTo = backTo || 'upcoming';
+  ['upcoming', 'groups', 'rankings', 'bracket', 'players', 'history', 'quiniela'].forEach(t => {
+    document.getElementById(t === 'upcoming' ? 'fixtures-container' : t + '-container')?.classList.add('hidden');
+  });
+  document.getElementById('results-container')?.classList.add('hidden');
+  document.getElementById('search-bar')?.classList.add('hidden');
+  document.getElementById('filter-bar')?.classList.add('hidden');
+  document.getElementById('date-chips-bar')?.classList.add('hidden');
+  document.getElementById('tab-bar')?.classList.add('hidden');
+  document.getElementById('detail-container')?.classList.remove('hidden');
+  renderDetail();
+  window.scrollTo(0, 0);
+}
+
+function closeDetail() {
+  document.getElementById('detail-container')?.classList.add('hidden');
+  document.getElementById('tab-bar')?.classList.remove('hidden');
+  setTab(_detailBackTo);
+}
+
+function renderDetail() {
+  const el = document.getElementById('detail-container');
+  if (!el) {return;}
+  const f = DATA.fixtures.find(fx => fx.id === _detailId);
+  if (!f) {
+    el.innerHTML = `<div class="text-center py-12 text-sm" style="color:var(--mute);">${LANG === 'es' ? 'Partido no encontrado.' : 'Match not found.'}</div>`;
+    return;
+  }
+  const completed = f.completed;
+  const backLabel = _detailBackTo === 'history'
+    ? (LANG === 'es' ? '← Resultados' : '← Results')
+    : (LANG === 'es' ? '← Partidos' : '← Matches');
+  const scoreCenter = completed ? `${f.actual_home ?? '?'}–${f.actual_away ?? '?'}` : 'VS';
+  const statusLabel = completed
+    ? (f.penalty_winner ? (LANG === 'es' ? 'Final · penales' : 'Final · penalties') : (LANG === 'es' ? 'Final' : 'Final'))
+    : (f.is_ko ? (LANG === 'es' ? 'Ronda de 32' : 'Round of 32') : (LANG === 'es' ? 'Fase de grupos' : 'Group stage'));
+  const hasXg = f.xg_home != null || f.xg_away != null;
+
+  // ── 1X2 model vs market bars ──
+  const bySide = {};
+  (f.picks || []).forEach(p => { if (['home', 'draw', 'away'].includes(p.side)) {bySide[p.side] = p;} });
+  const pH = bySide.home?.model_prob, pD = bySide.draw?.model_prob, pA = bySide.away?.model_prob;
+  const mH = bySide.home?.devig_prob, mD = bySide.draw?.devig_prob, mA = bySide.away?.devig_prob;
+  const has1x2 = pH != null && pD != null && pA != null;
+  const bars1x2 = has1x2 ? `
+    <div class="mb-4">
+      <div class="flex h-[26px] rounded-lg overflow-hidden mb-1">
+        <span style="width:${pH}%;background:var(--ink);"></span>
+        <span style="width:${pD}%;background:var(--draw-bar);"></span>
+        <span style="width:${pA}%;background:var(--bet);"></span>
+      </div>
+      ${mH != null ? `<div class="flex h-4 rounded-lg overflow-hidden mb-1.5" style="opacity:.55;">
+        <span style="width:${mH}%;background:var(--ink);"></span>
+        <span style="width:${mD}%;background:var(--draw-bar);"></span>
+        <span style="width:${mA}%;background:var(--bet);"></span>
+      </div>` : ''}
+      <div class="flex justify-between text-[11px] font-mono" style="color:var(--mute);">
+        <span>${Math.round(pH)}%</span><span>${LANG === 'es' ? 'X' : 'D'} ${Math.round(pD)}%</span><span>${Math.round(pA)}%</span>
+      </div>
+    </div>` : '';
+
+  // ── Value pick card ──
+  const bb = f.best_bet;
+  let pickCard;
+  if (bb) {
+    let desc = LANG === 'es' ? (bb.description_es || bb.market) : (bb.description_en || bb.market);
+    desc = desc.replace(f.home, teamName(f.home)).replace(f.away, teamName(f.away));
+    const url = affiliateUrl(bb.best_book);
+    const bookTag = bb.best_odds && bb.best_book
+      ? (url
+        ? `<a href="${url}" target="_blank" rel="nofollow sponsored noopener noreferrer" class="text-[11px] px-1.5 py-0.5 rounded font-medium hover:underline" style="background:color-mix(in srgb,var(--mute) 12%,transparent); color:var(--mute);">${bb.best_book} ↗</a>`
+        : `<span class="text-[11px] px-1.5 py-0.5 rounded font-medium" style="background:color-mix(in srgb,var(--mute) 12%,transparent); color:var(--mute);">${bb.best_book}</span>`)
+      : '';
+    pickCard = `
+      <div class="rounded-xl p-4 mb-4" style="background:var(--accent-soft2); border:1px solid var(--accent-border);">
+        <div class="flex items-center justify-between mb-1">
+          <span class="text-[11px] font-bold uppercase tracking-wider" style="color:var(--bet);">${LANG === 'es' ? 'PICK DE VALOR' : 'VALUE PICK'}</span>
+          <span class="text-sm font-bold" style="color:var(--bet);">+${bb.edge}%</span>
+        </div>
+        <div class="text-lg font-bold mb-1">${desc}</div>
+        <div class="flex items-center gap-1.5 text-xs font-mono flex-wrap" style="color:var(--mute);">
+          <span>${LANG === 'es' ? 'modelo' : 'model'} ${Math.round(bb.model_prob || 0)}%</span>·<span>${LANG === 'es' ? 'mercado' : 'market'} ${Math.round(bb.devig_prob || 0)}%</span>·
+          <span class="font-semibold" style="color:var(--ink);">@${Number(bb.best_odds || bb.odds || 0).toFixed(2)}</span>${bookTag}
+        </div>
+      </div>`;
+  } else {
+    pickCard = `
+      <div class="rounded-xl p-4 mb-4" style="background:var(--panel2); border:1px solid var(--border);">
+        <div class="text-[11px] font-bold uppercase tracking-wider mb-1" style="color:var(--mute);">${LANG === 'es' ? 'SIN APUESTA' : 'NO BET'}</div>
+        <div class="text-sm" style="color:var(--mute);">${LANG === 'es' ? 'El modelo no encontró ventaja sobre el mercado en este partido.' : "The model didn't find an edge over the market in this match."}</div>
+      </div>`;
+  }
+
+  // ── Score matrix — 6x6 layout (corner + 5 headers x 5 headers + 5x5 data from f.score_grid) ──
+  let matrixHtml = '';
+  const grid = f.score_grid;
+  if (grid && grid.length >= 5) {
+    let maxP = 0;
+    for (let h = 0; h < 5; h++) {for (let a = 0; a < 5; a++) {if (grid[h][a] > maxP) {maxP = grid[h][a];}}}
+    let cells = `<div class="grid" style="grid-template-columns:repeat(6,1fr);gap:3px;">`;
+    cells += `<div></div>`;
+    for (let a = 0; a < 5; a++) {cells += `<div class="text-center text-[11px] font-bold py-1" style="color:var(--mute);">${a}</div>`;}
+    for (let h = 0; h < 5; h++) {
+      cells += `<div class="flex items-center justify-center text-[11px] font-bold" style="color:var(--mute);">${h}</div>`;
+      for (let a = 0; a < 5; a++) {
+        const p = grid[h][a] || 0;
+        const alpha = maxP > 0 ? (0.06 + 0.92 * (p / maxP)) : 0;
+        const isReal = completed && f.actual_home === h && f.actual_away === a;
+        const textColor = alpha > 0.5 ? '#fff' : 'var(--ink)';
+        cells += `<div class="flex items-center justify-center rounded text-[11px] font-bold" style="height:38px;font-variant-numeric:tabular-nums;background:rgba(18,185,129,${alpha.toFixed(3)});color:${textColor};${isReal ? 'box-shadow:0 0 0 2.5px var(--ink) inset;' : ''}">${p >= 1 ? Math.round(p) + '%' : ''}</div>`;
+      }
+    }
+    cells += `</div>`;
+    matrixHtml = `
+      <div class="mb-4">
+        <div class="text-xs font-bold uppercase tracking-wider mb-2" style="color:var(--mute);">${LANG === 'es' ? 'Matriz de marcadores' : 'Score matrix'}</div>
+        ${cells}
+      </div>`;
+  }
+
+  // ── Top scores bars ──
+  const topScores = (f.top_scores || []).slice(0, 7);
+  const maxTop = topScores.length ? Math.max(...topScores.map(s => s.prob)) : 0;
+  const topScoresHtml = topScores.length ? `
+    <div class="mb-4">
+      <div class="text-xs font-bold uppercase tracking-wider mb-2" style="color:var(--mute);">${LANG === 'es' ? 'Marcadores más probables' : 'Most likely scores'}</div>
+      <div class="space-y-1.5">
+        ${topScores.map(s => `
+          <div class="flex items-center gap-2 text-xs">
+            <span class="w-10 font-mono font-semibold">${s.home}-${s.away}</span>
+            <div class="flex-1 h-1.5 rounded-full overflow-hidden" style="background:var(--panel2);">
+              <div class="h-full" style="width:${maxTop ? (s.prob / maxTop * 100).toFixed(0) : 0}%;background:var(--bet);"></div>
+            </div>
+            <span class="font-mono w-10 text-right" style="color:var(--mute);">${s.prob}%</span>
+          </div>`).join('')}
+      </div>
+    </div>` : '';
+
+  const statsHtml = completed ? _renderMatchStats(f) : '';
+
+  el.innerHTML = `
+    <button onclick="closeDetail()" class="mb-4 text-sm font-semibold flex items-center gap-1" style="color:var(--mute); background:none; border:none; cursor:pointer; padding:0;">${backLabel}</button>
+    <div class="rounded-xl border p-5" style="background:var(--panel); border-color:var(--border);">
+      <div class="flex items-center justify-between mb-1">
+        <span class="text-[10px] font-bold uppercase tracking-wider" style="color:var(--mute);">${statusLabel}</span>
+        <span class="text-[10px] font-mono" style="color:var(--mute);">${formatDate(f.commence_time)}</span>
+      </div>
+      <div class="flex items-center justify-center gap-6 py-4">
+        <div class="flex flex-col items-center gap-2 flex-1">
+          <span class="text-4xl">${teamFlag(f.home)}</span>
+          <span class="text-sm font-bold text-center">${LANG === 'es' ? (TEAM_ES[f.home] || f.home) : f.home}</span>
+          ${hasXg ? `<span class="text-xs font-mono" style="color:var(--alta);">xG ${f.xg_home ?? '—'}</span>` : ''}
+        </div>
+        <div class="text-2xl font-bold font-mono px-2">${scoreCenter}</div>
+        <div class="flex flex-col items-center gap-2 flex-1">
+          <span class="text-4xl">${teamFlag(f.away)}</span>
+          <span class="text-sm font-bold text-center">${LANG === 'es' ? (TEAM_ES[f.away] || f.away) : f.away}</span>
+          ${hasXg ? `<span class="text-xs font-mono" style="color:var(--alta);">xG ${f.xg_away ?? '—'}</span>` : ''}
+        </div>
+      </div>
+      ${bars1x2}
+      ${pickCard}
+      ${matrixHtml}
+      ${topScoresHtml}
+      ${statsHtml}
+    </div>`;
+}
+
 // ── Fixtures (Picks tab) ──
 function _isoDate(iso) { return iso ? iso.slice(0, 10) : ''; }
 
@@ -2013,7 +2188,7 @@ function renderFixtureCard(f, featured = false) {
   const colorBar = `<div style="height:3px; background:linear-gradient(to right, ${homeColor}bb 0%, ${homeColor}bb 50%, ${awayColor}bb 50%, ${awayColor}bb 100%);"></div>`;
 
   return `
-    <div id="fix-${f.id}" class="rounded-xl border card-hover overflow-hidden" style="background:var(--panel); ${liveStyle}">
+    <div id="fix-${f.id}" onclick="if(!event.target.closest('button,a')){openDetail('${f.id}','upcoming');}" class="rounded-xl border card-hover overflow-hidden" style="background:var(--panel); cursor:pointer; ${liveStyle}">
       ${colorBar}
       ${featured ? `<div class="px-4 py-1.5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider" style="background:color-mix(in srgb, var(--live) 12%, transparent); color:var(--live); border-bottom:1px solid color-mix(in srgb, var(--live) 20%, transparent);"><span class="w-1.5 h-1.5 rounded-full pulse-live" style="background:var(--live);"></span>${LANG === 'es' ? 'PARTIDO EN VIVO' : 'LIVE MATCH'}</div>` : ''}
       <div class="px-4 sm:px-5 py-4">
@@ -2540,6 +2715,7 @@ function _renderMatchSummary(f) {
           <div class="text-[10px] font-semibold uppercase tracking-wider mt-2" style="color:var(--mute);">${LANG === 'es' ? 'Apuestas' : 'Bets'}</div>
           ${betRows}
         </div>` : ''}
+        <button onclick="event.stopPropagation();openDetail('${f.id}','history');" class="text-[11px] font-semibold underline pt-1" style="color:var(--bet); background:none; border:none; cursor:pointer; padding:0;">${LANG === 'es' ? 'Ver detalle completo →' : 'View full detail →'}</button>
       </div>
     </div>`;
 }
@@ -2554,7 +2730,7 @@ function _renderLineupSection(f) {
   const awayT = teams.find(t => t.team === f.away) || teams[1];
   const absences = lu.absences || {};
   const hc = TEAM_COLOR[f.home] || 'var(--bet)';
-  const ac = TEAM_COLOR[f.away] || 'var(--accent)';
+  const ac = TEAM_COLOR[f.away] || 'var(--alta)';
 
   const renderTeam = (t, color) => {
     const abs = absences[t.team] || [];
@@ -2588,7 +2764,7 @@ function _renderMatchStats(f) {
 
   // Team colors for bars
   const homeColor = TEAM_COLOR[home.team] || TEAM_COLOR[teamName(home.team)] || 'var(--bet)';
-  const awayColor = TEAM_COLOR[away.team] || TEAM_COLOR[teamName(away.team)] || 'var(--accent)';
+  const awayColor = TEAM_COLOR[away.team] || TEAM_COLOR[teamName(away.team)] || 'var(--alta)';
 
   // Bar row: home left, label center, away right
   const stat = (k, label) => {
