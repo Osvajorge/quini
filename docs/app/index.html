@@ -423,6 +423,7 @@ function toggleTheme() {
 applyTheme();
 
 // ── Data loading ──
+// eslint-disable-next-line no-unused-vars -- fetched for a future favorites/projection view; the real bracket no longer reads it
 let PROJECTIONS = null;
 let MATCH_STATS = null;
 let PLAYER_STATS = null;
@@ -889,7 +890,7 @@ const SCREEN_TITLES = {
   upcoming: {es:'Partidos', en:'Matches'},
   picks: {es:'Picks del día', en:"Today's picks"},
   rankings: {es:'Ranking', en:'Ranking'},
-  bracket: {es:'Camino al título', en:'Path to the title'},
+  bracket: {es:'Cuadro de eliminación', en:'Knockout bracket'},
   history: {es:'Rendimiento', en:'Performance'},
 };
 
@@ -1367,56 +1368,17 @@ const _FX_TO_STD = {
 };
 const _stdName = n => _FX_TO_STD[n] || n;
 
-// Teams knocked out in completed knockout (cross-group) fixtures — returned as
-// a Set of normalized names. projections.json is a full pre-tournament Monte
-// Carlo and still lists eliminated teams with nonzero title odds; we drop them
-// so the bracket reflects who's actually still alive.
-function _eliminatedTeams() {
-  const out = new Set();
-  const standings = DATA && DATA.standings;
-  if (!standings) {return out;}
-  const group = {};
-  standings.forEach(g => g.teams.forEach(tm => { group[tm.name] = g.group; group[_stdName(tm.name)] = g.group; }));
-  ((DATA && DATA.fixtures) || []).forEach(f => {
-    if (!f.completed) {return;}
-    const hg = group[_stdName(f.home)], ag = group[_stdName(f.away)];
-    if (!hg || !ag || hg === ag) {return;} // group-stage or unknown → not a KO elimination
-    let loser = null;
-    if (f.penalty_winner) {
-      loser = f.penalty_winner === f.home ? f.away : f.home;
-    } else if (f.actual_home != null && f.actual_away != null) {
-      if (f.actual_home > f.actual_away) {loser = f.away;}
-      else if (f.actual_away > f.actual_home) {loser = f.home;}
-    }
-    if (loser) {out.add(_stdName(loser));}
-  });
-  return out;
-}
-
-// Bracket tab: "Camino al título" — favorites funnel by stage, from the model's
-// Monte Carlo reach-probabilities, excluding already-eliminated teams.
+// Bracket tab: REAL knockout tree from actual fixtures. Rounds auto-detected by
+// counting prior knockout wins per team — no hardcoded bracket map, no Monte
+// Carlo. Completed games advance the real winner; pending ties show the model's
+// P(advance). Fills in as the feed confirms each cross.
 function renderBracket() {
   const el = document.getElementById('bracket-container');
   if (!el) {return;}
-  const p = PROJECTIONS;
-  if (!p || !p.teams || !p.teams.length) {
-    el.innerHTML = `<div class="text-center py-16 text-sm" style="color:var(--mute);">${LANG === 'es' ? 'Proyecciones no disponibles aún.' : 'Projections not available yet.'}</div>`;
-    return;
-  }
+  const fixtures = (DATA && DATA.fixtures) || [];
   const standings = (DATA && DATA.standings) || [];
   const flagMap = {};
   standings.forEach(g => g.teams.forEach(tm => { if (tm.flag) { flagMap[tm.name] = tm.flag; flagMap[_stdName(tm.name)] = tm.flag; } }));
-  const elim = _eliminatedTeams();
-
-  const alive = p.teams
-    .filter(t => (t.p_win || 0) > 0 && !elim.has(_stdName(t.team)))
-    .sort((a, b) => (b.p_win || 0) - (a.p_win || 0));
-
-  if (!alive.length) {
-    el.innerHTML = `<div class="text-center py-16 text-sm" style="color:var(--mute);">${LANG === 'es' ? 'Sin proyecciones disponibles.' : 'No projections available.'}</div>`;
-    return;
-  }
-
   const disp = n => LANG === 'es' ? (TEAM_ES[n] || n) : n;
   const crest = (name, size) => {
     const url = flagMap[name] || flagMap[_stdName(name)];
@@ -1424,48 +1386,75 @@ function renderBracket() {
     const e = teamFlag(name) || teamFlag(_stdName(name)) || '';
     return e ? `<span class="flex-none" style="font-size:${size}px;line-height:1;">${e}</span>` : '';
   };
-  const row = (t, prob) => `
-    <div class="flex items-center justify-between gap-2">
-      <span class="flex items-center gap-2 text-sm font-bold min-w-0">${crest(t.team, 18)}<span class="truncate">${disp(t.team)}</span></span>
-      <span class="text-xs font-mono flex-none" style="color:var(--mute); font-variant-numeric:tabular-nums;">${Math.round(prob)}%</span>
-    </div>`;
-  const card = inner => `<div class="rounded-xl p-3" style="background:var(--panel); box-shadow:var(--shadow-card);">${inner}</div>`;
-
-  const colOf = (label, key, n) => {
-    const list = alive.slice().sort((a, b) => (b[key] || 0) - (a[key] || 0)).filter(t => (t[key] || 0) > 0).slice(0, n);
-    return `
-      <div class="flex flex-col gap-3.5 flex-none" style="width:200px;">
-        <div class="text-[11px] font-extrabold uppercase tracking-wider" style="color:var(--mute); letter-spacing:.06em;">${label}</div>
-        ${list.map(t => card(row(t, t[key]))).join('')}
-      </div>`;
+  const winner = f => {
+    if (!f.completed || f.actual_home == null) {return null;}
+    if (f.actual_home > f.actual_away) {return f.home;}
+    if (f.actual_away > f.actual_home) {return f.away;}
+    return f.penalty_winner || null;
   };
 
-  const champ = alive[0];
-  const champCol = `
-    <div class="flex flex-col flex-none" style="width:220px;">
-      <div class="text-[11px] font-extrabold uppercase tracking-wider mb-3.5" style="color:var(--mute); letter-spacing:.06em;">${LANG === 'es' ? 'Campeón' : 'Champion'}</div>
-      <div class="rounded-2xl p-4" style="background:linear-gradient(180deg,#111,#2a2a2e); color:#fff; box-shadow:var(--shadow-elevated); border:1px solid rgba(255,255,255,.08);">
-        <div class="text-[11px] font-extrabold uppercase tracking-wider mb-3" style="color:var(--bet2); letter-spacing:.06em;">${LANG === 'es' ? 'Campeón previsto' : 'Projected champion'}</div>
-        <div class="flex items-center gap-2.5 text-xl font-extrabold">${crest(champ.team, 26)}${disp(champ.team)}</div>
-        <div class="text-xs mt-1.5" style="color:#a1a1a6;">${(champ.p_win || 0).toFixed(1)}% ${LANG === 'es' ? 'de probabilidad de título' : 'title probability'}</div>
-      </div>
-    </div>`;
+  const ko = fixtures.filter(f => f.is_ko).slice().sort((a, b) => Date.parse(a.commence_time) - Date.parse(b.commence_time));
+  if (!ko.length) {
+    el.innerHTML = `<div class="text-center py-16 text-sm" style="color:var(--mute);">${LANG === 'es' ? 'El cuadro se llenará cuando arranque la eliminación.' : 'Bracket fills in once the knockout stage starts.'}</div>`;
+    return;
+  }
+  const wins = {};
+  const ROUNDS = [
+    {es:'16avos', en:'Round of 32'}, {es:'8vos', en:'Round of 16'},
+    {es:'Cuartos', en:'Quarters'}, {es:'Semis', en:'Semis'}, {es:'Final', en:'Final'},
+  ];
+  const cols = [[], [], [], [], []];
+  ko.forEach(f => {
+    const r = Math.min(4, Math.max(wins[f.home] || 0, wins[f.away] || 0));
+    cols[r].push(f);
+    const w = winner(f);
+    if (w) {wins[w] = (wins[w] || 0) + 1;}
+  });
 
-  const nSims = p.n_sims ? p.n_sims.toLocaleString(LANG === 'es' ? 'es' : 'en') : '';
+  const teamRow = (name, o) => {
+    const nameStyle = o.won ? 'font-weight:800;' : o.lost ? 'opacity:.4;text-decoration:line-through;' : 'font-weight:600;';
+    const right = o.score != null
+      ? `<span class="font-mono font-bold flex-none" style="min-width:14px;text-align:right;${o.won ? '' : 'color:var(--mute);'}">${o.score}</span>`
+      : (o.prob != null ? `<span class="font-mono flex-none text-xs" style="color:var(--mute);min-width:30px;text-align:right;">${Math.round(o.prob)}%</span>` : '');
+    return `<div class="flex items-center gap-2 min-w-0">
+      ${crest(name, 18)}
+      <span class="text-sm truncate flex-1 min-w-0" style="${nameStyle}">${name ? disp(name) : (LANG === 'es' ? 'Por confirmar' : 'TBD')}</span>
+      ${right}
+    </div>`;
+  };
+
+  const matchCard = f => {
+    const w = winner(f);
+    const done = f.completed && f.actual_home != null;
+    const penNote = f.penalty_winner ? `<div class="text-[9px] text-center mt-1" style="color:var(--pending-text);">${LANG === 'es' ? 'penales' : 'penalties'}</div>` : '';
+    return `<div onclick="openDetail('${f.id}','bracket')" class="rounded-xl p-3 cursor-pointer card-hover flex flex-col gap-2" style="background:var(--panel); box-shadow:var(--shadow-card);${done ? 'border:1px solid color-mix(in srgb,var(--bet) 22%,var(--border));' : ''}">
+      ${teamRow(f.home, {won: w === f.home, lost: done && w !== f.home, prob: done ? null : (f.p_advance_home != null ? f.p_advance_home * 100 : null), score: done ? f.actual_home : null})}
+      ${teamRow(f.away, {won: w === f.away, lost: done && w !== f.away, prob: done ? null : (f.p_advance_away != null ? f.p_advance_away * 100 : null), score: done ? f.actual_away : null})}
+      ${penNote}
+    </div>`;
+  };
+
+  const renderCol = (list, i) => {
+    const head = `<div class="text-[11px] font-extrabold uppercase tracking-wider" style="color:var(--mute); letter-spacing:.06em;">${ROUNDS[i][LANG]}${list.length ? ` <span style="color:var(--placeholder);">· ${list.length}</span>` : ''}</div>`;
+    const body = list.length
+      ? list.map(matchCard).join('')
+      : `<div class="rounded-xl p-3 text-center text-xs" style="background:var(--panel2); color:var(--placeholder);">${LANG === 'es' ? 'Por definir' : 'TBD'}</div>`;
+    return `<div class="flex flex-col gap-3 flex-none" style="width:200px;">${head}${body}</div>`;
+  };
+
+  // Show rounds up to the deepest with a fixture, plus the next (upcoming) one.
+  const deepest = cols.reduce((acc, l, i) => (l.length ? i : acc), 0);
+  const maxCol = Math.min(4, deepest + 1);
+  const colsToRender = cols.slice(0, maxCol + 1).map((list, i) => renderCol(list, i)).join('');
+
   el.innerHTML = `
     <div class="flex items-baseline justify-between gap-3 mb-4">
-      <p class="text-sm" style="color:var(--mute);">${LANG === 'es' ? 'Probabilidad del modelo de alcanzar cada ronda. Excluye selecciones ya eliminadas.' : 'Model probability of reaching each round. Excludes already-eliminated teams.'}</p>
-      <span class="text-[13px] font-mono flex-none hidden sm:block" style="color:var(--mute);">${LANG === 'es' ? 'proyección · desliza →' : 'projection · scroll →'}</span>
+      <p class="text-sm" style="color:var(--mute);">${LANG === 'es' ? 'Cuadro real de eliminación. Los ganadores avanzan automáticamente; los pendientes muestran la probabilidad del modelo.' : 'Real knockout bracket. Winners advance automatically; pending ties show the model probability.'}</p>
+      <span class="text-[13px] font-mono flex-none hidden sm:block" style="color:var(--mute);">${LANG === 'es' ? 'desliza →' : 'scroll →'}</span>
     </div>
     <div class="overflow-x-auto no-scrollbar pb-2 -mx-1 px-1">
-      <div class="flex gap-6" style="min-width:860px;">
-        ${colOf(LANG === 'es' ? 'Cuartos' : 'Quarters', 'p_qf', 8)}
-        ${colOf(LANG === 'es' ? 'Semifinal' : 'Semifinal', 'p_sf', 5)}
-        ${colOf('Final', 'p_f', 3)}
-        ${champCol}
-      </div>
-    </div>
-    ${nSims ? `<p class="text-[11px] mt-3" style="color:var(--placeholder);">Monte Carlo · n=${nSims}${elim.size ? ` · ${elim.size} ${LANG === 'es' ? 'eliminadas excluidas' : 'eliminated excluded'}` : ''}</p>` : ''}`;
+      <div class="flex gap-5 items-start" style="min-width:max-content;">${colsToRender}</div>
+    </div>`;
 }
 
 function renderRankings() {
@@ -1777,7 +1766,7 @@ function renderDetail() {
         <span class="flex-1 font-medium truncate">${p.market}</span>
         <span class="font-mono w-12 sm:w-14 text-right hidden sm:block">${p.model_prob}%</span>
         <span class="font-mono w-12 sm:w-14 text-right hidden sm:block" style="color:var(--mute);">${p.devig_prob}%</span>
-        <span class="font-mono w-14 text-right" style="color:${p.edge > 0 ? 'var(--bet)' : p.edge < -3 ? 'var(--fade)' : 'var(--mute)'};">${p.edge > 0 ? '+' : ''}${p.edge}%</span>
+        <span class="font-mono w-14 text-right" style="color:${p.edge > 0 ? 'var(--bet)' : p.edge < -3 ? 'var(--mute)' : 'var(--mute)'};">${p.edge > 0 ? '+' : ''}${p.edge}%</span>
         <span class="font-mono w-12 text-right" style="color:var(--mute);">@${Number(p.odds).toFixed(2)}</span>
       </div>`;
   }).join('');
@@ -1856,7 +1845,16 @@ function renderPicks() {
 function _isoDate(iso) { return iso ? iso.slice(0, 10) : ''; }
 
 function renderFixtures() {
-  let fixtures = DATA.fixtures.filter(f => !f.completed);
+  // Exclude fixtures whose kickoff was >3h ago but still aren't marked completed
+  // or live — the match was played, the data feed just hasn't filled the result
+  // yet. Showing it under "Próximos" is wrong (e.g. Mexico–Ecuador).
+  const _cutoff = Date.now() - 3 * 3600 * 1000;
+  let fixtures = DATA.fixtures.filter(f => {
+    if (f.completed) {return false;}
+    if (f.is_live) {return true;}
+    const ct = Date.parse(f.commence_time);
+    return isNaN(ct) || ct > _cutoff;
+  });
 
   // Main filter
   if (currentFilter === 'bet') {fixtures = fixtures.filter(f => f.best_bet);}
@@ -2386,10 +2384,10 @@ function _renderResultsContent() {
     <span style="color:var(--bet);">xGF ${xgf.toFixed(2)}</span>
     <div class="flex-1 flex rounded-full overflow-hidden" style="height:3px;">
       <div style="width:${(xgf/(xgf+xga)*100).toFixed(0)}%;background:var(--bet);"></div>
-      <div style="flex:1;background:var(--fade);opacity:0.4;"></div>
+      <div style="flex:1;background:var(--mute);opacity:0.4;"></div>
     </div>
-    <span style="color:var(--fade);">xGC ${xga.toFixed(2)}</span>
-    <span style="color:${xgdiff>=0?'var(--bet)':'var(--fade)'};font-weight:600;">xGD ${xgdiffStr}</span>
+    <span style="color:var(--mute);">xGC ${xga.toFixed(2)}</span>
+    <span style="color:${xgdiff>=0?'var(--bet)':'var(--mute)'};font-weight:600;">xGD ${xgdiffStr}</span>
   </div>`:'';
 
   cont.innerHTML = `
@@ -2414,7 +2412,7 @@ function _renderResultsContent() {
           <span class="text-[9px] font-semibold uppercase tracking-wider w-10 text-right" style="color:var(--mute);">/${LANG==='es'?'PJ':'GM'}</span>
         </div>
         ${sRow(LANG==='es'?'Goles a favor':'Goals scored', gf, n?(gf/n).toFixed(1):'—', 'var(--bet)')}
-        ${sRow(LANG==='es'?'Goles en contra':'Goals conceded', ga, n?(ga/n).toFixed(1):'—', ga>gf?'var(--fade)':'var(--ink)')}
+        ${sRow(LANG==='es'?'Goles en contra':'Goals conceded', ga, n?(ga/n).toFixed(1):'—', ga>gf?'var(--mute)':'var(--ink)')}
         ${hasStats?sRow(LANG==='es'?'Posesión %':'Possession %', avgPoss, avgPoss, 'var(--ink)'):''}
         ${hasStats?sRow(LANG==='es'?'Tiros totales':'Shots', shots, avg(shots)):''}
         ${hasStats?sRow(LANG==='es'?'A puerta':'On target', shotsOn, avg(shotsOn)):''}
@@ -2451,7 +2449,7 @@ function _renderMatchSummary(f) {
     else { lost++; profit -= 1; }
     let desc = LANG === 'es' ? (b.description_es || b.market) : (b.description_en || b.market);
     if (f.home && f.away) {desc = desc.replace(f.home, teamName(f.home)).replace(f.away, teamName(f.away));}
-    const c = w ? 'var(--bet)' : 'var(--fade)';
+    const c = w ? 'var(--bet)' : 'var(--mute)';
     return `<div class="flex items-center gap-2 text-xs">
       <span class="w-4 text-center font-bold" style="color:${c};">${w ? '✓' : '✗'}</span>
       <span class="flex-1 truncate">${desc}</span>
@@ -2467,7 +2465,7 @@ function _renderMatchSummary(f) {
   const oneX2Line = (p1x2 && r1x2)
     ? (oneX2Correct
         ? `<span style="color:var(--bet);">✓ ${oneX2Label(r1x2)}</span>`
-        : `<span style="color:var(--fade);">✗ ${LANG === 'es' ? 'predijo' : 'predicted'} ${oneX2Label(p1x2)} → ${oneX2Label(r1x2)}</span>`)
+        : `<span style="color:var(--mute);">✗ ${LANG === 'es' ? 'predijo' : 'predicted'} ${oneX2Label(p1x2)} → ${oneX2Label(r1x2)}</span>`)
     : '—';
 
   // Score hit
@@ -2488,7 +2486,7 @@ function _renderMatchSummary(f) {
   // Summary top-line
   let topBadges = '';
   if (allBets.length) {
-    const c = profit >= 0 ? 'var(--bet)' : 'var(--fade)';
+    const c = profit >= 0 ? 'var(--bet)' : 'var(--mute)';
     topBadges += `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,${c} 18%,transparent); color:${c};">${won}W-${lost}L · ${profit >= 0 ? '+' : ''}${profit.toFixed(1)}u</span>`;
   }
   if (sh === 1) {topBadges += ` <span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? '✓ EXACTO' : '✓ EXACT'}</span>`;}
@@ -2777,7 +2775,7 @@ function _renderBetsHistory(s) {
         <span class="tooltip-trigger"><span class="help-icon">?</span><span class="tooltip-content">${LANG==='es'?'Diferencia entre las cuotas a las que apostamos vs las cuotas justo antes del kickoff. CLV positivo = vencimos al cierre = evidencia de edge real, independiente de la suerte del partido.':'Diff between odds we bet vs odds at kickoff. Positive CLV = beat closing line = evidence of real edge, independent of match luck.'}</span></span>
       </div>
       <div class="grid grid-cols-3 gap-4 text-center">
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'CLV promedio':'Avg CLV'}</div><div class="text-2xl font-bold mt-1" style="color:${clvAvg >= 0 ? 'var(--bet)' : 'var(--fade)'};">${clvAvg > 0 ? '+' : ''}${clvAvg ?? '—'}%</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'CLV promedio':'Avg CLV'}</div><div class="text-2xl font-bold mt-1" style="color:${clvAvg >= 0 ? 'var(--bet)' : 'var(--mute)'};">${clvAvg > 0 ? '+' : ''}${clvAvg ?? '—'}%</div></div>
         <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'Vence cierre':'Beat close'}</div><div class="text-2xl font-bold mt-1">${clvBeat ?? '—'}%</div></div>
         <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG==='es'?'Muestra':'Sample'}</div><div class="text-2xl font-bold mt-1">${clvN}</div></div>
       </div>
@@ -2792,7 +2790,7 @@ function _renderBetsHistory(s) {
       <div class="grid grid-cols-2 sm:grid-cols-5 gap-4 text-center">
         <div><div class="text-xs uppercase" style="color:var(--mute);">${LANG === 'es' ? 'APUESTAS' : 'BETS'}</div><div class="text-2xl font-bold mt-1">${as.n}</div></div>
         <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_won')}</div><div class="text-2xl font-bold mt-1" style="color:var(--bet);">${as.won}</div></div>
-        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_lost')}</div><div class="text-2xl font-bold mt-1" style="color:var(--fade);">${as.lost}</div></div>
+        <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_lost')}</div><div class="text-2xl font-bold mt-1" style="color:var(--mute);">${as.lost}</div></div>
         <div><div class="text-xs uppercase" style="color:var(--mute);">${t('h_winrate')}</div><div class="text-2xl font-bold mt-1">${as.winRate}%</div></div>
         <div><div class="text-xs uppercase" style="color:var(--mute);">ROI</div><div class="text-2xl font-bold mt-1" style="color:${roiColor};">${roiDisplay}</div></div>
       </div>
@@ -2820,11 +2818,11 @@ function _renderBetsHistory(s) {
       const badge = won === true
         ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 20%,transparent); color:var(--bet);">W</span>`
         : won === false
-          ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--fade) 20%,transparent); color:var(--fade);">L</span>`
+          ? `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--mute) 20%,transparent); color:var(--mute);">L</span>`
           : `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--mute) 20%,transparent); color:var(--mute);">—</span>`;
       const odds = b.odds ? `@ ${Number(b.odds).toFixed(2)}` : '';
       const edge = b.edge ? `+${b.edge}%` : '';
-      const clvBadge = (b.clv_pct != null) ? `<span class="font-mono text-[10px] px-1.5 py-0.5 rounded" title="CLV: ${b.closing_odds ? '@'+Number(b.closing_odds).toFixed(2)+' close' : ''}" style="background:color-mix(in srgb,${b.clv_pct>=0?'var(--bet)':'var(--fade)'} 12%,transparent); color:${b.clv_pct>=0?'var(--bet)':'var(--fade)'};">CLV ${b.clv_pct>0?'+':''}${b.clv_pct}%</span>` : '';
+      const clvBadge = (b.clv_pct != null) ? `<span class="font-mono text-[10px] px-1.5 py-0.5 rounded" title="CLV: ${b.closing_odds ? '@'+Number(b.closing_odds).toFixed(2)+' close' : ''}" style="background:color-mix(in srgb,${b.clv_pct>=0?'var(--bet)':'var(--mute)'} 12%,transparent); color:${b.clv_pct>=0?'var(--bet)':'var(--mute)'};">CLV ${b.clv_pct>0?'+':''}${b.clv_pct}%</span>` : '';
       betsHtml += `<div class="flex items-center gap-2 text-xs mt-1">${badge} <span class="truncate">${desc}</span> ${clvBadge} <span class="font-mono ml-auto shrink-0" style="color:var(--mute);">${edge} ${odds}</span></div>`;
     });
 
@@ -2889,7 +2887,7 @@ function _renderPredictionsHistory(s) {
     let resultBadge = '';
     const _1x2Label = v => v === '1' ? (LANG === 'es' ? 'LOCAL' : 'HOME') : v === '2' ? (LANG === 'es' ? 'VISITA' : 'AWAY') : (LANG === 'es' ? 'EMPATE' : 'DRAW');
     if (correct1x2 === true) {resultBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 15%,transparent); color:var(--bet);">${_1x2Label(r1x2)} ✓</span>`;}
-    else if (correct1x2 === false) {resultBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--fade) 15%,transparent); color:var(--fade);">${_1x2Label(p1x2)} → ${_1x2Label(r1x2)}</span>`;}
+    else if (correct1x2 === false) {resultBadge = `<span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--mute) 15%,transparent); color:var(--mute);">${_1x2Label(p1x2)} → ${_1x2Label(r1x2)}</span>`;}
 
     // xG line
     const xgLine = fx.xg_home != null ? `xG ${fx.xg_home}-${fx.xg_away}` : '';
