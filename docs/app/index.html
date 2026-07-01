@@ -60,81 +60,48 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 .score-heatmap.open { display:block; }
 @keyframes flash-val { 0%{background:color-mix(in srgb,var(--live) 30%,transparent);color:var(--live);} 100%{background:transparent;} }
 .flash-val { animation:flash-val 0.6s ease; border-radius:4px; }
+.nav-tab { font-size:15px; font-weight:600; color:var(--mute); background:none; border:none; cursor:pointer; padding:4px 0; border-bottom:2px solid transparent; transition:color .15s; white-space:nowrap; }
+.nav-tab:hover { color:var(--ink); }
+.nav-tab.active { color:var(--ink); font-weight:800; border-bottom-color:var(--ink); }
+.lang-seg { padding:5px 9px; cursor:pointer; transition:all .12s; }
+.lang-seg.active { background:var(--ui-black); color:var(--ui-black-ink); }
+.lang-seg:not(.active) { color:var(--mute); }
+.no-scrollbar::-webkit-scrollbar { display:none; }
+.no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
 </style>
 </head>
 <body class="font-sans antialiased">
 
-<header class="border-b sticky top-0 z-30 backdrop-blur" style="border-color:var(--border); background:color-mix(in srgb, var(--bg) 80%, transparent);">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <div class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-white text-sm" style="background:linear-gradient(135deg, var(--accent-from), var(--accent-to));">K</div>
-      <div>
-        <div class="font-bold text-lg leading-tight">Kini</div>
-        <div class="text-[10px]" style="color:var(--mute);" data-i18n="header_sub">Predicciones Mundial 2026</div>
-      </div>
-    </div>
-    <div class="flex items-center gap-3">
-      <div id="live-indicator" class="hidden items-center gap-2 px-3 py-1 rounded-full cursor-pointer select-none" onclick="goToLive()" title="Ir al partido en vivo" style="background:color-mix(in srgb, var(--live) 10%, transparent); border:1px solid color-mix(in srgb, var(--live) 30%, transparent);">
+<header class="border-b sticky top-0 z-30 backdrop-blur" style="border-color:var(--border); background:color-mix(in srgb, var(--bg) 82%, transparent);">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-4 sm:gap-6">
+    <div onclick="setTab('upcoming')" class="flex items-center gap-1.5 flex-none font-extrabold text-2xl cursor-pointer select-none" style="letter-spacing:-.03em;">kini<span class="inline-block rounded-full" style="width:8px;height:8px;background:var(--bet);margin-bottom:3px;"></span></div>
+    <nav class="flex-1 flex items-center gap-4 sm:gap-6 overflow-x-auto no-scrollbar">
+      <button onclick="setTab('upcoming')" id="tab-upcoming" class="nav-tab active" data-i18n="tab_matches">Partidos</button>
+      <button onclick="setTab('picks')" id="tab-picks" class="nav-tab" data-i18n="tab_picks">Picks</button>
+      <button onclick="setTab('rankings')" id="tab-rankings" class="nav-tab" data-i18n="tab_rankings">Ranking</button>
+      <button onclick="setTab('bracket')" id="tab-bracket" class="nav-tab" data-i18n="tab_bracket">Bracket</button>
+      <button onclick="setTab('history')" id="tab-history" class="nav-tab" data-i18n="tab_history">Historial</button>
+    </nav>
+    <div class="flex items-center gap-2 flex-none">
+      <div id="live-indicator" class="hidden items-center gap-1.5 px-2.5 py-1 rounded-full cursor-pointer select-none" onclick="goToLive()" title="Ir al partido en vivo" style="background:color-mix(in srgb, var(--live) 10%, transparent); border:1px solid color-mix(in srgb, var(--live) 30%, transparent);">
         <span class="w-2 h-2 rounded-full pulse-live" style="background:var(--live);"></span>
         <span class="text-xs font-mono" style="color:var(--live);">LIVE</span>
       </div>
-      <button onclick="requestNotificationPermission()" title="Activar notificaciones" class="w-8 h-8 rounded-lg border flex items-center justify-center" style="border-color:var(--border); color:var(--mute);">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-      </button>
-      <button onclick="startPresentation()" title="Modo presentación" class="w-8 h-8 rounded-lg border flex items-center justify-center" style="border-color:var(--border); color:var(--mute);">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-      </button>
-      <button onclick="toggleLang()" id="lang-btn" class="px-2 py-1 rounded text-xs font-mono border" style="border-color:var(--border); color:var(--mute);">EN</button>
-      <button onclick="toggleTheme()" id="theme-btn" class="w-8 h-8 rounded-lg border flex items-center justify-center text-sm" style="border-color:var(--border); color:var(--mute);">&#9790;</button>
-      <div id="update-time" class="text-xs font-mono hidden sm:block" style="color:var(--mute);"></div>
+      <div class="flex rounded-lg overflow-hidden border text-xs font-mono font-bold" style="border-color:var(--border);">
+        <span onclick="if(LANG!=='es')toggleLang()" id="lang-es" class="lang-seg">ES</span>
+        <span onclick="if(LANG!=='en')toggleLang()" id="lang-en" class="lang-seg">EN</span>
+      </div>
+      <button onclick="toggleTheme()" id="theme-btn" aria-label="Tema" class="w-8 h-8 rounded-lg border flex items-center justify-center text-sm flex-none" style="border-color:var(--border); color:var(--mute);">&#9790;</button>
+      <button onclick="openAuth()" class="rounded-xl font-bold text-sm px-4 py-2 whitespace-nowrap flex-none" style="background:var(--ui-black); color:var(--ui-black-ink);" data-i18n="enter">Entrar</button>
+      <div id="update-time" class="text-xs font-mono hidden" style="color:var(--mute);"></div>
     </div>
   </div>
 </header>
 
-<div class="border-b" style="border-color:var(--border); background:linear-gradient(135deg, color-mix(in srgb, var(--accent-from) 5%, var(--bg)), color-mix(in srgb, var(--accent-to) 5%, var(--bg)));">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
-    <h1 class="text-xl sm:text-2xl font-bold mb-1" data-i18n="hero_title">Encuentra apuestas de valor en el Mundial</h1>
-    <p class="text-sm mb-5" style="color:var(--mute);" data-i18n="hero_sub">Modelo matemático que compara sus predicciones con las cuotas del mercado. Cuando ve una ventaja real, te avisa.</p>
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-      <div class="rounded-lg p-3" style="background:color-mix(in srgb, var(--panel) 70%, transparent);">
-        <div class="text-xs uppercase tracking-wider" style="color:var(--mute);" data-i18n="stat_fixtures_label">Partidos analizados</div>
-        <div class="text-xl font-bold mt-1" id="stat-fixtures">—</div>
-        <div class="text-xs font-mono" style="color:var(--mute);" id="stat-bets">—</div>
-      </div>
-      <div class="rounded-lg p-3" style="background:color-mix(in srgb, var(--panel) 70%, transparent);">
-        <div class="text-xs uppercase tracking-wider" style="color:var(--mute);" data-i18n="stat_record_label">Historial</div>
-        <div class="text-xl font-bold mt-1" id="stat-record">—</div>
-        <div class="text-xs font-mono" style="color:var(--mute);" id="stat-winrate">—</div>
-      </div>
-      <div class="rounded-lg p-3" style="background:color-mix(in srgb, var(--panel) 70%, transparent);">
-        <div class="text-xs uppercase tracking-wider flex items-center gap-1" style="color:var(--mute);">
-          <span data-i18n="stat_threshold">Ventaja mínima</span>
-          <span class="tooltip-trigger"><span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="edge"></span></span>
-        </div>
-        <div class="text-xl font-bold mt-1" id="stat-threshold">7%</div>
-        <div class="text-xs font-mono" style="color:var(--mute);" data-i18n="stat_threshold_desc">para recomendar apuesta</div>
-      </div>
-      <div class="rounded-lg p-3" style="background:color-mix(in srgb, var(--panel) 70%, transparent);">
-        <div class="text-xs uppercase tracking-wider flex items-center gap-1" style="color:var(--mute);">
-          <span data-i18n="stat_model">Precisión</span>
-          <span class="tooltip-trigger"><span class="help-icon">?</span><span class="tooltip-content" data-i18n-tooltip="model_prob"></span></span>
-        </div>
-        <div class="text-xl font-bold mt-1" id="stat-matches">—</div>
-        <div class="text-xs font-mono" style="color:var(--mute);" data-i18n="stat_model_sub">partidos de entrenamiento</div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-  <div id="tab-bar" class="flex items-center gap-4 sm:gap-6 mb-6 border-b overflow-x-auto" style="border-color:var(--border);">
-    <button onclick="setTab('upcoming')" id="tab-upcoming" class="pb-3 text-sm font-medium tab-active cursor-pointer whitespace-nowrap" data-i18n="tab_picks">Picks</button>
-    <button onclick="setTab('groups')" id="tab-groups" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_groups">Grupos</button>
-    <button onclick="setTab('rankings')" id="tab-rankings" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_rankings">Rankings</button>
-    <button onclick="setTab('bracket')" id="tab-bracket" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_bracket">Bracket</button>
-    <button onclick="setTab('players')" id="tab-players" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_players">Jugadores</button>
-    <button onclick="setTab('history')" id="tab-history" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_history">Historial</button>
-    <button onclick="setTab('quiniela')" id="tab-quiniela" class="pb-3 text-sm font-medium tab-inactive cursor-pointer whitespace-nowrap" data-i18n="tab_quiniela">Quiniela</button>
+  <div id="screen-head" class="flex items-baseline justify-between mb-5 gap-3 flex-wrap">
+    <h1 id="screen-title" class="text-2xl sm:text-3xl font-extrabold tracking-tight" style="letter-spacing:-.03em;">Partidos</h1>
+    <span class="text-[13px] font-mono" style="color:var(--mute);">Mundial 2026 · Ronda de 32</span>
   </div>
 
   <!-- Search bar — shown on picks + history tabs -->
@@ -159,6 +126,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
   <div id="date-chips-bar" class="hidden flex-wrap gap-2 mb-6"></div>
 
   <div id="fixtures-container"></div>
+  <div id="picks-container" class="hidden"></div>
   <div id="groups-container" class="hidden"></div>
   <div id="rankings-container" class="hidden"></div>
   <div id="bracket-container" class="hidden"></div>
@@ -173,6 +141,15 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
     <div class="text-sm mt-4" style="color:var(--mute);" data-i18n="loading">Cargando predicciones...</div>
   </div>
 </main>
+
+<div id="auth-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-5" style="background:rgba(20,20,22,.55); backdrop-filter:blur(4px);" onclick="if(event.target===this)closeAuth()">
+  <div class="w-full max-w-sm rounded-2xl p-6 text-center" style="background:var(--panel); box-shadow:var(--shadow-elevated);">
+    <div class="flex items-center justify-center gap-1.5 font-extrabold text-2xl mb-3" style="letter-spacing:-.03em;">kini<span class="inline-block rounded-full" style="width:8px;height:8px;background:var(--bet);margin-bottom:3px;"></span></div>
+    <div class="text-lg font-bold mb-1" data-i18n="auth_title">Cuentas en camino</div>
+    <p class="text-sm mb-5" style="color:var(--mute);" data-i18n="auth_body">Los planes Free / Pro y el acceso con cuenta llegan pronto. Por ahora, toda la app es pública.</p>
+    <button onclick="closeAuth()" class="w-full rounded-xl font-bold text-sm py-2.5" style="background:var(--ui-black); color:var(--ui-black-ink);" data-i18n="auth_close">Entendido</button>
+  </div>
+</div>
 
 <footer class="border-t mt-12" style="border-color:var(--border);">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10">
@@ -213,12 +190,13 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
    _onTeamSearch, _selectTeamOpt, _clearTeamFilter, toggleMatchSummary,
    setHistorySubTab, checkQuinielaPw, dismissEmailBanner,
    requestNotificationPermission, startPresentation, shareFixture, toggleLang,
-   toggleTheme, openDetail, closeDetail --
+   toggleTheme, openDetail, closeDetail, openAuth, closeAuth --
    all invoked from onclick="" attributes in markup, invisible to static analysis */
 // ── i18n ──
 const T = {
   es: {
-    tab_picks:'Picks', tab_groups:'Grupos', tab_rankings:'Rankings', tab_bracket:'Bracket', tab_players:'Jugadores', tab_results:'Resultados', tab_history:'Historial', tab_quiniela:'Quiniela',
+    tab_matches:'Partidos', enter:'Entrar', auth_title:'Cuentas en camino', auth_body:'Los planes Free / Pro y el acceso con cuenta llegan pronto. Por ahora, toda la app es pública.', auth_close:'Entendido',
+    tab_picks:'Picks', tab_groups:'Grupos', tab_rankings:'Ranking', tab_bracket:'Bracket', tab_players:'Jugadores', tab_results:'Resultados', tab_history:'Historial', tab_quiniela:'Quiniela',
     filter_all:'Todos', filter_bet:'Solo BET', filter_alta:'Confianza ALTA', filter_today:'Hoy',
     header_sub:'Predicciones Mundial 2026',
     hero_title:'Encuentra apuestas de valor en el Mundial',
@@ -250,7 +228,8 @@ const T = {
     quiniela_desc:'Predicciones optimizadas para quiniela, respaldadas por Dixon-Coles.',
   },
   en: {
-    tab_picks:'Picks', tab_groups:'Groups', tab_rankings:'Rankings', tab_bracket:'Bracket', tab_players:'Players', tab_results:'Results', tab_history:'Track Record', tab_quiniela:'Pool',
+    tab_matches:'Matches', enter:'Sign in', auth_title:'Accounts coming soon', auth_body:'Free / Pro plans and account sign-in are on the way. For now the whole app is public.', auth_close:'Got it',
+    tab_picks:'Picks', tab_groups:'Groups', tab_rankings:'Ranking', tab_bracket:'Bracket', tab_players:'Players', tab_results:'Results', tab_history:'Track Record', tab_quiniela:'Pool',
     filter_all:'All', filter_bet:'BET only', filter_alta:'HIGH confidence', filter_today:'Today',
     header_sub:'World Cup 2026 Predictions',
     hero_title:'Find value bets in the World Cup',
@@ -407,7 +386,12 @@ function applyLang() {
     if (T[LANG][key]) {el.textContent = T[LANG][key];}
   });
   applyTooltips();
-  document.getElementById('lang-btn').textContent = LANG === 'es' ? 'EN' : 'ES';
+  document.getElementById('lang-es')?.classList.toggle('active', LANG === 'es');
+  document.getElementById('lang-en')?.classList.toggle('active', LANG === 'en');
+  const titleEl = document.getElementById('screen-title');
+  if (titleEl && typeof SCREEN_TITLES !== 'undefined') {
+    titleEl.textContent = (SCREEN_TITLES[currentTab] || SCREEN_TITLES.upcoming)[LANG] || currentTab;
+  }
   document.documentElement.lang = LANG;
   const inp = document.getElementById('search-input');
   if (inp) {inp.placeholder = LANG === 'es' ? 'Buscar equipo...' : 'Search team...';}
@@ -505,24 +489,9 @@ async function _syncESPNOnLoad() {
 }
 
 function renderStats() {
-  const m = DATA.model, s = DATA.stats;
-  document.getElementById('stat-matches').textContent = `${(m.matches_trained/1000).toFixed(0)}k+`;
-  document.getElementById('stat-threshold').textContent = `${m.edge_threshold.toFixed(0)}%`;
-  document.getElementById('stat-fixtures').textContent = s.total_fixtures;
-  const _as = _alignedHistoryStats();
-  document.getElementById('stat-bets').textContent = t('bet_signals').replace('{n}', _as.n || s.total_bets);
-
-  // Use aligned stats (BET picks only) for header record + winrate
-  const as = _alignedHistoryStats();
-  if (as.n > 0) {
-    document.getElementById('stat-record').textContent = `${as.won}W-${as.lost}L`;
-    document.getElementById('stat-record').style.color = parseFloat(as.winRate) >= 50 ? 'var(--bet)' : 'var(--fade)';
-    document.getElementById('stat-winrate').textContent = t('win_rate').replace('{r}', as.winRate);
-  } else {
-    document.getElementById('stat-record').textContent = '—';
-    document.getElementById('stat-record').style.color = '';
-    document.getElementById('stat-winrate').textContent = t('no_bets_yet');
-  }
+  // Hero stat banner removed (mockup has no banner) — only the update-time
+  // string + model-health check remain. Null-guarded since the stat cards
+  // no longer exist in the DOM.
   const gen = new Date(DATA.generated_at);
   let upd = `${t('updated')} ${gen.toLocaleString()}`;
   const rs = DATA.refit_state;
@@ -532,7 +501,8 @@ function renderStats() {
     const ageStr = ageH < 24 ? `${ageH}h` : `${Math.round(ageH/24)}d`;
     upd += ` · ${LANG === 'es' ? 'modelo reajustado hace' : 'model retuned'} ${ageStr}${LANG === 'es' ? '' : ' ago'}`;
   }
-  document.getElementById('update-time').textContent = upd;
+  const ut = document.getElementById('update-time');
+  if (ut) {ut.textContent = upd;}
   renderModelHealth();
 }
 
@@ -914,6 +884,15 @@ async function _tickLive() {
 }
 
 // ── Tabs & Filters ──
+// Screen titles per tab (mockup: big H1 per screen)
+const SCREEN_TITLES = {
+  upcoming: {es:'Partidos', en:'Matches'},
+  picks: {es:'Picks del día', en:"Today's picks"},
+  rankings: {es:'Ranking', en:'Ranking'},
+  bracket: {es:'Camino al título', en:'Path to the title'},
+  history: {es:'Rendimiento', en:'Performance'},
+};
+
 function setTab(tab) {
   // 'results' is now a sub-tab of 'history'
   if (tab === 'results') {
@@ -921,34 +900,39 @@ function setTab(tab) {
     tab = 'history';
   }
   currentTab = tab;
-  // 'results' container stays hidden — managed by renderHistory()
-  ['upcoming','groups','rankings','bracket','players','history','quiniela'].forEach(t => {
+  // Leaving detail view if it was open
+  const detail = document.getElementById('detail-container');
+  if (detail) {detail.classList.add('hidden');}
+  // Nav tab active state (top-nav buttons)
+  ['upcoming','picks','rankings','bracket','history'].forEach(t => {
     const btn = document.getElementById('tab-' + t);
+    if (btn) {btn.classList.toggle('active', tab === t);}
+  });
+  // Show/hide content containers (includes hidden extras: groups/players/quiniela)
+  ['upcoming','picks','groups','rankings','bracket','players','history','quiniela'].forEach(t => {
     const container = document.getElementById(t === 'upcoming' ? 'fixtures-container' : t + '-container');
-    if (btn) {btn.className = 'pb-3 text-sm font-medium cursor-pointer whitespace-nowrap ' + (tab === t ? 'tab-active' : 'tab-inactive');}
     if (container) {container.classList.toggle('hidden', tab !== t);}
   });
+  // Screen title
+  const titleEl = document.getElementById('screen-title');
+  if (titleEl) {titleEl.textContent = (SCREEN_TITLES[tab] || SCREEN_TITLES.upcoming)[LANG] || tab;}
   // Always hide results-container on tab switch; renderHistory() will un-hide if needed
   const rc = document.getElementById('results-container');
   if (rc) {rc.classList.add('hidden');}
-  // search bar: picks + history; filter bar + date chips: picks only
+  // search bar: partidos + picks + history; date chips: partidos only. filter bar retired (Picks tab covers BET).
   const searchBar = document.getElementById('search-bar');
   const filterBar = document.getElementById('filter-bar');
   const dateChipsBar = document.getElementById('date-chips-bar');
+  if (filterBar) { filterBar.classList.add('hidden'); filterBar.classList.remove('flex'); }
+  const showSearch = tab === 'upcoming' || tab === 'picks' || tab === 'history';
+  searchBar.classList.toggle('hidden', !showSearch);
   if (tab === 'upcoming') {
-    searchBar.classList.remove('hidden');
-    filterBar.classList.remove('hidden'); filterBar.classList.add('flex');
     dateChipsBar.classList.remove('hidden'); dateChipsBar.classList.add('flex');
-  } else if (tab === 'history') {
-    searchBar.classList.remove('hidden');
-    filterBar.classList.add('hidden'); filterBar.classList.remove('flex');
-    dateChipsBar.classList.add('hidden'); dateChipsBar.classList.remove('flex');
   } else {
-    searchBar.classList.add('hidden');
-    filterBar.classList.add('hidden'); filterBar.classList.remove('flex');
     dateChipsBar.classList.add('hidden'); dateChipsBar.classList.remove('flex');
   }
   renderAll();
+  window.scrollTo(0, 0);
 }
 
 function setSearch(q) {
@@ -1101,6 +1085,7 @@ function buildHeatmapHTML(grid, lang, xgH, xgA, isLive, currentH, currentA) {
 function renderAll() {
   if (!DATA) {return;}
   renderFixtures();
+  renderPicks();
   renderGroups();
   renderRankings();
   renderBracket();
@@ -1374,244 +1359,113 @@ function renderPlayers() {
   `;
 }
 
+// Name normalization: fixture-style short names → standings-style names.
+const _FX_TO_STD = {
+  'USA':'United States','Bosnia & Herzegovina':'Bosnia-Herzegovina',
+  'Bosnia and Herzegovina':'Bosnia-Herzegovina','DR Congo':'Congo DR',
+  'Turkey':'Türkiye','Czech Republic':'Czechia',
+};
+const _stdName = n => _FX_TO_STD[n] || n;
+
+// Teams knocked out in completed knockout (cross-group) fixtures — returned as
+// a Set of normalized names. projections.json is a full pre-tournament Monte
+// Carlo and still lists eliminated teams with nonzero title odds; we drop them
+// so the bracket reflects who's actually still alive.
+function _eliminatedTeams() {
+  const out = new Set();
+  const standings = DATA && DATA.standings;
+  if (!standings) {return out;}
+  const group = {};
+  standings.forEach(g => g.teams.forEach(tm => { group[tm.name] = g.group; group[_stdName(tm.name)] = g.group; }));
+  ((DATA && DATA.fixtures) || []).forEach(f => {
+    if (!f.completed) {return;}
+    const hg = group[_stdName(f.home)], ag = group[_stdName(f.away)];
+    if (!hg || !ag || hg === ag) {return;} // group-stage or unknown → not a KO elimination
+    let loser = null;
+    if (f.penalty_winner) {
+      loser = f.penalty_winner === f.home ? f.away : f.home;
+    } else if (f.actual_home != null && f.actual_away != null) {
+      if (f.actual_home > f.actual_away) {loser = f.away;}
+      else if (f.actual_away > f.actual_home) {loser = f.home;}
+    }
+    if (loser) {out.add(_stdName(loser));}
+  });
+  return out;
+}
+
+// Bracket tab: "Camino al título" — favorites funnel by stage, from the model's
+// Monte Carlo reach-probabilities, excluding already-eliminated teams.
 function renderBracket() {
   const el = document.getElementById('bracket-container');
   if (!el) {return;}
   const p = PROJECTIONS;
-  const standings = DATA && DATA.standings;
   if (!p || !p.teams || !p.teams.length) {
-    el.innerHTML = `<div class="text-center py-16 text-sm" style="color:var(--mute);">${LANG==='es'?'Proyecciones no disponibles aún.':'Projections not available yet.'}</div>`;
+    el.innerHTML = `<div class="text-center py-16 text-sm" style="color:var(--mute);">${LANG === 'es' ? 'Proyecciones no disponibles aún.' : 'Projections not available yet.'}</div>`;
+    return;
+  }
+  const standings = (DATA && DATA.standings) || [];
+  const flagMap = {};
+  standings.forEach(g => g.teams.forEach(tm => { if (tm.flag) { flagMap[tm.name] = tm.flag; flagMap[_stdName(tm.name)] = tm.flag; } }));
+  const elim = _eliminatedTeams();
+
+  const alive = p.teams
+    .filter(t => (t.p_win || 0) > 0 && !elim.has(_stdName(t.team)))
+    .sort((a, b) => (b.p_win || 0) - (a.p_win || 0));
+
+  if (!alive.length) {
+    el.innerHTML = `<div class="text-center py-16 text-sm" style="color:var(--mute);">${LANG === 'es' ? 'Sin proyecciones disponibles.' : 'No projections available.'}</div>`;
     return;
   }
 
-  // Lookup maps
-  const projByTeam = {};
-  p.teams.forEach(t => projByTeam[t.team] = t);
-
-  // Name normalization for cross-group detection
-  const _FX_TO_STD = {
-    'USA':'United States','Bosnia & Herzegovina':'Bosnia-Herzegovina',
-    'Bosnia and Herzegovina':'Bosnia-Herzegovina','DR Congo':'Congo DR',
-    'Turkey':'Türkiye','Czech Republic':'Czechia',
+  const disp = n => LANG === 'es' ? (TEAM_ES[n] || n) : n;
+  const crest = (name, size) => {
+    const url = flagMap[name] || flagMap[_stdName(name)];
+    if (url) {return `<img src="${url}" style="width:${size}px;height:${size}px;object-fit:contain;flex:none;" alt="">`;}
+    const e = teamFlag(name) || teamFlag(_stdName(name)) || '';
+    return e ? `<span class="flex-none" style="font-size:${size}px;line-height:1;">${e}</span>` : '';
   };
-  const _stdName = n => _FX_TO_STD[n] || n;
-
-  // Build team→group map from standings
-  const teamGroupMap = {};
-  if (standings) {
-    standings.forEach(grp => {
-      grp.teams.forEach(t => {
-        teamGroupMap[t.name] = grp.group;
-        teamGroupMap[_stdName(t.name)] = grp.group;
-      });
-    });
-  }
-
-  // Derive R32 fixtures from actual DATA.fixtures (cross-group = KO)
-  const allFixtures = (DATA && DATA.fixtures) || [];
-  // Official FIFA 2026 bracket order (home team → position)
-  const BRACKET_POS = {
-    'Germany':0,'France':1,'South Africa':2,'Netherlands':3,
-    'Portugal':4,'Spain':5,'USA':6,'Belgium':7,
-    'Brazil':8,'Ivory Coast':9,'Mexico':10,'England':11,
-    'Argentina':12,'Australia':13,'Switzerland':14,'Colombia':15,
-  };
-  const r32raw = allFixtures.filter(f => {
-    const hg = teamGroupMap[_stdName(f.home)];
-    const ag = teamGroupMap[_stdName(f.away)];
-    return hg && ag && hg !== ag;
-  });
-  // Only place a fixture when one side is a recognized anchor team — never
-  // guess. Cross-group fixtures with no recognized anchor (e.g. an R16 match
-  // the odds feed already lists between two R32 winners) are dropped instead
-  // of being stuffed into an unrelated empty slot, where a later real result
-  // would silently overwrite the wrong bracket position.
-  const r32 = Array(16).fill(null);
-  r32raw.forEach(f => {
-    const pos = BRACKET_POS[f.home] ?? BRACKET_POS[f.away];
-    if (pos != null && !r32[pos]) {r32[pos] = f;}
-  });
-
-  // Get winner of completed KO fixture (handles extra time + penalties)
-  function getWinner(fx) {
-    if (!fx || !fx.completed || fx.actual_home == null) {return null;}
-    if (fx.actual_home > fx.actual_away) {return fx.home;}
-    if (fx.actual_away > fx.actual_home) {return fx.away;}
-    if (fx.penalty_winner) {return fx.penalty_winner;}
-    return null;
-  }
-
-  function deriveNext(m1, m2) {
-    const w1 = getWinner(m1);
-    const w2 = getWinner(m2);
-    return { home: w1, away: w2, tbd: !w1 || !w2 };
-  }
-
-  // Build bracket tree from R32 fixtures
-  const leftR32 = r32.slice(0, 8);
-  const rightR32 = r32.slice(8, 16);
-  const leftR16 = [
-    deriveNext(leftR32[0], leftR32[1]), deriveNext(leftR32[2], leftR32[3]),
-    deriveNext(leftR32[4], leftR32[5]), deriveNext(leftR32[6], leftR32[7]),
-  ];
-  const rightR16 = [
-    deriveNext(rightR32[0], rightR32[1]), deriveNext(rightR32[2], rightR32[3]),
-    deriveNext(rightR32[4], rightR32[5]), deriveNext(rightR32[6], rightR32[7]),
-  ];
-  const leftQF = [deriveNext(leftR16[0], leftR16[1]), deriveNext(leftR16[2], leftR16[3])];
-  const rightQF = [deriveNext(rightR16[0], rightR16[1]), deriveNext(rightR16[2], rightR16[3])];
-  const leftSF = deriveNext(leftQF[0], leftQF[1]);
-  const rightSF = deriveNext(rightQF[0], rightQF[1]);
-  const bracketFinal = deriveNext(leftSF, rightSF);
-
-  function bkSlot(fx) {
-    if (!fx || (fx.tbd && !fx.home && !fx.away))
-      {return '<div class="bk-s bk-tbd"><div class="bk-t"><span class="bk-n">TBD</span></div><div class="bk-t"><span class="bk-n">TBD</span></div></div>';}
-    const h = fx.home, a = fx.away;
-    const done = fx.completed;
-    const penW = fx.penalty_winner;
-    const hWon = done && (fx.actual_home > fx.actual_away || penW === h);
-    const aWon = done && (fx.actual_away > fx.actual_home || penW === a);
-    const hc = TEAM_COLOR[h] || 'var(--mute)';
-    const ac = TEAM_COLOR[a] || 'var(--mute)';
-    return `<div class="bk-s${done?' bk-done':''}${fx.tbd?' bk-tbd':''}">
-      <div class="bk-t${hWon?' bk-w':''}${aWon?' bk-l':''}">
-        <span class="bk-d" style="background:${hc}"></span>
-        <span class="bk-n">${h?teamName(h):'?'}</span>
-        ${done?`<span class="bk-sc">${fx.actual_home}${penW?'<span style="font-size:7px;color:var(--mute);margin-left:2px;">'+(penW===h?'✓':'')+'</span>':''}</span>`:
-          fx.p_advance_home!=null?`<span class="bk-p">${(fx.p_advance_home*100).toFixed(0)}%</span>`:''}
-      </div>
-      <div class="bk-t${aWon?' bk-w':''}${hWon?' bk-l':''}">
-        <span class="bk-d" style="background:${ac}"></span>
-        <span class="bk-n">${a?teamName(a):'?'}</span>
-        ${done?`<span class="bk-sc">${fx.actual_away}${penW?'<span style="font-size:7px;color:var(--mute);margin-left:2px;">'+(penW===a?'✓':'')+'</span>':''}</span>`:
-          fx.p_advance_away!=null?`<span class="bk-p">${(fx.p_advance_away*100).toFixed(0)}%</span>`:''}
-      </div>
-      ${penW?`<div style="text-align:center;font-size:7px;color:var(--warn);margin-top:1px;">pen.</div>`:''}
+  const row = (t, prob) => `
+    <div class="flex items-center justify-between gap-2">
+      <span class="flex items-center gap-2 text-sm font-bold min-w-0">${crest(t.team, 18)}<span class="truncate">${disp(t.team)}</span></span>
+      <span class="text-xs font-mono flex-none" style="color:var(--mute); font-variant-numeric:tabular-nums;">${Math.round(prob)}%</span>
     </div>`;
-  }
+  const card = inner => `<div class="rounded-xl p-3" style="background:var(--panel); box-shadow:var(--shadow-card);">${inner}</div>`;
 
-  const roundCol = ms => ms.map(fx => `<div class="bk-mc">${bkSlot(fx)}</div>`).join('');
-  const armR = n => Array(n).fill('<div class="bk-ac"><div class="bk-ar"></div></div>').join('');
-  const armL = n => Array(n).fill('<div class="bk-ac"><div class="bk-al"></div></div>').join('');
-  const lineH = '<div class="bk-hc"></div>';
+  const colOf = (label, key, n) => {
+    const list = alive.slice().sort((a, b) => (b[key] || 0) - (a[key] || 0)).filter(t => (t[key] || 0) > 0).slice(0, n);
+    return `
+      <div class="flex flex-col gap-3.5 flex-none" style="width:200px;">
+        <div class="text-[11px] font-extrabold uppercase tracking-wider" style="color:var(--mute); letter-spacing:.06em;">${label}</div>
+        ${list.map(t => card(row(t, t[key]))).join('')}
+      </div>`;
+  };
 
-  const R32L = LANG==='es'?'16avos':'R32';
-  const R16L = LANG==='es'?'8vos':'R16';
-  const QFL = LANG==='es'?'Cuartos':'QF';
-  const SFL = LANG==='es'?'Semis':'SF';
-  const FL = LANG==='es'?'Final':'Final';
+  const champ = alive[0];
+  const champCol = `
+    <div class="flex flex-col flex-none" style="width:220px;">
+      <div class="text-[11px] font-extrabold uppercase tracking-wider mb-3.5" style="color:var(--mute); letter-spacing:.06em;">${LANG === 'es' ? 'Campeón' : 'Champion'}</div>
+      <div class="rounded-2xl p-4" style="background:linear-gradient(180deg,#111,#2a2a2e); color:#fff; box-shadow:var(--shadow-elevated); border:1px solid rgba(255,255,255,.08);">
+        <div class="text-[11px] font-extrabold uppercase tracking-wider mb-3" style="color:var(--bet2); letter-spacing:.06em;">${LANG === 'es' ? 'Campeón previsto' : 'Projected champion'}</div>
+        <div class="flex items-center gap-2.5 text-xl font-extrabold">${crest(champ.team, 26)}${disp(champ.team)}</div>
+        <div class="text-xs mt-1.5" style="color:#a1a1a6;">${(champ.p_win || 0).toFixed(1)}% ${LANG === 'es' ? 'de probabilidad de título' : 'title probability'}</div>
+      </div>
+    </div>`;
 
-  // Top 3 hero
-  const top3 = p.teams.slice(0, 3);
-  const heroCards = top3.map((t, i) => `
-    <div class="rounded-xl p-4 text-center" style="background:color-mix(in srgb,${TEAM_COLOR[t.team]||'var(--bet)'} ${i===0?'18':i===1?'10':'6'}%,var(--panel)); border:1px solid color-mix(in srgb,${TEAM_COLOR[t.team]||'var(--bet)'} ${i===0?'40':'20'}%,var(--border));">
-      <div class="text-[10px] font-mono uppercase tracking-wider mb-1" style="color:var(--mute);">${i===0?'🥇':i===1?'🥈':'🥉'} ${LANG==='es'?'Favorito':'Favorite'} #${i+1}</div>
-      <div class="text-base font-bold mb-1">${teamName(t.team)}</div>
-      <div class="text-2xl font-bold font-mono" style="color:${TEAM_COLOR[t.team]||'var(--bet)'};">${t.p_win.toFixed(1)}%</div>
-      <div class="text-[10px]" style="color:var(--mute);">${LANG==='es'?'de ganar el Mundial':'to win the World Cup'}</div>
-    </div>`).join('');
-
-  // Projections table
-  const top16 = p.teams.slice(0, 16);
-  const projRows = top16.map((t, i) => {
-    const c = i < 3 ? 'var(--bet)' : i < 8 ? 'var(--alta)' : 'var(--ink)';
-    return `<tr style="border-bottom:1px solid color-mix(in srgb,var(--border) 40%,transparent);">
-      <td class="py-2 pl-3 pr-1 text-xs font-mono w-6" style="color:var(--mute);">${i+1}</td>
-      <td class="py-2 px-2 text-sm font-semibold" style="color:${c};">${teamName(t.team)}</td>
-      <td class="py-2 px-2 text-[10px] font-mono text-right hidden sm:table-cell" style="color:var(--mute);">${Math.round(t.elo)}</td>
-      <td class="py-2 px-2 text-right text-xs font-mono" style="color:var(--mute);">${t.p_r32.toFixed(0)}%</td>
-      <td class="py-2 px-2 text-right text-xs font-mono" style="color:var(--ink);">${t.p_qf.toFixed(0)}%</td>
-      <td class="py-2 px-2 text-right text-xs font-mono" style="color:var(--alta);">${t.p_sf.toFixed(0)}%</td>
-      <td class="py-2 px-2 text-right text-xs font-mono" style="color:var(--bet);">${t.p_f.toFixed(0)}%</td>
-      <td class="py-2 pr-3 pl-2 text-right text-sm font-bold font-mono w-16" style="color:${TEAM_COLOR[t.team]||'var(--bet)'};">${t.p_win.toFixed(1)}%</td>
-    </tr>`;
-  }).join('');
-
+  const nSims = p.n_sims ? p.n_sims.toLocaleString(LANG === 'es' ? 'es' : 'en') : '';
   el.innerHTML = `
-    <style>
-      .bk-wrap{overflow-x:auto;padding:0 0 8px;-webkit-overflow-scrolling:touch;}
-      .bk-tree{display:flex;align-items:stretch;min-height:460px;min-width:1060px;}
-      .bk-round{display:flex;flex-direction:column;min-width:105px;padding:22px 2px 2px;position:relative;}
-      .bk-round::before{content:attr(data-rnd);position:absolute;top:0;left:0;right:0;text-align:center;font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);}
-      .bk-mc{flex:1;display:flex;align-items:center;padding:2px 0;}
-      .bk-conn{display:flex;flex-direction:column;width:16px;padding:22px 0 2px;}
-      .bk-ac{flex:1;position:relative;}
-      .bk-ar{position:absolute;top:22%;bottom:22%;left:0;right:0;border-top:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-right:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-bottom:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-radius:0 5px 5px 0;}
-      .bk-al{position:absolute;top:22%;bottom:22%;left:0;right:0;border-top:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-left:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-bottom:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);border-radius:5px 0 0 5px;}
-      .bk-hc{flex:1;display:flex;align-items:center;}
-      .bk-hc::after{content:'';width:100%;border-top:1.5px solid color-mix(in srgb,var(--border) 60%,transparent);}
-      .bk-s{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:3px 5px;width:100%;}
-      .bk-s.bk-done{border-color:color-mix(in srgb,var(--bet) 50%,var(--border));background:color-mix(in srgb,var(--bet) 4%,var(--panel));}
-      .bk-s.bk-tbd{opacity:0.35;}
-      .bk-t{display:flex;align-items:center;gap:3px;line-height:1.6;font-size:11px;}
-      .bk-w{font-weight:700;}
-      .bk-l{opacity:0.3;text-decoration:line-through;}
-      .bk-d{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
-      .bk-n{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-      .bk-sc{font-family:var(--font-mono,monospace);font-weight:700;font-size:12px;min-width:12px;text-align:right;}
-      .bk-p{font-family:var(--font-mono,monospace);font-size:9px;color:var(--mute);min-width:20px;text-align:right;}
-      .bk-final .bk-s{background:color-mix(in srgb,var(--bet) 8%,var(--panel));border-color:color-mix(in srgb,var(--bet) 50%,var(--border));padding:5px 8px;}
-      .bk-final .bk-t{font-size:13px;}
-      @media(max-width:640px){.bk-round{min-width:80px;}.bk-s{padding:2px 3px;}.bk-t{font-size:10px;gap:2px;}.bk-d{width:4px;height:4px;}}
-    </style>
-
-    <div class="grid grid-cols-3 gap-3 mb-6">${heroCards}</div>
-
-    <div class="mb-6">
-      <div class="flex items-center justify-between mb-3">
-        <h2 class="text-sm font-bold uppercase tracking-wider" style="color:var(--ink);">${LANG==='es'?'Cuadro de eliminación':'Knockout Bracket'}</h2>
-        <span class="text-[10px] font-mono px-2 py-1 rounded" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">Dixon-Coles + Elo</span>
-      </div>
-      <div class="bk-wrap">
-        <div class="bk-tree">
-          <div class="bk-round" data-rnd="${R32L}">${roundCol(leftR32)}</div>
-          <div class="bk-conn">${armR(4)}</div>
-          <div class="bk-round" data-rnd="${R16L}">${roundCol(leftR16)}</div>
-          <div class="bk-conn">${armR(2)}</div>
-          <div class="bk-round" data-rnd="${QFL}">${roundCol(leftQF)}</div>
-          <div class="bk-conn">${armR(1)}</div>
-          <div class="bk-round" data-rnd="${SFL}">${roundCol([leftSF])}</div>
-          <div class="bk-conn">${lineH}</div>
-          <div class="bk-round bk-final" data-rnd="${FL}">${roundCol([bracketFinal])}</div>
-          <div class="bk-conn">${lineH}</div>
-          <div class="bk-round" data-rnd="${SFL}">${roundCol([rightSF])}</div>
-          <div class="bk-conn">${armL(1)}</div>
-          <div class="bk-round" data-rnd="${QFL}">${roundCol(rightQF)}</div>
-          <div class="bk-conn">${armL(2)}</div>
-          <div class="bk-round" data-rnd="${R16L}">${roundCol(rightR16)}</div>
-          <div class="bk-conn">${armL(4)}</div>
-          <div class="bk-round" data-rnd="${R32L}">${roundCol(rightR32)}</div>
-        </div>
-      </div>
-      <p class="text-[10px] mt-2" style="color:var(--mute);">${r32.length >= 16 ? (LANG==='es'?'Cuadro completo — 16 llaves confirmadas. Ganadores avanzan automáticamente.':'Complete bracket — 16 R32 matches confirmed. Winners advance automatically.') : (LANG==='es'?r32.length+'/16 llaves confirmadas.':r32.length+'/16 matches confirmed.')}</p>
+    <div class="flex items-baseline justify-between gap-3 mb-4">
+      <p class="text-sm" style="color:var(--mute);">${LANG === 'es' ? 'Probabilidad del modelo de alcanzar cada ronda. Excluye selecciones ya eliminadas.' : 'Model probability of reaching each round. Excludes already-eliminated teams.'}</p>
+      <span class="text-[13px] font-mono flex-none hidden sm:block" style="color:var(--mute);">${LANG === 'es' ? 'proyección · desliza →' : 'projection · scroll →'}</span>
     </div>
-
-    <div class="rounded-xl border overflow-hidden" style="background:var(--panel); border-color:var(--border);">
-      <div class="px-4 py-3" style="border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent);">
-        <h2 class="text-sm font-bold">${LANG==='es'?'Probabilidad por ronda':'Probability by round'}</h2>
-        <p class="text-[10px]" style="color:var(--mute);">Monte Carlo (n=${p.n_sims.toLocaleString()}) · Top 16</p>
+    <div class="overflow-x-auto no-scrollbar pb-2 -mx-1 px-1">
+      <div class="flex gap-6" style="min-width:860px;">
+        ${colOf(LANG === 'es' ? 'Cuartos' : 'Quarters', 'p_qf', 8)}
+        ${colOf(LANG === 'es' ? 'Semifinal' : 'Semifinal', 'p_sf', 5)}
+        ${colOf('Final', 'p_f', 3)}
+        ${champCol}
       </div>
-      <div class="overflow-x-auto">
-        <table class="w-full">
-          <thead>
-            <tr style="background:color-mix(in srgb,var(--panel2) 50%,transparent);">
-              <th class="py-2 pl-3 pr-1 text-left text-[10px] font-semibold uppercase tracking-wider w-6" style="color:var(--mute);">#</th>
-              <th class="py-2 px-2 text-left text-[10px] font-semibold uppercase tracking-wider" style="color:var(--mute);">${LANG==='es'?'Selección':'Team'}</th>
-              <th class="py-2 px-2 text-right text-[10px] font-semibold uppercase tracking-wider hidden sm:table-cell" style="color:var(--mute);">Elo</th>
-              <th class="py-2 px-2 text-right text-[10px] font-semibold uppercase tracking-wider" style="color:var(--mute);">R32</th>
-              <th class="py-2 px-2 text-right text-[10px] font-semibold uppercase tracking-wider" style="color:var(--mute);">QF</th>
-              <th class="py-2 px-2 text-right text-[10px] font-semibold uppercase tracking-wider" style="color:var(--mute);">SF</th>
-              <th class="py-2 px-2 text-right text-[10px] font-semibold uppercase tracking-wider" style="color:var(--mute);">F</th>
-              <th class="py-2 pr-3 pl-2 text-right text-[10px] font-semibold uppercase tracking-wider w-16" style="color:var(--mute);">${LANG==='es'?'Camp.':'Champ'}</th>
-            </tr>
-          </thead>
-          <tbody>${projRows}</tbody>
-        </table>
-      </div>
-    </div>`;
-
-
+    </div>
+    ${nSims ? `<p class="text-[11px] mt-3" style="color:var(--placeholder);">Monte Carlo · n=${nSims}${elim.size ? ` · ${elim.size} ${LANG === 'es' ? 'eliminadas excluidas' : 'eliminated excluded'}` : ''}</p>` : ''}`;
 }
 
 function renderRankings() {
@@ -1676,14 +1530,14 @@ let _detailBackTo = 'upcoming';
 function openDetail(id, backTo) {
   _detailId = id;
   _detailBackTo = backTo || 'upcoming';
-  ['upcoming', 'groups', 'rankings', 'bracket', 'players', 'history', 'quiniela'].forEach(t => {
-    document.getElementById(t === 'upcoming' ? 'fixtures-container' : t + '-container')?.classList.add('hidden');
-  });
-  document.getElementById('results-container')?.classList.add('hidden');
+  // Expand inline within the same view — top nav stays, only content swaps.
+  ['fixtures-container', 'picks-container', 'groups-container', 'rankings-container',
+   'bracket-container', 'players-container', 'history-container', 'quiniela-container',
+   'results-container'].forEach(id2 => document.getElementById(id2)?.classList.add('hidden'));
   document.getElementById('search-bar')?.classList.add('hidden');
   document.getElementById('filter-bar')?.classList.add('hidden');
   document.getElementById('date-chips-bar')?.classList.add('hidden');
-  document.getElementById('tab-bar')?.classList.add('hidden');
+  document.getElementById('screen-head')?.classList.add('hidden');
   document.getElementById('detail-container')?.classList.remove('hidden');
   renderDetail();
   window.scrollTo(0, 0);
@@ -1691,9 +1545,12 @@ function openDetail(id, backTo) {
 
 function closeDetail() {
   document.getElementById('detail-container')?.classList.add('hidden');
-  document.getElementById('tab-bar')?.classList.remove('hidden');
+  document.getElementById('screen-head')?.classList.remove('hidden');
   setTab(_detailBackTo);
 }
+
+function openAuth() { document.getElementById('auth-modal')?.classList.remove('hidden'); }
+function closeAuth() { document.getElementById('auth-modal')?.classList.add('hidden'); }
 
 function renderDetail() {
   const el = document.getElementById('detail-container');
@@ -1975,7 +1832,27 @@ function renderDetail() {
     </div>`;
 }
 
-// ── Fixtures (Picks tab) ──
+// ── Picks tab: BET signals only (mockup Picks screen) ──
+function renderPicks() {
+  const el = document.getElementById('picks-container');
+  if (!el) {return;}
+  let bets = DATA.fixtures.filter(f => !f.completed && f.best_bet);
+  if (currentSearch) {
+    const q = currentSearch;
+    bets = bets.filter(f =>
+      (f.home || '').toLowerCase().includes(q) || (f.away || '').toLowerCase().includes(q) ||
+      teamName(f.home).toLowerCase().includes(q) || teamName(f.away).toLowerCase().includes(q));
+  }
+  bets.sort((a, b) => (b.best_bet.edge || 0) - (a.best_bet.edge || 0));
+  if (!bets.length) {
+    el.innerHTML = `<div class="text-center py-16 text-sm" style="color:var(--mute);">${LANG === 'es' ? 'No hay picks de valor ahora mismo.' : 'No value picks right now.'}</div>`;
+    return;
+  }
+  const sub = `<p class="text-sm -mt-2 mb-4" style="color:var(--mute);">${LANG === 'es' ? 'Partidos donde el modelo ve ventaja real sobre el mercado.' : 'Matches where the model sees real edge over the market.'}</p>`;
+  el.innerHTML = sub + `<div class="flex flex-col gap-3">${bets.map(f => renderFixtureCard(f)).join('')}</div>`;
+}
+
+// ── Fixtures (Partidos tab) ──
 function _isoDate(iso) { return iso ? iso.slice(0, 10) : ''; }
 
 function renderFixtures() {
