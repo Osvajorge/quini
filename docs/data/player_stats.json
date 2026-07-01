@@ -147,6 +147,24 @@
       }
     },
     {
+      "player": "Erling Haaland",
+      "team": "Norway",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Total Shots": {
+          "total": 9.0,
+          "max": 5.0,
+          "appearances": 2
+        },
+        "Goals": {
+          "total": 3.0,
+          "max": 1.0,
+          "appearances": 3
+        }
+      }
+    },
+    {
       "player": "Jonathan David",
       "team": "Canada",
       "headshot": null,
@@ -404,6 +422,24 @@
       }
     },
     {
+      "player": "Nicolas Pépé",
+      "team": "Ivory Coast",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        },
+        "Assists": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Kai Havertz",
       "team": "Germany",
       "headshot": null,
@@ -481,24 +517,6 @@
       }
     },
     {
-      "player": "Erling Haaland",
-      "team": "Norway",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Total Shots": {
-          "total": 5.0,
-          "max": 5.0,
-          "appearances": 1
-        },
-        "Goals": {
-          "total": 2.0,
-          "max": 1.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
       "player": "Bruno Guimarães",
       "team": "Brazil",
       "headshot": null,
@@ -512,6 +530,24 @@
         "Total Shots": {
           "total": 4.0,
           "max": 4.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Amad Diallo",
+      "team": "Ivory Coast",
+      "headshot": null,
+      "matches": 3,
+      "categories": {
+        "Goals": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        },
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
           "appearances": 1
         }
       }
@@ -640,19 +676,6 @@
     {
       "player": "Folarin Balogun",
       "team": "United States",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Goals": {
-          "total": 2.0,
-          "max": 1.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
-      "player": "Nicolas Pépé",
-      "team": "Ivory Coast",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -1262,24 +1285,6 @@
       }
     },
     {
-      "player": "Amad Diallo",
-      "team": "Ivory Coast",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Goals": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
-        },
-        "Total Shots": {
-          "total": 3.0,
-          "max": 3.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Promise David",
       "team": "Canada",
       "headshot": null,
@@ -1541,6 +1546,32 @@
           "total": 1.0,
           "max": 1.0,
           "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Martin Ødegaard",
+      "team": "Norway",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Assists": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
+        }
+      }
+    },
+    {
+      "player": "Patrick Berg",
+      "team": "Norway",
+      "headshot": null,
+      "matches": 2,
+      "categories": {
+        "Assists": {
+          "total": 2.0,
+          "max": 1.0,
+          "appearances": 2
         }
       }
     },
@@ -2199,6 +2230,19 @@
       }
     },
     {
+      "player": "Antonio Nusa",
+      "team": "Norway",
+      "headshot": null,
+      "matches": 1,
+      "categories": {
+        "Goals": {
+          "total": 1.0,
+          "max": 1.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
       "player": "Malik Tillman",
       "team": "United States",
       "headshot": null,
@@ -2351,34 +2395,8 @@
       }
     },
     {
-      "player": "Martin Ødegaard",
-      "team": "Norway",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Assists": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
       "player": "Sadio Mané",
       "team": "Senegal",
-      "headshot": null,
-      "matches": 1,
-      "categories": {
-        "Assists": {
-          "total": 1.0,
-          "max": 1.0,
-          "appearances": 1
-        }
-      }
-    },
-    {
-      "player": "Patrick Berg",
-      "team": "Norway",
       "headshot": null,
       "matches": 1,
       "categories": {
@@ -2902,12 +2920,12 @@
       "player": "Ibrahim Sangaré",
       "team": "Ivory Coast",
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/213718.png",
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Accurate Passes": {
-          "total": 82.0,
+          "total": 129.0,
           "max": 82.0,
-          "appearances": 1
+          "appearances": 2
         },
         "Assists": {
           "total": 1.0,
@@ -3446,6 +3464,29 @@
       "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/216420.png",
       "matches": 1,
       "categories": {
+        "Total Shots": {
+          "total": 3.0,
+          "max": 3.0,
+          "appearances": 1
+        }
+      }
+    },
+    {
+      "player": "Emmanuel Agbadou",
+      "team": "Ivory Coast",
+      "headshot": null,
+      "matches": 3,
+      "categories": {
+        "Accurate Passes": {
+          "total": 107.0,
+          "max": 57.0,
+          "appearances": 2
+        },
+        "Defensive Interventions": {
+          "total": 31.0,
+          "max": 17.0,
+          "appearances": 2
+        },
         "Total Shots": {
           "total": 3.0,
           "max": 3.0,
@@ -4414,12 +4455,12 @@
       "player": "Sander Berge",
       "team": "Norway",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Accurate Passes": {
-          "total": 40.0,
-          "max": 40.0,
-          "appearances": 1
+          "total": 111.0,
+          "max": 71.0,
+          "appearances": 2
         }
       }
     },
@@ -4427,12 +4468,12 @@
       "player": "Kristoffer Ajer",
       "team": "Norway",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Defensive Interventions": {
-          "total": 14.0,
-          "max": 14.0,
-          "appearances": 1
+          "total": 30.0,
+          "max": 16.0,
+          "appearances": 2
         }
       }
     },
@@ -4440,12 +4481,12 @@
       "player": "Ørjan Nyland",
       "team": "Norway",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Saves": {
-          "total": 2.0,
-          "max": 2.0,
-          "appearances": 1
+          "total": 6.0,
+          "max": 4.0,
+          "appearances": 2
         }
       }
     },
@@ -4940,33 +4981,15 @@
       }
     },
     {
-      "player": "Emmanuel Agbadou",
-      "team": "Ivory Coast",
-      "headshot": null,
-      "matches": 2,
-      "categories": {
-        "Accurate Passes": {
-          "total": 107.0,
-          "max": 57.0,
-          "appearances": 2
-        },
-        "Defensive Interventions": {
-          "total": 31.0,
-          "max": 17.0,
-          "appearances": 2
-        }
-      }
-    },
-    {
       "player": "Yahia Fofana",
       "team": "Ivory Coast",
       "headshot": null,
-      "matches": 3,
+      "matches": 4,
       "categories": {
         "Saves": {
-          "total": 8.0,
+          "total": 9.0,
           "max": 5.0,
-          "appearances": 3
+          "appearances": 4
         }
       }
     },
@@ -5943,12 +5966,12 @@
       "player": "Guela Doué",
       "team": "Ivory Coast",
       "headshot": null,
-      "matches": 1,
+      "matches": 2,
       "categories": {
         "Defensive Interventions": {
-          "total": 9.0,
-          "max": 9.0,
-          "appearances": 1
+          "total": 19.0,
+          "max": 10.0,
+          "appearances": 2
         }
       }
     },
