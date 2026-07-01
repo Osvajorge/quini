@@ -132,7 +132,7 @@ export async function onRequestPost({ request, env }) {
       }
     }));
 
-    if (i + BATCH_SIZE < leads.length) await sleep(BATCH_DELAY);
+    if (i + BATCH_SIZE < leads.length) {await sleep(BATCH_DELAY);}
   }
 
   // Mark as sent for today (expire after 26h to handle timezone drift)

@@ -23,7 +23,7 @@ self.addEventListener('notificationclick', e => {
           return c.focus();
         }
       }
-      if (self.clients.openWindow) return self.clients.openWindow(url);
+      if (self.clients.openWindow) {return self.clients.openWindow(url);}
     })
   );
 });
@@ -52,7 +52,7 @@ self.addEventListener('fetch', e => {
     e.respondWith(
       caches.match(e.request).then(cached => {
         const fetched = fetch(e.request).then(r => {
-          if (r.ok) caches.open(CACHE).then(c => c.put(e.request, r.clone()));
+          if (r.ok) {caches.open(CACHE).then(c => c.put(e.request, r.clone()));}
           return r;
         });
         return cached || fetched;

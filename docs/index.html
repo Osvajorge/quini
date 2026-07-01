@@ -512,17 +512,19 @@ html, body { background: var(--bg); color: var(--ink); font-family: 'Inter', sys
 </footer>
 
 <script>
+/* exported toggleLang, heroSkip, skipStep2 --
+   invoked from onclick="" attributes in markup, invisible to static analysis */
 // ── Aligned ROI (same logic as index.html, excludes legacy SKIP picks) ──
 function _isBetPick(b) {
-  if (b.pick) return b.pick === 'BET';
+  if (b.pick) {return b.pick === 'BET';}
   return Number(b.edge || 0) >= 8;
 }
 function _alignedStats(hist) {
   let n = 0, won = 0, profit = 0;
   for (const fx of (hist.fixtures || [])) {
     for (const b of (fx.bets || [])) {
-      if (b.won === null || b.won === undefined) continue;
-      if (!_isBetPick(b)) continue;
+      if (b.won === null || b.won === undefined) {continue;}
+      if (!_isBetPick(b)) {continue;}
       n++;
       if (b.won) { won++; profit += Number(b.odds || 1) - 1; }
       else { profit -= 1; }
@@ -571,9 +573,9 @@ async function loadStats() {
     // Render today's picks: top BETs sorted by edge
     const picks = [];
     for (const f of pred.fixtures || []) {
-      if (f.completed || f.is_live) continue;
+      if (f.completed || f.is_live) {continue;}
       for (const b of (f.bets || [])) {
-        if (_isBetPick(b)) picks.push({ f, b });
+        if (_isBetPick(b)) {picks.push({ f, b });}
       }
     }
     picks.sort((a, b) => (b.b.edge || 0) - (a.b.edge || 0));
@@ -718,9 +720,9 @@ const I18N = {
 function detectLang() {
   const url = new URL(location.href);
   const q = (url.searchParams.get('lang') || '').toLowerCase();
-  if (q === 'en' || q === 'es') return q;
+  if (q === 'en' || q === 'es') {return q;}
   const saved = localStorage.getItem('quini_lang');
-  if (saved === 'en' || saved === 'es') return saved;
+  if (saved === 'en' || saved === 'es') {return saved;}
   const nav = (navigator.language || 'es').slice(0, 2).toLowerCase();
   return nav === 'en' ? 'en' : 'es';
 }
@@ -731,12 +733,12 @@ function applyLang() {
   const dict = I18N[LANG];
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
-    if (dict[key]) el.textContent = dict[key];
+    if (dict[key]) {el.textContent = dict[key];}
   });
   // Update placeholder on email input when lang switches
   const emailIn = document.querySelector('#wl-form1 input[type=email]');
-  if (emailIn && LANG === 'en') emailIn.placeholder = 'youremail@gmail.com';
-  else if (emailIn) emailIn.placeholder = 'tucorreo@gmail.com';
+  if (emailIn && LANG === 'en') {emailIn.placeholder = 'youremail@gmail.com';}
+  else if (emailIn) {emailIn.placeholder = 'tucorreo@gmail.com';}
   document.getElementById('lang-btn').textContent = LANG === 'es' ? 'EN' : 'ES';
 }
 
@@ -756,14 +758,14 @@ let _wlEmail = localStorage.getItem('quini_wl_email') || '';
 async function loadWaitlistCount() {
   try {
     const r = await fetch('/api/subscribe');
-    if (!r.ok) return;
+    if (!r.ok) {return;}
     const { count } = await r.json();
     const displayed = count + 30;
     const tpl = I18N[LANG].wl_counter_tpl;
     document.getElementById('wl-counter').textContent = tpl.replace('{{n}}', displayed);
     const heroEl = document.getElementById('hero-wl-counter');
-    if (heroEl) heroEl.textContent = tpl.replace('{{n}}', displayed);
-  } catch (_) {}
+    if (heroEl) {heroEl.textContent = tpl.replace('{{n}}', displayed);}
+  } catch {}
 }
 loadWaitlistCount();
 
@@ -782,7 +784,7 @@ async function _submitEmail(email, hp) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, website: hp, lang: LANG }),
   });
-  if (!res.ok) throw new Error('subscribe failed');
+  if (!res.ok) {throw new Error('subscribe failed');}
 }
 
 document.getElementById('hero-wl-form').addEventListener('submit', async e => {
@@ -791,12 +793,12 @@ document.getElementById('hero-wl-form').addEventListener('submit', async e => {
   const btn = form.querySelector('button[type=submit]');
   const email = form.email.value.trim();
   const hp = form.website?.value || '';
-  if (!email) return;
+  if (!email) {return;}
   btn.disabled = true;
   btn.textContent = '…';
   try {
     await _submitEmail(email, hp);
-  } catch (_) {
+  } catch {
     btn.disabled = false;
     btn.textContent = LANG === 'es' ? 'Reservar →' : 'Reserve →';
     return;
@@ -835,7 +837,7 @@ document.getElementById('hero-wl-form2').addEventListener('submit', async e => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: _wlEmail, phone, name, lang: LANG }),
     });
-  } catch (_) {}
+  } catch {}
   heroShowDone();
 });
 
@@ -856,12 +858,12 @@ document.getElementById('wl-form1').addEventListener('submit', async e => {
   const btn = form.querySelector('button[type=submit]');
   const email = form.email.value.trim();
   const hp = form.website?.value || '';
-  if (!email) return;
+  if (!email) {return;}
   btn.disabled = true;
   btn.textContent = '…';
   try {
     await _submitEmail(email, hp);
-  } catch (_) {
+  } catch {
     btn.disabled = false;
     btn.textContent = LANG === 'es' ? 'Quiero acceso →' : 'I want access →';
     return;
@@ -902,7 +904,7 @@ document.getElementById('wl-form2').addEventListener('submit', async e => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: _wlEmail, phone, name, lang: LANG }),
     });
-  } catch (_) {}
+  } catch {}
   showDone();
 });
 

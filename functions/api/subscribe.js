@@ -69,8 +69,8 @@ export async function onRequestPost({ request, env }) {
     await env.WAITLIST_KV.put('meta:count', String(prev + 1));
   } else if (body.phone || body.name) {
     const lead = JSON.parse(existing);
-    if (body.phone) lead.phone = (body.phone || '').trim();
-    if (body.name) lead.name = (body.name || '').trim();
+    if (body.phone) {lead.phone = (body.phone || '').trim();}
+    if (body.name) {lead.name = (body.name || '').trim();}
     await env.WAITLIST_KV.put(leadKey, JSON.stringify(lead));
   }
 

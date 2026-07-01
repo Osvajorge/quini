@@ -1,0 +1,15 @@
+{
+  "name": "kini",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "eslint": "^9.39.4",
+    "eslint-plugin-html": "^8.1.4",
+    "globals": "^17.7.0",
+    "prettier": "^3.9.4"
+  }
+}
