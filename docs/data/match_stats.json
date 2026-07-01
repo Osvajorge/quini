@@ -10842,5 +10842,349 @@
         "clock": "86'"
       }
     ]
+  },
+  "0b5491529142c9bcc3f88bf45ccb0a7b": {
+    "espn_id": "760492",
+    "fetched_at": "2026-07-01T15:40:12+00:00",
+    "teams": [
+      {
+        "team": "France",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "14",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "3",
+          "wonCorners": "9",
+          "saves": "3",
+          "possessionPct": "61",
+          "totalShots": "25",
+          "shotsOnTarget": "12",
+          "shotPct": "0.5",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "484",
+          "totalPasses": "551",
+          "passPct": "0.9",
+          "accurateCrosses": "4",
+          "totalCrosses": "17",
+          "crossPct": "0.2",
+          "totalLongBalls": "36",
+          "accurateLongBalls": "17",
+          "longballPct": "0.5",
+          "blockedShots": "4",
+          "effectiveTackles": "7",
+          "totalTackles": "13",
+          "tacklePct": "0.5",
+          "interceptions": "5",
+          "effectiveClearance": "23",
+          "totalClearance": "23"
+        }
+      },
+      {
+        "team": "Sweden",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "1",
+          "wonCorners": "1",
+          "saves": "9",
+          "possessionPct": "39",
+          "totalShots": "8",
+          "shotsOnTarget": "3",
+          "shotPct": "0.4",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "278",
+          "totalPasses": "350",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "11",
+          "crossPct": "0.3",
+          "totalLongBalls": "45",
+          "accurateLongBalls": "11",
+          "longballPct": "0.2",
+          "blockedShots": "1",
+          "effectiveTackles": "9",
+          "totalTackles": "13",
+          "tacklePct": "0.7",
+          "interceptions": "12",
+          "effectiveClearance": "26",
+          "totalClearance": "26"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "France",
+        "category": "Total Shots",
+        "player": "Michael Olise",
+        "headshot": null,
+        "value": "6"
+      },
+      {
+        "team": "France",
+        "category": "Accurate Passes",
+        "player": "Aurélien Tchouaméni",
+        "headshot": null,
+        "value": "63"
+      },
+      {
+        "team": "France",
+        "category": "Defensive Interventions",
+        "player": "Dayot Upamecano",
+        "headshot": null,
+        "value": "10"
+      },
+      {
+        "team": "France",
+        "category": "Saves",
+        "player": "Mike Maignan",
+        "headshot": null,
+        "value": "3"
+      },
+      {
+        "team": "Sweden",
+        "category": "Total Shots",
+        "player": "Alexander Isak",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Sweden",
+        "category": "Accurate Passes",
+        "player": "Victor Lindelöf",
+        "headshot": null,
+        "value": "44"
+      },
+      {
+        "team": "Sweden",
+        "category": "Defensive Interventions",
+        "player": "Gustaf Lagerbielke",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Sweden",
+        "category": "Saves",
+        "player": "Jacob Widell Zetterström",
+        "headshot": null,
+        "value": "9"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Kylian Mbappé",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Ousmane Dembélé following a corner",
+        "headshot": null,
+        "value": "1",
+        "clock": "45'"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Bradley Barcola",
+        "headshot": null,
+        "value": "1",
+        "clock": "53'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Michael Olise",
+        "headshot": null,
+        "value": "1",
+        "clock": "53'"
+      },
+      {
+        "team": "France",
+        "category": "Goals",
+        "player": "Kylian Mbappé",
+        "headshot": null,
+        "value": "1",
+        "clock": "74'"
+      },
+      {
+        "team": "France",
+        "category": "Assists",
+        "player": "Michael Olise",
+        "headshot": null,
+        "value": "1",
+        "clock": "74'"
+      }
+    ]
+  },
+  "f58c55a9da96af562c31b7c5cca40187": {
+    "espn_id": "760491",
+    "fetched_at": "2026-07-01T15:40:12+00:00",
+    "teams": [
+      {
+        "team": "Mexico",
+        "side": "home",
+        "stats": {
+          "foulsCommitted": "10",
+          "yellowCards": "0",
+          "redCards": "0",
+          "offsides": "0",
+          "wonCorners": "3",
+          "saves": "1",
+          "possessionPct": "42.8",
+          "totalShots": "15",
+          "shotsOnTarget": "3",
+          "shotPct": "0.2",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "248",
+          "totalPasses": "316",
+          "passPct": "0.8",
+          "accurateCrosses": "4",
+          "totalCrosses": "7",
+          "crossPct": "0.6",
+          "totalLongBalls": "58",
+          "accurateLongBalls": "27",
+          "longballPct": "0.5",
+          "blockedShots": "3",
+          "effectiveTackles": "5",
+          "totalTackles": "10",
+          "tacklePct": "0.5",
+          "interceptions": "7",
+          "effectiveClearance": "39",
+          "totalClearance": "39"
+        }
+      },
+      {
+        "team": "Ecuador",
+        "side": "away",
+        "stats": {
+          "foulsCommitted": "14",
+          "yellowCards": "3",
+          "redCards": "1",
+          "offsides": "1",
+          "wonCorners": "8",
+          "saves": "1",
+          "possessionPct": "57.2",
+          "totalShots": "7",
+          "shotsOnTarget": "1",
+          "shotPct": "0.1",
+          "penaltyKickGoals": "0",
+          "penaltyKickShots": "0",
+          "accuratePasses": "341",
+          "totalPasses": "410",
+          "passPct": "0.8",
+          "accurateCrosses": "3",
+          "totalCrosses": "25",
+          "crossPct": "0.1",
+          "totalLongBalls": "53",
+          "accurateLongBalls": "17",
+          "longballPct": "0.3",
+          "blockedShots": "1",
+          "effectiveTackles": "8",
+          "totalTackles": "11",
+          "tacklePct": "0.7",
+          "interceptions": "6",
+          "effectiveClearance": "19",
+          "totalClearance": "19"
+        }
+      }
+    ],
+    "leaders": [
+      {
+        "team": "Mexico",
+        "category": "Total Shots",
+        "player": "Raúl Jiménez",
+        "headshot": null,
+        "value": "4"
+      },
+      {
+        "team": "Mexico",
+        "category": "Accurate Passes",
+        "player": "Johan Vásquez",
+        "headshot": null,
+        "value": "38"
+      },
+      {
+        "team": "Mexico",
+        "category": "Defensive Interventions",
+        "player": "César Montes",
+        "headshot": null,
+        "value": "13"
+      },
+      {
+        "team": "Mexico",
+        "category": "Saves",
+        "player": "Raúl Rangel",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Total Shots",
+        "player": "John Yeboah",
+        "headshot": null,
+        "value": "2"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Accurate Passes",
+        "player": "Pedro Vite",
+        "headshot": "https://a.espncdn.com/i/headshots/soccer/players/full/297150.png",
+        "value": "62"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Defensive Interventions",
+        "player": "Piero Hincapié",
+        "headshot": null,
+        "value": "14"
+      },
+      {
+        "team": "Ecuador",
+        "category": "Saves",
+        "player": "Hernán Galíndez",
+        "headshot": null,
+        "value": "1"
+      },
+      {
+        "team": "Mexico",
+        "category": "Goals",
+        "player": "Julián Quiñones",
+        "headshot": null,
+        "value": "1",
+        "clock": "22'"
+      },
+      {
+        "team": "Mexico",
+        "category": "Assists",
+        "player": "Roberto Alvarado",
+        "headshot": null,
+        "value": "1",
+        "clock": "22'"
+      },
+      {
+        "team": "Mexico",
+        "category": "Goals",
+        "player": "Raúl Jiménez",
+        "headshot": null,
+        "value": "1",
+        "clock": "31'"
+      },
+      {
+        "team": "Mexico",
+        "category": "Assists",
+        "player": "Julián Quiñones",
+        "headshot": null,
+        "value": "1",
+        "clock": "31'"
+      }
+    ]
   }
 }
