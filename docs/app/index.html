@@ -142,6 +142,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
   <div id="results-container" class="hidden"></div>
   <div id="quiniela-container" class="hidden"></div>
   <div id="disclaimer-container" class="hidden"></div>
+  <div id="admin-container" class="hidden"></div>
   <div id="detail-container" class="hidden"></div>
 
   <div id="loading" class="text-center py-20">
@@ -230,7 +231,10 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
     </div>
     <div class="border-t pt-6 flex flex-col sm:flex-row items-center justify-between gap-3" style="border-color:var(--border);">
       <p class="text-[10px]" style="color:var(--mute);" data-i18n="footer_disclaimer">Predicciones para análisis y entretenimiento. No es asesoría financiera. Apuesta de forma responsable.</p>
-      <button onclick="setTab('disclaimer')" class="text-[11px] font-semibold underline flex-none" style="color:var(--mute);" data-i18n="footer_rg">Juega con responsabilidad</button>
+      <div class="flex items-center gap-4 flex-none">
+        <button onclick="setTab('disclaimer')" class="text-[11px] font-semibold underline" style="color:var(--mute);" data-i18n="footer_rg">Juega con responsabilidad</button>
+        <button onclick="setTab('admin')" class="text-[11px]" style="color:color-mix(in srgb,var(--mute) 40%,transparent);">⚙</button>
+      </div>
     </div>
   </div>
 </footer>
@@ -239,7 +243,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 /* exported goToLive, setSearch, setDateFilter, showPlayerRadar,
    setPlayersCat, setPlayersTeam, setPlayersSource, _toggleCompareMode,
    _onTeamSearch, _selectTeamOpt, _clearTeamFilter, toggleMatchSummary,
-   checkQuinielaPw, dismissEmailBanner,
+   checkQuinielaPw, checkAdminPw, dismissEmailBanner,
    requestNotificationPermission, startPresentation, shareFixture, toggleLang,
    toggleTheme, openDetail, closeDetail, openAuth, closeAuth, setSeg,
    _toggleHistCompare, _removeHistTeam --
@@ -947,6 +951,7 @@ const SCREEN_TITLES = {
   bracket: {es:'Cuadro de eliminación', en:'Knockout bracket'},
   history: {es:'Rendimiento', en:'Performance'},
   disclaimer: {es:'Juega con responsabilidad', en:'Responsible gaming'},
+  admin: {es:'Panel de Admin', en:'Admin Panel'},
 };
 
 function setTab(tab) {
@@ -960,7 +965,7 @@ function setTab(tab) {
     if (btn) {btn.classList.toggle('active', tab === t);}
   });
   // Show/hide content containers (includes hidden extras: groups/players/quiniela)
-  ['upcoming','picks','groups','rankings','bracket','players','history','quiniela','disclaimer'].forEach(t => {
+  ['upcoming','picks','groups','rankings','bracket','players','history','quiniela','disclaimer','admin'].forEach(t => {
     const container = document.getElementById(t === 'upcoming' ? 'fixtures-container' : t + '-container');
     if (container) {container.classList.toggle('hidden', tab !== t);}
   });
@@ -1144,6 +1149,7 @@ function renderAll() {
   renderResults();
   renderHistory();
   renderDisclaimer();
+  renderAdmin();
   renderQuiniela();
   applyTooltips();
 }
@@ -3122,6 +3128,155 @@ function renderDisclaimer() {
         <p class="text-center text-xs px-4" style="color:var(--mute);">kini · ${LANG==='es'?'Análisis deportivo, no asesoría financiera':'Sports analysis, not financial advice'}</p>
       </div>
     </div>`;
+}
+
+function renderAdmin() {
+  const el = document.getElementById('admin-container');
+  if (!el) {return;}
+  if (!quinielaAuth) {
+    el.innerHTML = `
+      <div class="flex items-center justify-center py-16">
+        <div class="rounded-2xl border p-8 max-w-sm w-full text-center" style="background:var(--panel); border-color:var(--border);">
+          <div class="text-3xl mb-3">⚙️</div>
+          <h2 class="text-lg font-bold mb-1">Admin</h2>
+          <p class="text-sm mb-5" style="color:var(--mute);">Acceso restringido</p>
+          <input id="adm-pw-input" type="password" placeholder="Código de acceso"
+            class="w-full px-4 py-3 rounded-lg border text-center font-mono text-sm focus:outline-none mb-3"
+            style="background:var(--panel2); border-color:var(--border); color:var(--ink);"
+            onkeydown="if(event.key==='Enter')checkAdminPw()">
+          <button onclick="checkAdminPw()" class="w-full px-4 py-3 rounded-lg font-semibold text-sm" style="background:var(--ui-black);color:var(--ui-black-ink);">Entrar</button>
+          <div id="adm-pw-err" class="hidden text-xs mt-3" style="color:var(--mute);">Código incorrecto</div>
+        </div>
+      </div>`;
+    return;
+  }
+  if (!DATA) {return;}
+
+  const fx = DATA.fixtures || [];
+  const total = fx.length;
+  const completed = fx.filter(f => f.completed).length;
+  const live = fx.filter(f => f.is_live).length;
+  const upcoming = fx.filter(f => !f.completed && !f.is_live).length;
+  const withXG = fx.filter(f => f.xg_home != null).length;
+  const withGrid = fx.filter(f => f.top_scores?.length > 0).length;
+  const withBet = fx.filter(f => f.best_bet).length;
+  const withStats = MATCH_STATS ? fx.filter(f => !!MATCH_STATS[f.id]).length : 0;
+  const koFx = fx.filter(f => f.is_ko).length;
+  const as = HISTORY ? _alignedHistoryStats() : null;
+  const lastUpdate = DATA.generated_at || DATA.updated_at || null;
+
+  const stat = (label, val, accent) => `
+    <div class="rounded-xl p-4" style="background:var(--panel2);">
+      <div class="text-xl font-extrabold tracking-tight" style="${accent?'color:var(--bet2);':''}">${val}</div>
+      <div class="text-[11px] mt-0.5" style="color:var(--mute);">${label}</div>
+    </div>`;
+
+  const bar = (label, n, d) => {
+    const pct = d ? Math.round(n/d*100) : 0;
+    const color = pct >= 80 ? 'var(--bet)' : pct >= 50 ? 'var(--warn)' : 'var(--mute)';
+    return `<div class="flex items-center gap-3">
+      <div class="w-28 flex-none text-xs" style="color:var(--mute);">${label}</div>
+      <div class="flex-1 h-1.5 rounded-full overflow-hidden" style="background:var(--panel2);">
+        <div class="h-full rounded-full transition-all" style="width:${pct}%;background:${color};"></div>
+      </div>
+      <div class="w-20 flex-none text-right text-xs font-mono" style="color:var(--ink);">${n}/${d} <span style="color:var(--mute);">${pct}%</span></div>
+    </div>`;
+  };
+
+  const chk = v => v ? `<span style="color:var(--bet);">✓</span>` : `<span style="color:color-mix(in srgb,var(--mute) 50%,transparent);">—</span>`;
+
+  const auditRows = fx.slice().sort((a,b) => new Date(b.commence_time)-new Date(a.commence_time)).map(f => {
+    const nH = LANG==='es'?(TEAM_ES[f.home]||f.home):f.home;
+    const nA = LANG==='es'?(TEAM_ES[f.away]||f.away):f.away;
+    const score = f.completed ? `${f.actual_home??'?'}-${f.actual_away??'?'}` : f.is_live ? '🔴' : '—';
+    const rowBg = f.is_live ? 'color-mix(in srgb,var(--live) 8%,transparent)' : 'transparent';
+    return `<tr style="border-bottom:1px solid color-mix(in srgb,var(--border) 40%,transparent);background:${rowBg};">
+      <td class="px-4 py-2">${teamFlag(f.home)} <span class="font-medium">${nH}</span> vs ${nA}</td>
+      <td class="text-center px-2 py-2">${chk(f.xg_home!=null)}</td>
+      <td class="text-center px-2 py-2">${chk(f.top_scores?.length>0)}</td>
+      <td class="text-center px-2 py-2">${chk(MATCH_STATS&&!!MATCH_STATS[f.id])}</td>
+      <td class="text-center px-2 py-2">${chk(!!f.best_bet)}</td>
+      <td class="text-center px-2 py-2 font-mono text-xs">${score}</td>
+    </tr>`;
+  }).join('');
+
+  el.innerHTML = `
+    <div class="max-w-2xl mx-auto space-y-5">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-bold">Admin Panel</h2>
+          ${lastUpdate ? `<div class="text-xs mt-0.5" style="color:var(--mute);">Última actualización: ${new Date(lastUpdate).toLocaleString(LANG==='es'?'es':'en')}</div>` : ''}
+        </div>
+        <span class="px-2.5 py-1 rounded-full text-xs font-bold" style="background:color-mix(in srgb,#7c5cff 15%,transparent);color:#7c5cff;">ADMIN</span>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        ${stat('Total fixtures', total, false)}
+        ${stat('Completados', completed, false)}
+        ${stat('En vivo', live, live > 0)}
+        ${stat('Próximos', upcoming, false)}
+      </div>
+
+      <div class="rounded-xl p-5 space-y-3" style="background:var(--panel);box-shadow:var(--shadow-card);">
+        <h3 class="text-xs font-bold uppercase tracking-wider mb-1" style="color:var(--mute);">Cobertura de datos</h3>
+        ${bar('xG modelo', withXG, total)}
+        ${bar('Score grid', withGrid, total)}
+        ${bar('Match stats', withStats, completed)}
+        ${bar('BET signals', withBet, upcoming + live)}
+        ${bar('Rondas KO', koFx, total)}
+      </div>
+
+      ${as ? `
+      <div class="rounded-xl p-5" style="background:var(--panel);box-shadow:var(--shadow-card);">
+        <h3 class="text-xs font-bold uppercase tracking-wider mb-4" style="color:var(--mute);">Rendimiento de apuestas</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          ${stat('Récord', `${as.won}-${as.lost}`, false)}
+          ${stat('Win rate', `${as.winRate}%`, parseFloat(as.winRate)>=50)}
+          ${stat('ROI', as.roi!=='—'?`${parseFloat(as.roi)>=0?'+':''}${as.roi}%`:'—', parseFloat(as.roi)>0)}
+          ${stat('CLV avg', HISTORY?.summary?.avg_clv_pct!=null?`${HISTORY.summary.avg_clv_pct>0?'+':''}${HISTORY.summary.avg_clv_pct}%`:'—', (HISTORY?.summary?.avg_clv_pct||0)>0)}
+        </div>
+      </div>` : ''}
+
+      <div class="rounded-xl overflow-hidden" style="background:var(--panel);box-shadow:var(--shadow-card);">
+        <div class="px-4 py-3 flex items-center justify-between" style="border-bottom:1px solid var(--border);">
+          <h3 class="text-xs font-bold uppercase tracking-wider" style="color:var(--mute);">Audit de fixtures</h3>
+          <span class="text-xs font-mono" style="color:var(--mute);">${total} rows</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs">
+            <thead>
+              <tr style="border-bottom:1px solid var(--border);background:var(--panel2);">
+                <th class="text-left px-4 py-2 font-semibold" style="color:var(--mute);">Partido</th>
+                <th class="text-center px-2 py-2 font-semibold" style="color:var(--mute);">xG</th>
+                <th class="text-center px-2 py-2 font-semibold" style="color:var(--mute);">Grid</th>
+                <th class="text-center px-2 py-2 font-semibold" style="color:var(--mute);">Stats</th>
+                <th class="text-center px-2 py-2 font-semibold" style="color:var(--mute);">BET</th>
+                <th class="text-center px-2 py-2 font-semibold" style="color:var(--mute);">Score</th>
+              </tr>
+            </thead>
+            <tbody>${auditRows}</tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="text-center text-xs pb-4" style="color:var(--mute);">Sesión caduca al cerrar pestaña</p>
+    </div>`;
+}
+
+async function checkAdminPw() {
+  const inp = document.getElementById('adm-pw-input');
+  const err = document.getElementById('adm-pw-err');
+  if (!inp) {return;}
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(inp.value));
+  const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  if (hash === PW_HASH) {
+    quinielaAuth = true;
+    sessionStorage.setItem('q_auth', PW_HASH);
+    renderAdmin();
+  } else {
+    if (err) {err.classList.remove('hidden');}
+    inp.value = '';
+  }
 }
 
 function renderQuiniela() {
