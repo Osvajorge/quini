@@ -313,12 +313,14 @@ def extract_odds_from_event(event: dict) -> tuple[dict, dict, list[dict]]:
     return consensus, best, comparison
 
 
-def build_score_predictions(fit, home_model: str, away_model: str) -> tuple[list[dict], dict | None, float, float]:
+def build_score_predictions(fit, home_model: str, away_model: str) -> tuple[list[dict], dict | None, float, float, list]:
     try:
         grid = fit.predict_grid(home_model, away_model, neutral=False)
         lam_h, lam_a = fit.expected_goals(home_model, away_model, neutral=False)
     except (KeyError, ValueError):
-        return [], None, 0.0, 0.0
+        # Team not in the fitted model (e.g. a newcomer in the KO stage) — return
+        # the same 5-tuple shape callers unpack, with an empty score grid.
+        return [], None, 0.0, 0.0, []
     flat = [(h, a, grid.exact_score(h, a)) for h in range(6) for a in range(6)]
     flat.sort(key=lambda x: -x[2])
     top_scores = [{"home": h, "away": a, "prob": round(p * 100, 1)} for h, a, p in flat[:5]]
