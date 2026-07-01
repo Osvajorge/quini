@@ -58,6 +58,7 @@ TEAM_NAME_MAP = {
     "Turkiye": "Turkey",
     "Korea Republic": "South Korea",
     "IR Iran": "Iran",
+    "Czechia": "Czech Republic",
 }
 
 # Odds API names → ESPN standings display names (only where they differ)
@@ -1228,7 +1229,7 @@ def generate():
                     actual_away = int(s["score"]) if s["score"] is not None else None
         home_model = normalize_team(home_api)
         away_model = normalize_team(away_api)
-        top_scores, quiniela, _lh, _la, _sg = build_score_predictions(fit, home_model, away_model)
+        top_scores, quiniela, lam_h, lam_a, score_grid = build_score_predictions(fit, home_model, away_model)
         fixtures.append({
             "id": ev["id"],
             "home": home_api,
@@ -1239,12 +1240,13 @@ def generate():
             "actual_home": actual_home,
             "actual_away": actual_away,
             "penalty_winner": pen_overrides.get(ev["id"]),
-            "xg_home": None,
-            "xg_away": None,
+            "xg_home": round(lam_h, 2),
+            "xg_away": round(lam_a, 2),
             "odds": {},
             "picks": [],
             "best_bet": None,
             "top_scores": top_scores,
+            "score_grid": score_grid,
             "live_scores": None,
             "quiniela": quiniela,
             "fixture_confidence": None,
@@ -1279,6 +1281,25 @@ def generate():
         f for f in fixtures
         if f["completed"] or (f["home"], f["away"], f["commence_time"]) not in completed_keys
     ]
+
+    # Backfill xG for completed fixtures carried forward with stale nulls
+    # (events that dropped out of both odds/scores feeds before xg_home
+    # was ever populated).
+    for fx in fixtures:
+        if fx.get("completed") and fx.get("xg_home") is None:
+            home_model = normalize_team(fx["home"])
+            away_model = normalize_team(fx["away"])
+            if home_model and away_model:
+                try:
+                    ts, _q, lam_h, lam_a, sg = build_score_predictions(fit, home_model, away_model)
+                    fx["xg_home"] = round(lam_h, 2)
+                    fx["xg_away"] = round(lam_a, 2)
+                    if not fx.get("score_grid"):
+                        fx["score_grid"] = sg
+                    if not fx.get("top_scores"):
+                        fx["top_scores"] = ts
+                except Exception:
+                    pass
 
     now = datetime.now(timezone.utc)
     completed_fixtures = [f for f in fixtures if f["completed"]]
