@@ -68,6 +68,9 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 .lang-seg:not(.active) { color:var(--mute); }
 .no-scrollbar::-webkit-scrollbar { display:none; }
 .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+.seg-btn { font-size:13px; font-weight:600; color:var(--mute); background:none; border:none; cursor:pointer; padding:6px 14px; border-radius:10px; transition:all .12s; }
+.seg-btn.active { background:#fff; color:var(--ink); box-shadow:0 1px 5px rgba(0,0,0,.13); font-weight:700; }
+[data-theme="dark"] .seg-btn.active { background:var(--panel2); }
 </style>
 </head>
 <body class="font-sans antialiased">
@@ -99,9 +102,18 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
 </header>
 
 <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-  <div id="screen-head" class="flex items-baseline justify-between mb-5 gap-3 flex-wrap">
-    <h1 id="screen-title" class="text-2xl sm:text-3xl font-extrabold tracking-tight" style="letter-spacing:-.03em;">Partidos</h1>
-    <span class="text-[13px] font-mono" style="color:var(--mute);">Mundial 2026 · Ronda de 32</span>
+  <div id="screen-head" class="mb-5">
+    <div class="flex items-baseline justify-between gap-3 flex-wrap mb-3">
+      <h1 id="screen-title" class="text-2xl sm:text-3xl font-extrabold tracking-tight" style="letter-spacing:-.03em;">Partidos</h1>
+      <span class="text-[13px] font-mono" style="color:var(--mute);">Mundial 2026 · Ronda de 32</span>
+    </div>
+    <div id="seg-control" class="hidden">
+      <div class="inline-flex p-1 rounded-xl" style="background:#e8e8ea;">
+        <button onclick="setSeg('vivo')" id="seg-vivo" class="seg-btn">En vivo</button>
+        <button onclick="setSeg('prox')" id="seg-prox" class="seg-btn active">Próximos</button>
+        <button onclick="setSeg('result')" id="seg-result" class="seg-btn">Resultados</button>
+      </div>
+    </div>
   </div>
 
   <!-- Search bar — shown on picks + history tabs -->
@@ -116,11 +128,6 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
     </div>
   </div>
 
-  <div id="filter-bar" class="hidden flex-wrap items-center gap-2 mb-3">
-    <button onclick="setFilter('all')" data-filter="all" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium" data-i18n="filter_all">Todos</button>
-    <button onclick="setFilter('bet')" data-filter="bet" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium" data-i18n="filter_bet">Solo BET</button>
-    <button onclick="setFilter('alta')" data-filter="alta" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-medium" data-i18n="filter_alta">Confianza ALTA</button>
-  </div>
 
   <!-- Dynamic date chips — only picks tab -->
   <div id="date-chips-bar" class="hidden flex-wrap gap-2 mb-6"></div>
@@ -142,12 +149,54 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
   </div>
 </main>
 
-<div id="auth-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-5" style="background:rgba(20,20,22,.55); backdrop-filter:blur(4px);" onclick="if(event.target===this)closeAuth()">
-  <div class="w-full max-w-sm rounded-2xl p-6 text-center" style="background:var(--panel); box-shadow:var(--shadow-elevated);">
-    <div class="flex items-center justify-center gap-1.5 font-extrabold text-2xl mb-3" style="letter-spacing:-.03em;">kini<span class="inline-block rounded-full" style="width:8px;height:8px;background:var(--bet);margin-bottom:3px;"></span></div>
-    <div class="text-lg font-bold mb-1" data-i18n="auth_title">Cuentas en camino</div>
-    <p class="text-sm mb-5" style="color:var(--mute);" data-i18n="auth_body">Los planes Free / Pro y el acceso con cuenta llegan pronto. Por ahora, toda la app es pública.</p>
-    <button onclick="closeAuth()" class="w-full rounded-xl font-bold text-sm py-2.5" style="background:var(--ui-black); color:var(--ui-black-ink);" data-i18n="auth_close">Entendido</button>
+<div id="auth-modal" class="hidden fixed inset-0 z-50 flex items-center justify-end sm:items-center justify-center p-3 sm:p-5" style="background:rgba(20,20,22,.6); backdrop-filter:blur(5px);" onclick="if(event.target===this)closeAuth()">
+  <div class="w-full max-w-[440px] rounded-2xl overflow-hidden" style="background:var(--panel); box-shadow:var(--shadow-elevated); max-height:92dvh; overflow-y:auto;">
+    <!-- header -->
+    <div class="flex items-center justify-between px-5 pt-5 pb-4" style="border-bottom:1px solid var(--border);">
+      <div class="flex items-center gap-1.5 font-extrabold text-xl" style="letter-spacing:-.03em;">kini<span class="inline-block rounded-full" style="width:7px;height:7px;background:var(--bet);margin-bottom:2px;"></span></div>
+      <button onclick="closeAuth()" class="w-7 h-7 rounded-lg flex items-center justify-center text-sm" style="background:var(--panel2); color:var(--mute);">✕</button>
+    </div>
+    <!-- tier cards -->
+    <div class="px-4 pt-4 pb-2 grid grid-cols-1 gap-3">
+      <!-- Free -->
+      <div class="rounded-xl p-4" style="background:var(--panel2); border:1px solid var(--border);">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <div class="font-bold text-base" style="color:var(--ink);">Free</div>
+            <div class="text-[13px] mt-0.5" style="color:var(--mute);">$0 / siempre gratis</div>
+          </div>
+          <span class="px-2.5 py-1 rounded-lg text-xs font-bold" style="background:var(--panel); border:1px solid var(--border); color:var(--mute);">Gratis</span>
+        </div>
+        <ul class="mt-3 space-y-1.5 text-[13px]" style="color:var(--mute);">
+          <li class="flex items-center gap-2"><span style="color:var(--bet);">✓</span> 2 picks del día</li>
+          <li class="flex items-center gap-2"><span style="color:var(--bet);">✓</span> Marcadores en vivo</li>
+          <li class="flex items-center gap-2"><span style="color:var(--bet);">✓</span> Historial público</li>
+        </ul>
+      </div>
+      <!-- Pro (highlighted) -->
+      <div class="rounded-xl p-4 relative" style="background:linear-gradient(135deg,#111 0%,#1a2a1a 100%); border:1.5px solid var(--bet);">
+        <div class="absolute top-3 right-3 px-2 py-0.5 rounded-full text-[10px] font-bold" style="background:var(--bet); color:#fff;">LANZAMIENTO</div>
+        <div class="flex items-start justify-between gap-3 pr-20">
+          <div>
+            <div class="font-bold text-base" style="color:#fff;">Pro</div>
+            <div class="text-[13px] mt-0.5" style="color:var(--bet);">$99<span class="text-[11px]">/mes</span> <span class="line-through opacity-50 text-xs text-white">$199</span></div>
+            <div class="text-[11px] mt-0.5" style="color:rgba(255,255,255,.5);">o $990/año (~$82/mes)</div>
+          </div>
+        </div>
+        <ul class="mt-3 space-y-1.5 text-[13px]" style="color:rgba(255,255,255,.8);">
+          <li class="flex items-center gap-2"><span style="color:var(--bet);">✓</span> Todos los picks + edge + CLV</li>
+          <li class="flex items-center gap-2"><span style="color:var(--bet);">✓</span> Por qué apostamos cada partido</li>
+          <li class="flex items-center gap-2"><span style="color:var(--bet);">✓</span> Alertas en tiempo real</li>
+          <li class="flex items-center gap-2"><span style="color:var(--bet);">✓</span> Bracket + Ranking completo</li>
+        </ul>
+        <button onclick="closeAuth()" class="mt-4 w-full rounded-xl font-bold text-sm py-2.5" style="background:var(--bet); color:#fff;">Desbloquear Pro →</button>
+      </div>
+    </div>
+    <!-- coming soon note -->
+    <div class="px-5 py-4 text-center text-xs" style="color:var(--mute);">
+      Sistema de cuentas llega pronto. Mientras tanto, la app completa es pública y gratuita.
+      <button onclick="closeAuth()" class="block mx-auto mt-3 font-semibold underline" style="color:var(--ink);">Continuar sin cuenta</button>
+    </div>
   </div>
 </div>
 
@@ -190,7 +239,7 @@ body { background: var(--bg); color: var(--ink); min-height:100vh; transition: b
    _onTeamSearch, _selectTeamOpt, _clearTeamFilter, toggleMatchSummary,
    checkQuinielaPw, dismissEmailBanner,
    requestNotificationPermission, startPresentation, shareFixture, toggleLang,
-   toggleTheme, openDetail, closeDetail, openAuth, closeAuth --
+   toggleTheme, openDetail, closeDetail, openAuth, closeAuth, setSeg --
    all invoked from onclick="" attributes in markup, invisible to static analysis */
 // ── i18n ──
 const T = {
@@ -369,9 +418,9 @@ function affiliateUrl(book) {
   return null;
 }
 let currentTab = 'upcoming';
-let currentFilter = 'all';
 let currentSearch = '';
 let currentDateFilter = '';
+let currentSeg = 'prox'; // vivo | prox | result
 const PW_HASH = '5d7df06cd4fd705ee3172c065da16c18f0c00231348bd688ed0a8679f231d39c';
 let quinielaAuth = sessionStorage.getItem('q_auth') === PW_HASH;
 document.addEventListener('click', () => {
@@ -450,7 +499,7 @@ async function loadData() {
     document.getElementById('loading').classList.add('hidden');
     applyLang();
     renderStats();
-    setTab(currentTab); // also triggers show/hide of search-bar, filter-bar, date-chips
+    setTab(currentTab);
     checkLive();
     _syncESPNOnLoad(); // one-time: detect matches that started/ended since last cron
   } catch {
@@ -566,7 +615,7 @@ function goToLive() {
   const live = DATA?.fixtures.find(f => f.is_live);
   if (!live) {return;}
   setTab('upcoming');
-  setFilter('all');
+  setSeg('vivo');
   requestAnimationFrame(() => {
     const el = document.getElementById(`fix-${live.id}`);
     if (el) {el.scrollIntoView({ behavior: 'smooth', block: 'center' });}
@@ -915,14 +964,16 @@ function setTab(tab) {
   // Always hide results-container on tab switch; renderHistory() will un-hide if needed
   const rc = document.getElementById('results-container');
   if (rc) {rc.classList.add('hidden');}
-  // search bar: partidos + picks + history; date chips: partidos only. filter bar retired (Picks tab covers BET).
+  // Segmented control: only on Partidos tab
+  const segControl = document.getElementById('seg-control');
+  if (segControl) {segControl.classList.toggle('hidden', tab !== 'upcoming');}
+  // search bar: picks + history only (partidos uses seg control).
   const searchBar = document.getElementById('search-bar');
-  const filterBar = document.getElementById('filter-bar');
   const dateChipsBar = document.getElementById('date-chips-bar');
-  if (filterBar) { filterBar.classList.add('hidden'); filterBar.classList.remove('flex'); }
-  const showSearch = tab === 'upcoming' || tab === 'picks' || tab === 'history';
+  const showSearch = tab === 'picks' || tab === 'history';
   searchBar.classList.toggle('hidden', !showSearch);
-  if (tab === 'upcoming') {
+  // date chips: only on partidos + prox seg
+  if (tab === 'upcoming' && currentSeg === 'prox') {
     dateChipsBar.classList.remove('hidden'); dateChipsBar.classList.add('flex');
   } else {
     dateChipsBar.classList.add('hidden'); dateChipsBar.classList.remove('flex');
@@ -946,17 +997,15 @@ function setDateFilter(d) {
   if (currentTab === 'upcoming') {renderFixtures();}
 }
 
-function setFilter(filter) {
-  currentFilter = filter;
-  currentDateFilter = ''; // reset date filter when changing main filter
-  document.querySelectorAll('.filter-btn').forEach(btn => {
-    const f = btn.dataset.filter;
-    if (f === filter) {
-      btn.style.cssText = `background:var(--panel); color:var(--ui-black); border:1px solid var(--border); box-shadow:0 2px 8px -4px rgba(0,0,0,.3); font-weight:700;`;
-    } else {
-      btn.style.cssText = `background:var(--panel2); color:var(--mute); border:1px solid var(--border);`;
-    }
+function setSeg(s) {
+  currentSeg = s;
+  ['vivo','prox','result'].forEach(seg => {
+    const btn = document.getElementById('seg-' + seg);
+    if (btn) {btn.classList.toggle('active', seg === s);}
   });
+  // date chips only relevant for prox
+  const dc = document.getElementById('date-chips-bar');
+  if (dc) {dc.classList.toggle('hidden', s !== 'prox'); if (s === 'prox') {dc.classList.add('flex');} else {dc.classList.remove('flex');}}
   renderFixtures();
 }
 
@@ -1519,7 +1568,6 @@ function openDetail(id, backTo) {
    'bracket-container', 'players-container', 'history-container', 'quiniela-container',
    'results-container'].forEach(id2 => document.getElementById(id2)?.classList.add('hidden'));
   document.getElementById('search-bar')?.classList.add('hidden');
-  document.getElementById('filter-bar')?.classList.add('hidden');
   document.getElementById('date-chips-bar')?.classList.add('hidden');
   document.getElementById('screen-head')?.classList.add('hidden');
   document.getElementById('detail-container')?.classList.remove('hidden');
@@ -1833,47 +1881,89 @@ function renderPicks() {
     return;
   }
   const sub = `<p class="text-sm -mt-2 mb-4" style="color:var(--mute);">${LANG === 'es' ? 'Partidos donde el modelo ve ventaja real sobre el mercado.' : 'Matches where the model sees real edge over the market.'}</p>`;
-  el.innerHTML = sub + `<div class="flex flex-col gap-3">${bets.map(f => renderFixtureCard(f)).join('')}</div>`;
+  // Gating: show 2 picks, blur the rest with CTA overlay
+  const FREE_LIMIT = 2;
+  const visible = bets.slice(0, FREE_LIMIT);
+  const locked = bets.slice(FREE_LIMIT);
+  let cardsHtml = `<div class="flex flex-col gap-3">${visible.map(f => renderFixtureCard(f)).join('')}</div>`;
+  if (locked.length) {
+    const blurCards = locked.slice(0, 3).map(f => renderFixtureCard(f)).join('');
+    cardsHtml += `
+      <div class="relative mt-3">
+        <div style="filter:blur(5px); pointer-events:none; user-select:none; opacity:.7;">
+          <div class="flex flex-col gap-3">${blurCards}</div>
+        </div>
+        <div class="absolute inset-0 flex flex-col items-center justify-center rounded-2xl" style="background:linear-gradient(to bottom,rgba(245,245,247,0) 0%,rgba(245,245,247,.85) 35%,rgba(245,245,247,.98) 100%); [data-theme='dark']_&:background:linear-gradient(to bottom,rgba(10,14,26,0),rgba(10,14,26,.95));">
+          <div class="text-center px-6 pt-8">
+            <div class="text-sm font-bold mb-1" style="color:var(--ink);">${LANG==='es'?`+${locked.length} picks más`:`+${locked.length} more picks`}</div>
+            <p class="text-xs mb-4" style="color:var(--mute);">${LANG==='es'?'Desbloquea todos los picks con Pro':'Unlock all picks with Pro'}</p>
+            <button onclick="openAuth()" class="px-5 py-2.5 rounded-xl font-bold text-sm" style="background:var(--ui-black);color:var(--ui-black-ink);">${LANG==='es'?'Desbloquear con Pro →':'Unlock with Pro →'}</button>
+          </div>
+        </div>
+      </div>`;
+  }
+  el.innerHTML = sub + cardsHtml;
 }
 
 // ── Fixtures (Partidos tab) ──
 function _isoDate(iso) { return iso ? iso.slice(0, 10) : ''; }
 
 function renderFixtures() {
+  if (currentSeg === 'vivo') { _renderSegVivo(); return; }
+  if (currentSeg === 'result') { _renderSegResult(); return; }
+  _renderSegProx();
+}
+
+function _renderSegVivo() {
+  const live = DATA.fixtures.filter(f => f.is_live);
+  const el = document.getElementById('fixtures-container');
+  if (!live.length) {
+    el.innerHTML = `<div class="text-center py-16"><div class="text-3xl mb-3">⚽</div><div class="text-sm font-medium" style="color:var(--mute);">${LANG==='es'?'Ningún partido en vivo ahora':'No matches live right now'}</div><div class="text-xs mt-1" style="color:var(--mute);">${LANG==='es'?'Vuelve cuando empiece el próximo partido':'Check back when the next match kicks off'}</div></div>`;
+    return;
+  }
+  let html = `<div class="flex items-center gap-2 mb-4"><span class="w-2 h-2 rounded-full pulse-live" style="background:var(--live);"></span><h3 class="text-sm font-bold uppercase tracking-wider" style="color:var(--live);">${LANG==='es'?'EN VIVO AHORA':'LIVE NOW'}</h3></div><div class="space-y-3">`;
+  live.forEach(f => { html += renderLiveCard(f); });
+  html += '</div>';
+  el.innerHTML = html;
+}
+
+function _renderSegResult() {
+  let completed = DATA.fixtures.filter(f => f.completed);
+  completed.sort((a, b) => new Date(b.commence_time) - new Date(a.commence_time));
+  const el = document.getElementById('fixtures-container');
+  if (!completed.length) {
+    el.innerHTML = `<div class="text-center py-12 text-sm" style="color:var(--mute);">${LANG==='es'?'No hay resultados aún':'No results yet'}</div>`;
+    return;
+  }
+  const dateGroups = new Map();
+  completed.forEach(f => {
+    const d = _isoDate(f.commence_time);
+    if (!dateGroups.has(d)) {dateGroups.set(d, []);}
+    dateGroups.get(d).push(f);
+  });
+  let html = '';
+  dateGroups.forEach((group, d) => {
+    const label = new Date(d + 'T12:00:00').toLocaleDateString(LANG==='es'?'es':'en', {weekday:'long', month:'long', day:'numeric'});
+    html += `<div class="mb-8"><div class="mb-3"><h3 class="text-sm font-medium uppercase tracking-wider" style="color:var(--mute);">${label}</h3></div><div class="space-y-3">`;
+    group.forEach(f => { html += renderResultCard(f); });
+    html += '</div></div>';
+  });
+  el.innerHTML = html;
+}
+
+function _renderSegProx() {
   // Exclude fixtures whose kickoff was >3h ago but still aren't marked completed
-  // or live — the match was played, the data feed just hasn't filled the result
-  // yet. Showing it under "Próximos" is wrong (e.g. Mexico–Ecuador).
+  // or live — the match was played but feed hasn't filled the result yet.
   const _cutoff = Date.now() - 3 * 3600 * 1000;
   let fixtures = DATA.fixtures.filter(f => {
     if (f.completed) {return false;}
-    if (f.is_live) {return true;}
+    if (f.is_live) {return false;} // live shown in its own seg
     const ct = Date.parse(f.commence_time);
     return isNaN(ct) || ct > _cutoff;
   });
 
-  // Main filter
-  if (currentFilter === 'bet') {fixtures = fixtures.filter(f => f.best_bet);}
-  else if (currentFilter === 'alta') {fixtures = fixtures.filter(f => f.fixture_confidence === 'ALTA');}
-
-  // Search filter
-  if (currentSearch) {
-    const q = currentSearch;
-    fixtures = fixtures.filter(f =>
-      (f.home || '').toLowerCase().includes(q) ||
-      (f.away || '').toLowerCase().includes(q) ||
-      teamName(f.home).toLowerCase().includes(q) ||
-      teamName(f.away).toLowerCase().includes(q)
-    );
-  }
-
-  const liveFixtures = fixtures.filter(f => f.is_live);
-  // Upcoming: sort strictly by date, BET-first within same date handled per group
-  const otherFixtures = fixtures.filter(f => !f.is_live);
-  otherFixtures.sort((a, b) => new Date(a.commence_time) - new Date(b.commence_time));
-
   // ── Populate date chips ──
-  const allUpcoming = DATA.fixtures.filter(f => !f.completed && !f.is_live);
-  const availDates = [...new Set(allUpcoming.map(f => _isoDate(f.commence_time)))].sort();
+  const availDates = [...new Set(fixtures.map(f => _isoDate(f.commence_time)))].sort();
   const chipsBar = document.getElementById('date-chips-bar');
   if (chipsBar) {
     const today = _isoDate(new Date().toISOString());
@@ -1889,57 +1979,38 @@ function renderFixtures() {
       chipsHtml += `<button onclick="setDateFilter('${d}')" class="px-2.5 py-1 rounded-lg text-xs font-medium" style="${style}">${label}</button>`;
     });
     chipsBar.innerHTML = chipsHtml;
+    chipsBar.classList.toggle('hidden', !chipsHtml);
+    if (chipsHtml) {chipsBar.classList.add('flex');}
   }
 
   // Apply date filter
-  let displayFixtures = otherFixtures;
   if (currentDateFilter) {
-    displayFixtures = otherFixtures.filter(f => _isoDate(f.commence_time) === currentDateFilter);
+    fixtures = fixtures.filter(f => _isoDate(f.commence_time) === currentDateFilter);
   }
 
-  if (!liveFixtures.length && !displayFixtures.length) {
+  fixtures.sort((a, b) => new Date(a.commence_time) - new Date(b.commence_time));
+
+  if (!fixtures.length) {
     document.getElementById('fixtures-container').innerHTML = `<div class="text-center py-12 text-sm" style="color:var(--mute);">${t('no_fixtures')}</div>`;
     return;
   }
 
-  let html = '';
-
-  // ── Featured live section ──
-  if (liveFixtures.length) {
-    html += `<div class="mb-8">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="w-2 h-2 rounded-full pulse-live" style="background:var(--live);"></span>
-        <h3 class="text-sm font-bold uppercase tracking-wider" style="color:var(--live);">${LANG === 'es' ? 'EN VIVO AHORA' : 'LIVE NOW'}</h3>
-      </div>
-      <div class="space-y-3">`;
-    liveFixtures.forEach(f => { html += renderLiveCard(f); });
-    html += `</div></div>`;
-  }
-
-  // ── Upcoming grouped by date ──
   const dateGroups = new Map();
-  displayFixtures.forEach(f => {
+  fixtures.forEach(f => {
     const d = _isoDate(f.commence_time);
     if (!dateGroups.has(d)) {dateGroups.set(d, []);}
     dateGroups.get(d).push(f);
   });
 
+  let html = '';
   dateGroups.forEach((group, d) => {
-    // BET-first only when filtering by BET/ALTA; otherwise pure chronological
-    group.sort((a, b) => {
-      if (currentFilter !== '') {
-        if (a.best_bet && !b.best_bet) {return -1;}
-        if (!a.best_bet && b.best_bet) {return 1;}
-      }
-      return new Date(a.commence_time) - new Date(b.commence_time);
-    });
     const label = new Date(d + 'T12:00:00').toLocaleDateString(LANG === 'es' ? 'es' : 'en', {weekday:'long', month:'long', day:'numeric'});
     const hasKO = group.some(f => f.is_ko);
-    const phaseLabel = hasKO ? (LANG==='es'?'16avos de Final':'Round of 32') : (LANG==='es'?'Fase de Grupos':'Group Stage');
+    const phaseLabel = hasKO ? (LANG==='es'?'Ronda de 32':'Round of 32') : (LANG==='es'?'Fase de Grupos':'Group Stage');
     const phaseColor = hasKO ? 'var(--warn)' : 'var(--mute)';
     html += `<div class="mb-8"><div class="flex items-center justify-between mb-3"><h3 class="text-sm font-medium uppercase tracking-wider" style="color:var(--mute);">${label}</h3><span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded" style="color:${phaseColor}; background:color-mix(in srgb,${phaseColor} 10%,transparent);">${phaseLabel}</span></div><div class="space-y-3">`;
     group.forEach(f => { html += renderFixtureCard(f); });
-    html += `</div></div>`;
+    html += '</div></div>';
   });
 
   document.getElementById('fixtures-container').innerHTML = html;
@@ -2009,6 +2080,52 @@ function renderFixtureCard(f) {
         ${chipSub ? `<div class="text-[9px] sm:text-[11px] font-bold">${chipSub}</div>` : ''}
       </div>
       <span class="flex-none text-xl sm:text-2xl" style="color:var(--placeholder); margin-left:-4px;">›</span>
+    </div>`;
+}
+
+// Completed match card: shows actual score, winner bold, loser muted, bet result badge.
+function renderResultCard(f) {
+  const ah = f.actual_home != null ? f.actual_home : '?';
+  const aa = f.actual_away != null ? f.actual_away : '?';
+  const winner = f.penalty_winner || (ah > aa ? 'home' : ah < aa ? 'away' : 'draw');
+  const nameH = LANG === 'es' ? (TEAM_ES[f.home] || f.home) : f.home;
+  const nameA = LANG === 'es' ? (TEAM_ES[f.away] || f.away) : f.away;
+  const homeWon = winner === 'home';
+  const awayWon = winner === 'away';
+  const homeSt = homeWon ? `font-weight:800;color:var(--ink);` : `color:var(--mute);`;
+  const awaySt = awayWon ? `font-weight:800;color:var(--ink);` : `color:var(--mute);`;
+  const status = f.penalty_winner
+    ? (LANG==='es'?'Penales':'Penalties')
+    : (LANG==='es'?'Final':'Full time');
+  // Bet result badge
+  const rawBets = (f.bets && f.bets.length ? f.bets : (f.best_bet ? [f.best_bet] : [])).filter(_isBetPick);
+  let badgeHtml = '';
+  if (rawBets.length) {
+    const won = rawBets.filter(b => b.won === true).length;
+    const lost = rawBets.filter(b => b.won === false).length;
+    if (won > 0) {badgeHtml = `<span class="px-2 py-0.5 rounded-lg text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 18%,transparent);color:var(--bet);">✓ BET</span>`;}
+    else if (lost > 0) {badgeHtml = `<span class="px-2 py-0.5 rounded-lg text-[10px] font-bold" style="background:var(--panel2);color:var(--mute);">✗ BET</span>`;}
+    else {badgeHtml = `<span class="px-2 py-0.5 rounded-lg text-[10px] font-bold" style="background:var(--panel2);color:var(--mute);">BET</span>`;}
+  }
+
+  return `
+    <div onclick="openDetail('${f.id}','upcoming')" class="rounded-2xl flex items-center gap-3 sm:gap-4 p-3 sm:p-4 cursor-pointer card-hover" style="background:var(--panel);box-shadow:var(--shadow-card);">
+      <div class="flex-1 min-w-0">
+        <div class="flex items-center gap-2 min-w-0 mb-1.5">
+          <span class="text-base flex-none">${teamFlag(f.home)}</span>
+          <span class="text-[14px] flex-1 min-w-0 truncate" style="${homeSt}">${nameH}</span>
+        </div>
+        <div class="flex items-center gap-2 min-w-0">
+          <span class="text-base flex-none">${teamFlag(f.away)}</span>
+          <span class="text-[14px] flex-1 min-w-0 truncate" style="${awaySt}">${nameA}</span>
+        </div>
+      </div>
+      <div class="flex-none text-center">
+        <div class="font-mono font-extrabold text-xl tracking-tight" style="color:var(--ink);">${ah} – ${aa}</div>
+        <div class="text-[10px] font-medium mt-0.5" style="color:var(--mute);">${status}</div>
+        ${badgeHtml ? `<div class="mt-1">${badgeHtml}</div>` : ''}
+      </div>
+      <span class="flex-none text-xl" style="color:var(--placeholder);">›</span>
     </div>`;
 }
 
@@ -2724,6 +2841,7 @@ function renderHistory() {
   const clvAvg = s.avg_clv_pct;
   const clvStr = clvAvg != null ? `${clvAvg > 0 ? '+' : ''}${clvAvg}%` : '—';
 
+  // Honest performance band (dark, always — like the mockup's Rendimiento band).
   const cell = (label, val, accent) => `<div><div class="text-[26px] font-extrabold" style="letter-spacing:-.03em;${accent ? 'color:var(--bet2);' : ''}">${val}</div><div class="text-[11px] mt-0.5" style="color:#a1a1a6;">${label}</div></div>`;
   const band = `
     <div class="rounded-2xl p-5 mb-5 grid grid-cols-2 sm:grid-cols-4 gap-4" style="background:linear-gradient(180deg,#111,#2a2a2e); color:#fff; box-shadow:var(--shadow-elevated);">
@@ -2744,7 +2862,7 @@ function renderHistory() {
 }
 
 // One completed-match row: header (teams, score, neutral outcome badges) that
-// toggles open to the full breakdown (bet result, prediction hit, stats).
+// toggles open to the full breakdown.
 function _renderHistoryRow(fx) {
   const r = fx.result || {};
   const ah = r.home, aa = r.away;
@@ -2752,6 +2870,7 @@ function _renderHistoryRow(fx) {
   const rawBets = fx.bets && fx.bets.length ? fx.bets : (fx.best_bet ? [fx.best_bet] : []);
   const allBets = rawBets.filter(_isBetPick);
 
+  // Header badges (all neutral / green — never red)
   let badges = '';
   if (allBets.length) {
     const won = allBets.filter(b => b.won === true).length;
@@ -2763,6 +2882,7 @@ function _renderHistoryRow(fx) {
   if (fx.score_hit === 1) {badges += ` <span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--alta) 20%,transparent); color:var(--alta);">${LANG === 'es' ? '✓ EXACTO' : '✓ EXACT'}</span>`;}
   else if (fx.score_hit === 2 || fx.score_hit === 3) {badges += ` <span class="px-1.5 py-0.5 rounded text-[10px] font-bold" style="background:color-mix(in srgb,var(--bet) 12%,transparent); color:var(--bet);">#${fx.score_hit}</span>`;}
 
+  // Expanded body
   const _1x2Label = v => v === '1' ? (LANG === 'es' ? 'Local' : 'Home') : v === '2' ? (LANG === 'es' ? 'Visita' : 'Away') : (LANG === 'es' ? 'Empate' : 'Draw');
   let oneX2 = '—';
   if (fx.correct_1x2 === true) {oneX2 = `<span style="color:var(--bet);">✓ ${_1x2Label(fx.result_1x2)}</span>`;}
@@ -2957,7 +3077,6 @@ function scheduleRefresh() {
   refreshTimer = setInterval(() => { loadData().then(scheduleRefresh); }, ms);
 }
 scheduleRefresh();
-setFilter('all');
 
 // ── PWA service worker ──
 if ('serviceWorker' in navigator) {
